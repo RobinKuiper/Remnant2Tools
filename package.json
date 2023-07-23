@@ -1,0 +1,32 @@
+{
+  "name": "remnant-collectables",
+  "version": "1.0.0",
+  "private": true,
+  "description": "remnant-collectables",
+  "author": "Robin Kuiper",
+  "keywords": [
+    "gatsby"
+  ],
+  "scripts": {
+    "develop": "gatsby develop",
+    "start": "gatsby develop",
+    "build": "gatsby build",
+    "serve": "gatsby serve",
+    "clean": "gatsby clean",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "babel-plugin-styled-components": "^2.1.4",
+    "gatsby": "^5.11.0",
+    "gatsby-plugin-styled-components": "^6.11.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "styled-components": "^6.0.5"
+  },
+  "devDependencies": {
+    "@types/node": "^20.3.3",
+    "@types/react": "^18.2.14",
+    "@types/react-dom": "^18.2.6",
+    "typescript": "^5.1.6"
+  }
+}
