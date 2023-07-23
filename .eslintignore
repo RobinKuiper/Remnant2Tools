@@ -1,0 +1,7 @@
+# NODE
+node_modules
+
+# APP
+coverage
+public
+.cache

@@ -1,0 +1,14 @@
+/* DEVELOPER */
+Robin Kuiper
+www.rkuiper.nl
+robingjkuiper@gmail.com                                                      
+Location: Groningen, Netherlands
+
+/* THANKS */
+Dennis Siemons, Jordy Kuiper, Mike Schokker, Cherissa Knol
+
+/* SITE */
+Last update: YYYY/MM/DD 
+Standards: HTML5, CSS3
+Components: Gatsby
+Software: Webstorm
