@@ -1,0 +1,290 @@
+[
+  {
+    "unlocked": false,
+    "name": "Vigor",
+    "description": "Increases Max Health",
+    "values": "3 → 30",
+    "biome": "",
+    "location": "",
+    "unlock": "Starter"
+  },
+  {
+    "unlocked": false,
+    "name": "Endurance",
+    "description": "Increases Max Stamina",
+    "values": "3 → 30",
+    "biome": "",
+    "location": "",
+    "unlock": "Starter"
+  },
+  {
+    "unlocked": false,
+    "name": "Spirit",
+    "description": "Increases Mod Power Generation",
+    "values": "2% → 20%",
+    "biome": "",
+    "location": "",
+    "unlock": "Starter"
+  },
+  {
+    "unlocked": false,
+    "name": "Expertise",
+    "description": "Reduces Skill Cooldowns",
+    "values": "- 2% → - 20%",
+    "biome": "",
+    "location": "",
+    "unlock": "Starter"
+  },
+  {
+    "unlocked": false,
+    "name": "Ammo Reserves",
+    "description": "Increases Ammo Reserves",
+    "values": "6% → 60%",
+    "biome": "",
+    "location": "",
+    "unlock": "Archetype trait Gunslinger"
+  },
+  {
+    "unlocked": false,
+    "name": "Flash Caster",
+    "description": "Increases Mod and Casting Speed",
+    "values": "5% → 50%",
+    "biome": "",
+    "location": "",
+    "unlock": "Archetype trait Archon"
+  },
+  {
+    "unlocked": false,
+    "name": "Fortify",
+    "description": "Increases Armor Effectiveness",
+    "values": "5% → 50%",
+    "biome": "",
+    "location": "",
+    "unlock": "Archetype trait Engineer"
+  },
+  {
+    "unlocked": false,
+    "name": "Kinship",
+    "description": "Reduces friendly fire damage dealt and received",
+    "values": "8% →  80%",
+    "biome": "",
+    "location": "",
+    "unlock": "Archetype Trait of the Handler"
+  },
+  {
+    "unlocked": false,
+    "name": "Longshot",
+    "description": "Increases Weapon Ideal Range",
+    "values": "60CM → 600CM",
+    "biome": "",
+    "location": "",
+    "unlock": "Archetype Trait of the Hunter"
+  },
+  {
+    "unlocked": false,
+    "name": "Potency",
+    "description": "Increases Consumable Duration",
+    "values": "10% → 100%",
+    "biome": "",
+    "location": "",
+    "unlock": "Archetype Trait of the Alchemist"
+  },
+  {
+    "unlocked": false,
+    "name": "Regrowth",
+    "description": "Increases Health Regen",
+    "values": "0.15s → 1.5s",
+    "biome": "",
+    "location": "",
+    "unlock": "Archetype Trait of the Summoner"
+  },
+  {
+    "unlocked": false,
+    "name": "Strong Back",
+    "description": "Reduces Encumbrance",
+    "values": "- 1 →  - 10",
+    "biome": "",
+    "location": "",
+    "unlock": "Archetype Trait of the Challenger"
+  },
+  {
+    "unlocked": false,
+    "name": "Swiftness",
+    "description": "Increases all Movement Speed",
+    "values": "1% → 15%",
+    "biome": "",
+    "location": "",
+    "unlock": "Archetype Trait of the Explorer"
+  },
+  {
+    "unlocked": false,
+    "name": "Triage",
+    "description": "Increases healing provided by Weapon Mods",
+    "values": "3% →  30%",
+    "biome": "",
+    "location": "",
+    "unlock": "Archetype Trait of the Medic"
+  },
+  {
+    "unlocked": false,
+    "name": "Untouchable",
+    "description": "Increases Evade Window",
+    "values": "3% → 30%",
+    "biome": "",
+    "location": "",
+    "unlock": "Archetype Trait of the Invader"
+  },
+  {
+    "unlocked": false,
+    "name": "Amplitude",
+    "description": "Increases AOE Size",
+    "values": "5% → 50%",
+    "biome": "",
+    "location": "",
+    "unlock": ""
+  },
+  {
+    "unlocked": false,
+    "name": "Arcane Strike",
+    "description": "Increases Mod Power Generation for Melee Damage",
+    "values": "5% → 50%",
+    "biome": "Losomn",
+    "location": "Harvester's Reach",
+    "unlock": "Defeat a miniboss that spawns in the bone piles"
+  },
+  {
+    "unlocked": false,
+    "name": "Barkskin",
+    "description": "Reduces ALL incoming Damage",
+    "values": "1% → 10%",
+    "biome": "Yaesha",
+    "location": "The Far Woods",
+    "unlock": "Talk to Meidre, depends on your answers being \"helping the others"
+  },
+  {
+    "unlocked": false,
+    "name": "Blood Bond",
+    "description": "Summon Absorb damage taken by the caster",
+    "values": "1% → 10%",
+    "biome": "Yaesha",
+    "location": "The Far Woods",
+    "unlock": "Defeat Root Nexus"
+  },
+  {
+    "unlocked": false,
+    "name": "Bloodstream",
+    "description": "Increases Grey Health regen",
+    "values": "0.3s → 3.0s",
+    "biome": "Yaesha",
+    "location": "The Far Woods",
+    "unlock": "Talk to Meidre, depends on your answers being \"helping myself"
+  },
+  {
+    "unlocked": false,
+    "name": "Fitness",
+    "description": "Increases Evade Distance",
+    "values": "3% →  30%",
+    "biome": "",
+    "location": "",
+    "unlock": ""
+  },
+  {
+    "unlocked": false,
+    "name": "Footwork",
+    "description": "Increases Movement Speed while Aiming",
+    "values": "5% → 50%",
+    "biome": "N'erud",
+    "location": "Terminus Station",
+    "unlock": "Complete the train quest where you face waves of enemies on a train."
+  },
+  {
+    "unlocked": false,
+    "name": "Glutton",
+    "description": "Increases the Use Speed of Consumables and Relics",
+    "values": "3% →  30%",
+    "biome": "",
+    "location": "",
+    "unlock": ""
+  },
+  {
+    "unlocked": false,
+    "name": "Handling",
+    "description": "Reduces Weapon Spread and Recoil",
+    "values": "4% →  40%",
+    "biome": "Root Earht",
+    "location": "Ahsen Wasteland",
+    "unlock": "Defeat X"
+  },
+  {
+    "unlocked": false,
+    "name": "Recovery",
+    "description": "Increases Stamina Regen",
+    "values": "3s → 30s",
+    "biome": "Losomn",
+    "location": "Oracle's Refuge",
+    "unlock": "Bring all the child to the Oracle's Refuge."
+  },
+  {
+    "unlocked": false,
+    "name": "Resonance",
+    "description": "Increases Aura Size",
+    "values": "5% → 50%",
+    "biome": "",
+    "location": "",
+    "unlock": ""
+  },
+  {
+    "unlocked": false,
+    "name": "Revivalist",
+    "description": "Increases the Speed of Reviving and being Revived",
+    "values": "5% → 50%",
+    "biome": "",
+    "location": "",
+    "unlock": ""
+  },
+  {
+    "unlocked": false,
+    "name": "Rugged",
+    "description": "Increases the Health of Archetpye Summons",
+    "values": "10% → 100%",
+    "biome": "Yaesha",
+    "location": "Forgotten Field",
+    "unlock": "Free the Pan that is imprissioned by Root Nexus"
+  },
+  {
+    "unlocked": false,
+    "name": "Scholar",
+    "description": "Increases Experience Gain",
+    "values": "1% → 15%",
+    "biome": "",
+    "location": "",
+    "unlock": ""
+  },
+  {
+    "unlocked": false,
+    "name": "Shadeskin",
+    "description": "Increases Resistance to Elemental Status Effect Damage",
+    "values": "2% → 20%",
+    "biome": "",
+    "location": "",
+    "unlock": ""
+  },
+  {
+    "unlocked": false,
+    "name": "Siphoner",
+    "description": "Increases Lifesteal",
+    "values": "0.3% → 3%",
+    "biome": "N'erud",
+    "location": "Dormant N'erudian Facility",
+    "unlock": "Complete the Quarantine Event where you need to eliminate all enemies in the area in 6 minutes."
+  },
+  {
+    "unlocked": false,
+    "name": "Wayfarer",
+    "description": "Increeses Traversal Movement",
+    "values": "5% → 50%",
+    "biome": "Root Earth",
+    "location": "Corrupted Harbor",
+    "unlock": "Miniboss fight with waves"
+  }
+]
