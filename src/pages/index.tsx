@@ -48,7 +48,6 @@ const categories = [
 
 const IndexPage: React.FC<PageProps> = () => {
   const [category, setCategory] = useState(0);
-  const [data, setData] = useState(archetypes);
 
   return (
     <Container>
@@ -59,7 +58,6 @@ const IndexPage: React.FC<PageProps> = () => {
             key={category.label}
             onClick={() => {
               setCategory(index);
-              setData(categories[index].data);
             }}
           >
             {category.label}
@@ -69,18 +67,22 @@ const IndexPage: React.FC<PageProps> = () => {
 
       <Content>
         <table>
-          <tr>
-            {Object.keys(data[0]).map(key => (
-              <th key={key}>{key}</th>
-            ))}
-          </tr>
-          {data.map((row, index) => (
-            <tr key={index}>
-              {Object.values(row).map(value => (
-                <td key={value}>{value}</td>
+          <thead>
+            <tr>
+              {Object.keys(categories[category].data[0]).map(key => (
+                <th key={key}>{key}</th>
               ))}
             </tr>
-          ))}
+          </thead>
+          <tbody>
+            {categories[category].data.map((row, index) => (
+              <tr key={index}>
+                {Object.values(row).map(value => (
+                  <td key={value}>a {value}</td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
         </table>
       </Content>
     </Container>
