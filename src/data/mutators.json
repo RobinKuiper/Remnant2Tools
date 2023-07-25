@@ -1,0 +1,226 @@
+[
+  {
+    "name": "Transpose",
+    "description": "Picking up Ammo increases Ranged damage by 10% for 20s. \nLevel 10: Ammo pickups are added directly to the magazine.",
+    "biome": "Earth",
+    "location": "Ward 13",
+    "unlock": "Buy from Dwell or Defeating W.D. 109"
+  },
+  {
+    "name": "Feedback",
+    "description": "Using this weapon's Mod generates 10% of single charge value as passive Mod Power over 10s. Does not stack.\nLevel 10: Mod Damage generates 10% of damage dealt as Mod Power.",
+    "biome": "Earth",
+    "location": "Ward 13",
+    "unlock": "Buy from Dwell"
+  },
+  {
+    "name": "Harmonizer",
+    "description": "Increases Mod Damage by 10%. \nLevel 10: Generate 25% additional Mod Power for Stowed Weapon.",
+    "biome": "Earth",
+    "location": "Ward 13",
+    "unlock": "Buy from Dwell"
+  },
+  {
+    "name": "Resentment",
+    "description": "Gain 10% Melee Damage when Grey Health is present. \nLevel 10: Reduces Stagger by 1 when using any Melee Attack.",
+    "biome": "Earth",
+    "location": "Ward 13",
+    "unlock": "Buy from Dwell"
+  },
+  {
+    "name": "Shield Breaker",
+    "description": "Melee Attacks grant a Shield for 2% of Max Health. Max 20%. Last 10s. \nLevel 10: Charged Melee Attacks consume all Shield to increase damage of next strike by 1% per Shield Consumed. Max 100%.",
+    "biome": "Earth",
+    "location": "Ward 13",
+    "unlock": "Buy from Dwell"
+  },
+  {
+    "name": "Slayer",
+    "description": "Reloading increases the damage of this weapon's next shot by 10%. Lasts 3s. \nLevel 10: Increases Reload Speed by 15%.",
+    "biome": "Earth",
+    "location": "Ward 13",
+    "unlock": "Buy from Dwell"
+  },
+  {
+    "name": "Weaponlord",
+    "description": "Basic Melee Attack increase the next Charge Attack by 7%. Max 5 Stacks. \nLevel 10: At Max Stacks, the next Charge Attack gains 100% Critical Chance.",
+    "biome": "Earth",
+    "location": "Ward 13",
+    "unlock": "Buy from Dwell"
+  },
+  {
+    "name": "Dervish",
+    "description": "Increases Melee Damage by 20% for 10s when activating a Skill. \nLevel 10: Melee kills reduce Skill Cooldowns by 5%. Can trigger once every 5s.",
+    "biome": "Earth",
+    "location": "Ward 13",
+    "unlock": "Buy from Dwell"
+  },
+  {
+    "name": "Deadly Calm",
+    "description": "Continuosly Aiming increases Ranged Damage by up to 10% over 3s. \nLevel 10: Ranged Critical Hit Chance increased by 10%.",
+    "biome": "Earth",
+    "location": "Ward 13",
+    "unlock": "Buy from Dwell"
+  },
+  {
+    "name": "Battery",
+    "description": "Ranged Hits increase the next Weakspot Hit by 10% per stack. Max 5 Stacks. \nLevel 10: At Max Stacks, the next Weakspot Hit deals 15% additional damage over 3s.",
+    "biome": "Earth",
+    "location": "Ward 13",
+    "unlock": "Buy from Dwell"
+  },
+  {
+    "name": "Timewave",
+    "description": "Mod Use applies SLOW status on all enemies within 7.5m for 3.5s.\nLevel 10: Increase this weapon's Ranged damage by 15% to enemies inflicted with SLOW status.",
+    "biome": "N'erud",
+    "location": "Spectrum Nexus",
+    "unlock": "Defeat Restless Spirit Boss"
+  },
+  {
+    "name": "Refunder",
+    "description": "Shots from this weapon have 20% chance to return spent Ammo to reserves.\nLevel 10: Refunded Ammo has a 50% chance to also be added to stowed weapon reserves.",
+    "biome": "N'erud",
+    "location": "Tower of the Unseen",
+    "unlock": "Defeat E.D. Alpha"
+  },
+  {
+    "name": "Momentum",
+    "description": "When this weapon scores a Critical hit, it increases Critical Chance and Critical Damage by 1.5% for 3s. Max 10 stacks.\nLevel 10: Critical Hits from this weapon add 2 stacks. Increases duration by 2s.",
+    "biome": "",
+    "location": "",
+    "unlock": ""
+  },
+  {
+    "name": "Lithely",
+    "description": "Increase this weapon's Reload Speed by 4% for each enemy killed between reloads. Lasts 15s. Max 5 Stacks.\nLevel 10: Reloading at Max Stacks increases Ranged Damage by 20% for 15s.",
+    "biome": "",
+    "location": "",
+    "unlock": ""
+  },
+  {
+    "name": "Striker",
+    "description": "Melee Hits increase Melee Damage by 3% for 10s. Max 5 Stacks.\nLevel 10: Increases Movement Speed by 3% per stack.",
+    "biome": "",
+    "location": "Morrow Parish",
+    "unlock": "Defeat Ripsaw Boss"
+  },
+  {
+    "name": "Extender",
+    "description": "Increases Magazine Capacity of this weapon by 30%.\nLevel 10: Increases Reload Speed of this weapon by 15%",
+    "biome": "",
+    "location": "",
+    "unlock": ""
+  },
+  {
+    "name": "Bandit",
+    "description": "On hit, grants 10% chanche to return spent Ammo directly into the magazine of this weapon.\nLevel 10: When Ammo is returned to this weapon, it gains 10% increased Fire Rate for 3s. Duration can increase up to 10s",
+    "biome": "Yaesha",
+    "location": "Forgotten Field",
+    "unlock": "Defeat The Weald Stalker and The Gnarled Archer killed in this order"
+  },
+  {
+    "name": "Reinvigorate",
+    "description": "Reduces Stamina Cost of all Charged Melee Attacks by 25%.\nLevel 10: Melee Charge Attacks gain 15% additional damage and 10% Critical Chance.",
+    "biome": "Yaesha",
+    "location": "Forgotten Field",
+    "unlock": "Defeat Defiler Boss that spawns after killing Nexus Root with the imprissioned Pan"
+  },
+  {
+    "name": "",
+    "description": "",
+    "biome": "",
+    "location": "",
+    "unlock": ""
+  },
+  {
+    "name": "",
+    "description": "",
+    "biome": "",
+    "location": "",
+    "unlock": ""
+  },
+  {
+    "name": "",
+    "description": "",
+    "biome": "",
+    "location": "",
+    "unlock": ""
+  },
+  {
+    "name": "",
+    "description": "",
+    "biome": "",
+    "location": "",
+    "unlock": ""
+  },
+  {
+    "name": "",
+    "description": "",
+    "biome": "",
+    "location": "",
+    "unlock": ""
+  },
+  {
+    "name": "",
+    "description": "",
+    "biome": "",
+    "location": "",
+    "unlock": ""
+  },
+  {
+    "name": "",
+    "description": "",
+    "biome": "",
+    "location": "",
+    "unlock": ""
+  },
+  {
+    "name": "",
+    "description": "",
+    "biome": "",
+    "location": "",
+    "unlock": ""
+  },
+  {
+    "name": "",
+    "description": "",
+    "biome": "",
+    "location": "",
+    "unlock": ""
+  },
+  {
+    "name": "",
+    "description": "",
+    "biome": "",
+    "location": "",
+    "unlock": ""
+  },
+  {
+    "name": "",
+    "description": "",
+    "biome": "",
+    "location": "",
+    "unlock": ""
+  },
+  {
+    "name": "",
+    "description": "",
+    "biome": "",
+    "location": "",
+    "unlock": ""
+  },
+  {
+    "name": "",
+    "description": "",
+    "biome": "",
+    "location": "",
+    "unlock": ""
+  },
+  {
+    "name": "",
+    "description": "",
+    "biome": "",
+    "location": "",
+    "unlock": ""
+  }
+]

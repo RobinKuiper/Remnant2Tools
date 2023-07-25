@@ -1,0 +1,258 @@
+[
+  {
+    "name": "Hotshot",
+    "description": "Imbues ammunition with FIRE and increases Ranged damage by 15% for 20.3s. Shots also apply BURNING, dealing 300.8 FIRE Damage over 10s. Mod Power Req: 1250",
+    "biome": "Earth",
+    "location": "Eastport",
+    "price_material": "Root Ganglia",
+    "unlock__1": "Defeat Root Mantis Boss"
+  },
+  {
+    "name": "Healing Shot",
+    "description": "Launches a payload that explodes on cotact with allies, healing 35% of their max health. When no ally is struck, payload lays dormant until an ally gets close. Dorman payload lasts 30s slowly losing healing potency over time.\nMod Power Req: 600",
+    "biome": "Earth",
+    "location": "Eastport",
+    "price_material": "Root Ganglia",
+    "unlock__1": "Defeat Root Mantis Boss"
+  },
+  {
+    "name": "Concussive Shot",
+    "description": "Fires a focused blast of air through all targets within 8m dealing 155 damage and 4x impact.\nMod Power Req: 450",
+    "biome": "Earth",
+    "location": "Eastport",
+    "price_material": "Root Ganglia",
+    "unlock__1": "Defeat Root Mantis Boss"
+  },
+  {
+    "name": "Scrap Shot",
+    "description": "Fires a caltrops grenade that explodes to cover area of 6m. Caltrops deal 20 damage per second and apply SLOW to enemies that walk over them. Lasts 10s.\nMod Power Req: 750",
+    "biome": "Earth",
+    "location": "Eastport",
+    "price_material": "Root Ganglia",
+    "unlock__1": "Defeat Root Mantis Boss"
+  },
+  {
+    "name": "Bore",
+    "description": "Fires a drill projectile, dealing 80 damage. After burrowing into an enemy, creates a Weakspot which grants 50% of normal Weakspot Damage on hit. If attached to an existing Weakspot Ranged Crit Chance is increased by 15% when attacking the drill. Last 6s. Mod Power Req: 500",
+    "biome": "",
+    "location": "",
+    "price_material": "Mutated Growth",
+    "unlock__1": ""
+  },
+  {
+    "name": "Voltaic Rondure",
+    "description": "Launches a slow-moving orb that pulses every 0.5s, striking enemies within 3m for 20s SHOCK damage and applying OVERLOADED for 15s. The orb lasts 20s. The orb can be overcharged by striking it with additional damage.\nMod Power Req: 850",
+    "biome": "Losomn",
+    "location": "",
+    "price_material": "Bone Sap",
+    "unlock__1": ""
+  },
+  {
+    "name": "Space Crabs",
+    "description": "Launch an alien egg that bursts on impact, releasing 5 Space Crabs. Crabs follow the caster, leaping towards the enemies within 4m, and exploding, dealing 60 Damage each.\nMod Power Req: 450",
+    "biome": "N'erud",
+    "location": "The Hatchery",
+    "price_material": "Cracked Shell",
+    "unlock__1": "Defeat Primogenitor Boss"
+  },
+  {
+    "name": "Prismatic Driver",
+    "description": "Fires a superheated beam which deals 25 Mod Damage per second. Sustaining the beam on a target causes an explosion which deals 150 Mod damage in a 3m AOE.\nMod Power Req: 50 Per Pulse",
+    "biome": "N'erud",
+    "location": "Spectrum Nexus",
+    "price_material": "Sentry's Old Iris",
+    "unlock__1": "Defeat The Custodian's Eye Boss"
+  },
+  {
+    "name": "Tremor",
+    "description": "Fires a projectile that cracks the ground and spawns shockwaves that deal 75 damage within 9m for 6s. Shockwaves inflict 3x impact.\nMod Power Req: 900",
+    "biome": "",
+    "location": "",
+    "price_material": "Cordyceps Gland",
+    "unlock__1": ""
+  },
+  {
+    "name": "Fargazer",
+    "description": "Calls froth an eye of Legion to gaze at player's AIM target. For every 0.25s Fargazer focuses on a traget within 25m, a stack of MADNESS Status is applied for 5s. Each stack deals 3 Damage per second. Max 10 stacks. Lasts 30s.\nMod Power Req: 1250",
+    "biome": "Yaesha",
+    "location": "The Twisted Chantry",
+    "price_material": "Agnosia Driftwood",
+    "unlock__1": "Deafeat Legion Boss"
+  },
+  {
+    "name": "Witchfire",
+    "description": "Fires a highly volatile projectile that explodes to leave a line of flaming terrain. Deals 55 FIRE damage per second, and applies BURNING, dealing 200 damage over 10s. Lasts 5s.\nMod Power Req: 750",
+    "biome": "Losmn",
+    "location": "Cotton's Kiln",
+    "price_material": "Alkahest Powder",
+    "unlock__1": "Defeat Gwendil: The Unburnt"
+  },
+  {
+    "name": "Rotted Arrow",
+    "description": "Fires a rotten arrow that deals 19.8 damage and detonates for another 60 damage within 4m. A deadly gas cloud is left behind that deals 200 damage over 5s.\nMod Power Req: 400",
+    "biome": "Yaesha",
+    "location": "The Expanding Glade",
+    "price_material": "Soul Sliver",
+    "unlock__1": "Defeat Shrewd Boss"
+  },
+  {
+    "name": "Overflow",
+    "description": "Imbues ammunition with SHOCK and increases Fire Rate by 15% and Reload Speed by 15% for 20s. Shots also apply OVERLOADED, dealing 87.5 SHOCK Damage every 5s for 15s.\nMod Power Req: 1250",
+    "biome": "N'erud",
+    "location": "",
+    "price_material": "Escalation Circuit",
+    "unlock__1": ""
+  },
+  {
+    "name": "Soulbinder",
+    "description": "Fires a projectile that attaches to the enemy dealing 40 damage. Enemies within 7m become bound to the primary target after impact and share 60% of damage dealt to them. Lasts 15s.\nMod Power Req: 650",
+    "biome": "Yaesha",
+    "location": "The Chimney",
+    "price_material": "Heart Seed",
+    "unlock__1": "Compleating the quest reaching the bottom of the Chimney"
+  },
+  {
+    "name": "Time Lapse",
+    "description": "Creates a 6m blast which freezes all standard enemies for 7s. Dealing damage to frozen enemies immediately breaks the Time Lapse effect, applying SLOW for the remaining duration.\nMod Power Req: 1,000",
+    "biome": "Losmn",
+    "location": "Lemark District →  Hewdas Clock",
+    "price_material": "Broken Timepiece",
+    "unlock__1": "Need to find the piece found in Lemark District, by using the same clock hour that the clock in Hewdas Clock. Then fix the clock in Hewdas Clock."
+  },
+  {
+    "name": "Firestorm",
+    "description": "Creates a whirling cyclone that sucks in nearby targets and applies BURNING for 10s. The center of the Cyclone deals 75 FIRE damage per second. Lasts 15s.\nMod Power Req: 1,250",
+    "biome": "Losmn",
+    "location": "Gilded Chambers",
+    "price_material": "Forlorn Fragment",
+    "unlock__1": "Defeat the Red Prince"
+  },
+  {
+    "name": "Helix",
+    "description": "Shoots a helix of missiles, dealing 120 damage. On contact, divides into 6 smaller rockets which seek additional targets, dealing 30 damage on contact.\nMod Power Req: 850",
+    "biome": "N'erud",
+    "location": "Astropath's Respite",
+    "price_material": "Seeker Residue",
+    "unlock__1": "Defeat the Astropath"
+  },
+  {
+    "name": "Astral Burst",
+    "description": "Fires a short range burst of 7 star fragments which deal 35 damage each. Fragments bounce off walls up to 3 times, dealing 35% additional damage per bounce. Weakspot hits deal reduced damage.\nMod Power Req: 450",
+    "biome": "Yaesha",
+    "location": "Cathedral of Omen",
+    "price_material": "Faith Seed",
+    "unlock__1": "From the entrance, the triangle lever should be triggered until the triangle is facing left. The icons lever should be triggered until the doe is in front of you. The circles lever should be triggered until the Ravager, doe and death are encircled with the doe having two circles."
+  },
+  {
+    "name": "Blood Draw",
+    "description": "Shoots out razor-sharp Chain Shards which impale up to 5 targets within 15m, dealing 10 damage. On hit, chains are pulled towards the caster, dealing 250 damage split equally among enemies and applying 275 BLEEDING damage over 15s.\nMod Power Req: 450",
+    "biome": "Losmn",
+    "location": "Gilded Chambers",
+    "price_material": "Blody Steel Splinter",
+    "unlock__1": "Pay the tribute to the Red Prince"
+  },
+  {
+    "name": "Bore",
+    "description": "Fires a drill projectile which bores into enemies on contact, dealing 80 damage. After fully burrowing into an enemy, creates a Weakspot which grants 50% of normal Weakspot Damage on hit. If attached to an existing Weakspot, Ranged Crit Chance is increased by 15% when attacking the drill. Lasts 6s.\nMod Power Req: 500",
+    "biome": "N'erud",
+    "location": "",
+    "price_material": "Mutated Growth",
+    "unlock__1": "Defeat the Abomination"
+  },
+  {
+    "name": "Corrosive Rounds",
+    "description": "Imbues ammunition with TOXIC and increases Range Crit Chance by 15% for 20s. Shots also apply CORRODED, dealing 150 damage over 10s.\nMod Power Req: 1250",
+    "biome": "Losmn",
+    "location": "Shattered Gallery",
+    "price_material": "Tainted Ichor",
+    "unlock__1": "Defeat Magister Dullain"
+  },
+  {
+    "name": "Defrag",
+    "description": "Infects weapon with Malware for 30s, causing shots to apply FRAGMENTED for 5s. When a FRAGMENTED enemy dies, they create a Glitch that lasts 5s.\nPicking up a Glitch increases All damage by 20% for 5s.\nDestroying a Glitch causes it to destabilize, creating a 5m Virus Pool which deals 25 damage per second and applies the FRAGMENTED debuff to enemies inside. Virus Pools last 15s.\nMod Power Req: 1500",
+    "biome": "Root Earth",
+    "location": "Ashen Wasteland",
+    "price_material": "Necrocyte Stand",
+    "unlock__1": "Defeat Cancer"
+  },
+  {
+    "name": "Energy Wall",
+    "description": "Deploys an energy barrier on impact with ground. Allies can shoot through Energy Wall but enemy projectiles are absorbed (up to 500 damage received). Max 1 Wall at a time. Lasts 30s.\nMod Power Req: 500",
+    "biome": "N'erud",
+    "location": "Timeless Horizon",
+    "price_material": "Ionic Crystal",
+    "unlock__1": ""
+  },
+  {
+    "name": "Familiar",
+    "description": "Summons Faerie Familiar to aid in combat. The Familiar selects a random enemy within 10m and slashes through them for 25 damage each attack. Familiar will select a new target when the previous one dies. Lasts 25s.\nMod Power Req: 500",
+    "biome": "Losmn",
+    "location": "",
+    "price_material": "Sacred Hunt Feather",
+    "unlock__1": ""
+  },
+  {
+    "name": "Root Blades",
+    "description": "Fires a volley of Root Blades in an arc which each deal 25 Damage and apply 200 BLEEDING damage over 10s\nMod Power Req: 750",
+    "biome": "",
+    "location": "",
+    "price_material": "Serum W-13",
+    "unlock__1": ""
+  },
+  {
+    "name": "Rootlash",
+    "description": "Launches a projectile which summons a Root Tentacle. Tentacles deal 30 damage and steal 1.5% of the hero's Max Health per hit. Lasts 20s. (Max 2)\nMod Power Req: 450",
+    "biome": "Yaesha",
+    "location": "Kaeula's Rest",
+    "price_material": "Twilight Dactylu",
+    "unlock__1": "Defeat Kaeula's Shadow"
+  },
+  {
+    "name": "Skewer",
+    "description": "Fires a Wretched Spear which embeds itself on contact. Spears deal 150 damage on hit, rapidly dividing inside the target until bursting, dealing 350 damage to all targets within 3m. Spears embedded in the environment remain in place for 10s.\nMod Power Req: 500",
+    "biome": "Root Heart",
+    "location": "Corrupted Harbor",
+    "price_material": "Dread Core",
+    "unlock__1": "Defeat Venom"
+  },
+  {
+    "name": "Song of Eafir",
+    "description": "Fires a shot infused with the binding power of the Song of Eafir. Deals massive impact to all enemies in 10m and deals additional damage to Flying enemies. The song continues for 15s, afflicting targets within 15m with SLOW, and a 15% decrease to damage dealt.\nMod Power Req: 1000",
+    "biome": "Yaesha",
+    "location": "",
+    "price_material": "Scroll of Binding",
+    "unlock__1": ""
+  },
+  {
+    "name": "Stasis Beam",
+    "description": "Fires a beam which deals 15 damage per second, and applies SLOW Debuff. After 3s of application to a target, SLOW becomes STASIS, freezing the target in place for 10s.\nMod Power Req: 50 per Pulse.",
+    "biome": "N'erud",
+    "location": "",
+    "price_material": "Stasis Core",
+    "unlock__1": "Finish the Zombie Cave Event"
+  },
+  {
+    "name": "",
+    "description": "",
+    "biome": "",
+    "location": "",
+    "price_material": "",
+    "unlock__1": ""
+  },
+  {
+    "name": "",
+    "description": "",
+    "biome": "",
+    "location": "",
+    "price_material": "",
+    "unlock__1": ""
+  },
+  {
+    "name": "",
+    "description": "",
+    "biome": "",
+    "location": "",
+    "price_material": "",
+    "unlock__1": ""
+  }
+]
