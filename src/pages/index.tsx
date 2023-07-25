@@ -49,6 +49,7 @@ const Content = styled.div`
   table {
     table-layout: fixed;
     width: 100%;
+    //padding-left: 20px;
 
     thead {
       th {
@@ -78,8 +79,6 @@ const Content = styled.div`
       }
 
       tr td:first-child {
-        display: flex;
-        justify-content: center;
       }
 
       tr:nth-child(even) {
@@ -140,18 +139,6 @@ const IndexPage: React.FC<PageProps> = () => {
     }
   }, []);
 
-  const showValue = (key: string, value: any) => {
-    if (key === "name" || key === "description" || key === "values" || key === "mod") {
-      return value;
-    } else {
-      return (
-        <span className="redacted" onClick={e => e.currentTarget.classList.remove("redacted")}>
-          {value}
-        </span>
-      );
-    }
-  };
-
   const unlock = (event: React.SyntheticEvent<HTMLButtonElement>) => {
     const id = event.currentTarget.id;
     setUnlocks(prevUnlocks => {
@@ -191,7 +178,7 @@ const IndexPage: React.FC<PageProps> = () => {
                 <input type="checkbox" />
               </th>
               {Object.keys(categories[category].data[0]).map(key => (
-                <th key={key}>{key.charAt(0).toUpperCase() + key.slice(1)}</th>
+                <th key={key}>{(key.charAt(0).toUpperCase() + key.slice(1)).replace(/_/g, "/")}</th>
               ))}
             </tr>
           </thead>
@@ -226,7 +213,20 @@ const IndexPage: React.FC<PageProps> = () => {
                   </div>
                 </td>
                 {Object.entries(row).map(([key, value], index) => {
-                  return <td key={value + index}>{showValue(key, value)}</td>;
+                  return (
+                    <td key={value + index}>
+                      {key === "name" || key === "description" || key === "values" || key === "mod" ? (
+                        <span>{value as string}</span>
+                      ) : (
+                        <span
+                          className={unlocks[row.name] ? "" : "redacted"}
+                          onClick={e => e.currentTarget.classList.remove("redacted")}
+                        >
+                          {value as string}
+                        </span>
+                      )}
+                    </td>
+                  );
                 })}
               </tr>
             ))}

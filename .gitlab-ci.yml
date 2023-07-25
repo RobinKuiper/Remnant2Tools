@@ -1,0 +1,53 @@
+image: node:latest
+
+stages:
+  #  - test
+  - deploy
+
+# This folder is cached between builds
+# https://docs.gitlab.com/ce/ci/yaml/README.html#cache
+cache:
+  key:
+    files:
+      - pnpm-lock.yaml
+  paths:
+    - node_modules/
+    # Enables git-lab CI caching. Both .cache and public must be cached, otherwise builds will fail.
+    - .cache/
+    - public/
+  policy: pull-push
+
+.lint:
+  stage: test
+  before_script:
+    - npm install -g pnpm
+    - pnpm install
+  script:
+    - npx eslint --format gitlab .
+  artifacts:
+    reports:
+      codequality: gl-codequality.json
+  only:
+    - develop
+
+.prettier:
+  stage: test
+  before_script:
+    - npm install -g pnpm
+    - pnpm install
+  script:
+    - npx prettier --check .
+  only:
+    - develop
+
+pages:
+  stage: deploy
+  script:
+    - npm install -g pnpm
+    - pnpm install
+    - pnpm build
+  artifacts:
+    paths:
+      - build
+  only:
+    - master
