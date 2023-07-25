@@ -88,7 +88,21 @@ const Content = styled.div`
       tr:nth-child(odd) {
         background: #fff;
       }
+
+      tr.unlocked {
+        background-color: rgba(63, 159, 63, 0.44);
+      }
     }
+  }
+`;
+
+const Search = styled.div`
+  text-align: center;
+  margin: 10px 0;
+
+  input {
+    padding: 10px;
+    width: 25%;
   }
 `;
 
@@ -131,6 +145,8 @@ const categories = [
 const IndexPage: React.FC<PageProps> = () => {
   const [category, setCategory] = useState(0);
   const [unlocks, setUnlocks] = useState<{ key: string; value: boolean } | object>({});
+  const [data, setData] = useState(categories[category].data);
+  const [query, setQuery] = useState("");
 
   useEffect(() => {
     // Check if we have an unlocks object in localStorage
@@ -138,6 +154,23 @@ const IndexPage: React.FC<PageProps> = () => {
       setUnlocks(JSON.parse(localStorage.getItem("unlocks") as string) ?? {});
     }
   }, []);
+
+  useEffect(() => {
+    let data = categories[category].data;
+    if (query && query.length > 0) {
+      data = data.filter(item => {
+        // Loop through each value in the item object
+        // and check if query matches the content
+        for (const value of Object.values(item)) {
+          if (typeof value === "string" && value.toLowerCase().includes(query.toLowerCase())) {
+            return true;
+          }
+        }
+        return false;
+      });
+    }
+    setData(data);
+  }, [category, query]);
 
   const unlock = (event: React.SyntheticEvent<HTMLButtonElement>) => {
     const id = event.currentTarget.id;
@@ -168,6 +201,13 @@ const IndexPage: React.FC<PageProps> = () => {
       </Navigation>
 
       <Content>
+        <div id="top">
+          {/*  Search bar */}
+          <Search>
+            <input type="text" placeholder="Search" value={query} onChange={e => setQuery(e.currentTarget.value)} />
+          </Search>
+        </div>
+
         <table cellSpacing="0" cellPadding="0">
           <col style={{ width: "40px" }} />
           <col style={{ width: "200px" }} />
@@ -183,8 +223,8 @@ const IndexPage: React.FC<PageProps> = () => {
             </tr>
           </thead>
           <tbody>
-            {categories[category].data.map((row, index) => (
-              <tr key={index}>
+            {data.map((row, index) => (
+              <tr key={index} className={unlocks[row.name] ? "unlocked" : ""}>
                 <td>
                   {/*<input id={row.name} type="checkbox" checked={unlocks[row.name]} onChange={unlock} />*/}
                   <div className="checkbox-wrapper-33">
