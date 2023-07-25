@@ -1,11 +1,12 @@
 [
   {
-    "name": "",
-    "mod": "LONG GUNS",
+    "name": "LONG GUNS",
+    "mod": "",
     "biome": "",
     "location": "",
     "unlock": "",
-    "price_material": ""
+    "price_material": "",
+    "category": true
   },
   {
     "name": "Huntmaster M1",

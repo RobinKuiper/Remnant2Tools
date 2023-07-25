@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
 import * as React from "react";
 import type { HeadFC, PageProps } from "gatsby";
+import { BsFillMoonStarsFill, BsSunFill } from "react-icons/bs";
 import styled from "styled-components";
 import "../global.css";
+import CollectablesTable from "../Components/CollectablesTable";
+import CollectablesTopBar from "../Components/CollectablesTopBar";
 import archetypes from "../data/archetypes.json";
 import traits from "../data/traits.json";
 import weapons from "../data/weapons.json";
@@ -15,6 +18,60 @@ import rings from "../data/rings.json";
 const Container = styled.main`
   display: flex;
   flex-direction: row;
+
+  #top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+  }
+
+  &.dark {
+    .navigation {
+      background-color: #292929;
+      color: #fff;
+
+      a:hover {
+        background-color: #000;
+      }
+    }
+
+    .content {
+      background-color: #000;
+      color: #fff;
+
+      thead {
+        tr {
+          th {
+            border-bottom: 2px solid #fff;
+          }
+        }
+      }
+
+      tbody {
+        tr {
+          td {
+            .redacted {
+              background-color: #4b4848;
+              color: #4b4848;
+            }
+          }
+        }
+
+        tr:nth-child(even) {
+          background: #000;
+        }
+
+        tr:nth-child(odd) {
+          background: #292929;
+        }
+
+        tr.unlocked {
+          background-color: rgba(63, 159, 63, 0.44);
+        }
+      }
+    }
+  }
 `;
 
 const Navigation = styled.div`
@@ -96,16 +153,6 @@ const Content = styled.div`
   }
 `;
 
-const Search = styled.div`
-  text-align: center;
-  margin: 10px 0;
-
-  input {
-    padding: 10px;
-    width: 25%;
-  }
-`;
-
 const categories = [
   {
     label: "Archetypes",
@@ -147,11 +194,18 @@ const IndexPage: React.FC<PageProps> = () => {
   const [unlocks, setUnlocks] = useState<{ key: string; value: boolean } | object>({});
   const [data, setData] = useState(categories[category].data);
   const [query, setQuery] = useState("");
+  const [useDark, setUseDark] = useState(false);
 
   useEffect(() => {
     // Check if we have an unlocks object in localStorage
     if (localStorage.getItem("unlocks")) {
       setUnlocks(JSON.parse(localStorage.getItem("unlocks") as string) ?? {});
+    }
+
+    if (localStorage.getItem("mode")) {
+      if (localStorage.getItem("mode") === "dark") {
+        setUseDark(true);
+      }
     }
   }, []);
 
@@ -182,9 +236,16 @@ const IndexPage: React.FC<PageProps> = () => {
     });
   };
 
+  const toggleDarkMode = e => {
+    e.preventDefault();
+
+    localStorage.setItem("mode", !useDark ? "dark" : "light");
+    setUseDark(!useDark);
+  };
+
   return (
-    <Container>
-      <Navigation>
+    <Container className={useDark ? "dark" : ""}>
+      <Navigation className={"navigation"}>
         <nav>
           {categories.map((category, index) => (
             <a
@@ -200,78 +261,15 @@ const IndexPage: React.FC<PageProps> = () => {
         </nav>
       </Navigation>
 
-      <Content>
-        <div id="top">
-          {/*  Search bar */}
-          <Search>
-            <input type="text" placeholder="Search" value={query} onChange={e => setQuery(e.currentTarget.value)} />
-          </Search>
-        </div>
+      <Content className={"content"}>
+        <CollectablesTopBar query={query} setQuery={setQuery} useDark={useDark} toggleDarkMode={toggleDarkMode} />
 
-        <table cellSpacing="0" cellPadding="0">
-          <col style={{ width: "40px" }} />
-          <col style={{ width: "200px" }} />
-          <col style={{ width: "50%" }} />
-          <thead>
-            <tr>
-              <th>
-                <input type="checkbox" />
-              </th>
-              {Object.keys(categories[category].data[0]).map(key => (
-                <th key={key}>{(key.charAt(0).toUpperCase() + key.slice(1)).replace(/_/g, "/")}</th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {data.map((row, index) => (
-              <tr key={index} className={unlocks[row.name] ? "unlocked" : ""}>
-                <td>
-                  {/*<input id={row.name} type="checkbox" checked={unlocks[row.name]} onChange={unlock} />*/}
-                  <div className="checkbox-wrapper-33">
-                    <label className="checkbox">
-                      <input
-                        id={row.name}
-                        className="checkbox__trigger visuallyhidden"
-                        type="checkbox"
-                        checked={unlocks[row.name]}
-                        onChange={unlock}
-                      />
-                      <span className="checkbox__symbol">
-                        <svg
-                          aria-hidden="true"
-                          className="icon-checkbox"
-                          width="28px"
-                          height="28px"
-                          viewBox="0 0 28 28"
-                          version="1"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path d="M4 14l8 7L24 7"></path>
-                        </svg>
-                      </span>
-                    </label>
-                  </div>
-                </td>
-                {Object.entries(row).map(([key, value], index) => {
-                  return (
-                    <td key={value + index}>
-                      {key === "name" || key === "description" || key === "values" || key === "mod" ? (
-                        <span>{value as string}</span>
-                      ) : (
-                        <span
-                          className={unlocks[row.name] ? "" : "redacted"}
-                          onClick={e => e.currentTarget.classList.remove("redacted")}
-                        >
-                          {value as string}
-                        </span>
-                      )}
-                    </td>
-                  );
-                })}
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        <CollectablesTable
+          keys={Object.keys(categories[category].data[0])}
+          data={data}
+          unlocks={unlocks}
+          unlock={unlock}
+        />
       </Content>
     </Container>
   );
