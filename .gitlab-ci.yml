@@ -48,6 +48,6 @@ pages:
     - pnpm build
   artifacts:
     paths:
-      - build
+      - public
   only:
     - master
