@@ -209,6 +209,7 @@ const IndexPage: React.FC<PageProps> = () => {
   const [data, setData] = useState(categories[category].data);
   const [query, setQuery] = useState("");
   const [useDark, setUseDark] = useState(true);
+  const [sortDir, setSortDir] = useState(1);
 
   useEffect(() => {
     // Check if we have an unlocks object in localStorage
@@ -237,8 +238,11 @@ const IndexPage: React.FC<PageProps> = () => {
         return false;
       });
     }
+
+    data = data.sort((a, b) => (sortDir === 0 ? b.name.localeCompare(a.name) : a.name.localeCompare(b.name)));
+
     setData(data);
-  }, [category, query]);
+  }, [category, query, sortDir]);
 
   const unlock = (event: React.SyntheticEvent<HTMLButtonElement>) => {
     const id = event.currentTarget.id;
@@ -255,6 +259,10 @@ const IndexPage: React.FC<PageProps> = () => {
 
     localStorage.setItem("mode", !useDark ? "dark" : "light");
     setUseDark(!useDark);
+  };
+
+  const sort = () => {
+    setSortDir(sortDir === 1 ? 0 : 1);
   };
 
   return (
@@ -294,6 +302,7 @@ const IndexPage: React.FC<PageProps> = () => {
           data={data}
           unlocks={unlocks}
           unlock={unlock}
+          sort={sort}
         />
       </Content>
     </Container>
