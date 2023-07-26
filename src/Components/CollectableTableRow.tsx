@@ -1,8 +1,23 @@
 import React from "react";
+import { motion } from "framer-motion";
 
-const CollectableTableRow = ({ unlocks, row, unlock }) => {
+const CollectableTableRow = ({ unlocks, row, unlock, index }) => {
+  const isEven = index % 2 === 0;
+
   return (
-    <tr className={unlocks[row.name] ? "unlocked" : ""}>
+    <motion.tr
+      initial={{
+        transform: `translateX(${isEven ? "1500px" : "-1500px"})`,
+      }}
+      whileInView={{
+        transform: "translateX(0px)",
+      }}
+      viewport={{ once: true }}
+      transition={{
+        duration: 1,
+      }}
+      className={unlocks[row.name] ? "unlocked" : ""}
+    >
       <td />
       <td>
         {/*<input id={row.name} type="checkbox" checked={unlocks[row.name]} onChange={unlock} />*/}
@@ -47,7 +62,7 @@ const CollectableTableRow = ({ unlocks, row, unlock }) => {
           </td>
         );
       })}
-    </tr>
+    </motion.tr>
   );
 };
 

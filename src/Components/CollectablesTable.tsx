@@ -19,7 +19,7 @@ const CollectablesTable = ({ keys, data, unlocks, unlock }) => {
       </thead>
       <tbody>
         {data.map((row, index) => (
-          <CollectableTableRow key={index} unlock={unlock} unlocks={unlocks} row={row} />
+          <CollectableTableRow key={index} index={index} unlock={unlock} unlocks={unlocks} row={row} />
         ))}
       </tbody>
     </table>

@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import * as React from "react";
 import type { HeadFC, PageProps } from "gatsby";
-import { BsFillMoonStarsFill, BsSunFill } from "react-icons/bs";
 import styled from "styled-components";
+import { motion } from "framer-motion";
 import "../global.css";
 import CollectablesTable from "../Components/CollectablesTable";
 import CollectablesTopBar from "../Components/CollectablesTopBar";
@@ -43,7 +43,7 @@ const Container = styled.main`
       thead {
         tr {
           th {
-            border-bottom: 2px solid #fff;
+            border-bottom: 2px solid #4b4848;
           }
         }
       }
@@ -59,7 +59,7 @@ const Container = styled.main`
         }
 
         tr:nth-child(even) {
-          background: #000;
+          background: #1f1f1f;
         }
 
         tr:nth-child(odd) {
@@ -81,8 +81,12 @@ const Navigation = styled.div`
   box-sizing: border-box;
   border-right: 1px solid #000;
   background: #eeeded;
+  z-index: 200;
+  color: #000;
   //background: #fff;
   //border: 1px solid red;
+
+  transition: all 0.5s linear;
 
   nav {
     position: fixed;
@@ -102,6 +106,9 @@ const Content = styled.div`
   //padding-left: 20px;
   box-shadow: 0 0 30px 10px rgba(0, 0, 0, 0.8);
   z-index: 1;
+  color: #000;
+
+  transition: all 0.2s linear;
 
   table {
     table-layout: fixed;
@@ -125,11 +132,18 @@ const Content = styled.div`
 
     tbody {
       tr {
+        transition: all 0.5s linear;
+
         td {
           padding: 15px 2px;
 
+          span {
+            transition: all 0.5s linear;
+          }
+
           .redacted {
             background-color: #000;
+            color: #000;
             cursor: pointer;
           }
         }
@@ -194,7 +208,7 @@ const IndexPage: React.FC<PageProps> = () => {
   const [unlocks, setUnlocks] = useState<{ key: string; value: boolean } | object>({});
   const [data, setData] = useState(categories[category].data);
   const [query, setQuery] = useState("");
-  const [useDark, setUseDark] = useState(false);
+  const [useDark, setUseDark] = useState(true);
 
   useEffect(() => {
     // Check if we have an unlocks object in localStorage
@@ -248,7 +262,18 @@ const IndexPage: React.FC<PageProps> = () => {
       <Navigation className={"navigation"}>
         <nav>
           {categories.map((category, index) => (
-            <a
+            <motion.a
+              initial={{
+                transform: "translateX(-200px)",
+              }}
+              whileInView={{
+                transform: "translateX(0px)",
+              }}
+              viewport={{ once: true }}
+              transition={{
+                duration: 0.2,
+                delay: 0.1 * index,
+              }}
               href="#"
               key={category.label}
               onClick={() => {
@@ -256,7 +281,7 @@ const IndexPage: React.FC<PageProps> = () => {
               }}
             >
               {category.label}
-            </a>
+            </motion.a>
           ))}
         </nav>
       </Navigation>
