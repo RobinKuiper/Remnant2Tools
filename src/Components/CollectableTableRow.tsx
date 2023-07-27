@@ -8,6 +8,7 @@ const CollectableTableRow = ({ unlocks, row, unlock, index }) => {
     <motion.tr
       initial={{
         transform: `translateX(${isEven ? "1500px" : "-1500px"})`,
+        // transform: "translateY(1500px)",
       }}
       whileInView={{
         transform: "translateX(0px)",
@@ -24,7 +25,7 @@ const CollectableTableRow = ({ unlocks, row, unlock, index }) => {
         <div className="checkbox-wrapper-33">
           <label className="checkbox">
             <input
-              id={row.name}
+              id={row.id}
               className="checkbox__trigger visuallyhidden"
               type="checkbox"
               checked={unlocks[row.name]}
@@ -47,6 +48,10 @@ const CollectableTableRow = ({ unlocks, row, unlock, index }) => {
         </div>
       </td>
       {Object.entries(row).map(([key, value], index) => {
+        if (key === "id") {
+          return "";
+        }
+
         return (
           <td key={value + index}>
             {key === "name" || key === "description" || key === "values" || key === "mod" ? (

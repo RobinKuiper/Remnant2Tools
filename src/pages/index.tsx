@@ -14,6 +14,7 @@ import mutators from "../data/mutators.json";
 import relics from "../data/relics.json";
 import amulets from "../data/amulets.json";
 import rings from "../data/rings.json";
+import dataCollection from "../data/dataCollection.json";
 
 const Container = styled.main`
   display: flex;
@@ -81,7 +82,6 @@ const Navigation = styled.div`
   box-sizing: border-box;
   border-right: 1px solid #000;
   background: #eeeded;
-  z-index: 200;
   color: #000;
   //background: #fff;
   //border: 1px solid red;
@@ -105,8 +105,8 @@ const Content = styled.div`
   background: #fff;
   //padding-left: 20px;
   box-shadow: 0 0 30px 10px rgba(0, 0, 0, 0.8);
-  z-index: 1;
   color: #000;
+  z-index: 200;
 
   transition: all 0.2s linear;
 
@@ -204,17 +204,17 @@ const categories = [
 ];
 
 const IndexPage: React.FC<PageProps> = () => {
-  const [category, setCategory] = useState(0);
+  const [category, setCategory] = useState("archetypes");
   const [unlocks, setUnlocks] = useState<{ key: string; value: boolean } | object>({});
-  const [data, setData] = useState(categories[category].data);
+  const [data, setData] = useState(dataCollection[category].items);
   const [query, setQuery] = useState("");
   const [useDark, setUseDark] = useState(true);
   const [sortDir, setSortDir] = useState(1);
 
   useEffect(() => {
     // Check if we have an unlocks object in localStorage
-    if (localStorage.getItem("unlocks")) {
-      setUnlocks(JSON.parse(localStorage.getItem("unlocks") as string) ?? {});
+    if (localStorage.getItem("data")) {
+      setUnlocks(JSON.parse(localStorage.getItem("data") as string) ?? {});
     }
 
     if (localStorage.getItem("mode")) {
@@ -225,7 +225,7 @@ const IndexPage: React.FC<PageProps> = () => {
   }, []);
 
   useEffect(() => {
-    let data = categories[category].data;
+    let data = dataCollection[category].items;
     if (query && query.length > 0) {
       data = data.filter(item => {
         // Loop through each value in the item object
@@ -239,7 +239,7 @@ const IndexPage: React.FC<PageProps> = () => {
       });
     }
 
-    data = data.sort((a, b) => (sortDir === 0 ? b.name.localeCompare(a.name) : a.name.localeCompare(b.name)));
+    // data = data.sort((a, b) => (sortDir === 0 ? b.name.localeCompare(a.name) : a.name.localeCompare(b.name)));
 
     setData(data);
   }, [category, query, sortDir]);
@@ -249,7 +249,7 @@ const IndexPage: React.FC<PageProps> = () => {
     setUnlocks(prevUnlocks => {
       const updatedUnlocks: { key: string; value: boolean } | object = { ...prevUnlocks };
       updatedUnlocks[id] = !updatedUnlocks[id] ?? true;
-      localStorage.setItem("unlocks", JSON.stringify(updatedUnlocks));
+      localStorage.setItem("data", JSON.stringify(updatedUnlocks));
       return updatedUnlocks;
     });
   };
@@ -285,7 +285,7 @@ const IndexPage: React.FC<PageProps> = () => {
               href="#"
               key={category.label}
               onClick={() => {
-                setCategory(index);
+                setCategory(category.label.toLowerCase());
               }}
             >
               {category.label}
@@ -298,8 +298,8 @@ const IndexPage: React.FC<PageProps> = () => {
         <CollectablesTopBar query={query} setQuery={setQuery} useDark={useDark} toggleDarkMode={toggleDarkMode} />
 
         <CollectablesTable
-          keys={Object.keys(categories[category].data[0])}
-          data={data}
+          keys={Object.keys(Object.values(data)[0])}
+          data={Object.values(data)}
           unlocks={unlocks}
           unlock={unlock}
           sort={sort}

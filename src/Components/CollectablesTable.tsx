@@ -13,16 +13,22 @@ const CollectablesTable = ({ keys, data, unlocks, unlock, sort }) => {
         <tr>
           <th />
           <th>{/*<input type="checkbox" />*/}</th>
-          {keys.map(key => (
-            <th key={key}>
-              {(key.charAt(0).toUpperCase() + key.slice(1)).replace(/_/g, "/")}
-              {key === "name" && (
-                <a href={"#"} onClick={sort}>
-                  <BiSolidSortAlt />
-                </a>
-              )}
-            </th>
-          ))}
+          {keys.map(key => {
+            if (key === "id") {
+              return "";
+            }
+
+            return (
+              <th key={key}>
+                {(key.charAt(0).toUpperCase() + key.slice(1)).replace(/_/g, "/")}
+                {key === "name" && (
+                  <a href={"#"} onClick={sort}>
+                    <BiSolidSortAlt />
+                  </a>
+                )}
+              </th>
+            );
+          })}
         </tr>
       </thead>
       <tbody>
