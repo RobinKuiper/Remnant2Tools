@@ -6,14 +6,6 @@ import { motion } from "framer-motion";
 import "../global.css";
 import CollectablesTable from "../Components/CollectablesTable";
 import CollectablesTopBar from "../Components/CollectablesTopBar";
-import archetypes from "../data/archetypes.json";
-import traits from "../data/traits.json";
-import weapons from "../data/weapons.json";
-import mods from "../data/mods.json";
-import mutators from "../data/mutators.json";
-import relics from "../data/relics.json";
-import amulets from "../data/amulets.json";
-import rings from "../data/rings.json";
 import dataCollection from "../data/dataCollection.json";
 
 const Container = styled.main`
@@ -170,43 +162,36 @@ const Content = styled.div`
 const categories = [
   {
     label: "Archetypes",
-    data: archetypes,
   },
   {
     label: "Traits",
-    data: traits,
   },
   {
     label: "Weapons",
-    data: weapons,
   },
   {
     label: "Mods",
-    data: mods,
   },
   {
     label: "Mutators",
-    data: mutators,
   },
   // "Armor",
   {
     label: "Relics",
-    data: relics,
   },
   {
     label: "Amulets",
-    data: amulets,
   },
   {
     label: "Rings",
-    data: rings,
   },
 ];
 
 const IndexPage: React.FC<PageProps> = () => {
-  const [category, setCategory] = useState("archetypes");
+  const [category, setCategory] = useState<string | null>("archetypes");
   const [unlocks, setUnlocks] = useState<{ key: string; value: boolean } | object>({});
-  const [data, setData] = useState(dataCollection[category].items);
+  const [data, setData] = useState({});
+  const [userData, setUserData] = useState({});
   const [query, setQuery] = useState("");
   const [useDark, setUseDark] = useState(true);
   const [sortDir, setSortDir] = useState(1);
@@ -214,7 +199,7 @@ const IndexPage: React.FC<PageProps> = () => {
   useEffect(() => {
     // Check if we have an unlocks object in localStorage
     if (localStorage.getItem("data")) {
-      setUnlocks(JSON.parse(localStorage.getItem("data") as string) ?? {});
+      setUserData(JSON.parse(localStorage.getItem("data") as string) ?? {});
     }
 
     if (localStorage.getItem("mode")) {
@@ -222,9 +207,18 @@ const IndexPage: React.FC<PageProps> = () => {
         setUseDark(true);
       }
     }
+
+    if (category) {
+      dataCollection[category].items;
+    }
   }, []);
 
   useEffect(() => {
+    if (!category) {
+      setData({});
+      return;
+    }
+
     let data = dataCollection[category].items;
     if (query && query.length > 0) {
       data = data.filter(item => {
@@ -246,12 +240,19 @@ const IndexPage: React.FC<PageProps> = () => {
 
   const unlock = (event: React.SyntheticEvent<HTMLButtonElement>) => {
     const id = event.currentTarget.id;
-    setUnlocks(prevUnlocks => {
-      const updatedUnlocks: { key: string; value: boolean } | object = { ...prevUnlocks };
-      updatedUnlocks[id] = !updatedUnlocks[id] ?? true;
-      localStorage.setItem("data", JSON.stringify(updatedUnlocks));
-      return updatedUnlocks;
-    });
+
+    if (!userData[category]) {
+      userData[category] = {};
+    }
+
+    if (!userData[category][id]) {
+      userData[category][id] = {
+        unlocked: true,
+      };
+    }
+
+    setUserData(userData);
+    localStorage.setItem("data", JSON.stringify(userData));
   };
 
   const toggleDarkMode = e => {
@@ -269,6 +270,25 @@ const IndexPage: React.FC<PageProps> = () => {
     <Container className={useDark ? "dark" : ""}>
       <Navigation className={"navigation"}>
         <nav>
+          <motion.a
+            initial={{
+              transform: "translateX(-200px)",
+            }}
+            whileInView={{
+              transform: "translateX(0px)",
+            }}
+            viewport={{ once: true }}
+            transition={{
+              duration: 0.2,
+              delay: 0.1,
+            }}
+            href="#"
+            onClick={() => {
+              setCategory(null);
+            }}
+          >
+            Statistics
+          </motion.a>
           {categories.map((category, index) => (
             <motion.a
               initial={{
@@ -280,7 +300,7 @@ const IndexPage: React.FC<PageProps> = () => {
               viewport={{ once: true }}
               transition={{
                 duration: 0.2,
-                delay: 0.1 * index,
+                delay: 0.1 * index + 1,
               }}
               href="#"
               key={category.label}
@@ -295,15 +315,21 @@ const IndexPage: React.FC<PageProps> = () => {
       </Navigation>
 
       <Content className={"content"}>
-        <CollectablesTopBar query={query} setQuery={setQuery} useDark={useDark} toggleDarkMode={toggleDarkMode} />
+        {category && data ? (
+          <>
+            <CollectablesTopBar query={query} setQuery={setQuery} useDark={useDark} toggleDarkMode={toggleDarkMode} />
 
-        <CollectablesTable
-          keys={Object.keys(Object.values(data)[0])}
-          data={Object.values(data)}
-          unlocks={unlocks}
-          unlock={unlock}
-          sort={sort}
-        />
+            <CollectablesTable
+              keys={Object.keys(Object.values(data)[0])}
+              data={Object.values(data)}
+              unlocks={unlocks}
+              unlock={unlock}
+              sort={sort}
+            />
+          </>
+        ) : (
+          <h1>Blaat</h1>
+        )}
       </Content>
     </Container>
   );
