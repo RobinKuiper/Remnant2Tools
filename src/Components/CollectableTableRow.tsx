@@ -9,34 +9,38 @@ const CollectableTableRow = ({ row, index }) => {
   const unlock = (event: React.SyntheticEvent<HTMLInputElement>) => {
     const id = event.currentTarget.id;
 
-    const data = {};
-    data[category] = {};
+    if (!userData[category]) {
+      userData[category] = {};
+    }
 
-    if (userData[category] && userData[category][id]) {
-      data[category][id] = {
+    if (userData[category][id]) {
+      userData[category][id] = {
         unlocked: !userData[category][id].unlocked,
       };
     } else {
-      data[category][id] = {
+      userData[category][id] = {
         unlocked: true,
       };
     }
 
-    setUserData(oldData => ({ ...oldData, ...data }));
-    localStorage.setItem("data", JSON.stringify(data));
+    setUserData(userData);
+    setUnlocked(userData[category][id].unlocked);
+    localStorage.setItem("data", JSON.stringify(userData));
   };
 
   useEffect(() => {
-    setUnlocked((userData[category] && userData[category][row.id]) || false);
-  }, []);
+    setUnlocked((userData[category] && userData[category][row.id] && userData[category][row.id].unlocked) || false);
+  }, [userData]);
 
   const isEven = index % 2 === 0;
   return (
     <motion.tr
-      initial={{
-        transform: `translateX(${isEven ? "1500px" : "-1500px"})`,
-        // transform: "translateY(1500px)",
-      }}
+      initial={
+        {
+          // transform: `translateX(${isEven ? "1500px" : "-1500px"})`,
+          // transform: "translateY(1500px)",
+        }
+      }
       whileInView={{
         transform: "translateX(0px)",
       }}

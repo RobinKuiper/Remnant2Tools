@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import styled from "styled-components";
 import { DataContext } from "../../contexts/DataContext";
 import NavigationComponent from "./Navigation";
+import ExportModal from "../ExportModal";
 
 const Container = styled.main`
   display: flex;
@@ -135,12 +136,19 @@ interface Props {
 
 const Layout = ({ children }: Props) => {
   const { darkMode } = useContext(DataContext);
+  const [modalIsOpen, setIsOpen] = React.useState(false);
+
+  const openModal = () => {
+    setIsOpen(true);
+  };
 
   return (
     <Container className={darkMode ? "dark" : ""}>
-      <NavigationComponent />
+      <NavigationComponent openModal={openModal} />
 
       <Content className={"content"}>{children}</Content>
+
+      <ExportModal modalIsOpen={modalIsOpen} setIsOpen={setIsOpen} />
     </Container>
   );
 };

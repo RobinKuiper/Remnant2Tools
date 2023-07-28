@@ -18,7 +18,11 @@ const currentData = {
   rings,
 };
 
-const newData = {};
+const newData = {
+  stats: {
+    total: 0,
+  },
+};
 
 let id = 0;
 
@@ -32,9 +36,13 @@ Object.keys(currentData).forEach(categoryKey => {
   };
   Object.keys(category).forEach(key => {
     const item = category[key];
-    id++;
-    item.id = id;
-    newData[categoryKey].items[id as number] = item;
+
+    if (item.name !== "") {
+      id++;
+      newData.stats.total++;
+      item.id = id;
+      newData[categoryKey].items[id as number] = item;
+    }
   });
   newData[categoryKey].stats = {
     total: Object.keys(newData[categoryKey].items).length,
