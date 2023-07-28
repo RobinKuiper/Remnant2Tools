@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import { BsFillMoonStarsFill, BsSunFill } from "react-icons/bs";
 import styled from "styled-components";
+import { DataContext } from "../contexts/DataContext";
 
 const Search = styled.div`
   text-align: center;
@@ -13,7 +14,9 @@ const Search = styled.div`
   }
 `;
 
-const CollectablesTopBar = ({ toggleDarkMode, useDark, query, setQuery }) => {
+const CollectablesTopBar = ({ query, setQuery }) => {
+  const { darkMode, toggleDarkMode } = useContext(DataContext);
+
   return (
     <div id="top">
       <div />
@@ -25,7 +28,7 @@ const CollectablesTopBar = ({ toggleDarkMode, useDark, query, setQuery }) => {
 
       <span>
         <a href={"#"} onClick={toggleDarkMode}>
-          {useDark ? <BsFillMoonStarsFill size={"30px"} /> : <BsSunFill size={"30px"} />}
+          {!darkMode ? <BsFillMoonStarsFill size={"30px"} /> : <BsSunFill size={"30px"} />}
         </a>
       </span>
     </div>

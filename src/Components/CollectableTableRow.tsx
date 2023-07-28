@@ -1,9 +1,36 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import { DataContext } from "../contexts/DataContext";
 
-const CollectableTableRow = ({ unlocks, row, unlock, index }) => {
+const CollectableTableRow = ({ row, index }) => {
+  const { category, userData, setUserData } = useContext(DataContext);
+  const [unlocked, setUnlocked] = useState(false);
+
+  const unlock = (event: React.SyntheticEvent<HTMLInputElement>) => {
+    const id = event.currentTarget.id;
+
+    const data = {};
+    data[category] = {};
+
+    if (userData[category] && userData[category][id]) {
+      data[category][id] = {
+        unlocked: !userData[category][id].unlocked,
+      };
+    } else {
+      data[category][id] = {
+        unlocked: true,
+      };
+    }
+
+    setUserData(oldData => ({ ...oldData, ...data }));
+    localStorage.setItem("data", JSON.stringify(data));
+  };
+
+  useEffect(() => {
+    setUnlocked((userData[category] && userData[category][row.id]) || false);
+  }, []);
+
   const isEven = index % 2 === 0;
-
   return (
     <motion.tr
       initial={{
@@ -17,7 +44,7 @@ const CollectableTableRow = ({ unlocks, row, unlock, index }) => {
       transition={{
         duration: 1,
       }}
-      className={unlocks[row.name] ? "unlocked" : ""}
+      className={unlocked ? "unlocked" : ""}
     >
       <td />
       <td>
@@ -28,7 +55,7 @@ const CollectableTableRow = ({ unlocks, row, unlock, index }) => {
               id={row.id}
               className="checkbox__trigger visuallyhidden"
               type="checkbox"
-              checked={unlocks[row.name]}
+              checked={unlocked}
               onChange={unlock}
             />
             <span className="checkbox__symbol">
@@ -57,10 +84,7 @@ const CollectableTableRow = ({ unlocks, row, unlock, index }) => {
             {key === "name" || key === "description" || key === "values" || key === "mod" ? (
               <span>{value as string}</span>
             ) : (
-              <span
-                className={unlocks[row.name] ? "" : "redacted"}
-                onClick={e => e.currentTarget.classList.remove("redacted")}
-              >
+              <span className={unlocked ? "" : "redacted"} onClick={e => e.currentTarget.classList.remove("redacted")}>
                 {value as string}
               </span>
             )}

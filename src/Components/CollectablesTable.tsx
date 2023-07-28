@@ -2,7 +2,7 @@ import React from "react";
 import { BiSolidSortAlt } from "react-icons/bi";
 import CollectableTableRow from "./CollectableTableRow";
 
-const CollectablesTable = ({ keys, data, unlocks, unlock, sort }) => {
+const CollectablesTable = ({ keys, data, sort }) => {
   return (
     <table cellSpacing="0" cellPadding="0">
       <col style={{ width: "10px" }} />
@@ -33,7 +33,7 @@ const CollectablesTable = ({ keys, data, unlocks, unlock, sort }) => {
       </thead>
       <tbody>
         {data.map((row, index) => (
-          <CollectableTableRow key={index} index={index} unlock={unlock} unlocks={unlocks} row={row} />
+          <CollectableTableRow key={index} index={index} row={row} />
         ))}
       </tbody>
     </table>
