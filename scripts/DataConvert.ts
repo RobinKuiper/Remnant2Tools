@@ -6,6 +6,9 @@ import mutators from "../src/data/mutators.json";
 import relics from "../src/data/relics.json";
 import amulets from "../src/data/amulets.json";
 import rings from "../src/data/rings.json";
+import relicfragments from "../src/data/relicsfragments.json";
+import dataCollection from "../src/data/dataCollection.json";
+import armor from "../src/data/armor.json";
 
 const currentData = {
   archetypes,
@@ -16,6 +19,8 @@ const currentData = {
   relics,
   amulets,
   rings,
+  relicfragments,
+  armor,
 };
 
 const newData = {
@@ -24,9 +29,7 @@ const newData = {
   },
 };
 
-let id = 0;
-
-const ALLOWED_KEYS = ["name", "description", "biome", "location", "material", "unlock"];
+let id = dataCollection.stats.total;
 
 Object.keys(currentData).forEach(categoryKey => {
   const category = currentData[categoryKey];
@@ -36,12 +39,24 @@ Object.keys(currentData).forEach(categoryKey => {
   };
   Object.keys(category).forEach(key => {
     const item = category[key];
+    let oldId = null;
+
+    // Do we have the item
+    if (dataCollection[categoryKey]) {
+      Object.values(dataCollection[categoryKey].items).forEach(oldItem => {
+        if (item.name.toLowerCase() === oldItem.name.toLowerCase()) {
+          oldId = oldItem.id;
+        }
+      });
+    }
 
     if (item.name !== "") {
-      id++;
+      const itemId = oldId ? oldId : id;
+      if (!oldId) id++;
       newData.stats.total++;
-      item.id = id;
-      newData[categoryKey].items[id as number] = item;
+      item.id = itemId;
+      delete item.Unlock;
+      newData[categoryKey].items[itemId as number] = item;
     }
   });
   newData[categoryKey].stats = {

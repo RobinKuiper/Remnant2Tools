@@ -1,6 +1,11 @@
 import React from "react";
-import { DataProvider } from "./src/contexts/DataContext";
+import { DataProvider } from "./src/context/DataContext";
+import { SettingProvider } from "./src/context/SettingContext";
 
 export const wrapRootElement = ({ element }) => {
-  return <DataProvider>{element}</DataProvider>;
+  return (
+    <SettingProvider>
+      <DataProvider>{element}</DataProvider>
+    </SettingProvider>
+  );
 };
