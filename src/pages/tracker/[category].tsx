@@ -127,14 +127,16 @@ const Category = props => {
 
   const search = (data: any) => {
     if (query && query.length > 0) {
-      return data.filter(
-        item =>
-          item.name.toLowerCase().includes(query.toLowerCase()) ||
-          (item.description && item.description.includes(query.toLowerCase())),
-      );
-    } else {
-      return data;
+      return data.filter(item => {
+        for (const value of Object.values(item)) {
+          if (typeof value === "string" && value.toLowerCase().includes(query.toLowerCase())) {
+            return true;
+          }
+        }
+      });
     }
+
+    return data;
   };
 
   const hide = () => {

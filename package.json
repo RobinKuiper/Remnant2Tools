@@ -60,11 +60,10 @@
   },
   "nano-staged": {
     "*.{js,ts,jsx,tsx}": [
-      "prettier --write **/*.{js,ts,jsx,tsx}",
-      "eslint --fix"
+      "pnpm lint:fix"
     ],
-    "*.{json,yml,yaml,md}": [
-      "prettier --write **/*.{json,yml,yaml,md}"
+    "*.{js,ts,jsx,tsx,json,yml,yaml,md}": [
+      "pnpm prettier"
     ]
   },
   "simple-git-hooks": {
