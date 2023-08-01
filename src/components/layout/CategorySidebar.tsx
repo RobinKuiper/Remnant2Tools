@@ -20,14 +20,14 @@ const Container = styled.div`
 
     a {
       span {
-        padding: 10px 10px;
+        padding: 5px 10px;
       }
 
       &.sub-category {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
-        padding: 10px 0 10px 10px;
+        padding: 7.5px 0 7.5px 10px;
         width: 100%;
       }
 
