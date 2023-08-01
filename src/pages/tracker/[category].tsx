@@ -36,6 +36,8 @@ const Page = styled.div`
     }
 
     table {
+      width: 100%;
+
       thead {
         tr {
           //position: sticky;
