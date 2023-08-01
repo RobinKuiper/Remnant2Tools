@@ -431,14 +431,3 @@ export const CATEGORIES = [
     ],
   },
 ];
-
-// TODO: to helpers
-export const findCategory = (name: string) => {
-  for (const mainCategory of CATEGORIES) {
-    for (const category of mainCategory.categories) {
-      if (category.label.replace(" ", "").toLowerCase() === name) {
-        return category;
-      }
-    }
-  }
-};

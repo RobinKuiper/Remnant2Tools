@@ -6,7 +6,8 @@ import CategorySidebar from "../../components/layout/CategorySidebar";
 import Layout from "../../components/layout/Layout";
 import Search from "../../components/Search";
 import TableRow from "../../components/TableRow";
-import { CATEGORIES, findCategory } from "../../constants";
+import { CATEGORIES } from "../../constants";
+import { findCategory } from "../../helpers";
 import { DataContext } from "../../context/DataContext";
 import { SettingContext } from "../../context/SettingContext";
 import type { CategoryInformation } from "../../interface/CategoryInformation";
@@ -177,10 +178,6 @@ const Category = props => {
     setData(sort(search(hide())));
     setLoading(false);
   }, [query, category, categoryInformation, hideUnlocked]);
-
-  // const slugify = (string: string) => {
-  //     return string.replace(" ", "_").toLowerCase();
-  // }
 
   return (
     <Layout>

@@ -102,6 +102,15 @@
   ],
   "traits": [
     {
+      "name": "Resonance",
+      "description": "Increased Aura Range",
+      "world": "N'Erud",
+      "location": "Dormant N'Erudian Facility",
+      "unlock": "Find the secret area at the back left (need to drop down), and activate the fail safe protocol (Co-Op, one player recieving the trait needs to stay outside)",
+      "values": "5% -> 50%",
+      "id": 487
+    },
+    {
       "name": "Vigor",
       "description": "Increases Max Health",
       "values": "3 → 30",
