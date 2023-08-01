@@ -24,8 +24,14 @@ const Page = styled.div`
     #content-heading {
       display: flex;
       justify-content: space-between;
+      align-items: center;
       text-align: center;
       margin: 10px 0;
+      padding: 0 10px;
+
+      .right {
+        font-size: 1.2em;
+      }
     }
 
     table {
@@ -96,7 +102,7 @@ const Page = styled.div`
 
 const Category = props => {
   const { hideUnlocked, toggleHideUnlocked } = useContext(SettingContext);
-  const { unlocks } = useContext(DataContext);
+  const { unlocks, statistics } = useContext(DataContext);
   const [categoryInformation, setCategoryInformation] = useState<CategoryInformation>(CATEGORIES[0].categories[0]);
   const category = props.params.category;
   const rawData = dataCollection[category];
@@ -175,7 +181,11 @@ const Category = props => {
 
             <Search placeholder={`Search ${category}`} onChange={e => setQuery(e.target.value)} width={250} />
 
-            <div className="right"></div>
+            <div className="right">
+              <span>
+                {statistics[category].unlocked}/{statistics[category].total} unlocked
+              </span>
+            </div>
           </div>
 
           {!loading ? (

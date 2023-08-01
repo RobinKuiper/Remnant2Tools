@@ -1,7 +1,10 @@
 import React, { createContext, useEffect, useState } from "react";
+import { CATEGORIES } from "../constants";
+import data from "../data/data.json";
 
 const DEFAULT_VALUES = {
   unlocks: {},
+  statistics: {},
 };
 
 interface Unlocks {
@@ -12,9 +15,17 @@ interface Unlocks {
   };
 }
 
+interface Statistics {
+  [key: string]: {
+    total: number;
+    unlocked: number;
+  };
+}
+
 interface DataContextData {
   unlocks: Unlocks;
   toggleUnlock: (category: string, id: number) => void;
+  statistics: Statistics;
 }
 
 const DataContext = createContext<DataContextData>({
@@ -22,6 +33,7 @@ const DataContext = createContext<DataContextData>({
   toggleUnlock: () => {
     return;
   },
+  statistics: DEFAULT_VALUES.statistics,
 });
 
 interface Props {
@@ -30,12 +42,43 @@ interface Props {
 
 const DataProvider: React.FC<Props> = ({ children }: Props) => {
   const [unlocks, setUnlocks] = useState<Unlocks>(DEFAULT_VALUES.unlocks);
+  const [statistics, setStatistics] = useState<Statistics>(DEFAULT_VALUES.statistics);
 
   useEffect(() => {
     if (localStorage.getItem("data")) {
-      setUnlocks(JSON.parse(localStorage.getItem("data")));
+      setUnlocks(JSON.parse(localStorage.getItem("data") ?? "{}"));
     }
   }, []);
+
+  useEffect(() => {
+    updateStatistics();
+  }, [unlocks]);
+
+  const updateStatistics = () => {
+    const newStatistics: Statistics = {};
+    CATEGORIES.forEach(mainCategory => {
+      mainCategory.categories.forEach(subCategory => {
+        const category = subCategory.label.replace(" ", "").toLowerCase();
+
+        let total = 0;
+        if (subCategory.categorized) {
+          data[category].forEach(cat => {
+            cat.items.forEach(() => {
+              total++;
+            });
+          });
+        } else {
+          total = data[category].length;
+        }
+
+        newStatistics[category] = {
+          total: total,
+          unlocked: unlocks[category] ? Object.values(unlocks[category]).filter(item => item.unlocked).length : 0,
+        };
+      });
+    });
+    setStatistics(newStatistics);
+  };
 
   const toggleUnlock = (category: string, id: number) => {
     const newUnlocks = unlocks;
@@ -55,6 +98,7 @@ const DataProvider: React.FC<Props> = ({ children }: Props) => {
 
     setUnlocks(newUnlocks);
     localStorage.setItem("data", JSON.stringify(newUnlocks));
+    updateStatistics();
   };
 
   return (
@@ -62,6 +106,7 @@ const DataProvider: React.FC<Props> = ({ children }: Props) => {
       value={{
         unlocks,
         toggleUnlock,
+        statistics,
       }}
     >
       {children}

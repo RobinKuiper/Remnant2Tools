@@ -1,7 +1,8 @@
 import { Link } from "gatsby";
-import React from "react";
+import React, { useContext } from "react";
 import { styled } from "styled-components";
 import { CATEGORIES } from "../../constants";
+import { DataContext } from "../../context/DataContext";
 
 const Container = styled.div`
   background: #292929;
@@ -10,6 +11,7 @@ const Container = styled.div`
   padding: 20px 0;
   box-sizing: border-box;
   width: 10%;
+  min-width: 200px;
 
   nav {
     position: fixed;
@@ -18,6 +20,12 @@ const Container = styled.div`
 
     a {
       padding: 10px 10px;
+
+      &.sub-category {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+      }
 
       &.main-category {
         display: flex;
@@ -44,12 +52,11 @@ interface Props {
 }
 
 const CategorySidebar = ({ type }: Props) => {
-  // const { setCategoryInformation } = useContext(DataContext);
+  const { statistics } = useContext(DataContext);
 
   return (
     <Container>
       <nav>
-        {/*TODO: no onclick?*/}
         {CATEGORIES.map(mainCategory => {
           if (mainCategory[type] && mainCategory.categories && mainCategory.categories.length > 0) {
             return (
@@ -57,11 +64,24 @@ const CategorySidebar = ({ type }: Props) => {
                 {mainCategory.label}
                 {mainCategory.categories
                   .filter(category => category[type])
-                  .map(category => (
-                    <Link key={category.label} to={`/tracker/${ category.fragment}`}>
-                      {category.label}
-                    </Link>
-                  ))}
+                  .map(category => {
+                    const categoryFragment = category.label.replace(" ", "").toLowerCase();
+
+                    return (
+                      <Link className="sub-category" key={category.label} to={`/tracker/${category.fragment}`}>
+                        <span>{category.label}</span>
+                        <span>
+                          {parseInt(
+                            (
+                              (statistics[categoryFragment].unlocked / statistics[categoryFragment].total) *
+                              100
+                            ).toString(),
+                          )}
+                          %
+                        </span>
+                      </Link>
+                    );
+                  })}
               </Link>
             );
           }
