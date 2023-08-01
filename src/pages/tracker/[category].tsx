@@ -138,6 +138,24 @@ const Category = props => {
 
   const hide = () => {
     if (hideUnlocked) {
+      if (categoryInformation.categorized) {
+        return rawData.map(category => {
+          const categoryFragment = categoryInformation.label.replace(" ", "").toLowerCase();
+
+          return {
+            ...category,
+            items: category.items.filter(
+              item =>
+                !(
+                  unlocks[categoryFragment] &&
+                  unlocks[categoryFragment][item.id] &&
+                  unlocks[categoryFragment][item.id].unlocked
+                ),
+            ),
+          };
+        });
+      }
+
       return rawData.filter(
         item => !(unlocks[category] && unlocks[category][item.id] && unlocks[category][item.id].unlocked),
       );
