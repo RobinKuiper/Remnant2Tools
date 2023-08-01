@@ -19,12 +19,16 @@ const Container = styled.div`
     flex-direction: column;
 
     a {
-      padding: 10px 10px;
+      span {
+        padding: 10px 10px;
+      }
 
       &.sub-category {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
+        padding: 10px 0 10px 10px;
+        width: 100%;
       }
 
       &.main-category {
@@ -61,7 +65,7 @@ const CategorySidebar = ({ type }: Props) => {
           if (mainCategory[type] && mainCategory.categories && mainCategory.categories.length > 0) {
             return (
               <Link key={mainCategory.label} to="#" className="main-category">
-                {mainCategory.label}
+                <span>{mainCategory.label}</span>
                 {mainCategory.categories
                   .filter(category => category[type])
                   .map(category => {
@@ -70,15 +74,17 @@ const CategorySidebar = ({ type }: Props) => {
                     return (
                       <Link className="sub-category" key={category.label} to={`/tracker/${category.fragment}`}>
                         <span>{category.label}</span>
-                        <span>
-                          {parseInt(
-                            (
-                              (statistics[categoryFragment].unlocked / statistics[categoryFragment].total) *
-                              100
-                            ).toString(),
-                          )}
-                          %
-                        </span>
+                        {type === "tracker" && statistics[categoryFragment] && (
+                          <span>
+                            {parseInt(
+                              (
+                                (statistics[categoryFragment].unlocked / statistics[categoryFragment].total) *
+                                100
+                              ).toString(),
+                            )}
+                            %
+                          </span>
+                        )}
                       </Link>
                     );
                   })}

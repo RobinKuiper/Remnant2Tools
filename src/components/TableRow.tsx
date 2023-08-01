@@ -70,10 +70,12 @@ const TableRow = ({ item, categoryInformation }: Props) => {
           .filter(attribute => attribute.tracker)
           .map(attribute => (
             <td key={attribute.label}>
-              <span className={attribute.redacted ? "redacted" : ""} onClick={toggleRedacted}>
+              <span>
                 <Flex direction="column">
                   <div>
-                    <span className={attribute.redacted && !unlocked ? "redacted" : ""}>{item[attribute.label]}</span>
+                    <span className={attribute.redacted && !unlocked ? "redacted" : ""} onClick={toggleRedacted}>
+                      {item[attribute.label]}
+                    </span>
                   </div>
                   {attribute.fields &&
                     attribute.fields.length > 0 &&

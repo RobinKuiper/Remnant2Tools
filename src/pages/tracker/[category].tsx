@@ -182,9 +182,11 @@ const Category = props => {
             <Search placeholder={`Search ${category}`} onChange={e => setQuery(e.target.value)} width={250} />
 
             <div className="right">
-              <span>
-                {statistics[category].unlocked}/{statistics[category].total} unlocked
-              </span>
+              {statistics[category] && (
+                <span>
+                  {statistics[category].unlocked}/{statistics[category].total} unlocked
+                </span>
+              )}
             </div>
           </div>
 
