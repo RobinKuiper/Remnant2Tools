@@ -72,7 +72,7 @@ const CategorySidebar = ({ type }: Props) => {
                     const categoryFragment = category.label.replace(" ", "").toLowerCase();
 
                     return (
-                      <Link className="sub-category" key={category.label} to={`/tracker/${category.fragment}`}>
+                      <Link className="sub-category" key={category.label} to={`/${type}/${category.fragment}`}>
                         <span>{category.label}</span>
                         {type === "tracker" && statistics[categoryFragment] && (
                           <span>

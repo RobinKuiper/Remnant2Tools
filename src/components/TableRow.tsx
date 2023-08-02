@@ -14,15 +14,16 @@ const Flex = styled.div`
 interface Props {
   item: any;
   categoryInformation: CategoryInformation;
+  type: string;
 }
 
-const TableRow = ({ item, categoryInformation }: Props) => {
+const TableRow = ({ item, categoryInformation, type = "tracker" }: Props) => {
   const { unlocks, toggleUnlock } = useContext(DataContext);
   const [unlocked, setUnlocked] = useState(false);
 
   useEffect(() => {
     const category = categoryInformation.label.replace(" ", "").toLowerCase();
-    if (unlocks[category] && unlocks[category][item.id]) {
+    if (type === "tracker" && unlocks[category] && unlocks[category][item.id]) {
       setUnlocked(unlocks[category][item.id].unlocked);
     }
   }, [item, unlocks]);
@@ -40,35 +41,37 @@ const TableRow = ({ item, categoryInformation }: Props) => {
 
   return (
     <tr key={item.id} className={unlocked ? "unlocked" : ""}>
-      <td>
-        <div className="checkbox-wrapper">
-          <label className="checkbox">
-            <input
-              id={item.id}
-              className="checkbox__trigger visuallyhidden"
-              type="checkbox"
-              checked={unlocked}
-              onChange={handleChange}
-            />
-            <span className="checkbox__symbol">
-              <svg
-                aria-hidden="true"
-                className="icon-checkbox"
-                width="28px"
-                height="28px"
-                viewBox="0 0 28 28"
-                version="1"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path d="M4 14l8 7L24 7"></path>
-              </svg>
-            </span>
-          </label>
-        </div>
-      </td>
+      {type === "tracker" && (
+        <td>
+          <div className="checkbox-wrapper">
+            <label className="checkbox">
+              <input
+                id={item.id}
+                className="checkbox__trigger visuallyhidden"
+                type="checkbox"
+                checked={unlocked}
+                onChange={handleChange}
+              />
+              <span className="checkbox__symbol">
+                <svg
+                  aria-hidden="true"
+                  className="icon-checkbox"
+                  width="28px"
+                  height="28px"
+                  viewBox="0 0 28 28"
+                  version="1"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path d="M4 14l8 7L24 7"></path>
+                </svg>
+              </span>
+            </label>
+          </div>
+        </td>
+      )}
       {categoryInformation &&
         categoryInformation.attributes
-          .filter(attribute => attribute.tracker)
+          .filter(attribute => attribute[type])
           .map(attribute => (
             <td key={attribute.label}>
               <span>

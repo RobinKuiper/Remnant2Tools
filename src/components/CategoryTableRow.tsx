@@ -14,9 +14,10 @@ const Flex = styled.div`
 interface Props {
   item: any;
   categoryInformation: CategoryInformation;
+  type: string;
 }
 
-const CategoryTableRow = ({ item, categoryInformation }: Props) => {
+const CategoryTableRow = ({ item, categoryInformation, type = "tracker" }: Props) => {
   const { unlocks, toggleUnlock } = useContext(DataContext);
   const [unlocked, setUnlocked] = useState(false);
 
@@ -40,7 +41,7 @@ const CategoryTableRow = ({ item, categoryInformation }: Props) => {
 
   return (
     <tr key={item.id} className={unlocked ? "unlocked" : ""}>
-      {categoryInformation.categoryIsCheckable && (
+      {type === "tracker" && categoryInformation.categoryIsCheckable && (
         <td>
           <div className="checkbox-wrapper">
             <label className="checkbox">
@@ -73,14 +74,14 @@ const CategoryTableRow = ({ item, categoryInformation }: Props) => {
         colSpan={
           categoryInformation.categoryHasValues
             ? 1
-            : categoryInformation.attributes.filter(field => field.tracker).length + 1
+            : categoryInformation.attributes.filter(field => field[type]).length + 1
         }
       >
         {item.label}
       </td>
       {categoryInformation.categoryHasValues &&
         categoryInformation.attributes
-          .filter(attribute => attribute.tracker && attribute.label !== "name")
+          .filter(attribute => attribute[type] && attribute.label !== "name")
           .map(attribute => (
             <td key={attribute.label}>
               <span>
