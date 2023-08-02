@@ -11,7 +11,7 @@ const Container = styled.div`
   padding: 20px 0;
   box-sizing: border-box;
   width: 10%;
-  min-width: 200px;
+  min-width: 214px;
 
   nav {
     position: fixed;
@@ -72,7 +72,7 @@ const CategorySidebar = ({ type }: Props) => {
                     const categoryFragment = category.label.replace(" ", "").toLowerCase();
 
                     return (
-                      <Link className="sub-category" key={category.label} to={`/tracker/${category.fragment}`}>
+                      <Link className="sub-category" key={category.label} to={`/${type}/${category.fragment}`}>
                         <span>{category.label}</span>
                         {type === "tracker" && statistics[categoryFragment] && (
                           <span>

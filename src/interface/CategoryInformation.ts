@@ -12,6 +12,8 @@ export interface CategoryInformation {
   tracker: boolean;
   database: boolean;
   categorized?: boolean;
+  categoryIsCheckable?: boolean;
+  categoryHasValues?: boolean;
   filters: object;
   attributes: FieldInformation[];
 }

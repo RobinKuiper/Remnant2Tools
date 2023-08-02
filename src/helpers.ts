@@ -9,3 +9,18 @@ export const findCategory = (name: string) => {
     }
   }
 };
+
+export const slugify = (str: string) => {
+  return str
+    .split(" ")
+    .join("_")
+    .split("-")
+    .join("_")
+    .split("/")
+    .join("_")
+    .split("'")
+    .join("")
+    .split('"')
+    .join("")
+    .toLowerCase();
+};

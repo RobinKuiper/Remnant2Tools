@@ -46,12 +46,26 @@ const DataProvider: React.FC<Props> = ({ children }: Props) => {
 
   useEffect(() => {
     if (localStorage.getItem("data")) {
-      setUnlocks(JSON.parse(localStorage.getItem("data") ?? "{}"));
+      setUnlocks(() => ({ ...JSON.parse(localStorage.getItem("data") ?? "{}") }));
     }
   }, []);
 
   useEffect(() => {
     updateStatistics();
+
+    // TODO: Remove later
+    if (Object.keys(unlocks).length > 0 && !localStorage.getItem("migrated_armor")) {
+      if (unlocks.armor) {
+        const newUnlocks = unlocks;
+        newUnlocks.armorsets = {};
+        newUnlocks.armor = {};
+        delete newUnlocks.armor;
+        setUnlocks(() => ({ ...newUnlocks }));
+        localStorage.setItem("data", JSON.stringify(newUnlocks));
+      }
+
+      localStorage.setItem("migrated_armor", "yes");
+    }
   }, [unlocks]);
 
   const updateStatistics = () => {
@@ -80,7 +94,7 @@ const DataProvider: React.FC<Props> = ({ children }: Props) => {
     setStatistics(newStatistics);
   };
 
-  const toggleUnlock = (category: string, id: number) => {
+  const toggleUnlock = (category: string, id: number, forceUnlock: boolean = false) => {
     const newUnlocks = unlocks;
     if (!newUnlocks[category]) {
       newUnlocks[category] = {};
@@ -88,7 +102,7 @@ const DataProvider: React.FC<Props> = ({ children }: Props) => {
 
     if (newUnlocks[category][id]) {
       newUnlocks[category][id] = {
-        unlocked: !newUnlocks[category][id].unlocked,
+        unlocked: forceUnlock ? true : !newUnlocks[category][id].unlocked,
       };
     } else {
       newUnlocks[category][id] = {
@@ -96,7 +110,14 @@ const DataProvider: React.FC<Props> = ({ children }: Props) => {
       };
     }
 
-    setUnlocks(newUnlocks);
+    if (newUnlocks[category][id].unlocked) {
+      const item = data[category].filter(i => i.id === parseInt(id as string))[0];
+      if (item && item.items) {
+        item.items.forEach(i => toggleUnlock(category, i.id, true));
+      }
+    }
+
+    setUnlocks(prevState => ({ ...prevState, ...newUnlocks }));
     localStorage.setItem("data", JSON.stringify(newUnlocks));
     updateStatistics();
   };

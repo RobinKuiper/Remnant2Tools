@@ -45,8 +45,7 @@ const TopBar = () => {
       </div>
 
       <nav>
-        {/*<Link to="/">Database</Link>*/}
-        <span>Database</span>
+        <Link to="/database/archetypes">Database</Link>
         <Link to="/tracker/archetypes">Unlockables Tracker</Link>
         <Link to="/builds">Builds</Link>
       </nav>

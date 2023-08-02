@@ -1,7 +1,9 @@
+import { graphql } from "gatsby";
 import React, { useContext, useEffect, useState } from "react";
 import { BiHide, BiShow } from "react-icons/bi";
 import { CircleLoader } from "react-spinners";
 import { styled } from "styled-components";
+import CategoryTableRow from "../../components/CategoryTableRow";
 import CategorySidebar from "../../components/layout/CategorySidebar";
 import Layout from "../../components/layout/Layout";
 import Search from "../../components/Search";
@@ -108,6 +110,7 @@ const Category = props => {
   const { unlocks, statistics } = useContext(DataContext);
   const [categoryInformation, setCategoryInformation] = useState<CategoryInformation>(CATEGORIES[0].categories[0]);
   const category = props.params.category;
+  const images = props.data.images;
   const rawData = dataCollection[category];
   const [data, setData] = useState(rawData);
   const [loading, setLoading] = useState(true);
@@ -214,6 +217,7 @@ const Category = props => {
               <thead>
                 <tr>
                   <th />
+                  <th />
                   {categoryInformation &&
                     categoryInformation.attributes
                       .filter(attribute => attribute.tracker)
@@ -227,21 +231,26 @@ const Category = props => {
                     if (categoryInformation?.categorized) {
                       return (
                         <>
-                          <tr>
-                            <td
-                              className="category"
-                              colSpan={categoryInformation.attributes.filter(field => field.tracker).length + 1}
-                            >
-                              {item.label}
-                            </td>
-                          </tr>
+                          <CategoryTableRow item={item} categoryInformation={categoryInformation} />
                           {item.items.map(i => (
-                            <TableRow key={i.id} item={i} categoryInformation={categoryInformation} />
+                            <TableRow
+                              key={i.id}
+                              item={i}
+                              categoryInformation={categoryInformation}
+                              images={images.nodes}
+                            />
                           ))}
                         </>
                       );
                     } else {
-                      return <TableRow key={item.id} item={item} categoryInformation={categoryInformation} />;
+                      return (
+                        <TableRow
+                          key={item.id}
+                          item={item}
+                          categoryInformation={categoryInformation}
+                          images={images.nodes}
+                        />
+                      );
                     }
                   })
                 ) : (
@@ -265,3 +274,17 @@ const Category = props => {
 };
 
 export default Category;
+
+export const query = graphql`
+  {
+    images: allFile(filter: { relativePath: { regex: "/items/" } }) {
+      totalCount
+      nodes {
+        name
+        childImageSharp {
+          gatsbyImageData(quality: 80, layout: CONSTRAINED)
+        }
+      }
+    }
+  }
+`;
