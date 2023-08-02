@@ -11,7 +11,7 @@ const Container = styled.div`
   padding: 20px 0;
   box-sizing: border-box;
   width: 10%;
-  min-width: 200px;
+  min-width: 214px;
 
   nav {
     position: fixed;

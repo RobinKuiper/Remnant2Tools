@@ -3662,7 +3662,7 @@
       ]
     }
   ],
-  "armorsets": [
+  "armor": [
     {
       "label": "Academic's Set",
       "type": "Medium",
@@ -4190,28 +4190,32 @@
           "id": 575
         }
       ]
-    }
-  ],
-  "armor": [
-    {
-      "name": "Lodestone Crown",
-      "world": "N'Erud",
-      "location": "The Lament",
-      "unlock": "",
-      "value": 5,
-      "weight": 3,
-      "stats": "🩸 -2 🔥 0 ⚡ -1 💀 5 🦴 0",
-      "id": 576
     },
     {
-      "name": "Navigator's Helm",
-      "world": "Yaesha",
-      "location": "Extraction Hub",
-      "unlock": "Kill a rare N'Erud Zombie (Navigator Zombie) who's wearing the Navigator Helm.",
-      "value": 12,
-      "weight": 8,
-      "stats": "🩸 -1 🔥 -1 ⚡ 2 💀 -1 🦴 3",
-      "id": 577
+      "label": "Single Items",
+      "id": 578,
+      "items": [
+        {
+          "name": "Lodestone Crown",
+          "world": "N'Erud",
+          "location": "The Lament",
+          "unlock": "",
+          "value": 5,
+          "weight": 3,
+          "stats": "🩸 -2 🔥 0 ⚡ -1 💀 5 🦴 0",
+          "id": 576
+        },
+        {
+          "name": "Navigator's Helm",
+          "world": "Yaesha",
+          "location": "Extraction Hub",
+          "unlock": "Kill a rare N'Erud Zombie (Navigator Zombie) who's wearing the Navigator Helm.",
+          "value": 12,
+          "weight": 8,
+          "stats": "🩸 -1 🔥 -1 ⚡ 2 💀 -1 🦴 3",
+          "id": 577
+        }
+      ]
     }
   ],
   "worldbosses": [

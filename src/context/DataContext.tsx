@@ -46,12 +46,26 @@ const DataProvider: React.FC<Props> = ({ children }: Props) => {
 
   useEffect(() => {
     if (localStorage.getItem("data")) {
-      setUnlocks(JSON.parse(localStorage.getItem("data") ?? "{}"));
+      setUnlocks(() => ({ ...JSON.parse(localStorage.getItem("data") ?? "{}") }));
     }
   }, []);
 
   useEffect(() => {
     updateStatistics();
+
+    // TODO: Remove later
+    if (Object.keys(unlocks).length > 0 && !localStorage.getItem("migrated_armor")) {
+      if (unlocks.armor) {
+        const newUnlocks = unlocks;
+        newUnlocks.armorsets = {};
+        newUnlocks.armor = {};
+        delete newUnlocks.armor;
+        setUnlocks(() => ({ ...newUnlocks }));
+        localStorage.setItem("data", JSON.stringify(newUnlocks));
+      }
+
+      localStorage.setItem("migrated_armor", "yes");
+    }
   }, [unlocks]);
 
   const updateStatistics = () => {
