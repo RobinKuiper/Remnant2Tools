@@ -575,7 +575,7 @@
           "id": 66
         },
         {
-          "name": "Alpha / Omega",
+          "name": "Alpha/Omega",
           "mod": "Beta Ray",
           "world": "Root Earth",
           "location": "Blackened Citadel",
@@ -751,7 +751,7 @@
           "id": 80
         },
         {
-          "name": "Rupture Canon",
+          "name": "Rupture Cannon",
           "mod": "",
           "world": "N'Erud",
           "location": "Vault of the Formless",
@@ -1035,7 +1035,7 @@
           "id": 111
         },
         {
-          "name": "Assasin's Dagger",
+          "name": "Assassin's Dagger",
           "mod": "Bloodthirst",
           "world": "Losomn",
           "location": "Nimue's Retreat",
@@ -1986,7 +1986,7 @@
       "id": 209
     },
     {
-      "name": "Daredevil Charm",
+      "name": "Daredevils Charm",
       "description": "Gain 7.5% to all damage dealt, 3% Movement Speed, and 5% all damage taker' for each piece of unequipped armor.",
       "world": "Earth",
       "location": "Ward 13",
@@ -1994,7 +1994,7 @@
       "id": 210
     },
     {
-      "name": "Death's Embrace",
+      "name": "Death Embrace",
       "description": "Gain 20% to all damage when Health is below 100%. Gain HASTE when below 50% Health.",
       "world": "Yaesha",
       "location": "The Forbidden Grove",
@@ -2066,7 +2066,7 @@
       "id": 219
     },
     {
-      "name": "Hyperconductor",
+      "name": "Hyper Conductor",
       "description": "Gain double Skill Charges. Increases Skill Cooldowns by 50% and reduces Max Power Generation by 15%.\nFor Heavy Weapons, doubles Heavy Weapon Ammo instead.",
       "world": "N'Erud",
       "location": "Terminus Station",
@@ -2202,7 +2202,7 @@
       "id": 236
     },
     {
-      "name": "Shock Devide",
+      "name": "Shock Device",
       "description": "Increases SHOCK damage by 20% and OVERLOADED damage by 50%.",
       "world": "Losomn",
       "location": "Asylum",
@@ -2234,7 +2234,7 @@
       "id": 240
     },
     {
-      "name": "Vengance Idol",
+      "name": "Vengeance Idol",
       "description": "Increases all damage dealt by 30% when the wearer's Health is below 50%.",
       "world": "Yaesha",
       "location": "Random world drop",
@@ -2332,7 +2332,7 @@
       "id": 247
     },
     {
-      "name": "Anastasija's Inspiration",
+      "name": "Anastajia's Inspiration",
       "description": "When receiven healing effects, gain HASTE for 10s.",
       "world": "Earth",
       "location": "Ward 13",
@@ -2556,7 +2556,7 @@
       "id": 275
     },
     {
-      "name": "Assasin's Seal",
+      "name": "Assassin's Seal",
       "description": "Reduces enemy Awareness Range by 25%. Increases all damage dealt to enemies not targeting wearer by 10%.",
       "world": "Losomn",
       "location": "Council Tribunal",
@@ -2716,7 +2716,7 @@
       "id": 296
     },
     {
-      "name": "Burden fo the Warlock",
+      "name": "Burden of the Warlock",
       "description": "Reduces Mod Power Requirement by 15%. Activating a Mod costs 15% Health as Grey Health. Activation cannot kill Wearer.",
       "world": "Losomn",
       "location": "Random world drop",
@@ -2908,7 +2908,7 @@
       "id": 320
     },
     {
-      "name": "Reapling Stone",
+      "name": "Reaping Stone",
       "description": "After an Elemental Status Effect is removed from wearer, they become immune to all Elemental Status Effects and gain 2% base of damage dealt as Lifesteal fo 10s",
       "world": "Root Earth",
       "location": "Ashen Wasteland",
@@ -3284,7 +3284,7 @@
       "id": 370
     },
     {
-      "name": "Tear of Kaeula",
+      "name": "Tear of Kauela",
       "description": "Increases Relic capacity by 2 while equipped",
       "world": "Yaesha",
       "location": "Kaeula's Rest",
@@ -3340,7 +3340,7 @@
       "id": 377
     },
     {
-      "name": "Ahanae Crystal",
+      "name": "Anahae Crystal",
       "description": "Deal 5% additional damage for each Status Effect the target is suffering from.",
       "world": "Earth",
       "location": "Ward 13",
@@ -3436,7 +3436,7 @@
       "id": 414
     },
     {
-      "name": "Suppression Ward",
+      "name": "Supression Ward",
       "description": "Prevents SUPPRESSION Blight.",
       "world": "N'Erud",
       "location": "Ascension Spire",
@@ -3444,7 +3444,7 @@
       "id": 415
     },
     {
-      "name": "Fearin's Sigil",
+      "name": "Faerin's Sigil",
       "description": "Critical and Weakspot Hits generates 10% additional Mod Power.",
       "world": "Losomn",
       "location": "Malefic Gallery",
@@ -3655,8 +3655,8 @@
           "id": 454
         },
         {
-          "name": "Weakspot Damage",
-          "description": "Weakspot Damage",
+          "name": "Ranged Weakspot Damage",
+          "description": "Ranged Weakspot Damage",
           "id": 455
         }
       ]
@@ -3714,7 +3714,7 @@
           "id": 506
         },
         {
-          "name": "Bruiser Boot",
+          "name": "Bruiser Boots",
           "id": 507
         }
       ]
@@ -4022,7 +4022,7 @@
           "id": 550
         },
         {
-          "name": "Realmwalker Panatloons",
+          "name": "Realmwalker Pantaloons",
           "id": 551
         }
       ]

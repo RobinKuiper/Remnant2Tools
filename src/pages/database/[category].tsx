@@ -1,5 +1,5 @@
-import React, { useContext, useEffect, useState } from "react";
-import { BiHide, BiShow } from "react-icons/bi";
+import { graphql } from "gatsby";
+import React, { useEffect, useState } from "react";
 import { CircleLoader } from "react-spinners";
 import { styled } from "styled-components";
 import CategoryTableRow from "../../components/CategoryTableRow";
@@ -9,8 +9,6 @@ import Search from "../../components/Search";
 import TableRow from "../../components/TableRow";
 import { CATEGORIES } from "../../constants";
 import { findCategory } from "../../helpers";
-import { DataContext } from "../../context/DataContext";
-import { SettingContext } from "../../context/SettingContext";
 import type { CategoryInformation } from "../../interface/CategoryInformation";
 import dataCollection from "../../data/data.json";
 
@@ -95,20 +93,15 @@ const Page = styled.div`
         tr:nth-child(odd) {
           background: #fff;
         }
-
-        tr.unlocked {
-          background: #a0efa0;
-        }
       }
     }
   }
 `;
 
 const Category = props => {
-  const { hideUnlocked, toggleHideUnlocked } = useContext(SettingContext);
-  const { unlocks, statistics } = useContext(DataContext);
   const [categoryInformation, setCategoryInformation] = useState<CategoryInformation>(CATEGORIES[0].categories[0]);
   const category = props.params.category;
+  const images = props.data.images;
   const rawData = dataCollection[category];
   const [data, setData] = useState(rawData);
   const [loading, setLoading] = useState(true);
@@ -154,7 +147,7 @@ const Category = props => {
 
     setData(sort(search()));
     setLoading(false);
-  }, [query, category, categoryInformation, hideUnlocked]);
+  }, [query, category, categoryInformation]);
 
   return (
     <Layout>
@@ -176,6 +169,7 @@ const Category = props => {
             <table cellSpacing="0" cellPadding="0">
               <thead>
                 <tr>
+                  <th />
                   {categoryInformation &&
                     categoryInformation.attributes
                       .filter(attribute => attribute.database)
@@ -191,13 +185,25 @@ const Category = props => {
                         <>
                           <CategoryTableRow item={item} categoryInformation={categoryInformation} type="database" />
                           {item.items.map(i => (
-                            <TableRow key={i.id} item={i} categoryInformation={categoryInformation} type="database" />
+                            <TableRow
+                              key={i.id}
+                              item={i}
+                              categoryInformation={categoryInformation}
+                              type="database"
+                              images={images.nodes}
+                            />
                           ))}
                         </>
                       );
                     } else {
                       return (
-                        <TableRow key={item.id} item={item} categoryInformation={categoryInformation} type="database" />
+                        <TableRow
+                          key={item.id}
+                          item={item}
+                          categoryInformation={categoryInformation}
+                          type="database"
+                          images={images.nodes}
+                        />
                       );
                     }
                   })
@@ -205,8 +211,6 @@ const Category = props => {
                   <tr>
                     <td colSpan={categoryInformation.attributes.filter(field => field.tracker).length + 1}>
                       <p>No data found.</p>
-
-                      {hideUnlocked && <p>You have set unlocked to hidden, maybe you have everything? Congrats!</p>}
                     </td>
                   </tr>
                 )}
@@ -222,3 +226,17 @@ const Category = props => {
 };
 
 export default Category;
+
+export const query = graphql`
+  {
+    images: allFile(filter: { relativePath: { regex: "/items/" } }) {
+      totalCount
+      nodes {
+        name
+        childImageSharp {
+          gatsbyImageData(quality: 80, layout: CONSTRAINED)
+        }
+      }
+    }
+  }
+`;

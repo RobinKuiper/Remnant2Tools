@@ -1,3 +1,4 @@
+import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import React, { useContext, useEffect, useState } from "react";
 import { styled } from "styled-components";
 import { DataContext } from "../context/DataContext";
@@ -15,12 +16,21 @@ const Flex = styled.div`
 interface Props {
   item: any;
   categoryInformation: CategoryInformation;
-  type: string;
+  type?: string;
+  images: any;
 }
 
-const TableRow = ({ item, categoryInformation, type = "tracker" }: Props) => {
+const TableRow = ({ item, categoryInformation, type = "tracker", images }: Props) => {
   const { unlocks, toggleUnlock } = useContext(DataContext);
   const [unlocked, setUnlocked] = useState(false);
+  const [image, setImage] = useState<any | null>(null);
+
+  useEffect(() => {
+    const filtered = images && Object.values(images).filter(i => i.name === slugify(item.name));
+    if (filtered && filtered.length > 0) {
+      setImage(filtered[0]);
+    }
+  }, []);
 
   useEffect(() => {
     const category = categoryInformation.label.replace(" ", "").toLowerCase();
@@ -70,6 +80,17 @@ const TableRow = ({ item, categoryInformation, type = "tracker" }: Props) => {
           </div>
         </td>
       )}
+      <td>
+        {image && (
+          <GatsbyImage
+            image={getImage(image)}
+            alt={item.name}
+            title={item.name}
+            placeholder="none"
+            style={type === "tracker" ? {} : { width: "100px" }}
+          />
+        )}
+      </td>
       {categoryInformation &&
         categoryInformation.attributes
           .filter(attribute => attribute[type])
@@ -77,14 +98,6 @@ const TableRow = ({ item, categoryInformation, type = "tracker" }: Props) => {
             <td key={attribute.label}>
               <span>
                 <Flex direction="row">
-                  {attribute.label === "name" && (
-                    <img
-                      src={`/images/items/${slugify(categoryInformation.label)}/${slugify(item.name)}.png`}
-                      alt={slugify(item.name)}
-                      style={{ width: "100px" }}
-                    />
-                  )}
-
                   <Flex direction="column">
                     <div>
                       <span className={attribute.redacted && !unlocked ? "redacted" : ""} onClick={toggleRedacted}>
