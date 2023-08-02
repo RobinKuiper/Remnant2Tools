@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { styled } from "styled-components";
 import { DataContext } from "../context/DataContext";
 import type { CategoryInformation } from "../interface/CategoryInformation";
+import { slugify } from "../helpers";
 
 // TODO: refactor with CategoryTableRow
 
@@ -75,25 +76,35 @@ const TableRow = ({ item, categoryInformation, type = "tracker" }: Props) => {
           .map(attribute => (
             <td key={attribute.label}>
               <span>
-                <Flex direction="column">
-                  <div>
-                    <span className={attribute.redacted && !unlocked ? "redacted" : ""} onClick={toggleRedacted}>
-                      {item[attribute.label]}
-                    </span>
-                  </div>
-                  {attribute.fields &&
-                    attribute.fields.length > 0 &&
-                    attribute.fields.map(field => (
-                      <div key={field}>
-                        <span
-                          className={attribute.redacted && !unlocked ? "redacted" : ""}
-                          onClick={toggleRedacted}
-                          key={field}
-                        >
-                          {item[field]}
-                        </span>
-                      </div>
-                    ))}
+                <Flex direction="row">
+                  {attribute.label === "name" && (
+                    <img
+                      src={`/images/items/${slugify(categoryInformation.label)}/${slugify(item.name)}.png`}
+                      alt={slugify(item.name)}
+                      style={{ width: "100px" }}
+                    />
+                  )}
+
+                  <Flex direction="column">
+                    <div>
+                      <span className={attribute.redacted && !unlocked ? "redacted" : ""} onClick={toggleRedacted}>
+                        {item[attribute.label]}
+                      </span>
+                    </div>
+                    {attribute.fields &&
+                      attribute.fields.length > 0 &&
+                      attribute.fields.map(field => (
+                        <div key={field}>
+                          <span
+                            className={attribute.redacted && !unlocked ? "redacted" : ""}
+                            onClick={toggleRedacted}
+                            key={field}
+                          >
+                            {item[field]}
+                          </span>
+                        </div>
+                      ))}
+                  </Flex>
                 </Flex>
               </span>
             </td>
