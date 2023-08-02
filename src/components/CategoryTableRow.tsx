@@ -14,7 +14,7 @@ const Flex = styled.div`
 interface Props {
   item: any;
   categoryInformation: CategoryInformation;
-  type: string;
+  type?: string;
 }
 
 const CategoryTableRow = ({ item, categoryInformation, type = "tracker" }: Props) => {
