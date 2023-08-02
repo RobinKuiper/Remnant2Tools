@@ -80,7 +80,7 @@ const DataProvider: React.FC<Props> = ({ children }: Props) => {
     setStatistics(newStatistics);
   };
 
-  const toggleUnlock = (category: string, id: number) => {
+  const toggleUnlock = (category: string, id: number, forceUnlock: boolean = false) => {
     const newUnlocks = unlocks;
     if (!newUnlocks[category]) {
       newUnlocks[category] = {};
@@ -88,7 +88,7 @@ const DataProvider: React.FC<Props> = ({ children }: Props) => {
 
     if (newUnlocks[category][id]) {
       newUnlocks[category][id] = {
-        unlocked: !newUnlocks[category][id].unlocked,
+        unlocked: forceUnlock ? true : !newUnlocks[category][id].unlocked,
       };
     } else {
       newUnlocks[category][id] = {
@@ -96,7 +96,14 @@ const DataProvider: React.FC<Props> = ({ children }: Props) => {
       };
     }
 
-    setUnlocks(newUnlocks);
+    if (newUnlocks[category][id].unlocked) {
+      const item = data[category].filter(i => i.id === parseInt(id as string))[0];
+      if (item && item.items) {
+        item.items.forEach(i => toggleUnlock(category, i.id, true));
+      }
+    }
+
+    setUnlocks(prevState => ({ ...prevState, ...newUnlocks }));
     localStorage.setItem("data", JSON.stringify(newUnlocks));
     updateStatistics();
   };

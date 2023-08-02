@@ -3,7 +3,7 @@ import { styled } from "styled-components";
 import { DataContext } from "../context/DataContext";
 import type { CategoryInformation } from "../interface/CategoryInformation";
 
-// TODO: refactor with CategoryTableRow
+// TODO: refactor with TableRow
 
 const Flex = styled.div`
   display: flex;
@@ -16,7 +16,7 @@ interface Props {
   categoryInformation: CategoryInformation;
 }
 
-const TableRow = ({ item, categoryInformation }: Props) => {
+const CategoryTableRow = ({ item, categoryInformation }: Props) => {
   const { unlocks, toggleUnlock } = useContext(DataContext);
   const [unlocked, setUnlocked] = useState(false);
 
@@ -28,7 +28,7 @@ const TableRow = ({ item, categoryInformation }: Props) => {
   }, [item, unlocks]);
 
   const handleChange = e => {
-    const id = parseInt(e.target.id),
+    const id = e.target.id,
       category = categoryInformation.label.replace(" ", "").toLowerCase();
 
     toggleUnlock(category, id);
@@ -40,35 +40,47 @@ const TableRow = ({ item, categoryInformation }: Props) => {
 
   return (
     <tr key={item.id} className={unlocked ? "unlocked" : ""}>
-      <td>
-        <div className="checkbox-wrapper">
-          <label className="checkbox">
-            <input
-              id={item.id}
-              className="checkbox__trigger visuallyhidden"
-              type="checkbox"
-              checked={unlocked}
-              onChange={handleChange}
-            />
-            <span className="checkbox__symbol">
-              <svg
-                aria-hidden="true"
-                className="icon-checkbox"
-                width="28px"
-                height="28px"
-                viewBox="0 0 28 28"
-                version="1"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path d="M4 14l8 7L24 7"></path>
-              </svg>
-            </span>
-          </label>
-        </div>
+      {categoryInformation.categoryIsCheckable && (
+        <td>
+          <div className="checkbox-wrapper">
+            <label className="checkbox">
+              <input
+                id={item.id}
+                className="checkbox__trigger visuallyhidden"
+                type="checkbox"
+                checked={unlocked}
+                onChange={handleChange}
+              />
+              <span className="checkbox__symbol">
+                <svg
+                  aria-hidden="true"
+                  className="icon-checkbox"
+                  width="28px"
+                  height="28px"
+                  viewBox="0 0 28 28"
+                  version="1"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path d="M4 14l8 7L24 7"></path>
+                </svg>
+              </span>
+            </label>
+          </div>
+        </td>
+      )}
+      <td
+        className="category"
+        colSpan={
+          categoryInformation.categoryHasValues
+            ? 1
+            : categoryInformation.attributes.filter(field => field.tracker).length + 1
+        }
+      >
+        {item.label}
       </td>
-      {categoryInformation &&
+      {categoryInformation.categoryHasValues &&
         categoryInformation.attributes
-          .filter(attribute => attribute.tracker)
+          .filter(attribute => attribute.tracker && attribute.label !== "name")
           .map(attribute => (
             <td key={attribute.label}>
               <span>
@@ -99,4 +111,4 @@ const TableRow = ({ item, categoryInformation }: Props) => {
   );
 };
 
-export default TableRow;
+export default CategoryTableRow;

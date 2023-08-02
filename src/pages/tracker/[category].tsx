@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { BiHide, BiShow } from "react-icons/bi";
 import { CircleLoader } from "react-spinners";
 import { styled } from "styled-components";
+import CategoryTableRow from "../../components/CategoryTableRow";
 import CategorySidebar from "../../components/layout/CategorySidebar";
 import Layout from "../../components/layout/Layout";
 import Search from "../../components/Search";
@@ -227,14 +228,7 @@ const Category = props => {
                     if (categoryInformation?.categorized) {
                       return (
                         <>
-                          <tr>
-                            <td
-                              className="category"
-                              colSpan={categoryInformation.attributes.filter(field => field.tracker).length + 1}
-                            >
-                              {item.label}
-                            </td>
-                          </tr>
+                          <CategoryTableRow item={item} categoryInformation={categoryInformation} />
                           {item.items.map(i => (
                             <TableRow key={i.id} item={i} categoryInformation={categoryInformation} />
                           ))}

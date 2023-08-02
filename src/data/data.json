@@ -3662,186 +3662,556 @@
       ]
     }
   ],
-  "armor": [
+  "armorsets": [
     {
-      "name": "Academic's Set",
+      "label": "Academic's Set",
       "type": "Medium",
       "value": 72,
       "weight": 42,
-      "stats": "🩸5🔥0⚡0💀7🦴15",
+      "stats": "🩸 5 🔥 0 ⚡ 0 💀 7 🦴 15",
       "pieces": 4,
       "unlock": "Can be found on a body during the Monster in the Drain event in Losomn",
-      "id": 446
+      "id": 446,
+      "items": [
+        {
+          "name": "Academic's Hat",
+          "id": 500
+        },
+        {
+          "name": "Academic's Overcoat",
+          "id": 501
+        },
+        {
+          "name": "Academic's Gloves",
+          "id": 502
+        },
+        {
+          "name": "Academic's Trousers",
+          "id": 503
+        }
+      ]
     },
     {
-      "name": "Bruiser Set",
+      "label": "Bruiser Set",
       "type": "Heavy",
       "value": 110,
       "weight": 60,
-      "stats": "🩸5🔥14⚡0💀0🦴6",
+      "stats": "🩸 5 🔥 14 ⚡ 0 💀 0 🦴 6",
       "pieces": 4,
       "unlock": "Starting Armor set for the Challenger\nSold by Whispers in Ward 13",
-      "id": 447
+      "id": 447,
+      "items": [
+        {
+          "name": "Bruiser Helmet",
+          "id": 504
+        },
+        {
+          "name": "Bruiser Bodyplate",
+          "id": 505
+        },
+        {
+          "name": "Bruiser Gloves",
+          "id": 506
+        },
+        {
+          "name": "Bruiser Boot",
+          "id": 507
+        }
+      ]
     },
     {
-      "name": "Dendroid Set",
+      "label": "Dendroid Set",
       "type": "Light",
       "value": 47,
       "weight": 25,
-      "stats": "🩸10🔥0⚡2💀5🦴8",
+      "stats": "🩸 10 🔥 0 ⚡ 2 💀 5 🦴 8",
       "pieces": 4,
       "unlock": "Can be found in Root Earth - Ashen Wasteland",
-      "id": 448
+      "id": 448,
+      "items": [
+        {
+          "name": "Dendroid Mask",
+          "id": 508
+        },
+        {
+          "name": "Dendroid Chest",
+          "id": 509
+        },
+        {
+          "name": "Dendroid Grips",
+          "id": 510
+        },
+        {
+          "name": "Dendroid Leggings",
+          "id": 511
+        }
+      ]
     },
     {
-      "name": "Elder Set",
+      "label": "Elder Set",
       "type": "Light",
       "value": 44,
       "weight": 24,
-      "stats": "🩸0🔥12⚡0💀9🦴4",
+      "stats": "🩸 0 🔥 12 ⚡ 0 💀 9 🦴 4",
       "pieces": 4,
       "unlock": "Obtained by purchasing Remnant 2 Deluxe Edition or Ultimate Edition",
-      "id": 449
+      "id": 449,
+      "items": [
+        {
+          "name": "Elder Headdress",
+          "id": 512
+        },
+        {
+          "name": "Elder Raiment",
+          "id": 513
+        },
+        {
+          "name": "Elder Gloves",
+          "id": 514
+        },
+        {
+          "name": "Elder Leggings",
+          "id": 515
+        }
+      ]
     },
     {
-      "name": "Fae Royal Set",
+      "label": "Fae Royal Set",
       "type": "Heavy",
       "value": 107,
       "weight": 55,
-      "stats": "🩸9🔥9⚡0💀7🦴0",
+      "stats": "🩸 9 🔥 9 ⚡ 0 💀 7 🦴 0",
       "pieces": 4,
       "unlock": "Can be found in Losomn - Postulant's Parlor",
-      "id": 450
+      "id": 450,
+      "items": [
+        {
+          "name": "Fae Royal Headcover",
+          "id": 516
+        },
+        {
+          "name": "Fae Royal Bodyplate",
+          "id": 517
+        },
+        {
+          "name": "Fae Royal Vambraces",
+          "id": 518
+        },
+        {
+          "name": "Fae Royal Greaves",
+          "id": 519
+        }
+      ]
     },
     {
-      "name": "Field Medic Set",
+      "label": "Field Medic Set",
       "type": "Medium",
       "value": 68,
       "weight": 35,
-      "stats": "🩸15🔥0⚡0💀8🦴2",
+      "stats": "🩸 15 🔥 0 ⚡ 0 💀 8 🦴 2",
       "pieces": 4,
       "unlock": "Starting Equipment for the Medic Archetype.\nSold by Whispers in Ward 13",
-      "id": 451
+      "id": 451,
+      "items": [
+        {
+          "name": "Field Medic Hat",
+          "id": 520
+        },
+        {
+          "name": "Field Medic Overcoat",
+          "id": 521
+        },
+        {
+          "name": "Field Medic Gloves",
+          "id": 522
+        },
+        {
+          "name": "Field Medic Trousers",
+          "id": 523
+        }
+      ]
     },
     {
-      "name": "Void Set",
+      "label": "Void Set",
       "type": "Heavy",
       "value": 104,
       "weight": 57,
-      "stats": "🩸0🔥7⚡9💀0🦴9",
+      "stats": "🩸 0 🔥 7 ⚡ 9 💀 0 🦴 9",
       "pieces": 4,
       "unlock": "Obtained by purchasing Remnant 2 Deluxe Edition or Ultimate Edition",
-      "id": 452
+      "id": 452,
+      "items": [
+        {
+          "name": "Void Skull",
+          "id": 524
+        },
+        {
+          "name": "Void Carapace",
+          "id": 525
+        },
+        {
+          "name": "Void Wraps",
+          "id": 526
+        },
+        {
+          "name": "Void Greaves",
+          "id": 527
+        }
+      ]
     },
     {
-      "name": "High Noon Set",
+      "label": "High Noon Set",
       "type": "Medium",
       "value": 72,
       "weight": 39,
-      "stats": "🩸0🔥10⚡9💀0🦴6",
+      "stats": "🩸 0 🔥 10 ⚡ 9 💀 0 🦴 6",
       "pieces": 4,
       "unlock": "Starting equipment for the Gunslinger Archetype.",
-      "id": 453
+      "id": 453,
+      "items": [
+        {
+          "name": "High Noon Hat",
+          "id": 528
+        },
+        {
+          "name": "High Noon Duds",
+          "id": 529
+        },
+        {
+          "name": "High Noon Armguards",
+          "id": 530
+        },
+        {
+          "name": "High Noon Soles",
+          "id": 531
+        }
+      ]
     },
     {
-      "name": "Knotted Set",
+      "label": "Knotted Set",
       "type": "Heavy",
       "value": 100,
       "weight": 56,
-      "stats": "🩸3🔥0⚡0💀7🦴15",
+      "stats": "🩸 3 🔥 0 ⚡ 0 💀 7 🦴 15",
       "pieces": 4,
       "unlock": "Can be crafted at Bloodmoon Altar. Required Material: Blood Moon Essence",
-      "id": 454
+      "id": 454,
+      "items": [
+        {
+          "name": "Knotted Helm",
+          "id": 532
+        },
+        {
+          "name": "Knotted Cage",
+          "id": 533
+        },
+        {
+          "name": "Knotted Gloves",
+          "id": 534
+        },
+        {
+          "name": "Knotted Greaves",
+          "id": 535
+        }
+      ]
     },
     {
-      "name": "Leto Mark II Set",
+      "label": "Leto Mark II Set",
       "type": "Ultra Heavy",
       "value": 168,
       "weight": 90,
-      "stats": "🩸10🔥10⚡10💀10🦴10",
+      "stats": "🩸 10 🔥 10 ⚡ 10 💀 10 🦴 10",
       "pieces": 4,
       "unlock": "Use This Link To Find Out How To Obtain This Armour",
-      "id": 455
+      "id": 455,
+      "items": [
+        {
+          "name": "Leto Mark II Helmet",
+          "id": 536
+        },
+        {
+          "name": "Leto Mark II Armor",
+          "id": 537
+        },
+        {
+          "name": "Leto Mark II Gloves",
+          "id": 538
+        },
+        {
+          "name": "Leto Mark II Leggings",
+          "id": 539
+        }
+      ]
     },
     {
-      "name": "Nightstalker Set",
+      "label": "Nightstalker Set",
       "type": "Medium",
       "value": 69,
       "weight": 36,
-      "stats": "🩸6🔥7⚡5💀13🦴0",
+      "stats": "🩸 6 🔥 7 ⚡ 5 💀 13 🦴 0",
       "pieces": 4,
       "unlock": "Whispers in Ward 13 sells this equipment\nStarting equipment for the Hunter Archetype",
-      "id": 456
+      "id": 456,
+      "items": [
+        {
+          "name": "Nightstalker Shroud",
+          "id": 540
+        },
+        {
+          "name": "Nightstalker Garb",
+          "id": 541
+        },
+        {
+          "name": "Nightstalker Gloves",
+          "id": 542
+        },
+        {
+          "name": "Nightstalker Pants",
+          "id": 543
+        }
+      ]
     },
     {
-      "name": "Radiant Set",
+      "label": "Radiant Set",
       "type": "Heavy",
       "value": 113,
       "weight": 61,
-      "stats": "🩸5🔥5⚡12💀3🦴0",
+      "stats": "🩸 5 🔥 5 ⚡ 12 💀 3 🦴 0",
       "pieces": 4,
       "unlock": "Obtained by purchasing Remnant 2 Deluxe Edition or Ultimate Edition",
-      "id": 457
+      "id": 457,
+      "items": [
+        {
+          "name": "Radiant Visage",
+          "id": 544
+        },
+        {
+          "name": "Radiant Protector",
+          "id": 545
+        },
+        {
+          "name": "Radiant Bracers",
+          "id": 546
+        },
+        {
+          "name": "Radiant Greaves",
+          "id": 547
+        }
+      ]
     },
     {
-      "name": "Realmwalker Set",
+      "label": "Realmwalker Set",
       "type": "Light",
       "value": 40,
       "weight": 21,
-      "stats": "🩸5🔥4⚡7💀9🦴0",
+      "stats": "🩸 5 🔥 4 ⚡ 7 💀 9 🦴 0",
       "pieces": 4,
       "unlock": "Starting equipment for the Explorer",
-      "id": 458
+      "id": 458,
+      "items": [
+        {
+          "name": "Realmwalker Beret",
+          "id": 548
+        },
+        {
+          "name": "Realmwalker Tunic",
+          "id": 549
+        },
+        {
+          "name": "Realmwalker Gloves",
+          "id": 550
+        },
+        {
+          "name": "Realmwalker Panatloons",
+          "id": 551
+        }
+      ]
     },
     {
-      "name": "Redwidow Set",
+      "label": "Red Widow Set",
       "type": "Medium",
       "value": 88,
       "weight": 48,
-      "stats": "🩸12🔥0⚡0💀11🦴2",
+      "stats": "🩸 12 🔥 0 ⚡ 0 💀 11 🦴 2",
       "pieces": 4,
       "unlock": "Use This Link To Find Out How To Obtain This Armour",
-      "id": 459
+      "id": 459,
+      "items": [
+        {
+          "name": "Red Widow Headdress",
+          "id": 552
+        },
+        {
+          "name": "Red Widow Raiment",
+          "id": 553
+        },
+        {
+          "name": "Red Widow Bracers",
+          "id": 554
+        },
+        {
+          "name": "Red Widow Leggings",
+          "id": 555
+        }
+      ]
     },
     {
-      "name": "Space Worker Set",
+      "label": "Space Worker Set",
       "type": "Light",
       "value": 44,
       "weight": 23,
-      "stats": "🩸4🔥3⚡10💀0🦴7",
+      "stats": "🩸 4 🔥 3 ⚡ 10 💀 0 🦴 7",
       "pieces": 4,
       "unlock": "Found in N'Erud. Enter the Void Vessel Facility. Find the Stasis Pod Glyph in one of the capsule that can be opened by interacting with a console next to them, in the same dungeon there's a door with a light in the middle, interact with it using the Stasis Pod Glyph to open it. Enter the room, the complete Space Worker Set can be found in a locker.",
-      "id": 460
+      "id": 460,
+      "items": [
+        {
+          "name": "Space Worker Mask",
+          "id": 556
+        },
+        {
+          "name": "Space Worker Body",
+          "id": 557
+        },
+        {
+          "name": "Space Worker Gloves",
+          "id": 558
+        },
+        {
+          "name": "Space Worker Legs",
+          "id": 559
+        }
+      ]
     },
     {
-      "name": "Survivor Set",
+      "label": "Survivor Set",
       "type": "Medium",
       "value": 60,
       "weight": 33,
-      "stats": "🩸5🔥4⚡4💀4🦴5",
+      "stats": "🩸 5 🔥 4 ⚡ 4 💀 4 🦴 5",
       "pieces": 3,
       "unlock": "Automatically equipped as you begin your first character in the game",
-      "id": 461
+      "id": 461,
+      "items": [
+        {
+          "name": "Survivor Overcoat",
+          "id": 560
+        },
+        {
+          "name": "Survivor Gloves",
+          "id": 561
+        },
+        {
+          "name": "Survivor Leggings",
+          "id": 562
+        }
+      ]
     },
     {
-      "name": "Technical Set",
+      "label": "Technician Set",
       "type": "Heavy",
       "value": 106,
       "weight": 58,
-      "stats": "🩸0🔥5⚡13💀0🦴7",
+      "stats": "🩸 0 🔥 5 ⚡ 13 💀 0 🦴 7",
       "pieces": 4,
       "unlock": "Use This Link To Find Out How To Obtain This Armour",
-      "id": 462
+      "id": 462,
+      "items": [
+        {
+          "name": "Technician Helmet",
+          "id": 563
+        },
+        {
+          "name": "Technician Bodyplate",
+          "id": 564
+        },
+        {
+          "name": "Technician Gloves",
+          "id": 565
+        },
+        {
+          "name": "Technician Greaves",
+          "id": 566
+        }
+      ]
     },
     {
-      "name": "Trainer Set",
+      "label": "Trainer Set",
       "type": "Medium",
       "value": 67,
       "weight": 33,
-      "stats": "🩸6🔥0⚡8💀3🦴7",
+      "stats": "🩸 6 🔥 0 ⚡ 8 💀 3 🦴 7",
       "pieces": 4,
       "unlock": "Whispers sells this equipment in Ward 13\nStarting equipment for the Handler",
-      "id": 463
+      "id": 463,
+      "items": [
+        {
+          "name": "Trainer Cap",
+          "id": 567
+        },
+        {
+          "name": "Trainer Clothes",
+          "id": 568
+        },
+        {
+          "name": "Trainer Bracer",
+          "id": 569
+        },
+        {
+          "name": "Trainer Workboots",
+          "id": 570
+        }
+      ]
+    },
+    {
+      "label": "Labyrinth Set",
+      "type": "Medium",
+      "value": 87,
+      "weight": 47,
+      "stats": "🩸 0 🔥 12 ⚡ 17 💀 0 🦴 0",
+      "pieces": 4,
+      "unlock": "Whispers sells this equipment in Ward 13\nStarting equipment for the Archon",
+      "id": 571,
+      "items": [
+        {
+          "name": "Labyrinth Headplate",
+          "id": 572
+        },
+        {
+          "name": "Labyrinth Mantle",
+          "id": 573
+        },
+        {
+          "name": "Labyrinth Gauntlets",
+          "id": 574
+        },
+        {
+          "name": "Labyrinth Treads",
+          "id": 575
+        }
+      ]
+    }
+  ],
+  "armor": [
+    {
+      "name": "Lodestone Crown",
+      "world": "N'Erud",
+      "location": "The Lament",
+      "unlock": "",
+      "value": 5,
+      "weight": 3,
+      "stats": "🩸 -2 🔥 0 ⚡ -1 💀 5 🦴 0",
+      "id": 576
+    },
+    {
+      "name": "Navigator's Helm",
+      "world": "Yaesha",
+      "location": "Extraction Hub",
+      "unlock": "Kill a rare N'Erud Zombie (Navigator Zombie) who's wearing the Navigator Helm.",
+      "value": 12,
+      "weight": 8,
+      "stats": "🩸 -1 🔥 -1 ⚡ 2 💀 -1 🦴 3",
+      "id": 577
     }
   ],
   "worldbosses": [
