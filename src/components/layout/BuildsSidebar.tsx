@@ -1,8 +1,6 @@
-import { Link } from "gatsby";
 import React, { useContext } from "react";
 import { styled } from "styled-components";
-import { CATEGORIES } from "../../constants";
-import { DataContext } from "../../context/DataContext";
+import { BuildsContext } from "../../context/BuildContext";
 
 const Container = styled.div`
   background: #292929;
@@ -17,32 +15,16 @@ const Container = styled.div`
     position: fixed;
     display: flex;
     flex-direction: column;
+    width: 100%;
 
-    a {
-      span {
-        padding: 5px 10px;
-      }
+    strong {
+      margin: 7.5px 0 7.5px 10px;
+    }
 
-      &.sub-category {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        padding: 7.5px 0 7.5px 10px;
-        width: 100%;
-      }
-
-      &.main-category {
-        display: flex;
-        flex-direction: column;
-
-        a:first-child {
-          margin-top: 5px;
-        }
-
-        &:hover {
-          background: inherit;
-        }
-      }
+    button {
+      padding: 7.5px 0 7.5px 10px;
+      text-align: left;
+      color: white;
 
       &:hover {
         background: #000;
@@ -51,12 +33,29 @@ const Container = styled.div`
   }
 `;
 
-const builds = [];
+const BuildsSidebar = ({ setBuild, setOldName, setName }) => {
+  const { builds } = useContext(BuildsContext);
 
-const BuildsSidebar = () => {
+  const selectBuild = (name: string) => {
+    setBuild(builds[name]);
+    setName(name);
+    setOldName(name);
+  };
+
   return (
     <Container>
-      <nav>{builds.length > 0 ? builds.map(build => <span>{build}</span>) : <span>No saved builds found.</span>}</nav>
+      <nav>
+        <strong>Saved builds</strong>
+        {Object.keys(builds).length > 0 ? (
+          Object.keys(builds).map(name => (
+            <button key={name} onClick={() => selectBuild(name)}>
+              {name}
+            </button>
+          ))
+        ) : (
+          <span>No saved builds found.</span>
+        )}
+      </nav>
     </Container>
   );
 };

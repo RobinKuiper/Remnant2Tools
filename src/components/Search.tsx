@@ -7,10 +7,10 @@ const Container = styled.span`
   align-items: center;
   position: relative;
   height: 100%;
-  width: ${({ width }) => `${width || 185}px`};
+  width: ${({ width }) => `${width || "185px"}`};
 
   input {
-    width: ${({ width }) => `${width || 185}px`};
+    width: ${({ width }) => `${width || "185px"}`};
     padding: 6.5px;
   }
 
@@ -51,7 +51,7 @@ interface Props {
 const Search = ({ placeholder = "", width, onChange, disabled = false }: Props) => {
   return (
     <Container width={width}>
-      <input type="text" placeholder={placeholder} onChange={onChange} disabled={disabled} />
+      <input type="text" placeholder={placeholder} onChange={onChange} disabled={disabled} autoFocus />
       <span className="icon">
         <AiOutlineSearch size="25px" />
       </span>

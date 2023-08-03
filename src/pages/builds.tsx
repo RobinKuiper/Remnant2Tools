@@ -1,44 +1,28 @@
-import React, { useState } from "react";
+import { graphql } from "gatsby";
+import React, { useContext, useState } from "react";
+import { AiFillLock, AiFillUnlock } from "react-icons/ai";
+import { Tooltip } from "react-tooltip";
 import { styled } from "styled-components";
+import BuildItemBox from "../components/BuildItemBox";
 import ItemSelectModal from "../components/ItemSelectModal";
 import BuildsSidebar from "../components/layout/BuildsSidebar";
 import Layout from "../components/layout/Layout";
+import { BuildsContext } from "../context/BuildContext";
+import { DataContext } from "../context/DataContext";
 import data from "../data/data.json";
+import type { Build, Item } from "../interface/Build";
+import "react-tooltip/dist/react-tooltip.css";
 
-interface Weapon {
-  id: number | null;
-  mutator?: number;
-  mod?: number;
-}
-
-interface Build {
-  headpiece: number | null;
-  chest: number | null;
-  hands: number | null;
-  feet: number | null;
-  mainHand: Weapon;
-  melee: Weapon;
-  offhand: Weapon;
-  relic: number | null;
-  fragments: [number?, number?, number?];
-  amulet: number | null;
-  rings: [number?, number?, number?, number?];
-}
-
-const newBuild = {
+const newBuild: Build = {
   headpiece: null,
   chest: null,
   hands: null,
   feet: null,
-  mainHand: {
-    id: null,
-  },
-  melee: {
-    id: null,
-  },
-  offhand: {
-    id: null,
-  },
+  mainHand: null,
+  melee: null,
+  offhand: null,
+  mutators: [],
+  mods: [],
   relic: null,
   fragments: [],
   amulet: null,
@@ -71,6 +55,25 @@ const Page = styled.div`
       );
       z-index: -1;
     }
+
+    #settings {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      input {
+        background: transparent;
+        border: none;
+        border-bottom: 1px solid #000;
+
+        &:focus {
+          outline: none;
+        }
+      }
+
+      div {
+      }
+    }
   }
 `;
 
@@ -84,7 +87,11 @@ const BuildInterface = styled.div`
 
   .item-box {
     border: 1px solid #000;
-    background: white;
+    background: #fff;
+    box-shadow: 0 0 6px 2px rgba(0, 0, 0, 0.3);
+    box-sizing: border-box;
+
+    background: radial-gradient(#fff, #e1e1e1);
   }
 
   #settings {
@@ -108,6 +115,27 @@ const BuildInterface = styled.div`
         width: 64px;
         height: 64px;
       }
+
+      .main-box {
+        display: flex;
+        gap: 2px;
+
+        .item-box {
+          width: 64px;
+          height: 64px;
+        }
+
+        .sub-boxes {
+          display: flex;
+          flex-direction: column;
+          gap: 1px;
+
+          .item-box {
+            width: 20.66px;
+            height: 20.66px;
+          }
+        }
+      }
     }
   }
 
@@ -116,95 +144,321 @@ const BuildInterface = styled.div`
     gap: 10px;
     justify-content: space-between;
 
-    .item-box {
-      width: 128px;
-      height: 64px;
+    .main-box {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+
+      .item-box {
+        width: 128px;
+        height: 64px;
+      }
+
+      .sub-boxes {
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+
+        .item-box {
+          width: 57px;
+          height: 57px;
+        }
+      }
     }
   }
 `;
 
-const Builds = () => {
+const Builds = props => {
+  const { saveBuild, changeName } = useContext(BuildsContext);
+  const { unlocks } = useContext(DataContext);
+  const images = props.data.images;
   const [modalIsOpen, setIsOpen] = useState(false);
+  const [onlyUnlocked, setOnlyUnlocked] = useState(false);
   const [modalItems, setModalItems] = useState([]);
   const [modalCategory, setModalCategory] = useState("");
   const [index, setIndex] = useState<number | null>(null);
   const [type, setType] = useState<string>(null);
+  const [name, setName] = useState<string>("");
+  const [oldName, setOldName] = useState<string>("");
   const [build, setBuild] = useState<Build>(newBuild);
 
-  const openModal = (category: string, type: string, index: number | null = null) => {
+  const openModal = (
+    category: string,
+    type: string,
+    index: number | null = null,
+    subCategory: string | null = null,
+  ) => {
+    let items;
+    if (subCategory && data[category]) {
+      const filtered = data[category].filter(cat => cat.label.toLowerCase() === subCategory.toLowerCase());
+      if (filtered) {
+        items = filtered[0].items;
+      }
+    } else if (category === "armor" || category === "relicfragments") {
+      items = [];
+      data[category].forEach(cat =>
+        cat.items.forEach(item => {
+          if (item.type === type || category === "relicfragments") {
+            items.push(item);
+          }
+        }),
+      );
+    } else {
+      items = data[category];
+    }
+
+    if (onlyUnlocked) {
+      items = items.filter(
+        item => unlocks[category] && unlocks[category][item.id] && unlocks[category][item.id].unlocked,
+      );
+    }
+
     setIndex(index);
     setType(type);
     setModalCategory(category);
-    setModalItems(data[category]);
+    setModalItems(items);
     setIsOpen(true);
   };
 
-  const selectItem = (id: number) => {
+  const selectItem = (item: Item) => {
     const nBuild = build;
     if (index !== null) {
-      nBuild[type][index] = id;
+      nBuild[type][index] = item;
     } else {
-      nBuild[type] = id;
+      nBuild[type] = item;
     }
 
     setBuild(nBuild);
+    saveBuild(name, nBuild);
+  };
+
+  const handleNameChange = e => {
+    setName(e.target.value);
+  };
+
+  const handleNameSave = () => {
+    changeName(oldName, name);
+  };
+
+  const toggleOnlyUnlocked = () => {
+    setOnlyUnlocked(!onlyUnlocked);
   };
 
   return (
     <Layout>
       <Page>
-        <BuildsSidebar />
+        <BuildsSidebar setBuild={setBuild} setOldName={setOldName} setName={setName} />
 
         <div id="builds-content">
           <div className="background">{/*  <img src={"http://localhost:8000/images/img.png"} />*/}</div>
 
           <BuildInterface>
             <div id="settings">
-              <input type="text" placeholder="Name" />
+              <input type="text" placeholder="Name" value={name} onChange={handleNameChange} onBlur={handleNameSave} />
+              <div>
+                <button
+                  onClick={toggleOnlyUnlocked}
+                  data-tooltip-id="unlocked"
+                  data-tooltip-content={onlyUnlocked ? "Showing only unlocked items" : "Showing all items"}
+                  data-tooltip-place="bottom"
+                >
+                  {onlyUnlocked ? <AiFillUnlock size={"30px"} /> : <AiFillLock size={"30px"} />}
+                </button>
+                <Tooltip id="unlocked" />
+              </div>
             </div>
 
             <div id="top">
               <div id="armor" className="item-category">
-                <div id="headpiece" className="item-box">
-                  {build.headpiece}
-                </div>
-                <div id="chest" className="item-box">
-                  {build.chest}
-                </div>
-                <div id="hands" className="item-box">
-                  {build.hands}
-                </div>
-                <div id="feet" className="item-box">
-                  {build.feet}
-                </div>
-                <div id="relic" className="item-box" onClick={() => openModal("relics", "relic")}>
-                  {build.relic}
+                <BuildItemBox
+                  openModal={openModal}
+                  build={build}
+                  images={images.nodes}
+                  type={"headpiece"}
+                  category={"armor"}
+                />
+                <BuildItemBox
+                  openModal={openModal}
+                  build={build}
+                  images={images.nodes}
+                  type={"chest"}
+                  category={"armor"}
+                />
+                <BuildItemBox
+                  openModal={openModal}
+                  build={build}
+                  images={images.nodes}
+                  type={"hands"}
+                  category={"armor"}
+                />
+                <BuildItemBox
+                  openModal={openModal}
+                  build={build}
+                  images={images.nodes}
+                  type={"feet"}
+                  category={"armor"}
+                />
+                <div className="main-box">
+                  <BuildItemBox
+                    openModal={openModal}
+                    build={build}
+                    images={images.nodes}
+                    type={"relic"}
+                    category={"relics"}
+                  />
+
+                  <div className="sub-boxes">
+                    <BuildItemBox
+                      openModal={openModal}
+                      build={build}
+                      images={images.nodes}
+                      type={"fragments"}
+                      category={"relicfragments"}
+                      index={0}
+                    />
+                    <BuildItemBox
+                      openModal={openModal}
+                      build={build}
+                      images={images.nodes}
+                      type={"fragments"}
+                      category={"relicfragments"}
+                      index={1}
+                    />
+                    <BuildItemBox
+                      openModal={openModal}
+                      build={build}
+                      images={images.nodes}
+                      type={"fragments"}
+                      category={"relicfragments"}
+                      index={2}
+                    />
+                  </div>
                 </div>
               </div>
 
               <div id="accessoires" className="item-category">
-                <div id="amulet" className="item-box" onClick={() => openModal("amulets", "amulet")}>
-                  {build.amulet}
-                </div>
-                <div id="ring1" className="item-box" onClick={() => openModal("rings", "rings", 0)}>
-                  {build.rings[0]}
-                </div>
-                <div id="ring2" className="item-box" onClick={() => openModal("rings", "rings", 1)}>
-                  {build.rings[1]}
-                </div>
-                <div id="ring3" className="item-box" onClick={() => openModal("rings", "rings", 2)}>
-                  {build.rings[2]}
-                </div>
-                <div id="ring4" className="item-box" onClick={() => openModal("rings", "rings", 3)}>
-                  {build.rings[3]}
-                </div>
+                <BuildItemBox
+                  openModal={openModal}
+                  build={build}
+                  images={images.nodes}
+                  type={"amulet"}
+                  category={"amulets"}
+                />
+                <BuildItemBox
+                  openModal={openModal}
+                  build={build}
+                  images={images.nodes}
+                  type={"rings"}
+                  category={"rings"}
+                  index={0}
+                />
+                <BuildItemBox
+                  openModal={openModal}
+                  build={build}
+                  images={images.nodes}
+                  type={"rings"}
+                  category={"rings"}
+                  index={1}
+                />
+                <BuildItemBox
+                  openModal={openModal}
+                  build={build}
+                  images={images.nodes}
+                  type={"rings"}
+                  category={"rings"}
+                  index={2}
+                />
+                <BuildItemBox
+                  openModal={openModal}
+                  build={build}
+                  images={images.nodes}
+                  type={"rings"}
+                  category={"rings"}
+                  index={3}
+                />
               </div>
             </div>
 
             <div id="bottom">
-              <div id="mainHand" className="item-box" onClick={() => openModal("weapons", "mainHand", 0)}></div>
-              <div id="melee" className="item-box"></div>
-              <div id="offhand" className="item-box"></div>
+              <div className="main-box">
+                <BuildItemBox
+                  openModal={openModal}
+                  build={build}
+                  images={images.nodes}
+                  type={"mainHand"}
+                  category={"weapons"}
+                  subCategory={"Long Guns"}
+                />
+
+                <div className="sub-boxes">
+                  <BuildItemBox
+                    openModal={openModal}
+                    build={build}
+                    images={images.nodes}
+                    type={"mods"}
+                    category={"mods"}
+                    index={0}
+                  />
+                  <BuildItemBox
+                    openModal={openModal}
+                    build={build}
+                    images={images.nodes}
+                    type={"mutators"}
+                    category={"mutators"}
+                    index={0}
+                  />
+                </div>
+              </div>
+              <div className="main-box">
+                <BuildItemBox
+                  openModal={openModal}
+                  build={build}
+                  images={images.nodes}
+                  type={"melee"}
+                  category={"weapons"}
+                  subCategory={"Melee Weapons"}
+                />
+
+                <div className="sub-boxes">
+                  <BuildItemBox
+                    openModal={openModal}
+                    build={build}
+                    images={images.nodes}
+                    type={"mutators"}
+                    category={"mutators"}
+                    index={1}
+                  />
+                </div>
+              </div>
+              <div className="main-box">
+                <BuildItemBox
+                  openModal={openModal}
+                  build={build}
+                  images={images.nodes}
+                  type={"offhand"}
+                  category={"weapons"}
+                  subCategory={"Hand Guns"}
+                />
+
+                <div className="sub-boxes">
+                  <BuildItemBox
+                    openModal={openModal}
+                    build={build}
+                    images={images.nodes}
+                    type={"mods"}
+                    category={"mods"}
+                    index={1}
+                  />
+                  <BuildItemBox
+                    openModal={openModal}
+                    build={build}
+                    images={images.nodes}
+                    type={"mutators"}
+                    category={"mutators"}
+                    index={2}
+                  />
+                </div>
+              </div>
             </div>
           </BuildInterface>
         </div>
@@ -216,9 +470,24 @@ const Builds = () => {
         items={modalItems}
         category={modalCategory}
         callback={selectItem}
+        images={images.nodes}
       />
     </Layout>
   );
 };
 
 export default Builds;
+
+export const query = graphql`
+  {
+    images: allFile(filter: { relativePath: { regex: "/items/" } }) {
+      totalCount
+      nodes {
+        name
+        childImageSharp {
+          gatsbyImageData(quality: 80, layout: CONSTRAINED)
+        }
+      }
+    }
+  }
+`;

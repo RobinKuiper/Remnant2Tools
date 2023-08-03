@@ -3675,18 +3675,22 @@
       "items": [
         {
           "name": "Academic's Hat",
+          "type": "headpiece",
           "id": 500
         },
         {
           "name": "Academic's Overcoat",
+          "type": "chest",
           "id": 501
         },
         {
           "name": "Academic's Gloves",
+          "type": "hands",
           "id": 502
         },
         {
           "name": "Academic's Trousers",
+          "type": "feet",
           "id": 503
         }
       ]
@@ -3703,18 +3707,22 @@
       "items": [
         {
           "name": "Bruiser Helmet",
+          "type": "headpiece",
           "id": 504
         },
         {
           "name": "Bruiser Bodyplate",
+          "type": "chest",
           "id": 505
         },
         {
           "name": "Bruiser Gloves",
+          "type": "hands",
           "id": 506
         },
         {
           "name": "Bruiser Boots",
+          "type": "feet",
           "id": 507
         }
       ]
@@ -3731,18 +3739,22 @@
       "items": [
         {
           "name": "Dendroid Mask",
+          "type": "headpiece",
           "id": 508
         },
         {
           "name": "Dendroid Chest",
+          "type": "chest",
           "id": 509
         },
         {
           "name": "Dendroid Grips",
+          "type": "hands",
           "id": 510
         },
         {
           "name": "Dendroid Leggings",
+          "type": "feet",
           "id": 511
         }
       ]
@@ -3759,18 +3771,22 @@
       "items": [
         {
           "name": "Elder Headdress",
+          "type": "headpiece",
           "id": 512
         },
         {
           "name": "Elder Raiment",
+          "type": "chest",
           "id": 513
         },
         {
           "name": "Elder Gloves",
+          "type": "hands",
           "id": 514
         },
         {
           "name": "Elder Leggings",
+          "type": "feet",
           "id": 515
         }
       ]
@@ -3787,18 +3803,22 @@
       "items": [
         {
           "name": "Fae Royal Headcover",
+          "type": "headpiece",
           "id": 516
         },
         {
           "name": "Fae Royal Bodyplate",
+          "type": "chest",
           "id": 517
         },
         {
           "name": "Fae Royal Vambraces",
+          "type": "hands",
           "id": 518
         },
         {
           "name": "Fae Royal Greaves",
+          "type": "feet",
           "id": 519
         }
       ]
@@ -3815,18 +3835,22 @@
       "items": [
         {
           "name": "Field Medic Hat",
+          "type": "headpiece",
           "id": 520
         },
         {
           "name": "Field Medic Overcoat",
+          "type": "chest",
           "id": 521
         },
         {
           "name": "Field Medic Gloves",
+          "type": "hands",
           "id": 522
         },
         {
           "name": "Field Medic Trousers",
+          "type": "feet",
           "id": 523
         }
       ]
@@ -3843,18 +3867,22 @@
       "items": [
         {
           "name": "Void Skull",
+          "type": "headpiece",
           "id": 524
         },
         {
           "name": "Void Carapace",
+          "type": "chest",
           "id": 525
         },
         {
           "name": "Void Wraps",
+          "type": "hands",
           "id": 526
         },
         {
           "name": "Void Greaves",
+          "type": "feet",
           "id": 527
         }
       ]
@@ -3871,18 +3899,22 @@
       "items": [
         {
           "name": "High Noon Hat",
+          "type": "headpiece",
           "id": 528
         },
         {
           "name": "High Noon Duds",
+          "type": "chest",
           "id": 529
         },
         {
           "name": "High Noon Armguards",
+          "type": "hands",
           "id": 530
         },
         {
           "name": "High Noon Soles",
+          "type": "feet",
           "id": 531
         }
       ]
@@ -3899,18 +3931,22 @@
       "items": [
         {
           "name": "Knotted Helm",
+          "type": "headpiece",
           "id": 532
         },
         {
           "name": "Knotted Cage",
+          "type": "chest",
           "id": 533
         },
         {
           "name": "Knotted Gloves",
+          "type": "hands",
           "id": 534
         },
         {
           "name": "Knotted Greaves",
+          "type": "feet",
           "id": 535
         }
       ]
@@ -3927,18 +3963,22 @@
       "items": [
         {
           "name": "Leto Mark II Helmet",
+          "type": "headpiece",
           "id": 536
         },
         {
           "name": "Leto Mark II Armor",
+          "type": "chest",
           "id": 537
         },
         {
           "name": "Leto Mark II Gloves",
+          "type": "hands",
           "id": 538
         },
         {
           "name": "Leto Mark II Leggings",
+          "type": "feet",
           "id": 539
         }
       ]
@@ -3955,18 +3995,22 @@
       "items": [
         {
           "name": "Nightstalker Shroud",
+          "type": "headpiece",
           "id": 540
         },
         {
           "name": "Nightstalker Garb",
+          "type": "chest",
           "id": 541
         },
         {
           "name": "Nightstalker Gloves",
+          "type": "hands",
           "id": 542
         },
         {
           "name": "Nightstalker Pants",
+          "type": "feet",
           "id": 543
         }
       ]
@@ -3983,18 +4027,22 @@
       "items": [
         {
           "name": "Radiant Visage",
+          "type": "headpiece",
           "id": 544
         },
         {
           "name": "Radiant Protector",
+          "type": "chest",
           "id": 545
         },
         {
           "name": "Radiant Bracers",
+          "type": "hands",
           "id": 546
         },
         {
           "name": "Radiant Greaves",
+          "type": "feet",
           "id": 547
         }
       ]
@@ -4011,18 +4059,22 @@
       "items": [
         {
           "name": "Realmwalker Beret",
+          "type": "headpiece",
           "id": 548
         },
         {
           "name": "Realmwalker Tunic",
+          "type": "chest",
           "id": 549
         },
         {
           "name": "Realmwalker Gloves",
+          "type": "hands",
           "id": 550
         },
         {
           "name": "Realmwalker Pantaloons",
+          "type": "feet",
           "id": 551
         }
       ]
@@ -4039,18 +4091,22 @@
       "items": [
         {
           "name": "Red Widow Headdress",
+          "type": "headpiece",
           "id": 552
         },
         {
           "name": "Red Widow Raiment",
+          "type": "chest",
           "id": 553
         },
         {
           "name": "Red Widow Bracers",
+          "type": "hands",
           "id": 554
         },
         {
           "name": "Red Widow Leggings",
+          "type": "feet",
           "id": 555
         }
       ]
@@ -4067,18 +4123,22 @@
       "items": [
         {
           "name": "Space Worker Mask",
+          "type": "headpiece",
           "id": 556
         },
         {
           "name": "Space Worker Body",
+          "type": "chest",
           "id": 557
         },
         {
           "name": "Space Worker Gloves",
+          "type": "hands",
           "id": 558
         },
         {
           "name": "Space Worker Legs",
+          "type": "feet",
           "id": 559
         }
       ]
@@ -4095,14 +4155,17 @@
       "items": [
         {
           "name": "Survivor Overcoat",
+          "type": "chest",
           "id": 560
         },
         {
           "name": "Survivor Gloves",
+          "type": "hands",
           "id": 561
         },
         {
           "name": "Survivor Leggings",
+          "type": "feet",
           "id": 562
         }
       ]
@@ -4119,18 +4182,22 @@
       "items": [
         {
           "name": "Technician Helmet",
+          "type": "headpiece",
           "id": 563
         },
         {
           "name": "Technician Bodyplate",
+          "type": "chest",
           "id": 564
         },
         {
           "name": "Technician Gloves",
+          "type": "hands",
           "id": 565
         },
         {
           "name": "Technician Greaves",
+          "type": "feet",
           "id": 566
         }
       ]
@@ -4147,18 +4214,22 @@
       "items": [
         {
           "name": "Trainer Cap",
+          "type": "headpiece",
           "id": 567
         },
         {
           "name": "Trainer Clothes",
+          "type": "chest",
           "id": 568
         },
         {
           "name": "Trainer Bracer",
+          "type": "hands",
           "id": 569
         },
         {
           "name": "Trainer Workboots",
+          "type": "feet",
           "id": 570
         }
       ]
@@ -4175,18 +4246,22 @@
       "items": [
         {
           "name": "Labyrinth Headplate",
+          "type": "headpiece",
           "id": 572
         },
         {
           "name": "Labyrinth Mantle",
+          "type": "chest",
           "id": 573
         },
         {
           "name": "Labyrinth Gauntlets",
+          "type": "hands",
           "id": 574
         },
         {
           "name": "Labyrinth Treads",
+          "type": "feet",
           "id": 575
         }
       ]
@@ -4197,6 +4272,7 @@
       "items": [
         {
           "name": "Lodestone Crown",
+          "type": "headpiece",
           "world": "N'Erud",
           "location": "The Lament",
           "unlock": "",
@@ -4207,6 +4283,7 @@
         },
         {
           "name": "Navigator's Helm",
+          "type": "headpiece",
           "world": "Yaesha",
           "location": "Extraction Hub",
           "unlock": "Kill a rare N'Erud Zombie (Navigator Zombie) who's wearing the Navigator Helm.",

@@ -201,7 +201,7 @@ const Category = props => {
               </span>
             </div>
 
-            <Search placeholder={`Search ${category}`} onChange={e => setQuery(e.target.value)} width={250} />
+            <Search placeholder={`Search ${category}`} onChange={e => setQuery(e.target.value)} width={"250px"} />
 
             <div className="right">
               {statistics[category] && (
