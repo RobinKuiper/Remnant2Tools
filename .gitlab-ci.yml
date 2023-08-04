@@ -1,10 +1,11 @@
-image: node:latest
+image: "node:lts-alpine"
 
 stages:
-  #  - test
+  - build
+  - test
   - deploy
 
-# This folder is cached between builds
+# These folder is cached between builds
 # https://docs.gitlab.com/ce/ci/yaml/README.html#cache
 cache:
   key:
@@ -17,37 +18,45 @@ cache:
     - public/
   policy: pull-push
 
-.lint:
-  stage: test
-  before_script:
+build:install:
+  stage: build
+  script:
     - npm install -g pnpm
     - pnpm install
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+
+test:lint:
+  stage: test
+  needs:
+    - build:install
   script:
     - npx eslint --format gitlab .
   artifacts:
     reports:
       codequality: gl-codequality.json
-  only:
-    - develop
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
 
-.prettier:
+test:gatsby:
   stage: test
-  before_script:
-    - npm install -g pnpm
-    - pnpm install
+  needs:
+    - build:install
   script:
-    - npx prettier --check .
-  only:
-    - develop
+    - ./node_modules/.bin/gatsby info
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
 
 pages:
   stage: deploy
+  needs:
+    - build:install
+    - test:lint
+    - test:gatsby
   script:
-    - npm install -g pnpm
-    - pnpm install
     - pnpm build
   artifacts:
     paths:
       - public
-  only:
-    - master
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH

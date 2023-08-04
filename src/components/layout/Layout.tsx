@@ -4,6 +4,7 @@ import TopBar from "./TopBar";
 import { BsDiscord, BsLink45Deg, BsLinkedin } from "react-icons/bs";
 import { AiFillGitlab } from "react-icons/ai";
 import { graphql, useStaticQuery } from "gatsby";
+// import CookieConsent from "react-cookie-consent";
 
 const Container = styled.div`
   display: flex;
@@ -122,6 +123,18 @@ const Layout = ({ children }: Props) => {
           </a>
         </div>
       </footer>
+
+      {/*<CookieConsent*/}
+      {/*  debug={true}*/}
+      {/*  enableDeclineButton*/}
+      {/*  location="bottom"*/}
+      {/*  buttonText="Accept"*/}
+      {/*  declineButtonText="Decline"*/}
+      {/*  cookieName="remnantdb-gdpr-google-analytics"*/}
+      {/*  containerClasses={"test"}*/}
+      {/*>*/}
+      {/*  This website uses cookies to enhance the user experience.*/}
+      {/*</CookieConsent>*/}
     </Container>
   );
 };

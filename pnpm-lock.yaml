@@ -17,6 +17,9 @@ dependencies:
   gatsby:
     specifier: ^5.11.0
     version: 5.11.0(babel-eslint@10.1.0)(react-dom@18.2.0)(react@18.2.0)(typescript@5.1.6)
+  gatsby-plugin-gdpr-cookies:
+    specifier: ^2.0.9
+    version: 2.0.9(gatsby@5.11.0)(react-dom@18.2.0)(react@18.2.0)
   gatsby-plugin-google-gtag:
     specifier: ^5.11.0
     version: 5.11.0(gatsby@5.11.0)(react-dom@18.2.0)(react@18.2.0)
@@ -44,6 +47,9 @@ dependencies:
   react:
     specifier: ^18.2.0
     version: 18.2.0
+  react-cookie-consent:
+    specifier: ^8.0.1
+    version: 8.0.1(react@18.2.0)
   react-dom:
     specifier: ^18.2.0
     version: 18.2.0(react@18.2.0)
@@ -6173,6 +6179,21 @@ packages:
       "@parcel/transformer-js": 2.8.3(@parcel/core@2.8.3)
       "@parcel/transformer-json": 2.8.3(@parcel/core@2.8.3)
 
+  /gatsby-plugin-gdpr-cookies@2.0.9(gatsby@5.11.0)(react-dom@18.2.0)(react@18.2.0):
+    resolution:
+      { integrity: sha512-rU4O5oJ+ace0B6D4CG6dG5oOLYRQT3LEb+I5XjCieYVkk1KB0QgqhzsgkV8K6JO18EOExE0Y4HyHQHj3hF6uGg== }
+    engines: { node: ">=8.0.0" }
+    peerDependencies:
+      gatsby: ^2.24.77 || ^3.0.0 || ^4.0.0
+      react: ^16.13.1 || ^17.0.1
+      react-dom: ^16.13.1 || ^17.0.1
+    dependencies:
+      "@babel/runtime": 7.22.6
+      gatsby: 5.11.0(babel-eslint@10.1.0)(react-dom@18.2.0)(react@18.2.0)(typescript@5.1.6)
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+    dev: false
+
   /gatsby-plugin-google-gtag@5.11.0(gatsby@5.11.0)(react-dom@18.2.0)(react@18.2.0):
     resolution:
       { integrity: sha512-GeXfYksdrrJ6/Bbgr1rBG9UwppyA0ZdA6Q8R9kDbLtTyFLpumM9BiiPPsrbBSrE+CfiUD7uKhbgZlXQk6VNSUQ== }
@@ -7491,6 +7512,11 @@ packages:
       "@sideway/address": 4.1.4
       "@sideway/formula": 3.0.1
       "@sideway/pinpoint": 2.0.0
+
+  /js-cookie@2.2.1:
+    resolution:
+      { integrity: sha512-HvdH2LzI/EAZcUwA8+0nKNtWHqS+ZmijLA30RwZA0bo7ToCckjK5MkGhjED9KoRcXO6BaGI3I9UIzSA1FKFPOQ== }
+    dev: false
 
   /js-tokens@4.0.0:
     resolution:
@@ -9193,6 +9219,17 @@ packages:
       ini: 1.3.8
       minimist: 1.2.8
       strip-json-comments: 2.0.1
+
+  /react-cookie-consent@8.0.1(react@18.2.0):
+    resolution:
+      { integrity: sha512-4A2jzPQDFfBhtxIz4hYX+vJ0QnOknGdOXpEoetXzgwUrMtxVJVow8YgBsGerNt5rJI7WhKkHwr8LmxekxgVejg== }
+    engines: { node: ">=10" }
+    peerDependencies:
+      react: ">=16"
+    dependencies:
+      js-cookie: 2.2.1
+      react: 18.2.0
+    dev: false
 
   /react-dev-utils@12.0.1(eslint@7.32.0)(typescript@5.1.6)(webpack@5.88.2):
     resolution:

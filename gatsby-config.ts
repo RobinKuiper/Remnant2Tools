@@ -35,6 +35,19 @@ const config: GatsbyConfig = {
       },
       __key: "images",
     },
+    // {
+    //   resolve: `gatsby-plugin-gdpr-cookies`,
+    //   options: {
+    //     googleAnalytics: {
+    //       trackingId: "G-5DDHSZZHS9", // leave empty if you want to disable the tracker
+    //       cookieName: "remnantdb-gdpr-google-analytics", // default
+    //       anonymize: true, // default
+    //       allowAdFeatures: false // default
+    //     },
+    //     // defines the environments where the tracking should be available  - default is ["production"]
+    //     environments: ["production", "development"]
+    //   },
+    // }
     {
       resolve: "gatsby-plugin-google-gtag",
       options: {
