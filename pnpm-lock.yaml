@@ -8,12 +8,18 @@ dependencies:
   babel-plugin-styled-components:
     specifier: ^2.1.4
     version: 2.1.4(@babel/core@7.22.9)(styled-components@6.0.5)
+  dotenv:
+    specifier: ^16.3.1
+    version: 16.3.1
   framer-motion:
     specifier: ^10.13.0
     version: 10.13.0(react-dom@18.2.0)(react@18.2.0)
   gatsby:
     specifier: ^5.11.0
     version: 5.11.0(babel-eslint@10.1.0)(react-dom@18.2.0)(react@18.2.0)(typescript@5.1.6)
+  gatsby-plugin-google-gtag:
+    specifier: ^5.11.0
+    version: 5.11.0(gatsby@5.11.0)(react-dom@18.2.0)(react@18.2.0)
   gatsby-plugin-image:
     specifier: ^3.11.0
     version: 3.11.0(@babel/core@7.22.9)(gatsby-plugin-sharp@5.11.0)(gatsby-source-filesystem@5.11.0)(gatsby@5.11.0)(graphql@16.7.1)(react-dom@18.2.0)(react@18.2.0)
@@ -4924,6 +4930,12 @@ packages:
     resolution:
       { integrity: sha512-YXQl1DSa4/PQyRfgrv6aoNjhasp/p4qs9FjJ4q4cQk+8m4r6k4ZSiEyytKG8f8W9gi8WsQtIObNmKd+tMzNTmA== }
 
+  /dotenv@16.3.1:
+    resolution:
+      { integrity: sha512-IPzF4w4/Rd94bA9imS68tZBaYyBWSCE47V1RGuMrB94iyTOIEwRmVL2x/4An+6mETpLrKJ5hQkB8W4kFAadeIQ== }
+    engines: { node: ">=12" }
+    dev: false
+
   /dotenv@7.0.0:
     resolution:
       { integrity: sha512-M3NhsLbV1i6HuGzBUH8vXrtxOk+tWmzWKDMbAVSUp3Zsjm7ywFeuwrUXhmhQyRK1q5B5GGy7hcXPbj3bnfZg2g== }
@@ -6160,6 +6172,22 @@ packages:
       "@parcel/runtime-js": 2.8.3(@parcel/core@2.8.3)
       "@parcel/transformer-js": 2.8.3(@parcel/core@2.8.3)
       "@parcel/transformer-json": 2.8.3(@parcel/core@2.8.3)
+
+  /gatsby-plugin-google-gtag@5.11.0(gatsby@5.11.0)(react-dom@18.2.0)(react@18.2.0):
+    resolution:
+      { integrity: sha512-GeXfYksdrrJ6/Bbgr1rBG9UwppyA0ZdA6Q8R9kDbLtTyFLpumM9BiiPPsrbBSrE+CfiUD7uKhbgZlXQk6VNSUQ== }
+    engines: { node: ">=18.0.0" }
+    peerDependencies:
+      gatsby: ^5.0.0-next
+      react: ^18.0.0 || ^0.0.0
+      react-dom: ^18.0.0 || ^0.0.0
+    dependencies:
+      "@babel/runtime": 7.22.6
+      gatsby: 5.11.0(babel-eslint@10.1.0)(react-dom@18.2.0)(react@18.2.0)(typescript@5.1.6)
+      minimatch: 3.1.2
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+    dev: false
 
   /gatsby-plugin-image@3.11.0(@babel/core@7.22.9)(gatsby-plugin-sharp@5.11.0)(gatsby-source-filesystem@5.11.0)(gatsby@5.11.0)(graphql@16.7.1)(react-dom@18.2.0)(react@18.2.0):
     resolution:

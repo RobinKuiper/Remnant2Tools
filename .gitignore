@@ -2,6 +2,7 @@
 # Edit at https://www.toptal.com/developers/gitignore?templates=gatsby,webstorm,windows,linux
 
 *.log
+.env*
 
 ### Gatsby ###
 node_modules/
