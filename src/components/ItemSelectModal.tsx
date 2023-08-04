@@ -110,7 +110,7 @@ const ItemSelectModal = ({ setIsOpen, isOpen, items, category, callback, images 
                 }}
               >
                 <div>
-                  <GatsbyImage alt={item.name} image={getImage(findImage(item.name, images))} />
+                  <GatsbyImage alt={item.name} image={getImage(findImage(item.name, images, category))} />
                 </div>
                 <div>
                   {(!unlocks[category] || !unlocks[category][item.id] || !unlocks[category][item.id].unlocked) && (

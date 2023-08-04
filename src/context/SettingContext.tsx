@@ -14,13 +14,9 @@ interface SettingContextData {
 
 const SettingContext = createContext<SettingContextData>({
   darkMode: DEFAULT_VALUES.darkMode,
-  toggleDarkMode: () => {
-    return;
-  },
+  toggleDarkMode: () => {},
   hideUnlocked: DEFAULT_VALUES.hideUnlocked,
-  toggleHideUnlocked: () => {
-    return;
-  },
+  toggleHideUnlocked: () => {},
 });
 
 interface Props {
@@ -32,37 +28,37 @@ const SettingProvider: React.FC<Props> = ({ children }: Props) => {
   const [hideUnlocked, setHideUnlocked] = useState<boolean>(DEFAULT_VALUES.hideUnlocked);
 
   useEffect(() => {
-    if (localStorage.getItem("darkMode")) {
-      setDarkMode(localStorage.getItem("darkMode") === "dark");
+    const storedDarkMode = localStorage.getItem("darkMode");
+    if (storedDarkMode) {
+      setDarkMode(storedDarkMode === "dark");
     }
 
-    if (localStorage.getItem("hideUnlocked")) {
-      setHideUnlocked(localStorage.getItem("hideUnlocked") === "yes");
+    const storedHideUnlocked = localStorage.getItem("hideUnlocked");
+    if (storedHideUnlocked) {
+      setHideUnlocked(storedHideUnlocked === "yes");
     }
   }, []);
 
   const toggleDarkMode = () => {
-    localStorage.setItem("darkMode", !darkMode ? "dark" : "light");
-    setDarkMode(!darkMode);
+    const newDarkMode = !darkMode;
+    localStorage.setItem("darkMode", newDarkMode ? "dark" : "light");
+    setDarkMode(newDarkMode);
   };
 
   const toggleHideUnlocked = () => {
-    localStorage.setItem("hideUnlocked", hideUnlocked ? "no" : "yes");
-    setHideUnlocked(!hideUnlocked);
+    const newHideUnlocked = !hideUnlocked;
+    localStorage.setItem("hideUnlocked", newHideUnlocked ? "yes" : "no");
+    setHideUnlocked(newHideUnlocked);
   };
 
-  return (
-    <SettingContext.Provider
-      value={{
-        darkMode,
-        toggleDarkMode,
-        hideUnlocked,
-        toggleHideUnlocked,
-      }}
-    >
-      {children}
-    </SettingContext.Provider>
-  );
+  const contextValue: SettingContextData = {
+    darkMode,
+    toggleDarkMode,
+    hideUnlocked,
+    toggleHideUnlocked,
+  };
+
+  return <SettingContext.Provider value={contextValue}>{children}</SettingContext.Provider>;
 };
 
 export { SettingContext, SettingProvider };

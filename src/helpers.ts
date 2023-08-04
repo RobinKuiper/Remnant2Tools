@@ -1,23 +1,17 @@
-export const findImage = (name: string, images: any) => {
-  const filtered = images && Object.values(images).filter(i => i.name === slugify(name));
-  if (filtered && filtered.length > 0) {
-    return filtered[0];
+export const findImage = (name: string, images: any, filterRelativePath: string) => {
+  if (!images) {
+    return null;
   }
 
-  return null;
+  return (
+    Object.values(images).find(i => i.name === slugify(name) && i.relativePath.includes(filterRelativePath)) || null
+  );
 };
 
 export const slugify = (str: string) => {
   return str
-    .split(" ")
-    .join("_")
-    .split("-")
-    .join("_")
-    .split("/")
-    .join("_")
-    .split("'")
-    .join("")
-    .split('"')
-    .join("")
-    .toLowerCase();
+    .replace(/[\s-/]/g, "_")
+    .replace(/[\s'"]/g, "")
+    .toLowerCase()
+    .trim();
 };

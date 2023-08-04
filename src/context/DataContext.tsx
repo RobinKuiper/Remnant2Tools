@@ -49,8 +49,9 @@ const DataProvider: React.FC<Props> = ({ children }: Props) => {
   const [statistics, setStatistics] = useState<Statistics>(DEFAULT_VALUES.statistics);
 
   useEffect(() => {
-    if (localStorage.getItem("data")) {
-      setUnlocks(() => ({ ...JSON.parse(localStorage.getItem("data") ?? "{}") }));
+    const storedData = localStorage.getItem("data");
+    if (storedData) {
+      setUnlocks(prevUnlocks => ({ ...prevUnlocks, ...JSON.parse(storedData) }));
     }
   }, []);
 
@@ -65,42 +66,39 @@ const DataProvider: React.FC<Props> = ({ children }: Props) => {
         unlocked: 0,
       },
     };
+
     Object.values(data).forEach(category => {
       const categoryFragment = category.settings.fragment;
+      const categoryData = data[categoryFragment].data;
 
-      let total = 0;
-      if (category.settings.categorized) {
-        data[categoryFragment].data.forEach(cat => {
-          cat.items.forEach(() => {
-            total++;
-          });
-        });
-      } else {
-        total = data[categoryFragment].data.length;
-      }
+      const total = category.settings.categorized
+        ? categoryData.reduce((acc, cat) => acc + cat.items.length, 0)
+        : categoryData.length;
+
+      const categoryUnlocks = unlocks[categoryFragment];
+      const unlocked = categoryUnlocks ? Object.values(categoryUnlocks).filter(item => item.unlocked).length : 0;
 
       newStatistics[categoryFragment] = {
-        total: total,
-        unlocked: unlocks[categoryFragment]
-          ? Object.values(unlocks[categoryFragment]).filter(item => item.unlocked).length
-          : 0,
+        total,
+        unlocked,
       };
+
       newStatistics.overall.total += total;
-      newStatistics.overall.unlocked += newStatistics[categoryFragment].unlocked;
+      newStatistics.overall.unlocked += unlocked;
     });
+
     setStatistics(newStatistics);
   };
 
   const toggleUnlock = (categoryFragment: string, id: number, forceUnlock: boolean = false) => {
-    const newUnlocks = unlocks;
+    const newUnlocks = { ...unlocks }; // Create a shallow copy of unlocks
+
     if (!newUnlocks[categoryFragment]) {
       newUnlocks[categoryFragment] = {};
     }
 
     if (newUnlocks[categoryFragment][id]) {
-      newUnlocks[categoryFragment][id] = {
-        unlocked: forceUnlock ? true : !newUnlocks[categoryFragment][id].unlocked,
-      };
+      newUnlocks[categoryFragment][id].unlocked = forceUnlock ? true : !newUnlocks[categoryFragment][id].unlocked;
     } else {
       newUnlocks[categoryFragment][id] = {
         unlocked: true,
@@ -108,33 +106,31 @@ const DataProvider: React.FC<Props> = ({ children }: Props) => {
     }
 
     if (newUnlocks[categoryFragment][id].unlocked) {
-      const item = data[categoryFragment].data.filter(i => i.id === parseInt(id as string))[0];
+      const item = data[categoryFragment].data.find(i => i.id === id);
       if (item && item.items) {
         item.items.forEach(i => toggleUnlock(categoryFragment, i.id, true));
       }
     }
 
-    setUnlocks(prevState => ({ ...prevState, ...newUnlocks }));
+    setUnlocks(newUnlocks); // Update unlocks state with the newUnlocks object
     localStorage.setItem("data", JSON.stringify(newUnlocks));
     updateStatistics();
   };
 
   const updateLevel = (categoryFragment: string, id: number, level: number) => {
-    const newUnlocks = unlocks;
+    const newUnlocks = { ...unlocks }; // Create a shallow copy of unlocks
+
     if (!newUnlocks[categoryFragment]) {
       newUnlocks[categoryFragment] = {};
     }
 
-    if (newUnlocks[categoryFragment][id]) {
-      newUnlocks[categoryFragment][id].level = level;
-    } else {
-      newUnlocks[categoryFragment][id] = {
-        unlocked: false,
-        level,
-      };
-    }
+    const unlocked = newUnlocks[categoryFragment][id] ? newUnlocks[categoryFragment][id].unlocked : false;
+    newUnlocks[categoryFragment][id] = {
+      unlocked,
+      level,
+    };
 
-    setUnlocks(prevState => ({ ...prevState, ...newUnlocks }));
+    setUnlocks(newUnlocks); // Update unlocks state with the newUnlocks object
     localStorage.setItem("data", JSON.stringify(newUnlocks));
   };
 

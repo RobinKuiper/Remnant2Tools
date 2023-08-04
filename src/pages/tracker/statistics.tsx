@@ -11,7 +11,7 @@ const Page = styled.div`
   display: flex;
   flex-direction: row;
 
-  #page-content {
+  .page-content {
     z-index: 10;
     box-shadow: 0 0 20px rgba(0, 0, 0, 1);
     width: 90%;
@@ -31,7 +31,7 @@ const Page = styled.div`
       z-index: -1;
     }
 
-    #panels {
+    .panels {
       display: flex;
       flex-wrap: wrap;
       gap: 20px;
@@ -50,7 +50,7 @@ const Page = styled.div`
         }
       }
 
-      #statistics {
+      .statistics {
         width: 400px;
 
         table {
@@ -85,7 +85,7 @@ const Page = styled.div`
         }
       }
 
-      #worlds {
+      .worlds {
         width: 200px;
 
         .values {
@@ -97,7 +97,7 @@ const Page = styled.div`
       }
     }
 
-    #content-heading {
+    .content-heading {
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -116,7 +116,7 @@ const calculatePercentage = (amount: number, total: number, decimals: number = 2
   return +parseFloat(((amount / total) * 100) as string).toFixed(decimals);
 };
 
-const Statistics = () => {
+const Statistics: React.FC = () => {
   const { statistics, unlocks } = useContext(DataContext);
   const [loading, setLoading] = useState(true);
   const [totals, setTotals] = useState({ total: 0, unlocked: 0, percentage: 0 });
@@ -125,46 +125,44 @@ const Statistics = () => {
   useEffect(() => {
     if (statistics.overall) {
       setLoading(false);
-      totals.total = statistics.overall.total;
-      totals.unlocked = statistics.overall.unlocked;
-      totals.percentage = calculatePercentage(totals.unlocked, totals.total, 2);
-      setTotals({ ...totals });
+      const { total, unlocked } = statistics.overall;
+      const percentage = calculatePercentage(unlocked, total, 2);
+      setTotals({ total, unlocked, percentage });
     }
   }, [statistics]);
 
   useEffect(() => {
-    const worldsWithLockedItems = [];
-    getAllLockedItems(unlocks).forEach(item => {
-      if (item.world && !worldsWithLockedItems.includes(item.world)) {
-        worldsWithLockedItems.push(item.world);
-      }
-    });
-    worldsWithLockedItems.sort((a, b) => a.localeCompare(b));
+    const worldsWithLockedItems = getAllLockedItems(unlocks)
+      .filter(item => item.world)
+      .map(item => item.world)
+      .filter((world, index, array) => array.indexOf(world) === index)
+      .sort((a, b) => a.localeCompare(b));
+
     setWorldsWithSecrets(worldsWithLockedItems);
   }, []);
 
   return (
     <Layout>
       <Page>
-        <CategorySidebar type={"tracker"} />
+        <CategorySidebar type="tracker" />
 
-        <div id="page-content">
+        <div className="page-content">
           <div className="background" />
 
-          <div id="panels">
-            <div className="panel" id="statistics">
+          <div className="panels">
+            <div className="panel statistics">
               <h3>Unlockable Statistics</h3>
               {!loading ? (
                 <table cellSpacing={0} cellPadding={10}>
                   <tbody>
                     {Object.values(data).map(category => {
-                      const unlocked = statistics[category.settings.fragment].unlocked,
-                        total = statistics[category.settings.fragment].total,
-                        perc = calculatePercentage(unlocked, total, 2);
+                      const { fragment, label } = category.settings;
+                      const { unlocked, total } = statistics[fragment];
+                      const perc = calculatePercentage(unlocked, total, 2);
 
                       return (
-                        <tr key={category.settings.fragment}>
-                          <td className="title">{category.settings.label}</td>
+                        <tr key={fragment}>
+                          <td className="title">{label}</td>
                           <td>
                             {unlocked}/{total}
                           </td>
@@ -189,12 +187,12 @@ const Statistics = () => {
             </div>
 
             {worldsWithSecrets.length > 0 && (
-              <div className="panel" id="worlds">
+              <div className="panel worlds">
                 <h3>Worlds</h3>
                 <p>Below are worlds where you still have secrets to unlock.</p>
                 <div className="values">
                   {worldsWithSecrets.map(worldName => (
-                    <Redacted key={worldName} value={worldName} bgColor={"#5d5d5d"} />
+                    <Redacted key={worldName} value={worldName} bgColor="#5d5d5d" />
                   ))}
                 </div>
               </div>

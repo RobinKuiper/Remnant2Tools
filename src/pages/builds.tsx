@@ -191,6 +191,7 @@ const Builds = props => {
   const [oldName, setOldName] = useState<string>("");
   const [build, setBuild] = useState<Build>(newBuild);
 
+  // STATISTICS
   // useEffect(() => {
   //   const newStats = {
   //     armor: 0,
@@ -602,6 +603,7 @@ export const query = graphql`
       totalCount
       nodes {
         name
+        relativePath
         childImageSharp {
           gatsbyImageData(quality: 80, layout: CONSTRAINED)
         }

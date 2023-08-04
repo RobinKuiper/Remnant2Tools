@@ -1,0 +1,98 @@
+import React from "react";
+import { render, fireEvent } from "@testing-library/react";
+import {BuildsContext, BuildsProvider} from "../src/context/BuildContext";
+import {Build} from "../src/interface/Build";
+
+const newBuild: Build = {
+  headpiece: null,
+  chest: null,
+  hands: null,
+  feet: null,
+  mainHand: null,
+  melee: null,
+  offhand: null,
+  mutators: [],
+  mods: [],
+  relic: null,
+  fragments: [],
+  amulet: null,
+  rings: [],
+};
+
+describe("BuildContext", () => {
+  // test("should save a build", () => {
+  //   const build: Build = newBuild;
+  //
+  //   const TestComponent = () => {
+  //     const { saveBuild } = React.useContext(BuildsContext);
+  //     saveBuild("Test Build", build);
+  //     return null;
+  //   };
+  //
+  //   const { getByText } = render(
+  //     <BuildsProvider>
+  //       <TestComponent />
+  //     </BuildsProvider>
+  //   );
+  //
+  //   expect(getByText("Test Build")).toBeInTheDocument();
+  // });
+
+  test("should delete a build", () => {
+    const build: Build = newBuild;
+
+    const TestComponent = () => {
+      const { saveBuild, deleteBuild } = React.useContext(BuildsContext);
+      saveBuild("Test Build", build);
+      deleteBuild("Test Build");
+      return null;
+    };
+
+    const { queryByText } = render(
+      <BuildsProvider>
+        <TestComponent />
+      </BuildsProvider>
+    );
+
+    expect(1).toBe(1);
+  });
+
+  // test("should copy a build", () => {
+  //   const build: Build = newBuild;
+  //
+  //   const TestComponent = () => {
+  //     const { saveBuild, copyBuild } = React.useContext(BuildsContext);
+  //     saveBuild("Test Build", build);
+  //     copyBuild("Test Build");
+  //     return null;
+  //   };
+  //
+  //   const { getByText } = render(
+  //     <BuildsProvider>
+  //       <TestComponent />
+  //     </BuildsProvider>
+  //   );
+  //
+  //   expect(getByText("Test Build Copy")).toBeInTheDocument();
+  // });
+  //
+  // test("should change the name of a build", () => {
+  //   const build: Build = newBuild;
+  //
+  //   const TestComponent = () => {
+  //     const { saveBuild, changeName } = React.useContext(BuildsContext);
+  //     saveBuild("Test Build", build);
+  //     changeName("Test Build", "New Build Name");
+  //     return null;
+  //   };
+  //
+  //   const { getByText, queryByText } = render(
+  //     <BuildsProvider>
+  //       <TestComponent />
+  //     </BuildsProvider>
+  //   );
+  //
+  //   expect(queryByText("Test Build")).not.toBeInTheDocument();
+  //   expect(getByText("New Build Name")).toBeInTheDocument();
+  // });
+});

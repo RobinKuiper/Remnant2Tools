@@ -19,18 +19,10 @@ interface BuildsContextData {
 
 const BuildsContext = createContext<BuildsContextData>({
   builds: DEFAULT_VALUES.builds,
-  saveBuild: () => {
-    return;
-  },
-  deleteBuild: () => {
-    return;
-  },
-  copyBuild: () => {
-    return;
-  },
-  changeName: () => {
-    return;
-  },
+  saveBuild: () => {},
+  deleteBuild: () => {},
+  copyBuild: () => {},
+  changeName: () => {},
 });
 
 interface Props {
@@ -41,46 +33,49 @@ const BuildsProvider: React.FC<Props> = ({ children }: Props) => {
   const [builds, setBuilds] = useState<Builds>(DEFAULT_VALUES.builds);
 
   useEffect(() => {
-    if (localStorage.getItem("builds")) {
-      setBuilds(() => ({ ...JSON.parse(localStorage.getItem("builds") ?? "{}") }));
+    const storedBuilds = localStorage.getItem("builds");
+    if (storedBuilds) {
+      setBuilds(JSON.parse(storedBuilds));
     }
   }, []);
 
   const saveBuild = (name: string, build: Build) => {
     if (name === "") return;
 
-    const newBuilds = builds;
-    newBuilds[name] = build;
-
-    setNewBuilds(newBuilds);
+    setBuilds(prevBuilds => ({
+      ...prevBuilds,
+      [name]: build,
+    }));
   };
 
   const deleteBuild = (name: string) => {
     if (!name || name === "") return;
 
-    const newBuilds = builds;
-    delete newBuilds[name];
-
-    setNewBuilds(newBuilds);
+    setBuilds(prevBuilds => {
+      const newBuilds = { ...prevBuilds };
+      delete newBuilds[name];
+      return newBuilds;
+    });
   };
 
   const copyBuild = (name: string) => {
     if (!name || name === "") return;
 
-    saveBuild(`${name} Copy`, builds[name]);
+    const copiedBuild = { ...builds[name] };
+    saveBuild(`${name} Copy`, copiedBuild);
   };
 
   const changeName = (oldName: string, newName: string) => {
     if (builds[oldName]) {
-      saveBuild(newName, builds[oldName]);
+      const renamedBuild = { ...builds[oldName] };
       deleteBuild(oldName);
+      saveBuild(newName, renamedBuild);
     }
   };
 
-  const setNewBuilds = (builds: Builds) => {
-    setBuilds(prevState => ({ ...prevState, ...builds }));
+  useEffect(() => {
     localStorage.setItem("builds", JSON.stringify(builds));
-  };
+  }, [builds]);
 
   return (
     <BuildsContext.Provider

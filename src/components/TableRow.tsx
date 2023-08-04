@@ -2,7 +2,7 @@ import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import React, { useContext, useEffect, useState } from "react";
 import { styled } from "styled-components";
 import { DataContext } from "../context/DataContext";
-import { slugify } from "../helpers";
+import { findImage } from "../helpers";
 import Redacted from "./Redacted";
 import ItemLevel from "./ItemLevel";
 
@@ -28,14 +28,7 @@ const TableRow = ({ item, category, type = "tracker", images }: Props) => {
   const [image, setImage] = useState<any | null>(null);
 
   useEffect(() => {
-    const filtered =
-      images &&
-      Object.values(images).filter(
-        i => i.name === slugify(item.name) && i.relativePath.includes(category.settings.fragment),
-      );
-    if (filtered && filtered.length > 0) {
-      setImage(filtered[0]);
-    }
+    setImage(findImage(item.name, images, category.settings.fragment));
   }, []);
 
   useEffect(() => {

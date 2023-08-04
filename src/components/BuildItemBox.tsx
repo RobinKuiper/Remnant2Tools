@@ -56,8 +56,8 @@ const BuildItemBox = ({
       data-tooltip-id={name}
       data-tooltip-content={name}
     >
-      {findImage(name ?? "", images) ? (
-        <GatsbyImage alt={name ?? ""} image={getImage(findImage(name ?? "", images))} />
+      {findImage(name ?? "", images, category) ? (
+        <GatsbyImage alt={name ?? ""} image={getImage(findImage(name ?? "", images, category))} />
       ) : (
         <span>{name}</span>
       )}
