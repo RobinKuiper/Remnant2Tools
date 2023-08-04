@@ -42,7 +42,7 @@ const TopBar = () => {
     <Container>
       <div id="logo">
         <Link to="/">
-          <img src="/images/logo.png" alt="Remnant" height={50} />
+          <img src="/images/logo.webp" alt="Remnant" height={50} />
         </Link>
       </div>
 
