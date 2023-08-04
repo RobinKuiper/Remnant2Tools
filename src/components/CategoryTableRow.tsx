@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { styled } from "styled-components";
 import { DataContext } from "../context/DataContext";
-import type { CategoryInformation } from "../interface/CategoryInformation";
 
 // TODO: refactor with TableRow
 
@@ -13,35 +12,66 @@ const Flex = styled.div`
 
 interface Props {
   item: any;
-  categoryInformation: CategoryInformation;
+  category: any;
   type?: string;
 }
 
-const CategoryTableRow = ({ item, categoryInformation, type = "tracker" }: Props) => {
+const CategoryTableRow = ({ item, category, type = "tracker" }: Props) => {
   const { unlocks, toggleUnlock } = useContext(DataContext);
   const [unlocked, setUnlocked] = useState(false);
+  const [colSpan, setColspan] = useState(3);
 
   useEffect(() => {
-    const category = categoryInformation.label.replace(" ", "").toLowerCase();
-    if (unlocks[category] && unlocks[category][item.id]) {
-      setUnlocked(unlocks[category][item.id].unlocked);
+    if (type !== "tracker") {
+      setUnlocked(false);
+      return;
     }
-  }, [item, unlocks]);
+
+    const categoryFragment = category.settings.fragment;
+    if (unlocks[categoryFragment] && unlocks[categoryFragment][item.id]) {
+      setUnlocked(unlocks[categoryFragment][item.id].unlocked);
+    }
+  }, [item, unlocks, type]);
 
   const handleChange = e => {
-    const id = e.target.id,
-      category = categoryInformation.label.replace(" ", "").toLowerCase();
+    const id = e.target.id;
 
-    toggleUnlock(category, id);
+    toggleUnlock(category.settings.fragment, id);
   };
 
   const toggleRedacted = e => {
     e.target.classList.toggle("redacted");
   };
 
+  useEffect(() => {
+    let newColspan;
+
+    if (category.settings.categoryHasValues) {
+      newColspan = 1;
+    } else {
+      const cells = category.settings[type].fields.length;
+      let extras = 2;
+
+      if (category.settings.hasLevels) {
+        extras++;
+      }
+
+      if (category.settings.categoryIsCheckable) {
+        extras--;
+      }
+
+      newColspan = cells + extras;
+    }
+    setColspan(newColspan);
+
+    // category.settings.categoryHasValues
+    //   ? 1
+    //   : category.settings[type].fields.length + (type === "tracker") ? 2 : 1
+  }, [item, category]);
+
   return (
     <tr key={item.id} className={unlocked ? "unlocked" : ""}>
-      {type === "tracker" && categoryInformation.categoryIsCheckable && (
+      {type === "tracker" && category.settings.categoryIsCheckable && (
         <td>
           <div className="checkbox-wrapper">
             <label className="checkbox">
@@ -69,38 +99,28 @@ const CategoryTableRow = ({ item, categoryInformation, type = "tracker" }: Props
           </div>
         </td>
       )}
-      <td
-        className="category"
-        colSpan={
-          categoryInformation.categoryHasValues
-            ? 1
-            : categoryInformation.attributes.filter(field => field[type]).length + 1
-        }
-      >
+      {category.settings.categoryHasValues && <td />}
+      <td className="category" colSpan={colSpan}>
         {item.label}
       </td>
-      {categoryInformation.categoryHasValues &&
-        categoryInformation.attributes
-          .filter(attribute => attribute[type] && attribute.label !== "name")
-          .map(attribute => (
-            <td key={attribute.label}>
+      {category.settings.categoryHasValues &&
+        category.settings[type].fields
+          .filter(field => field.fragment !== "name")
+          .map(field => (
+            <td key={field.label}>
               <span>
                 <Flex direction="column">
                   <div>
-                    <span className={attribute.redacted && !unlocked ? "redacted" : ""} onClick={toggleRedacted}>
-                      {item[attribute.label]}
+                    <span className={field.redacted && !unlocked ? "redacted" : ""} onClick={toggleRedacted}>
+                      {item[field.fragment]}
                     </span>
                   </div>
-                  {attribute.fields &&
-                    attribute.fields.length > 0 &&
-                    attribute.fields.map(field => (
-                      <div key={field}>
-                        <span
-                          className={attribute.redacted && !unlocked ? "redacted" : ""}
-                          onClick={toggleRedacted}
-                          key={field}
-                        >
-                          {item[field]}
+                  {field.extraFields &&
+                    field.extraFields.length > 0 &&
+                    field.extraFields.map(extraField => (
+                      <div key={extraField.fragment}>
+                        <span className={extraField.redacted && !unlocked ? "redacted" : ""} onClick={toggleRedacted}>
+                          {item[extraField.fragment]}
                         </span>
                       </div>
                     ))}

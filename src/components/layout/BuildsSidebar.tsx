@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { styled } from "styled-components";
 import { BuildsContext } from "../../context/BuildContext";
+import { AiFillCopy, AiFillDelete } from "react-icons/ai";
 
 const Container = styled.div`
   background: #292929;
@@ -21,10 +22,13 @@ const Container = styled.div`
       margin: 7.5px 0 7.5px 10px;
     }
 
-    button {
+    .nav-item {
+      display: flex;
+      justify-content: space-between;
       padding: 7.5px 0 7.5px 10px;
       text-align: left;
       color: white;
+      width: 180px;
 
       &:hover {
         background: #000;
@@ -33,8 +37,8 @@ const Container = styled.div`
   }
 `;
 
-const BuildsSidebar = ({ setBuild, setOldName, setName }) => {
-  const { builds } = useContext(BuildsContext);
+const BuildsSidebar = ({ setBuild, setOldName, setName, resetBuild }) => {
+  const { builds, deleteBuild, copyBuild } = useContext(BuildsContext);
 
   const selectBuild = (name: string) => {
     setBuild(builds[name]);
@@ -48,13 +52,28 @@ const BuildsSidebar = ({ setBuild, setOldName, setName }) => {
         <strong>Saved builds</strong>
         {Object.keys(builds).length > 0 ? (
           Object.keys(builds).map(name => (
-            <button key={name} onClick={() => selectBuild(name)}>
-              {name}
-            </button>
+            <div key={name} className="nav-item">
+              <button key={name} onClick={() => selectBuild(name)}>
+                {name}
+              </button>
+
+              <div>
+                <button onClick={() => copyBuild(name)}>
+                  <AiFillCopy />
+                </button>
+                <button onClick={() => deleteBuild(name)}>
+                  <AiFillDelete />
+                </button>
+              </div>
+            </div>
           ))
         ) : (
           <span>No saved builds found.</span>
         )}
+
+        <button className="nav-item" onClick={resetBuild}>
+          New Build
+        </button>
       </nav>
     </Container>
   );

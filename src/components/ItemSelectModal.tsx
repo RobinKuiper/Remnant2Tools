@@ -1,6 +1,6 @@
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import React, { useContext, useEffect, useState } from "react";
-import { BsUnlock } from "react-icons/bs";
+import { BsLock } from "react-icons/bs";
 import Modal from "react-modal";
 import { styled } from "styled-components";
 import { DataContext } from "../context/DataContext";
@@ -12,19 +12,23 @@ Modal.setAppElement("#___gatsby");
 const Content = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 10px;
 
-  width: 435px;
+  width: 440px;
   height: 500px;
   background-color: #f1f1f1;
 
   input {
-    padding: 5px;
+    padding: 10px;
+    box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.5);
+    background: transparent;
+    border: none;
+    //border-bottom: 1px solid #000;
   }
 
   #list {
     display: flex;
     flex-direction: row;
+    padding-top: 10px;
 
     flex-wrap: wrap;
     gap: 5px;
@@ -32,11 +36,21 @@ const Content = styled.div`
     height: 100%;
 
     button {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      justify-content: center;
       padding-bottom: 5px;
       width: 100px;
       height: 150px;
-      border: 1px solid #000;
       box-sizing: border-box;
+
+      transition: all 0.3s ease-in-out;
+
+      &:hover {
+        background: #d5d5d5;
+      }
     }
   }
 `;
@@ -62,7 +76,7 @@ const ItemSelectModal = ({ setIsOpen, isOpen, items, category, callback, images 
 
   useEffect(() => {
     setQuery("");
-  }, []);
+  }, [items, category, isOpen]);
 
   useEffect(() => {
     setItemsFiltered(search());
@@ -99,8 +113,8 @@ const ItemSelectModal = ({ setIsOpen, isOpen, items, category, callback, images 
                   <GatsbyImage alt={item.name} image={getImage(findImage(item.name, images))} />
                 </div>
                 <div>
-                  {unlocks[category] && unlocks[category][item.id] && unlocks[category][item.id].unlocked && (
-                    <BsUnlock />
+                  {(!unlocks[category] || !unlocks[category][item.id] || !unlocks[category][item.id].unlocked) && (
+                    <BsLock />
                   )}
                   {item.name}
                 </div>

@@ -8,11 +8,8 @@ import CategorySidebar from "../../components/layout/CategorySidebar";
 import Layout from "../../components/layout/Layout";
 import Search from "../../components/Search";
 import TableRow from "../../components/TableRow";
-import { CATEGORIES } from "../../constants";
-import { findCategory } from "../../helpers";
 import { DataContext } from "../../context/DataContext";
 import { SettingContext } from "../../context/SettingContext";
-import type { CategoryInformation } from "../../interface/CategoryInformation";
 import dataCollection from "../../data/data.json";
 
 const Page = styled.div`
@@ -77,12 +74,6 @@ const Page = styled.div`
               color: #000;
             }
 
-            span.redacted {
-              background: #c7c7c7;
-              color: #c7c7c7;
-              cursor: pointer;
-            }
-
             &.category {
               font-weight: 900;
             }
@@ -97,8 +88,16 @@ const Page = styled.div`
           background: #fff;
         }
 
-        tr.unlocked {
-          background: #a0efa0;
+        tr.unlocked:nth-child(even) {
+          background: #cff8cf;
+        }
+
+        tr.unlocked:nth-child(odd) {
+          background: #b7e7b7;
+        }
+
+        tr.unlocked .checkbox-wrapper {
+          --c-primary: green;
         }
       }
     }
@@ -108,23 +107,26 @@ const Page = styled.div`
 const Category = props => {
   const { hideUnlocked, toggleHideUnlocked } = useContext(SettingContext);
   const { unlocks, statistics } = useContext(DataContext);
-  const [categoryInformation, setCategoryInformation] = useState<CategoryInformation>(CATEGORIES[0].categories[0]);
-  const category = props.params.category;
+  const categoryFragment = props.params.category;
+  const type = props.params.type;
   const images = props.data.images;
-  const rawData = dataCollection[category];
-  const [data, setData] = useState(rawData);
+  const isTracker = type === "tracker";
+  const category = dataCollection[categoryFragment];
+  const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [query, setQuery] = useState("");
   const sortDir = 1;
 
   const sort = (data: any) => {
-    if (categoryInformation.categorized) {
-      return data.map(category => ({
-        ...category,
-        items: category.items.sort((a, b) =>
-          sortDir === 0 ? b.name.localeCompare(a.name) : a.name.localeCompare(b.name),
-        ),
-      }));
+    if (category.settings.categorized) {
+      return data
+        .map(category => ({
+          ...category,
+          items: category.items.sort((a, b) =>
+            sortDir === 0 ? b.name.localeCompare(a.name) : a.name.localeCompare(b.name),
+          ),
+        }))
+        .sort((a, b) => (sortDir === 0 ? b.label.localeCompare(a.label) : a.label.localeCompare(b.label)));
     } else {
       return data.sort((a, b) => (sortDir === 0 ? b.name.localeCompare(a.name) : a.name.localeCompare(b.name)));
     }
@@ -145,14 +147,14 @@ const Category = props => {
   };
 
   const hide = () => {
-    if (hideUnlocked) {
-      if (categoryInformation.categorized) {
-        return rawData.map(category => {
-          const categoryFragment = categoryInformation.label.replace(" ", "").toLowerCase();
+    if (hideUnlocked && isTracker) {
+      const categoryFragment = category.settings.fragment;
 
+      if (category.settings.categorized) {
+        return category.data.map(subCategory => {
           return {
-            ...category,
-            items: category.items.filter(
+            ...subCategory,
+            items: subCategory.items.filter(
               item =>
                 !(
                   unlocks[categoryFragment] &&
@@ -164,49 +166,59 @@ const Category = props => {
         });
       }
 
-      return rawData.filter(
-        item => !(unlocks[category] && unlocks[category][item.id] && unlocks[category][item.id].unlocked),
+      return category.data.filter(
+        item =>
+          !(
+            unlocks[categoryFragment] &&
+            unlocks[categoryFragment][item.id] &&
+            unlocks[categoryFragment][item.id].unlocked
+          ),
       );
     }
 
-    return rawData;
+    return category.data;
   };
 
   useEffect(() => {
-    setCategoryInformation(findCategory(category));
-    setData(dataCollection[category]);
-  }, [category]);
+    setData(dataCollection[categoryFragment]);
+  }, [categoryFragment]);
 
   useEffect(() => {
     setLoading(true);
 
-    if (categoryInformation.label.replace(" ", "").toLowerCase() !== category) return;
+    if (category.settings.fragment !== categoryFragment) return;
 
     setData(sort(search(hide())));
     setLoading(false);
-  }, [query, category, categoryInformation, hideUnlocked]);
+  }, [query, category, type, categoryFragment, hideUnlocked]);
 
   return (
     <Layout>
       <Page>
-        <CategorySidebar type="tracker" />
+        <CategorySidebar type={type} />
 
         <div id="database-content">
           <div id="content-heading">
             <div className="left">
               <span>
-                <button onClick={toggleHideUnlocked} style={{ marginRight: "10px" }}>
-                  {hideUnlocked ? <BiShow size={"30px"} /> : <BiHide size={"30px"} />}
-                </button>
+                {isTracker && (
+                  <button onClick={toggleHideUnlocked} style={{ marginRight: "10px" }}>
+                    {hideUnlocked ? <BiShow size={"30px"} /> : <BiHide size={"30px"} />}
+                  </button>
+                )}
               </span>
             </div>
 
-            <Search placeholder={`Search ${category}`} onChange={e => setQuery(e.target.value)} width={"250px"} />
+            <Search
+              placeholder={`Search ${categoryFragment}`}
+              onChange={e => setQuery(e.target.value)}
+              width={"250px"}
+            />
 
             <div className="right">
-              {statistics[category] && (
+              {isTracker && statistics[categoryFragment] && (
                 <span>
-                  {statistics[category].unlocked}/{statistics[category].total} unlocked
+                  {statistics[categoryFragment].unlocked}/{statistics[categoryFragment].total} unlocked
                 </span>
               )}
             </div>
@@ -216,46 +228,37 @@ const Category = props => {
             <table cellSpacing="0" cellPadding="0">
               <thead>
                 <tr>
+                  {isTracker && <th />}
+                  {isTracker && category.settings.hasLevels && <th />}
                   <th />
-                  <th />
-                  {categoryInformation &&
-                    categoryInformation.attributes
-                      .filter(attribute => attribute.tracker)
-                      .map(attribute => <th key={attribute.label}>{attribute.label}</th>)}
+                  {category &&
+                    category.settings &&
+                    category.settings[type].fields.map(field => <th key={field.fragment}>{field.label}</th>)}
                 </tr>
               </thead>
 
               <tbody>
                 {data.length > 0 ? (
                   data.map(item => {
-                    if (categoryInformation?.categorized) {
+                    if (category?.settings?.categorized) {
                       return (
                         <>
-                          <CategoryTableRow item={item} categoryInformation={categoryInformation} />
-                          {item.items.map(i => (
-                            <TableRow
-                              key={i.id}
-                              item={i}
-                              categoryInformation={categoryInformation}
-                              images={images.nodes}
-                            />
-                          ))}
+                          <CategoryTableRow item={item} category={category} type={type} />
+                          {item.items &&
+                            item.items.map(i => (
+                              <TableRow key={i.id} item={i} type={type} category={category} images={images.nodes} />
+                            ))}
                         </>
                       );
-                    } else {
+                    } else if (item.name) {
                       return (
-                        <TableRow
-                          key={item.id}
-                          item={item}
-                          categoryInformation={categoryInformation}
-                          images={images.nodes}
-                        />
+                        <TableRow key={item.id} item={item} type={type} category={category} images={images.nodes} />
                       );
                     }
                   })
                 ) : (
                   <tr>
-                    <td colSpan={categoryInformation.attributes.filter(field => field.tracker).length + 1}>
+                    <td colSpan={category.settings[type].fields.length + 2} style={{ textAlign: "center" }}>
                       <p>No data found.</p>
 
                       {hideUnlocked && <p>You have set unlocked to hidden, maybe you have everything? Congrats!</p>}
@@ -281,6 +284,7 @@ export const query = graphql`
       totalCount
       nodes {
         name
+        relativePath
         childImageSharp {
           gatsbyImageData(quality: 80, layout: CONSTRAINED)
         }

@@ -12,6 +12,7 @@ import { DataContext } from "../context/DataContext";
 import data from "../data/data.json";
 import type { Build, Item } from "../interface/Build";
 import "react-tooltip/dist/react-tooltip.css";
+// import {calculateWeightType} from "../dataHelpers";
 
 const newBuild: Build = {
   headpiece: null,
@@ -28,6 +29,17 @@ const newBuild: Build = {
   amulet: null,
   rings: [],
 };
+// const newStatistics = {
+//   armor: 0,
+//   weight: 0,
+//   resistances: {
+//     bleed: 0,
+//     fire: 0,
+//     shock: 0,
+//     blight: 0,
+//     corrosion: 0
+//   }
+// };
 
 const Page = styled.div`
   display: flex;
@@ -85,15 +97,6 @@ const BuildInterface = styled.div`
   width: 25%;
   margin: 20px auto;
 
-  .item-box {
-    border: 1px solid #000;
-    background: #fff;
-    box-shadow: 0 0 6px 2px rgba(0, 0, 0, 0.3);
-    box-sizing: border-box;
-
-    background: radial-gradient(#fff, #e1e1e1);
-  }
-
   #settings {
     input {
       box-sizing: border-box;
@@ -105,6 +108,11 @@ const BuildInterface = styled.div`
   #top {
     display: flex;
     justify-content: space-between;
+
+    #stats {
+      display: flex;
+      flex-direction: column;
+    }
 
     .item-category {
       display: flex;
@@ -173,6 +181,7 @@ const Builds = props => {
   const { unlocks } = useContext(DataContext);
   const images = props.data.images;
   const [modalIsOpen, setIsOpen] = useState(false);
+  // const [statistics, setStatistics] = useState(newStatistics);
   const [onlyUnlocked, setOnlyUnlocked] = useState(false);
   const [modalItems, setModalItems] = useState([]);
   const [modalCategory, setModalCategory] = useState("");
@@ -182,6 +191,57 @@ const Builds = props => {
   const [oldName, setOldName] = useState<string>("");
   const [build, setBuild] = useState<Build>(newBuild);
 
+  // useEffect(() => {
+  //   const newStats = {
+  //     armor: 0,
+  //     weight: 0,
+  //     resistances: {
+  //       bleed: 0,
+  //       fire: 0,
+  //       shock: 0,
+  //       blight: 0,
+  //       corrosion: 0
+  //     }
+  //   };
+  //   Object.values(build).forEach(item => {
+  //     if (!item) return;
+  //
+  //     if (Array.isArray(item)) {
+  //       item.forEach(i => {
+  //         Object.keys(newStats).forEach(key => {
+  //           if (key === "resistances") {
+  //             Object.keys(statistics.resistances).forEach(rKey => {
+  //               if (i.resistances && i.resistances[rKey]) {
+  //                 newStats.resistances[rKey] += i.resistances[rKey];
+  //               }
+  //             })
+  //           } else {
+  //             if (i[key]) {
+  //               newStats[key] += i[key];
+  //             }
+  //           }
+  //         })
+  //       })
+  //     } else {
+  //       Object.keys(newStats).forEach(key => {
+  //         if (key === "resistances") {
+  //           Object.keys(statistics.resistances).forEach(rKey => {
+  //             if (item.resistances && item.resistances[rKey]) {
+  //               newStats.resistances[rKey] += item.resistances[rKey];
+  //             }
+  //           })
+  //         } else {
+  //           if (item[key]) {
+  //             newStats[key] += item[key];
+  //           }
+  //         }
+  //       })
+  //     }
+  //   })
+  //
+  //   setStatistics(() => ({ ...newStats }));
+  // }, [build])
+
   const openModal = (
     category: string,
     type: string,
@@ -190,13 +250,13 @@ const Builds = props => {
   ) => {
     let items;
     if (subCategory && data[category]) {
-      const filtered = data[category].filter(cat => cat.label.toLowerCase() === subCategory.toLowerCase());
+      const filtered = data[category].data.filter(cat => cat.label.toLowerCase() === subCategory.toLowerCase());
       if (filtered) {
         items = filtered[0].items;
       }
     } else if (category === "armor" || category === "relicfragments") {
       items = [];
-      data[category].forEach(cat =>
+      data[category].data.forEach(cat =>
         cat.items.forEach(item => {
           if (item.type === type || category === "relicfragments") {
             items.push(item);
@@ -204,7 +264,7 @@ const Builds = props => {
         }),
       );
     } else {
-      items = data[category];
+      items = data[category].data;
     }
 
     if (onlyUnlocked) {
@@ -220,16 +280,45 @@ const Builds = props => {
     setIsOpen(true);
   };
 
+  const resetBuild = () => {
+    setName("");
+    setBuild(newBuild);
+  };
+
   const selectItem = (item: Item) => {
-    const nBuild = build;
+    let nBuild = build;
     if (index !== null) {
       nBuild[type][index] = item;
     } else {
       nBuild[type] = item;
     }
 
-    setBuild(nBuild);
+    nBuild = checkMod(item, nBuild);
+
+    setBuild(prevState => ({ ...prevState, ...nBuild }));
     saveBuild(name, nBuild);
+  };
+
+  const checkMod = (item: Item, build: Build) => {
+    let index = null;
+    if (type === "mainHand") {
+      index = 0;
+    } else if (type === "melee") {
+      index = 1;
+    } else if (type === "offhand") {
+      index = 2;
+    }
+
+    if (index !== null) {
+      build.mods[index] =
+        item.mod && item.mod !== ""
+          ? {
+              name: item.mod,
+              description: item.modDescription,
+            }
+          : null;
+    }
+    return build;
   };
 
   const handleNameChange = e => {
@@ -247,10 +336,10 @@ const Builds = props => {
   return (
     <Layout>
       <Page>
-        <BuildsSidebar setBuild={setBuild} setOldName={setOldName} setName={setName} />
+        <BuildsSidebar setBuild={setBuild} setOldName={setOldName} setName={setName} resetBuild={resetBuild} />
 
         <div id="builds-content">
-          <div className="background">{/*  <img src={"http://localhost:8000/images/img.png"} />*/}</div>
+          <div className="background" />
 
           <BuildInterface>
             <div id="settings">
@@ -336,6 +425,22 @@ const Builds = props => {
                 </div>
               </div>
 
+              {/*<div id="stats">*/}
+              {/*  <span>Armor Type: {calculateWeightType(statistics.weight)}</span>*/}
+              {/*  {Object.entries(statistics).map(([key, value]) => {*/}
+              {/*    */}
+              {/*    if (key === "resistances") {*/}
+              {/*      return Object.entries(statistics.resistances).map(([key, value]) => (*/}
+              {/*        <span key={key}>{key}: {value}</span>*/}
+              {/*      ))*/}
+              {/*    }*/}
+              {/*    */}
+              {/*    return (*/}
+              {/*      <span key={key}>{key}: {value}</span>*/}
+              {/*    )*/}
+              {/*  })}*/}
+              {/*</div>*/}
+
               <div id="accessoires" className="item-category">
                 <BuildItemBox
                   openModal={openModal}
@@ -398,6 +503,7 @@ const Builds = props => {
                     type={"mods"}
                     category={"mods"}
                     index={0}
+                    disabled={!!(build.mainHand && build.mainHand.mod && build.mainHand.mod !== "")}
                   />
                   <BuildItemBox
                     openModal={openModal}
@@ -420,6 +526,17 @@ const Builds = props => {
                 />
 
                 <div className="sub-boxes">
+                  {build.melee && build.melee.mod && build.melee.mod !== "" && (
+                    <BuildItemBox
+                      openModal={openModal}
+                      build={build}
+                      images={images.nodes}
+                      type={"mods"}
+                      category={"mods"}
+                      index={1}
+                      disabled={true}
+                    />
+                  )}
                   <BuildItemBox
                     openModal={openModal}
                     build={build}
@@ -447,7 +564,8 @@ const Builds = props => {
                     images={images.nodes}
                     type={"mods"}
                     category={"mods"}
-                    index={1}
+                    index={2}
+                    disabled={!!(build.offhand && build.offhand.mod && build.offhand.mod !== "")}
                   />
                   <BuildItemBox
                     openModal={openModal}

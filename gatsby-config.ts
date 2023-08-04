@@ -4,6 +4,10 @@ const config: GatsbyConfig = {
   siteMetadata: {
     title: "Remnant",
     siteUrl: "https://remnant.rkuiper.nl",
+    gitlab: "https://gitlab.com/RobinKuiper",
+    linkedIn: "https://www.linkedin.com/in/robin-kuiper-4a15a669/",
+    discord: "https://discordapp.com/users/81445002168774656",
+    website: "https://www.rkuiper.nl",
   },
   pathPrefix: "/remnantcollectables",
   // More easily incorporate content into your pages through

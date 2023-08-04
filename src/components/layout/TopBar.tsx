@@ -41,7 +41,9 @@ const TopBar = () => {
   return (
     <Container>
       <div id="logo">
-        <img src="/images/logo.png" alt="Remnant" height={50} />
+        <Link to="/">
+          <img src="/images/logo.png" alt="Remnant" height={50} />
+        </Link>
       </div>
 
       <nav>

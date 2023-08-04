@@ -18,7 +18,8 @@
     "prettier": "prettier --write \"**/*.{jsx,tsx,js,ts,json,yml,yaml,md}\"",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "lint:html": "eslint . --format html"
+    "lint:html": "eslint . --format html",
+    "fix": "pnpm prettier && pnpm lint:fix"
   },
   "dependencies": {
     "babel-plugin-styled-components": "^2.1.4",

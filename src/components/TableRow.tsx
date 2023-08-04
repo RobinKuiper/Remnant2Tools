@@ -2,8 +2,9 @@ import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import React, { useContext, useEffect, useState } from "react";
 import { styled } from "styled-components";
 import { DataContext } from "../context/DataContext";
-import type { CategoryInformation } from "../interface/CategoryInformation";
 import { slugify } from "../helpers";
+import Redacted from "./Redacted";
+import ItemLevel from "./ItemLevel";
 
 // TODO: refactor with CategoryTableRow
 
@@ -15,40 +16,54 @@ const Flex = styled.div`
 
 interface Props {
   item: any;
-  categoryInformation: CategoryInformation;
+  category: any;
   type?: string;
   images: any;
 }
 
-const TableRow = ({ item, categoryInformation, type = "tracker", images }: Props) => {
-  const { unlocks, toggleUnlock } = useContext(DataContext);
+const TableRow = ({ item, category, type = "tracker", images }: Props) => {
+  const { unlocks, toggleUnlock, updateLevel } = useContext(DataContext);
   const [unlocked, setUnlocked] = useState(false);
+  const [level, setLevel] = useState<number>();
   const [image, setImage] = useState<any | null>(null);
 
   useEffect(() => {
-    const filtered = images && Object.values(images).filter(i => i.name === slugify(item.name));
+    const filtered =
+      images &&
+      Object.values(images).filter(
+        i => i.name === slugify(item.name) && i.relativePath.includes(category.settings.fragment),
+      );
     if (filtered && filtered.length > 0) {
       setImage(filtered[0]);
     }
   }, []);
 
   useEffect(() => {
-    const category = categoryInformation.label.replace(" ", "").toLowerCase();
-    if (type === "tracker" && unlocks[category] && unlocks[category][item.id]) {
-      setUnlocked(unlocks[category][item.id].unlocked);
+    if (type !== "tracker") {
+      setUnlocked(false);
+      return;
     }
-  }, [item, unlocks]);
+
+    const categoryFragment = category.settings.fragment;
+    if (unlocks[categoryFragment] && unlocks[categoryFragment][item.id]) {
+      setUnlocked(unlocks[categoryFragment][item.id].unlocked);
+      if (unlocks[categoryFragment][item.id].level) {
+        setLevel(unlocks[categoryFragment][item.id].level);
+      }
+    }
+  }, [item, unlocks, type]);
 
   const handleChange = e => {
-    const id = parseInt(e.target.id),
-      category = categoryInformation.label.replace(" ", "").toLowerCase();
+    const id = parseInt(e.target.id);
 
-    toggleUnlock(category, id);
+    toggleUnlock(category.settings.fragment, id);
   };
 
-  const toggleRedacted = e => {
-    e.target.classList.toggle("redacted");
-  };
+  useEffect(() => {
+    if (level) {
+      updateLevel(category.settings.fragment, item.id, level);
+    }
+  }, [level]);
 
   return (
     <tr key={item.id} className={unlocked ? "unlocked" : ""}>
@@ -80,6 +95,12 @@ const TableRow = ({ item, categoryInformation, type = "tracker", images }: Props
           </div>
         </td>
       )}
+
+      {type === "tracker" && category.settings.hasLevels && (
+        <td>
+          <ItemLevel level={level} setLevel={setLevel} />
+        </td>
+      )}
       <td>
         {image && (
           <GatsbyImage
@@ -87,41 +108,43 @@ const TableRow = ({ item, categoryInformation, type = "tracker", images }: Props
             alt={item.name}
             title={item.name}
             placeholder="none"
-            style={type === "tracker" ? {} : { width: "100px" }}
+            style={
+              image.childImageSharp.gatsbyImageData.height > image.childImageSharp.gatsbyImageData.width
+                ? { height: "100px" }
+                : { width: "100px" }
+            }
           />
         )}
       </td>
-      {categoryInformation &&
-        categoryInformation.attributes
-          .filter(attribute => attribute[type])
-          .map(attribute => (
-            <td key={attribute.label}>
-              <span>
-                <Flex direction="row">
-                  <Flex direction="column">
-                    <div>
-                      <span className={attribute.redacted && !unlocked ? "redacted" : ""} onClick={toggleRedacted}>
-                        {item[attribute.label]}
-                      </span>
-                    </div>
-                    {attribute.fields &&
-                      attribute.fields.length > 0 &&
-                      attribute.fields.map(field => (
-                        <div key={field}>
-                          <span
-                            className={attribute.redacted && !unlocked ? "redacted" : ""}
-                            onClick={toggleRedacted}
-                            key={field}
-                          >
-                            {item[field]}
-                          </span>
-                        </div>
-                      ))}
-                  </Flex>
+      {category.settings &&
+        category.settings[type].fields.map(field => (
+          <td key={field.fragment}>
+            <span>
+              <Flex direction="row">
+                <Flex direction="column">
+                  <div>
+                    {field.redacted && !unlocked ? (
+                      <Redacted value={item[field.fragment]} defaultShow={unlocked} bgColor={"#c7c7c7"} />
+                    ) : (
+                      item[field.fragment]
+                    )}
+                  </div>
+                  {field.extraFields &&
+                    field.extraFields.length > 0 &&
+                    field.extraFields.map(extraField => (
+                      <div key={extraField.fragment}>
+                        {extraField.redacted && !unlocked ? (
+                          <Redacted value={item[extraField.fragment]} defaultShow={unlocked} bgColor={"#c7c7c7"} />
+                        ) : (
+                          item[extraField.fragment]
+                        )}
+                      </div>
+                    ))}
                 </Flex>
-              </span>
-            </td>
-          ))}
+              </Flex>
+            </span>
+          </td>
+        ))}
     </tr>
   );
 };

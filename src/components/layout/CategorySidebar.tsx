@@ -1,8 +1,8 @@
 import { Link } from "gatsby";
 import React, { useContext } from "react";
 import { styled } from "styled-components";
-import { CATEGORIES } from "../../constants";
 import { DataContext } from "../../context/DataContext";
+import data from "../../data/data.json";
 
 const Container = styled.div`
   background: #292929;
@@ -55,42 +55,60 @@ interface Props {
   type: string;
 }
 
+const CATEGORY_ORDER = [
+  {
+    label: "Character",
+    categories: ["archetypes", "traits"],
+  },
+  {
+    label: "Items",
+    categories: ["weapons", "mods", "mutators", "armor", "amulets", "rings", "relics", "relicfragments"],
+  },
+  {
+    label: "Events",
+    categories: ["worldbosses"],
+  },
+];
+
 const CategorySidebar = ({ type }: Props) => {
   const { statistics } = useContext(DataContext);
 
   return (
     <Container>
       <nav>
-        {CATEGORIES.map(mainCategory => {
-          if (mainCategory[type] && mainCategory.categories && mainCategory.categories.length > 0) {
-            return (
-              <Link key={mainCategory.label} to="#" className="main-category">
-                <span>{mainCategory.label}</span>
-                {mainCategory.categories
-                  .filter(category => category[type])
-                  .map(category => {
-                    const categoryFragment = category.label.replace(" ", "").toLowerCase();
+        {type === "tracker" && (
+          <Link to="/tracker/statistics" className="main-category">
+            <span>Statistics</span>
+          </Link>
+        )}
+        {CATEGORY_ORDER.map(mainCategory => {
+          return (
+            <Link key={mainCategory.label} to="#" className="main-category">
+              <span>{mainCategory.label}</span>
+              {mainCategory.categories
+                .filter(categoryFragment => data[categoryFragment].settings[type])
+                .map(categoryFragment => {
+                  const categorySettings = data[categoryFragment].settings;
 
-                    return (
-                      <Link className="sub-category" key={category.label} to={`/${type}/${category.fragment}`}>
-                        <span>{category.label}</span>
-                        {type === "tracker" && statistics[categoryFragment] && (
-                          <span>
-                            {parseInt(
-                              (
-                                (statistics[categoryFragment].unlocked / statistics[categoryFragment].total) *
-                                100
-                              ).toString(),
-                            )}
-                            %
-                          </span>
-                        )}
-                      </Link>
-                    );
-                  })}
-              </Link>
-            );
-          }
+                  return (
+                    <Link className="sub-category" key={categoryFragment} to={`/${type}/${categoryFragment}`}>
+                      <span>{categorySettings.label}</span>
+                      {type === "tracker" && statistics[categoryFragment] && (
+                        <span>
+                          {parseInt(
+                            (
+                              (statistics[categoryFragment].unlocked / statistics[categoryFragment].total) *
+                              100
+                            ).toString(),
+                          )}
+                          %
+                        </span>
+                      )}
+                    </Link>
+                  );
+                })}
+            </Link>
+          );
         })}
       </nav>
     </Container>

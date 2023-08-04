@@ -12,12 +12,20 @@ interface Builds {
 interface BuildsContextData {
   builds: Builds;
   saveBuild: (name: string, build: Build) => void;
+  deleteBuild: (name: string) => void;
+  copyBuild: (name: string) => void;
   changeName: (oldName: string, newName: string) => void;
 }
 
 const BuildsContext = createContext<BuildsContextData>({
   builds: DEFAULT_VALUES.builds,
   saveBuild: () => {
+    return;
+  },
+  deleteBuild: () => {
+    return;
+  },
+  copyBuild: () => {
     return;
   },
   changeName: () => {
@@ -44,19 +52,34 @@ const BuildsProvider: React.FC<Props> = ({ children }: Props) => {
     const newBuilds = builds;
     newBuilds[name] = build;
 
-    setBuilds(prevState => ({ ...prevState, ...newBuilds }));
-    localStorage.setItem("builds", JSON.stringify(newBuilds));
+    setNewBuilds(newBuilds);
+  };
+
+  const deleteBuild = (name: string) => {
+    if (!name || name === "") return;
+
+    const newBuilds = builds;
+    delete newBuilds[name];
+
+    setNewBuilds(newBuilds);
+  };
+
+  const copyBuild = (name: string) => {
+    if (!name || name === "") return;
+
+    saveBuild(`${name} Copy`, builds[name]);
   };
 
   const changeName = (oldName: string, newName: string) => {
     if (builds[oldName]) {
       saveBuild(newName, builds[oldName]);
-      setBuilds(prevState => {
-        delete prevState[oldName];
-
-        return { ...prevState };
-      });
+      deleteBuild(oldName);
     }
+  };
+
+  const setNewBuilds = (builds: Builds) => {
+    setBuilds(prevState => ({ ...prevState, ...builds }));
+    localStorage.setItem("builds", JSON.stringify(builds));
   };
 
   return (
@@ -64,6 +87,8 @@ const BuildsProvider: React.FC<Props> = ({ children }: Props) => {
       value={{
         builds,
         saveBuild,
+        deleteBuild,
+        copyBuild,
         changeName,
       }}
     >

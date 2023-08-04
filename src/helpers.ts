@@ -1,15 +1,3 @@
-import { CATEGORIES } from "./constants";
-
-export const findCategory = (name: string) => {
-  for (const mainCategory of CATEGORIES) {
-    for (const category of mainCategory.categories) {
-      if (category.label.replace(" ", "").toLowerCase() === name) {
-        return category;
-      }
-    }
-  }
-};
-
 export const findImage = (name: string, images: any) => {
   const filtered = images && Object.values(images).filter(i => i.name === slugify(name));
   if (filtered && filtered.length > 0) {
