@@ -35,7 +35,7 @@ test:lint:
     - pnpm lint
   rules:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
-      
+
 test:jest:
   stage: test
   needs:

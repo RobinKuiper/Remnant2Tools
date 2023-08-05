@@ -20,9 +20,7 @@ describe("Redacted component", () => {
   });
 
   it("should show the value if defaultShow prop is true", () => {
-    const { getByText } = render(
-      <Redacted value="Sensitive Data" defaultShow={true} />
-    );
+    const { getByText } = render(<Redacted value="Sensitive Data" defaultShow={true} />);
     const redactedValue = getByText("Sensitive Data");
     expect(redactedValue).not.toHaveClass("redacted");
   });

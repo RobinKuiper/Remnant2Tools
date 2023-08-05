@@ -117,13 +117,10 @@ describe("TableRow", () => {
         <DataContext.Provider value={{ toggleUnlock, unlocks }}>{children}</DataContext.Provider>
       ),
     });
-    
+
     const checkboxInput = screen.getByRole("checkbox");
     fireEvent.click(checkboxInput);
 
-    expect(toggleUnlock).toHaveBeenCalledWith(
-      category.settings.fragment,
-      item.id
-    );
+    expect(toggleUnlock).toHaveBeenCalledWith(category.settings.fragment, item.id);
   });
 });

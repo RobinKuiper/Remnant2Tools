@@ -17,5 +17,5 @@ module.exports = {
     url: `http://localhost:8000`,
   },
   setupFiles: [`<rootDir>/loadershim.js`],
-  coverageReporters: ['clover', 'json', 'text', 'lcov', 'cobertura'],
+  coverageReporters: ["clover", "json", "text", "lcov", "cobertura"],
 };

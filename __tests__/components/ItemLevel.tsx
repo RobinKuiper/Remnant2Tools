@@ -2,22 +2,20 @@ import React, { useState as useStateMock } from "react";
 import { render, fireEvent } from "@testing-library/react";
 import ItemLevel from "../../src/components/ItemLevel";
 
-jest.mock('react', () => ({
-  ...jest.requireActual('react'),
+jest.mock("react", () => ({
+  ...jest.requireActual("react"),
   useState: jest.fn(),
-}))
+}));
 
 describe("ItemLevel", () => {
-  const setLevel = jest.fn()
-  
+  const setLevel = jest.fn();
+
   beforeEach(() => {
-    ;(useStateMock as jest.Mock).mockImplementation(level => [level, setLevel])
-  })
-  
+    (useStateMock as jest.Mock).mockImplementation(level => [level, setLevel]);
+  });
+
   it("should render the component correctly", () => {
-    const { getByText, getByDisplayValue } = render(
-      <ItemLevel level={0} setLevel={() => {}} />
-    );
+    const { getByText, getByDisplayValue } = render(<ItemLevel level={0} setLevel={() => {}} />);
 
     expect(getByText("-")).toBeInTheDocument();
     expect(getByText("+")).toBeInTheDocument();
@@ -26,7 +24,7 @@ describe("ItemLevel", () => {
 
   it("should increment the level when the '+' button is clicked", () => {
     let level = 0;
-    const setLevel = (newLevel) => {
+    const setLevel = newLevel => {
       level = 1;
     };
 
@@ -34,13 +32,13 @@ describe("ItemLevel", () => {
     const addButton = getByText("+");
 
     fireEvent.click(addButton);
-    
+
     expect(level).toBe(1);
   });
 
   it("should decrement the level when the '-' button is clicked", () => {
     let level = 1;
-    const setLevel = (newLevel) => {
+    const setLevel = newLevel => {
       level = 0;
     };
 
@@ -54,7 +52,7 @@ describe("ItemLevel", () => {
 
   it("should update the level when the input value changes", () => {
     let level = 0;
-    const setLevel = (newLevel) => {
+    const setLevel = newLevel => {
       level = newLevel;
     };
 
