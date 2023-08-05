@@ -43,6 +43,7 @@ test:jest:
   needs:
     - build:install
   script:
+    - npm install -g pnpm
     - pnpm test:ci
   artifacts:
     when: always
