@@ -5,7 +5,7 @@ stages:
   - test
   - deploy
 
-# These folder is cached between builds
+# These folders are cached between builds
 # https://docs.gitlab.com/ce/ci/yaml/README.html#cache
 cache:
   key:
@@ -31,6 +31,7 @@ test:lint:
   needs:
     - build:install
   script:
+    - npm install -g pnpm
     - pnpm lint
   rules:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
