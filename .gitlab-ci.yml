@@ -31,10 +31,7 @@ test:lint:
   needs:
     - build:install
   script:
-    - npx eslint --format gitlab .
-  artifacts:
-    reports:
-      codequality: gl-codequality.json
+    - pnpm lint
   rules:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
       
@@ -52,7 +49,7 @@ test:jest:
         - junit.xml
       coverage_report:
         coverage_format: cobertura
-        path: coverage/clover.xml
+        path: coverage/cobertura-coverage.xml
   rules:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
 
