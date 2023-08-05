@@ -28,7 +28,7 @@ const TableRow = ({ item, category, type = "tracker", images }: Props) => {
   const [image, setImage] = useState<any | null>(null);
 
   useEffect(() => {
-    setImage(findImage(item.name, images, category.settings.fragment));
+    setImage(findImage(item.name, images, category.fragment));
   }, []);
 
   useEffect(() => {
@@ -37,7 +37,7 @@ const TableRow = ({ item, category, type = "tracker", images }: Props) => {
       return;
     }
 
-    const categoryFragment = category.settings.fragment;
+    const categoryFragment = category.fragment;
     if (unlocks[categoryFragment] && unlocks[categoryFragment][item.id]) {
       setUnlocked(unlocks[categoryFragment][item.id].unlocked);
       if (unlocks[categoryFragment][item.id].level) {
@@ -49,12 +49,12 @@ const TableRow = ({ item, category, type = "tracker", images }: Props) => {
   const handleChange = e => {
     const id = parseInt(e.target.id);
 
-    toggleUnlock(category.settings.fragment, id);
+    toggleUnlock(category.fragment, id);
   };
 
   useEffect(() => {
     if (level) {
-      updateLevel(category.settings.fragment, item.id, level);
+      updateLevel(category.fragment, item.id, level);
     }
   }, [level]);
 
@@ -89,7 +89,7 @@ const TableRow = ({ item, category, type = "tracker", images }: Props) => {
         </td>
       )}
 
-      {type === "tracker" && category.settings.hasLevels && (
+      {type === "tracker" && category.hasLevels && (
         <td>
           <ItemLevel level={level} setLevel={setLevel} />
         </td>
@@ -109,8 +109,8 @@ const TableRow = ({ item, category, type = "tracker", images }: Props) => {
           />
         )}
       </td>
-      {category.settings &&
-        category.settings[type].fields.map(field => (
+      {category &&
+        category[type].fields.map(field => (
           <td key={field.fragment}>
             <span>
               <Flex direction="row">

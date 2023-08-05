@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
-import data from "../data/data.json";
 import { styled } from "styled-components";
 import { DataContext } from "../context/DataContext";
 import { calculatePercentage } from "../helpers";
+import { CATEGORIES } from "../constants";
 
 const Container = styled.div`
   width: 400px;
@@ -59,8 +59,8 @@ const StatisticsPanel = () => {
       {!loading ? (
         <table cellSpacing={0} cellPadding={10}>
           <tbody>
-            {Object.values(data).map(category => {
-              const { fragment, label } = category.settings;
+            {CATEGORIES.map(category => {
+              const { fragment, label } = category;
               const { unlocked, total } = statistics[fragment];
               const perc = calculatePercentage(unlocked, total, 2);
 

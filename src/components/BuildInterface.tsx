@@ -1,11 +1,12 @@
-import React, {useContext, useState} from 'react';
-import {AiFillLock, AiFillUnlock} from "react-icons/ai";
-import {Tooltip} from "react-tooltip";
+import React, { useContext, useState } from "react";
+import { AiFillLock, AiFillUnlock } from "react-icons/ai";
+import { Tooltip } from "react-tooltip";
 import BuildItemBox from "./BuildItemBox";
-import {styled} from "styled-components";
-import data from "../data/data.json";
-import {DataContext} from "../context/DataContext";
-import {BuildsContext} from "../context/BuildContext";
+import { styled } from "styled-components";
+import { DataContext } from "../context/DataContext";
+import { BuildsContext } from "../context/BuildContext";
+import { getAllItems, getUnlockedItems } from "../dataHelpers";
+import { slugify } from "../helpers";
 
 const Container = styled.div`
   display: flex;
@@ -94,17 +95,17 @@ const Container = styled.div`
   }
 `;
 
-const BuildInterface = ({ 
-                          setName, 
-                          oldName, 
-                          name, 
-                          build, 
-                          images, 
-                          setIndex, 
-                          setModalItems, 
-                          setModalCategory, 
-                          setType,
-                          setIsOpen
+const BuildInterface = ({
+  setName,
+  oldName,
+  name,
+  build,
+  images,
+  setIndex,
+  setModalItems,
+  setModalCategory,
+  setType,
+  setIsOpen,
 }) => {
   const { changeName } = useContext(BuildsContext);
   const { unlocks } = useContext(DataContext);
@@ -116,29 +117,14 @@ const BuildInterface = ({
     index: number | null = null,
     subCategory: string | null = null,
   ) => {
+    const allItems = onlyUnlocked ? getUnlockedItems(unlocks) : getAllItems();
     let items;
-    if (subCategory && data[category]) {
-      const filtered = data[category].data.filter(cat => cat.label.toLowerCase() === subCategory.toLowerCase());
-      if (filtered) {
-        items = filtered[0].items;
-      }
-    } else if (category === "armor" || category === "relicfragments") {
-      items = [];
-      data[category].data.forEach(cat =>
-        cat.items.forEach(item => {
-          if (item.type === type || category === "relicfragments") {
-            items.push(item);
-          }
-        }),
-      );
+    if (subCategory) {
+      items = allItems.filter(item => item.category === category && item.subCategories.includes(slugify(subCategory)));
+    } else if (category === "armor") {
+      items = allItems.filter(item => item.category === category && item.type === type);
     } else {
-      items = data[category].data;
-    }
-
-    if (onlyUnlocked) {
-      items = items.filter(
-        item => unlocks[category] && unlocks[category][item.id] && unlocks[category][item.id].unlocked,
-      );
+      items = allItems.filter(item => item.category === category);
     }
 
     setIndex(index);
@@ -147,7 +133,7 @@ const BuildInterface = ({
     setModalItems(items);
     setIsOpen(true);
   };
-  
+
   const handleNameChange = e => {
     setName(e.target.value);
   };
@@ -159,7 +145,7 @@ const BuildInterface = ({
   const toggleOnlyUnlocked = () => {
     setOnlyUnlocked(!onlyUnlocked);
   };
-  
+
   return (
     <Container>
       <div id="settings">
@@ -186,27 +172,9 @@ const BuildInterface = ({
             type={"headpiece"}
             category={"armor"}
           />
-          <BuildItemBox
-            openModal={openModal}
-            build={build}
-            images={images.nodes}
-            type={"chest"}
-            category={"armor"}
-          />
-          <BuildItemBox
-            openModal={openModal}
-            build={build}
-            images={images.nodes}
-            type={"hands"}
-            category={"armor"}
-          />
-          <BuildItemBox
-            openModal={openModal}
-            build={build}
-            images={images.nodes}
-            type={"feet"}
-            category={"armor"}
-          />
+          <BuildItemBox openModal={openModal} build={build} images={images.nodes} type={"chest"} category={"armor"} />
+          <BuildItemBox openModal={openModal} build={build} images={images.nodes} type={"hands"} category={"armor"} />
+          <BuildItemBox openModal={openModal} build={build} images={images.nodes} type={"feet"} category={"armor"} />
           <div className="main-box">
             <BuildItemBox
               openModal={openModal}

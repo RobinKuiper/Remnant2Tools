@@ -27,7 +27,7 @@ const CategoryTableRow = ({ item, category, type = "tracker" }: Props) => {
       return;
     }
 
-    const categoryFragment = category.settings.fragment;
+    const categoryFragment = category.fragment;
     if (unlocks[categoryFragment] && unlocks[categoryFragment][item.id]) {
       setUnlocked(unlocks[categoryFragment][item.id].unlocked);
     }
@@ -36,7 +36,7 @@ const CategoryTableRow = ({ item, category, type = "tracker" }: Props) => {
   const handleChange = e => {
     const id = e.target.id;
 
-    toggleUnlock(category.settings.fragment, id);
+    toggleUnlock(category.fragment, id);
   };
 
   const toggleRedacted = e => {
@@ -46,17 +46,17 @@ const CategoryTableRow = ({ item, category, type = "tracker" }: Props) => {
   useEffect(() => {
     let newColspan;
 
-    if (category.settings.categoryHasValues) {
+    if (category.categoryHasValues) {
       newColspan = 1;
     } else {
-      const cells = category.settings[type].fields.length;
+      const cells = category[type].fields.length;
       let extras = 2;
 
-      if (category.settings.hasLevels) {
+      if (category.hasLevels) {
         extras++;
       }
 
-      if (category.settings.categoryIsCheckable) {
+      if (category.categoryIsCheckable) {
         extras--;
       }
 
@@ -64,14 +64,14 @@ const CategoryTableRow = ({ item, category, type = "tracker" }: Props) => {
     }
     setColspan(newColspan);
 
-    // category.settings.categoryHasValues
+    // category.categoryHasValues
     //   ? 1
-    //   : category.settings[type].fields.length + (type === "tracker") ? 2 : 1
+    //   : category[type].fields.length + (type === "tracker") ? 2 : 1
   }, [item, category]);
 
   return (
     <tr key={item.id} className={unlocked ? "unlocked" : ""}>
-      {type === "tracker" && category.settings.categoryIsCheckable && (
+      {type === "tracker" && category.categoryIsCheckable && (
         <td>
           <div className="checkbox-wrapper">
             <label className="checkbox">
@@ -99,12 +99,12 @@ const CategoryTableRow = ({ item, category, type = "tracker" }: Props) => {
           </div>
         </td>
       )}
-      {category.settings.categoryHasValues && <td />}
+      {category.categoryHasValues && <td />}
       <td className="category" colSpan={colSpan}>
         {item.label}
       </td>
-      {category.settings.categoryHasValues &&
-        category.settings[type].fields
+      {category.categoryHasValues &&
+        category[type].fields
           .filter(field => field.fragment !== "name")
           .map(field => (
             <td key={field.label}>

@@ -199,12 +199,12 @@ const Builds = props => {
         <div id="builds-content">
           <div className="background" />
 
-          <BuildInterface 
-            setName={setName} 
-            oldName={oldName} 
-            name={name} 
-            build={build} 
-            images={images} 
+          <BuildInterface
+            setName={setName}
+            oldName={oldName}
+            name={name}
+            build={build}
+            images={images}
             setIndex={setIndex}
             setModalItems={setModalItems}
             setModalCategory={setModalCategory}

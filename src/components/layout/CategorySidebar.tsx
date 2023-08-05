@@ -2,7 +2,7 @@ import { Link } from "gatsby";
 import React, { useContext } from "react";
 import { styled } from "styled-components";
 import { DataContext } from "../../context/DataContext";
-import data from "../../data/data.json";
+import { getCategorySettings } from "../../dataHelpers";
 
 const Container = styled.div`
   background: #292929;
@@ -86,9 +86,9 @@ const CategorySidebar = ({ type }: Props) => {
             <Link key={mainCategory.label} to="#" className="main-category">
               <span>{mainCategory.label}</span>
               {mainCategory.categories
-                .filter(categoryFragment => data[categoryFragment].settings[type])
+                .filter(categoryFragment => getCategorySettings(categoryFragment)[type])
                 .map(categoryFragment => {
-                  const categorySettings = data[categoryFragment].settings;
+                  const categorySettings = getCategorySettings(categoryFragment);
 
                   return (
                     <Link className="sub-category" key={categoryFragment} to={`/${type}/${categoryFragment}`}>

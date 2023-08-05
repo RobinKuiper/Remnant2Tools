@@ -10,7 +10,7 @@ import Search from "../../components/Search";
 import TableRow from "../../components/TableRow";
 import { DataContext } from "../../context/DataContext";
 import { SettingContext } from "../../context/SettingContext";
-import dataCollection from "../../data/data.json";
+import { getAllItems, getAllLockedItems, getCategorySettings } from "../../dataHelpers";
 
 const Page = styled.div`
   display: flex;
@@ -28,6 +28,20 @@ const Page = styled.div`
       text-align: center;
       margin: 10px 0;
       padding: 0 10px;
+
+      .left {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        select {
+          padding: 6.5px;
+
+          &:focus {
+            outline: none;
+          }
+        }
+      }
 
       .right {
         font-size: 1.2em;
@@ -111,25 +125,30 @@ const Category = props => {
   const type = props.params.type;
   const images = props.data.images;
   const isTracker = type === "tracker";
-  const category = dataCollection[categoryFragment];
+  const category = getCategorySettings(categoryFragment);
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [query, setQuery] = useState("");
+  const [groupBy, setGroupBy] = useState();
   const sortDir = 1;
 
-  const sort = (data: any) => {
-    if (category.settings.categorized) {
-      return data
-        .map(category => ({
-          ...category,
-          items: category.items.sort((a, b) =>
-            sortDir === 0 ? b.name.localeCompare(a.name) : a.name.localeCompare(b.name),
-          ),
-        }))
-        .sort((a, b) => (sortDir === 0 ? b.label.localeCompare(a.label) : a.label.localeCompare(b.label)));
-    } else {
-      return data.sort((a, b) => (sortDir === 0 ? b.name.localeCompare(a.name) : a.name.localeCompare(b.name)));
+  const sorter = (a, b) => (sortDir === 0 ? b.name.localeCompare(a.name) : a.name.localeCompare(b.name));
+
+  const group = (data: any) => {
+    if (!groupBy) {
+      return data;
     }
+
+    const grouped = {};
+    data.forEach(item => {
+      const group = typeof item[groupBy] === "boolean" ? (item[groupBy] ? "Yes" : "No") : item[groupBy];
+      grouped[group] = grouped[group] || { label: group, items: [] };
+      grouped[group].items.push(item);
+    });
+    return Object.values(grouped).map(group => {
+      group.items.sort(sorter);
+      return group;
+    });
   };
 
   const search = (data: any) => {
@@ -146,51 +165,26 @@ const Category = props => {
     return data;
   };
 
-  const hide = () => {
-    if (hideUnlocked && isTracker) {
-      const categoryFragment = category.settings.fragment;
-
-      if (category.settings.categorized) {
-        return category.data.map(subCategory => {
-          return {
-            ...subCategory,
-            items: subCategory.items.filter(
-              item =>
-                !(
-                  unlocks[categoryFragment] &&
-                  unlocks[categoryFragment][item.id] &&
-                  unlocks[categoryFragment][item.id].unlocked
-                ),
-            ),
-          };
-        });
-      }
-
-      return category.data.filter(
-        item =>
-          !(
-            unlocks[categoryFragment] &&
-            unlocks[categoryFragment][item.id] &&
-            unlocks[categoryFragment][item.id].unlocked
-          ),
-      );
-    }
-
-    return category.data;
-  };
-
   useEffect(() => {
-    setData(dataCollection[categoryFragment]);
-  }, [categoryFragment]);
+    setGroupBy(category.defaultGroup);
+  }, [category]);
 
   useEffect(() => {
     setLoading(true);
 
-    if (category.settings.fragment !== categoryFragment) return;
+    if (category.fragment !== categoryFragment) return;
 
-    setData(sort(search(hide())));
+    const allItems = hideUnlocked && isTracker ? getAllLockedItems(unlocks) : getAllItems(),
+      items = allItems.filter(item => item.category === category.fragment).sort(sorter);
+
+    setData(group(search(items)));
     setLoading(false);
-  }, [query, category, type, categoryFragment, hideUnlocked]);
+  }, [query, category, type, categoryFragment, hideUnlocked, groupBy]);
+
+  const handleGroupSelectChange = e => {
+    const group = e.target.value === "none" ? null : e.target.value;
+    setGroupBy(group);
+  };
 
   return (
     <Layout>
@@ -200,6 +194,15 @@ const Category = props => {
         <div id="database-content">
           <div id="content-heading">
             <div className="left">
+              <select onChange={handleGroupSelectChange}>
+                <option value="none">None</option>
+                {category &&
+                  category.groups.map(group => (
+                    <option key={group} value={group} selected={groupBy === group}>
+                      {group}
+                    </option>
+                  ))}
+              </select>
               <span>
                 {isTracker && (
                   <button onClick={toggleHideUnlocked} style={{ marginRight: "10px" }}>
@@ -229,18 +232,18 @@ const Category = props => {
               <thead>
                 <tr>
                   {isTracker && <th />}
-                  {isTracker && category.settings.hasLevels && <th />}
+                  {isTracker && category.hasLevels && <th />}
                   <th />
                   {category &&
-                    category.settings &&
-                    category.settings[type].fields.map(field => <th key={field.fragment}>{field.label}</th>)}
+                    category &&
+                    category[type].fields.map(field => <th key={field.fragment}>{field.label}</th>)}
                 </tr>
               </thead>
 
               <tbody>
                 {data.length > 0 ? (
                   data.map(item => {
-                    if (category?.settings?.categorized) {
+                    if (groupBy) {
                       return (
                         <>
                           <CategoryTableRow item={item} category={category} type={type} />
@@ -258,7 +261,7 @@ const Category = props => {
                   })
                 ) : (
                   <tr>
-                    <td colSpan={category.settings[type].fields.length + 2} style={{ textAlign: "center" }}>
+                    <td colSpan={category[type].fields.length + 2} style={{ textAlign: "center" }}>
                       <p>No data found.</p>
 
                       {hideUnlocked && <p>You have set unlocked to hidden, maybe you have everything? Congrats!</p>}

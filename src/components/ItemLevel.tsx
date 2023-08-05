@@ -29,11 +29,11 @@ const Container = styled.div`
 
 const ItemLevel = ({ level, setLevel }) => {
   const addLevel = () => {
-    setLevel(prevState => prevState + 1);
+    setLevel(prevState => (prevState ? prevState + 1 : 1));
   };
 
   const subLevel = () => {
-    setLevel(prevState => (prevState - 1 < 0 ? 0 : prevState - 1));
+    setLevel(prevState => (prevState ? (prevState - 1 < 1 ? 1 : prevState - 1) : 1));
   };
 
   const handleChange = e => {

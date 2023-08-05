@@ -2,7 +2,7 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 import Index from "../../src/pages/index";
 import * as Gatsby from "gatsby";
-import {DataProvider} from "../../src/context/DataContext";
+import { DataProvider } from "../../src/context/DataContext";
 
 const useStaticQuery = jest.spyOn(Gatsby, `useStaticQuery`);
 const mockUseStaticQuery = {
@@ -21,7 +21,7 @@ describe("Homepage", () => {
   afterEach(() => {
     jest.restoreAllMocks();
   });
-  
+
   test("renders the hero banner correctly", () => {
     const { container } = render(
       <DataProvider>

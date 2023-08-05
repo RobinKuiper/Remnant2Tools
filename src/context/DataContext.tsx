@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useState } from "react";
-import data from "../data/data.json";
+import { getAllItems, isUnlocked } from "../dataHelpers";
 
 const DEFAULT_VALUES = {
   unlocks: {},
@@ -31,12 +31,8 @@ interface DataContextData {
 
 const DataContext = createContext<DataContextData>({
   unlocks: DEFAULT_VALUES.unlocks,
-  toggleUnlock: () => {
-    return;
-  },
-  updateLevel: () => {
-    return;
-  },
+  toggleUnlock: () => {},
+  updateLevel: () => {},
   statistics: DEFAULT_VALUES.statistics,
 });
 
@@ -67,24 +63,24 @@ const DataProvider: React.FC<Props> = ({ children }: Props) => {
       },
     };
 
-    Object.values(data).forEach(category => {
-      const categoryFragment = category.settings.fragment;
-      const categoryData = data[categoryFragment].data;
+    const allItems = getAllItems();
+    allItems.forEach(item => {
+      const categoryFragment = item.category;
 
-      const total = category.settings.categorized
-        ? categoryData.reduce((acc, cat) => acc + cat.items.length, 0)
-        : categoryData.length;
+      if (!newStatistics[categoryFragment]) {
+        newStatistics[categoryFragment] = {
+          total: 0,
+          unlocked: 0,
+        };
+      }
 
-      const categoryUnlocks = unlocks[categoryFragment];
-      const unlocked = categoryUnlocks ? Object.values(categoryUnlocks).filter(item => item.unlocked).length : 0;
+      if (isUnlocked(categoryFragment, item.id, unlocks)) {
+        newStatistics[categoryFragment].unlocked++;
+        newStatistics.overall.unlocked++;
+      }
 
-      newStatistics[categoryFragment] = {
-        total,
-        unlocked,
-      };
-
-      newStatistics.overall.total += total;
-      newStatistics.overall.unlocked += unlocked;
+      newStatistics[categoryFragment].total++;
+      newStatistics.overall.total++;
     });
 
     setStatistics(newStatistics);
@@ -106,7 +102,7 @@ const DataProvider: React.FC<Props> = ({ children }: Props) => {
     }
 
     if (newUnlocks[categoryFragment][id].unlocked) {
-      const item = data[categoryFragment].data.find(i => i.id === id);
+      const item = getAllItems().find(i => i.category === categoryFragment && i.id === id);
       if (item && item.items) {
         item.items.forEach(i => toggleUnlock(categoryFragment, i.id, true));
       }
