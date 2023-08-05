@@ -37,6 +37,23 @@ test:lint:
       codequality: gl-codequality.json
   rules:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+      
+test:jest:
+  stage: test
+  needs:
+    - build:install
+  script:
+    - pnpm test:ci
+  artifacts:
+    when: always
+    reports:
+      junit:
+        - junit.xml
+      coverage_report:
+        coverage_format: cobertura
+        path: coverage/clover.xml
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
 
 test:gatsby:
   stage: test
@@ -52,6 +69,7 @@ pages:
   needs:
     - build:install
     - test:lint
+    - test:jest
     - test:gatsby
   script:
     - pnpm build
