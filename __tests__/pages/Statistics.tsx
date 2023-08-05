@@ -1,7 +1,7 @@
 import React from "react";
 import * as Gatsby from "gatsby";
 import { render, screen } from "@testing-library/react";
-import Index from "../../src/pages/tracker/statistics";
+import Index from "../../src/pages/tracker/index";
 import { DataProvider } from "../../src/context/DataContext";
 
 const useStaticQuery = jest.spyOn(Gatsby, `useStaticQuery`);
