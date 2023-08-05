@@ -1,7 +1,7 @@
 import React from "react";
 import * as Gatsby from "gatsby";
 import { render, screen } from "@testing-library/react";
-import Statistics from "../../src/pages/tracker/statistics";
+import Index from "../../src/pages/tracker/statistics";
 import { DataProvider } from "../../src/context/DataContext";
 
 const useStaticQuery = jest.spyOn(Gatsby, `useStaticQuery`);
@@ -23,7 +23,7 @@ describe("Statistics", () => {
   });
 
   test("renders loading state initially", () => {
-    render(<Statistics />);
+    render(<Index />);
     const loadingElement = screen.getByText(/Loading.../i);
     expect(loadingElement).toBeInTheDocument();
   });
@@ -31,7 +31,7 @@ describe("Statistics", () => {
   test("renders unlockable statistics after loading", () => {
     const { getByText } = render(
       <DataProvider>
-        <Statistics />
+        <Index />
       </DataProvider>,
     );
 
@@ -43,7 +43,7 @@ describe("Statistics", () => {
   test("renders worlds with secrets if there are any", () => {
     const { getByText } = render(
       <DataProvider>
-        <Statistics />
+        <Index />
       </DataProvider>,
     );
 

@@ -15,3 +15,7 @@ export const slugify = (str: string) => {
     .toLowerCase()
     .trim();
 };
+
+export const calculatePercentage = (amount: number, total: number, decimals: number = 2) => {
+  return +parseFloat(((amount / total) * 100) as string).toFixed(decimals);
+};

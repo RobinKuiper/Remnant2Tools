@@ -77,7 +77,7 @@ const CategorySidebar = ({ type }: Props) => {
     <Container>
       <nav>
         {type === "tracker" && (
-          <Link to="/tracker/statistics" className="main-category">
+          <Link to="/tracker" className="main-category">
             <span>Statistics</span>
           </Link>
         )}
