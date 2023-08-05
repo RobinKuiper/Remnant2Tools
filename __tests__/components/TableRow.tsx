@@ -104,4 +104,26 @@ describe("TableRow", () => {
     const numberBox = container.querySelector('input[type="number"]');
     expect(numberBox).toBeInTheDocument();
   });
+
+  test("calls handleChange function when checkbox is clicked", () => {
+    const item = { id: 1, name: "Item 1" },
+      category = { settings: { fragment: "categoryFragment", tracker: { fields: [] } } },
+      images = [],
+      toggleUnlock = jest.fn(),
+      unlocks = {};
+
+    render(<TableRow item={item} category={category} type="tracker" images={images} />, {
+      wrapper: ({ children }) => (
+        <DataContext.Provider value={{ toggleUnlock, unlocks }}>{children}</DataContext.Provider>
+      ),
+    });
+    
+    const checkboxInput = screen.getByRole("checkbox");
+    fireEvent.click(checkboxInput);
+
+    expect(toggleUnlock).toHaveBeenCalledWith(
+      category.settings.fragment,
+      item.id
+    );
+  });
 });
