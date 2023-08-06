@@ -72,6 +72,7 @@ pages:
     - test:lint
 #    - test:jest
   script:
+    - npm install -g pnpm
     - pnpm build
   artifacts:
     paths:
