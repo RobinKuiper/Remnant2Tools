@@ -84,7 +84,6 @@ const Category = props => {
   const isTracker = type === "tracker";
   const category = getCategorySettings(categoryFragment);
   const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(true);
   const [query, setQuery] = useState("");
   const [groupBy, setGroupBy] = useState();
   const [viewAsList, setViewAsList] = useState(false);
@@ -128,15 +127,12 @@ const Category = props => {
   }, [category]);
 
   useEffect(() => {
-    setLoading(true);
-
     if (category.fragment !== categoryFragment) return;
 
     const allItems = hideUnlocked && isTracker ? getAllLockedItems(unlocks) : getAllItems(),
       items = allItems.filter(item => item.category === category.fragment).sort(sorter);
 
     setData(group(search(items)));
-    setLoading(false);
   }, [query, category, type, categoryFragment, hideUnlocked, groupBy]);
 
   const handleGroupSelectChange = e => {

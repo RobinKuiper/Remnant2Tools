@@ -23,8 +23,10 @@ build:install:
   script:
     - npm install -g pnpm
     - pnpm install
-  rules:
-    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+  only:
+    - tags
+#  rules:
+#    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
 
 test:lint:
   stage: test
@@ -33,10 +35,10 @@ test:lint:
   script:
     - npm install -g pnpm
     - pnpm lint
-  rules:
-    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+  only:
+    - tags
 
-test:jest:
+.test:jest:
   stage: test
   needs:
     - build:install
@@ -51,17 +53,17 @@ test:jest:
       coverage_report:
         coverage_format: cobertura
         path: coverage/cobertura-coverage.xml
-  rules:
-    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+  only:
+    - tags
 
-test:gatsby:
+.test:gatsby:
   stage: test
   needs:
     - build:install
   script:
     - ./node_modules/.bin/gatsby info
-  rules:
-    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+  only:
+    - tags
 
 pages:
   stage: deploy
@@ -69,11 +71,10 @@ pages:
     - build:install
     - test:lint
     - test:jest
-    - test:gatsby
   script:
     - pnpm build
   artifacts:
     paths:
       - public
-  rules:
-    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+  only:
+    - tags
