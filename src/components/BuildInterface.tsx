@@ -79,6 +79,10 @@ const Container = styled.div`
       .item-box {
         width: 128px;
         height: 64px;
+
+        @media (max-width: 425px) {
+          width: 100%;
+        }
       }
 
       .sub-boxes {
@@ -92,6 +96,17 @@ const Container = styled.div`
         }
       }
     }
+  }
+
+  @media (max-width: 550px) {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    min-height: 100vh;
+  }
+
+  @media screen and (min-width: 551px) and (max-width: 1000px) {
+    width: 75%;
   }
 `;
 

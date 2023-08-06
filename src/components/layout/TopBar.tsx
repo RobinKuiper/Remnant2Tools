@@ -1,11 +1,10 @@
 import { Link } from "gatsby";
-import React from "react";
+import React, { useState } from "react";
 import { styled } from "styled-components";
-import Search from "../Search";
+import { Flex } from "../../style/global";
+import { RiSettings3Line } from "react-icons/ri";
 
 const Container = styled.div`
-  display: flex;
-  justify-content: space-between;
   padding: 10px 10px;
   box-sizing: border-box;
   background: #292929;
@@ -14,55 +13,191 @@ const Container = styled.div`
   z-index: 20;
   position: fixed;
   width: 100%;
+  height: 74px;
 
-  nav {
-    display: flex;
-    gap: 25px;
-    align-items: center;
+  .center {
+    nav {
+      height: 100%;
+      display: flex;
 
-    a {
-      &:hover {
-        //background: #000;
+      a {
+        &:hover {
+          //background: #000;
+        }
       }
-    }
 
-    span {
-      cursor: not-allowed;
+      span {
+        cursor: not-allowed;
+      }
+
+      @media (max-width: 450px) {
+        display: none;
+      }
     }
   }
 
-  #right {
+  .right {
     display: flex;
-    align-items: center;
+
+    .settings {
+      svg {
+        transform: rotate(180deg);
+        transform-origin: center;
+        transition: all 0.5s ease-in-out;
+      }
+
+      &:hover svg {
+        transform: rotate(0deg);
+      }
+    }
+
+    .search {
+      @media (max-width: 670px) {
+        display: none;
+      }
+    }
+  }
+`;
+
+const MobileNavigation = styled.div`
+  display: none;
+  height: 100vh;
+  margin-top: 30px;
+
+  transition: all 0.3s ease-in-out;
+
+  &.active {
+    display: block;
+
+    a {
+      transform: translateX(0);
+    }
+  }
+
+  a {
+    font-size: 1.3em;
+    transform: translateX(300px);
+
+    transition: all 0.3s ease-in-out;
+  }
+`;
+
+const Hamburger = styled.button`
+  display: none;
+
+  cursor: pointer;
+  width: 48px;
+  height: 48px;
+  transition: all 0.25s;
+  margin-right: 25px;
+  position: relative;
+  background: transparent;
+  border: none;
+
+  &:hover [class*="-bun"] {
+    background: #f1f1f1;
+  }
+
+  .hamburger__top-bun,
+  .hamburger__bottom-bun {
+    content: "";
+    position: absolute;
+    left: 25%;
+    width: 24px;
+    height: 2px;
+    background: #fff;
+    transform: rotate(0);
+    transition: all 0.5s;
+  }
+
+  .hamburger__top-bun {
+    transform: translateY(-5px);
+  }
+
+  .hamburger__bottom-bun {
+    transform: translateY(3px);
+  }
+
+  &.open {
+    transform: rotate(90deg) translateY(-1px);
+  }
+
+  &.open .hamburger__top-bun {
+    transform: rotate(45deg) translateY(0px);
+  }
+
+  &.open .hamburger__bottom-bun {
+    transform: rotate(-45deg) translateY(0px);
+  }
+
+  @media (max-width: 450px) {
+    display: block;
   }
 `;
 
 const TopBar = () => {
+  const [isOpen, setOpen] = useState(false);
+
+  const toggleOpen = () => {
+    setOpen(!isOpen);
+  };
+
   return (
     <Container>
-      <div id="logo">
-        <Link to="/">
-          <img src="/images/logo.webp" alt="Remnant" height={50} />
-        </Link>
-      </div>
+      <Flex direction="row" justifyContent="space-between">
+        <div className="left">
+          <div id="logo">
+            <Link to="/">
+              <img src="/images/logo.webp" alt="Remnant" height={50} />
+            </Link>
+          </div>
+        </div>
 
-      <nav>
-        <Link to="/database/archetypes">Database</Link>
-        <Link to="/tracker">Unlockables Tracker</Link>
-        <Link to="/builds">Builds</Link>
-      </nav>
+        <div className="center">
+          <nav>
+            <Flex gap="25px" alignItems="center">
+              <Link to="/tracker">Tracker</Link>
+              <Link to="/database/archetypes">Database</Link>
+              <Link to="/builds">Builds</Link>
+            </Flex>
+          </nav>
+        </div>
 
-      <div id="right">
-        {/*<button onClick={toggleDarkMode}>*/}
-        {/*    {darkMode ? (*/}
-        {/*        <MdLightMode size="25px"  />*/}
-        {/*    ) : (*/}
-        {/*        <MdDarkMode size="25px" />*/}
-        {/*    )}*/}
-        {/*</button>*/}
+        <div className="right">
+          <Flex alignItems="center" justifyContent="right" gap={0}>
+            {/*<button onClick={toggleDarkMode}>*/}
+            {/*    {darkMode ? (*/}
+            {/*        <MdLightMode size="25px"  />*/}
+            {/*    ) : (*/}
+            {/*        <MdDarkMode size="25px" />*/}
+            {/*    )}*/}
+            {/*</button>*/}
 
-        <Search placeholder="Search" disabled={true} />
-      </div>
+            {/*<div className="search">*/}
+            {/*  <Search placeholder="Search" disabled={true} />*/}
+            {/*</div>*/}
+
+            <button className="settings">
+              <RiSettings3Line size="30px" />
+            </button>
+
+            <Hamburger id="hamburger" className={isOpen ? "open hamburger" : "hamburger"} onClick={toggleOpen}>
+              <span className="hamburger__top-bun" />
+              <span className="hamburger__bottom-bun" />
+            </Hamburger>
+          </Flex>
+        </div>
+      </Flex>
+
+      <MobileNavigation className={isOpen ? "active" : ""}>
+        <nav>
+          <Flex direction="column" justifyContent="center" alignItems="center" gap="40px">
+            <Link to="/database/archetypes">Database</Link>
+            <Link to="/tracker">Unlockables Tracker</Link>
+            <Link to="/builds">Builds</Link>
+          </Flex>
+        </nav>
+      </MobileNavigation>
     </Container>
   );
 };

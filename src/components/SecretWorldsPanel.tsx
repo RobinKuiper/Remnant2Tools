@@ -5,8 +5,6 @@ import Redacted from "./Redacted";
 import { getAllLockedItems } from "../dataHelpers";
 
 const Container = styled.div`
-  width: 200px;
-
   .values {
     display: flex;
     flex-direction: column;

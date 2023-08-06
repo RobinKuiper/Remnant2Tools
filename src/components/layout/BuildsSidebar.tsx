@@ -2,16 +2,9 @@ import React, { useContext } from "react";
 import { styled } from "styled-components";
 import { BuildsContext } from "../../context/BuildContext";
 import { AiFillCopy, AiFillDelete } from "react-icons/ai";
+import Sidebar from "../Sidebar";
 
 const Container = styled.div`
-  background: #292929;
-  color: #fff;
-  min-height: 100vh;
-  padding: 20px 0;
-  box-sizing: border-box;
-  width: 10%;
-  min-width: 200px;
-
   nav {
     position: fixed;
     display: flex;
@@ -35,6 +28,10 @@ const Container = styled.div`
       }
     }
   }
+
+  .no-data {
+    margin: 20px 10px;
+  }
 `;
 
 const BuildsSidebar = ({ setBuild, setOldName, setName, resetBuild }) => {
@@ -47,35 +44,37 @@ const BuildsSidebar = ({ setBuild, setOldName, setName, resetBuild }) => {
   };
 
   return (
-    <Container>
-      <nav>
-        <strong>Saved builds</strong>
-        {Object.keys(builds).length > 0 ? (
-          Object.keys(builds).map(name => (
-            <div key={name} className="nav-item">
-              <button key={name} onClick={() => selectBuild(name)}>
-                {name}
-              </button>
+    <Sidebar>
+      <Container>
+        <nav>
+          <strong>Saved builds</strong>
+          {Object.keys(builds).length > 0 ? (
+            Object.keys(builds).map(name => (
+              <div key={name} className="nav-item">
+                <button key={name} onClick={() => selectBuild(name)}>
+                  {name}
+                </button>
 
-              <div>
-                <button onClick={() => copyBuild(name)}>
-                  <AiFillCopy />
-                </button>
-                <button onClick={() => deleteBuild(name)}>
-                  <AiFillDelete />
-                </button>
+                <div>
+                  <button onClick={() => copyBuild(name)}>
+                    <AiFillCopy />
+                  </button>
+                  <button onClick={() => deleteBuild(name)}>
+                    <AiFillDelete />
+                  </button>
+                </div>
               </div>
-            </div>
-          ))
-        ) : (
-          <span>No saved builds found.</span>
-        )}
+            ))
+          ) : (
+            <div className="no-data">No saved builds found.</div>
+          )}
 
-        <button className="nav-item" onClick={resetBuild}>
-          New Build
-        </button>
-      </nav>
-    </Container>
+          <button className="nav-item" onClick={resetBuild}>
+            New Build
+          </button>
+        </nav>
+      </Container>
+    </Sidebar>
   );
 };
 

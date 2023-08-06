@@ -10,6 +10,10 @@ import SecretWorldsPanel from "../components/SecretWorldsPanel";
 
 const Updates = [
   {
+    date: "06-08-2023",
+    messages: ["Data improvements", "List and grid view", "Mobile ready", "Group by filter"],
+  },
+  {
     date: "05-08-2023",
     messages: ["Added homepage"],
   },
@@ -40,8 +44,14 @@ const HeroBanner = styled.div`
     margin-bottom: 20px;
   }
 
-  img {
-    height: 400px;
+  .image {
+    img {
+      height: 400px;
+    }
+
+    @media (max-width: 950px) {
+      display: none;
+    }
   }
 
   .buttons {
@@ -63,6 +73,10 @@ const HeroBanner = styled.div`
       }
     }
   }
+
+  @media (max-width: 1030px) {
+    gap: 20px;
+  }
 `;
 
 const Homepage = styled.div`
@@ -74,6 +88,10 @@ const Homepage = styled.div`
     justify-content: center;
 
     .panel {
+      max-width: 400px;
+      min-width: 300px;
+      width: 100%;
+
       padding: 20px;
       display: flex;
       flex-direction: column;
@@ -124,7 +142,7 @@ const IndexPage: React.FC<PageProps> = () => {
             </div>
           </div>
 
-          <div>
+          <div className="image">
             <StaticImage src="../images/builds_ss.png" alt="Builds" />
           </div>
         </HeroBanner>

@@ -4,9 +4,11 @@ import { styled } from "styled-components";
 const Container = styled.span`
   cursor: pointer;
 
-  span.redacted {
-    color: ${props => props.bgColor} !important;
-    background: ${props => props.bgColor} !important;
+  span {
+    &.redacted {
+      color: ${props => props.bgColor} !important;
+      background: ${props => props.bgColor} !important;
+    }
   }
 `;
 

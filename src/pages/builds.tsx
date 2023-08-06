@@ -82,6 +82,10 @@ const Page = styled.div`
       div {
       }
     }
+
+    @media (max-width: 1500px) {
+      width: 100%;
+    }
   }
 `;
 

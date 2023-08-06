@@ -7,6 +7,7 @@ import { graphql, useStaticQuery } from "gatsby";
 // import CookieConsent from "react-cookie-consent";
 
 const Container = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
 

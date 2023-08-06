@@ -1,17 +1,16 @@
 import { graphql } from "gatsby";
 import React, { useContext, useEffect, useState } from "react";
 import { BiHide, BiShow } from "react-icons/bi";
+import { CircleLoader } from "react-spinners";
 import { styled } from "styled-components";
+import CategoryTableRow from "../../components/CategoryTableRow";
 import CategorySidebar from "../../components/layout/CategorySidebar";
 import Layout from "../../components/layout/Layout";
 import Search from "../../components/Search";
+import TableRow from "../../components/TableRow";
 import { DataContext } from "../../context/DataContext";
 import { SettingContext } from "../../context/SettingContext";
 import { getAllItems, getAllLockedItems, getCategorySettings } from "../../dataHelpers";
-import { Flex } from "../../style/global";
-import Item from "../../components/Item";
-import ItemCategory from "../../components/ItemCategory";
-import { BsFillGrid3X3GapFill, BsList } from "react-icons/bs";
 
 const Page = styled.div`
   display: flex;
@@ -21,7 +20,6 @@ const Page = styled.div`
     z-index: 10;
     box-shadow: 0 0 20px rgba(0, 0, 0, 1);
     width: 90%;
-    padding: 20px;
 
     #content-heading {
       display: flex;
@@ -43,34 +41,79 @@ const Page = styled.div`
             outline: none;
           }
         }
-
-        .view-switcher {
-          @media (max-width: 550px) {
-            display: none;
-          }
-        }
-
-        div {
-        }
       }
 
       .right {
         font-size: 1.2em;
       }
+    }
 
-      @media (max-width: 670px) {
-        flex-direction: column;
-        gap: 20px;
+    table {
+      width: 100%;
+
+      thead {
+        tr {
+          //position: sticky;
+          width: 100%;
+          z-index: 20;
+          background: #292929;
+          color: #fff;
+
+          th {
+            text-align: left;
+            text-transform: uppercase;
+            padding: 5px;
+          }
+        }
       }
-    }
 
-    .no-data {
-      width: 100%;
-      text-align: center;
-    }
+      tbody {
+        tr {
+          td {
+            padding: 10px 5px;
 
-    @media (max-width: 1500px) {
-      width: 100%;
+            .title-box {
+              //text-align: center;
+
+              .title {
+                font-weight: bold;
+              }
+
+              p {
+                margin: 0;
+              }
+            }
+
+            span {
+              color: #000;
+            }
+
+            &.category {
+              font-weight: 900;
+            }
+          }
+        }
+
+        tr:nth-child(even) {
+          background: #eaeaea;
+        }
+
+        tr:nth-child(odd) {
+          background: #fff;
+        }
+
+        tr.unlocked:nth-child(even) {
+          background: #cff8cf;
+        }
+
+        tr.unlocked:nth-child(odd) {
+          background: #b7e7b7;
+        }
+
+        tr.unlocked .checkbox-wrapper {
+          --c-primary: green;
+        }
+      }
     }
   }
 `;
@@ -87,7 +130,6 @@ const Category = props => {
   const [loading, setLoading] = useState(true);
   const [query, setQuery] = useState("");
   const [groupBy, setGroupBy] = useState();
-  const [viewAsList, setViewAsList] = useState(false);
   const sortDir = 1;
 
   const sorter = (a, b) => (sortDir === 0 ? b.name.localeCompare(a.name) : a.name.localeCompare(b.name));
@@ -144,8 +186,6 @@ const Category = props => {
     setGroupBy(group);
   };
 
-  const toggleViewType = () => setViewAsList(!viewAsList);
-
   return (
     <Layout>
       <Page>
@@ -154,7 +194,6 @@ const Category = props => {
         <div id="database-content">
           <div id="content-heading">
             <div className="left">
-              <div>Group by</div>
               <select onChange={handleGroupSelectChange}>
                 <option value="none">None</option>
                 {category &&
@@ -164,16 +203,13 @@ const Category = props => {
                     </option>
                   ))}
               </select>
-
-              {isTracker && (
-                <button onClick={toggleHideUnlocked}>
-                  {hideUnlocked ? <BiShow size={"30px"} /> : <BiHide size={"30px"} />}
-                </button>
-              )}
-
-              <button className="view-switcher" onClick={toggleViewType}>
-                {viewAsList ? <BsFillGrid3X3GapFill size={"30px"} /> : <BsList size={"30px"} />}
-              </button>
+              <span>
+                {isTracker && (
+                  <button onClick={toggleHideUnlocked} style={{ marginRight: "10px" }}>
+                    {hideUnlocked ? <BiShow size={"30px"} /> : <BiHide size={"30px"} />}
+                  </button>
+                )}
+              </span>
             </div>
 
             <Search
@@ -191,47 +227,52 @@ const Category = props => {
             </div>
           </div>
 
-          <Flex wrap="wrap" direction={viewAsList ? "column" : "row"} justifyContent="center">
-            {data.length > 0 ? (
-              data.map(item => {
-                if (groupBy) {
-                  return (
-                    <>
-                      <ItemCategory item={item} category={category} type={type} />
-                      {item.items &&
-                        item.items.map(i => (
-                          <Item
-                            key={i.id}
-                            viewAsList={viewAsList}
-                            item={i}
-                            type={type}
-                            category={category}
-                            images={images.nodes}
-                          />
-                        ))}
-                    </>
-                  );
-                } else if (item.name) {
-                  return (
-                    <Item
-                      key={item.id}
-                      viewAsList={viewAsList}
-                      item={item}
-                      type={type}
-                      category={category}
-                      images={images.nodes}
-                    />
-                  );
-                }
-              })
-            ) : (
-              <div className="no-data">
-                <p>No data found.</p>
+          {!loading ? (
+            <table cellSpacing="0" cellPadding="0">
+              <thead>
+                <tr>
+                  {isTracker && <th />}
+                  {isTracker && category.hasLevels && <th />}
+                  <th />
+                  {category &&
+                    category &&
+                    category[type].fields.map(field => <th key={field.fragment}>{field.label}</th>)}
+                </tr>
+              </thead>
 
-                {hideUnlocked && <p>You have set unlocked to hidden, maybe you have everything? Congrats!</p>}
-              </div>
-            )}
-          </Flex>
+              <tbody>
+                {data.length > 0 ? (
+                  data.map(item => {
+                    if (groupBy) {
+                      return (
+                        <>
+                          <CategoryTableRow item={item} category={category} type={type} />
+                          {item.items &&
+                            item.items.map(i => (
+                              <TableRow key={i.id} item={i} type={type} category={category} images={images.nodes} />
+                            ))}
+                        </>
+                      );
+                    } else if (item.name) {
+                      return (
+                        <TableRow key={item.id} item={item} type={type} category={category} images={images.nodes} />
+                      );
+                    }
+                  })
+                ) : (
+                  <tr>
+                    <td colSpan={category[type].fields.length + 2} style={{ textAlign: "center" }}>
+                      <p>No data found.</p>
+
+                      {hideUnlocked && <p>You have set unlocked to hidden, maybe you have everything? Congrats!</p>}
+                    </td>
+                  </tr>
+                )}
+              </tbody>
+            </table>
+          ) : (
+            <CircleLoader />
+          )}
         </div>
       </Page>
     </Layout>

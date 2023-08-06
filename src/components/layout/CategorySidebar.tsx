@@ -3,16 +3,9 @@ import React, { useContext } from "react";
 import { styled } from "styled-components";
 import { DataContext } from "../../context/DataContext";
 import { getCategorySettings } from "../../dataHelpers";
+import Sidebar from "../Sidebar";
 
 const Container = styled.div`
-  background: #292929;
-  color: #fff;
-  min-height: 100vh;
-  padding: 20px 0;
-  box-sizing: border-box;
-  width: 10%;
-  min-width: 214px;
-
   nav {
     position: fixed;
     display: flex;
@@ -74,44 +67,46 @@ const CategorySidebar = ({ type }: Props) => {
   const { statistics } = useContext(DataContext);
 
   return (
-    <Container>
-      <nav>
-        {type === "tracker" && (
-          <Link to="/tracker" className="main-category">
-            <span>Statistics</span>
-          </Link>
-        )}
-        {CATEGORY_ORDER.map(mainCategory => {
-          return (
-            <Link key={mainCategory.label} to="#" className="main-category">
-              <span>{mainCategory.label}</span>
-              {mainCategory.categories
-                .filter(categoryFragment => getCategorySettings(categoryFragment)[type])
-                .map(categoryFragment => {
-                  const categorySettings = getCategorySettings(categoryFragment);
-
-                  return (
-                    <Link className="sub-category" key={categoryFragment} to={`/${type}/${categoryFragment}`}>
-                      <span>{categorySettings.label}</span>
-                      {type === "tracker" && statistics[categoryFragment] && (
-                        <span>
-                          {parseInt(
-                            (
-                              (statistics[categoryFragment].unlocked / statistics[categoryFragment].total) *
-                              100
-                            ).toString(),
-                          )}
-                          %
-                        </span>
-                      )}
-                    </Link>
-                  );
-                })}
+    <Sidebar>
+      <Container>
+        <nav>
+          {type === "tracker" && (
+            <Link to="/tracker" className="main-category">
+              <span>Statistics</span>
             </Link>
-          );
-        })}
-      </nav>
-    </Container>
+          )}
+          {CATEGORY_ORDER.map(mainCategory => {
+            return (
+              <Link key={mainCategory.label} to="#" className="main-category">
+                <span>{mainCategory.label}</span>
+                {mainCategory.categories
+                  .filter(categoryFragment => getCategorySettings(categoryFragment)[type])
+                  .map(categoryFragment => {
+                    const categorySettings = getCategorySettings(categoryFragment);
+
+                    return (
+                      <Link className="sub-category" key={categoryFragment} to={`/${type}/${categoryFragment}`}>
+                        <span>{categorySettings.label}</span>
+                        {type === "tracker" && statistics[categoryFragment] && (
+                          <span>
+                            {parseInt(
+                              (
+                                (statistics[categoryFragment].unlocked / statistics[categoryFragment].total) *
+                                100
+                              ).toString(),
+                            )}
+                            %
+                          </span>
+                        )}
+                      </Link>
+                    );
+                  })}
+              </Link>
+            );
+          })}
+        </nav>
+      </Container>
+    </Sidebar>
   );
 };
 

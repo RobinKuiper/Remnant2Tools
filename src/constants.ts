@@ -2,54 +2,24 @@ export const CATEGORIES = [
   {
     label: "Archetypes",
     fragment: "archetypes",
+    hasLevels: false,
     groups: ["world"],
     tracker: {
       fields: [
         {
-          label: "Name",
-          fragment: "name",
-          redacted: false,
-          extraFields: [
-            {
-              label: "Description",
-              fragment: "description",
-            },
-          ],
+          label: "World",
+          fragment: "world",
+          redacted: true,
         },
         {
           label: "Location",
-          fragment: "world",
-          redacted: true,
-          extraFields: [
-            {
-              fragment: "location",
-              redacted: true,
-            },
-          ],
-        },
-        {
-          label: "Material",
-          fragment: "material",
-          redacted: true,
-        },
-        {
-          label: "How to get",
-          fragment: "unlock",
+          fragment: "location",
           redacted: true,
         },
       ],
     },
     database: {
-      fields: [
-        {
-          label: "Name",
-          fragment: "name",
-        },
-        {
-          label: "Description",
-          fragment: "description",
-        },
-      ],
+      fields: [],
     },
   },
   {
@@ -59,42 +29,19 @@ export const CATEGORIES = [
     tracker: {
       fields: [
         {
-          label: "Name",
-          fragment: "name",
-          extraFields: [
-            {
-              label: "description",
-            },
-          ],
+          label: "World",
+          fragment: "world",
+          redacted: true,
         },
         {
           label: "Location",
-          fragment: "world",
-          redacted: true,
-          extraFields: [
-            {
-              fragment: "location",
-              redacted: true,
-            },
-          ],
-        },
-        {
-          label: "How to get",
-          fragment: "unlock",
+          fragment: "location",
           redacted: true,
         },
       ],
     },
     database: {
       fields: [
-        {
-          label: "Name",
-          fragment: "name",
-        },
-        {
-          label: "Description",
-          fragment: "description",
-        },
         {
           label: "Values",
           fragment: "values",
@@ -112,38 +59,24 @@ export const CATEGORIES = [
     tracker: {
       fields: [
         {
-          label: "Name",
-          fragment: "name",
+          label: "World",
+          fragment: "world",
+          redacted: true,
+        },
+        {
+          label: "Location",
+          fragment: "location",
+          redacted: true,
         },
         {
           label: "Mod",
           fragment: "mod",
           redacted: true,
         },
-        {
-          label: "Location",
-          fragment: "world",
-          redacted: true,
-          extraFields: [
-            {
-              fragment: "location",
-              redacted: true,
-            },
-          ],
-        },
-        {
-          label: "How to get",
-          fragment: "unlock",
-          redacted: true,
-        },
       ],
     },
     database: {
       fields: [
-        {
-          label: "Name",
-          fragment: "name",
-        },
         {
           label: "Mod",
           fragment: "mod",
@@ -158,48 +91,19 @@ export const CATEGORIES = [
     tracker: {
       fields: [
         {
-          label: "Name",
-          fragment: "name",
-          extraFields: [
-            {
-              label: "description",
-            },
-          ],
+          label: "World",
+          fragment: "world",
+          redacted: true,
         },
         {
           label: "Location",
-          fragment: "world",
-          redacted: true,
-          extraFields: [
-            {
-              fragment: "location",
-              redacted: true,
-            },
-          ],
-        },
-        {
-          label: "Price/material",
-          fragment: "price_material",
-          redacted: true,
-        },
-        {
-          label: "How to get",
-          fragment: "unlock",
+          fragment: "location",
           redacted: true,
         },
       ],
     },
     database: {
-      fields: [
-        {
-          label: "Name",
-          fragment: "name",
-        },
-        {
-          label: "Description",
-          fragment: "description",
-        },
-      ],
+      fields: [],
     },
   },
   {
@@ -210,43 +114,19 @@ export const CATEGORIES = [
     tracker: {
       fields: [
         {
-          label: "Name",
-          fragment: "name",
-          extraFields: [
-            {
-              label: "description",
-            },
-          ],
+          label: "World",
+          fragment: "world",
+          redacted: true,
         },
         {
           label: "Location",
-          fragment: "world",
-          redacted: true,
-          extraFields: [
-            {
-              fragment: "location",
-              redacted: true,
-            },
-          ],
-        },
-        {
-          label: "How to get",
-          fragment: "unlock",
+          fragment: "location",
           redacted: true,
         },
       ],
     },
     database: {
-      fields: [
-        {
-          label: "Name",
-          fragment: "name",
-        },
-        {
-          label: "Description",
-          fragment: "description",
-        },
-      ],
+      fields: [],
     },
   },
   {
@@ -256,43 +136,19 @@ export const CATEGORIES = [
     tracker: {
       fields: [
         {
-          label: "Name",
-          fragment: "name",
-          extraFields: [
-            {
-              label: "description",
-            },
-          ],
+          label: "World",
+          fragment: "world",
+          redacted: true,
         },
         {
           label: "Location",
-          fragment: "world",
-          redacted: true,
-          extraFields: [
-            {
-              fragment: "location",
-              redacted: true,
-            },
-          ],
-        },
-        {
-          label: "How to get",
-          fragment: "unlock",
+          fragment: "location",
           redacted: true,
         },
       ],
     },
     database: {
-      fields: [
-        {
-          label: "Name",
-          fragment: "name",
-        },
-        {
-          label: "Description",
-          fragment: "description",
-        },
-      ],
+      fields: [],
     },
   },
   {
@@ -302,43 +158,19 @@ export const CATEGORIES = [
     tracker: {
       fields: [
         {
-          label: "Name",
-          fragment: "name",
-          extraFields: [
-            {
-              label: "description",
-            },
-          ],
+          label: "World",
+          fragment: "world",
+          redacted: true,
         },
         {
           label: "Location",
-          fragment: "world",
-          redacted: true,
-          extraFields: [
-            {
-              fragment: "location",
-              redacted: true,
-            },
-          ],
-        },
-        {
-          label: "How to get",
-          fragment: "unlock",
+          fragment: "location",
           redacted: true,
         },
       ],
     },
     database: {
-      fields: [
-        {
-          label: "Name",
-          fragment: "name",
-        },
-        {
-          label: "Description",
-          fragment: "description",
-        },
-      ],
+      fields: [],
     },
   },
   {
@@ -348,43 +180,19 @@ export const CATEGORIES = [
     tracker: {
       fields: [
         {
-          label: "Name",
-          fragment: "name",
-          extraFields: [
-            {
-              label: "description",
-            },
-          ],
+          label: "World",
+          fragment: "world",
+          redacted: true,
         },
         {
           label: "Location",
-          fragment: "world",
-          redacted: true,
-          extraFields: [
-            {
-              fragment: "location",
-              redacted: true,
-            },
-          ],
-        },
-        {
-          label: "How to get",
-          fragment: "unlock",
+          fragment: "location",
           redacted: true,
         },
       ],
     },
     database: {
-      fields: [
-        {
-          label: "Name",
-          fragment: "name",
-        },
-        {
-          label: "Description",
-          fragment: "description",
-        },
-      ],
+      fields: [],
     },
   },
   {
@@ -397,27 +205,19 @@ export const CATEGORIES = [
     tracker: {
       fields: [
         {
-          label: "Name",
-          fragment: "name",
+          label: "World",
+          fragment: "world",
+          redacted: true,
         },
         {
-          label: "Description",
-          fragment: "description",
+          label: "Location",
+          fragment: "location",
           redacted: true,
         },
       ],
     },
     database: {
-      fields: [
-        {
-          label: "Name",
-          fragment: "name",
-        },
-        {
-          label: "Description",
-          fragment: "description",
-        },
-      ],
+      fields: [],
     },
   },
   {
@@ -431,38 +231,19 @@ export const CATEGORIES = [
     tracker: {
       fields: [
         {
-          label: "Name",
-          fragment: "name",
-          extraFields: [
-            {
-              label: "description",
-            },
-          ],
+          label: "World",
+          fragment: "world",
+          redacted: true,
         },
         {
           label: "Location",
-          fragment: "world",
-          redacted: true,
-          extraFields: [
-            {
-              fragment: "location",
-              redacted: true,
-            },
-          ],
-        },
-        {
-          label: "How to get",
-          fragment: "unlock",
+          fragment: "location",
           redacted: true,
         },
       ],
     },
     database: {
       fields: [
-        {
-          label: "Name",
-          fragment: "name",
-        },
         {
           label: "Type",
           fragment: "type",
@@ -491,28 +272,19 @@ export const CATEGORIES = [
     tracker: {
       fields: [
         {
-          label: "Name",
-          fragment: "name",
-        },
-        {
-          label: "Reward",
-          fragment: "material",
+          label: "World",
+          fragment: "world",
           redacted: true,
         },
         {
-          label: "How to get",
-          fragment: "unlock",
+          label: "Location",
+          fragment: "location",
           redacted: true,
         },
       ],
     },
     database: {
-      fields: [
-        {
-          label: "Name",
-          fragment: "name",
-        },
-      ],
+      fields: [],
     },
   },
 ];
