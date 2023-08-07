@@ -86,7 +86,7 @@ const Category = props => {
   const [data, setData] = useState([]);
   const [query, setQuery] = useState("");
   const [groupBy, setGroupBy] = useState();
-  const [viewAsList, setViewAsList] = useState(false);
+  const [viewAsList, setViewAsList] = useState(true);
   const sortDir = 1;
 
   const sorter = (a, b) => (sortDir === 0 ? b.name.localeCompare(a.name) : a.name.localeCompare(b.name));
