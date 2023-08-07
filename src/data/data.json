@@ -1574,7 +1574,7 @@
     "category": "weapons"
   },
   {
-    "name": "Hotshot",
+    "name": "Hot Shot",
     "description": "Imbues ammunition with FIRE and increases Ranged damage by 15% for 20.3s. Shots also apply BURNING, dealing 300.8 FIRE Damage over 10s. Mod Power Req: 1,250",
     "world": "Earth",
     "location": "Eastport",
@@ -2464,15 +2464,6 @@
     "location": "Ashen Wasteland",
     "unlock": "",
     "id": 202,
-    "category": "amulets"
-  },
-  {
-    "name": "Dying Ember",
-    "description": "Gain 5% of base Melee damage dealt as Lifesteal",
-    "world": "Root Earth",
-    "location": "Ashen Wasteland",
-    "unlock": "",
-    "id": 203,
     "category": "amulets"
   },
   {
@@ -3637,15 +3628,6 @@
     "category": "rings"
   },
   {
-    "name": "Downgraded Ring",
-    "description": "Receive 5% less damage for each negative status the attacker is suffering from, Max 4 stacks.",
-    "world": "N'Erud",
-    "location": "Phantom Wasteland",
-    "unlock": "",
-    "id": 329,
-    "category": "rings"
-  },
-  {
     "name": "Drakestone Pearl",
     "description": "Enables Stamina Regeneration during Melee Attacks at 20% of the normal rate.",
     "world": "Losomn",
@@ -3742,15 +3724,6 @@
     "location": "The Great Hall",
     "unlock": "In the Feast event room there will be a chimney with fire. Crouch through it and at the other side you will find the ring.",
     "id": 341,
-    "category": "rings"
-  },
-  {
-    "name": "Focused Jewel",
-    "description": "Continuously Aiming Down Sights reduces Recoil by 25% and gradually reduces Spread up to 35% over 3.5s.",
-    "world": "N'Erud",
-    "location": "",
-    "unlock": "",
-    "id": 342,
     "category": "rings"
   },
   {
@@ -4474,8 +4447,8 @@
     "category": "relicfragments"
   },
   {
-    "name": "Ranged Weakspot Damage",
-    "description": "Ranged Weakspot Damage",
+    "name": "Weakspot Damage",
+    "description": "Weakspot Damage",
     "id": 455,
     "type": "Red fragment relics",
     "subCategories": ["Red fragment relics", "Red fragment relics"],
@@ -4646,7 +4619,7 @@
     "type": "headpiece",
     "id": 520,
     "subCategories": ["Field Medic Set", "headpiece"],
-    "armorset": "Field Medic Set",
+    "armorset": "No Set",
     "category": "armor"
   },
   {
@@ -5130,8 +5103,8 @@
     "weight": 3,
     "stats": "🩸 -2 🔥 0 ⚡ -1 💀 5 🦴 0",
     "id": 576,
-    "subCategories": ["Single Items", "headpiece"],
-    "armorset": "Single Items",
+    "subCategories": ["No Set", "headpiece"],
+    "armorset": "No Set",
     "category": "armor"
   },
   {
@@ -5144,13 +5117,14 @@
     "weight": 8,
     "stats": "🩸 -1 🔥 -1 ⚡ 2 💀 -1 🦴 3",
     "id": 577,
-    "subCategories": ["Single Items", "headpiece"],
-    "armorset": "Single Items",
+    "subCategories": ["No Set", "headpiece"],
+    "armorset": "No Set",
     "category": "armor"
   },
   {
     "id": 467,
     "name": "Faelin",
+    "description": "Light boss",
     "material": "Imposter's Heart",
     "unlock": "Outside the big door there is a plate with a lever in the middle where you need to insert 2 masks. When you pull the lever will be transported to Beatific or Malefic Gallery. For Faelin you need to be in the Beatific.",
     "world": "Losomn",
@@ -5160,6 +5134,7 @@
   {
     "id": 468,
     "name": "Faerin",
+    "description": "Dark boss",
     "material": "Melded Hilt",
     "unlock": "Outside the big door there is a plate with a lever in the middle where you need to insert 2 masks. When you pull the lever will be transported to Beatific or Malefic Gallery. For Faerin you need to be in the Malefic.",
     "world": "Losomn",
@@ -5168,7 +5143,7 @@
   },
   {
     "id": 469,
-    "name": "Nightweaver (Normal)",
+    "name": "Nightweaver",
     "material": "Cursed Dream Silks",
     "unlock": "Defeat her normally.",
     "world": "Losomn",
@@ -5177,7 +5152,7 @@
   },
   {
     "id": 470,
-    "name": "Nightweaver (Heart Kill)",
+    "name": "Nightweaver Spectral",
     "material": "Nightweaver's Finger",
     "unlock": "This is easier done in the first phase. When she summons minions she will have in her chest a bright spot, that's her Heart, destroy it and defeat her.",
     "world": "Losomn",
@@ -5186,7 +5161,7 @@
   },
   {
     "id": 471,
-    "name": "Sha'Hala (Spectral)",
+    "name": "Sha'Hala Spectral",
     "material": "Eidolon Shard",
     "unlock": "Interact just with the terminal to defeat the Spectral form of Sha'hala.",
     "world": "N'Erud",
@@ -5195,7 +5170,7 @@
   },
   {
     "id": 472,
-    "name": "Sha'Hala (Physical)",
+    "name": "Sha'Hala",
     "material": "Void Cinder",
     "unlock": "Before interacting with the terminal use the Override Pin in the hole the terminal has, after that defeat the Physical form of Sha'hala. This will cause your N'Erud world ends so make sure you have collected everything beforehand.",
     "world": "N'Erud",
@@ -5204,7 +5179,7 @@
   },
   {
     "id": 473,
-    "name": "Tal'Ratha (Physical)",
+    "name": "Tal'Ratha",
     "material": "Shining Essence Echo / Spiced Bile",
     "unlock": "When you talk to him refuse to be eaten. It won't be that obvious but the dialog will be in that line. After that defeat him.",
     "world": "N'Erud",
@@ -5213,7 +5188,7 @@
   },
   {
     "id": 474,
-    "name": "Tal'Ratha (Metaphysical)",
+    "name": "Tal'Ratha Metaphysical",
     "material": "Shining Essence Echo / Acidic Jawbone",
     "unlock": "When you talk to him let him eat you. It won't be that obvious but the dialog will be in that line. After that defeat him.",
     "world": "N'Erud",
@@ -5222,7 +5197,7 @@
   },
   {
     "id": 475,
-    "name": "Corruptor (Guardian Kill)",
+    "name": "Corruptor",
     "material": "Twisted Lazurite",
     "unlock": "Defeat The Corruptor when at least you kill one time the Guardian.",
     "world": "Yaesha",
@@ -5231,7 +5206,7 @@
   },
   {
     "id": 476,
-    "name": "Corruptor (No Guardian Kill)",
+    "name": "Corruptor",
     "material": "Hollow Heart",
     "unlock": "Defeat The Corruptor but don't kill Guardian, not even once.",
     "world": "Yaesha",
@@ -5240,7 +5215,7 @@
   },
   {
     "id": 477,
-    "name": "Corrupted Ravager 1",
+    "name": "Corrupted Ravager",
     "material": "Ravager's Maw",
     "unlock": "The Ravager will ask you to kill the Doe. Shoot the Ravager to start the fight and then kill the Doe before he does.",
     "world": "Yaesha",
@@ -5249,7 +5224,7 @@
   },
   {
     "id": 478,
-    "name": "Corrupted Ravager 2",
+    "name": "Corrupted Ravager",
     "material": "Crimson Membrane",
     "unlock": "The Ravager will ask you to kill the Doe. Shoot the Ravager to start the fight, be carefull to not kill the Doe midfight, after that at some point of the fight the Ravager will eat the Doe.",
     "world": "Yaesha",
@@ -5258,7 +5233,7 @@
   },
   {
     "id": 479,
-    "name": "Corrupted Ravager 3",
+    "name": "Corrupted Ravager",
     "material": "Ravager's Mark",
     "unlock": "Kill the Doe when The Ravager asks to kill it.",
     "world": "Yaesha",
@@ -5267,7 +5242,7 @@
   },
   {
     "id": 480,
-    "name": "Corrupted Ravager 4",
+    "name": "Corrupted Ravager",
     "material": "Broken Antler",
     "unlock": "Heal the Doe when The Ravager asks to kill it.",
     "world": "Yaesha",
@@ -5291,5 +5266,268 @@
     "world": "Root Earth",
     "subCategories": ["Root Earth"],
     "category": "worldbosses"
+  },
+  {
+    "name": "Crown of the Red Prince",
+    "description": "A flashy, flame-hot diadem that demands respect and attention in equal measure...were there any subjects left to offer such sentiments.",
+    "type": "headpiece",
+    "armor": 8,
+    "weight": 5,
+    "resistances": {
+      "bleed": -6,
+      "fire": 25,
+      "shock": -6,
+      "blight": 13,
+      "corrosion": -6
+    },
+    "id": 600,
+    "armorset": "No Set",
+    "category": "armor"
+  },
+  {
+    "name": "Field Medic Mask",
+    "description": "This face covering protects you from contagions without obstructing your sight. You feel like a creature from another world in this thing. Perhaps that's fitting.",
+    "type": "headpiece",
+    "armor": 9,
+    "weight": 5,
+    "resistances": {
+      "bleed": 0,
+      "fire": 0,
+      "shock": 0,
+      "blight": 2,
+      "corrosion": 1
+    },
+    "id": 601,
+    "armorset": "Field Medic Set",
+    "category": "armor"
+  },
+  {
+    "name": "Bandit's Mask",
+    "description": "",
+    "type": "headpiece",
+    "armor": 5,
+    "weight": 3,
+    "resistances": {
+      "bleed": 2,
+      "fire": 0,
+      "shock": 0,
+      "blight": 3,
+      "corrosion": 3
+    },
+    "id": 602,
+    "armorset": "Bandit Set",
+    "category": "armor"
+  },
+  {
+    "name": "Bandit's Jacket",
+    "description": "",
+    "type": "chest",
+    "armor": 22,
+    "weight": 11,
+    "resistances": {
+      "bleed": 3,
+      "fire": 0,
+      "shock": 0,
+      "blight": 2,
+      "corrosion": 2
+    },
+    "id": 603,
+    "armorset": "Bandit Set",
+    "category": "armor"
+  },
+  {
+    "name": "Bandit's Trousers",
+    "description": "",
+    "type": "feet",
+    "armor": 13,
+    "weight": 6,
+    "resistances": {
+      "bleed": 2,
+      "fire": 0,
+      "shock": 0,
+      "blight": 2,
+      "corrosion": 1
+    },
+    "id": 604,
+    "armorset": "Bandit Set",
+    "category": "armor"
+  },
+  {
+    "name": "Bandit's Gloves",
+    "description": "",
+    "type": "hands",
+    "armor": 3,
+    "weight": 2,
+    "resistances": {
+      "bleed": 2,
+      "fire": 0,
+      "shock": 0,
+      "blight": 2,
+      "corrosion": 1
+    },
+    "id": 605,
+    "armorset": "Bandit Set",
+    "category": "armor"
+  },
+  {
+    "name": "Cultist Head",
+    "description": "",
+    "type": "headpiece",
+    "armor": 9,
+    "weight": 5,
+    "resistances": {
+      "bleed": 1,
+      "fire": 1,
+      "shock": 1,
+      "blight": 1,
+      "corrosion": 1
+    },
+    "id": 606,
+    "armorset": "Cultist Set",
+    "category": "armor"
+  },
+  {
+    "name": "Cultist Duster",
+    "description": "",
+    "type": "chest",
+    "armor": 36,
+    "weight": 17,
+    "resistances": {
+      "bleed": 1,
+      "fire": 1,
+      "shock": 2,
+      "blight": 3,
+      "corrosion": 2
+    },
+    "id": 607,
+    "armorset": "Cultist Set",
+    "category": "armor"
+  },
+  {
+    "name": "Cultist Britches",
+    "description": "",
+    "type": "feet",
+    "armor": 17,
+    "weight": 10,
+    "resistances": {
+      "bleed": 1,
+      "fire": 1,
+      "shock": 1,
+      "blight": 2,
+      "corrosion": 2
+    },
+    "id": 608,
+    "armorset": "Cultist Set",
+    "category": "armor"
+  },
+  {
+    "name": "Cultist Gloves",
+    "description": "",
+    "type": "hands",
+    "armor": 5,
+    "weight": 6,
+    "resistances": {
+      "bleed": 0,
+      "fire": 1,
+      "shock": 1,
+      "blight": 1,
+      "corrosion": 1
+    },
+    "id": 609,
+    "armorset": "Cultist Set",
+    "category": "armor"
+  },
+  {
+    "name": "Leto Mark I Helmet",
+    "description": "",
+    "type": "headpiece",
+    "armor": 21,
+    "weight": 15,
+    "resistances": {
+      "bleed": 3,
+      "fire": 4,
+      "shock": 2,
+      "blight": 4,
+      "corrosion": 2
+    },
+    "id": 610,
+    "armorset": "Leto Mark I Set",
+    "category": "armor"
+  }
+,
+  {
+    "name": "Leto Mark I Armor",
+    "description": "",
+    "type": "chest",
+    "armor": 82,
+    "weight": 45,
+    "resistances": {
+      "bleed": 4,
+      "fire": 5,
+      "shock": 5,
+      "blight": 5,
+      "corrosion": 5
+    },
+    "id": 611,
+    "armorset": "Leto Mark I Set",
+    "category": "armor"
+  },
+  {
+    "name": "Leto Mark I Leggings",
+    "description": "",
+    "type": "feet",
+    "armor": 45,
+    "weight": 24,
+    "resistances": {
+      "bleed": 4,
+      "fire": 3,
+      "shock": 4,
+      "blight": 3,
+      "corrosion": 4
+    },
+    "id": 612,
+    "armorset": "Leto Mark I Set",
+    "category": "armor"
+  },
+  {
+    "name": "Leto Mark I Gloves",
+    "description": "",
+    "type": "hands",
+    "armor": 16,
+    "weight": 11,
+    "resistances": {
+      "bleed": 2,
+      "fire": 1,
+      "shock": 2,
+      "blight": 3,
+      "corrosion": 2
+    },
+    "id": 613,
+    "armorset": "Leto Mark I Set",
+    "category": "armor"
+  },
+  {
+    "name": "Revivalist",
+    "description": "Increases the Speed of Reviving and being Revived",
+    "values": "5% → 50%",
+    "world": "",
+    "location": "",
+    "unlock": "Revive a teammate 15 times",
+    "id": 614,
+    "category": "traits"
+  },
+  {
+    "name": "Charge Melee Cost",
+    "description": "-X% Melee Charge Attack Stamina Cost",
+    "id": 615,
+    "type": "Blue fragment relics",
+    "category": "relicfragments"
+  },
+  {
+    "name": "Healing Effectiveness",
+    "description": "+X% Healing Effectiveness",
+    "id": 616,
+    "type": "Blue fragment relics",
+    "category": "relicfragments"
   }
 ]
