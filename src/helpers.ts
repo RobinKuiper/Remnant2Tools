@@ -1,10 +1,11 @@
-export const findImage = (name: string, images: any, filterRelativePath: string) => {
+export const findImage = (name: string, images: any, filterRelativePath: string, placeholder: boolean = true) => {
   if (!images) {
     return null;
   }
 
   return (
-    Object.values(images).find(i => i.name === slugify(name) && i.relativePath.includes(filterRelativePath)) || null
+    Object.values(images).find(i => i.name === slugify(name) && i.relativePath.includes(filterRelativePath)) ||
+    (placeholder ? Object.values(images).find(i => i.name === "placeholder") : null)
   );
 };
 
