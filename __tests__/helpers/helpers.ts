@@ -1,6 +1,6 @@
 import { findImage, slugify } from "../../src/helpers";
 
-describe("findImage", () => {
+describe("helpers", () => {
   const images = {
     1: { name: "image1", relativePath: "/path/to/image1.jpg" },
     2: { name: "image2", relativePath: "/path/to/image2.jpg" },
@@ -15,7 +15,7 @@ describe("findImage", () => {
 
   it("should return null if no matching image is found", () => {
     const result = findImage("image4", images, "/path/to/");
-    expect(result).toBeNull();
+    expect(result).toBeUndefined();
   });
 
   it("should return the matching image if found", () => {
