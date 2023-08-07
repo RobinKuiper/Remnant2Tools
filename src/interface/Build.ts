@@ -30,4 +30,8 @@ export interface Build {
   mods: [Mod?, Mod?, Mod?];
   amulet: Item | null;
   rings: [Item?, Item?, Item?, Item?];
+  usedTraitPoints: number;
+  traits?: {
+    [key: string]: number;
+  }
 }

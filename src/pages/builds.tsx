@@ -1,5 +1,5 @@
 import { graphql } from "gatsby";
-import React, { useContext, useState } from "react";
+import React, {useContext, useEffect, useState} from "react";
 import { styled } from "styled-components";
 import ItemSelectModal from "../components/ItemSelectModal";
 import BuildsSidebar from "../components/layout/BuildsSidebar";
@@ -8,6 +8,10 @@ import { BuildsContext } from "../context/BuildContext";
 import type { Build, Item } from "../interface/Build";
 import "react-tooltip/dist/react-tooltip.css";
 import BuildInterface from "../components/BuildInterface";
+import {getAllItems} from "../dataHelpers";
+import {GatsbyImage, getImage} from "gatsby-plugin-image";
+import {findImage} from "../helpers";
+import {MAX_TRAIT_POINTS} from "../constants";
 // import {calculateWeightType} from "../dataHelpers";
 
 const newBuild: Build = {
@@ -24,6 +28,8 @@ const newBuild: Build = {
   fragments: [],
   amulet: null,
   rings: [],
+  usedTraitPoints: 0,
+  traits: {}
 };
 // const newStatistics = {
 //   armor: 0,
@@ -42,12 +48,15 @@ const Page = styled.div`
   flex-direction: row;
 
   #builds-content {
+    justify-content: center;
     z-index: 10;
     box-shadow: 0 0 20px rgba(0, 0, 0, 1);
     width: 90%;
     position: relative;
     background: url("/images/bg1.webp");
     background-size: cover;
+    padding-top: 40px;
+    box-sizing: border-box;
 
     .background {
       position: absolute;
@@ -55,13 +64,36 @@ const Page = styled.div`
       left: 0;
       right: 0;
       bottom: 0;
-      background: linear-gradient(
-        45deg,
-        rgba(255, 255, 255, 1) 11%,
-        rgba(231, 231, 231, 1) 53%,
-        rgba(255, 255, 255, 0) 100%
-      );
+      background: linear-gradient(45deg,
+      rgba(255, 255, 255, 1) 11%,
+      rgba(231, 231, 231, 1) 53%,
+      rgba(255, 255, 255, 0) 100%);
       z-index: -1;
+    }
+
+    .tabs {
+
+      .tabs-menu {
+        display: flex;
+        justify-content: center;
+
+        .tabs-menu-item {
+          padding: 10px;
+          border-bottom: 1px solid #000;
+          border-left: 1px solid #000;
+          border-right: 1px solid #000;
+          cursor: pointer;
+
+          &:first-child {
+            border-right: none;
+          }
+
+          &:hover, &.active {
+            background: #000;
+            color: #fff;
+          }
+        }
+      }
     }
 
     #settings {
@@ -87,6 +119,49 @@ const Page = styled.div`
       width: 100%;
     }
   }
+
+  .traits {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: left;
+    gap: 20px;
+    width: 100%;
+    margin-top: 20px;
+
+    @media (max-width: 1500px) {
+      width: 100%;
+    }
+
+    .trait {
+      text-align: center;
+      cursor: pointer;
+      
+      img {
+        width: 150px;
+      }
+
+      .nodes {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        gap: 3px;
+
+        .node {
+          width: 10px;
+          height: 10px;
+          border-radius: 50%;
+          border: 1px solid #000;
+          background: #fff;
+
+          &.active {
+            background: #932020;
+          }
+        }
+      }
+    }
+  }
 `;
 
 const Builds = props => {
@@ -98,10 +173,12 @@ const Builds = props => {
   const [modalCategory, setModalCategory] = useState("");
   const [index, setIndex] = useState<number | null>(null);
   const [type, setType] = useState<string>(null);
+  const [tab, setTab] = useState<string>("equipment");
   const [name, setName] = useState<string>("");
   const [oldName, setOldName] = useState<string>("");
   const [build, setBuild] = useState<Build>(newBuild);
-
+  const [traits, setTraits] = useState([]);
+  
   // STATISTICS
   // useEffect(() => {
   //   const newStats = {
@@ -195,6 +272,43 @@ const Builds = props => {
     return build;
   };
 
+  useEffect(() => {
+    const allItems = getAllItems();
+    setTraits(allItems.filter(item => item.category === "traits"));
+  }, [tab]);
+  
+  const handlePickTrait = (id: number) => {
+    if (MAX_TRAIT_POINTS === build.usedTraitPoints) return;
+    
+    const newBuild = { ... build };
+    if (!newBuild.traits[id]) {
+      newBuild.traits[id] = 0;
+    }
+    
+      if (newBuild.traits[id] !== 10) {
+        newBuild.traits[id] += 1;
+        newBuild.usedTraitPoints += 1;
+      }
+    
+    setBuild(newBuild)
+  }
+
+  const reduceTrait = (id: number) => {
+    if (0 === build.usedTraitPoints) return;
+
+    const newBuild = { ... build };
+    if (!newBuild.traits[id]) {
+      newBuild.traits[id] = 0;
+    }
+
+    if (newBuild.traits[id] !== 0) {
+      newBuild.traits[id] -= 1;
+      newBuild.usedTraitPoints -= 1;
+    }
+
+    setBuild(newBuild)
+  }
+
   return (
     <Layout>
       <Page>
@@ -203,18 +317,68 @@ const Builds = props => {
         <div id="builds-content">
           <div className="background" />
 
-          <BuildInterface
-            setName={setName}
-            oldName={oldName}
-            name={name}
-            build={build}
-            images={images}
-            setIndex={setIndex}
-            setModalItems={setModalItems}
-            setModalCategory={setModalCategory}
-            setType={setType}
-            setIsOpen={setIsOpen}
-          />
+          <div className="tabs">
+            <div className="tabs-menu">
+              <div 
+                  className={`${tab === "equipment" ? "active" : ""} tabs-menu-item`} 
+                  onClick={() => setTab("equipment")}
+              >
+                Equipment
+              </div>
+              <div className={`${tab === "traits" ? "active" : ""} tabs-menu-item`} onClick={() => setTab("traits")}>
+                Traits
+              </div>
+            </div>
+            
+            <div className="tabs-content">
+              <div className="tabs-content-item">
+                {tab === "equipment" && (
+                  <BuildInterface
+                    setName={setName}
+                    oldName={oldName}
+                    name={name}
+                    build={build}
+                    images={images}
+                    setIndex={setIndex}
+                    setModalItems={setModalItems}
+                    setModalCategory={setModalCategory}
+                    setType={setType}
+                    setIsOpen={setIsOpen}
+                  />
+                )}
+                {tab === "traits" && (
+                    <div className="traits">
+                      {traits.map(trait => (
+                            <div 
+                              key={trait.name} 
+                              className="trait" 
+                              onClick={() => handlePickTrait(trait.id)}
+                              onContextMenu={e => {
+                                e.preventDefault();
+                                reduceTrait(trait.id);
+                              }}
+                            >
+                              <GatsbyImage 
+                                  alt={trait.name ?? ""} 
+                                  image={getImage(findImage(trait.name, images.nodes, "traits"))} 
+                              />
+                              <h3>{trait.name}</h3>
+                              <div className="nodes">
+                                {
+                                  Array.from({ length: 10 }, (_, k) => (
+                                      <div className={`node ${k < build.traits[trait.id] ?? 0 ? "active" : ""}`} />
+                                  ))
+                                }
+                              </div>
+                            </div>
+                        )
+                      )}
+                    </div>
+                )}
+              </div>
+            </div>
+          </div>
+          
         </div>
       </Page>
 

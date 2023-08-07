@@ -81,9 +81,6 @@
   "nano-staged": {
     "src/*.{js,ts,jsx,tsx}": [
       "pnpm lint:fix"
-    ],
-    "src/*.{js,ts,jsx,tsx,json,yml,yaml,md}": [
-      "pnpm prettier"
     ]
   },
   "simple-git-hooks": {

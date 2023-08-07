@@ -288,3 +288,4 @@ export const CATEGORIES = [
     },
   },
 ];
+export const MAX_TRAIT_POINTS = 65;
