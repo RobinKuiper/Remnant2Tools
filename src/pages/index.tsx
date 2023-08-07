@@ -10,6 +10,19 @@ import SecretWorldsPanel from "../components/SecretWorldsPanel";
 
 const Updates = [
   {
+    date: "07-08-2023",
+    messages: [
+      "Image improvements in the tracker and database lists",
+      "Added default weapon mods to the database",
+      "Added more data to weapons and armors",
+      "Added more armor (sets)",
+      "Added more missing images",
+      "Added more relic fragments",
+      "Added armor statistics to the builder",
+      "Added traits to the builder",
+    ],
+  },
+  {
     date: "06-08-2023",
     messages: ["Data improvements", "List and grid view", "Mobile ready", "Group by filter"],
   },

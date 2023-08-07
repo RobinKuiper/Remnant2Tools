@@ -15,7 +15,7 @@ const Container = styled.div`
   .field {
     text-align: right;
   }
-  
+
   .image {
     flex-basis: 100px;
     flex-grow: 0;
@@ -74,12 +74,7 @@ const ListItem = (props: Props) => {
 
           {image && (
             <div className="image">
-            <GatsbyImage
-              image={getImage(image)}
-              alt={item.name}
-              title={item.name}
-              placeholder="none"
-            />
+              <GatsbyImage image={getImage(image)} alt={item.name} title={item.name} placeholder="none" />
             </div>
           )}
 
