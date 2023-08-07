@@ -67,7 +67,7 @@ export const CATEGORIES = [
           label: "Location",
           fragment: "location",
           redacted: true,
-        }
+        },
       ],
     },
     database: {

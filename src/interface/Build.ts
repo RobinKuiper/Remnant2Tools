@@ -33,5 +33,5 @@ export interface Build {
   usedTraitPoints: number;
   traits?: {
     [key: string]: number;
-  }
+  };
 }

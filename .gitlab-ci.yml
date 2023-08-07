@@ -70,7 +70,7 @@ pages:
   needs:
     - build:install
     - test:lint
-#    - test:jest
+  #    - test:jest
   script:
     - npm install -g pnpm
     - pnpm build

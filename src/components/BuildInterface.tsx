@@ -1,12 +1,12 @@
-import React, {useContext, useState} from "react";
-import {AiFillLock, AiFillUnlock} from "react-icons/ai";
-import {Tooltip} from "react-tooltip";
+import React, { useContext, useState } from "react";
+import { AiFillLock, AiFillUnlock } from "react-icons/ai";
+import { Tooltip } from "react-tooltip";
 import BuildItemBox from "./BuildItemBox";
-import {styled} from "styled-components";
-import {DataContext} from "../context/DataContext";
-import {BuildsContext} from "../context/BuildContext";
-import {calculateWeightType, getAllItems, getUnlockedItems} from "../dataHelpers";
-import {slugify} from "../helpers";
+import { styled } from "styled-components";
+import { DataContext } from "../context/DataContext";
+import { BuildsContext } from "../context/BuildContext";
+import { calculateWeightType, getAllItems, getUnlockedItems } from "../dataHelpers";
+import { slugify } from "../helpers";
 
 const Container = styled.div`
   display: flex;
@@ -33,7 +33,7 @@ const Container = styled.div`
       flex-direction: column;
       width: 160px;
       margin-left: -20.66px;
-      
+
       .subtitle {
         margin: 10px 0;
         font-weight: 900;
@@ -49,7 +49,6 @@ const Container = styled.div`
         }
 
         .value {
-
         }
       }
     }
@@ -132,20 +131,20 @@ const Container = styled.div`
 `;
 
 const BuildInterface = ({
-                          setName,
-                          oldName,
-                          name,
-                          build,
-                          images,
-                          setIndex,
-                          setModalItems,
-                          setModalCategory,
-                          setType,
-                          setIsOpen,
-                          statistics
-                        }) => {
-  const {changeName} = useContext(BuildsContext);
-  const {unlocks} = useContext(DataContext);
+  setName,
+  oldName,
+  name,
+  build,
+  images,
+  setIndex,
+  setModalItems,
+  setModalCategory,
+  setType,
+  setIsOpen,
+  statistics,
+}) => {
+  const { changeName } = useContext(BuildsContext);
+  const { unlocks } = useContext(DataContext);
   const [onlyUnlocked, setOnlyUnlocked] = useState(false);
 
   const openModal = (
@@ -186,7 +185,7 @@ const BuildInterface = ({
   return (
     <Container>
       <div id="settings">
-        <input type="text" placeholder="Name" value={name} onChange={handleNameChange} onBlur={handleNameSave}/>
+        <input type="text" placeholder="Name" value={name} onChange={handleNameChange} onBlur={handleNameSave} />
         <div>
           <button
             onClick={toggleOnlyUnlocked}
@@ -194,9 +193,9 @@ const BuildInterface = ({
             data-tooltip-content={onlyUnlocked ? "Showing only unlocked items" : "Showing all items"}
             data-tooltip-place="bottom"
           >
-            {onlyUnlocked ? <AiFillUnlock size={"30px"}/> : <AiFillLock size={"30px"}/>}
+            {onlyUnlocked ? <AiFillUnlock size={"30px"} /> : <AiFillLock size={"30px"} />}
           </button>
-          <Tooltip id="unlocked"/>
+          <Tooltip id="unlocked" />
         </div>
       </div>
 
@@ -209,9 +208,9 @@ const BuildInterface = ({
             type={"headpiece"}
             category={"armor"}
           />
-          <BuildItemBox openModal={openModal} build={build} images={images.nodes} type={"chest"} category={"armor"}/>
-          <BuildItemBox openModal={openModal} build={build} images={images.nodes} type={"hands"} category={"armor"}/>
-          <BuildItemBox openModal={openModal} build={build} images={images.nodes} type={"feet"} category={"armor"}/>
+          <BuildItemBox openModal={openModal} build={build} images={images.nodes} type={"chest"} category={"armor"} />
+          <BuildItemBox openModal={openModal} build={build} images={images.nodes} type={"hands"} category={"armor"} />
+          <BuildItemBox openModal={openModal} build={build} images={images.nodes} type={"feet"} category={"armor"} />
           <div className="main-box">
             <BuildItemBox
               openModal={openModal}
@@ -263,12 +262,12 @@ const BuildInterface = ({
                   <span className="subtitle">Resistances</span>
                   {Object.entries(statistics.resistances).map(([key, value]) => (
                     <span key={key}>
-                  <span className="key">{key}:</span>
-                  <span className="value">{value}</span>
-                </span>
+                      <span className="key">{key}:</span>
+                      <span className="value">{value}</span>
+                    </span>
                   ))}
                 </div>
-              )
+              );
             }
 
             return (
@@ -276,7 +275,7 @@ const BuildInterface = ({
                 <span className="key">{key}:</span>
                 <span className="value">{value}</span>
               </span>
-            )
+            );
           })}
         </div>
 
@@ -418,8 +417,8 @@ const BuildInterface = ({
         </div>
       </div>
       <p style={{ fontSize: "0.8em" }}>
-        * Please be aware that the database might not have received all the data at this time. As a result, 
-        the statistics could be somewhat inaccurate.
+        * Please be aware that the database might not have received all the data at this time. As a result, the
+        statistics could be somewhat inaccurate.
       </p>
     </Container>
   );

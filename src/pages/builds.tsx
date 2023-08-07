@@ -1,5 +1,5 @@
 import { graphql } from "gatsby";
-import React, {useContext, useEffect, useState} from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { styled } from "styled-components";
 import ItemSelectModal from "../components/ItemSelectModal";
 import BuildsSidebar from "../components/layout/BuildsSidebar";
@@ -8,10 +8,10 @@ import { BuildsContext } from "../context/BuildContext";
 import type { Build, Item } from "../interface/Build";
 import "react-tooltip/dist/react-tooltip.css";
 import BuildInterface from "../components/BuildInterface";
-import {getAllItems} from "../dataHelpers";
-import {GatsbyImage, getImage} from "gatsby-plugin-image";
-import {findImage} from "../helpers";
-import {MAX_TRAIT_POINTS} from "../constants";
+import { getAllItems } from "../dataHelpers";
+import { GatsbyImage, getImage } from "gatsby-plugin-image";
+import { findImage } from "../helpers";
+import { MAX_TRAIT_POINTS } from "../constants";
 
 const newBuild: Build = {
   headpiece: null,
@@ -28,7 +28,7 @@ const newBuild: Build = {
   amulet: null,
   rings: [],
   usedTraitPoints: 0,
-  traits: {}
+  traits: {},
 };
 const newStatistics = {
   armor: 0,
@@ -38,8 +38,8 @@ const newStatistics = {
     fire: 0,
     shock: 0,
     blight: 0,
-    corrosion: 0
-  }
+    corrosion: 0,
+  },
 };
 
 const Page = styled.div`
@@ -63,15 +63,16 @@ const Page = styled.div`
       left: 0;
       right: 0;
       bottom: 0;
-      background: linear-gradient(45deg,
-      rgba(255, 255, 255, 1) 11%,
-      rgba(231, 231, 231, 1) 53%,
-      rgba(255, 255, 255, 0) 100%);
+      background: linear-gradient(
+        45deg,
+        rgba(255, 255, 255, 1) 11%,
+        rgba(231, 231, 231, 1) 53%,
+        rgba(255, 255, 255, 0) 100%
+      );
       z-index: -1;
     }
 
     .tabs {
-
       .tabs-menu {
         display: flex;
         justify-content: center;
@@ -82,9 +83,10 @@ const Page = styled.div`
           border: 1px solid #000;
           cursor: pointer;
 
-          transition: all .5s ease-in-out;
+          transition: all 0.5s ease-in-out;
 
-          &:hover, &.active {
+          &:hover,
+          &.active {
             background: darkred;
             color: #fff;
           }
@@ -134,7 +136,6 @@ const Page = styled.div`
       justify-content: center;
 
       @media (max-width: 1500px) {
-
       }
 
       .trait {
@@ -145,7 +146,7 @@ const Page = styled.div`
         cursor: pointer;
         padding: 10px;
         box-sizing: border-box;
-        transition: all .3s ease-in-out;
+        transition: all 0.3s ease-in-out;
 
         &:hover {
           background: #b0b0b0;
@@ -206,7 +207,7 @@ const Builds = props => {
   const [oldName, setOldName] = useState<string>("");
   const [build, setBuild] = useState<Build>(newBuild);
   const [traits, setTraits] = useState([]);
-  
+
   // STATISTICS
   useEffect(() => {
     const newStats = {
@@ -217,8 +218,8 @@ const Builds = props => {
         fire: 0,
         shock: 0,
         blight: 0,
-        corrosion: 0
-      }
+        corrosion: 0,
+      },
     };
     Object.values(build).forEach(item => {
       if (!item) return;
@@ -231,14 +232,14 @@ const Builds = props => {
                 if (i.resistances && i.resistances[rKey]) {
                   newStats.resistances[rKey] += parseInt(i.resistances[rKey]);
                 }
-              })
+              });
             } else {
               if (i[key]) {
                 newStats[key] += parseInt(i[key]);
               }
             }
-          })
-        })
+          });
+        });
       } else {
         Object.keys(newStats).forEach(key => {
           if (key === "resistances") {
@@ -246,18 +247,18 @@ const Builds = props => {
               if (item.resistances && item.resistances[rKey]) {
                 newStats.resistances[rKey] += parseInt(item.resistances[rKey]);
               }
-            })
+            });
           } else {
             if (item[key]) {
               newStats[key] += parseInt(item[key]);
             }
           }
-        })
+        });
       }
-    })
+    });
 
     setStatistics(() => ({ ...newStats }));
-  }, [build])
+  }, [build]);
 
   const resetBuild = () => {
     setName("");
@@ -304,28 +305,28 @@ const Builds = props => {
     const allItems = getAllItems();
     setTraits(allItems.filter(item => item.category === "traits"));
   }, [tab]);
-  
+
   const handlePickTrait = (id: number) => {
     if (MAX_TRAIT_POINTS === build.usedTraitPoints) return;
-    
-    const newBuild = { ... build };
+
+    const newBuild = { ...build };
     if (!newBuild.traits[id]) {
       newBuild.traits[id] = 0;
     }
-    
-      if (newBuild.traits[id] !== 10) {
-        newBuild.traits[id] += 1;
-        newBuild.usedTraitPoints += 1;
-      }
-    
-    setBuild(newBuild)
+
+    if (newBuild.traits[id] !== 10) {
+      newBuild.traits[id] += 1;
+      newBuild.usedTraitPoints += 1;
+    }
+
+    setBuild(newBuild);
     saveBuild(name, newBuild);
-  }
+  };
 
   const reduceTrait = (id: number) => {
     if (0 === build.usedTraitPoints) return;
 
-    const newBuild = { ... build };
+    const newBuild = { ...build };
     if (!newBuild.traits[id]) {
       newBuild.traits[id] = 0;
     }
@@ -335,9 +336,9 @@ const Builds = props => {
       newBuild.usedTraitPoints -= 1;
     }
 
-    setBuild(newBuild)
+    setBuild(newBuild);
     saveBuild(name, newBuild);
-  }
+  };
 
   return (
     <Layout>
@@ -349,9 +350,9 @@ const Builds = props => {
 
           <div className="tabs">
             <div className="tabs-menu">
-              <div 
-                  className={`${tab === "equipment" ? "active" : ""} tabs-menu-item`} 
-                  onClick={() => setTab("equipment")}
+              <div
+                className={`${tab === "equipment" ? "active" : ""} tabs-menu-item`}
+                onClick={() => setTab("equipment")}
               >
                 Equipment
               </div>
@@ -359,7 +360,7 @@ const Builds = props => {
                 Traits
               </div>
             </div>
-            
+
             <div className="tabs-content">
               <div className="tabs-content-item">
                 {tab === "equipment" && (
@@ -378,48 +379,44 @@ const Builds = props => {
                   />
                 )}
                 {tab === "traits" && (
-                    <div className="traits">
-                      <div className="totals">
-                        {build.usedTraitPoints}/{MAX_TRAIT_POINTS} Trait points
-                      </div>
-                      <div className="items">
-                        {traits.map(trait => (
-                            <div
-                              key={trait.name}
-                              className="trait"
-                              onClick={() => handlePickTrait(trait.id)}
-                              onContextMenu={e => {
-                                e.preventDefault();
-                                reduceTrait(trait.id);
-                              }}
-                            >
-                              <div className="image">
-                                <GatsbyImage
-                                  alt={trait.name ?? ""}
-                                  image={getImage(findImage(trait.name, images.nodes, "traits"))}
-                                />
-                              </div>
-                              <h3>{trait.name}</h3>
-                              <div className="nodes">
-                                {
-                                  Array.from({ length: 10 }, (_, k) => (
-                                    <div 
-                                      key={trait.id} 
-                                      className={`node ${k < build.traits[trait.id] ?? 0 ? "active" : ""}`}
-                                    />
-                                  ))
-                                }
-                              </div>
-                            </div>
-                          )
-                        )}
-                      </div>
+                  <div className="traits">
+                    <div className="totals">
+                      {build.usedTraitPoints}/{MAX_TRAIT_POINTS} Trait points
                     </div>
+                    <div className="items">
+                      {traits.map(trait => (
+                        <div
+                          key={trait.name}
+                          className="trait"
+                          onClick={() => handlePickTrait(trait.id)}
+                          onContextMenu={e => {
+                            e.preventDefault();
+                            reduceTrait(trait.id);
+                          }}
+                        >
+                          <div className="image">
+                            <GatsbyImage
+                              alt={trait.name ?? ""}
+                              image={getImage(findImage(trait.name, images.nodes, "traits"))}
+                            />
+                          </div>
+                          <h3>{trait.name}</h3>
+                          <div className="nodes">
+                            {Array.from({ length: 10 }, (_, k) => (
+                              <div
+                                key={trait.id}
+                                className={`node ${k < build.traits[trait.id] ?? 0 ? "active" : ""}`}
+                              />
+                            ))}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
                 )}
               </div>
             </div>
           </div>
-          
         </div>
       </Page>
 
