@@ -67,12 +67,7 @@ export const CATEGORIES = [
           label: "Location",
           fragment: "location",
           redacted: true,
-        },
-        {
-          label: "Mod",
-          fragment: "mod",
-          redacted: true,
-        },
+        }
       ],
     },
     database: {
@@ -80,6 +75,14 @@ export const CATEGORIES = [
         {
           label: "Mod",
           fragment: "mod",
+        },
+        {
+          label: "Damage",
+          fragment: "damage",
+        },
+        {
+          label: "RPS",
+          fragment: "rps",
         },
       ],
     },
@@ -245,12 +248,8 @@ export const CATEGORIES = [
     database: {
       fields: [
         {
-          label: "Type",
-          fragment: "type",
-        },
-        {
-          label: "Armor Amount",
-          fragment: "value",
+          label: "Armor",
+          fragment: "armor",
         },
         {
           label: "Weight",
