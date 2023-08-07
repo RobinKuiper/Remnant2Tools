@@ -12,7 +12,6 @@ import {getAllItems} from "../dataHelpers";
 import {GatsbyImage, getImage} from "gatsby-plugin-image";
 import {findImage} from "../helpers";
 import {MAX_TRAIT_POINTS} from "../constants";
-// import {calculateWeightType} from "../dataHelpers";
 
 const newBuild: Build = {
   headpiece: null,
@@ -31,17 +30,17 @@ const newBuild: Build = {
   usedTraitPoints: 0,
   traits: {}
 };
-// const newStatistics = {
-//   armor: 0,
-//   weight: 0,
-//   resistances: {
-//     bleed: 0,
-//     fire: 0,
-//     shock: 0,
-//     blight: 0,
-//     corrosion: 0
-//   }
-// };
+const newStatistics = {
+  armor: 0,
+  weight: 0,
+  resistances: {
+    bleed: 0,
+    fire: 0,
+    shock: 0,
+    blight: 0,
+    corrosion: 0
+  }
+};
 
 const Page = styled.div`
   display: flex;
@@ -76,20 +75,17 @@ const Page = styled.div`
       .tabs-menu {
         display: flex;
         justify-content: center;
+        gap: 10px;
 
         .tabs-menu-item {
           padding: 10px;
-          border-bottom: 1px solid #000;
-          border-left: 1px solid #000;
-          border-right: 1px solid #000;
+          border: 1px solid #000;
           cursor: pointer;
 
-          &:first-child {
-            border-right: none;
-          }
+          transition: all .5s ease-in-out;
 
           &:hover, &.active {
-            background: #000;
+            background: darkred;
             color: #fff;
           }
         }
@@ -121,42 +117,74 @@ const Page = styled.div`
   }
 
   .traits {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: left;
-    gap: 20px;
-    width: 100%;
     margin-top: 20px;
 
-    @media (max-width: 1500px) {
-      width: 100%;
+    .totals {
+      text-align: center;
+      font-size: 1.2em;
+      font-weight: 900;
+      margin-bottom: 20px;
     }
 
-    .trait {
-      text-align: center;
-      cursor: pointer;
-      
-      img {
-        width: 150px;
+    .items {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+
+      @media (max-width: 1500px) {
+
       }
 
-      .nodes {
+      .trait {
         display: flex;
-        flex-direction: row;
-        justify-content: center;
-        gap: 3px;
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+        cursor: pointer;
+        padding: 10px;
+        box-sizing: border-box;
+        transition: all .3s ease-in-out;
 
-        .node {
-          width: 10px;
-          height: 10px;
-          border-radius: 50%;
-          border: 1px solid #000;
-          background: #fff;
+        &:hover {
+          background: #b0b0b0;
+        }
 
-          &.active {
-            background: #932020;
+        .image {
+          width: 150px;
+          height: auto;
+          overflow: hidden;
+
+          @media (max-width: 1200px) {
+            height: 100px;
+          }
+
+          img {
+            width: 150px;
+
+            @media (max-width: 1200px) {
+              transform: translateY(-80px);
+            }
+          }
+        }
+
+        .nodes {
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+          gap: 3px;
+
+          .node {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            border: 1px solid #000;
+            background: #fff;
+
+            &.active {
+              background: #932020;
+            }
           }
         }
       }
@@ -168,7 +196,7 @@ const Builds = props => {
   const { saveBuild } = useContext(BuildsContext);
   const images = props.data.images;
   const [modalIsOpen, setIsOpen] = useState(false);
-  // const [statistics, setStatistics] = useState(newStatistics);
+  const [statistics, setStatistics] = useState(newStatistics);
   const [modalItems, setModalItems] = useState([]);
   const [modalCategory, setModalCategory] = useState("");
   const [index, setIndex] = useState<number | null>(null);
@@ -180,56 +208,56 @@ const Builds = props => {
   const [traits, setTraits] = useState([]);
   
   // STATISTICS
-  // useEffect(() => {
-  //   const newStats = {
-  //     armor: 0,
-  //     weight: 0,
-  //     resistances: {
-  //       bleed: 0,
-  //       fire: 0,
-  //       shock: 0,
-  //       blight: 0,
-  //       corrosion: 0
-  //     }
-  //   };
-  //   Object.values(build).forEach(item => {
-  //     if (!item) return;
-  //
-  //     if (Array.isArray(item)) {
-  //       item.forEach(i => {
-  //         Object.keys(newStats).forEach(key => {
-  //           if (key === "resistances") {
-  //             Object.keys(statistics.resistances).forEach(rKey => {
-  //               if (i.resistances && i.resistances[rKey]) {
-  //                 newStats.resistances[rKey] += i.resistances[rKey];
-  //               }
-  //             })
-  //           } else {
-  //             if (i[key]) {
-  //               newStats[key] += i[key];
-  //             }
-  //           }
-  //         })
-  //       })
-  //     } else {
-  //       Object.keys(newStats).forEach(key => {
-  //         if (key === "resistances") {
-  //           Object.keys(statistics.resistances).forEach(rKey => {
-  //             if (item.resistances && item.resistances[rKey]) {
-  //               newStats.resistances[rKey] += item.resistances[rKey];
-  //             }
-  //           })
-  //         } else {
-  //           if (item[key]) {
-  //             newStats[key] += item[key];
-  //           }
-  //         }
-  //       })
-  //     }
-  //   })
-  //
-  //   setStatistics(() => ({ ...newStats }));
-  // }, [build])
+  useEffect(() => {
+    const newStats = {
+      armor: 0,
+      weight: 0,
+      resistances: {
+        bleed: 0,
+        fire: 0,
+        shock: 0,
+        blight: 0,
+        corrosion: 0
+      }
+    };
+    Object.values(build).forEach(item => {
+      if (!item) return;
+
+      if (Array.isArray(item)) {
+        item.forEach(i => {
+          Object.keys(newStats).forEach(key => {
+            if (key === "resistances") {
+              Object.keys(statistics.resistances).forEach(rKey => {
+                if (i.resistances && i.resistances[rKey]) {
+                  newStats.resistances[rKey] += parseInt(i.resistances[rKey]);
+                }
+              })
+            } else {
+              if (i[key]) {
+                newStats[key] += parseInt(i[key]);
+              }
+            }
+          })
+        })
+      } else {
+        Object.keys(newStats).forEach(key => {
+          if (key === "resistances") {
+            Object.keys(statistics.resistances).forEach(rKey => {
+              if (item.resistances && item.resistances[rKey]) {
+                newStats.resistances[rKey] += parseInt(item.resistances[rKey]);
+              }
+            })
+          } else {
+            if (item[key]) {
+              newStats[key] += parseInt(item[key]);
+            }
+          }
+        })
+      }
+    })
+
+    setStatistics(() => ({ ...newStats }));
+  }, [build])
 
   const resetBuild = () => {
     setName("");
@@ -291,6 +319,7 @@ const Builds = props => {
       }
     
     setBuild(newBuild)
+    saveBuild(name, newBuild);
   }
 
   const reduceTrait = (id: number) => {
@@ -307,6 +336,7 @@ const Builds = props => {
     }
 
     setBuild(newBuild)
+    saveBuild(name, newBuild);
   }
 
   return (
@@ -344,35 +374,46 @@ const Builds = props => {
                     setModalCategory={setModalCategory}
                     setType={setType}
                     setIsOpen={setIsOpen}
+                    statistics={statistics}
                   />
                 )}
                 {tab === "traits" && (
                     <div className="traits">
-                      {traits.map(trait => (
-                            <div 
-                              key={trait.name} 
-                              className="trait" 
+                      <div className="totals">
+                        {build.usedTraitPoints}/{MAX_TRAIT_POINTS} Trait points
+                      </div>
+                      <div className="items">
+                        {traits.map(trait => (
+                            <div
+                              key={trait.name}
+                              className="trait"
                               onClick={() => handlePickTrait(trait.id)}
                               onContextMenu={e => {
                                 e.preventDefault();
                                 reduceTrait(trait.id);
                               }}
                             >
-                              <GatsbyImage 
-                                  alt={trait.name ?? ""} 
-                                  image={getImage(findImage(trait.name, images.nodes, "traits"))} 
-                              />
+                              <div className="image">
+                                <GatsbyImage
+                                  alt={trait.name ?? ""}
+                                  image={getImage(findImage(trait.name, images.nodes, "traits"))}
+                                />
+                              </div>
                               <h3>{trait.name}</h3>
                               <div className="nodes">
                                 {
                                   Array.from({ length: 10 }, (_, k) => (
-                                      <div className={`node ${k < build.traits[trait.id] ?? 0 ? "active" : ""}`} />
+                                    <div 
+                                      key={trait.id} 
+                                      className={`node ${k < build.traits[trait.id] ?? 0 ? "active" : ""}`}
+                                    />
                                   ))
                                 }
                               </div>
                             </div>
-                        )
-                      )}
+                          )
+                        )}
+                      </div>
                     </div>
                 )}
               </div>

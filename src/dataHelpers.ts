@@ -1,5 +1,4 @@
 import data from "./data/data.json";
-import data_old from "./data/data_old.json";
 import { CATEGORIES } from "./constants";
 
 const getUnlocks = () => {
@@ -17,14 +16,6 @@ export const calculateWeightType = (weight: number) => {
   }
 
   return "Light";
-};
-
-export const getAllItemsOld = () => {
-  return Object.values(data_old).flatMap(mainCategory => {
-    const category = mainCategory.settings.fragment;
-    const items = mainCategory.data.map(item => ({ ...item, category }));
-    return mainCategory.settings.categorized ? getAllCategorizedItems(items, category) : items;
-  });
 };
 
 export const getAllCategorizedItems = (data, category) => {
