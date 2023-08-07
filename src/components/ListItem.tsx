@@ -15,6 +15,12 @@ const Container = styled.div`
   .field {
     text-align: right;
   }
+  
+  .image {
+    flex-basis: 100px;
+    flex-grow: 0;
+    flex-shrink: 0;
+  }
 `;
 
 interface Props {
@@ -67,17 +73,14 @@ const ListItem = (props: Props) => {
           </Flex>
 
           {image && (
+            <div className="image">
             <GatsbyImage
               image={getImage(image)}
               alt={item.name}
               title={item.name}
               placeholder="none"
-              style={
-                image.childImageSharp.gatsbyImageData.height > image.childImageSharp.gatsbyImageData.width
-                  ? { height: "100px" }
-                  : { width: "100px" }
-              }
             />
+            </div>
           )}
 
           <div className="title">

@@ -63,7 +63,7 @@ const DataProvider: React.FC<Props> = ({ children }: Props) => {
       },
     };
 
-    const allItems = getAllItems();
+    const allItems = getAllItems(true);
     allItems.forEach(item => {
       const categoryFragment = item.category;
 

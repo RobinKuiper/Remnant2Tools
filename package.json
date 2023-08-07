@@ -4,6 +4,7 @@
   "private": true,
   "description": "remnant-collectables",
   "author": "Robin Kuiper",
+  "type": "module",
   "keywords": [
     "gatsby"
   ],

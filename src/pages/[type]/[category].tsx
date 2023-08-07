@@ -77,7 +77,7 @@ const Page = styled.div`
 
 const Category = props => {
   const { hideUnlocked, toggleHideUnlocked } = useContext(SettingContext);
-  const { unlocks, statistics } = useContext(DataContext);
+  const { statistics } = useContext(DataContext);
   const categoryFragment = props.params.category;
   const type = props.params.type;
   const images = props.data.images;
@@ -129,7 +129,7 @@ const Category = props => {
   useEffect(() => {
     if (category.fragment !== categoryFragment) return;
 
-    const allItems = hideUnlocked && isTracker ? getAllLockedItems(unlocks) : getAllItems(),
+    const allItems = hideUnlocked && isTracker ? getAllLockedItems() : getAllItems(isTracker),
       items = allItems.filter(item => item.category === category.fragment).sort(sorter);
 
     setData(group(search(items)));

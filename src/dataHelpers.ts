@@ -44,8 +44,10 @@ export const getAllCategorizedItems = (data, category) => {
   });
 };
 
-export const getAllItems = () => {
-  return data;
+export const getAllItems = (trackables: boolean = false) => {
+  return trackables ? data.filter(item => {
+    return typeof item.onlyDB === "undefined" || !item.onlyDB
+  }) : data;
 };
 
 export const getAllLockedItems = () => {
