@@ -4,7 +4,6 @@
   "private": true,
   "description": "remnant-collectables",
   "author": "Robin Kuiper",
-  "type": "module",
   "keywords": [
     "gatsby"
   ],
@@ -23,7 +22,7 @@
     "fix": "pnpm prettier && pnpm lint:fix",
     "test": "jest",
     "test:watch": "jest --watch",
-    "test:ci": "jest --config ./jest.config.cjs --collectCoverage --coverageDirectory=\"./coverage\" --ci --reporters=default --reporters=jest-junit --watchAll=false"
+    "test:ci": "jest --config ./jest.config.js --collectCoverage --coverageDirectory=\"./coverage\" --ci --reporters=default --reporters=jest-junit --watchAll=false"
   },
   "dependencies": {
     "babel-plugin-styled-components": "^2.1.4",
