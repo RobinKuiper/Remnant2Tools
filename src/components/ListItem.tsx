@@ -1,14 +1,13 @@
-import {GatsbyImage, getImage} from "gatsby-plugin-image";
+import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import React from "react";
 import Redacted from "./Redacted";
 import ItemLevel from "./ItemLevel";
-import {Flex} from "../style/global";
-import {BsInfoCircleFill} from "react-icons/bs";
-import {Tooltip} from "react-tooltip";
-import {styled} from "styled-components";
+import { Flex } from "../style/global";
+import { BsInfoCircleFill } from "react-icons/bs";
+import { Tooltip } from "react-tooltip";
+import { styled } from "styled-components";
 
 const Container = styled.div`
-
   .title {
     text-align: left;
   }
@@ -16,7 +15,7 @@ const Container = styled.div`
   .field {
     text-align: right;
   }
-`
+`;
 
 interface Props {
   item: any;
@@ -30,7 +29,7 @@ interface Props {
 }
 
 const ListItem = (props: Props) => {
-  const {item, category, type = "tracker", image, unlocked, handleChange, level, setLevel} = props;
+  const { item, category, type = "tracker", image, unlocked, handleChange, level, setLevel } = props;
 
   return (
     <Container>
@@ -48,23 +47,23 @@ const ListItem = (props: Props) => {
                     onChange={handleChange}
                   />
                   <span className="checkbox__symbol">
-                  <svg
-                    aria-hidden="true"
-                    className="icon-checkbox"
-                    width="28px"
-                    height="28px"
-                    viewBox="0 0 28 28"
-                    version="1"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path d="M4 14l8 7L24 7"></path>
-                  </svg>
-                </span>
+                    <svg
+                      aria-hidden="true"
+                      className="icon-checkbox"
+                      width="28px"
+                      height="28px"
+                      viewBox="0 0 28 28"
+                      version="1"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path d="M4 14l8 7L24 7"></path>
+                    </svg>
+                  </span>
                 </label>
               </div>
             )}
 
-            {type === "tracker" && category.hasLevels && <ItemLevel level={level} setLevel={setLevel}/>}
+            {type === "tracker" && category.hasLevels && <ItemLevel level={level} setLevel={setLevel} />}
           </Flex>
 
           {image && (
@@ -75,8 +74,8 @@ const ListItem = (props: Props) => {
               placeholder="none"
               style={
                 image.childImageSharp.gatsbyImageData.height > image.childImageSharp.gatsbyImageData.width
-                  ? {height: "100px"}
-                  : {width: "100px"}
+                  ? { height: "100px" }
+                  : { width: "100px" }
               }
             />
           )}
@@ -91,7 +90,6 @@ const ListItem = (props: Props) => {
         <Flex alignItems="center" justifyContent="right" gap="40px">
           {category &&
             category[type].fields.map(field => {
-
               if (item[field.fragment] && item[field.fragment] !== "") {
                 return (
                   <div key={field.fragment} className="field">
@@ -99,16 +97,15 @@ const ListItem = (props: Props) => {
                       <div className="field-title">{field.label}</div>
                       <div>
                         {field.redacted && !unlocked ? (
-                          <Redacted value={item[field.fragment]} defaultShow={unlocked} bgColor={"#c7c7c7"}/>
+                          <Redacted value={item[field.fragment]} defaultShow={unlocked} bgColor={"#c7c7c7"} />
                         ) : (
                           item[field.fragment]
                         )}
                       </div>
                     </Flex>
                   </div>
-                )
+                );
               }
-
             })}
         </Flex>
 
@@ -116,7 +113,7 @@ const ListItem = (props: Props) => {
           <>
             <div className="unlock-information">
               <button data-tooltip-id={`${item.name}_tooltip`} data-tooltip-content={item.unlock}>
-                <BsInfoCircleFill/> Unlock information
+                <BsInfoCircleFill /> Unlock information
               </button>
             </div>
             <Tooltip
