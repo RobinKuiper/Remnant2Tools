@@ -86,10 +86,17 @@ const Category = props => {
   const [data, setData] = useState([]);
   const [query, setQuery] = useState("");
   const [groupBy, setGroupBy] = useState();
+  const [sortBy, setSortBy] = useState("name");
   const [viewAsList, setViewAsList] = useState(true);
   const sortDir = 1;
 
-  const sorter = (a, b) => (sortDir === 0 ? b.name.localeCompare(a.name) : a.name.localeCompare(b.name));
+  const sorter = (a, b) => {
+    if (typeof a[sortBy] === "string") {
+      return (sortDir === 0) ? b[sortBy].localeCompare(a[sortBy]) : a[sortBy].localeCompare(b[sortBy]); 
+    }
+
+    return (sortDir === 0) ? b[sortBy] > a[sortBy] ? -1 : 1 : a[sortBy] < b[sortBy] ? -1 : 1;
+  };
 
   const group = (data: any) => {
     if (!groupBy) {
@@ -124,6 +131,7 @@ const Category = props => {
 
   useEffect(() => {
     setGroupBy(category.defaultGroup);
+    setSortBy("name");
   }, [category]);
 
   useEffect(() => {
@@ -133,11 +141,16 @@ const Category = props => {
       items = allItems.filter(item => item.category === category.fragment).sort(sorter);
 
     setData(group(search(items)));
-  }, [query, category, type, categoryFragment, hideUnlocked, groupBy]);
+  }, [query, category, type, categoryFragment, hideUnlocked, groupBy, sortBy]);
 
   const handleGroupSelectChange = e => {
     const group = e.target.value === "none" ? null : e.target.value;
     setGroupBy(group);
+  };
+
+  const handleSortSelectChange = e => {
+    const key = e.target.value === "none" ? "name" : e.target.value;
+    setSortBy(key);
   };
 
   const toggleViewType = () => setViewAsList(!viewAsList);
@@ -161,6 +174,20 @@ const Category = props => {
                   ))}
               </select>
 
+              {category && category.sortKeys && category.sortKeys.length > 0 && (
+                <>
+                  <div>Sort by</div>
+                  <select onChange={handleSortSelectChange}>
+                    <option value="none">None</option>
+                    {category.sortKeys.map(key => (
+                      <option key={key} value={key} selected={groupBy === key}>
+                        {key}
+                      </option>
+                    ))}
+                  </select>
+                </>
+              )}
+              
               {isTracker && (
                 <button onClick={toggleHideUnlocked}>
                   {hideUnlocked ? <BiShow size={"30px"} /> : <BiHide size={"30px"} />}
