@@ -13,7 +13,7 @@ const Container = styled.div`
   z-index: 20;
   position: fixed;
   width: 100%;
-  height: 74px;
+  min-height: 74px;
 
   .center {
     nav {

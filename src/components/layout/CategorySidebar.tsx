@@ -10,24 +10,44 @@ const Container = styled.div`
     position: fixed;
     display: flex;
     flex-direction: column;
+    
+    .sub-links {
+      height: auto;
+      overflow: hidden;
+      transition: all 0.5s ease-in-out;
+
+      @media (max-height: 750px) {
+        height: 0;
+      }
+
+      &.active {
+        height: auto;
+      }
+    }
 
     a,
     div {
       span {
         padding: 5px 10px;
       }
-
-      &.sub-category {
+      
+      &.sub-link {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
         padding: 7.5px 0 7.5px 10px;
         width: 100%;
+
+        &:hover {
+          background: #000;
+        }
       }
 
       &.main-category {
         display: flex;
         flex-direction: column;
+        overflow: hidden;
+        cursor: pointer;
 
         a:first-child {
           margin-top: 5px;
@@ -36,10 +56,6 @@ const Container = styled.div`
         &:hover {
           background: inherit;
         }
-      }
-
-      &:hover {
-        background: #000;
       }
     }
   }
@@ -66,6 +82,12 @@ const CATEGORY_ORDER = [
 
 const CategorySidebar = ({ type }: Props) => {
   const { statistics } = useContext(DataContext);
+  
+  const toggleMainCategory = e => {
+    const parent = e.target.parentElement,
+      subLinks = parent.querySelector(".sub-links");
+    subLinks.classList.toggle("active");
+  }
 
   return (
     <Sidebar>
@@ -79,29 +101,31 @@ const CategorySidebar = ({ type }: Props) => {
           {CATEGORY_ORDER.map(mainCategory => {
             return (
               <div key={mainCategory.label} className="main-category">
-                <span>{mainCategory.label}</span>
-                {mainCategory.categories
-                  .filter(categoryFragment => getCategorySettings(categoryFragment)[type])
-                  .map(categoryFragment => {
-                    const categorySettings = getCategorySettings(categoryFragment);
+                <span onClick={toggleMainCategory}>{mainCategory.label}</span>
+                <div className="sub-links">
+                  {mainCategory.categories
+                    .filter(categoryFragment => getCategorySettings(categoryFragment)[type])
+                    .map(categoryFragment => {
+                      const categorySettings = getCategorySettings(categoryFragment);
 
-                    return (
-                      <Link className="sub-category" key={categoryFragment} to={`/${type}/${categoryFragment}`}>
-                        <span>{categorySettings.label}</span>
-                        {type === "tracker" && statistics[categoryFragment] && (
-                          <span>
+                      return (
+                        <Link className="sub-link" key={categoryFragment} to={`/${type}/${categoryFragment}`}>
+                          <span>{categorySettings.label}</span>
+                          {type === "tracker" && statistics[categoryFragment] && (
+                            <span>
                             {parseInt(
                               (
                                 (statistics[categoryFragment].unlocked / statistics[categoryFragment].total) *
                                 100
                               ).toString(),
                             )}
-                            %
+                              %
                           </span>
-                        )}
-                      </Link>
-                    );
-                  })}
+                          )}
+                        </Link>
+                      );
+                    })}
+                </div>
               </div>
             );
           })}
