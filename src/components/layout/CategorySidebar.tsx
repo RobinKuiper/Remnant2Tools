@@ -11,7 +11,7 @@ const Container = styled.div`
     display: flex;
     flex-direction: column;
 
-    a {
+    a, div {
       span {
         padding: 5px 10px;
       }
@@ -77,7 +77,7 @@ const CategorySidebar = ({ type }: Props) => {
           )}
           {CATEGORY_ORDER.map(mainCategory => {
             return (
-              <Link key={mainCategory.label} to="#" className="main-category">
+              <div key={mainCategory.label} className="main-category">
                 <span>{mainCategory.label}</span>
                 {mainCategory.categories
                   .filter(categoryFragment => getCategorySettings(categoryFragment)[type])
@@ -101,7 +101,7 @@ const CategorySidebar = ({ type }: Props) => {
                       </Link>
                     );
                   })}
-              </Link>
+              </div>
             );
           })}
         </nav>
