@@ -8,7 +8,6 @@ import { BuildsContext } from "../context/BuildContext";
 import type { Build, Item } from "../interface/Build";
 import "react-tooltip/dist/react-tooltip.css";
 import BuildInterface from "../components/BuildInterface";
-import { getAllItems } from "../dataHelpers";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import { findImage } from "../helpers";
 import { MAX_TRAIT_POINTS } from "../constants";
@@ -206,7 +205,7 @@ const Builds = props => {
   const [name, setName] = useState<string>("");
   const [oldName, setOldName] = useState<string>("");
   const [build, setBuild] = useState<Build>(newBuild);
-  const [traits, setTraits] = useState([]);
+  const traits = props.data.items.categories.find(category => category.fragment === "traits").nodes;
 
   // STATISTICS
   useEffect(() => {
@@ -300,11 +299,6 @@ const Builds = props => {
     }
     return build;
   };
-
-  useEffect(() => {
-    const allItems = getAllItems();
-    setTraits(allItems.filter(item => item.category === "traits"));
-  }, [tab]);
 
   const handlePickTrait = (id: number) => {
     if (MAX_TRAIT_POINTS === build.usedTraitPoints) return;
@@ -443,6 +437,19 @@ export const query = graphql`
         relativePath
         childImageSharp {
           gatsbyImageData(quality: 80, layout: CONSTRAINED)
+        }
+      }
+    }
+    items: allItem {
+      totalCount
+      categories: group(field: { category: SELECT }) {
+        fragment: fieldValue
+        totalCount
+        nodes {
+          id
+          externalId
+          name
+          armor
         }
       }
     }

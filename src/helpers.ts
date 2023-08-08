@@ -1,3 +1,5 @@
+export const getPageType = (path: string): string => path.split("/")[1];
+
 export const findImage = (name: string, images: any, filterRelativePath: string, placeholder: boolean = true) => {
   if (!images) {
     return null;

@@ -79,7 +79,7 @@ const ItemSelectModal = ({ setIsOpen, isOpen, items, category, callback, images 
   }, [items, category, isOpen]);
 
   useEffect(() => {
-    setItemsFiltered(search());
+    setItemsFiltered(search().sort((a, b) => a.name.localeCompare(b.name)));
   }, [query, items]);
 
   const closeModal = () => {
@@ -113,9 +113,9 @@ const ItemSelectModal = ({ setIsOpen, isOpen, items, category, callback, images 
                   <GatsbyImage alt={item.name} image={getImage(findImage(item.name, images, category))} />
                 </div>
                 <div>
-                  {(!unlocks[category] || !unlocks[category][item.id] || !unlocks[category][item.id].unlocked) && (
-                    <BsLock />
-                  )}
+                  {(!unlocks[category] ||
+                    !unlocks[category][item.externalId] ||
+                    !unlocks[category][item.externalId].unlocked) && <BsLock />}
                   {item.name}
                 </div>
               </button>

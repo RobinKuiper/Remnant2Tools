@@ -1,4 +1,4 @@
-import { calculateWeightType, getAllItems } from "../../src/dataHelpers";
+import { calculateWeightType } from "../../src/dataHelpers";
 
 describe("calculateWeightType", () => {
   it('should return "Ultra Heavy" when weight is greater than 75', () => {

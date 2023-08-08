@@ -1,5 +1,6 @@
 import React, { createContext, useEffect, useState } from "react";
-import { getAllItems, isUnlocked } from "../dataHelpers";
+import { isUnlocked } from "../dataHelpers";
+import { graphql, useStaticQuery } from "gatsby";
 
 const DEFAULT_VALUES = {
   unlocks: {},
@@ -43,6 +44,17 @@ interface Props {
 const DataProvider: React.FC<Props> = ({ children }: Props) => {
   const [unlocks, setUnlocks] = useState<Unlocks>(DEFAULT_VALUES.unlocks);
   const [statistics, setStatistics] = useState<Statistics>(DEFAULT_VALUES.statistics);
+  const data = useStaticQuery(graphql`
+    {
+      items: allItem {
+        totalCount
+        nodes {
+          category
+          externalId
+        }
+      }
+    }
+  `);
 
   useEffect(() => {
     const storedData = localStorage.getItem("data");
@@ -58,12 +70,12 @@ const DataProvider: React.FC<Props> = ({ children }: Props) => {
   const updateStatistics = () => {
     const newStatistics: Statistics = {
       overall: {
-        total: 0,
+        total: data.items.totalCount,
         unlocked: 0,
       },
     };
 
-    const allItems = getAllItems(true);
+    const allItems = data.items.nodes;
     allItems.forEach(item => {
       const categoryFragment = item.category;
 
@@ -74,13 +86,12 @@ const DataProvider: React.FC<Props> = ({ children }: Props) => {
         };
       }
 
-      if (isUnlocked(categoryFragment, item.id, unlocks)) {
+      if (isUnlocked(categoryFragment, item.externalId, unlocks)) {
         newStatistics[categoryFragment].unlocked++;
         newStatistics.overall.unlocked++;
       }
 
       newStatistics[categoryFragment].total++;
-      newStatistics.overall.total++;
     });
 
     setStatistics(newStatistics);
@@ -102,9 +113,9 @@ const DataProvider: React.FC<Props> = ({ children }: Props) => {
     }
 
     if (newUnlocks[categoryFragment][id].unlocked) {
-      const item = getAllItems().find(i => i.category === categoryFragment && i.id === id);
+      const item = data.items.nodes.find(i => i.category === categoryFragment && i.externalId === id);
       if (item && item.items) {
-        item.items.forEach(i => toggleUnlock(categoryFragment, i.id, true));
+        item.items.forEach(i => toggleUnlock(categoryFragment, i.externalId, true));
       }
     }
 
