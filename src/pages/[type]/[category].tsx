@@ -92,10 +92,10 @@ const Category = props => {
 
   const sorter = (a, b) => {
     if (typeof a[sortBy] === "string") {
-      return (sortDir === 0) ? b[sortBy].localeCompare(a[sortBy]) : a[sortBy].localeCompare(b[sortBy]); 
+      return sortDir === 0 ? b[sortBy].localeCompare(a[sortBy]) : a[sortBy].localeCompare(b[sortBy]);
     }
 
-    return (sortDir === 0) ? b[sortBy] > a[sortBy] ? -1 : 1 : a[sortBy] < b[sortBy] ? -1 : 1;
+    return sortDir === 0 ? (b[sortBy] > a[sortBy] ? -1 : 1) : a[sortBy] < b[sortBy] ? -1 : 1;
   };
 
   const group = (data: any) => {
@@ -187,7 +187,7 @@ const Category = props => {
                   </select>
                 </>
               )}
-              
+
               {isTracker && (
                 <button onClick={toggleHideUnlocked}>
                   {hideUnlocked ? <BiShow size={"30px"} /> : <BiHide size={"30px"} />}

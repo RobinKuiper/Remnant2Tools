@@ -11,7 +11,8 @@ const Container = styled.div`
     display: flex;
     flex-direction: column;
 
-    a, div {
+    a,
+    div {
       span {
         padding: 5px 10px;
       }
