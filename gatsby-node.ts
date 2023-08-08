@@ -1,14 +1,19 @@
-exports.onCreatePage = ({ page, actions }) => {
-  const { createPage, deletePage } = actions;
+import data from "./src/data/data.json";
+import type {GatsbyNode, NodeInput} from "gatsby"
 
-  deletePage(page);
-  // You can access the variable "house" in your page queries now
-  createPage({
-    ...page,
-    context: {
-      ...page.context,
-      house: "Gryffindor",
-      category: "test",
-    },
+export const sourceNodes: GatsbyNode[`sourceNodes`] = (gatsbyApi) => {
+  data.forEach(data => {
+    const node = {
+      ...data,
+      externalId: data.id,
+      // Required fields
+      id: gatsbyApi.createNodeId(data.id),
+      internal: {
+        type: `item`,
+        contentDigest: gatsbyApi.createContentDigest(data)
+      }
+    } as NodeInput;
+
+    gatsbyApi.actions.createNode(node)
   });
-};
+}
