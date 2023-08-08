@@ -10,7 +10,7 @@
   "scripts": {
     "preinstall": "npx only-allow pnpm",
     "postinstall": "npx simple-git-hooks",
-    "start": "gatsby develop",
+    "start": "cross-env ENABLE_GATSBY_REFRESH_ENDPOINT=true gatsby develop",
     "build": "gatsby build",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
@@ -64,6 +64,7 @@
     "@types/testing-library__jest-dom": "^5.14.9",
     "babel-jest": "^29.6.2",
     "babel-preset-gatsby": "^3.11.0",
+    "cross-env": "^7.0.3",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.8.0",
     "eslint-formatter-gitlab": "^4.0.0",
