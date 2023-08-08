@@ -91,7 +91,7 @@ const GridItem = (props: Props) => {
           </div>
         ))}
 
-      {item.unlock && (
+      {type === "tracker" && item.unlock && (
         <>
           <div className="unlock-information">
             <button data-tooltip-id={`${item.name}_tooltip`} data-tooltip-content={item.unlock}>

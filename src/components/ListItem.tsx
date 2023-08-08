@@ -107,7 +107,7 @@ const ListItem = (props: Props) => {
             })}
         </Flex>
 
-        {item.unlock && (
+        {type === "tracker" && item.unlock && (
           <>
             <div className="unlock-information">
               <button data-tooltip-id={`${item.name}_tooltip`} data-tooltip-content={item.unlock}>
