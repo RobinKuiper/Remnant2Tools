@@ -3,10 +3,9 @@ import { AiFillLock, AiFillUnlock } from "react-icons/ai";
 import { Tooltip } from "react-tooltip";
 import BuildItemBox from "./BuildItemBox";
 import { styled } from "styled-components";
-import { DataContext } from "../context/DataContext";
 import { BuildsContext } from "../context/BuildContext";
-import { calculateWeightType, getAllItems, getUnlockedItems } from "../dataHelpers";
-import { slugify } from "../helpers";
+import {calculateWeightType, isUnlocked} from "../dataHelpers";
+import { graphql, useStaticQuery } from "gatsby";
 
 const Container = styled.div`
   display: flex;
@@ -144,8 +143,21 @@ const BuildInterface = ({
   statistics,
 }) => {
   const { changeName } = useContext(BuildsContext);
-  const { unlocks } = useContext(DataContext);
   const [onlyUnlocked, setOnlyUnlocked] = useState(false);
+  const data = useStaticQuery(graphql`
+    {
+      items: allItem {
+        totalCount
+        nodes {
+          name
+          category
+          type
+          id
+          externalId
+        }
+      }
+    }
+  `);
 
   const openModal = (
     category: string,
@@ -153,10 +165,12 @@ const BuildInterface = ({
     index: number | null = null,
     subCategory: string | null = null,
   ) => {
-    const allItems = onlyUnlocked ? getUnlockedItems(unlocks) : getAllItems();
+    const allItems = onlyUnlocked ? 
+      data.items.nodes.filter(item => isUnlocked(category, item.externalId)) : 
+      data.items.nodes;
     let items;
     if (subCategory) {
-      items = allItems.filter(item => item.category === category && item.subCategories.includes(slugify(subCategory)));
+      items = allItems.filter(item => item.category === category && item.type === subCategory);
     } else if (category === "armor") {
       items = allItems.filter(item => item.category === category && item.type === type);
     } else {

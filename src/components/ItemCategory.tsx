@@ -29,8 +29,8 @@ const ItemCategory = ({ item, category, type = "tracker" }: Props) => {
     }
 
     const categoryFragment = category.fragment;
-    if (unlocks[categoryFragment] && unlocks[categoryFragment][item.id]) {
-      setUnlocked(unlocks[categoryFragment][item.id].unlocked);
+    if (unlocks[categoryFragment] && unlocks[categoryFragment][item.externalId]) {
+      setUnlocked(unlocks[categoryFragment][item.externalId].unlocked);
     }
   }, [item, unlocks, type]);
 
@@ -48,7 +48,7 @@ const ItemCategory = ({ item, category, type = "tracker" }: Props) => {
             <div className="checkbox-wrapper">
               <label className="checkbox">
                 <input
-                  id={item.id}
+                  id={item.externalId}
                   className="checkbox__trigger visuallyhidden"
                   type="checkbox"
                   checked={unlocked}

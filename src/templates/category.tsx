@@ -2,16 +2,17 @@ import { graphql } from "gatsby";
 import React, { useContext, useEffect, useState } from "react";
 import { BiHide, BiShow } from "react-icons/bi";
 import { styled } from "styled-components";
-import CategorySidebar from "../../components/layout/CategorySidebar";
-import Layout from "../../components/layout/Layout";
-import Search from "../../components/Search";
-import { DataContext } from "../../context/DataContext";
-import { SettingContext } from "../../context/SettingContext";
-import { getAllItems, getAllLockedItems, getCategorySettings } from "../../dataHelpers";
-import { Flex } from "../../style/global";
-import Item from "../../components/Item";
-import ItemCategory from "../../components/ItemCategory";
+import CategorySidebar from "../components/layout/CategorySidebar";
+import Layout from "../components/layout/Layout";
+import Search from "../components/Search";
+import { DataContext } from "../context/DataContext";
+import { SettingContext } from "../context/SettingContext";
+import { isUnlocked } from "../dataHelpers";
+import { Flex } from "../style/global";
+import Item from "../components/Item";
+import ItemCategory from "../components/ItemCategory";
 import { BsFillGrid3X3GapFill, BsList } from "react-icons/bs";
+import { getPageType } from "../helpers";
 
 const Page = styled.div`
   display: flex;
@@ -78,11 +79,11 @@ const Page = styled.div`
 const Category = props => {
   const { hideUnlocked, toggleHideUnlocked } = useContext(SettingContext);
   const { statistics } = useContext(DataContext);
-  const categoryFragment = props.params.category;
-  const type = props.params.type;
+  const categoryFragment = props.pageContext.settings.fragment;
+  const type = getPageType(props.path);
   const images = props.data.images;
   const isTracker = type === "tracker";
-  const category = getCategorySettings(categoryFragment);
+  const category = props.pageContext.settings;
   const [data, setData] = useState([]);
   const [query, setQuery] = useState("");
   const [groupBy, setGroupBy] = useState();
@@ -135,10 +136,14 @@ const Category = props => {
   }, [category]);
 
   useEffect(() => {
-    if (category.fragment !== categoryFragment) return;
+    if (category.fragment !== categoryFragment) {
+      return;
+    }
 
-    const allItems = hideUnlocked && isTracker ? getAllLockedItems() : getAllItems(isTracker),
-      items = allItems.filter(item => item.category === category.fragment).sort(sorter);
+    // const allItems = hideUnlocked && isTracker ? getAllLockedItems() : getAllItems(isTracker),
+    const items = props.data.items.nodes
+      .filter(item => (hideUnlocked && isTracker ? !isUnlocked(categoryFragment, item.externalId) : true))
+      .sort(sorter);
 
     setData(group(search(items)));
   }, [query, category, type, categoryFragment, hideUnlocked, groupBy, sortBy]);
@@ -264,15 +269,33 @@ const Category = props => {
 export default Category;
 
 export const query = graphql`
-  {
-    images: allFile(filter: { relativePath: { regex: "/items/" } }) {
-      totalCount
+  query ($imgRegex: String!, $categoryFragment: String!) {
+    images: allFile(filter: { relativePath: { regex: $imgRegex } }) {
       nodes {
         name
         relativePath
         childImageSharp {
           gatsbyImageData(quality: 80, layout: CONSTRAINED)
         }
+      }
+    }
+    items: allItem(filter: { category: { eq: $categoryFragment } }, sort: { fields: name, order: ASC }) {
+      totalCount
+      nodes {
+        id
+        externalId
+        name
+        description
+        world
+        location
+        unlock
+        type
+        hasMod
+        damage
+        rps
+        armorset
+        armor
+        weight
       }
     }
   }

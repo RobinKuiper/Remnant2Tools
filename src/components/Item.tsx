@@ -88,10 +88,10 @@ const Item = ({ item, category, images, viewAsList, type = "tracker" }: Props) =
     }
 
     const categoryFragment = category.fragment;
-    if (unlocks[categoryFragment] && unlocks[categoryFragment][item.id]) {
-      setUnlocked(unlocks[categoryFragment][item.id].unlocked);
-      if (unlocks[categoryFragment][item.id].level) {
-        setLevel(unlocks[categoryFragment][item.id].level);
+    if (unlocks[categoryFragment] && unlocks[categoryFragment][item.externalId]) {
+      setUnlocked(unlocks[categoryFragment][item.externalId].unlocked);
+      if (unlocks[categoryFragment][item.externalId].level) {
+        setLevel(unlocks[categoryFragment][item.externalId].level);
       }
     }
   }, [item, unlocks, type]);
@@ -111,7 +111,7 @@ const Item = ({ item, category, images, viewAsList, type = "tracker" }: Props) =
 
   useEffect(() => {
     if (level) {
-      updateLevel(category.fragment, item.id, level);
+      updateLevel(category.fragment, item.externalId, level);
     }
   }, [level]);
 

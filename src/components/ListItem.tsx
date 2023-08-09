@@ -46,7 +46,7 @@ const ListItem = (props: Props) => {
               <div className="checkbox-wrapper">
                 <label className="checkbox">
                   <input
-                    id={item.id}
+                    id={item.externalId}
                     className="checkbox__trigger visuallyhidden"
                     type="checkbox"
                     checked={unlocked}
