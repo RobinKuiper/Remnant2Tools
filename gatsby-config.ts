@@ -14,7 +14,7 @@ const config: GatsbyConfig = {
     discord: "https://discordapp.com/users/81445002168774656",
     website: "https://www.rkuiper.nl",
     patreon: "https://www.patreon.com/bePatron?u=10835266",
-    paypal: "https://paypal.me/robinkuiper"
+    paypal: "https://paypal.me/robinkuiper",
   },
   pathPrefix: "/remnantcollectables",
   // More easily incorporate content into your pages through
