@@ -4,6 +4,7 @@ import CategorySidebar from "../../components/layout/CategorySidebar";
 import Layout from "../../components/layout/Layout";
 import StatisticsPanel from "../../components/StatisticsPanel";
 import SecretWorldsPanel from "../../components/SecretWorldsPanel";
+import Head from "../../components/layout/Head";
 
 const Page = styled.div`
   display: flex;
@@ -69,6 +70,8 @@ const Page = styled.div`
 const Index: React.FC = () => {
   return (
     <Layout>
+      <Head title="Statistics" description="All of the statistics of the items you have unlocked in Remnant II." />
+      
       <Page>
         <CategorySidebar type="tracker" />
 

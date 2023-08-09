@@ -13,6 +13,7 @@ import Item from "../components/Item";
 import ItemCategory from "../components/ItemCategory";
 import { BsFillGrid3X3GapFill, BsList } from "react-icons/bs";
 import { getPageType } from "../helpers";
+import Head from "../components/layout/Head";
 
 const Page = styled.div`
   display: flex;
@@ -166,6 +167,8 @@ const Category = props => {
 
   return (
     <Layout>
+      <Head title={category.label} description="Track your progress in Remnant II." />
+      
       <Page>
         <CategorySidebar type={type} />
 

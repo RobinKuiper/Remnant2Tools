@@ -3,11 +3,12 @@ import type { HeadFC, PageProps } from "gatsby";
 import "../global.css";
 import Layout from "../components/layout/Layout";
 import { styled } from "styled-components";
-import {graphql, Link, useStaticQuery} from "gatsby";
+import {Link, graphql, useStaticQuery} from "gatsby";
 import { StaticImage } from "gatsby-plugin-image";
 import StatisticsPanel from "../components/StatisticsPanel";
 import SecretWorldsPanel from "../components/SecretWorldsPanel";
 import {BiLogoPatreon, BiLogoPaypal} from "react-icons/bi";
+import Head from "../components/layout/Head";
 
 const Updates = [
   {
@@ -212,6 +213,8 @@ const IndexPage: React.FC<PageProps> = () => {
   
   return (
     <Layout>
+      <Head description="Tools for Remnant II" />
+      
       <Homepage>
         <HeroBanner>
           <div>
@@ -293,5 +296,3 @@ const IndexPage: React.FC<PageProps> = () => {
 };
 
 export default IndexPage;
-
-export const Head: HeadFC = () => <title>Home Page</title>;

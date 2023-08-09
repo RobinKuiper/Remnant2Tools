@@ -1,4 +1,5 @@
 export const VERSION = "VERSION_REPLACE";
+export const SITE_TITLE = "Remnant II Tools"
 export const CATEGORIES = [
   {
     label: "Archetypes",
