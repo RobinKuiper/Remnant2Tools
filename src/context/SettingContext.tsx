@@ -26,7 +26,7 @@ const SettingContext = createContext<SettingContextData>({
   toggleDarkMode: () => {},
   toggleHideUnlocked: () => {},
   toggleShowSettings: () => {},
-  changeDefaultView: (view: string) => {},
+  changeDefaultView: () => {},
 });
 
 interface Props {

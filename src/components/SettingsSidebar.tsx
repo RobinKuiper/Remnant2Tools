@@ -110,10 +110,14 @@ const SettingsSidebar = () => {
 
   const copyToClipboard = (e, ref: React.RefObject<HTMLTextAreaElement>) => {
     if (ref.current) {
-      ref.current.select();
-      document.execCommand("copy");
+      if (!navigator.clipboard) {
+        ref.current.select();
+        document.execCommand("copy");
+      } else {
+        const text = ref.current.value;
+        navigator.clipboard.writeText(text);
+      }
       e.target.classList.add("success");
-      console.log(e.target);
     }
   };
 

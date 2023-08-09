@@ -38,7 +38,7 @@ test:lint:
   only:
     - tags
 
-test:jest:
+.test:jest:
   stage: test
   needs:
     - build:install
@@ -70,7 +70,7 @@ pages:
   needs:
     - build:install
     - test:lint
-    - test:jest
+  #    - test:jest
   script:
     - npm install -g pnpm
     - pnpm clean

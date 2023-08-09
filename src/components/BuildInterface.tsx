@@ -4,7 +4,7 @@ import { Tooltip } from "react-tooltip";
 import BuildItemBox from "./BuildItemBox";
 import { styled } from "styled-components";
 import { BuildsContext } from "../context/BuildContext";
-import {calculateWeightType, isUnlocked} from "../dataHelpers";
+import { calculateWeightType, isUnlocked } from "../dataHelpers";
 import { graphql, useStaticQuery } from "gatsby";
 
 const Container = styled.div`
@@ -165,9 +165,9 @@ const BuildInterface = ({
     index: number | null = null,
     subCategory: string | null = null,
   ) => {
-    const allItems = onlyUnlocked ? 
-      data.items.nodes.filter(item => isUnlocked(category, item.externalId)) : 
-      data.items.nodes;
+    const allItems = onlyUnlocked
+      ? data.items.nodes.filter(item => isUnlocked(category, item.externalId))
+      : data.items.nodes;
     let items;
     if (subCategory) {
       items = allItems.filter(item => item.category === category && item.type === subCategory);
