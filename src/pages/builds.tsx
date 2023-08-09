@@ -10,7 +10,7 @@ import "react-tooltip/dist/react-tooltip.css";
 import BuildInterface from "../components/BuildInterface";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import { findImage } from "../helpers";
-import {MAX_TRAIT_POINTS} from "../constants";
+import { MAX_TRAIT_POINTS } from "../constants";
 import Head from "../components/layout/Head";
 
 const newBuild: Build = {
@@ -227,7 +227,7 @@ const Builds = props => {
       if (Array.isArray(item)) {
         item.forEach(i => {
           if (!i) return;
-          
+
           Object.keys(newStats).forEach(key => {
             if (key === "resistances") {
               Object.keys(statistics.resistances).forEach(rKey => {
@@ -340,7 +340,7 @@ const Builds = props => {
   return (
     <Layout>
       <Head title="Builder" description="Save your favorite builds in this Remnant II builder." />
-      
+
       <Page>
         <BuildsSidebar setBuild={setBuild} setOldName={setOldName} setName={setName} resetBuild={resetBuild} />
 

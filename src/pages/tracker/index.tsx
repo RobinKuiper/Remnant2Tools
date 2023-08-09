@@ -71,7 +71,7 @@ const Index: React.FC = () => {
   return (
     <Layout>
       <Head title="Statistics" description="All of the statistics of the items you have unlocked in Remnant II." />
-      
+
       <Page>
         <CategorySidebar type="tracker" />
 

@@ -168,7 +168,7 @@ const Category = props => {
   return (
     <Layout>
       <Head title={category.label} description="Track your progress in Remnant II." />
-      
+
       <Page>
         <CategorySidebar type={type} />
 

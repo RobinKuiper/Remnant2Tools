@@ -1,13 +1,13 @@
 import * as React from "react";
-import type { HeadFC, PageProps } from "gatsby";
+import type { PageProps } from "gatsby";
 import "../global.css";
 import Layout from "../components/layout/Layout";
 import { styled } from "styled-components";
-import {Link, graphql, useStaticQuery} from "gatsby";
+import { Link, graphql, useStaticQuery } from "gatsby";
 import { StaticImage } from "gatsby-plugin-image";
 import StatisticsPanel from "../components/StatisticsPanel";
 import SecretWorldsPanel from "../components/SecretWorldsPanel";
-import {BiLogoPatreon, BiLogoPaypal} from "react-icons/bi";
+import { BiLogoPatreon, BiLogoPaypal } from "react-icons/bi";
 import Head from "../components/layout/Head";
 
 const Updates = [
@@ -137,7 +137,7 @@ const Homepage = styled.div`
         }
       }
     }
-    
+
     .buttons {
       display: flex;
       flex-direction: column;
@@ -154,24 +154,24 @@ const PatreonButton = styled.div`
   text-align: center;
   border-radius: 10px;
   width: 190px;
-  
-  transition: all .3s ease-in-out;
-  
+
+  transition: all 0.3s ease-in-out;
+
   &:hover {
-    background: #CA0F25;
+    background: #ca0f25;
   }
-  
+
   div {
     display: flex;
     align-items: center;
     gap: 10px;
-    font-size: .95em;
-    
+    font-size: 0.95em;
+
     .icon {
       color: #000;
     }
   }
-`
+`;
 
 const PaypalButton = styled.div`
   background: #009cde;
@@ -180,24 +180,24 @@ const PaypalButton = styled.div`
   text-align: center;
   border-radius: 10px;
   width: 190px;
-  
-  transition: all .3s ease-in-out;
-  
+
+  transition: all 0.3s ease-in-out;
+
   &:hover {
     background: #003087;
   }
-  
+
   div {
     display: flex;
     align-items: center;
     gap: 10px;
-    font-size: .95em;
-    
+    font-size: 0.95em;
+
     .icon {
       color: #000;
     }
   }
-`
+`;
 
 const IndexPage: React.FC<PageProps> = () => {
   const data = useStaticQuery(graphql`
@@ -210,11 +210,11 @@ const IndexPage: React.FC<PageProps> = () => {
       }
     }
   `);
-  
+
   return (
     <Layout>
       <Head description="Tools for Remnant II" />
-      
+
       <Homepage>
         <HeroBanner>
           <div>
@@ -252,26 +252,27 @@ const IndexPage: React.FC<PageProps> = () => {
 
           <StatisticsPanel />
           <SecretWorldsPanel />
-          
+
           <div className="panel">
             <h3>Buy me a coffee!</h3>
-            
+
             <p>
-              Hey fellow Remnant 2 enthusiasts! 🎮☕<br />
-              If you're finding these tools handy and they're enhancing your gaming experience, 
-              consider supporting me with a virtual cup of coffee! <br />
+              Hey fellow Remnant 2 enthusiasts! 🎮☕
+              <br />
+              If you're finding these tools handy and they're enhancing your gaming experience, consider supporting me
+              with a virtual cup of coffee! <br />
               Your support helps me keep the tools up-to-date. <br />
               Every sip counts in our journey to conquer the challenges of the game together. <br />
               Thanks for being a part of our adventure! Cheers! 🚀🔥
             </p>
-            
+
             <div className="buttons">
               <Link to={data.site.siteMetadata.patreon} title="Robin Kuiper's Patreon" target="_blank">
                 <PatreonButton>
                   <div>
-                  <span className="icon">
-                    <BiLogoPatreon size="20px" />
-                  </span>
+                    <span className="icon">
+                      <BiLogoPatreon size="20px" />
+                    </span>
                     <span>Become a patron</span>
                   </div>
                 </PatreonButton>
@@ -280,9 +281,9 @@ const IndexPage: React.FC<PageProps> = () => {
               <Link to={data.site.siteMetadata.paypal} title="Robin Kuiper's Paypal" target="_blank">
                 <PaypalButton>
                   <div>
-                  <span className="icon">
-                    <BiLogoPaypal size="20px" />
-                  </span>
+                    <span className="icon">
+                      <BiLogoPaypal size="20px" />
+                    </span>
                     <span>Paypal donate</span>
                   </div>
                 </PaypalButton>

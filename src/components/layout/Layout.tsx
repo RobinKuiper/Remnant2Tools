@@ -1,12 +1,12 @@
 import React from "react";
 import { styled } from "styled-components";
 import TopBar from "./TopBar";
-import { BsDiscord, BsLink45Deg, BsLinkedin } from "react-icons/bs";
+import { BsDiscord, BsLinkedin } from "react-icons/bs";
 import { AiFillGitlab } from "react-icons/ai";
 import { graphql, useStaticQuery } from "gatsby";
 import SettingsSidebar from "../SettingsSidebar";
-import {BiLogoPatreon, BiLogoPaypal} from "react-icons/bi";
-import {StaticImage} from "gatsby-plugin-image";
+import { BiLogoPatreon, BiLogoPaypal } from "react-icons/bi";
+import { StaticImage } from "gatsby-plugin-image";
 // import CookieConsent from "react-cookie-consent";
 
 const Container = styled.div`

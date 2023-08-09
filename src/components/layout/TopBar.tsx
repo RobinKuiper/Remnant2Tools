@@ -4,7 +4,7 @@ import { styled } from "styled-components";
 import { Flex } from "../../style/global";
 import { RiSettings3Line } from "react-icons/ri";
 import { SettingContext } from "../../context/SettingContext";
-import {StaticImage} from "gatsby-plugin-image";
+import { StaticImage } from "gatsby-plugin-image";
 
 const Container = styled.div`
   padding: 10px 10px;
