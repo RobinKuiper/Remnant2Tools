@@ -74,6 +74,8 @@ pages:
   script:
     - npm install -g pnpm
     - sed -i "s/VERSION_REPLACE/$CI_COMMIT_TAG/g" src/constants.ts
+    - sed -i "s/SITE_VERSION/$CI_COMMIT_TAG/g" static/humans.txt
+    - sed -i "s/CURRENT_DATE/$(date '+%Y-%m-%d')/g" static/humans.txt
     - pnpm build
   artifacts:
     paths:
