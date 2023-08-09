@@ -18,7 +18,7 @@ const Page = styled.div`
   flex-direction: row;
 
   #database-content {
-    z-index: 10;
+    z-index: 65;
     box-shadow: 0 0 20px rgba(0, 0, 0, 1);
     width: 90%;
     padding: 20px;
@@ -76,7 +76,7 @@ const Page = styled.div`
 `;
 
 const Category = props => {
-  const { hideUnlocked, toggleHideUnlocked } = useContext(SettingContext);
+  const { hideUnlocked, toggleHideUnlocked, defaultView } = useContext(SettingContext);
   const { statistics } = useContext(DataContext);
   const categoryFragment = props.params.category;
   const type = props.params.type;
@@ -87,8 +87,12 @@ const Category = props => {
   const [query, setQuery] = useState("");
   const [groupBy, setGroupBy] = useState();
   const [sortBy, setSortBy] = useState("name");
-  const [viewAsList, setViewAsList] = useState(true);
+  const [viewAsList, setViewAsList] = useState(defaultView === "list");
   const sortDir = 1;
+
+  useEffect(() => {
+    setViewAsList(defaultView === "list");
+  }, [defaultView]);
 
   const sorter = (a, b) => {
     if (typeof a[sortBy] === "string") {

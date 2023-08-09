@@ -27,6 +27,7 @@ interface DataContextData {
   toggleUnlock: (category: string, id: number) => void;
   updateLevel: (category: string, id: number, level: number) => void;
   statistics: Statistics;
+  updateUnlocks: () => void;
 }
 
 const DataContext = createContext<DataContextData>({
@@ -34,6 +35,7 @@ const DataContext = createContext<DataContextData>({
   toggleUnlock: () => {},
   updateLevel: () => {},
   statistics: DEFAULT_VALUES.statistics,
+  updateUnlocks: () => {},
 });
 
 interface Props {
@@ -45,10 +47,7 @@ const DataProvider: React.FC<Props> = ({ children }: Props) => {
   const [statistics, setStatistics] = useState<Statistics>(DEFAULT_VALUES.statistics);
 
   useEffect(() => {
-    const storedData = localStorage.getItem("data");
-    if (storedData) {
-      setUnlocks(prevUnlocks => ({ ...prevUnlocks, ...JSON.parse(storedData) }));
-    }
+    updateUnlocks();
   }, []);
 
   useEffect(() => {
@@ -130,6 +129,13 @@ const DataProvider: React.FC<Props> = ({ children }: Props) => {
     localStorage.setItem("data", JSON.stringify(newUnlocks));
   };
 
+  const updateUnlocks = () => {
+    const storedData = localStorage.getItem("data");
+    if (storedData) {
+      setUnlocks(prevUnlocks => ({ ...prevUnlocks, ...JSON.parse(storedData) }));
+    }
+  };
+
   return (
     <DataContext.Provider
       value={{
@@ -137,6 +143,7 @@ const DataProvider: React.FC<Props> = ({ children }: Props) => {
         toggleUnlock,
         updateLevel,
         statistics,
+        updateUnlocks,
       }}
     >
       {children}
