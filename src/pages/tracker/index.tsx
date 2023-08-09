@@ -1,9 +1,9 @@
 import React from "react";
 import { styled } from "styled-components";
-import CategorySidebar from "../../components/layout/CategorySidebar";
+import CategorySidebar from "../../components/database/CategorySidebar";
 import Layout from "../../components/layout/Layout";
-import StatisticsPanel from "../../components/StatisticsPanel";
-import SecretWorldsPanel from "../../components/SecretWorldsPanel";
+import StatisticsPanel from "../../components/statistics/StatisticsPanel";
+import SecretWorldsPanel from "../../components/statistics/SecretWorldsPanel";
 import Head from "../../components/layout/Head";
 
 const Page = styled.div`

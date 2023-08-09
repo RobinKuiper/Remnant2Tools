@@ -1,7 +1,7 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 import { DataContext } from "../../src/context/DataContext";
-import CategorySidebar from "../../src/components/layout/CategorySidebar";
+import CategorySidebar from "../../src/components/database/CategorySidebar";
 
 // Mock the DataContext value
 const mockDataContextValue = {

@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { styled } from "styled-components";
-import { DataContext } from "../context/DataContext";
-import { Flex } from "../style/global";
+import { DataContext } from "../../context/DataContext";
+import { Flex } from "../../style/global";
 
 const Container = styled.div`
   flex-basis: 100%;

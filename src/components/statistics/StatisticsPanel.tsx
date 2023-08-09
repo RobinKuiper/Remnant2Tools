@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
 import { styled } from "styled-components";
-import { DataContext } from "../context/DataContext";
-import { calculatePercentage } from "../helpers";
-import { CATEGORIES } from "../constants";
+import { DataContext } from "../../context/DataContext";
+import { calculatePercentage } from "../../helpers";
+import { CATEGORIES } from "../../constants";
 
 const Container = styled.div`
   width: 400px;

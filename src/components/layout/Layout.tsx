@@ -4,7 +4,7 @@ import TopBar from "./TopBar";
 import { BsDiscord, BsLinkedin } from "react-icons/bs";
 import { AiFillGitlab } from "react-icons/ai";
 import { graphql, useStaticQuery } from "gatsby";
-import SettingsSidebar from "../SettingsSidebar";
+import SettingsSidebar from "./SettingsSidebar";
 import { BiLogoPatreon, BiLogoPaypal } from "react-icons/bi";
 import { StaticImage } from "gatsby-plugin-image";
 // import CookieConsent from "react-cookie-consent";

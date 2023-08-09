@@ -1,13 +1,13 @@
 import { graphql } from "gatsby";
 import React, { useContext, useEffect, useState } from "react";
 import { styled } from "styled-components";
-import ItemSelectModal from "../components/ItemSelectModal";
-import BuildsSidebar from "../components/layout/BuildsSidebar";
+import ItemSelectModal from "../components/builder/ItemSelectModal";
+import BuildsSidebar from "../components/builder/BuildsSidebar";
 import Layout from "../components/layout/Layout";
 import { BuildsContext } from "../context/BuildContext";
 import type { Build, Item } from "../interface/Build";
 import "react-tooltip/dist/react-tooltip.css";
-import BuildInterface from "../components/BuildInterface";
+import BuildInterface from "../components/builder/BuildInterface";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import { findImage } from "../helpers";
 import { MAX_TRAIT_POINTS } from "../constants";

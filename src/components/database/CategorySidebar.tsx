@@ -3,7 +3,7 @@ import React, { useContext } from "react";
 import { styled } from "styled-components";
 import { DataContext } from "../../context/DataContext";
 import { getCategorySettings } from "../../dataHelpers";
-import Sidebar from "../Sidebar";
+import Sidebar from "../layout/Sidebar";
 
 const Container = styled.div`
   nav {

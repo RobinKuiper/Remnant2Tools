@@ -1,11 +1,11 @@
 import React, { useContext, useEffect, useRef } from "react";
 import { styled } from "styled-components";
-import { SettingContext } from "../context/SettingContext";
+import { SettingContext } from "../../context/SettingContext";
 import { CiImport } from "react-icons/ci";
 import { AiOutlineCopy } from "react-icons/ai";
-import { DataContext } from "../context/DataContext";
-import { BuildsContext } from "../context/BuildContext";
-import {LAST_UPDATED, VERSION} from "../constants";
+import { DataContext } from "../../context/DataContext";
+import { BuildsContext } from "../../context/BuildContext";
+import {LAST_UPDATED, VERSION} from "../../constants";
 
 const Container = styled.div`
   position: fixed;

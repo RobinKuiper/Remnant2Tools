@@ -5,8 +5,8 @@ import Layout from "../components/layout/Layout";
 import { styled } from "styled-components";
 import { Link, graphql, useStaticQuery } from "gatsby";
 import { StaticImage } from "gatsby-plugin-image";
-import StatisticsPanel from "../components/StatisticsPanel";
-import SecretWorldsPanel from "../components/SecretWorldsPanel";
+import StatisticsPanel from "../components/statistics/StatisticsPanel";
+import SecretWorldsPanel from "../components/statistics/SecretWorldsPanel";
 import { BiLogoPatreon, BiLogoPaypal } from "react-icons/bi";
 import Head from "../components/layout/Head";
 

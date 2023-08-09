@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { styled } from "styled-components";
 import { BuildsContext } from "../../context/BuildContext";
 import { AiFillCopy, AiFillDelete } from "react-icons/ai";
-import Sidebar from "../Sidebar";
+import Sidebar from "../layout/Sidebar";
 
 const Container = styled.div`
   nav {

@@ -3,8 +3,8 @@ import { AiFillLock, AiFillUnlock } from "react-icons/ai";
 import { Tooltip } from "react-tooltip";
 import BuildItemBox from "./BuildItemBox";
 import { styled } from "styled-components";
-import { BuildsContext } from "../context/BuildContext";
-import { calculateWeightType, isUnlocked } from "../dataHelpers";
+import { BuildsContext } from "../../context/BuildContext";
+import { calculateWeightType, isUnlocked } from "../../dataHelpers";
 import { graphql, useStaticQuery } from "gatsby";
 
 const Container = styled.div`

@@ -2,7 +2,7 @@ import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import React from "react";
 import Redacted from "./Redacted";
 import ItemLevel from "./ItemLevel";
-import { Flex } from "../style/global";
+import { Flex } from "../../style/global";
 import { BsInfoCircleFill } from "react-icons/bs";
 import { Tooltip } from "react-tooltip";
 
