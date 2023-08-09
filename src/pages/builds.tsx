@@ -51,7 +51,7 @@ const Page = styled.div`
     box-shadow: 0 0 20px rgba(0, 0, 0, 1);
     width: 90%;
     position: relative;
-    background: url("/images/bg1.webp");
+    background: url("../images/bg1.webp");
     background-size: cover;
     padding-top: 40px;
     box-sizing: border-box;
@@ -225,6 +225,8 @@ const Builds = props => {
 
       if (Array.isArray(item)) {
         item.forEach(i => {
+          if (!i) return;
+          
           Object.keys(newStats).forEach(key => {
             if (key === "resistances") {
               Object.keys(statistics.resistances).forEach(rKey => {

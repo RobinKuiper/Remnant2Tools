@@ -16,7 +16,7 @@ const Page = styled.div`
     padding: 20px;
 
     position: relative;
-    background: url("/images/bg2.webp");
+    background: url("../images/bg2.webp");
     background-size: cover;
 
     .background {
