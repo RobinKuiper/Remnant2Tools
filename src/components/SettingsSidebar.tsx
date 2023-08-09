@@ -5,7 +5,7 @@ import { CiImport } from "react-icons/ci";
 import { AiOutlineCopy } from "react-icons/ai";
 import { DataContext } from "../context/DataContext";
 import { BuildsContext } from "../context/BuildContext";
-import { VERSION } from "../constants";
+import {LAST_UPDATED, VERSION} from "../constants";
 
 const Container = styled.div`
   position: fixed;
@@ -100,6 +100,11 @@ const Container = styled.div`
   }
 
   .version {
+    position: absolute;
+    bottom: 60px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
     font-size: 0.8em;
   }
 `;
@@ -208,7 +213,10 @@ const SettingsSidebar = () => {
         </div>
       </div>
 
-      <div className="version">Version: {VERSION}</div>
+      <div className="version">
+        <span>Version: {VERSION}</span>
+        <span>Last updated: {LAST_UPDATED}</span>
+      </div>
     </Container>
   );
 };
