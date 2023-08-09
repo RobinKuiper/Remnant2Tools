@@ -10,6 +10,15 @@ import SecretWorldsPanel from "../components/SecretWorldsPanel";
 
 const Updates = [
   {
+    date: "09-08-2023",
+    messages: [
+      "Added a settings sidebar",
+      "Added export/import features to the settings sidebar",
+      "A lot of codebase improvements",
+      "Fixed a bug where tooltips could render below other elements",
+    ],
+  },
+  {
     date: "07-08-2023",
     messages: [
       "Image improvements in the tracker and database lists",
