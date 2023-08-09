@@ -10,7 +10,7 @@ const Container = styled.div`
     position: fixed;
     display: flex;
     flex-direction: column;
-    
+
     .sub-links {
       height: auto;
       overflow: hidden;
@@ -30,7 +30,7 @@ const Container = styled.div`
       span {
         padding: 5px 10px;
       }
-      
+
       &.sub-link {
         display: flex;
         flex-direction: row;
@@ -82,12 +82,12 @@ const CATEGORY_ORDER = [
 
 const CategorySidebar = ({ type }: Props) => {
   const { statistics } = useContext(DataContext);
-  
+
   const toggleMainCategory = e => {
     const parent = e.target.parentElement,
       subLinks = parent.querySelector(".sub-links");
     subLinks.classList.toggle("active");
-  }
+  };
 
   return (
     <Sidebar>
@@ -113,14 +113,14 @@ const CategorySidebar = ({ type }: Props) => {
                           <span>{categorySettings.label}</span>
                           {type === "tracker" && statistics[categoryFragment] && (
                             <span>
-                            {parseInt(
-                              (
-                                (statistics[categoryFragment].unlocked / statistics[categoryFragment].total) *
-                                100
-                              ).toString(),
-                            )}
+                              {parseInt(
+                                (
+                                  (statistics[categoryFragment].unlocked / statistics[categoryFragment].total) *
+                                  100
+                                ).toString(),
+                              )}
                               %
-                          </span>
+                            </span>
                           )}
                         </Link>
                       );

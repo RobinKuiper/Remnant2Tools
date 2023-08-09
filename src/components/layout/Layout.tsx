@@ -4,6 +4,7 @@ import TopBar from "./TopBar";
 import { BsDiscord, BsLink45Deg, BsLinkedin } from "react-icons/bs";
 import { AiFillGitlab } from "react-icons/ai";
 import { graphql, useStaticQuery } from "gatsby";
+import SettingsSidebar from "../SettingsSidebar";
 // import CookieConsent from "react-cookie-consent";
 
 const Container = styled.div`
@@ -22,7 +23,7 @@ const Container = styled.div`
     height: 35px;
     bottom: 0;
     background: #292929;
-    z-index: 30;
+    z-index: 100;
     color: #fff;
     padding: 5px 10px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 1);
@@ -136,6 +137,7 @@ const Layout = ({ children }: Props) => {
       {/*>*/}
       {/*  This website uses cookies to enhance the user experience.*/}
       {/*</CookieConsent>*/}
+      <SettingsSidebar />
     </Container>
   );
 };

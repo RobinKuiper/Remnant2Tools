@@ -15,6 +15,7 @@ interface BuildsContextData {
   deleteBuild: (name: string) => void;
   copyBuild: (name: string) => void;
   changeName: (oldName: string, newName: string) => void;
+  updateBuilds: () => void;
 }
 
 const BuildsContext = createContext<BuildsContextData>({
@@ -23,6 +24,7 @@ const BuildsContext = createContext<BuildsContextData>({
   deleteBuild: () => {},
   copyBuild: () => {},
   changeName: () => {},
+  updateBuilds: () => {},
 });
 
 interface Props {
@@ -33,11 +35,15 @@ const BuildsProvider: React.FC<Props> = ({ children }: Props) => {
   const [builds, setBuilds] = useState<Builds>(DEFAULT_VALUES.builds);
 
   useEffect(() => {
+    updateBuilds();
+  }, []);
+
+  const updateBuilds = () => {
     const storedBuilds = localStorage.getItem("builds");
     if (storedBuilds) {
       setBuilds(JSON.parse(storedBuilds));
     }
-  }, []);
+  };
 
   const saveBuild = (name: string, build: Build) => {
     if (name === "") return;
@@ -85,6 +91,7 @@ const BuildsProvider: React.FC<Props> = ({ children }: Props) => {
         deleteBuild,
         copyBuild,
         changeName,
+        updateBuilds,
       }}
     >
       {children}

@@ -24,7 +24,7 @@ const Container = styled.div`
 
   @media (max-width: 1200px) {
     position: fixed;
-    z-index: 15;
+    z-index: 50;
     height: 100%;
     top: 74px;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.8);

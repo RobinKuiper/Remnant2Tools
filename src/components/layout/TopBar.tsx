@@ -1,8 +1,9 @@
 import { Link } from "gatsby";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { styled } from "styled-components";
 import { Flex } from "../../style/global";
 import { RiSettings3Line } from "react-icons/ri";
+import { SettingContext } from "../../context/SettingContext";
 
 const Container = styled.div`
   padding: 10px 10px;
@@ -10,7 +11,7 @@ const Container = styled.div`
   background: #292929;
   color: #f1f1f1;
   box-shadow: 0 0 20px rgba(0, 0, 0, 1);
-  z-index: 20;
+  z-index: 100;
   position: fixed;
   width: 100%;
   min-height: 74px;
@@ -136,6 +137,7 @@ const Hamburger = styled.button`
 `;
 
 const TopBar = () => {
+  const { toggleShowSettings } = useContext(SettingContext);
   const [isOpen, setOpen] = useState(false);
 
   const toggleOpen = () => {
@@ -177,7 +179,7 @@ const TopBar = () => {
             {/*  <Search placeholder="Search" disabled={true} />*/}
             {/*</div>*/}
 
-            <button className="settings">
+            <button className="settings" onClick={toggleShowSettings}>
               <RiSettings3Line size="30px" />
             </button>
 

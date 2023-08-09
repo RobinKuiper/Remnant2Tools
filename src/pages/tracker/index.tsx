@@ -10,7 +10,7 @@ const Page = styled.div`
   flex-direction: row;
 
   .page-content {
-    z-index: 10;
+    z-index: 65;
     box-shadow: 0 0 20px rgba(0, 0, 0, 1);
     width: 90%;
     padding: 20px;
