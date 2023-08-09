@@ -1,4 +1,4 @@
-import React, { useContext, useRef } from "react";
+import React, {useContext, useEffect, useRef} from "react";
 import { styled } from "styled-components";
 import { SettingContext } from "../context/SettingContext";
 import { CiImport } from "react-icons/ci";
@@ -103,10 +103,24 @@ const SettingsSidebar = () => {
   const { showSettings, changeDefaultView, defaultView } = useContext(SettingContext);
   const { updateUnlocks } = useContext(DataContext);
   const { updateBuilds } = useContext(BuildsContext);
-  const buildsData = localStorage.getItem("builds");
-  const unlockData = localStorage.getItem("data");
-  const unlockDataRef = useRef<HTMLTextAreaElement>(null);
-  const buildsDataRef = useRef<HTMLTextAreaElement>(null);
+  const unlockDataRef = useRef<HTMLTextAreaElement>();
+  const buildsDataRef = useRef<HTMLTextAreaElement>();
+  
+  useEffect(() => {
+    if (!unlockDataRef.current || !buildsDataRef.current) {
+      return;
+    }
+    
+    const storedBuildData = localStorage.getItem("builds");
+    if (storedBuildData) {
+      buildsDataRef.current.value = storedBuildData;
+    }
+
+    const storedUnlockData = localStorage.getItem("data");
+    if (storedUnlockData) {
+      unlockDataRef.current.value = storedUnlockData;
+    }
+  }, [unlockDataRef, buildsDataRef]);
 
   const copyToClipboard = (e, ref: React.RefObject<HTMLTextAreaElement>) => {
     if (ref.current) {
@@ -159,7 +173,7 @@ const SettingsSidebar = () => {
         <div className="export-item">
           <div className="title">Unlock data</div>
           <div className="data">
-            <textarea ref={unlockDataRef}>{unlockData}</textarea>
+            <textarea ref={unlockDataRef}></textarea>
           </div>
           <div className="buttons">
             <button onClick={saveUnlocks}>
@@ -175,7 +189,7 @@ const SettingsSidebar = () => {
         <div className="export-item">
           <div className="title">Builds data</div>
           <div className="data">
-            <textarea ref={buildsDataRef}>{buildsData}</textarea>
+            <textarea ref={buildsDataRef}></textarea>
           </div>
           <div className="buttons">
             <button onClick={saveBuilds}>
