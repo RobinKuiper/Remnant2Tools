@@ -99,6 +99,7 @@ const GridItem = (props: Props) => {
             </button>
           </div>
           <Tooltip
+            className="tooltip"
             id={`${item.name}_tooltip`}
             style={{
               maxWidth: "200px",

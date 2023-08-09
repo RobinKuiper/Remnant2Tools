@@ -33,6 +33,10 @@ button {
   cursor: pointer;
 }
 
+.tooltip {
+  z-index: 9999999;
+}
+
 .overlay {
   display: flex;
   justify-content: center;
