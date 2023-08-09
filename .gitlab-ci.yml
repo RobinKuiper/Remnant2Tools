@@ -73,7 +73,7 @@ pages:
   #    - test:jest
   script:
     - npm install -g pnpm
-    - pnpm clean
+    - sed -i "s/VERSION_REPLACE/$CI_COMMIT_TAG/g" src/constants.ts
     - pnpm build
   artifacts:
     paths:

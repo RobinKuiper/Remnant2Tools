@@ -1,3 +1,4 @@
+export const VERSION = "VERSION_REPLACE";
 export const CATEGORIES = [
   {
     label: "Archetypes",
