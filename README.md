@@ -2,7 +2,8 @@
 
 
 [![Latest Release](https://gitlab.com/RobinKuiper/remnantcollectables/-/badges/release.svg)](https://gitlab.com/RobinKuiper/remnantcollectables/-/releases)
-[![pipeline status](https://gitlab.com/RobinKuiper/remnantcollectables/badges/master/pipeline.svg)](https://gitlab.com/RobinKuiper/remnantcollectables/-/commits/master)
+[![Website](https://img.shields.io/badge/Visit-Website-blue?logo=google-chrome)](https://remnant.rkuiper.nl)
+[![pipeline status](https://gitlab.com/RobinKuiper/remnantcollectables/badges/1.0.1/pipeline.svg)](https://gitlab.com/RobinKuiper/remnantcollectables/-/commits/master)
 
 [//]: # ([![coverage report]&#40;https://gitlab.com/RobinKuiper/remnantcollectables/badges/master/coverage.svg&#41;]&#40;https://gitlab.com/RobinKuiper/remnantcollectables/-/commits/master&#41;)
 
