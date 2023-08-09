@@ -13,6 +13,8 @@ const config: GatsbyConfig = {
     linkedIn: "https://www.linkedin.com/in/robin-kuiper-4a15a669/",
     discord: "https://discordapp.com/users/81445002168774656",
     website: "https://www.rkuiper.nl",
+    patreon: "https://www.patreon.com/bePatron?u=10835266",
+    paypal: "https://paypal.me/robinkuiper"
   },
   pathPrefix: "/remnantcollectables",
   // More easily incorporate content into your pages through

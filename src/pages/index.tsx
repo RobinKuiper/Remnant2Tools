@@ -3,10 +3,11 @@ import type { HeadFC, PageProps } from "gatsby";
 import "../global.css";
 import Layout from "../components/layout/Layout";
 import { styled } from "styled-components";
-import { Link } from "gatsby";
+import {graphql, Link, useStaticQuery} from "gatsby";
 import { StaticImage } from "gatsby-plugin-image";
 import StatisticsPanel from "../components/StatisticsPanel";
 import SecretWorldsPanel from "../components/SecretWorldsPanel";
+import {BiLogoPatreon, BiLogoPaypal} from "react-icons/bi";
 
 const Updates = [
   {
@@ -34,14 +35,6 @@ const Updates = [
   {
     date: "06-08-2023",
     messages: ["Data improvements", "List and grid view", "Mobile ready", "Group by filter"],
-  },
-  {
-    date: "05-08-2023",
-    messages: ["Added homepage"],
-  },
-  {
-    date: "04-08-2023",
-    messages: ["A lot of different code improvements", "Optimized images", "Auto deploy with Gitlab CI/CD"],
   },
 ];
 
@@ -143,10 +136,80 @@ const Homepage = styled.div`
         }
       }
     }
+    
+    .buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      align-items: center;
+    }
   }
 `;
 
+const PatreonButton = styled.div`
+  background: #f1465a;
+  padding: 10px 20px;
+  box-sizing: border-box;
+  text-align: center;
+  border-radius: 10px;
+  width: 190px;
+  
+  transition: all .3s ease-in-out;
+  
+  &:hover {
+    background: #CA0F25;
+  }
+  
+  div {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: .95em;
+    
+    .icon {
+      color: #000;
+    }
+  }
+`
+
+const PaypalButton = styled.div`
+  background: #009cde;
+  padding: 10px 20px;
+  box-sizing: border-box;
+  text-align: center;
+  border-radius: 10px;
+  width: 190px;
+  
+  transition: all .3s ease-in-out;
+  
+  &:hover {
+    background: #003087;
+  }
+  
+  div {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: .95em;
+    
+    .icon {
+      color: #000;
+    }
+  }
+`
+
 const IndexPage: React.FC<PageProps> = () => {
+  const data = useStaticQuery(graphql`
+    {
+      site {
+        siteMetadata {
+          patreon
+          paypal
+        }
+      }
+    }
+  `);
+  
   return (
     <Layout>
       <Homepage>
@@ -186,6 +249,43 @@ const IndexPage: React.FC<PageProps> = () => {
 
           <StatisticsPanel />
           <SecretWorldsPanel />
+          
+          <div className="panel">
+            <h3>Buy me a coffee!</h3>
+            
+            <p>
+              Hey fellow Remnant 2 enthusiasts! 🎮☕<br />
+              If you're finding these tools handy and they're enhancing your gaming experience, 
+              consider supporting me with a virtual cup of coffee! <br />
+              Your support helps me keep the tools up-to-date. <br />
+              Every sip counts in our journey to conquer the challenges of the game together. <br />
+              Thanks for being a part of our adventure! Cheers! 🚀🔥
+            </p>
+            
+            <div className="buttons">
+              <Link to={data.site.siteMetadata.patreon} title="Robin Kuiper's Patreon" target="_blank">
+                <PatreonButton>
+                  <div>
+                  <span className="icon">
+                    <BiLogoPatreon size="20px" />
+                  </span>
+                    <span>Become a patron</span>
+                  </div>
+                </PatreonButton>
+              </Link>
+
+              <Link to={data.site.siteMetadata.paypal} title="Robin Kuiper's Paypal" target="_blank">
+                <PaypalButton>
+                  <div>
+                  <span className="icon">
+                    <BiLogoPaypal size="20px" />
+                  </span>
+                    <span>Paypal donate</span>
+                  </div>
+                </PaypalButton>
+              </Link>
+            </div>
+          </div>
         </div>
       </Homepage>
     </Layout>

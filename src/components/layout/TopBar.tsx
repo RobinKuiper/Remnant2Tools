@@ -4,6 +4,7 @@ import { styled } from "styled-components";
 import { Flex } from "../../style/global";
 import { RiSettings3Line } from "react-icons/ri";
 import { SettingContext } from "../../context/SettingContext";
+import {StaticImage} from "gatsby-plugin-image";
 
 const Container = styled.div`
   padding: 10px 10px;
@@ -150,7 +151,7 @@ const TopBar = () => {
         <div className="left">
           <div id="logo">
             <Link to="/">
-              <img src="/images/logo.webp" alt="Remnant" height={50} />
+              <StaticImage src="../../images/logo.webp" alt="Remnant 2 Logo" height={50} />
             </Link>
           </div>
         </div>
