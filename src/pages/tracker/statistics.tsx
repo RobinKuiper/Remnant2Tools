@@ -67,7 +67,7 @@ const Page = styled.div`
   }
 `;
 
-const Index: React.FC = () => {
+const Statistics: React.FC = () => {
   return (
     <Layout>
       <Head title="Statistics" description="All of the statistics of the items you have unlocked in Remnant II." />
@@ -88,4 +88,4 @@ const Index: React.FC = () => {
   );
 };
 
-export default Index;
+export default Statistics;
