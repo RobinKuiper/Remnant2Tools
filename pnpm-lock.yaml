@@ -68,6 +68,9 @@ dependencies:
   react-spinners:
     specifier: ^0.13.8
     version: 0.13.8(react-dom@18.2.0)(react@18.2.0)
+  react-toggle:
+    specifier: ^4.1.3
+    version: 4.1.3(prop-types@15.8.1)(react-dom@18.2.0)(react@18.2.0)
   react-tooltip:
     specifier: ^5.19.0
     version: 5.19.0(react-dom@18.2.0)(react@18.2.0)
@@ -91,6 +94,9 @@ devDependencies:
   "@types/eslint-config-prettier":
     specifier: ^6.11.0
     version: 6.11.0
+  "@types/identity-obj-proxy":
+    specifier: ^3.0.0
+    version: 3.0.0
   "@types/jest":
     specifier: ^29.5.3
     version: 29.5.3
@@ -109,6 +115,9 @@ devDependencies:
   "@types/react-modal":
     specifier: ^3.16.0
     version: 3.16.0
+  "@types/react-toggle":
+    specifier: ^4.0.3
+    version: 4.0.3
   "@types/styled-components":
     specifier: ^5.1.26
     version: 5.1.26
@@ -3307,6 +3316,11 @@ packages:
     dependencies:
       "@types/node": 20.3.3
 
+  /@types/identity-obj-proxy@3.0.0:
+    resolution:
+      { integrity: sha512-zMa4VqOLfEUsMLkoNGcCaB0PhGzdJhMXAL/dTXBlDq/8A+GTlCyRosIeDNmtzJctQzsFeYsNVppywyWb97hr1g== }
+    dev: true
+
   /@types/istanbul-lib-coverage@2.0.4:
     resolution:
       { integrity: sha512-z/QT1XN4K4KYuslS23k62yDIDLwLFkzxOuMplDtObz0+y7VqJCaO2o+SPwHCvLFZh7xazvvoor2tA/hPz9ee7g== }
@@ -3422,6 +3436,13 @@ packages:
   /@types/react-modal@3.16.0:
     resolution:
       { integrity: sha512-iphdqXAyUfByLbxJn5j6d+yh93dbMgshqGP0IuBeaKbZXx0aO+OXsvEkt6QctRdxjeM9/bR+Gp3h9F9djVWTQQ== }
+    dependencies:
+      "@types/react": 18.2.14
+    dev: true
+
+  /@types/react-toggle@4.0.3:
+    resolution:
+      { integrity: sha512-57QdMWeeQdRjM2/p+udgYerxUbSkmeUIW18kwUttcci6GHkgxoqCsDZfRtsCsAHcvvM5VBQdtDUEgLWo2e87mA== }
     dependencies:
       "@types/react": 18.2.14
     dev: true
@@ -10995,6 +11016,20 @@ packages:
       react: ^16.0.0 || ^17.0.0 || ^18.0.0
       react-dom: ^16.0.0 || ^17.0.0 || ^18.0.0
     dependencies:
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+    dev: false
+
+  /react-toggle@4.1.3(prop-types@15.8.1)(react-dom@18.2.0)(react@18.2.0):
+    resolution:
+      { integrity: sha512-WoPrvbwfQSvoagbrDnXPrlsxwzuhQIrs+V0I162j/s+4XPgY/YDAUmHSeWiroznfI73wj+MBydvW95zX8ABbSg== }
+    peerDependencies:
+      prop-types: ">= 15.3.0 < 19"
+      react: ">= 15.3.0 < 19"
+      react-dom: ">= 15.3.0 < 19"
+    dependencies:
+      classnames: 2.3.2
+      prop-types: 15.8.1
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
     dev: false
