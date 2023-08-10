@@ -46,7 +46,9 @@ const BuildsProvider: React.FC<Props> = ({ children }: Props) => {
   };
 
   const saveBuild = (name: string, build: Build) => {
-    if (name === "") return;
+    if (name === "") {
+      name = "New build";
+    }
 
     setBuilds(prevBuilds => ({
       ...prevBuilds,
