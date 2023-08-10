@@ -22,6 +22,11 @@ const Page = styled.div`
     background: url("/images/bg2.webp");
     background-size: cover;
 
+    @media (max-width: 1200px) {
+      margin-left: 0;
+      width: 100%;
+    }
+
     .background {
       position: absolute;
       top: 0;

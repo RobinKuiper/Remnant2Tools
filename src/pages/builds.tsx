@@ -59,6 +59,11 @@ const Page = styled.div`
     min-height: 87.5vh;
     box-sizing: border-box;
 
+    @media (max-width: 1200px) {
+      margin-left: 0;
+      width: 100%;
+    }
+
     .background {
       position: absolute;
       top: 0;

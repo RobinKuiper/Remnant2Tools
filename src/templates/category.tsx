@@ -27,6 +27,11 @@ const Page = styled.div`
     margin-left: 235px;
     min-height: 83vh;
 
+    @media (max-width: 1200px) {
+      margin-left: 0;
+      width: 100%;
+    }
+
     #content-heading {
       display: flex;
       justify-content: space-between;
