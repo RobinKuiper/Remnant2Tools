@@ -33,8 +33,6 @@ build:install:
 
 test:lint:
   stage: test
-  needs:
-    - build:install
   script:
     - pnpm lint:gitlab
   artifacts:
@@ -48,8 +46,6 @@ test:lint:
 
 .test:jest:
   stage: test
-  needs:
-    - build:install
   script:
     - pnpm test:gitlab
   artifacts:
@@ -68,8 +64,6 @@ test:lint:
 
 .test:gatsby:
   stage: test
-  needs:
-    - build:install
   script:
     - ./node_modules/.bin/gatsby info
   only:
@@ -77,8 +71,6 @@ test:lint:
 
 pages:
   stage: deploy
-  needs:
-    - build:install
   script:
     - export VERSION=$(cat .version)
     - sed -i "s/SITE_VERSION/$VERSION/g" src/constants.ts

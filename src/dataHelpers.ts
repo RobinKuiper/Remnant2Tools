@@ -1,6 +1,21 @@
 import data from "./data/data.json";
 import { CATEGORIES } from "./constants";
 
+export const getFieldValue = (object: any, fieldPath: string) => {
+  const keys = fieldPath.split(".");
+  let value = object;
+
+  for (const key of keys) {
+    if (value && key in value) {
+      value = value[key];
+    } else {
+      return undefined;
+    }
+  }
+
+  return value;
+};
+
 const getUnlocks = () => {
   const unlocks = localStorage.getItem("data");
   return unlocks ? JSON.parse(unlocks) : {};
