@@ -57,8 +57,8 @@ const BuildItemBox = ({
     <Container
       className={disabled ? "item-box disabled" : "item-box"}
       onClick={handleClick}
-      data-tooltip-id={name}
-      data-tooltip-content={name}
+      data-tooltip-id={item?.name}
+      data-tooltip-content={item?.name}
     >
       {item && (
         <div>

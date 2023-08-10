@@ -17,7 +17,7 @@ export const getFieldValue = (object: any, fieldPath: string) => {
 };
 
 const getUnlocks = () => {
-  const unlocks = localStorage.getItem("data");
+  const unlocks = typeof localStorage !== "undefined" && localStorage.getItem("data");
   return unlocks ? JSON.parse(unlocks) : {};
 };
 
