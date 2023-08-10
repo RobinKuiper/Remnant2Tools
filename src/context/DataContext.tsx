@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useState } from "react";
+import React, { createContext, useEffect, useMemo, useState } from "react";
 import { isUnlocked } from "../dataHelpers";
 import { graphql, useStaticQuery } from "gatsby";
 
@@ -53,6 +53,7 @@ const DataProvider: React.FC<Props> = ({ children }: Props) => {
         nodes {
           category
           externalId
+          onlyDB
         }
       }
     }
@@ -76,6 +77,10 @@ const DataProvider: React.FC<Props> = ({ children }: Props) => {
 
     const allItems = data.items.nodes;
     allItems.forEach(item => {
+      if (item.onlyDB) {
+        return;
+      }
+
       const categoryFragment = item.category;
 
       if (!newStatistics[categoryFragment]) {
@@ -147,19 +152,18 @@ const DataProvider: React.FC<Props> = ({ children }: Props) => {
     }
   };
 
-  return (
-    <DataContext.Provider
-      value={{
-        unlocks,
-        toggleUnlock,
-        updateLevel,
-        statistics,
-        updateUnlocks,
-      }}
-    >
-      {children}
-    </DataContext.Provider>
+  const contextValue = useMemo(
+    () => ({
+      unlocks,
+      toggleUnlock,
+      updateLevel,
+      statistics,
+      updateUnlocks,
+    }),
+    [unlocks, statistics],
   );
+
+  return <DataContext.Provider value={contextValue}>{children}</DataContext.Provider>;
 };
 
 export { DataContext, DataProvider };

@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useState } from "react";
+import React, { createContext, useEffect, useMemo, useState } from "react";
 import type { Build } from "../interface/Build";
 
 const DEFAULT_VALUES = {
@@ -46,7 +46,9 @@ const BuildsProvider: React.FC<Props> = ({ children }: Props) => {
   };
 
   const saveBuild = (name: string, build: Build) => {
-    if (name === "") return;
+    if (name === "") {
+      name = "New build";
+    }
 
     setBuilds(prevBuilds => ({
       ...prevBuilds,
@@ -83,20 +85,19 @@ const BuildsProvider: React.FC<Props> = ({ children }: Props) => {
     localStorage.setItem("builds", JSON.stringify(builds));
   }, [builds]);
 
-  return (
-    <BuildsContext.Provider
-      value={{
-        builds,
-        saveBuild,
-        deleteBuild,
-        copyBuild,
-        changeName,
-        updateBuilds,
-      }}
-    >
-      {children}
-    </BuildsContext.Provider>
+  const contextValue = useMemo(
+    () => ({
+      builds,
+      saveBuild,
+      deleteBuild,
+      copyBuild,
+      changeName,
+      updateBuilds,
+    }),
+    [builds],
   );
+
+  return <BuildsContext.Provider value={contextValue}>{children}</BuildsContext.Provider>;
 };
 
 export { BuildsContext, BuildsProvider };

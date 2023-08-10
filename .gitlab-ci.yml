@@ -18,33 +18,38 @@ cache:
     - public/
   policy: pull-push
 
+before_script:
+  - npm install -g pnpm
+
 build:install:
   stage: build
   script:
-    - npm install -g pnpm
     - pnpm install
-  only:
-    - tags
-#  rules:
-#    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+  rules:
+    - if: '$CI_COMMIT_TAG || $CI_PIPELINE_SOURCE == "merge_request_event"'
+      when: always
 
 test:lint:
   stage: test
   needs:
     - build:install
   script:
-    - npm install -g pnpm
-    - pnpm lint
-  only:
-    - tags
+    - pnpm lint:gitlab
+  artifacts:
+    reports:
+      codequality: gl-codequality.json
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+      changes:
+        - "**/*.{js,ts,jsx,tsx}"
+      when: always
 
 .test:jest:
   stage: test
   needs:
     - build:install
   script:
-    - npm install -g pnpm
-    - pnpm test:ci
+    - pnpm test:gitlab
   artifacts:
     when: always
     reports:
@@ -53,8 +58,11 @@ test:lint:
       coverage_report:
         coverage_format: cobertura
         path: coverage/cobertura-coverage.xml
-  only:
-    - tags
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+      changes:
+        - "**/*.{js,ts,jsx,tsx}"
+      when: always
 
 .test:gatsby:
   stage: test
@@ -68,10 +76,8 @@ test:lint:
 pages:
   stage: deploy
   needs:
-    - test:lint
-  #    - test:jest
+    - build:install
   script:
-    - npm install -g pnpm
     - sed -i "s/SITE_VERSION/$CI_COMMIT_TAG/g" src/constants.ts
     - sed -i "s/SITE_VERSION/$CI_COMMIT_TAG/g" static/humans.txt
     - sed -i "s/CURRENT_DATE/$(date '+%Y-%m-%d')/g" src/constants.ts
@@ -83,5 +89,6 @@ pages:
   artifacts:
     paths:
       - public
-  only:
-    - tags
+  rules:
+    - if: "$CI_COMMIT_TAG"
+      when: always

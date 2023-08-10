@@ -1,11 +1,13 @@
 import React, { useContext, useEffect, useRef } from "react";
 import { styled } from "styled-components";
+import Toggle from "react-toggle";
 import { SettingContext } from "../../context/SettingContext";
 import { CiImport } from "react-icons/ci";
 import { AiOutlineCopy } from "react-icons/ai";
 import { DataContext } from "../../context/DataContext";
 import { BuildsContext } from "../../context/BuildContext";
-import {LAST_UPDATED, VERSION} from "../../constants";
+import { LAST_UPDATED, VERSION } from "../../constants";
+import "react-toggle/style.css";
 
 const Container = styled.div`
   position: fixed;
@@ -46,6 +48,10 @@ const Container = styled.div`
 
       select {
         padding: 6.5px 5px;
+      }
+
+      .toggle.react-toggle--checked .react-toggle-track {
+        background: darkred;
       }
     }
   }
@@ -110,7 +116,8 @@ const Container = styled.div`
 `;
 
 const SettingsSidebar = () => {
-  const { showSettings, changeDefaultView, defaultView } = useContext(SettingContext);
+  const { showSettings, changeDefaultView, defaultView, defaultShowRedacted, toggleDefaultShowRedacted } =
+    useContext(SettingContext);
   const { updateUnlocks } = useContext(DataContext);
   const { updateBuilds } = useContext(BuildsContext);
   const unlockDataRef = useRef<HTMLTextAreaElement>();
@@ -165,8 +172,10 @@ const SettingsSidebar = () => {
         <h3>Layout</h3>
 
         <div className="layout-settings-item">
-          <span className="title">Default View</span>
-          <select onChange={e => changeDefaultView(e.target.value)}>
+          <label for="defaultView" className="title">
+            Default View
+          </label>
+          <select id="defaultView" onChange={e => changeDefaultView(e.target.value)}>
             <option value="list" selected={defaultView === "list"}>
               List
             </option>
@@ -174,6 +183,19 @@ const SettingsSidebar = () => {
               Grid
             </option>
           </select>
+        </div>
+
+        <div className="layout-settings-item">
+          <label for="defaultShowRedacted" className="title">
+            Default Show Redacted
+          </label>
+          {/*<input type="checkbox" checked={defaultShowRedacted} onChange={toggleDefaultShowRedacted} />*/}
+          <Toggle
+            id="defaultShowRedacted"
+            className="toggle"
+            defaultChecked={defaultShowRedacted}
+            onChange={toggleDefaultShowRedacted}
+          />
         </div>
       </div>
 

@@ -24,6 +24,13 @@ const Page = styled.div`
     box-shadow: 0 0 20px rgba(0, 0, 0, 1);
     width: 90%;
     padding: 20px;
+    margin-left: 235px;
+    min-height: 83vh;
+
+    @media (max-width: 1200px) {
+      margin-left: 0;
+      width: 100%;
+    }
 
     #content-heading {
       display: flex;
@@ -148,6 +155,7 @@ const Category = props => {
     // const allItems = hideUnlocked && isTracker ? getAllLockedItems() : getAllItems(isTracker),
     const items = props.data.items.nodes
       .filter(item => (hideUnlocked && isTracker ? !isUnlocked(categoryFragment, item.externalId) : true))
+      .filter(item => !(isTracker && typeof item.onlyDB !== "undefined" && item.onlyDB))
       .sort(sorter);
 
     setData(group(search(items)));
@@ -303,6 +311,7 @@ export const query = graphql`
         armorset
         armor
         weight
+        onlyDB
       }
     }
   }

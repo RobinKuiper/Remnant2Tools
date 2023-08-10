@@ -7,7 +7,6 @@ import Sidebar from "../layout/Sidebar";
 
 const Container = styled.div`
   nav {
-    position: fixed;
     display: flex;
     flex-direction: column;
     width: 225px;
@@ -19,14 +18,6 @@ const Container = styled.div`
       transition: all 0.5s ease-in-out;
       width: 100%;
       box-sizing: border-box;
-
-      @media (max-height: 750px) {
-        height: 0;
-      }
-
-      &.active {
-        height: auto;
-      }
     }
 
     a,
@@ -62,11 +53,13 @@ const Container = styled.div`
           transition: all 0.5s ease-in-out;
         }
 
-        &:hover:after, &.active:after {
+        &:hover:after,
+        &.active:after {
           width: 100%;
         }
 
-        &:hover, &.active {
+        &:hover,
+        &.active {
           background: #181818;
         }
       }
@@ -105,33 +98,30 @@ const CATEGORY_ORDER = [
   },
   {
     label: "Events",
-    categories: ["worldbosses"],
+    categories: ["worldbosses", "bosses"],
   },
 ];
 
 const CategorySidebar = ({ type }: Props) => {
   const { statistics } = useContext(DataContext);
-  const url = typeof window !== 'undefined' ? window.location.href : '';
-
-  const toggleMainCategory = e => {
-    const parent = e.target.parentElement,
-      subLinks = parent.querySelector(".sub-links");
-    subLinks.classList.toggle("active");
-  };
+  const url = typeof window !== "undefined" ? window.location.href : "";
 
   return (
     <Sidebar>
       <Container>
         <nav>
           {type === "tracker" && (
-            <Link to="/tracker/statistics" className={url.includes("statistics") ? "active main-category" : "main-category"}>
+            <Link
+              to="/tracker/statistics"
+              className={url.includes("statistics") ? "active main-category" : "main-category"}
+            >
               <span>Statistics</span>
             </Link>
           )}
           {CATEGORY_ORDER.map(mainCategory => {
             return (
               <div key={mainCategory.label} className="main-category">
-                <span onClick={toggleMainCategory}>{mainCategory.label}</span>
+                <span>{mainCategory.label}</span>
                 <div className="sub-links">
                   {mainCategory.categories
                     .filter(categoryFragment => getCategorySettings(categoryFragment)[type])
@@ -139,7 +129,11 @@ const CategorySidebar = ({ type }: Props) => {
                       const categorySettings = getCategorySettings(categoryFragment);
 
                       return (
-                        <Link className={url.includes(categoryFragment) ? "active sub-link" : "sub-link"} key={categoryFragment} to={`/${type}/${categoryFragment}`}>
+                        <Link
+                          className={url.includes(categoryFragment) ? "active sub-link" : "sub-link"}
+                          key={categoryFragment}
+                          to={`/${type}/${categoryFragment}`}
+                        >
                           <span>{categorySettings.label}</span>
                           {type === "tracker" && statistics[categoryFragment] && (
                             <span>

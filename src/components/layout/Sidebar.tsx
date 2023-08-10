@@ -3,18 +3,24 @@ import { styled } from "styled-components";
 import { BiSolidLeftArrow, BiSolidRightArrow } from "react-icons/bi";
 
 const Container = styled.div`
+  position: fixed;
   background: #292929;
   color: #fff;
-  min-height: 100vh;
+  height: 100vh;
   padding: 20px 0;
   box-sizing: border-box;
   width: 235px;
+
+  .content {
+    overflow: auto;
+    height: 78%;
+  }
 
   .opener {
     display: none;
     position: fixed;
     top: 80px;
-    left: 214px;
+    left: 235px;
     color: #fff;
     background: #292929;
     padding: 5px;
@@ -23,11 +29,11 @@ const Container = styled.div`
 
   @media (max-width: 1200px) {
     position: fixed;
-    z-index: 50;
+    z-index: 66;
     height: 100%;
     top: 74px;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.8);
-    transform: translateX(-214px);
+    transform: translateX(-235px);
     transition: all 0.3s ease-out;
 
     &.active {
@@ -51,7 +57,7 @@ const Sidebar = ({ children }: Props) => {
 
   return (
     <Container className={isOpen ? "active" : ""}>
-      <div>{children}</div>
+      <div className="content">{children}</div>
 
       <div className="opener">
         <button onClick={toggleOpen}>

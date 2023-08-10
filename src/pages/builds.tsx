@@ -55,7 +55,14 @@ const Page = styled.div`
     background: url("/images/bg1.webp");
     background-size: cover;
     padding-top: 40px;
+    margin-left: 235px;
+    min-height: 87.5vh;
     box-sizing: border-box;
+
+    @media (max-width: 1200px) {
+      margin-left: 0;
+      width: 100%;
+    }
 
     .background {
       position: absolute;
@@ -63,10 +70,12 @@ const Page = styled.div`
       left: 0;
       right: 0;
       bottom: 0;
-      background: linear-gradient(45deg,
-      rgba(255, 255, 255, 1) 11%,
-      rgba(231, 231, 231, 1) 53%,
-      rgba(255, 255, 255, 0) 100%);
+      background: linear-gradient(
+        45deg,
+        rgba(255, 255, 255, 1) 11%,
+        rgba(231, 231, 231, 1) 53%,
+        rgba(255, 255, 255, 0) 100%
+      );
       z-index: -1;
     }
 
@@ -276,7 +285,7 @@ const Builds = props => {
     nBuild = checkMod(item, nBuild);
 
     setBuild(prevState => ({ ...prevState, ...nBuild }));
-    saveBuild(name, nBuild);
+    save(nBuild);
   };
 
   const checkMod = (item: Item, build: Build) => {
@@ -315,7 +324,17 @@ const Builds = props => {
     }
 
     setBuild(newBuild);
-    saveBuild(name, newBuild);
+    save(newBuild);
+  };
+
+  const save = newBuild => {
+    let usedName = name;
+    if (!usedName || usedName === "") {
+      usedName = "New Build";
+      setName(usedName);
+    }
+
+    saveBuild(usedName, newBuild);
   };
 
   const reduceTrait = (id: number) => {

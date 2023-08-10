@@ -9,36 +9,7 @@ import StatisticsPanel from "../components/statistics/StatisticsPanel";
 import SecretWorldsPanel from "../components/statistics/SecretWorldsPanel";
 import { BiLogoPatreon, BiLogoPaypal } from "react-icons/bi";
 import Head from "../components/layout/Head";
-import GradientBackground from "../components/GradientBackground";
-
-const Updates = [
-  {
-    date: "09-08-2023",
-    messages: [
-      "Added a settings sidebar",
-      "Added export/import features to the settings sidebar",
-      "A lot of codebase improvements",
-      "Fixed a bug where tooltips could render below other elements",
-    ],
-  },
-  {
-    date: "07-08-2023",
-    messages: [
-      "Image improvements in the tracker and database lists",
-      "Added default weapon mods to the database",
-      "Added more data to weapons and armors",
-      "Added more armor (sets)",
-      "Added more missing images",
-      "Added more relic fragments",
-      "Added armor statistics to the builder",
-      "Added traits to the builder",
-    ],
-  },
-  {
-    date: "06-08-2023",
-    messages: ["Data improvements", "List and grid view", "Mobile ready", "Group by filter"],
-  },
-];
+import { Updates } from "../constants";
 
 const HeroBanner = styled.div`
   position: relative;
@@ -51,8 +22,8 @@ const HeroBanner = styled.div`
   padding: 40px 20px;
   text-align: center;
   color: #fff;
-  box-shadow: 0 0 20px 0 rgba(0,0,0,1);
-  
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 1);
+
   .bg {
     position: absolute;
     top: 0;
@@ -70,7 +41,9 @@ const HeroBanner = styled.div`
   }
 
   .left {
-    background: rgba(41, 41, 41, 0.85);
+    //background: rgba(41, 41, 41, 0.85);
+    background: rgba(255, 255, 255, 0.5);
+    color: #000;
     padding: 30px 20px;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.6);
     backdrop-filter: blur(5px);
@@ -90,8 +63,8 @@ const HeroBanner = styled.div`
 
   .image {
     z-index: 10;
-    box-shadow: 0 0 20px 0 rgba(0,0,0,1);
-    
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 1);
+
     img {
       height: 400px;
     }
@@ -250,7 +223,7 @@ const IndexPage: React.FC<PageProps> = () => {
       <Homepage>
         <HeroBanner>
           <div className="bg" />
-          
+
           <div className="left">
             <h1>Remnant2 Tools</h1>
             <p>Track Your Triumphs and Collectibles: Your Ultimate Remnant 2 Companion!</p>
@@ -275,7 +248,10 @@ const IndexPage: React.FC<PageProps> = () => {
             <div className="list">
               {Updates.map(update => (
                 <div key={update.date} className="item">
-                  <strong>{update.date}</strong>
+                  <strong>
+                    {update.version && `v${update.version} - `}
+                    {update.date}
+                  </strong>
                   {update.messages.map(message => (
                     <p key={message}>- {message}</p>
                   ))}

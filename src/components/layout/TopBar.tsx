@@ -26,8 +26,9 @@ const Container = styled.div`
         position: relative;
         padding-bottom: 5px;
         box-sizing: border-box;
-        
-        &:hover, &.active {
+
+        &:hover,
+        &.active {
           font-weight: bold;
         }
       }
@@ -144,12 +145,12 @@ const Hamburger = styled.button`
 const TopBar = () => {
   const { toggleShowSettings } = useContext(SettingContext);
   const [isOpen, setOpen] = useState(false);
-  const url = typeof window !== 'undefined' ? window.location.href : '';
+  const url = typeof window !== "undefined" ? window.location.href : "";
 
   const toggleOpen = () => {
     setOpen(!isOpen);
   };
-  
+
   return (
     <Container>
       <Flex direction="row" justifyContent="space-between">
@@ -164,9 +165,15 @@ const TopBar = () => {
         <div className="center">
           <nav>
             <Flex gap="25px" alignItems="center">
-              <Link to="/tracker/statistics" className={url.includes("tracker") ? "active" : ""}>Tracker</Link>
-              <Link to="/database/archetypes" className={url.includes("database") ? "active" : ""}>Database</Link>
-              <Link to="/builds" className={url.includes("builds") ? "active" : ""}>Builds</Link>
+              <Link to="/tracker/statistics" className={url.includes("tracker") ? "active" : ""}>
+                Tracker
+              </Link>
+              <Link to="/database/archetypes" className={url.includes("database") ? "active" : ""}>
+                Database
+              </Link>
+              <Link to="/builds" className={url.includes("builds") ? "active" : ""}>
+                Builds
+              </Link>
             </Flex>
           </nav>
         </div>
