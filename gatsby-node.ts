@@ -2,6 +2,7 @@ import data from "./src/data/data.json";
 import type { GatsbyNode, NodeInput } from "gatsby";
 import { resolve } from "path";
 import { CATEGORIES } from "./src/constants";
+import {slugify} from "./src/helpers";
 
 export const sourceNodes: GatsbyNode[`sourceNodes`] = gatsbyApi => {
   data.forEach(data => {
@@ -45,5 +46,19 @@ export const createPages: GatsbyNode["createPages"] = async ({ actions, graphql 
 
       createPage(page);
     }
+  });
+
+  data.forEach(item => {
+    const name = slugify(item.name),
+      page = {
+        path: `/database/${item.category}/${name}`,
+        component: resolve(__dirname, "./src/templates/item.tsx"),
+        context: {
+          item,
+          imgRegex: `/${name}/`,
+        },
+      };
+
+    createPage(page);
   });
 };
