@@ -26,8 +26,8 @@ build:install:
   script:
     - pnpm install
   rules:
-    - changes:
-        - package-lock.json
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+      changes:
         - pnpm-lock.yaml
         - package.json
       when: always
