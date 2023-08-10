@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useState } from "react";
+import React, { createContext, useEffect, useMemo, useState } from "react";
 
 const DEFAULT_VALUES = {
   darkMode: true,
@@ -77,16 +77,19 @@ const SettingProvider: React.FC<Props> = ({ children }: Props) => {
     setDefaultView(view);
   };
 
-  const contextValue: SettingContextData = {
-    darkMode,
-    hideUnlocked,
-    showSettings,
-    defaultView,
-    toggleDarkMode,
-    toggleHideUnlocked,
-    toggleShowSettings,
-    changeDefaultView,
-  };
+  const contextValue = useMemo(
+    () => ({
+      darkMode,
+      hideUnlocked,
+      showSettings,
+      defaultView,
+      toggleDarkMode,
+      toggleHideUnlocked,
+      toggleShowSettings,
+      changeDefaultView,
+    }),
+    [darkMode, hideUnlocked, showSettings, defaultView],
+  );
 
   return <SettingContext.Provider value={contextValue}>{children}</SettingContext.Provider>;
 };
