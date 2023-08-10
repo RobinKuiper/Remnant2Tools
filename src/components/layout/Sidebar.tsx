@@ -20,7 +20,7 @@ const Container = styled.div`
     display: none;
     position: fixed;
     top: 80px;
-    left: 214px;
+    left: 235px;
     color: #fff;
     background: #292929;
     padding: 5px;
@@ -29,11 +29,11 @@ const Container = styled.div`
 
   @media (max-width: 1200px) {
     position: fixed;
-    z-index: 50;
+    z-index: 66;
     height: 100%;
     top: 74px;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.8);
-    transform: translateX(-214px);
+    transform: translateX(-235px);
     transition: all 0.3s ease-out;
 
     &.active {
