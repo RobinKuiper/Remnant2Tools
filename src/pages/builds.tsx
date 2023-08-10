@@ -55,6 +55,8 @@ const Page = styled.div`
     background: url("/images/bg1.webp");
     background-size: cover;
     padding-top: 40px;
+    margin-left: 235px;
+    min-height: 87.5vh;
     box-sizing: border-box;
 
     .background {
