@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { styled } from "styled-components";
 import { DataContext } from "../../context/DataContext";
-import { findImage } from "../../helpers";
+import { findImageById } from "../../helpers";
 import ListItem from "./ListItem";
 import GridItem from "./GridItem";
 
@@ -78,7 +78,7 @@ const Item = ({ item, category, images, viewAsList, type = "tracker" }: Props) =
   const [classNames, setClassNames] = useState<string>("");
 
   useEffect(() => {
-    setImage(findImage(item.name, images, category.fragment));
+    setImage(findImageById(item.externalId, images));
   }, []);
 
   useEffect(() => {

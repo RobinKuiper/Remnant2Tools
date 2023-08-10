@@ -3,6 +3,7 @@ import { styled } from "styled-components";
 import { DataContext } from "../../context/DataContext";
 import { calculatePercentage } from "../../helpers";
 import { CATEGORIES } from "../../constants";
+import { Link } from "gatsby";
 
 const Container = styled.div`
   width: 400px;
@@ -66,7 +67,11 @@ const StatisticsPanel = () => {
 
               return (
                 <tr key={fragment}>
-                  <td className="title">{label}</td>
+                  <td className="title">
+                    <Link to={`/tracker/${fragment}`} title={label}>
+                      {label}
+                    </Link>
+                  </td>
                   <td>
                     {unlocked}/{total}
                   </td>

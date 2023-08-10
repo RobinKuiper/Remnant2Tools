@@ -304,6 +304,9 @@ export const query = graphql`
       nodes {
         name
         relativePath
+        fields {
+          itemId
+        }
         childImageSharp {
           gatsbyImageData(quality: 80, layout: CONSTRAINED)
         }

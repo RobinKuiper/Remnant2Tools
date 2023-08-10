@@ -1,6 +1,6 @@
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
-import React from "react";
-import { findImage } from "../../helpers";
+import React, { useEffect, useState } from "react";
+import { findImageById } from "../../helpers";
 import type { Build } from "../../interface/Build";
 import { Tooltip } from "react-tooltip";
 import { styled } from "styled-components";
@@ -40,8 +40,12 @@ const BuildItemBox = ({
   index = null,
   disabled = false,
 }: Props) => {
-  const item = index !== null ? build[type][index] : build[type],
-    name = item?.name;
+  const [item, setItem] = useState();
+
+  useEffect(() => {
+    const newItem = index !== null ? build[type][index] : build[type];
+    setItem(newItem);
+  }, [index, type, build]);
 
   const handleClick = () => {
     if (disabled) return;
@@ -56,12 +60,16 @@ const BuildItemBox = ({
       data-tooltip-id={name}
       data-tooltip-content={name}
     >
-      {findImage(name ?? "", images, category) ? (
-        <GatsbyImage alt={name ?? ""} image={getImage(findImage(name ?? "", images, category, false))} />
-      ) : (
-        <span>{name}</span>
+      {item && (
+        <div>
+          {findImageById(item.externalId, images, false) ? (
+            <GatsbyImage alt={item.name} image={getImage(findImageById(item.externalId, images, false))} />
+          ) : (
+            <span>{item.name}</span>
+          )}
+          <Tooltip id={item.name} />
+        </div>
       )}
-      <Tooltip id={name} />
     </Container>
   );
 };

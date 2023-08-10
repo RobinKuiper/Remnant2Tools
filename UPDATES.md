@@ -2,7 +2,10 @@
 
 ## Version 1.0.3
 
+- Simple item pages per item
+- Links in the statistic panels
 - Moved `Venom` from `Yaesha` to `Root Earth`
+- Improved image system
 - Codebase improvements
 
 ## Version 1.0.2

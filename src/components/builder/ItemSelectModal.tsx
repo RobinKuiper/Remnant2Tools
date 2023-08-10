@@ -4,7 +4,7 @@ import { BsLock } from "react-icons/bs";
 import Modal from "react-modal";
 import { styled } from "styled-components";
 import { DataContext } from "../../context/DataContext";
-import { findImage } from "../../helpers";
+import { findImageById } from "../../helpers";
 import Search from "../Search";
 
 Modal.setAppElement("#___gatsby");
@@ -110,7 +110,7 @@ const ItemSelectModal = ({ setIsOpen, isOpen, items, category, callback, images 
                 }}
               >
                 <div>
-                  <GatsbyImage alt={item.name} image={getImage(findImage(item.name, images, category))} />
+                  <GatsbyImage alt={item.name} image={getImage(findImageById(item.externalId, images))} />
                 </div>
                 <div>
                   {(!unlocks[category] ||

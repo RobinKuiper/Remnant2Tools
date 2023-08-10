@@ -7,8 +7,8 @@ import { BsInfoCircleFill } from "react-icons/bs";
 import { Tooltip } from "react-tooltip";
 import { styled } from "styled-components";
 import { getFieldValue } from "../../dataHelpers";
-import {Link} from "gatsby";
-import {slugify} from "../../helpers";
+import { Link } from "gatsby";
+import { slugify } from "../../helpers";
 
 const Container = styled.div`
   .title {
@@ -76,15 +76,15 @@ const ListItem = (props: Props) => {
           </Flex>
 
           {image && (
-              <div className="image">
-                <Link to={`/database/${category.fragment}/${slugify(item.name)}`} title={item.name}>
+            <div className="image">
+              <Link to={`/database/${category.fragment}/${slugify(item.name)}`} title={item.name} state={{ type }}>
                 <GatsbyImage image={getImage(image)} alt={item.name} title={item.name} placeholder="none" />
-                </Link>
-              </div>
+              </Link>
+            </div>
           )}
 
           <div className="title">
-            <Link to={`/database/${category.fragment}/${slugify(item.name)}`} title={item.name}>
+            <Link to={`/database/${category.fragment}/${slugify(item.name)}`} title={item.name} state={{ type }}>
               <h3>{item.name}</h3>
             </Link>
 

@@ -6,8 +6,8 @@ import { Flex } from "../../style/global";
 import { BsInfoCircleFill } from "react-icons/bs";
 import { Tooltip } from "react-tooltip";
 import { getFieldValue } from "../../dataHelpers";
-import {slugify} from "../../helpers";
-import {Link} from "gatsby";
+import { slugify } from "../../helpers";
+import { Link } from "gatsby";
 
 interface Props {
   item: any;
@@ -25,23 +25,13 @@ const GridItem = (props: Props) => {
 
   return (
     <Flex direction="column" justifyContent="center" alignItems="center">
-        {image && (
-          <Link to={`/database/${category.fragment}/${slugify(item.name)}`} title={item.name}>
-            <GatsbyImage
-              image={getImage(image)}
-              alt={item.name}
-              title={item.name}
-              placeholder="none"
-              style={
-                image.childImageSharp.gatsbyImageData.height > image.childImageSharp.gatsbyImageData.width
-                  ? { height: "100px" }
-                  : { width: "100px" }
-              }
-            />
-          </Link>
-        )}
+      {image && (
+        <Link to={`/database/${category.fragment}/${slugify(item.name)}`} title={item.name} state={{ type }}>
+          <GatsbyImage image={getImage(image)} alt={item.name} title={item.name} placeholder="none" />
+        </Link>
+      )}
 
-      <Link to={`/database/${category.fragment}/${slugify(item.name)}`} title={item.name}>
+      <Link to={`/database/${category.fragment}/${slugify(item.name)}`} title={item.name} state={{ type }}>
         <h3>{item.name}</h3>
       </Link>
 
