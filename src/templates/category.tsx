@@ -150,6 +150,7 @@ const Category = props => {
     // const allItems = hideUnlocked && isTracker ? getAllLockedItems() : getAllItems(isTracker),
     const items = props.data.items.nodes
       .filter(item => (hideUnlocked && isTracker ? !isUnlocked(categoryFragment, item.externalId) : true))
+      .filter(item => !(isTracker && typeof item.onlyDB !== "undefined" && item.onlyDB))
       .sort(sorter);
 
     setData(group(search(items)));
@@ -305,6 +306,7 @@ export const query = graphql`
         armorset
         armor
         weight
+        onlyDB
       }
     }
   }
