@@ -301,7 +301,7 @@ export const CATEGORIES = [
       fields: [
         {
           label: "World",
-          fragment: "world"
+          fragment: "world",
         },
         {
           label: "Location",
