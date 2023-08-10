@@ -20,6 +20,9 @@ dependencies:
   gatsby-plugin-gdpr-cookies:
     specifier: ^2.0.9
     version: 2.0.9(gatsby@5.11.0)(react-dom@18.2.0)(react@18.2.0)
+  gatsby-plugin-google-fonts:
+    specifier: ^1.0.1
+    version: 1.0.1
   gatsby-plugin-google-gtag:
     specifier: ^5.11.0
     version: 5.11.0(gatsby@5.11.0)(react-dom@18.2.0)(react@18.2.0)
@@ -7010,6 +7013,11 @@ packages:
       gatsby: 5.11.0(babel-eslint@10.1.0)(react-dom@18.2.0)(react@18.2.0)(typescript@5.1.6)
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
+    dev: false
+
+  /gatsby-plugin-google-fonts@1.0.1:
+    resolution:
+      { integrity: sha512-p1NVkn27GUnDA5qHM+Z4cCcLCJIardzZXMon3640sT4xuL/AZJbsx3HEt2KY/5oZu0UXIkytkxzV2Da4rQeUIg== }
     dev: false
 
   /gatsby-plugin-google-gtag@5.11.0(gatsby@5.11.0)(react-dom@18.2.0)(react@18.2.0):

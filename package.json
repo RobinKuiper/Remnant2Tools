@@ -32,6 +32,7 @@
     "framer-motion": "^10.13.0",
     "gatsby": "^5.11.0",
     "gatsby-plugin-gdpr-cookies": "^2.0.9",
+    "gatsby-plugin-google-fonts": "^1.0.1",
     "gatsby-plugin-google-gtag": "^5.11.0",
     "gatsby-plugin-image": "^3.11.0",
     "gatsby-plugin-pnpm": "^1.2.10",

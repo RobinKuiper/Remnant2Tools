@@ -79,6 +79,13 @@ const config: GatsbyConfig = {
         },
       },
     },
+    {
+      resolve: `gatsby-plugin-google-fonts`,
+      options: {
+        fonts: [`Fontdiner Swanky`],
+        display: "swap",
+      },
+    },
   ],
 };
 
