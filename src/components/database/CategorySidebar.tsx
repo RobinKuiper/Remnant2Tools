@@ -7,7 +7,6 @@ import Sidebar from "../layout/Sidebar";
 
 const Container = styled.div`
   nav {
-    position: fixed;
     display: flex;
     flex-direction: column;
     width: 225px;
@@ -19,14 +18,6 @@ const Container = styled.div`
       transition: all 0.5s ease-in-out;
       width: 100%;
       box-sizing: border-box;
-
-      @media (max-height: 750px) {
-        height: 0;
-      }
-
-      &.active {
-        height: auto;
-      }
     }
 
     a,
@@ -115,12 +106,6 @@ const CategorySidebar = ({ type }: Props) => {
   const { statistics } = useContext(DataContext);
   const url = typeof window !== "undefined" ? window.location.href : "";
 
-  const toggleMainCategory = e => {
-    const parent = e.target.parentElement,
-      subLinks = parent.querySelector(".sub-links");
-    subLinks.classList.toggle("active");
-  };
-
   return (
     <Sidebar>
       <Container>
@@ -136,7 +121,7 @@ const CategorySidebar = ({ type }: Props) => {
           {CATEGORY_ORDER.map(mainCategory => {
             return (
               <div key={mainCategory.label} className="main-category">
-                <span onClick={toggleMainCategory}>{mainCategory.label}</span>
+                <span>{mainCategory.label}</span>
                 <div className="sub-links">
                   {mainCategory.categories
                     .filter(categoryFragment => getCategorySettings(categoryFragment)[type])

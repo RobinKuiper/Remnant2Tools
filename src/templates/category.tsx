@@ -24,6 +24,8 @@ const Page = styled.div`
     box-shadow: 0 0 20px rgba(0, 0, 0, 1);
     width: 90%;
     padding: 20px;
+    margin-left: 235px;
+    min-height: 83vh;
 
     #content-heading {
       display: flex;
