@@ -137,7 +137,7 @@ const Category = ({ data, pageContext, location }) => {
             data={[
               { path: "/", label: "Home" },
               { label: "Database/Tracker" },
-              { path: `/${location.state.type ?? "database"}/${category.fragment}`, label: category.label },
+              { path: `/${location.state?.type ?? "database"}/${category.fragment}`, label: category.label },
               { path: `/database/${item.category}/${slugify(item.name)}`, label: item.name },
             ]}
           />
