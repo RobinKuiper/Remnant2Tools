@@ -1,11 +1,10 @@
 # Remnant Tools
 
-
 [![Latest Release](https://gitlab.com/RobinKuiper/remnantcollectables/-/badges/release.svg)](https://gitlab.com/RobinKuiper/remnantcollectables/-/releases)
 [![Website](https://img.shields.io/badge/Visit-Website-blue?logo=google-chrome)](https://remnant.rkuiper.nl)
 [![pipeline status](https://gitlab.com/RobinKuiper/remnantcollectables/badges/1.0.1/pipeline.svg)](https://gitlab.com/RobinKuiper/remnantcollectables/-/commits/master)
 
-[//]: # ([![coverage report]&#40;https://gitlab.com/RobinKuiper/remnantcollectables/badges/master/coverage.svg&#41;]&#40;https://gitlab.com/RobinKuiper/remnantcollectables/-/commits/master&#41;)
+[//]: # "[![coverage report](https://gitlab.com/RobinKuiper/remnantcollectables/badges/master/coverage.svg)](https://gitlab.com/RobinKuiper/remnantcollectables/-/commits/master)"
 
 ## Description
 
@@ -40,7 +39,7 @@ Remnant Tools is a web application designed to help players of the game "Remnant
 
 Contributions are welcome! If you find any issues or have suggestions for improvements, please open an issue or submit a pull request. You can also support the development of this project by contributing through [Patreon](https://www.patreon.com/bePatron?u=10835266) or making a donation via [PayPal](https://paypal.me/robinkuiper).
 
-[![Patreon](https://img.shields.io/badge/Support-Patreon-orange?logo=patreon)](https://www.patreon.com/bePatron?u=10835266) 
+[![Patreon](https://img.shields.io/badge/Support-Patreon-orange?logo=patreon)](https://www.patreon.com/bePatron?u=10835266)
 [![PayPal](https://img.shields.io/badge/Donate-PayPal-blue?logo=paypal)](https://paypal.me/robinkuiper)
 
 ## Contact
@@ -54,4 +53,3 @@ If you have any questions or suggestions, feel free to reach out:
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
-

@@ -62,11 +62,13 @@ const Container = styled.div`
           transition: all 0.5s ease-in-out;
         }
 
-        &:hover:after, &.active:after {
+        &:hover:after,
+        &.active:after {
           width: 100%;
         }
 
-        &:hover, &.active {
+        &:hover,
+        &.active {
           background: #181818;
         }
       }
@@ -111,7 +113,7 @@ const CATEGORY_ORDER = [
 
 const CategorySidebar = ({ type }: Props) => {
   const { statistics } = useContext(DataContext);
-  const url = typeof window !== 'undefined' ? window.location.href : '';
+  const url = typeof window !== "undefined" ? window.location.href : "";
 
   const toggleMainCategory = e => {
     const parent = e.target.parentElement,
@@ -124,7 +126,10 @@ const CategorySidebar = ({ type }: Props) => {
       <Container>
         <nav>
           {type === "tracker" && (
-            <Link to="/tracker/statistics" className={url.includes("statistics") ? "active main-category" : "main-category"}>
+            <Link
+              to="/tracker/statistics"
+              className={url.includes("statistics") ? "active main-category" : "main-category"}
+            >
               <span>Statistics</span>
             </Link>
           )}
@@ -139,7 +144,11 @@ const CategorySidebar = ({ type }: Props) => {
                       const categorySettings = getCategorySettings(categoryFragment);
 
                       return (
-                        <Link className={url.includes(categoryFragment) ? "active sub-link" : "sub-link"} key={categoryFragment} to={`/${type}/${categoryFragment}`}>
+                        <Link
+                          className={url.includes(categoryFragment) ? "active sub-link" : "sub-link"}
+                          key={categoryFragment}
+                          to={`/${type}/${categoryFragment}`}
+                        >
                           <span>{categorySettings.label}</span>
                           {type === "tracker" && statistics[categoryFragment] && (
                             <span>

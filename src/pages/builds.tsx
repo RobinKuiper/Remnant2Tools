@@ -63,10 +63,12 @@ const Page = styled.div`
       left: 0;
       right: 0;
       bottom: 0;
-      background: linear-gradient(45deg,
-      rgba(255, 255, 255, 1) 11%,
-      rgba(231, 231, 231, 1) 53%,
-      rgba(255, 255, 255, 0) 100%);
+      background: linear-gradient(
+        45deg,
+        rgba(255, 255, 255, 1) 11%,
+        rgba(231, 231, 231, 1) 53%,
+        rgba(255, 255, 255, 0) 100%
+      );
       z-index: -1;
     }
 

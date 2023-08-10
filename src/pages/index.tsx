@@ -9,7 +9,6 @@ import StatisticsPanel from "../components/statistics/StatisticsPanel";
 import SecretWorldsPanel from "../components/statistics/SecretWorldsPanel";
 import { BiLogoPatreon, BiLogoPaypal } from "react-icons/bi";
 import Head from "../components/layout/Head";
-import GradientBackground from "../components/GradientBackground";
 
 const Updates = [
   {
@@ -51,8 +50,8 @@ const HeroBanner = styled.div`
   padding: 40px 20px;
   text-align: center;
   color: #fff;
-  box-shadow: 0 0 20px 0 rgba(0,0,0,1);
-  
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 1);
+
   .bg {
     position: absolute;
     top: 0;
@@ -90,8 +89,8 @@ const HeroBanner = styled.div`
 
   .image {
     z-index: 10;
-    box-shadow: 0 0 20px 0 rgba(0,0,0,1);
-    
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 1);
+
     img {
       height: 400px;
     }
@@ -250,7 +249,7 @@ const IndexPage: React.FC<PageProps> = () => {
       <Homepage>
         <HeroBanner>
           <div className="bg" />
-          
+
           <div className="left">
             <h1>Remnant2 Tools</h1>
             <p>Track Your Triumphs and Collectibles: Your Ultimate Remnant 2 Companion!</p>
