@@ -6828,5 +6828,181 @@
     "onlyDB": true,
     "id": 647,
     "category": "mods"
+  },
+  {
+    "id": 648,
+    "name": "Kaula's Shadow",
+    "description": "",
+    "world": "Yaesha",
+    "location": "Kaula's Rest",
+    "category": "bosses"
+  },
+  {
+    "id": 649,
+    "name": "Shrewd",
+    "description": "",
+    "world": "Yaesha",
+    "location": "The Expanding Glade",
+    "category": "bosses"
+  },
+  {
+    "id": 650,
+    "name": "The Weald Stalker and The Gnarled Archer",
+    "description": "",
+    "world": "Yaesha",
+    "location": "The Forgotten Field",
+    "category": "bosses"
+  },
+  {
+    "id": 651,
+    "name": "Defiler",
+    "description": "",
+    "world": "Yaesha",
+    "location": "The Forgotten Field",
+    "category": "bosses"
+  },
+  {
+    "id": 652,
+    "name": "Mothermind",
+    "description": "",
+    "world": "Yaesha",
+    "location": "The Nameless Nest",
+    "category": "bosses"
+  },
+  {
+    "id": 653,
+    "name": "Wither",
+    "description": "",
+    "world": "Yaesha",
+    "location": "The Lament",
+    "category": "bosses"
+  },
+  {
+    "id": 654,
+    "name": "Rot",
+    "description": "",
+    "world": "Yaesha",
+    "location": "The Chimney",
+    "category": "bosses"
+  },
+  {
+    "id": 655,
+    "name": "Bastion",
+    "description": "",
+    "world": "Labyrinth",
+    "category": "bosses"
+  },
+  {
+    "id": 656,
+    "name": "The Huntress",
+    "description": "",
+    "world": "Losomn",
+    "location": "Brocwithe Quarter",
+    "category": "bosses"
+  },
+  {
+    "id": 657,
+    "name": "Gwendil: The Unburnt",
+    "description": "",
+    "world": "Losomn",
+    "location": "Cotton's Kiln",
+    "category": "bosses"
+  },
+  {
+    "id": 658,
+    "name": "The Council",
+    "description": "",
+    "world": "Losomn",
+    "location": "Council Chamber",
+    "category": "bosses"
+  },
+  {
+    "id": 659,
+    "name": "The Red Prince",
+    "description": "",
+    "world": "Losomn",
+    "location": "Guilded Chambers",
+    "category": "bosses"
+  },
+  {
+    "id": 660,
+    "name": "The Red Prince - Assassin's dagger",
+    "description": "",
+    "world": "Losomn",
+    "location": "Guilded Chambers",
+    "unlock": "Kill The Red Prince with the Assassin's dagger.",
+    "category": "bosses"
+  },
+  {
+    "id": 661,
+    "name": "Magister Dullain",
+    "description": "",
+    "world": "Losomn",
+    "location": "Shattered Gallery",
+    "category": "bosses"
+  },
+  {
+    "id": 662,
+    "name": "Bloat King",
+    "description": "",
+    "world": "Losomn",
+    "location": "The Great Sewers",
+    "category": "bosses"
+  },
+  {
+    "id": 663,
+    "name": "The Astropath",
+    "description": "",
+    "world": "N'Erud",
+    "location": "Astropath's Respite",
+    "category": "bosses"
+  },
+  {
+    "id": 664,
+    "name": "Castodian's Eye",
+    "description": "",
+    "world": "N'Erud",
+    "location": "Spectrum Nexus",
+    "category": "bosses"
+  },
+  {
+    "id": 665,
+    "name": "Primogentior",
+    "description": "",
+    "world": "N'Erud",
+    "location": "The Hatchery",
+    "category": "bosses"
+  },
+  {
+    "id": 666,
+    "name": "The Abomination",
+    "description": "",
+    "world": "N'Erud",
+    "location": "The Putrid Domain",
+    "category": "bosses"
+  },
+  {
+    "id": 667,
+    "name": "E.D. Alpha",
+    "description": "",
+    "world": "N'Erud",
+    "location": "Tower Of The Unseen",
+    "category": "bosses"
+  },
+  {
+    "id": 668,
+    "name": "Cancer",
+    "description": "",
+    "world": "Root Earth",
+    "location": "Ashen Wasteland",
+    "category": "bosses"
+  },
+  {
+    "id": 669,
+    "name": "Venom",
+    "description": "",
+    "world": "N'Erud",
+    "location": "Corrupted Harbor",
+    "category": "bosses"
   }
 ]

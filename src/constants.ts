@@ -291,5 +291,28 @@ export const CATEGORIES = [
       fields: [],
     },
   },
+  {
+    label: "Bosses",
+    fragment: "bosses",
+    groups: ["world"],
+    categorized: true,
+    defaultGroup: "world",
+    tracker: {
+      fields: [
+        {
+          label: "World",
+          fragment: "world",
+        },
+        {
+          label: "Location",
+          fragment: "location",
+          redacted: true,
+        },
+      ],
+    },
+    database: {
+      fields: [],
+    },
+  },
 ];
 export const MAX_TRAIT_POINTS = 65;

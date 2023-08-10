@@ -98,7 +98,7 @@ const CATEGORY_ORDER = [
   },
   {
     label: "Events",
-    categories: ["worldbosses"],
+    categories: ["worldbosses", "bosses"],
   },
 ];
 
