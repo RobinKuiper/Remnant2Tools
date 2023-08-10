@@ -29,7 +29,6 @@ build:install:
     - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
       changes:
         - pnpm-lock.yaml
-        - package.json
       when: always
 
 test:lint:
