@@ -9,6 +9,7 @@ import StatisticsPanel from "../components/statistics/StatisticsPanel";
 import SecretWorldsPanel from "../components/statistics/SecretWorldsPanel";
 import { BiLogoPatreon, BiLogoPaypal } from "react-icons/bi";
 import Head from "../components/layout/Head";
+import GradientBackground from "../components/GradientBackground";
 
 const Updates = [
   {
@@ -40,15 +41,42 @@ const Updates = [
 ];
 
 const HeroBanner = styled.div`
+  position: relative;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   gap: 80px;
-  background-color: #3b3b3b;
+  //background-color: #3b3b3b;
   padding: 40px 20px;
   text-align: center;
   color: #fff;
+  box-shadow: 0 0 20px 0 rgba(0,0,0,1);
+  
+  .bg {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    //backdrop-filter: blur(5px);
+    z-index: 5;
+
+    background: url("/images/bg2.webp") no-repeat fixed;
+    background-size: cover;
+    //background-size: cover;
+    //background-position: 0 -150px;
+    filter: grayscale(100%);
+  }
+
+  .left {
+    background: rgba(41, 41, 41, 0.85);
+    padding: 30px 20px;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(5px);
+    z-index: 10;
+    border-radius: 10px;
+  }
 
   h1 {
     font-size: 32px;
@@ -61,6 +89,9 @@ const HeroBanner = styled.div`
   }
 
   .image {
+    z-index: 10;
+    box-shadow: 0 0 20px 0 rgba(0,0,0,1);
+    
     img {
       height: 400px;
     }
@@ -86,6 +117,8 @@ const HeroBanner = styled.div`
       transition: all 0.3s ease;
 
       &:hover {
+        background: linear-gradient(to top, #ac0919, #c42308);
+        transform: scale(1.1);
       }
     }
   }
@@ -214,10 +247,11 @@ const IndexPage: React.FC<PageProps> = () => {
   return (
     <Layout>
       <Head description="Tools for Remnant II" />
-
       <Homepage>
         <HeroBanner>
-          <div>
+          <div className="bg" />
+          
+          <div className="left">
             <h1>Remnant2 Tools</h1>
             <p>Track Your Triumphs and Collectibles: Your Ultimate Remnant 2 Companion!</p>
             <div className="buttons">

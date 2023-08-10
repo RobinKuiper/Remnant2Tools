@@ -52,7 +52,7 @@ const Page = styled.div`
     box-shadow: 0 0 20px rgba(0, 0, 0, 1);
     width: 90%;
     position: relative;
-    background: url("../images/bg1.webp");
+    background: url("/images/bg1.webp");
     background-size: cover;
     padding-top: 40px;
     box-sizing: border-box;
@@ -63,12 +63,10 @@ const Page = styled.div`
       left: 0;
       right: 0;
       bottom: 0;
-      background: linear-gradient(
-        45deg,
-        rgba(255, 255, 255, 1) 11%,
-        rgba(231, 231, 231, 1) 53%,
-        rgba(255, 255, 255, 0) 100%
-      );
+      background: linear-gradient(45deg,
+      rgba(255, 255, 255, 1) 11%,
+      rgba(231, 231, 231, 1) 53%,
+      rgba(255, 255, 255, 0) 100%);
       z-index: -1;
     }
 
