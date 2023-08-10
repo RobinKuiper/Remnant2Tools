@@ -285,7 +285,7 @@ const Builds = props => {
     nBuild = checkMod(item, nBuild);
 
     setBuild(prevState => ({ ...prevState, ...nBuild }));
-    saveBuild(name, nBuild);
+    save(nBuild);
   };
 
   const checkMod = (item: Item, build: Build) => {
@@ -324,7 +324,17 @@ const Builds = props => {
     }
 
     setBuild(newBuild);
-    saveBuild(name, newBuild);
+    save(newBuild);
+  };
+
+  const save = newBuild => {
+    let usedName = name;
+    if (!usedName || usedName === "") {
+      usedName = "New Build";
+      setName(usedName);
+    }
+
+    saveBuild(usedName, newBuild);
   };
 
   const reduceTrait = (id: number) => {
@@ -461,7 +471,9 @@ export const query = graphql`
           id
           externalId
           name
-          armor
+          stats {
+            armor
+          }
         }
       }
     }

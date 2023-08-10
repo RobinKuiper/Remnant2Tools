@@ -5,6 +5,7 @@ import ItemLevel from "./ItemLevel";
 import { Flex } from "../../style/global";
 import { BsInfoCircleFill } from "react-icons/bs";
 import { Tooltip } from "react-tooltip";
+import { getFieldValue } from "../../dataHelpers";
 
 interface Props {
   item: any;
@@ -72,24 +73,30 @@ const GridItem = (props: Props) => {
       {item.description && <p>{item.description}</p>}
 
       {category &&
-        category[type].fields.map(field => (
-          <div key={field.fragment}>
-            {item[field.fragment] && item[field.fragment] !== "" && (
+        category[type].fields.map(field => {
+          const value = getFieldValue(item, field.fragment);
+
+          if (!value) {
+            return "";
+          }
+
+          return (
+            <div key={field.fragment}>
               <Flex direction="row">
                 <Flex direction="column">
                   <div className="field-title">{field.label}</div>
                   <div>
                     {field.redacted && !unlocked ? (
-                      <Redacted value={item[field.fragment]} defaultShow={unlocked} bgColor={"#c7c7c7"} />
+                      <Redacted value={value} defaultShow={unlocked} bgColor={"#c7c7c7"} />
                     ) : (
-                      item[field.fragment]
+                      value
                     )}
                   </div>
                 </Flex>
               </Flex>
-            )}
-          </div>
-        ))}
+            </div>
+          );
+        })}
 
       {type === "tracker" && item.unlock && (
         <>

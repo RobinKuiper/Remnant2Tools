@@ -6,6 +6,7 @@ import { Flex } from "../../style/global";
 import { BsInfoCircleFill } from "react-icons/bs";
 import { Tooltip } from "react-tooltip";
 import { styled } from "styled-components";
+import { getFieldValue } from "../../dataHelpers";
 
 const Container = styled.div`
   .title {
@@ -88,22 +89,28 @@ const ListItem = (props: Props) => {
         <Flex alignItems="center" justifyContent="right" gap="40px">
           {category &&
             category[type].fields.map(field => {
-              if (item[field.fragment] && item[field.fragment] !== "") {
-                return (
-                  <div key={field.fragment} className="field">
+              const value = getFieldValue(item, field.fragment);
+
+              if (!value) {
+                return "";
+              }
+
+              return (
+                <div key={field.fragment}>
+                  <Flex direction="row">
                     <Flex direction="column">
                       <div className="field-title">{field.label}</div>
                       <div>
                         {field.redacted && !unlocked ? (
-                          <Redacted value={item[field.fragment]} defaultShow={unlocked} bgColor={"#c7c7c7"} />
+                          <Redacted value={value} defaultShow={unlocked} bgColor={"#c7c7c7"} />
                         ) : (
-                          item[field.fragment]
+                          value
                         )}
                       </div>
                     </Flex>
-                  </div>
-                );
-              }
+                  </Flex>
+                </div>
+              );
             })}
         </Flex>
 
