@@ -471,7 +471,9 @@ export const query = graphql`
           id
           externalId
           name
-          armor
+          stats {
+            armor
+          }
         }
       }
     }
