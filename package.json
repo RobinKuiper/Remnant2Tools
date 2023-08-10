@@ -87,6 +87,7 @@
   },
   "nano-staged": {
     "src/*.{js,ts,jsx,tsx}": [
+      "pnpm prettier",
       "pnpm lint:fix"
     ]
   },
