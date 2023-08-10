@@ -8,7 +8,7 @@ import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import Redacted from "../components/database/Redacted";
 import { isUnlocked } from "../dataHelpers";
 import ItemStat from "../components/item/ItemStat";
-import { slugify } from "../helpers";
+import { slugify, uppercaseFirstLetter } from "../helpers";
 import Breadcrumb from "../components/layout/Breadcrumb";
 
 const Page = styled.div`
@@ -136,7 +136,7 @@ const Category = ({ data, pageContext, location }) => {
           <Breadcrumb
             data={[
               { path: "/", label: "Home" },
-              { label: "Database/Tracker" },
+              { label: location.state?.type ? uppercaseFirstLetter(location.state.type) : "Database" },
               { path: `/${location.state?.type ?? "database"}/${category.fragment}`, label: category.label },
               { path: `/database/${item.category}/${slugify(item.name)}`, label: item.name },
             ]}

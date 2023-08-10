@@ -65,3 +65,6 @@ export const calculateStringMatchPercentage = (string1, string2) => {
   const matchPercentage = (matchCount / maxLength) * 100;
   return matchPercentage.toFixed(2); // Return the match percentage with 2 decimal places
 };
+
+export const uppercaseFirstLetter = (word: string): string =>
+  word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();

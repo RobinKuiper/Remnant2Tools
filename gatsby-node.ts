@@ -49,6 +49,7 @@ export const sourceNodes: GatsbyNode[`sourceNodes`] = gatsbyApi => {
 export const createPages: GatsbyNode["createPages"] = async ({ actions, graphql }) => {
   const { createPage } = actions;
 
+  // Create category pages for tracker and database
   CATEGORIES.forEach(category => {
     const page = {
       path: `/tracker/${category.fragment}`,
@@ -75,16 +76,16 @@ export const createPages: GatsbyNode["createPages"] = async ({ actions, graphql 
 
   // Create a page for every item
   data.forEach(item => {
-    const name = slugify(item.name),
-      page = {
-        path: `/database/${item.category}/${name}`,
-        component: resolve(__dirname, "./src/templates/item.tsx"),
-        context: {
-          item,
-          itemId: item.id,
-          category: CATEGORIES.find(c => c.fragment === item.category),
-        },
-      };
+    const name = slugify(item.name);
+    const page = {
+      path: `/database/${item.category}/${name}`,
+      component: resolve(__dirname, "./src/templates/item.tsx"),
+      context: {
+        item,
+        itemId: item.id,
+        category: CATEGORIES.find(c => c.fragment === item.category),
+      },
+    };
 
     createPage(page);
   });
