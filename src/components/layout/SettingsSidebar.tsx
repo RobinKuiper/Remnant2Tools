@@ -1,11 +1,11 @@
-import React, {useContext, useEffect, useRef} from "react";
+import React, { useContext, useEffect, useRef } from "react";
 import { styled } from "styled-components";
-import { SettingContext } from "../context/SettingContext";
+import { SettingContext } from "../../context/SettingContext";
 import { CiImport } from "react-icons/ci";
 import { AiOutlineCopy } from "react-icons/ai";
-import { DataContext } from "../context/DataContext";
-import { BuildsContext } from "../context/BuildContext";
-import {VERSION} from "../constants";
+import { DataContext } from "../../context/DataContext";
+import { BuildsContext } from "../../context/BuildContext";
+import { LAST_UPDATED, VERSION } from "../../constants";
 
 const Container = styled.div`
   position: fixed;
@@ -100,7 +100,12 @@ const Container = styled.div`
   }
 
   .version {
-    font-size: .8em;
+    position: absolute;
+    bottom: 60px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    font-size: 0.8em;
   }
 `;
 
@@ -110,12 +115,12 @@ const SettingsSidebar = () => {
   const { updateBuilds } = useContext(BuildsContext);
   const unlockDataRef = useRef<HTMLTextAreaElement>();
   const buildsDataRef = useRef<HTMLTextAreaElement>();
-  
+
   useEffect(() => {
     if (!unlockDataRef.current || !buildsDataRef.current) {
       return;
     }
-    
+
     const storedBuildData = localStorage.getItem("builds");
     if (storedBuildData) {
       buildsDataRef.current.value = storedBuildData;
@@ -207,9 +212,10 @@ const SettingsSidebar = () => {
           </div>
         </div>
       </div>
-      
+
       <div className="version">
-        Version: {VERSION}
+        <span>Version: {VERSION}</span>
+        <span>Last updated: {LAST_UPDATED}</span>
       </div>
     </Container>
   );

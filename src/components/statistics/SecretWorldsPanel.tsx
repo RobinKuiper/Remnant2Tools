@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
 import { styled } from "styled-components";
-import { DataContext } from "../context/DataContext";
-import Redacted from "./Redacted";
-import { getAllLockedItems } from "../dataHelpers";
+import { DataContext } from "../../context/DataContext";
+import Redacted from "../database/Redacted";
+import { getAllLockedItems } from "../../dataHelpers";
 
 const Container = styled.div`
   .values {

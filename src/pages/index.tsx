@@ -1,14 +1,25 @@
 import * as React from "react";
-import type { HeadFC, PageProps } from "gatsby";
+import type { PageProps } from "gatsby";
 import "../global.css";
 import Layout from "../components/layout/Layout";
 import { styled } from "styled-components";
-import { Link } from "gatsby";
+import { Link, graphql, useStaticQuery } from "gatsby";
 import { StaticImage } from "gatsby-plugin-image";
-import StatisticsPanel from "../components/StatisticsPanel";
-import SecretWorldsPanel from "../components/SecretWorldsPanel";
+import StatisticsPanel from "../components/statistics/StatisticsPanel";
+import SecretWorldsPanel from "../components/statistics/SecretWorldsPanel";
+import { BiLogoPatreon, BiLogoPaypal } from "react-icons/bi";
+import Head from "../components/layout/Head";
 
 const Updates = [
+  {
+    date: "09-08-2023",
+    messages: [
+      "Added a settings sidebar",
+      "Added export/import features to the settings sidebar",
+      "A lot of codebase improvements",
+      "Fixed a bug where tooltips could render below other elements",
+    ],
+  },
   {
     date: "07-08-2023",
     messages: [
@@ -26,26 +37,45 @@ const Updates = [
     date: "06-08-2023",
     messages: ["Data improvements", "List and grid view", "Mobile ready", "Group by filter"],
   },
-  {
-    date: "05-08-2023",
-    messages: ["Added homepage"],
-  },
-  {
-    date: "04-08-2023",
-    messages: ["A lot of different code improvements", "Optimized images", "Auto deploy with Gitlab CI/CD"],
-  },
 ];
 
 const HeroBanner = styled.div`
+  position: relative;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   gap: 80px;
-  background-color: #3b3b3b;
+  //background-color: #3b3b3b;
   padding: 40px 20px;
   text-align: center;
   color: #fff;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 1);
+
+  .bg {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    //backdrop-filter: blur(5px);
+    z-index: 5;
+
+    background: url("/images/bg2.webp") no-repeat fixed;
+    background-size: cover;
+    //background-size: cover;
+    //background-position: 0 -150px;
+    filter: grayscale(100%);
+  }
+
+  .left {
+    background: rgba(41, 41, 41, 0.85);
+    padding: 30px 20px;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(5px);
+    z-index: 10;
+    border-radius: 10px;
+  }
 
   h1 {
     font-size: 32px;
@@ -58,6 +88,9 @@ const HeroBanner = styled.div`
   }
 
   .image {
+    z-index: 10;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 1);
+
     img {
       height: 400px;
     }
@@ -83,6 +116,8 @@ const HeroBanner = styled.div`
       transition: all 0.3s ease;
 
       &:hover {
+        background: linear-gradient(to top, #ac0919, #c42308);
+        transform: scale(1.1);
       }
     }
   }
@@ -134,15 +169,88 @@ const Homepage = styled.div`
         }
       }
     }
+
+    .buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      align-items: center;
+    }
+  }
+`;
+
+const PatreonButton = styled.div`
+  background: #f1465a;
+  padding: 10px 20px;
+  box-sizing: border-box;
+  text-align: center;
+  border-radius: 10px;
+  width: 190px;
+
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    background: #ca0f25;
+  }
+
+  div {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.95em;
+
+    .icon {
+      color: #000;
+    }
+  }
+`;
+
+const PaypalButton = styled.div`
+  background: #009cde;
+  padding: 10px 20px;
+  box-sizing: border-box;
+  text-align: center;
+  border-radius: 10px;
+  width: 190px;
+
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    background: #003087;
+  }
+
+  div {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.95em;
+
+    .icon {
+      color: #000;
+    }
   }
 `;
 
 const IndexPage: React.FC<PageProps> = () => {
+  const data = useStaticQuery(graphql`
+    {
+      site {
+        siteMetadata {
+          patreon
+          paypal
+        }
+      }
+    }
+  `);
+
   return (
     <Layout>
+      <Head description="Tools for Remnant II" />
       <Homepage>
         <HeroBanner>
-          <div>
+          <div className="bg" />
+
+          <div className="left">
             <h1>Remnant2 Tools</h1>
             <p>Track Your Triumphs and Collectibles: Your Ultimate Remnant 2 Companion!</p>
             <div className="buttons">
@@ -177,6 +285,44 @@ const IndexPage: React.FC<PageProps> = () => {
 
           <StatisticsPanel />
           <SecretWorldsPanel />
+
+          <div className="panel">
+            <h3>Buy me a coffee!</h3>
+
+            <p>
+              Hey fellow Remnant 2 enthusiasts! 🎮☕
+              <br />
+              If you're finding these tools handy and they're enhancing your gaming experience, consider supporting me
+              with a virtual cup of coffee! <br />
+              Your support helps me keep the tools up-to-date. <br />
+              Every sip counts in our journey to conquer the challenges of the game together. <br />
+              Thanks for being a part of our adventure! Cheers! 🚀🔥
+            </p>
+
+            <div className="buttons">
+              <Link to={data.site.siteMetadata.patreon} title="Robin Kuiper's Patreon" target="_blank">
+                <PatreonButton>
+                  <div>
+                    <span className="icon">
+                      <BiLogoPatreon size="20px" />
+                    </span>
+                    <span>Become a patron</span>
+                  </div>
+                </PatreonButton>
+              </Link>
+
+              <Link to={data.site.siteMetadata.paypal} title="Robin Kuiper's Paypal" target="_blank">
+                <PaypalButton>
+                  <div>
+                    <span className="icon">
+                      <BiLogoPaypal size="20px" />
+                    </span>
+                    <span>Paypal donate</span>
+                  </div>
+                </PaypalButton>
+              </Link>
+            </div>
+          </div>
         </div>
       </Homepage>
     </Layout>
@@ -184,5 +330,3 @@ const IndexPage: React.FC<PageProps> = () => {
 };
 
 export default IndexPage;
-
-export const Head: HeadFC = () => <title>Home Page</title>;

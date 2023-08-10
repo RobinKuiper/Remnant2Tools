@@ -1,7 +1,7 @@
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import React from "react";
-import { findImage } from "../helpers";
-import type { Build } from "../interface/Build";
+import { findImage } from "../../helpers";
+import type { Build } from "../../interface/Build";
 import { Tooltip } from "react-tooltip";
 import { styled } from "styled-components";
 

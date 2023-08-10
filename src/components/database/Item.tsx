@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { styled } from "styled-components";
-import { DataContext } from "../context/DataContext";
-import { findImage } from "../helpers";
+import { DataContext } from "../../context/DataContext";
+import { findImage } from "../../helpers";
 import ListItem from "./ListItem";
 import GridItem from "./GridItem";
 

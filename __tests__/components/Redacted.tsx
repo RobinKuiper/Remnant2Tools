@@ -1,6 +1,6 @@
 import React from "react";
 import { render, fireEvent } from "@testing-library/react";
-import Redacted from "../../src/components/Redacted";
+import Redacted from "../../src/components/database/Redacted";
 
 describe("Redacted component", () => {
   it("should render the redacted value by default", () => {

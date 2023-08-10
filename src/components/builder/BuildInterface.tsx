@@ -3,8 +3,8 @@ import { AiFillLock, AiFillUnlock } from "react-icons/ai";
 import { Tooltip } from "react-tooltip";
 import BuildItemBox from "./BuildItemBox";
 import { styled } from "styled-components";
-import { BuildsContext } from "../context/BuildContext";
-import { calculateWeightType, isUnlocked } from "../dataHelpers";
+import { BuildsContext } from "../../context/BuildContext";
+import { calculateWeightType, isUnlocked } from "../../dataHelpers";
 import { graphql, useStaticQuery } from "gatsby";
 
 const Container = styled.div`
@@ -12,7 +12,7 @@ const Container = styled.div`
   flex-direction: column;
   gap: 10px;
 
-  width: 25%;
+  width: 400px;
   margin: 20px auto;
 
   #settings {
@@ -117,16 +117,16 @@ const Container = styled.div`
     }
   }
 
-  @media (max-width: 550px) {
+  @media (max-width: 430px) {
     width: 100%;
     padding: 10px;
     box-sizing: border-box;
     min-height: 100vh;
   }
 
-  @media screen and (min-width: 551px) and (max-width: 1000px) {
-    width: 75%;
-  }
+  //@media screen and (min-width: 551px) and (max-width: 1000px) {
+  //  width: 75%;
+  //}
 `;
 
 const BuildInterface = ({
