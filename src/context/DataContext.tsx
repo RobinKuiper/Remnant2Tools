@@ -53,6 +53,7 @@ const DataProvider: React.FC<Props> = ({ children }: Props) => {
         nodes {
           category
           externalId
+          onlyDB
         }
       }
     }
@@ -76,6 +77,10 @@ const DataProvider: React.FC<Props> = ({ children }: Props) => {
 
     const allItems = data.items.nodes;
     allItems.forEach(item => {
+      if (item.onlyDB) {
+        return;
+      }
+
       const categoryFragment = item.category;
 
       if (!newStatistics[categoryFragment]) {
