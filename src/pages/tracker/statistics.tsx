@@ -1,9 +1,10 @@
 import React from "react";
 import { styled } from "styled-components";
-import CategorySidebar from "../../components/layout/CategorySidebar";
+import CategorySidebar from "../../components/database/CategorySidebar";
 import Layout from "../../components/layout/Layout";
-import StatisticsPanel from "../../components/StatisticsPanel";
-import SecretWorldsPanel from "../../components/SecretWorldsPanel";
+import StatisticsPanel from "../../components/statistics/StatisticsPanel";
+import SecretWorldsPanel from "../../components/statistics/SecretWorldsPanel";
+import Head from "../../components/layout/Head";
 
 const Page = styled.div`
   display: flex;
@@ -66,9 +67,11 @@ const Page = styled.div`
   }
 `;
 
-const Index: React.FC = () => {
+const Statistics: React.FC = () => {
   return (
     <Layout>
+      <Head title="Statistics" description="All of the statistics of the items you have unlocked in Remnant II." />
+
       <Page>
         <CategorySidebar type="tracker" />
 
@@ -85,4 +88,4 @@ const Index: React.FC = () => {
   );
 };
 
-export default Index;
+export default Statistics;

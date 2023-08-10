@@ -1,6 +1,6 @@
 import React, { useState as useStateMock } from "react";
 import { render, fireEvent } from "@testing-library/react";
-import ItemLevel from "../../src/components/ItemLevel";
+import ItemLevel from "../../src/components/database/ItemLevel";
 
 jest.mock("react", () => ({
   ...jest.requireActual("react"),

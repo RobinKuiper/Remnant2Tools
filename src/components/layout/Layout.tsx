@@ -1,10 +1,12 @@
 import React from "react";
 import { styled } from "styled-components";
 import TopBar from "./TopBar";
-import { BsDiscord, BsLink45Deg, BsLinkedin } from "react-icons/bs";
+import { BsDiscord, BsLinkedin } from "react-icons/bs";
 import { AiFillGitlab } from "react-icons/ai";
 import { graphql, useStaticQuery } from "gatsby";
-import SettingsSidebar from "../SettingsSidebar";
+import SettingsSidebar from "./SettingsSidebar";
+import { BiLogoPatreon, BiLogoPaypal } from "react-icons/bi";
+import { StaticImage } from "gatsby-plugin-image";
 // import CookieConsent from "react-cookie-consent";
 
 const Container = styled.div`
@@ -74,6 +76,8 @@ const Layout = ({ children }: Props) => {
           discord
           website
           linkedIn
+          patreon
+          paypal
         }
       }
     }
@@ -93,12 +97,28 @@ const Layout = ({ children }: Props) => {
             target="_blank"
             rel="noopener"
           >
-            <BsLink45Deg />
-            <span>Robin Kuiper</span>
+            {/*<BsLink45Deg />*/}
+            <StaticImage src="../../images/rklogo.png" alt="Robin Kuiper Logo" height={40} />
           </a>
         </div>
 
         <div id="socials">
+          <a
+            href={data.site.siteMetadata.patreon}
+            title="Patreon link for Robin Kuiper"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <BiLogoPatreon />
+          </a>
+          <a
+            href={data.site.siteMetadata.paypal}
+            title="Paypal.me for Robin Kuiper"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <BiLogoPaypal />
+          </a>
           <a
             href={data.site.siteMetadata.discord}
             title="Discord profile for Robin Kuiper"

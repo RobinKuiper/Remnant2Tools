@@ -1,4 +1,6 @@
-export const VERSION = "VERSION_REPLACE";
+export const VERSION = "SITE_VERSION";
+export const LAST_UPDATED = "CURRENT_DATE";
+export const SITE_TITLE = "Remnant II Tools";
 export const CATEGORIES = [
   {
     label: "Archetypes",

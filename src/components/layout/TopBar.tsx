@@ -4,6 +4,7 @@ import { styled } from "styled-components";
 import { Flex } from "../../style/global";
 import { RiSettings3Line } from "react-icons/ri";
 import { SettingContext } from "../../context/SettingContext";
+import { StaticImage } from "gatsby-plugin-image";
 
 const Container = styled.div`
   padding: 10px 10px;
@@ -22,8 +23,13 @@ const Container = styled.div`
       display: flex;
 
       a {
-        &:hover {
-          //background: #000;
+        position: relative;
+        padding-bottom: 5px;
+        box-sizing: border-box;
+
+        &:hover,
+        &.active {
+          font-weight: bold;
         }
       }
 
@@ -139,6 +145,7 @@ const Hamburger = styled.button`
 const TopBar = () => {
   const { toggleShowSettings } = useContext(SettingContext);
   const [isOpen, setOpen] = useState(false);
+  const url = typeof window !== "undefined" ? window.location.href : "";
 
   const toggleOpen = () => {
     setOpen(!isOpen);
@@ -150,7 +157,7 @@ const TopBar = () => {
         <div className="left">
           <div id="logo">
             <Link to="/">
-              <img src="/images/logo.webp" alt="Remnant" height={50} />
+              <StaticImage src="../../images/logo.webp" alt="Remnant 2 Logo" height={50} />
             </Link>
           </div>
         </div>
@@ -158,9 +165,15 @@ const TopBar = () => {
         <div className="center">
           <nav>
             <Flex gap="25px" alignItems="center">
-              <Link to="/tracker">Tracker</Link>
-              <Link to="/database/archetypes">Database</Link>
-              <Link to="/builds">Builds</Link>
+              <Link to="/tracker/statistics" className={url.includes("tracker") ? "active" : ""}>
+                Tracker
+              </Link>
+              <Link to="/database/archetypes" className={url.includes("database") ? "active" : ""}>
+                Database
+              </Link>
+              <Link to="/builds" className={url.includes("builds") ? "active" : ""}>
+                Builds
+              </Link>
             </Flex>
           </nav>
         </div>

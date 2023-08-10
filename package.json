@@ -12,7 +12,7 @@
     "postinstall": "npx simple-git-hooks",
     "start": "cross-env ENABLE_GATSBY_REFRESH_ENDPOINT=true gatsby develop",
     "build": "gatsby build",
-    "build:ci:test": "pnpm lint && pnpm test:ci && pnpm build",
+    "build:test": "pnpm lint:gitlab && pnpm test:gitlab && pnpm build",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "typecheck": "tsc --noEmit",
@@ -20,10 +20,11 @@
     "lint": "eslint ./src",
     "lint:fix": "eslint ./src --fix",
     "lint:html": "eslint ./src --format html",
+    "lint:gitlab": "eslint --format gitlab ./src",
     "fix": "pnpm prettier && pnpm lint:fix",
     "test": "jest",
     "test:watch": "jest --watch",
-    "test:ci": "jest --config ./jest.config.js --collectCoverage --coverageDirectory=\"./coverage\" --ci --reporters=default --reporters=jest-junit --watchAll=false"
+    "test:gitlab": "jest --config ./jest.config.js --collectCoverage --coverageDirectory=\"./coverage\" --ci --reporters=default --reporters=jest-junit --watchAll=false"
   },
   "dependencies": {
     "babel-plugin-styled-components": "^2.1.4",

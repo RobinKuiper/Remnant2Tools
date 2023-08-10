@@ -8,8 +8,7 @@ const Container = styled.div`
   min-height: 100vh;
   padding: 20px 0;
   box-sizing: border-box;
-  width: 10%;
-  min-width: 214px;
+  width: 235px;
 
   .opener {
     display: none;
