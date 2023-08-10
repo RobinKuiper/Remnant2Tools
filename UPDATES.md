@@ -4,6 +4,7 @@
 
 - Simple item pages per item
 - Links in the statistic panels
+- Tooltips for the different setting sidebar options and buttons
 - Moved `Venom` from `Yaesha` to `Root Earth`
 - Improved image system
 - Codebase improvements
