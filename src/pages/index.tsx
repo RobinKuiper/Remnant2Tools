@@ -9,7 +9,6 @@ import StatisticsPanel from "../components/statistics/StatisticsPanel";
 import SecretWorldsPanel from "../components/statistics/SecretWorldsPanel";
 import { BiLogoPatreon, BiLogoPaypal } from "react-icons/bi";
 import Head from "../components/layout/Head";
-import { Updates } from "../constants";
 
 const HeroBanner = styled.div`
   position: relative;
@@ -243,23 +242,6 @@ const IndexPage: React.FC<PageProps> = () => {
         </HeroBanner>
 
         <div className="panels">
-          <div className="panel">
-            <h3>Updates</h3>
-            <div className="list">
-              {Updates.map(update => (
-                <div key={update.date} className="item">
-                  <strong>
-                    {update.version && `v${update.version} - `}
-                    {update.date}
-                  </strong>
-                  {update.messages.map(message => (
-                    <p key={message}>- {message}</p>
-                  ))}
-                </div>
-              ))}
-            </div>
-          </div>
-
           <StatisticsPanel />
           <SecretWorldsPanel />
 
