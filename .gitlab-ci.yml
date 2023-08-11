@@ -100,7 +100,7 @@ create_release:
   before_script:
     - pip install --upgrade python-gitlab
   script:
-    - python scripts updateGitlab.py
+    - python scripts/updateGitlab.py
   rules:
     - if: "$CI_COMMIT_REF_NAME == 'master'"
       when: always
