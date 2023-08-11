@@ -5,6 +5,7 @@ export const CATEGORIES = [
   {
     label: "Archetypes",
     fragment: "archetypes",
+    singular: "Archetype",
     hasLevels: false,
     groups: [
       {
@@ -32,6 +33,7 @@ export const CATEGORIES = [
   },
   {
     label: "Traits",
+    singular: "Trait",
     fragment: "traits",
     groups: [
       {
@@ -64,6 +66,7 @@ export const CATEGORIES = [
   },
   {
     label: "Weapons",
+    singular: "Weapon",
     fragment: "weapons",
     groups: [
       {
@@ -129,6 +132,7 @@ export const CATEGORIES = [
   },
   {
     label: "Mods",
+    singular: "Mod",
     fragment: "mods",
     groups: [
       {
@@ -156,6 +160,7 @@ export const CATEGORIES = [
   },
   {
     label: "Mutators",
+    singular: "Mutator",
     fragment: "mutators",
     groups: [
       {
@@ -184,6 +189,7 @@ export const CATEGORIES = [
   },
   {
     label: "Relics",
+    singular: "Relic",
     fragment: "relics",
     groups: [
       {
@@ -211,6 +217,7 @@ export const CATEGORIES = [
   },
   {
     label: "Amulets",
+    singular: "Amulet",
     fragment: "amulets",
     groups: [
       {
@@ -238,6 +245,7 @@ export const CATEGORIES = [
   },
   {
     label: "Rings",
+    singular: "Ring",
     fragment: "rings",
     groups: [
       {
@@ -265,6 +273,7 @@ export const CATEGORIES = [
   },
   {
     label: "Relic Fragments",
+    singular: "Relic Fragment",
     fragment: "relicfragments",
     groups: [
       {
@@ -295,6 +304,7 @@ export const CATEGORIES = [
   },
   {
     label: "Armor",
+    singular: "Armor",
     fragment: "armor",
     groups: [
       {
@@ -327,7 +337,7 @@ export const CATEGORIES = [
     categorized: true,
     defaultGroup: "armorset",
     categoryHasValues: true,
-    categoryIsCheckable: true,
+    categoryIsCheckable: false,
     tracker: {
       fields: [
         {
@@ -356,7 +366,13 @@ export const CATEGORIES = [
     },
   },
   {
+    label: "Armor Sets",
+    singular: "Armor Set",
+    fragment: "armorset",
+  },
+  {
     label: "World Bosses",
+    singular: "World Boss",
     fragment: "worldbosses",
     groups: [
       {
@@ -386,11 +402,20 @@ export const CATEGORIES = [
   },
   {
     label: "Bosses",
+    singular: "Boss",
     fragment: "bosses",
     groups: [
       {
         label: "World",
         fragment: "world",
+      },
+      {
+        label: "Type",
+        fragment: "type",
+      },
+      {
+        label: "Race",
+        fragment: "race",
       },
     ],
     categorized: true,

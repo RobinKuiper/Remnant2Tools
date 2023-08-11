@@ -3,7 +3,8 @@
     "name": "Alchemist",
     "description": "The ALCHEMIST specializes in powerful buffing Vials and consumable potency.",
     "world": "Losomn",
-    "location": "Any Dran overland area (Ironborough / Brocwithe Quarter / Morrow Parish / Lemark District)",
+    "location": "Any Dran overland area",
+    "locationInformation": "Ironborough / Brocwithe Quarter / Morrow Parish / Lemark District",
     "material": "Phiolosopher's Stone",
     "unlock": "Approach every sewer drain on the edge of any of the Dran overland areas until you get grabbed by a Manticora. Once you load into the new area, defeat the white Manticora",
     "id": 1,
@@ -13,7 +14,7 @@
     "name": "Archon",
     "description": "The ARCHON is the master of Weapon Mods and Mod Power generation.",
     "world": "Labyrinth",
-    "location": "Behind the Red Door",
+    "location": "The Backrooms",
     "material": "Hexahedron",
     "unlock": "To Unlock the Red Door you will need the following. Engram Explorer with skill Fortune Hunter (LV10), Engram Invader with skill Worm Hole (LV5), Armor set Realmwalker, Relic Consumable Void Heart, Leto's Amulet, Amber Moonstone, Black Cat Band, Zanias Malice, Anastasijas Inspiration, Cube Gun, Ford's Scattergun, Labyrinth Staff. With all this the door will open.",
     "id": 2,
@@ -23,7 +24,7 @@
     "name": "Challenger",
     "description": "The CHALLENGER specializes in close range combat and heightened survivability.",
     "world": "Earth",
-    "location": "Ward 13 (Overland area)",
+    "location": "Ward 13",
     "material": "Old Metal Tool",
     "unlock": "Buy from Reggie at Ward 13 for 1500 Scrap",
     "id": 3,
@@ -33,7 +34,8 @@
     "name": "Engineer",
     "description": "The ENGINEER specializes in Heavy Weaponry which can be carried or placed in turret mode.",
     "world": "N'Erud",
-    "location": "Any overland area (The Eon Vault / Abyssal Rift / Phantom Wasteland / Timeless Horizon)",
+    "location": "Any overland area",
+    "locationInformation": "The Eon Vault / Abyssal Rift / Phantom Wasteland / Timeless Horizon",
     "material": "Alien Device",
     "unlock": "Found just out of bounds in either of the two overland areas you roll on N'Erud. For an easier time locating this item try using the Explorer Archtype's skill \"Fortune Hunter\" to highlight the item in the fog.",
     "id": 4,
@@ -53,7 +55,7 @@
     "name": "Gunslinger",
     "description": "The GUNSLINGER specializes in raw damage, firearm handling, and ammo conservation.",
     "world": "Earth",
-    "location": "Ward 13 (Overland area)",
+    "location": "Ward 13",
     "material": "Worn Cylinder",
     "unlock": "Listen to 20 total Mudtooth stories in Ward 13 after finishing your second world in campaign mode",
     "id": 6,
@@ -63,7 +65,7 @@
     "name": "Handler",
     "description": "The HANDLER specializes in teamwork in both solo and cooperative scenarios.",
     "world": "Earth",
-    "location": "Ward 13 (Overland area)",
+    "location": "Ward 13",
     "material": "Old Whistle",
     "unlock": "Buy from Mudtooth at Ward 13 for 1500 Scrap",
     "id": 7,
@@ -73,7 +75,7 @@
     "name": "Hunter",
     "description": "The HUNTER specializes in ranged damage, precision shots and marking enemies.",
     "world": "Earth",
-    "location": "Ward 13 (Overland area)",
+    "location": "Ward 13",
     "material": "Rusty Medal",
     "unlock": "Buy from Brabus at Ward 13 for 1500 Scrap",
     "id": 8,
@@ -83,7 +85,7 @@
     "name": "Invader",
     "description": "The INVADER specializes elusiveness nad misdirecting the enemy's focus.",
     "world": "Root Earth",
-    "location": "Corrupted Harbor (Overland area)",
+    "location": "Corrupted Harbor",
     "material": "Wooden Shiv",
     "unlock": "Use the \"Walker's Dream\" item and defeat the \"Bane\" abberation. To get the \"Walker's Dream\" item use the Dreamcatcher melee weapon on the sleeping walker special enemy (glowing blue) in an area just off the main path between the Corrupted Harbour and Blackened Citadel checkpoint.",
     "id": 9,
@@ -93,7 +95,7 @@
     "name": "Medic",
     "description": "The MEDIC specializes in survivability with enhanced healing and Relic effectiveness.",
     "world": "Earth",
-    "location": "Ward 13 (Overland area)",
+    "location": "Ward 13",
     "material": "Medic Pin",
     "unlock": "Buy from Dr. Norah at Ward 13 for 1500 Scrap",
     "id": 10,
@@ -103,7 +105,7 @@
     "name": "Summoner",
     "description": "The SUMMONER specializes in using Minions to do their bidding and sacrificing them.",
     "world": "Yaesha",
-    "location": "The Forbidden Grove (Overland area)",
+    "location": "The Forbidden Grove",
     "material": "Faded Grimoire",
     "unlock": "Available at the Bloodmoon Altar for 15 Bloodmoon Essence. Acquire Bloodmoon Essence from killing Root Wisps during a bloodmoon (red moon in sky) in any of Yaesha's outside areas",
     "id": 11,
@@ -125,7 +127,7 @@
     "values": "3 → 30",
     "world": "",
     "location": "",
-    "unlock": "Unlocked from the start",
+    "unlock": "",
     "id": 12,
     "category": "traits"
   },
@@ -135,7 +137,7 @@
     "values": "3 → 30",
     "world": "",
     "location": "",
-    "unlock": "Unlocked from the start",
+    "unlock": "",
     "id": 13,
     "category": "traits"
   },
@@ -145,7 +147,7 @@
     "values": "2% → 20%",
     "world": "",
     "location": "",
-    "unlock": "Unlocked from the start",
+    "unlock": "",
     "id": 14,
     "category": "traits"
   },
@@ -155,7 +157,7 @@
     "values": "- 2% → - 20%",
     "world": "",
     "location": "",
-    "unlock": "Unlocked from the start",
+    "unlock": "",
     "id": 15,
     "category": "traits"
   },
@@ -174,7 +176,7 @@
     "description": "Increases Movement Speed while Aiming",
     "values": "5% → 50%",
     "world": "N'Erud",
-    "location": "Terminus Station (Side path)",
+    "location": "Terminus Station",
     "unlock": "Complete the side path",
     "id": 17,
     "category": "traits"
@@ -284,7 +286,7 @@
     "description": "Increases Mod Power Generation for Melee Damage",
     "values": "5% → 50%",
     "world": "Losomn",
-    "location": "Harvester's Reach (Side path)",
+    "location": "Harvester's Reach",
     "unlock": "Defeat a miniboss that spawns in the bone piles",
     "id": 28,
     "category": "traits"
@@ -294,7 +296,7 @@
     "description": "Reduces ALL incoming Damage",
     "values": "1% → 10%",
     "world": "Yaesha",
-    "location": "The Forbidden Grove (Overland area)",
+    "location": "The Forbidden Grove",
     "unlock": "When talking to Meidre respond positively/selflessly. Ultimately choosing the dialogue option \"helping the others",
     "id": 29,
     "category": "traits"
@@ -314,7 +316,7 @@
     "description": "Increases Grey Health regen",
     "values": "0.3s → 3.0s",
     "world": "Yaesha",
-    "location": "The Forbidden Grove (Overland area)",
+    "location": "The Forbidden Grove",
     "unlock": "When talking to Meidre respond negtively/selfishly. Ultimately choosing the dialogue option \"helping myself",
     "id": 31,
     "category": "traits"
@@ -324,7 +326,7 @@
     "description": "Increases Evade Distance",
     "values": "3% →  30%",
     "world": "N'Erud",
-    "location": "Vault of the Formless (Side path)",
+    "location": "Vault of the Formless",
     "unlock": "Complete the side path",
     "id": 32,
     "category": "traits"
@@ -344,7 +346,7 @@
     "description": "Increases the Use Speed of Consumables and Relics",
     "values": "3% →  30%",
     "world": "Losomn",
-    "location": "The Great Hall (Side path)",
+    "location": "The Great Hall",
     "unlock": "Eat a friendly player while you have the \"Ravenous\" status effect",
     "id": 34,
     "category": "traits"
@@ -354,7 +356,7 @@
     "description": "Reduces Weapon Spread and Recoil",
     "values": "4% →  40%",
     "world": "Root Earth",
-    "location": "Ashen Wasteland (Overland area)",
+    "location": "Ashen Wasteland",
     "unlock": "Progressing thorugh the area there will be a horde event, clear it to get the reward.",
     "id": 35,
     "category": "traits"
@@ -364,7 +366,7 @@
     "description": "Increases Stamina Regen",
     "values": "3s → 30s",
     "world": "Losomn",
-    "location": "Oracle's Refuge (Overland tile)",
+    "location": "Oracle's Refuge",
     "unlock": "Escort the child back to Oracle's Refuge and talk to the sewing NPC",
     "id": 36,
     "category": "traits"
@@ -394,7 +396,7 @@
     "description": "Increases Resistance to Elemental Status Effect Damage",
     "values": "2% → 20%",
     "world": "Losomn",
-    "location": "The Butcher's Quarter (Side path)",
+    "location": "The Butcher's Quarter",
     "unlock": "Save the villager who is being lynched",
     "id": 41,
     "category": "traits"
@@ -404,7 +406,7 @@
     "description": "Increases Lifesteal",
     "values": "0.3% → 3%",
     "world": "N'Erud",
-    "location": "Dormant N'Erudian Facility (Side path)",
+    "location": "Dormant N'Erudian Facility",
     "unlock": "Eliminate all enemies in the dungeon in less than 6 minutes",
     "id": 42,
     "category": "traits"
@@ -414,7 +416,7 @@
     "description": "Increeses Traversal Movement",
     "values": "5% → 50%",
     "world": "Root Earth",
-    "location": "Corrupted Harbor (Overland area)",
+    "location": "Corrupted Harbor",
     "unlock": "Miniboss fight with waves",
     "id": 43,
     "category": "traits"
@@ -570,7 +572,7 @@
     "mod": "",
     "world": "Earth",
     "location": "Ward 13",
-    "unlock": "Buy from Brabus at Ward 13/Starting weapon for the Handler archetype",
+    "unlock": "Buy from Brabus at Ward 13 / Starting weapon for the Handler archetype",
     "price_material": "1000 Scrap",
     "id": 51,
     "hasMod": false,
@@ -718,7 +720,7 @@
     "mod": "",
     "world": "Earth",
     "location": "Ward 13",
-    "unlock": "Unlocked from the start",
+    "unlock": "",
     "price_material": "",
     "id": 58,
     "hasMod": false,
@@ -818,7 +820,7 @@
     "modDescription": "Fires a devastating blast which penetrates through all enemies in its path. Deals 150 damage with a 25% Critical damage bonus, and 3x additional stagger. Bloodline damage increases by 50% for each enemy penetratedMod Power Requirement: 350",
     "hasMod": true,
     "world": "Yaesha",
-    "location": "Ravager's Lair (Main path)",
+    "location": "Ravager's Lair",
     "unlock": "Start the encounter by shooting/hitting the Ravager, let the Ravager kill the Doe mid fight and then kill the Ravager to finish the encounter",
     "price_material": "Crimson Membrane",
     "id": 62,
@@ -843,7 +845,7 @@
     "modDescription": "Enter the Nightmare Realm. Nightfall gains infinite Ammo, a 35% Fire Rate increase, 10% Lifesteal, and becomes fully automatic. The wielder becomes significantly harder to hit while moving.Disables other weapons and Skills for the duration, or until Dreadwalker is deactivated. Lasts 10s.Mod Power Requirement: 1,250",
     "hasMod": true,
     "world": "Losomn",
-    "location": "The Tormented Asylum (Main path)",
+    "location": "The Tormented Asylum",
     "unlock": "Defeat the Nightweaver",
     "price_material": "Cursed Dream Silks",
     "id": 63,
@@ -1167,7 +1169,7 @@
     "fallOffRange": "20m",
     "mod": "",
     "world": "Losomn",
-    "location": "The Tormented Asylum (Main path)",
+    "location": "The Tormented Asylum",
     "unlock": "Inside the safe. You need to give the woman in the basement 3 little statues to give you the code. 2971",
     "price_material": "",
     "maxLevel": 20,
@@ -1195,7 +1197,7 @@
     "mod": "",
     "world": "Earth",
     "location": "Ward 13",
-    "unlock": "Unlocked from the start",
+    "unlock": "",
     "price_material": "",
     "id": 74,
     "hasMod": false,
@@ -2721,7 +2723,7 @@
     "description": "On use, Heals 70 Health over 0.5s.",
     "world": "",
     "location": "",
-    "unlock": "Unlocked from the start",
+    "unlock": "",
     "id": 166,
     "category": "relics"
   },
@@ -6450,7 +6452,6 @@
     "world": "N'Erud",
     "location": "The Lament",
     "unlock": "",
-    "value": 5,
     "id": 576,
     "armorset": "No Set",
     "category": "armor",
@@ -6473,7 +6474,6 @@
     "world": "Yaesha",
     "location": "Extraction Hub",
     "unlock": "Kill a rare N'Erud Zombie (Navigator Zombie) who's wearing the Navigator Helm.",
-    "value": 12,
     "id": 577,
     "armorset": "No Set",
     "category": "armor",
@@ -6493,23 +6493,35 @@
     "id": 467,
     "name": "Faelin",
     "description": "Light boss",
+    "race": "Fae",
     "material": "Imposter's Heart",
     "unlock": "Outside the big door there is a plate with a lever in the middle where you need to insert 2 masks. When you pull the lever will be transported to Beatific or Malefic Gallery. For Faelin you need to be in the Beatific.",
     "world": "Losomn",
+    "stats": {
+      "weakspot": "Sword Hilt"
+    },
     "category": "worldbosses"
   },
   {
     "id": 468,
     "name": "Faerin",
     "description": "Dark boss",
+    "race": "Fae",
     "material": "Melded Hilt",
     "unlock": "Outside the big door there is a plate with a lever in the middle where you need to insert 2 masks. When you pull the lever will be transported to Beatific or Malefic Gallery. For Faerin you need to be in the Malefic.",
     "world": "Losomn",
+    "stats": {
+      "weakspot": "Sword Hilt"
+    },
     "category": "worldbosses"
   },
   {
     "id": 469,
     "name": "Nightweaver",
+    "race": "Fae",
+    "stats": {
+      "weakspot": "Heart"
+    },
     "material": "Cursed Dream Silks",
     "unlock": "Defeat her normally.",
     "world": "Losomn",
@@ -6518,6 +6530,10 @@
   {
     "id": 470,
     "name": "Nightweaver Spectral",
+    "race": "Fae",
+    "stats": {
+      "weakspot": "Heart"
+    },
     "material": "Nightweaver's Finger",
     "unlock": "This is easier done in the first phase. When she summons minions she will have in her chest a bright spot, that's her Heart, destroy it and defeat her.",
     "world": "Losomn",
@@ -6526,6 +6542,11 @@
   {
     "id": 471,
     "name": "Sha'Hala Spectral",
+    "race": "Phantom",
+    "stats": {
+      "weakspot": "Orb",
+      "immunity": "Fire"
+    },
     "material": "Eidolon Shard",
     "unlock": "Interact just with the terminal to defeat the Spectral form of Sha'hala.",
     "world": "N'Erud",
@@ -6534,6 +6555,11 @@
   {
     "id": 472,
     "name": "Sha'Hala",
+    "race": "Phantom",
+    "stats": {
+      "weakspot": "Orb",
+      "immunity": "Fire"
+    },
     "material": "Void Cinder",
     "unlock": "Before interacting with the terminal use the Override Pin in the hole the terminal has, after that defeat the Physical form of Sha'hala. This will cause your N'Erud world ends so make sure you have collected everything beforehand.",
     "world": "N'Erud",
@@ -6542,6 +6568,10 @@
   {
     "id": 473,
     "name": "Tal'Ratha",
+    "race": "Astropath",
+    "stats": {
+      "weakspot": "Head"
+    },
     "material": "Shining Essence Echo / Spiced Bile",
     "unlock": "When you talk to him refuse to be eaten. It won't be that obvious but the dialog will be in that line. After that defeat him.",
     "world": "N'Erud",
@@ -6550,6 +6580,10 @@
   {
     "id": 474,
     "name": "Tal'Ratha Metaphysical",
+    "race": "Astropath",
+    "stats": {
+      "weakspot": "Mouth"
+    },
     "material": "Shining Essence Echo / Acidic Jawbone",
     "unlock": "When you talk to him let him eat you. It won't be that obvious but the dialog will be in that line. After that defeat him.",
     "world": "N'Erud",
@@ -6558,6 +6592,10 @@
   {
     "id": 475,
     "name": "Corruptor",
+    "race": "Root",
+    "stats": {
+      "weakspot": "Red Core"
+    },
     "material": "Twisted Lazurite",
     "unlock": "Defeat The Corruptor when at least you kill one time the Guardian.",
     "world": "Yaesha",
@@ -6566,6 +6604,10 @@
   {
     "id": 476,
     "name": "Corruptor",
+    "race": "Root",
+    "stats": {
+      "weakspot": "Red Core"
+    },
     "material": "Hollow Heart",
     "unlock": "Defeat The Corruptor but don't kill Guardian, not even once.",
     "world": "Yaesha",
@@ -6574,6 +6616,10 @@
   {
     "id": 477,
     "name": "Corrupted Ravager",
+    "race": "Root",
+    "stats": {
+      "weakspot": "Pustules of root in the back"
+    },
     "material": "Ravager's Maw",
     "unlock": "The Ravager will ask you to kill the Doe. Shoot the Ravager to start the fight and then kill the Doe before he does.",
     "world": "Yaesha",
@@ -6582,6 +6628,10 @@
   {
     "id": 478,
     "name": "Corrupted Ravager",
+    "race": "Root",
+    "stats": {
+      "weakspot": "Pustules of root in the back"
+    },
     "material": "Crimson Membrane",
     "unlock": "The Ravager will ask you to kill the Doe. Shoot the Ravager to start the fight, be carefull to not kill the Doe midfight, after that at some point of the fight the Ravager will eat the Doe.",
     "world": "Yaesha",
@@ -6590,6 +6640,10 @@
   {
     "id": 479,
     "name": "Corrupted Ravager",
+    "race": "Root",
+    "stats": {
+      "weakspot": "Pustules of root in the back"
+    },
     "material": "Ravager's Mark",
     "unlock": "Kill the Doe when The Ravager asks to kill it.",
     "world": "Yaesha",
@@ -6598,6 +6652,10 @@
   {
     "id": 480,
     "name": "Corrupted Ravager",
+    "race": "Root",
+    "stats": {
+      "weakspot": "Pustules of root in the back"
+    },
     "material": "Broken Antler",
     "unlock": "Heal the Doe when The Ravager asks to kill it.",
     "world": "Yaesha",
@@ -6606,6 +6664,7 @@
   {
     "id": 481,
     "name": "Labyrinth Sentinel",
+    "race": "Golem",
     "material": "Conflux Prism",
     "unlock": "Shoot the white squares on the cubes. When you hit all the white squares of a cube it stops having purple light around it.",
     "world": "Labyrinth",
@@ -6614,8 +6673,12 @@
   {
     "id": 482,
     "name": "Annihilation",
+    "race": "Root",
+    "stats": {
+      "weakspot": "Head"
+    },
     "material": "Forgotten Memory / Broken Compass",
-    "unlock": "Defeat Annihilation",
+    "unlock": "",
     "world": "Root Earth",
     "category": "worldbosses"
   },
@@ -7161,6 +7224,10 @@
     "id": 648,
     "name": "Kaula's Shadow",
     "description": "",
+    "race": "Root",
+    "stats": {
+      "weakness": "Fire"
+    },
     "world": "Yaesha",
     "location": "Kaula's Rest",
     "category": "bosses"
@@ -7185,14 +7252,24 @@
     "id": 651,
     "name": "Defiler",
     "description": "",
+    "type": "Aberration",
+    "race": "Root",
     "world": "Yaesha",
     "location": "The Forgotten Field",
+    "stats": {
+      "weakspot": "Red core",
+      "resistance": "Damage to its armor"
+    },
     "category": "bosses"
   },
   {
     "id": 652,
-    "name": "Mothermind",
+    "name": "Mother Mind",
     "description": "",
+    "race": "Root",
+    "stats": {
+      "weakspot": "Glowing red spots"
+    },
     "world": "Yaesha",
     "location": "The Nameless Nest",
     "category": "bosses"
@@ -7201,22 +7278,36 @@
     "id": 653,
     "name": "Wither",
     "description": "",
+    "type": "Aberration",
+    "race": "Root",
     "world": "Yaesha",
     "location": "The Lament",
+    "stats": {
+      "weakspot": "Red parasite in the chest"
+    },
     "category": "bosses"
   },
   {
     "id": 654,
     "name": "Rot",
     "description": "",
+    "type": "Aberration",
+    "race": "Root",
     "world": "Yaesha",
     "location": "The Chimney",
+    "stats": {
+      "weakspot": "Glowing orb"
+    },
     "category": "bosses"
   },
   {
     "id": 655,
     "name": "Bastion",
     "description": "",
+    "race": "Golem",
+    "stats": {
+      "weakspot": "Big glowing sphere in its head"
+    },
     "world": "Labyrinth",
     "category": "bosses"
   },
@@ -7224,6 +7315,10 @@
     "id": 656,
     "name": "The Huntress",
     "description": "",
+    "race": "Dran",
+    "stats": {
+      "weakspot": "Goat's Head\nRider's Head"
+    },
     "world": "Losomn",
     "location": "Brocwithe Quarter",
     "category": "bosses"
@@ -7231,6 +7326,10 @@
   {
     "id": 657,
     "name": "Gwendil: The Unburnt",
+    "race": "Dran",
+    "stats": {
+      "weakspot": "Head"
+    },
     "description": "",
     "world": "Losomn",
     "location": "Cotton's Kiln",
@@ -7240,6 +7339,10 @@
     "id": 658,
     "name": "The Council",
     "description": "",
+    "race": "Fae",
+    "stats": {
+      "weakspot": "Head"
+    },
     "world": "Losomn",
     "location": "Council Chamber",
     "category": "bosses"
@@ -7248,6 +7351,10 @@
     "id": 659,
     "name": "The Red Prince",
     "description": "",
+    "race": "Fae",
+    "stats": {
+      "weakspot": "Head"
+    },
     "world": "Losomn",
     "location": "Guilded Chambers",
     "category": "bosses"
@@ -7265,6 +7372,10 @@
     "id": 661,
     "name": "Magister Dullain",
     "description": "",
+    "race": "Horror",
+    "stats": {
+      "weakspot": "Tongue"
+    },
     "world": "Losomn",
     "location": "Shattered Gallery",
     "category": "bosses"
@@ -7273,6 +7384,10 @@
     "id": 662,
     "name": "Bloat King",
     "description": "",
+    "race": "Ooze",
+    "stats": {
+      "weakspot": "Energy Ball"
+    },
     "world": "Losomn",
     "location": "The Great Sewers",
     "category": "bosses"
@@ -7280,6 +7395,10 @@
   {
     "id": 663,
     "name": "The Astropath",
+    "race": "Phantom",
+    "stats": {
+      "weakspot": "Chest"
+    },
     "description": "",
     "world": "N'Erud",
     "location": "Astropath's Respite",
@@ -7287,40 +7406,60 @@
   },
   {
     "id": 664,
-    "name": "Castodian's Eye",
+    "name": "Custodian's Eye",
     "description": "",
+    "race": "N'Erud Robots",
+    "stats": {
+      "weakspot": "Main Eye"
+    },
     "world": "N'Erud",
     "location": "Spectrum Nexus",
     "category": "bosses"
   },
   {
     "id": 665,
-    "name": "Primogentior",
+    "name": "Primogenitor",
     "description": "",
+    "race": "Bug",
     "world": "N'Erud",
     "location": "The Hatchery",
     "category": "bosses"
   },
   {
     "id": 666,
-    "name": "The Abomination",
+    "name": "Abomination",
+    "type": "Aberration",
+    "race": "Drzyr",
     "description": "",
     "world": "N'Erud",
     "location": "The Putrid Domain",
+    "stats": {
+      "weakspot": "Expose the core and shoot at it.",
+      "resistance": "The Core is protected by Armor you'll have to break first."
+    },
     "category": "bosses"
   },
   {
     "id": 667,
     "name": "E.D. Alpha",
+    "type": "Aberration",
+    "race": "N'Erud Robots",
     "description": "",
     "world": "N'Erud",
     "location": "Tower Of The Unseen",
+    "stats": {
+      "weakspot": "Eye"
+    },
     "category": "bosses"
   },
   {
     "id": 668,
     "name": "Cancer",
     "description": "",
+    "race": "Root",
+    "stats": {
+      "weakspot": "Back"
+    },
     "world": "Root Earth",
     "location": "Ashen Wasteland",
     "category": "bosses"
@@ -7329,8 +7468,475 @@
     "id": 669,
     "name": "Venom",
     "description": "",
+    "race": "Root",
+    "stats": {
+      "weakspot": "Core in chest"
+    },
     "world": "Root Earth",
     "location": "Corrupted Harbor",
+    "category": "bosses"
+  },
+  {
+    "name": "Academic's Set",
+    "category": "armorset",
+    "stats": {
+      "armor": 72,
+      "weight": 42,
+      "resistances": {
+        "bleed": 5,
+        "fire": 0,
+        "shock": 0,
+        "blight": 7,
+        "corrosion": 15
+      }
+    },
+    "pieces": 4,
+    "unlock": "Can be found on a body during the Monster in the Drain event in Losomn",
+    "id": 670
+  },
+  {
+    "name": "Bruiser Set",
+    "category": "armorset",
+    "stats": {
+      "armor": 110,
+      "weight": 60,
+      "resistances": {
+        "bleed": 5,
+        "fire": 14,
+        "shock": 0,
+        "blight": 0,
+        "corrosion": 6
+      }
+    },
+    "pieces": 4,
+    "unlock": "Starting Armor set for the Challenger / Sold by Whispers in Ward 13",
+    "id": 671
+  },
+  {
+    "name": "Dendroid Set",
+    "category": "armorset",
+    "stats": {
+      "armor": 47,
+      "weight": 25,
+      "resistances": {
+        "bleed": 10,
+        "fire": 0,
+        "shock": 2,
+        "blight": 5,
+        "corrosion": 8
+      }
+    },
+    "pieces": 4,
+    "unlock": "Can be found in Root Earth - Ashen Wasteland",
+    "id": 672
+  },
+  {
+    "name": "Elder Set",
+    "category": "armorset",
+    "stats": {
+      "armor": 44,
+      "weight": 24,
+      "resistances": {
+        "bleed": 0,
+        "fire": 12,
+        "shock": 0,
+        "blight": 9,
+        "corrosion": 4
+      }
+    },
+    "pieces": 4,
+    "unlock": "Obtained by purchasing Remnant 2 Deluxe Edition or Ultimate Edition",
+    "id": 673
+  },
+  {
+    "name": "Fae Royal Set",
+    "category": "armorset",
+    "stats": {
+      "armor": 107,
+      "weight": 55,
+      "resistances": {
+        "bleed": 9,
+        "fire": 9,
+        "shock": 0,
+        "blight": 7,
+        "corrosion": 0
+      }
+    },
+    "pieces": 4,
+    "unlock": "Can be found in Losomn - Postulant's Parlor",
+    "id": 674
+  },
+  {
+    "name": "Field Medic Set",
+    "category": "armorset",
+    "stats": {
+      "armor": 68,
+      "weight": 35,
+      "resistances": {
+        "bleed": 15,
+        "fire": 0,
+        "shock": 0,
+        "blight": 8,
+        "corrosion": 2
+      }
+    },
+    "pieces": 4,
+    "unlock": "Starting Equipment for the Medic Archetype.\nSold by Whispers in Ward 13",
+    "id": 675
+  },
+  {
+    "name": "Void Set",
+    "category": "armorset",
+    "stats": {
+      "armor": 104,
+      "weight": 57,
+      "resistances": {
+        "bleed": 0,
+        "fire": 7,
+        "shock": 9,
+        "blight": 0,
+        "corrosion": 9
+      }
+    },
+    "pieces": 4,
+    "unlock": "Obtained by purchasing Remnant 2 Deluxe Edition or Ultimate Edition",
+    "id": 676
+  },
+  {
+    "name": "High Noon Set",
+    "category": "armorset",
+    "stats": {
+      "armor": 72,
+      "weight": 39,
+      "resistances": {
+        "bleed": 0,
+        "fire": 10,
+        "shock": 9,
+        "blight": 0,
+        "corrosion": 6
+      }
+    },
+    "pieces": 4,
+    "unlock": "Starting equipment for the Gunslinger Archetype.",
+    "id": 677
+  },
+  {
+    "name": "Knotted Set",
+    "category": "armorset",
+    "stats": {
+      "armor": 100,
+      "weight": 56,
+      "resistances": {
+        "bleed": 3,
+        "fire": 0,
+        "shock": 0,
+        "blight": 7,
+        "corrosion": 15
+      }
+    },
+    "pieces": 4,
+    "unlock": "Can be crafted at Bloodmoon Altar. Required Material: Blood Moon Essence",
+    "id": 678
+  },
+  {
+    "name": "Leto Mark II Set",
+    "category": "armorset",
+    "stats": {
+      "armor": 168,
+      "weight": 90,
+      "resistances": {
+        "bleed": 10,
+        "fire": 10,
+        "shock": 10,
+        "blight": 10,
+        "corrosion": 10
+      }
+    },
+    "pieces": 4,
+    "unlock": "Use This Link To Find Out How To Obtain This Armour",
+    "id": 679
+  },
+  {
+    "name": "Nightstalker Set",
+    "category": "armorset",
+    "stats": {
+      "armor": 69,
+      "weight": 36,
+      "resistances": {
+        "bleed": 6,
+        "fire": 7,
+        "shock": 5,
+        "blight": 13,
+        "corrosion": 0
+      }
+    },
+    "pieces": 4,
+    "unlock": "Whispers in Ward 13 sells this equipment\nStarting equipment for the Hunter Archetype",
+    "id": 680
+  },
+  {
+    "name": "Radiant Set",
+    "category": "armorset",
+    "stats": {
+      "armor": 113,
+      "weight": 61,
+      "resistances": {
+        "bleed": 5,
+        "fire": 5,
+        "shock": 12,
+        "blight": 3,
+        "corrosion": 0
+      }
+    },
+    "pieces": 4,
+    "unlock": "Obtained by purchasing Remnant 2 Deluxe Edition or Ultimate Edition",
+    "id": 681
+  },
+  {
+    "name": "Realmwalker Set",
+    "category": "armorset",
+    "stats": {
+      "armor": 40,
+      "weight": 21,
+      "resistances": {
+        "bleed": 5,
+        "fire": 4,
+        "shock": 7,
+        "blight": 9,
+        "corrosion": 0
+      }
+    },
+    "pieces": 4,
+    "unlock": "Starting equipment for the Explorer",
+    "id": 682
+  },
+  {
+    "name": "Redwidow Set",
+    "category": "armorset",
+    "stats": {
+      "armor": 88,
+      "weight": 48,
+      "resistances": {
+        "bleed": 12,
+        "fire": 0,
+        "shock": 0,
+        "blight": 11,
+        "corrosion": 2
+      }
+    },
+    "pieces": 4,
+    "unlock": "Use This Link To Find Out How To Obtain This Armour",
+    "id": 683
+  },
+  {
+    "name": "Space Worker Set",
+    "category": "armorset",
+    "stats": {
+      "armor": 44,
+      "weight": 23,
+      "resistances": {
+        "bleed": 4,
+        "fire": 3,
+        "shock": 10,
+        "blight": 0,
+        "corrosion": 7
+      }
+    },
+    "pieces": 4,
+    "unlock": "Found in N'Erud. Enter the Void Vessel Facility. Find the Stasis Pod Glyph in one of the capsule that can be opened by interacting with a console next to them, in the same dungeon there's a door with a light in the middle, interact with it using the Stasis Pod Glyph to open it. Enter the room, the complete Space Worker Set can be found in a locker.",
+    "id": 684
+  },
+  {
+    "name": "Survivor Set",
+    "category": "armorset",
+    "stats": {
+      "armor": 60,
+      "weight": 33,
+      "resistances": {
+        "bleed": 5,
+        "fire": 4,
+        "shock": 4,
+        "blight": 4,
+        "corrosion": 5
+      }
+    },
+    "pieces": 3,
+    "unlock": "Automatically equipped as you begin your first character in the game",
+    "id": 685
+  },
+  {
+    "name": "Technical Set",
+    "category": "armorset",
+    "stats": {
+      "armor": 106,
+      "weight": 58,
+      "resistances": {
+        "bleed": 0,
+        "fire": 5,
+        "shock": 13,
+        "blight": 0,
+        "corrosion": 7
+      }
+    },
+    "pieces": 4,
+    "unlock": "Use This Link To Find Out How To Obtain This Armour",
+    "id": 686
+  },
+  {
+    "name": "Trainer Set",
+    "category": "armorset",
+    "stats": {
+      "armor": 67,
+      "weight": 33,
+      "resistances": {
+        "bleed": 6,
+        "fire": 0,
+        "shock": 8,
+        "blight": 3,
+        "corrosion": 7
+      }
+    },
+    "pieces": 4,
+    "unlock": "Whispers sells this equipment in Ward 13\nStarting equipment for the Handler",
+    "id": 687
+  },
+  {
+    "id": 688,
+    "name": "Gorge",
+    "description": "",
+    "type": "Aberration",
+    "race": "Beast",
+    "world": "Losomn",
+    "location": "Butcher's Quarter / Cotton's Kiln",
+    "stats": {
+      "weakspot": "Loin"
+    },
+    "category": "bosses"
+  },
+  {
+    "id": 689,
+    "name": "The Executioner",
+    "description": "",
+    "type": "Aberration",
+    "race": "Fae",
+    "world": "Losomn",
+    "location": "",
+    "stats": {
+      "weakspot": "Unarmored Areas (Arms and Legs)"
+    },
+    "category": "bosses"
+  },
+  {
+    "id": 690,
+    "name": "Ripsaw",
+    "description": "",
+    "type": "Aberration",
+    "race": "Dran",
+    "world": "Losomn",
+    "location": "Morrow Parish",
+    "stats": {
+      "weakspot": "Head"
+    },
+    "category": "bosses"
+  },
+  {
+    "id": 691,
+    "name": "Firth: The Oathkeeper",
+    "description": "",
+    "type": "Aberration",
+    "race": "Fae",
+    "world": "Losomn",
+    "location": "Malefic Palace",
+    "stats": {
+      "weakspot": "Head"
+    },
+    "category": "bosses"
+  },
+  {
+    "id": 692,
+    "name": "Barghest the Vile",
+    "description": "",
+    "type": "Aberration",
+    "race": "Beast",
+    "world": "Losomn",
+    "location": "Harvester's Reach",
+    "stats": {
+      "weakspot": "Head"
+    },
+    "category": "bosses"
+  },
+  {
+    "id": 693,
+    "name": "Fetid Corpse",
+    "description": "",
+    "type": "Aberration",
+    "race": "Drzyr",
+    "world": "N'Erud",
+    "location": "Void Vessel Facility",
+    "stats": {
+      "weakspot": "Exposed Core"
+    },
+    "category": "bosses"
+  },
+  {
+    "id": 694,
+    "name": "Restless Spirit",
+    "description": "",
+    "type": "Aberration",
+    "race": "Drzyr",
+    "world": "N'Erud",
+    "location": "Terminus Station / Tower of the Unseen",
+    "stats": {
+      "weakspot": "Head"
+    },
+    "category": "bosses"
+  },
+  {
+    "id": 695,
+    "name": "W.D. 109",
+    "description": "",
+    "type": "Aberration",
+    "race": "N'Erud Robots",
+    "world": "N'Erud",
+    "location": "Void Vessel Facility\n\nThe Putrid Domain \n\nVault of the Formless\n\nThe Hatchery",
+    "category": "bosses"
+  },
+  {
+    "id": 696,
+    "name": "The Progeny",
+    "description": "",
+    "type": "Aberration",
+    "race": "Bug",
+    "world": "N'Erud",
+    "location": "The Hatchery \nThe Dark Conduit",
+    "stats": {
+      "weakspot": "Exposed head"
+    },
+    "category": "bosses"
+  },
+  {
+    "id": 697,
+    "name": "Bane",
+    "description": "",
+    "race": "Root",
+    "world": "Root Earth",
+    "location": "Twilight Vale",
+    "stats": {
+      "weakspot": "Eye",
+      "resistance": "Fire"
+    },
+    "category": "bosses"
+  },
+  {
+    "id": 698,
+    "name": "Legion",
+    "description": "",
+    "race": "",
+    "world": "Yaesha",
+    "location": "The Twisted Chantry",
+    "stats": {
+      "weakspot": "Center red spiral (while glowing)"
+    },
     "category": "bosses"
   }
 ]

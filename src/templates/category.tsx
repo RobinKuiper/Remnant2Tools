@@ -323,6 +323,7 @@ export const query = graphql`
         location
         unlock
         type
+        race
         hasMod
         armorset
         onlyDB

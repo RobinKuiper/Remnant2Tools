@@ -6,10 +6,11 @@ import Layout from "../components/layout/Layout";
 import Head from "../components/layout/Head";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import Redacted from "../components/database/Redacted";
-import { isUnlocked } from "../dataHelpers";
+import { calculateWeightType, isUnlocked } from "../dataHelpers";
 import ItemStat from "../components/item/ItemStat";
 import { slugify, uppercaseFirstLetter } from "../helpers";
 import Breadcrumb from "../components/layout/Breadcrumb";
+import { Tooltip } from "react-tooltip";
 
 const Page = styled.div`
   display: flex;
@@ -58,8 +59,9 @@ const Page = styled.div`
         .title {
           .general-information {
             display: flex;
-            gap: 20px;
+            gap: 10px;
             margin-top: 10px;
+            font-size: 0.9em;
 
             span {
               .key {
@@ -121,9 +123,12 @@ const Description = styled.div`
   }
 `;
 
+const REDACTED_COLOR = "#bbbbbb";
+
 const Category = ({ data, pageContext, location }) => {
   const { item, category } = pageContext;
   const { image } = data;
+  const unlocked = isUnlocked(item.category, item.id);
 
   return (
     <Layout>
@@ -144,28 +149,68 @@ const Category = ({ data, pageContext, location }) => {
 
           <div className="item">
             <div className="top">
-              <div className="image">
-                {image && <GatsbyImage image={getImage(image)} alt={item.name} title={item.name} placeholder="none" />}
-              </div>
+              {image && (
+                <div className="image">
+                  {image && (
+                    <GatsbyImage image={getImage(image)} alt={item.name} title={item.name} placeholder="none" />
+                  )}
+                </div>
+              )}
 
               <div className="title">
                 <h1>{item.name}</h1>
 
                 <div className="general-information">
+                  <span>{category.singular}</span>
+
+                  {item.type && (
+                    <>
+                      <span> | </span>
+                      <span>{item.type}</span>
+                    </>
+                  )}
+
+                  {item.armorset && (
+                    <>
+                      <span> | </span>
+                      <span>
+                        <Link to={`/database/armorset/${slugify(item.armorset)}`} title={item.armorset}>
+                          {item.armorset}
+                        </Link>
+                      </span>
+                    </>
+                  )}
+
                   {item.world && (
-                    <span>
-                      {item.world}
-                      {item.location && ` - ${item.location}`}
-                    </span>
+                    <>
+                      <span> | </span>
+                      <span>
+                        <Redacted value={item.world} defaultShow={unlocked} bgColor={REDACTED_COLOR} />
+                        {item.location && (
+                          <>
+                            &nbsp;-&nbsp;
+                            <Redacted
+                              value={item.location}
+                              defaultShow={unlocked}
+                              bgColor={REDACTED_COLOR}
+                              tooltip={item.locationInformation}
+                            />
+                          </>
+                        )}
+                      </span>
+                    </>
                   )}
 
                   {item.hasMod && (
-                    <span>
-                      <span className="key">Mod:</span>
-                      <Link to={`/database/mods/${slugify(item.mod)}`} title={item.mod}>
-                        {item.mod}
-                      </Link>
-                    </span>
+                    <>
+                      <span> | </span>
+                      <span>
+                        <span className="key">Mod:</span>
+                        <Link to={`/database/mods/${slugify(item.mod)}`} title={item.mod}>
+                          {item.mod}
+                        </Link>
+                      </span>
+                    </>
                   )}
                 </div>
               </div>
@@ -175,6 +220,9 @@ const Category = ({ data, pageContext, location }) => {
               <div className="left">
                 {item.stats && (
                   <div className="stats">
+                    {item.stats.weight && (
+                      <ItemStat valueKey="Weight type" value={calculateWeightType(item.stats.weight)} />
+                    )}
                     {Object.entries(item.stats).map(([key, value]) => (
                       <ItemStat key={key} valueKey={key} value={value} />
                     ))}
@@ -197,7 +245,7 @@ const Category = ({ data, pageContext, location }) => {
                       <h3>Unlock Information</h3>
 
                       <p>
-                        <Redacted value={item.unlock} defaultShow={isUnlocked(item.category, item.id)} />
+                        <Redacted value={item.unlock} defaultShow={unlocked} bgColor={REDACTED_COLOR} />
                       </p>
                     </div>
                   </Description>
@@ -207,6 +255,7 @@ const Category = ({ data, pageContext, location }) => {
           </div>
         </div>
       </Page>
+      <Tooltip id="item" />
     </Layout>
   );
 };
