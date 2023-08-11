@@ -4,6 +4,7 @@ import { Link, graphql } from "gatsby";
 import Layout from "../components/layout/Layout";
 import { styled } from "styled-components";
 import Head from "../components/layout/Head";
+import { calculateStringMatchPercentage } from "../helpers";
 
 const Container = styled.div`
   display: flex;
@@ -61,22 +62,6 @@ const Container = styled.div`
     }
   }
 `;
-
-function calculateStringMatchPercentage(string1, string2) {
-  const length1 = string1.length;
-  const length2 = string2.length;
-  const maxLength = Math.max(length1, length2);
-  let matchCount = 0;
-
-  for (let i = 0; i < maxLength; i++) {
-    if (string1[i] === string2[i]) {
-      matchCount++;
-    }
-  }
-
-  const matchPercentage = (matchCount / maxLength) * 100;
-  return matchPercentage.toFixed(2); // Return the match percentage with 2 decimal places
-}
 
 const NotFoundPage: React.FC<PageProps> = ({ data, location }) => {
   const relevantPages = data.pages.nodes

@@ -7,7 +7,7 @@ import Layout from "../components/layout/Layout";
 import Search from "../components/Search";
 import { DataContext } from "../context/DataContext";
 import { SettingContext } from "../context/SettingContext";
-import { isUnlocked } from "../dataHelpers";
+import { getFieldValue, isUnlocked } from "../dataHelpers";
 import { Flex } from "../style/global";
 import Item from "../components/database/Item";
 import ItemCategory from "../components/database/ItemCategory";
@@ -104,11 +104,26 @@ const Category = props => {
   }, [defaultView]);
 
   const sorter = (a, b) => {
-    if (typeof a[sortBy] === "string") {
-      return sortDir === 0 ? b[sortBy].localeCompare(a[sortBy]) : a[sortBy].localeCompare(b[sortBy]);
+    const aValue = getFieldValue(a, sortBy) ?? 0;
+    const bValue = getFieldValue(b, sortBy) ?? 0;
+
+    if (typeof aValue === "string") {
+      return sortDir === 0 ? bValue.localeCompare(aValue) : aValue.localeCompare(bValue);
     }
 
-    return sortDir === 0 ? (b[sortBy] > a[sortBy] ? -1 : 1) : a[sortBy] < b[sortBy] ? -1 : 1;
+    if (sortDir === 0) {
+      return bValue > aValue ? -1 : 1;
+    } else {
+      return aValue < bValue ? -1 : 1;
+    }
+  };
+
+  const groupText = (value: any) => {
+    if (typeof value === "boolean") {
+      return value ? "Yes" : "No";
+    }
+
+    return value;
   };
 
   const group = (data: any) => {
@@ -118,7 +133,7 @@ const Category = props => {
 
     const grouped = {};
     data.forEach(item => {
-      const group = typeof item[groupBy] === "boolean" ? (item[groupBy] ? "Yes" : "No") : item[groupBy];
+      const group = groupText(item[groupBy]);
       grouped[group] = grouped[group] || { label: group, items: [] };
       grouped[group].items.push(item);
     });
@@ -188,8 +203,8 @@ const Category = props => {
                 <option value="none">None</option>
                 {category &&
                   category.groups.map(group => (
-                    <option key={group} value={group} selected={groupBy === group}>
-                      {group}
+                    <option key={group.fragment} value={group.fragment} selected={groupBy === group.fragment}>
+                      {group.label}
                     </option>
                   ))}
               </select>
@@ -200,8 +215,8 @@ const Category = props => {
                   <select onChange={handleSortSelectChange}>
                     <option value="none">None</option>
                     {category.sortKeys.map(key => (
-                      <option key={key} value={key} selected={groupBy === key}>
-                        {key}
+                      <option key={key.fragment} value={key.fragment} selected={groupBy === key.fragment}>
+                        {key.label}
                       </option>
                     ))}
                   </select>
@@ -289,6 +304,9 @@ export const query = graphql`
       nodes {
         name
         relativePath
+        fields {
+          itemId
+        }
         childImageSharp {
           gatsbyImageData(quality: 80, layout: CONSTRAINED)
         }
@@ -305,13 +323,16 @@ export const query = graphql`
         location
         unlock
         type
+        race
         hasMod
-        damage
-        rps
         armorset
-        armor
-        weight
         onlyDB
+        stats {
+          damage
+          rps
+          armor
+          weight
+        }
       }
     }
   }

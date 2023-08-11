@@ -5,6 +5,9 @@ import ItemLevel from "./ItemLevel";
 import { Flex } from "../../style/global";
 import { BsInfoCircleFill } from "react-icons/bs";
 import { Tooltip } from "react-tooltip";
+import { getFieldValue } from "../../dataHelpers";
+import { slugify } from "../../helpers";
+import { Link } from "gatsby";
 
 interface Props {
   item: any;
@@ -23,20 +26,14 @@ const GridItem = (props: Props) => {
   return (
     <Flex direction="column" justifyContent="center" alignItems="center">
       {image && (
-        <GatsbyImage
-          image={getImage(image)}
-          alt={item.name}
-          title={item.name}
-          placeholder="none"
-          style={
-            image.childImageSharp.gatsbyImageData.height > image.childImageSharp.gatsbyImageData.width
-              ? { height: "100px" }
-              : { width: "100px" }
-          }
-        />
+        <Link to={`/database/${category.fragment}/${slugify(item.name)}`} title={item.name} state={{ type }}>
+          <GatsbyImage image={getImage(image)} alt={item.name} title={item.name} placeholder="none" />
+        </Link>
       )}
 
-      <h3>{item.name}</h3>
+      <Link to={`/database/${category.fragment}/${slugify(item.name)}`} title={item.name} state={{ type }}>
+        <h3>{item.name}</h3>
+      </Link>
 
       <Flex justifyContent="center">
         {type === "tracker" && (
@@ -72,24 +69,30 @@ const GridItem = (props: Props) => {
       {item.description && <p>{item.description}</p>}
 
       {category &&
-        category[type].fields.map(field => (
-          <div key={field.fragment}>
-            {item[field.fragment] && item[field.fragment] !== "" && (
+        category[type].fields.map(field => {
+          const value = getFieldValue(item, field.fragment);
+
+          if (!value) {
+            return "";
+          }
+
+          return (
+            <div key={field.fragment}>
               <Flex direction="row">
                 <Flex direction="column">
                   <div className="field-title">{field.label}</div>
                   <div>
                     {field.redacted && !unlocked ? (
-                      <Redacted value={item[field.fragment]} defaultShow={unlocked} bgColor={"#c7c7c7"} />
+                      <Redacted value={value} defaultShow={unlocked} bgColor={"#c7c7c7"} />
                     ) : (
-                      item[field.fragment]
+                      value
                     )}
                   </div>
                 </Flex>
               </Flex>
-            )}
-          </div>
-        ))}
+            </div>
+          );
+        })}
 
       {type === "tracker" && item.unlock && (
         <>
