@@ -46,9 +46,13 @@ GITLAB_TOKEN = sys.argv[1]
 PROJECT_ID = sys.argv[2]
 REF_NAME = sys.argv[3]
 
+print("GITLAB_TOKEN:", GITLAB_TOKEN)
+print("PROJECT_ID:", PROJECT_ID)
+print("REF_NAME:", REF_NAME)
+
 gl = gitlab.Gitlab("https://gitlab.com", job_token=GITLAB_TOKEN)
 
-gl.enable_debug()
+# gl.enable_debug()
 
 # Get the project from gitlab
 project = project = gl.projects.get(PROJECT_ID, lazy=True)

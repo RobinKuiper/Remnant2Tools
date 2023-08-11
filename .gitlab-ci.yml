@@ -95,6 +95,7 @@ before_script:
 create_release:
   image: python:3.8-alpine
   stage: deploy
+  cache: false  # Disable caching for this job
 #  needs:
 #    - pages
   before_script:
