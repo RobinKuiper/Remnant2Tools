@@ -8,7 +8,7 @@ import { DataContext } from "../../context/DataContext";
 import { BuildsContext } from "../../context/BuildContext";
 import { LAST_UPDATED, VERSION } from "../../constants";
 import "react-toggle/style.css";
-import {Tooltip} from "react-tooltip";
+import { Tooltip } from "react-tooltip";
 
 const Container = styled.div`
   position: fixed;
@@ -144,7 +144,7 @@ const SettingsSidebar = () => {
     if (ref.current) {
       if (!navigator.clipboard) {
         ref.current.select();
-        document.execCommand("copy");
+        document.execCommand("copy"); // eslint-disable-line
       } else {
         const text = ref.current.value;
         navigator.clipboard.writeText(text);
@@ -173,8 +173,8 @@ const SettingsSidebar = () => {
         <h3>Layout</h3>
 
         <div className="layout-settings-item">
-          <label 
-            for="defaultView" 
+          <label
+            for="defaultView"
             className="title"
             data-tooltip-id="tooltip"
             data-tooltip-content={"Change the default view for the tracker and database items"}
@@ -182,8 +182,8 @@ const SettingsSidebar = () => {
           >
             Default View
           </label>
-          <select 
-            id="defaultView" 
+          <select
+            id="defaultView"
             onChange={e => changeDefaultView(e.target.value)}
             data-tooltip-id="tooltip"
             data-tooltip-content={"Change the default view for the tracker and database items"}
@@ -199,8 +199,8 @@ const SettingsSidebar = () => {
         </div>
 
         <div className="layout-settings-item">
-          <label 
-            for="defaultShowRedacted" 
+          <label
+            for="defaultShowRedacted"
             className="title"
             data-tooltip-id="tooltip"
             data-tooltip-content={"Show redacted information by default"}
@@ -213,13 +213,13 @@ const SettingsSidebar = () => {
             data-tooltip-id="tooltip"
             data-tooltip-content={"Show redacted information by default"}
             data-tooltip-place="bottom"
-            >
-          <Toggle
-            id="defaultShowRedacted"
-            className="toggle"
-            defaultChecked={defaultShowRedacted}
-            onChange={toggleDefaultShowRedacted}
-          />
+          >
+            <Toggle
+              id="defaultShowRedacted"
+              className="toggle"
+              defaultChecked={defaultShowRedacted}
+              onChange={toggleDefaultShowRedacted}
+            />
           </div>
         </div>
       </div>
@@ -233,7 +233,7 @@ const SettingsSidebar = () => {
             <textarea ref={unlockDataRef}></textarea>
           </div>
           <div className="buttons">
-            <button 
+            <button
               onClick={saveUnlocks}
               data-tooltip-id="tooltip"
               data-tooltip-content={"Import unlock data"}
@@ -242,7 +242,7 @@ const SettingsSidebar = () => {
               <CiImport size="25px" />
             </button>
 
-            <button 
+            <button
               onClick={e => copyToClipboard(e, unlockDataRef)}
               data-tooltip-id="tooltip"
               data-tooltip-content={"Copy unlock data to clipboard"}
@@ -259,7 +259,7 @@ const SettingsSidebar = () => {
             <textarea ref={buildsDataRef}></textarea>
           </div>
           <div className="buttons">
-            <button 
+            <button
               onClick={saveBuilds}
               data-tooltip-id="tooltip"
               data-tooltip-content={"Import builds data"}
@@ -268,7 +268,7 @@ const SettingsSidebar = () => {
               <CiImport size="25px" />
             </button>
 
-            <button 
+            <button
               onClick={e => copyToClipboard(e, buildsDataRef)}
               data-tooltip-id="tooltip"
               data-tooltip-content={"Copy builds data to clipboard"}

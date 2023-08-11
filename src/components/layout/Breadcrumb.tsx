@@ -19,7 +19,7 @@ interface Props {
   data: BreadcrumbItem[];
 }
 
-const Breadcrumb = ({ data }) => {
+const Breadcrumb = ({ data }: Props) => {
   return (
     <Container>
       {data.map((item, index) => (
