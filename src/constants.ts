@@ -369,6 +369,7 @@ export const CATEGORIES = [
     label: "Armor Sets",
     singular: "Armor Set",
     fragment: "armorset",
+    onlyDB: true,
   },
   {
     label: "World Bosses",

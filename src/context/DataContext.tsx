@@ -1,6 +1,7 @@
 import React, { createContext, useEffect, useMemo, useState } from "react";
 import { isUnlocked } from "../dataHelpers";
 import { graphql, useStaticQuery } from "gatsby";
+import { CATEGORIES } from "../constants";
 
 const DEFAULT_VALUES = {
   unlocks: {},
@@ -70,33 +71,39 @@ const DataProvider: React.FC<Props> = ({ children }: Props) => {
   const updateStatistics = () => {
     const newStatistics: Statistics = {
       overall: {
-        total: data.items.totalCount,
+        total: 0,
         unlocked: 0,
       },
     };
 
     const allItems = data.items.nodes;
-    allItems.forEach(item => {
-      if (item.onlyDB) {
-        return;
-      }
+    allItems
+      .filter(item => {
+        if (typeof item.onlyDB !== "undefined" && item.onlyDB) {
+          return false;
+        }
 
-      const categoryFragment = item.category;
+        const categorySettings = CATEGORIES.find(cat => cat.fragment === item.category);
+        return !(!categorySettings || categorySettings.onlyDB);
+      })
+      .forEach(item => {
+        const categoryFragment = item.category;
 
-      if (!newStatistics[categoryFragment]) {
-        newStatistics[categoryFragment] = {
-          total: 0,
-          unlocked: 0,
-        };
-      }
+        if (!newStatistics[categoryFragment]) {
+          newStatistics[categoryFragment] = {
+            total: 0,
+            unlocked: 0,
+          };
+        }
 
-      if (isUnlocked(categoryFragment, item.externalId, unlocks)) {
-        newStatistics[categoryFragment].unlocked++;
-        newStatistics.overall.unlocked++;
-      }
+        if (isUnlocked(categoryFragment, item.externalId, unlocks)) {
+          newStatistics[categoryFragment].unlocked++;
+          newStatistics.overall.unlocked++;
+        }
 
-      newStatistics[categoryFragment].total++;
-    });
+        newStatistics[categoryFragment].total++;
+        newStatistics.overall.total++;
+      });
 
     setStatistics(newStatistics);
   };
