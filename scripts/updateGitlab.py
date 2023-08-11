@@ -3,6 +3,8 @@ import sys
 import subprocess
 import gitlab
 
+BOARD_ID="5954639"
+
 # Extract version from .version file
 with open(".version", "r") as version_file:
     CURRENT_VERSION = version_file.read().strip()
@@ -16,6 +18,7 @@ NEXT_VERSION = str(int(CURRENT_VERSION.split(".")[-1]) + 1)
 # Create release and milestone names
 RELEASE_NAME = f"Release v{CURRENT_VERSION}"
 MILESTONE_NAME = f"Release v{MAJOR_VERSION_NUMBERS}.{NEXT_VERSION}"
+BOARD_NAME = MILESTONE_NAME
 
 # Extract latest release section from UPDATES.md
 with open("UPDATES.md", "r") as updates_file:
@@ -101,3 +104,8 @@ issue = project.issues.create(
 
 issue.labels = [RELEASE_LABEL, FINAL_TOUCHES_LABEL]
 issue.save()
+
+# Update board name
+board = project.boards.get(BOARD_ID)
+board.name = BOARD_NAME
+board.save()
