@@ -8,6 +8,7 @@
     "material": "Phiolosopher's Stone",
     "unlock": "Approach every sewer drain on the edge of any of the Dran overland areas until you get grabbed by a Manticora. Once you load into the new area, defeat the white Manticora",
     "id": 1,
+    "trait": "Potency",
     "category": "archetypes",
     "fragment": "alchemist"
   },
@@ -19,6 +20,7 @@
     "material": "Hexahedron",
     "unlock": "To Unlock the Red Door you will need the following. Engram Explorer with skill Fortune Hunter (LV10), Engram Invader with skill Worm Hole (LV5), Armor set Realmwalker, Relic Consumable Void Heart, Leto's Amulet, Amber Moonstone, Black Cat Band, Zanias Malice, Anastasijas Inspiration, Cube Gun, Ford's Scattergun, Labyrinth Staff. With all this the door will open.",
     "id": 2,
+    "trait": "Flash Caster",
     "category": "archetypes",
     "fragment": "archon"
   },
@@ -30,6 +32,7 @@
     "material": "Old Metal Tool",
     "unlock": "Buy from Reggie at Ward 13 for 1500 Scrap",
     "id": 3,
+    "trait": "Strong Back",
     "category": "archetypes",
     "fragment": "challenger"
   },
@@ -42,6 +45,7 @@
     "material": "Alien Device",
     "unlock": "Found just out of bounds in either of the two overland areas you roll on N'Erud. For an easier time locating this item try using the Explorer Archtype's skill \"Fortune Hunter\" to highlight the item in the fog.",
     "id": 4,
+    "trait": "Fortify",
     "category": "archetypes",
     "fragment": "engineer"
   },
@@ -53,6 +57,7 @@
     "material": "Broken Compass",
     "unlock": "Finish a full campaign playthrough",
     "id": 5,
+    "trait": "Swiftness",
     "category": "archetypes",
     "fragment": "explorer"
   },
@@ -64,6 +69,7 @@
     "material": "Worn Cylinder",
     "unlock": "Listen to 20 total Mudtooth stories in Ward 13 after finishing your second world in campaign mode",
     "id": 6,
+    "trait": "Ammo Reserves",
     "category": "archetypes",
     "fragment": "gunslinger"
   },
@@ -75,6 +81,7 @@
     "material": "Old Whistle",
     "unlock": "Buy from Mudtooth at Ward 13 for 1500 Scrap",
     "id": 7,
+    "trait": "Kinship",
     "category": "archetypes",
     "fragment": "handler"
   },
@@ -86,6 +93,7 @@
     "material": "Rusty Medal",
     "unlock": "Buy from Brabus at Ward 13 for 1500 Scrap",
     "id": 8,
+    "trait": "Longshot",
     "category": "archetypes",
     "fragment": "hunter"
   },
@@ -97,6 +105,7 @@
     "material": "Wooden Shiv",
     "unlock": "Use the \"Walker's Dream\" item and defeat the \"Bane\" abberation. To get the \"Walker's Dream\" item use the Dreamcatcher melee weapon on the sleeping walker special enemy (glowing blue) in an area just off the main path between the Corrupted Harbour and Blackened Citadel checkpoint.",
     "id": 9,
+    "trait": "Untouchable",
     "category": "archetypes",
     "fragment": "invader"
   },
@@ -108,6 +117,7 @@
     "material": "Medic Pin",
     "unlock": "Buy from Dr. Norah at Ward 13 for 1500 Scrap",
     "id": 10,
+    "trait": "Triage",
     "category": "archetypes",
     "fragment": "medic"
   },
@@ -119,6 +129,7 @@
     "material": "Faded Grimoire",
     "unlock": "Available at the Bloodmoon Altar for 15 Bloodmoon Essence. Acquire Bloodmoon Essence from killing Root Wisps during a bloodmoon (red moon in sky) in any of Yaesha's outside areas",
     "id": 11,
+    "trait": "Regrowth",
     "category": "archetypes",
     "fragment": "summoner"
   },
@@ -185,6 +196,7 @@
     "location": "",
     "unlock": "Archetype trait of the Gunslinger. Reach Gunslinger level 10 to unlock trait for use in any build",
     "id": 16,
+    "archetype": "Gunslinger",
     "category": "traits",
     "fragment": "ammo_reserves"
   },
@@ -196,6 +208,7 @@
     "location": "Terminus Station",
     "unlock": "Complete the side path",
     "id": 17,
+    "archetype": "Archon",
     "category": "traits",
     "fragment": "flash_caster"
   },
@@ -207,6 +220,7 @@
     "location": "",
     "unlock": "Archetype trait of the Archon. Reach Archon level 10 to unlock trait for use in any build",
     "id": 18,
+    "archetype": "Engineer",
     "category": "traits",
     "fragment": "fortify"
   },
@@ -218,6 +232,7 @@
     "location": "",
     "unlock": "Archetype Trait of the Handler. Reach Handler level 10 to unlock trait for use in any build",
     "id": 19,
+    "archetype": "Handler",
     "category": "traits",
     "fragment": "kinship"
   },
@@ -229,6 +244,7 @@
     "location": "",
     "unlock": "Archetype Trait of the Hunter. Reach Hunter level 10 to unlock trait for use in any build",
     "id": 20,
+    "archetype": "Hunter",
     "category": "traits",
     "fragment": "longshot"
   },
@@ -240,6 +256,7 @@
     "location": "",
     "unlock": "Archetype Trait of the Alchemist. Reach Alchemist level 10 to unlock trait for use in any build",
     "id": 21,
+    "archetype": "Alchemist",
     "category": "traits",
     "fragment": "potency"
   },
@@ -251,6 +268,7 @@
     "location": "",
     "unlock": "Archetype Trait of the Summoner. Reach Summoner level 10 to unlock trait for use in any build",
     "id": 22,
+    "archetype": "Summoner",
     "category": "traits",
     "fragment": "regrowth"
   },
@@ -262,6 +280,7 @@
     "location": "",
     "unlock": "Archetype Trait of the Challenger. Reach Challenger level 10 to unlock trait for use in any build",
     "id": 23,
+    "archetype": "Challenger",
     "category": "traits",
     "fragment": "strong_back"
   },
@@ -273,6 +292,7 @@
     "location": "",
     "unlock": "Archetype Trait of the Explorer. Reach Explorer level 10 to unlock trait for use in any build",
     "id": 24,
+    "archetype": "Explorer",
     "category": "traits",
     "fragment": "swiftness"
   },
@@ -284,6 +304,7 @@
     "location": "",
     "unlock": "Archetype Trait of the Medic. Reach Medic level 10 to unlock trait for use in any build",
     "id": 25,
+    "archetype": "Medic",
     "category": "traits",
     "fragment": "triage"
   },
@@ -295,6 +316,7 @@
     "location": "",
     "unlock": "Archetype Trait of the Invader. Reach Invader level 10 to unlock trait use for any build",
     "id": 26,
+    "archetype": "Invader",
     "category": "traits",
     "fragment": "untouchable"
   },

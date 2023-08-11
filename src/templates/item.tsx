@@ -213,7 +213,6 @@ const Category = ({ data, pageContext, location }) => {
                     <>
                       <span> | </span>
                       <span>
-                        <span className="key">Mod:</span>
                         <Link to={`/database/mods/${slugify(item.mod)}`} title={item.mod}>
                           {item.mod}
                         </Link>
@@ -225,9 +224,30 @@ const Category = ({ data, pageContext, location }) => {
                     <>
                       <span> | </span>
                       <span>
-                        <span className="key">Weapon:</span>
                         <Link to={`/database/weapons/${slugify(item.weapon)}`} title={item.weapon}>
                           {item.weapon}
+                        </Link>
+                      </span>
+                    </>
+                  )}
+
+                  {item.trait && (
+                    <>
+                      <span> | </span>
+                      <span>
+                        <Link to={`/database/traits/${slugify(item.trait)}`} title={item.trait}>
+                          {item.trait}
+                        </Link> 
+                      </span>
+                    </>
+                  )}
+
+                  {item.archetype && (
+                    <>
+                      <span> | </span>
+                      <span>
+                        <Link to={`/database/archetypes/${slugify(item.archetype)}`} title={item.archetype}>
+                          {item.archetype}
                         </Link>
                       </span>
                     </>
@@ -322,6 +342,8 @@ export const query = graphql`
       hasMod
       mod
       weapon
+      archetype
+      trait
       unlock
       links {
         label
