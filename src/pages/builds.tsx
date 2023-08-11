@@ -9,7 +9,7 @@ import type { Build, Item } from "../interface/Build";
 import "react-tooltip/dist/react-tooltip.css";
 import BuildInterface from "../components/builder/BuildInterface";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
-import { findImage } from "../helpers";
+import { findImageById } from "../helpers";
 import { MAX_TRAIT_POINTS } from "../constants";
 import Head from "../components/layout/Head";
 
@@ -413,7 +413,7 @@ const Builds = props => {
                           <div className="image">
                             <GatsbyImage
                               alt={trait.name ?? ""}
-                              image={getImage(findImage(trait.name, images.nodes, "traits"))}
+                              image={getImage(findImageById(trait.externalId, images.nodes))}
                             />
                           </div>
                           <h3>{trait.name}</h3>
@@ -456,6 +456,9 @@ export const query = graphql`
       totalCount
       nodes {
         name
+        fields {
+          itemId
+        }
         relativePath
         childImageSharp {
           gatsbyImageData(quality: 80, layout: CONSTRAINED)
@@ -471,7 +474,9 @@ export const query = graphql`
           id
           externalId
           name
-          armor
+          stats {
+            armor
+          }
         }
       }
     }
