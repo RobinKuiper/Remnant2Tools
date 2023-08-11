@@ -50,7 +50,7 @@ print("GITLAB_TOKEN:", GITLAB_TOKEN)
 print("PROJECT_ID:", PROJECT_ID)
 print("REF_NAME:", REF_NAME)
 
-gl = gitlab.Gitlab("https://gitlab.com", job_token=GITLAB_TOKEN)
+gl = gitlab.Gitlab("https://gitlab.com", private_token=GITLAB_TOKEN)
 
 # gl.enable_debug()
 
