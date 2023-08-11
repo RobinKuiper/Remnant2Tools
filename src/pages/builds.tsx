@@ -1,4 +1,4 @@
-import { graphql } from "gatsby";
+import {graphql} from "gatsby";
 import React, { useContext, useEffect, useState } from "react";
 import { styled } from "styled-components";
 import ItemSelectModal from "../components/builder/ItemSelectModal";
@@ -12,6 +12,9 @@ import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import { findImageById } from "../helpers";
 import { MAX_TRAIT_POINTS } from "../constants";
 import Head from "../components/layout/Head";
+import BuildItemBox from "../components/builder/BuildItemBox";
+import {isUnlocked} from "../dataHelpers";
+import ItemLevel from "../components/database/ItemLevel";
 
 const newBuild: Build = {
   headpiece: null,
@@ -29,6 +32,10 @@ const newBuild: Build = {
   rings: [],
   usedTraitPoints: 0,
   traits: {},
+  archetype1: null,
+  archetype2: null,
+  archetype1_level: 1,
+  archetype2_level: 1
 };
 const newStatistics = {
   armor: 0,
@@ -198,11 +205,26 @@ const Page = styled.div`
       }
     }
   }
+
+  .archetypes {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+
+    .archetype {
+      
+      .item-box {
+        width: 128px;
+        height: 128px;
+      }
+    }
+  }
 `;
 
 const Builds = props => {
   const { saveBuild } = useContext(BuildsContext);
-  const images = props.data.images;
+  const {images, items} = props.data;
   const [modalIsOpen, setIsOpen] = useState(false);
   const [statistics, setStatistics] = useState(newStatistics);
   const [modalItems, setModalItems] = useState([]);
@@ -213,7 +235,14 @@ const Builds = props => {
   const [name, setName] = useState<string>("");
   const [oldName, setOldName] = useState<string>("");
   const [build, setBuild] = useState<Build>(newBuild);
+  const [archetype1Level, setArchetype1Level] = useState<number>(1);
+  const [archetype2Level, setArchetype2Level] = useState<number>(1);
   const traits = props.data.items.categories.find(category => category.fragment === "traits").nodes;
+  const [onlyUnlocked, setOnlyUnlocked] = useState(false);
+
+  const toggleOnlyUnlocked = () => {
+    setOnlyUnlocked(!onlyUnlocked);
+  };
 
   // STATISTICS
   useEffect(() => {
@@ -271,6 +300,8 @@ const Builds = props => {
 
   const resetBuild = () => {
     setName("");
+    setArchetype1Level(1);
+    setArchetype2Level(1);
     setBuild(newBuild);
   };
 
@@ -287,6 +318,38 @@ const Builds = props => {
     setBuild(prevState => ({ ...prevState, ...nBuild }));
     save(nBuild);
   };
+  
+  useEffect(() => {
+    const nBuild = { ...build };
+    
+    nBuild["archetype1_level"] = archetype1Level;
+    if (nBuild.archetype1) {
+      const oldTraitLevel = nBuild.traits[nBuild.archetype1.trait]
+      if (oldTraitLevel) {
+        const difference = oldTraitLevel - archetype1Level;
+        nBuild.usedTraitPoints -= difference < 0 ? 0 : difference;
+        
+      } else {
+        nBuild.traits[nBuild.archetype1.trait] = 0;
+      }
+      nBuild.traits[nBuild.archetype1.trait] += archetype1Level;
+    }
+    
+    nBuild["archetype2_level"] = archetype2Level;
+    if (nBuild.archetype2) {
+      const oldTraitLevel = nBuild.traits[nBuild.archetype2.trait]
+      if (oldTraitLevel) {
+        const difference = oldTraitLevel - archetype2Level;
+        nBuild.usedTraitPoints -= difference < 0 ? 0 : difference;
+      } else {
+        nBuild.traits[nBuild.archetype2.trait] = 0;
+      }
+      nBuild.traits[nBuild.archetype1.trait] += archetype2Level;
+    }
+    
+    setBuild(nBuild);
+    save(nBuild);
+  }, [archetype1Level, archetype2Level, build.archetype1, build.archetype2])
 
   const checkMod = (item: Item, build: Build) => {
     let index = null;
@@ -310,16 +373,16 @@ const Builds = props => {
     return build;
   };
 
-  const handlePickTrait = (id: number) => {
+  const handlePickTrait = (name: string) => {
     if (MAX_TRAIT_POINTS === build.usedTraitPoints) return;
 
     const newBuild = { ...build };
-    if (!newBuild.traits[id]) {
-      newBuild.traits[id] = 0;
+    if (!newBuild.traits[name]) {
+      newBuild.traits[name] = 0;
     }
 
-    if (newBuild.traits[id] !== 10) {
-      newBuild.traits[id] += 1;
+    if (newBuild.traits[name] !== 10) {
+      newBuild.traits[name] += 1;
       newBuild.usedTraitPoints += 1;
     }
 
@@ -354,6 +417,34 @@ const Builds = props => {
     saveBuild(name, newBuild);
   };
 
+  const openModal = (
+    category: string,
+    type: string,
+    index: number | null = null,
+    subCategory: string | null = null
+  ) => {
+    const categoryItems = items.categories.find(c => c.fragment === category).nodes;
+    let allItems = onlyUnlocked
+      ? categoryItems.filter(item => isUnlocked(category, item.externalId))
+      : categoryItems;
+    
+    if (subCategory) {
+      allItems = allItems.filter(item => item.type === subCategory);
+    } else if (category === "armor") {
+      allItems = allItems.filter(item => item.type === type);
+    }
+    
+    if (category === "archetypes" && (build.archetype1 || build.archetype2)) {
+      allItems = allItems.filter(item => item.name !== build.archetype1?.name && item.name !== build.archetype2?.name)
+    }
+
+    setIndex(index);
+    setType(type);
+    setModalCategory(category);
+    setModalItems(allItems);
+    setIsOpen(true);
+  };
+
   return (
     <Layout>
       <Head title="Builder" description="Save your favorite builds in this Remnant II builder." />
@@ -366,6 +457,9 @@ const Builds = props => {
 
           <div className="tabs">
             <div className="tabs-menu">
+              <div className={`${tab === "archetypes" ? "active" : ""} tabs-menu-item`} onClick={() => setTab("archetypes")}>
+                Archetypes
+              </div>
               <div
                 className={`${tab === "equipment" ? "active" : ""} tabs-menu-item`}
                 onClick={() => setTab("equipment")}
@@ -386,11 +480,9 @@ const Builds = props => {
                     name={name}
                     build={build}
                     images={images}
-                    setIndex={setIndex}
-                    setModalItems={setModalItems}
-                    setModalCategory={setModalCategory}
-                    setType={setType}
-                    setIsOpen={setIsOpen}
+                    openModal={openModal}
+                    toggleOnlyUnlocked={toggleOnlyUnlocked}
+                    onlyUnlocked={onlyUnlocked}
                     statistics={statistics}
                   />
                 )}
@@ -404,10 +496,10 @@ const Builds = props => {
                         <div
                           key={trait.name}
                           className="trait"
-                          onClick={() => handlePickTrait(trait.id)}
+                          onClick={() => handlePickTrait(trait.name)}
                           onContextMenu={e => {
                             e.preventDefault();
-                            reduceTrait(trait.id);
+                            reduceTrait(trait.name);
                           }}
                         >
                           <div className="image">
@@ -421,12 +513,26 @@ const Builds = props => {
                             {Array.from({ length: 10 }, (_, k) => (
                               <div
                                 key={trait.id}
-                                className={`node ${k < build.traits[trait.id] ?? 0 ? "active" : ""}`}
+                                className={`node ${k < build.traits[trait.name] ?? 0 ? "active" : ""}`}
                               />
                             ))}
                           </div>
                         </div>
                       ))}
+                    </div>
+                  </div>
+                )}
+
+                {tab === "archetypes" && (
+                  <div className="archetypes">
+                    <div className="archetype one">
+                      <BuildItemBox openModal={openModal} build={build} images={images.nodes} type={"archetype1"} category={"archetypes"} />
+                      <ItemLevel level={build.archetype1_level} setLevel={setArchetype1Level} maxLevel={10} />
+                    </div>
+
+                    <div className="archetype two">
+                      <BuildItemBox openModal={openModal} build={build} images={images.nodes} type={"archetype2"} category={"archetypes"} />
+                      <ItemLevel level={build.archetype2_level} setLevel={setArchetype2Level} maxLevel={10} />
                     </div>
                   </div>
                 )}
@@ -474,6 +580,9 @@ export const query = graphql`
           id
           externalId
           name
+          category
+          type
+          trait
           stats {
             armor
           }

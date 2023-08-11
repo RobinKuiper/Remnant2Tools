@@ -34,4 +34,8 @@ export interface Build {
   traits?: {
     [key: string]: number;
   };
+  archetype1: Item | null;
+  archetype2: Item | null;
+  archetype1_level: number;
+  archetype2_level: number;
 }

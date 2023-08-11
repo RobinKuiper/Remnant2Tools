@@ -1,11 +1,10 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { AiFillLock, AiFillUnlock } from "react-icons/ai";
 import { Tooltip } from "react-tooltip";
 import BuildItemBox from "./BuildItemBox";
 import { styled } from "styled-components";
 import { BuildsContext } from "../../context/BuildContext";
-import { calculateWeightType, isUnlocked } from "../../dataHelpers";
-import { graphql, useStaticQuery } from "gatsby";
+import { calculateWeightType } from "../../dataHelpers";
 
 const Container = styled.div`
   display: flex;
@@ -135,54 +134,12 @@ const BuildInterface = ({
   name,
   build,
   images,
-  setIndex,
-  setModalItems,
-  setModalCategory,
-  setType,
-  setIsOpen,
+  openModal,
   statistics,
+  toggleOnlyUnlocked,
+  onlyUnlocked
 }) => {
   const { changeName } = useContext(BuildsContext);
-  const [onlyUnlocked, setOnlyUnlocked] = useState(false);
-  const data = useStaticQuery(graphql`
-    {
-      items: allItem {
-        totalCount
-        nodes {
-          name
-          category
-          type
-          id
-          externalId
-        }
-      }
-    }
-  `);
-
-  const openModal = (
-    category: string,
-    type: string,
-    index: number | null = null,
-    subCategory: string | null = null,
-  ) => {
-    const allItems = onlyUnlocked
-      ? data.items.nodes.filter(item => isUnlocked(category, item.externalId))
-      : data.items.nodes;
-    let items;
-    if (subCategory) {
-      items = allItems.filter(item => item.category === category && item.type === subCategory);
-    } else if (category === "armor") {
-      items = allItems.filter(item => item.category === category && item.type === type);
-    } else {
-      items = allItems.filter(item => item.category === category);
-    }
-
-    setIndex(index);
-    setType(type);
-    setModalCategory(category);
-    setModalItems(items);
-    setIsOpen(true);
-  };
 
   const handleNameChange = e => {
     setName(e.target.value);
@@ -190,10 +147,6 @@ const BuildInterface = ({
 
   const handleNameSave = () => {
     changeName(oldName, name);
-  };
-
-  const toggleOnlyUnlocked = () => {
-    setOnlyUnlocked(!onlyUnlocked);
   };
 
   return (
