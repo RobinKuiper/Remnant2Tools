@@ -30,15 +30,40 @@ export const onCreateNode = ({ node, actions }) => {
 };
 
 export const sourceNodes: GatsbyNode[`sourceNodes`] = gatsbyApi => {
-  data.forEach(data => {
+  data.forEach(item => {
+    const settings = CATEGORIES.find(c => c.fragment === item.category);
+    if (!settings) {
+      return;
+    }
+
+    if (settings.linkedBy && settings.linkedBy.length > 0) {
+      item.links = [];
+      settings.linkedBy.forEach(link => {
+        const linkedItems = data.filter(i => {
+          return item.category
+            ? link.category === i.category && item[link.link[0]] === i[link.link[1]]
+            : link.link[0] === i[link.link[1]];
+        });
+
+        item.links.push({
+          label: link.label,
+          items: linkedItems,
+        });
+      });
+    }
+
+    if (item.category === "armorset") {
+      console.log(item);
+    }
+
     const node = {
-      ...data,
-      externalId: data.id,
+      ...item,
+      externalId: item.id,
       // Required fields
-      id: gatsbyApi.createNodeId(data.id),
+      id: gatsbyApi.createNodeId(item.id),
       internal: {
         type: `item`,
-        contentDigest: gatsbyApi.createContentDigest(data),
+        contentDigest: gatsbyApi.createContentDigest(item),
       },
     } as NodeInput;
 
@@ -81,7 +106,6 @@ export const createPages: GatsbyNode["createPages"] = async ({ actions, graphql 
       path: `/database/${item.category}/${name}`,
       component: resolve(__dirname, "./src/templates/item.tsx"),
       context: {
-        item,
         itemId: item.id,
         category: CATEGORIES.find(c => c.fragment === item.category),
       },
