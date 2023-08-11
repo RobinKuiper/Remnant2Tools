@@ -1,4 +1,5 @@
 import os
+import sys
 import subprocess
 import gitlab
 
@@ -41,9 +42,9 @@ DEPENDENCY_ISSUE_TITLE = "Check & update dependencies"
 RELEASE_ISSUE_TITLE = MILESTONE_NAME
 
 # Get the environment variables from Gitlab
-GITLAB_TOKEN = os.environ.get("CI_JOB_TOKEN")
-PROJECT_ID = os.environ.get("CI_PROJECT_ID")
-REF_NAME = os.environ.get("CI_COMMIT_REF_NAME")
+GITLAB_TOKEN = sys.argv[1]
+PROJECT_ID = sys.argv[2]
+REF_NAME = sys.argv[3]
 
 gl = gitlab.Gitlab("https://gitlab.com", job_token=GITLAB_TOKEN)
 
@@ -74,7 +75,11 @@ issue = project.issues.create(
     }
 )
 
-issue.labels = ["Release", "Final Touches"]
+FINAL_TOUCHES_LABEL = "Final Touches"
+RELEASE_LABEL = "Release"
+IMPROVEMENT_LABEL = "Improvement"
+
+issue.labels = [RELEASE_LABEL, FINAL_TOUCHES_LABEL]
 issue.save()
 
 # Create the dependencies issue
@@ -82,7 +87,7 @@ issue = project.issues.create(
     {"title": DEPENDENCY_ISSUE_TITLE, "description": "", "milestone_id": milestone.id}
 )
 
-issue.labels = ["Improvement", "Final Touches"]
+issue.labels = [IMPROVEMENT_LABEL, FINAL_TOUCHES_LABEL]
 issue.save()
 
 # Create the release issue
@@ -90,5 +95,5 @@ issue = project.issues.create(
     {"title": RELEASE_ISSUE_TITLE, "description": "", "milestone_id": milestone.id}
 )
 
-issue.labels = ["Release", "Final Touches"]
+issue.labels = [RELEASE_LABEL, FINAL_TOUCHES_LABEL]
 issue.save()
