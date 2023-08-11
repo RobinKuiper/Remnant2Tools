@@ -46,10 +46,6 @@ GITLAB_TOKEN = sys.argv[1]
 PROJECT_ID = sys.argv[2]
 REF_NAME = sys.argv[3]
 
-print("GITLAB_TOKEN:", GITLAB_TOKEN)
-print("PROJECT_ID:", PROJECT_ID)
-print("REF_NAME:", REF_NAME)
-
 gl = gitlab.Gitlab("https://gitlab.com", private_token=GITLAB_TOKEN)
 
 # gl.enable_debug()
@@ -67,6 +63,24 @@ release = project.releases.create(
     }
 )
 
+# Close previous milestone
+milestones = project.milestones.list(state='active')
+target_milestone_name = RELEASE_NAME
+
+# Loop through the milestones to find the target milestone and its ID
+target_milestone = None
+for milestone in milestones:
+    if milestone.title == target_milestone_name:
+        target_milestone = milestone
+        break
+
+# Close the milestone
+if target_milestone is not None:
+    print(f"Closing milestone with id: {target_milestone.id}")
+    
+    milestone.state_event = 'close'
+    milestone.save()
+
 # Create a new milestone
 milestone = project.milestones.create({"title": MILESTONE_NAME})
 
@@ -81,7 +95,7 @@ issue = project.issues.create(
 
 FINAL_TOUCHES_LABEL = "Final Touches"
 RELEASE_LABEL = "Release"
-IMPROVEMENT_LABEL = "Improvement"
+CODEBASE_LABEL = "Codebase"
 
 issue.labels = [RELEASE_LABEL, FINAL_TOUCHES_LABEL]
 issue.save()
@@ -91,7 +105,7 @@ issue = project.issues.create(
     {"title": DEPENDENCY_ISSUE_TITLE, "description": "", "milestone_id": milestone.id}
 )
 
-issue.labels = [IMPROVEMENT_LABEL, FINAL_TOUCHES_LABEL]
+issue.labels = [CODEBASE_LABEL, FINAL_TOUCHES_LABEL]
 issue.save()
 
 # Create the release issue
