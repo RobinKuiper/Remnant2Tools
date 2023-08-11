@@ -1,8 +1,8 @@
 image: "node:lts-alpine"
 
 stages:
-#  - build
-#  - test
+  - build
+  - test
   - deploy
 
 # These folders are cached between builds
@@ -21,7 +21,7 @@ cache:
 before_script:
   - npm install -g pnpm
 
-.build:install:
+build:install:
   stage: build
   script:
     - pnpm install
@@ -33,7 +33,7 @@ before_script:
     - if: "$CI_COMMIT_REF_NAME == 'master'"
       when: always
 
-.test:lint:
+test:lint:
   stage: test
   script:
     - pnpm lint:gitlab
@@ -71,7 +71,7 @@ before_script:
   only:
     - tags
 
-.pages:
+pages:
   stage: deploy
   needs:
     - build:install
@@ -96,8 +96,8 @@ create_release:
   image: python:3.8-alpine
   stage: deploy
   cache: []  # Disable caching for this job
-#  needs:
-#    - pages
+  needs:
+    - pages
   before_script:
     - pip install --upgrade python-gitlab
   script:
