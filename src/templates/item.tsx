@@ -39,6 +39,16 @@ const Page = styled.div`
       flex-direction: column;
       gap: 30px;
 
+      a {
+        color: darkred;
+        text-decoration: none;
+        transition: color 0.3s ease;
+
+        &:hover {
+          color: red;
+        }
+      }
+
       .top {
         display: flex;
         gap: 50px;
@@ -68,16 +78,6 @@ const Page = styled.div`
                 font-weight: 900;
                 margin-right: 5px;
               }
-
-              a {
-                color: darkred;
-                text-decoration: none;
-                transition: color 0.3s ease;
-
-                &:hover {
-                  color: red;
-                }
-              }
             }
           }
         }
@@ -101,24 +101,31 @@ const Page = styled.div`
             gap: 20px;
           }
         }
+
+        .right {
+          .section {
+            h3 {
+              font-size: 18px;
+              font-weight: bold;
+              margin-bottom: 10px;
+            }
+
+            p {
+              font-size: 16px;
+              line-height: 1.5;
+            }
+
+            ul {
+              list-style: disc;
+              margin-left: 20px;
+
+              li {
+                margin-bottom: 10px;
+              }
+            }
+          }
+        }
       }
-    }
-  }
-`;
-
-const Description = styled.div`
-  .unlock-information {
-    margin-top: 30px;
-
-    h3 {
-      font-size: 18px;
-      font-weight: bold;
-      margin-bottom: 10px;
-    }
-
-    p {
-      font-size: 16px;
-      line-height: 1.5;
     }
   }
 `;
@@ -126,9 +133,10 @@ const Description = styled.div`
 const REDACTED_COLOR = "#bbbbbb";
 
 const Category = ({ data, pageContext, location }) => {
-  const { item, category } = pageContext;
-  const { image } = data;
-  const unlocked = isUnlocked(item.category, item.id);
+  const { category } = pageContext;
+  const { image, item } = data;
+  const unlocked = isUnlocked(item.category, item.externalId);
+  const type = category.onlyDB ? "database" : location.state?.type ?? "database";
 
   return (
     <Layout>
@@ -142,7 +150,7 @@ const Category = ({ data, pageContext, location }) => {
             data={[
               { path: "/", label: "Home" },
               { label: location.state?.type ? uppercaseFirstLetter(location.state.type) : "Database" },
-              { path: `/${location.state?.type ?? "database"}/${category.fragment}`, label: category.label },
+              { path: `/${type}/${category.fragment}`, label: category.label },
               { path: `/database/${item.category}/${slugify(item.name)}`, label: item.name },
             ]}
           />
@@ -212,6 +220,18 @@ const Category = ({ data, pageContext, location }) => {
                       </span>
                     </>
                   )}
+
+                  {item.weapon && (
+                    <>
+                      <span> | </span>
+                      <span>
+                        <span className="key">Weapon:</span>
+                        <Link to={`/database/weapons/${slugify(item.weapon)}`} title={item.weapon}>
+                          {item.weapon}
+                        </Link>
+                      </span>
+                    </>
+                  )}
                 </div>
               </div>
             </div>
@@ -223,16 +243,18 @@ const Category = ({ data, pageContext, location }) => {
                     {item.stats.weight && (
                       <ItemStat valueKey="Weight type" value={calculateWeightType(item.stats.weight)} />
                     )}
-                    {Object.entries(item.stats).map(([key, value]) => (
-                      <ItemStat key={key} valueKey={key} value={value} />
-                    ))}
+                    {Object.entries(item.stats)
+                      .filter(([key, value]) => key && value)
+                      .map(([key, value]) => (
+                        <ItemStat key={key} valueKey={key} value={value} />
+                      ))}
                   </div>
                 )}
               </div>
 
               <div className="right">
                 {item.description && (
-                  <div className="unlock-information">
+                  <div className="section">
                     <h3>Description</h3>
 
                     <p>{item.description}</p>
@@ -240,16 +262,32 @@ const Category = ({ data, pageContext, location }) => {
                 )}
 
                 {item.unlock && (
-                  <Description>
-                    <div className="unlock-information">
-                      <h3>Unlock Information</h3>
+                  <div className="section">
+                    <h3>Unlock Information</h3>
 
-                      <p>
-                        <Redacted value={item.unlock} defaultShow={unlocked} bgColor={REDACTED_COLOR} />
-                      </p>
-                    </div>
-                  </Description>
+                    <p>
+                      <Redacted value={item.unlock} defaultShow={unlocked} bgColor={REDACTED_COLOR} />
+                    </p>
+                  </div>
                 )}
+
+                {item.links &&
+                  item.links.length > 0 &&
+                  item.links.map(link => (
+                    <div key={link.label} className="section">
+                      <h3>{link.label}</h3>
+
+                      <ul>
+                        {link.items.map(i => (
+                          <li key={i.name}>
+                            <Link to={`/database/${i.category}/${slugify(i.name)}`} title={i.name}>
+                              {i.name}
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
               </div>
             </div>
           </div>
@@ -269,6 +307,53 @@ export const query = graphql`
       relativePath
       childImageSharp {
         gatsbyImageData(quality: 80, layout: CONSTRAINED)
+      }
+    }
+    item: item(externalId: { eq: $itemId }) {
+      category
+      externalId
+      name
+      description
+      type
+      armorset
+      world
+      location
+      locationInformation
+      hasMod
+      mod
+      weapon
+      unlock
+      links {
+        label
+        items {
+          name
+          category
+        }
+      }
+      stats {
+        weight
+        armor
+        damage
+        rps
+        magazine
+        idealRange
+        falloffRange
+        maxAmmo
+        criticalHitChance
+        weakSpotDamageBonus
+        staggerModifier
+        weakspot
+        accuracy
+        resistance
+        weakness
+        immunity
+        resistances {
+          bleed
+          fire
+          shock
+          blight
+          corrosion
+        }
       }
     }
   }

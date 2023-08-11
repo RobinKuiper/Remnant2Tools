@@ -198,16 +198,19 @@ const Category = props => {
         <div id="database-content">
           <div id="content-heading">
             <div className="left">
-              <div>Group by</div>
-              <select onChange={handleGroupSelectChange}>
-                <option value="none">None</option>
-                {category &&
-                  category.groups.map(group => (
-                    <option key={group.fragment} value={group.fragment} selected={groupBy === group.fragment}>
-                      {group.label}
-                    </option>
-                  ))}
-              </select>
+              {category && category.groups && category.groups.length > 0 && (
+                <>
+                  <div>Group by</div>
+                  <select onChange={handleGroupSelectChange}>
+                    <option value="none">None</option>
+                    {category.groups.map(group => (
+                      <option key={group.fragment} value={group.fragment} selected={groupBy === group.fragment}>
+                        {group.label}
+                      </option>
+                    ))}
+                  </select>
+                </>
+              )}
 
               {category && category.sortKeys && category.sortKeys.length > 0 && (
                 <>
@@ -302,7 +305,6 @@ export const query = graphql`
   query ($imgRegex: String!, $categoryFragment: String!) {
     images: allFile(filter: { relativePath: { regex: $imgRegex } }) {
       nodes {
-        name
         relativePath
         fields {
           itemId
@@ -312,7 +314,7 @@ export const query = graphql`
         }
       }
     }
-    items: allItem(filter: { category: { eq: $categoryFragment } }, sort: { fields: name, order: ASC }) {
+    items: allItem(filter: { category: { eq: $categoryFragment } }, sort: { name: ASC }) {
       totalCount
       nodes {
         id

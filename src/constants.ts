@@ -369,7 +369,27 @@ export const CATEGORIES = [
     label: "Armor Sets",
     singular: "Armor Set",
     fragment: "armorset",
+    groups: [],
     onlyDB: true,
+    database: {
+      fields: [
+        {
+          label: "Armor",
+          fragment: "stats.armor",
+        },
+        {
+          label: "Weight",
+          fragment: "stats.weight",
+        },
+      ],
+    },
+    linkedBy: [
+      {
+        label: "Pieces",
+        category: "armor",
+        link: ["name", "armorset"],
+      },
+    ],
   },
   {
     label: "World Bosses",

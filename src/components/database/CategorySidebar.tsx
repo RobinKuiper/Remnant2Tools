@@ -94,7 +94,7 @@ const CATEGORY_ORDER = [
   },
   {
     label: "Items",
-    categories: ["weapons", "mods", "mutators", "armor", "amulets", "rings", "relics", "relicfragments"],
+    categories: ["weapons", "mods", "mutators", "armor", "armorset", "amulets", "rings", "relics", "relicfragments"],
   },
   {
     label: "Events",
@@ -130,7 +130,7 @@ const CategorySidebar = ({ type }: Props) => {
 
                       return (
                         <Link
-                          className={url.includes(categoryFragment) ? "active sub-link" : "sub-link"}
+                          className={url.includes(`/${categoryFragment}/`) ? "active sub-link" : "sub-link"}
                           key={categoryFragment}
                           to={`/${type}/${categoryFragment}`}
                         >
