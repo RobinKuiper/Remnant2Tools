@@ -8,7 +8,8 @@
     "material": "Phiolosopher's Stone",
     "unlock": "Approach every sewer drain on the edge of any of the Dran overland areas until you get grabbed by a Manticora. Once you load into the new area, defeat the white Manticora",
     "id": 1,
-    "category": "archetypes"
+    "category": "archetypes",
+    "fragment": "alchemist"
   },
   {
     "name": "Archon",
@@ -18,7 +19,8 @@
     "material": "Hexahedron",
     "unlock": "To Unlock the Red Door you will need the following. Engram Explorer with skill Fortune Hunter (LV10), Engram Invader with skill Worm Hole (LV5), Armor set Realmwalker, Relic Consumable Void Heart, Leto's Amulet, Amber Moonstone, Black Cat Band, Zanias Malice, Anastasijas Inspiration, Cube Gun, Ford's Scattergun, Labyrinth Staff. With all this the door will open.",
     "id": 2,
-    "category": "archetypes"
+    "category": "archetypes",
+    "fragment": "archon"
   },
   {
     "name": "Challenger",
@@ -28,7 +30,8 @@
     "material": "Old Metal Tool",
     "unlock": "Buy from Reggie at Ward 13 for 1500 Scrap",
     "id": 3,
-    "category": "archetypes"
+    "category": "archetypes",
+    "fragment": "challenger"
   },
   {
     "name": "Engineer",
@@ -39,7 +42,8 @@
     "material": "Alien Device",
     "unlock": "Found just out of bounds in either of the two overland areas you roll on N'Erud. For an easier time locating this item try using the Explorer Archtype's skill \"Fortune Hunter\" to highlight the item in the fog.",
     "id": 4,
-    "category": "archetypes"
+    "category": "archetypes",
+    "fragment": "engineer"
   },
   {
     "name": "Explorer",
@@ -49,7 +53,8 @@
     "material": "Broken Compass",
     "unlock": "Finish a full campaign playthrough",
     "id": 5,
-    "category": "archetypes"
+    "category": "archetypes",
+    "fragment": "explorer"
   },
   {
     "name": "Gunslinger",
@@ -59,7 +64,8 @@
     "material": "Worn Cylinder",
     "unlock": "Listen to 20 total Mudtooth stories in Ward 13 after finishing your second world in campaign mode",
     "id": 6,
-    "category": "archetypes"
+    "category": "archetypes",
+    "fragment": "gunslinger"
   },
   {
     "name": "Handler",
@@ -69,7 +75,8 @@
     "material": "Old Whistle",
     "unlock": "Buy from Mudtooth at Ward 13 for 1500 Scrap",
     "id": 7,
-    "category": "archetypes"
+    "category": "archetypes",
+    "fragment": "handler"
   },
   {
     "name": "Hunter",
@@ -79,7 +86,8 @@
     "material": "Rusty Medal",
     "unlock": "Buy from Brabus at Ward 13 for 1500 Scrap",
     "id": 8,
-    "category": "archetypes"
+    "category": "archetypes",
+    "fragment": "hunter"
   },
   {
     "name": "Invader",
@@ -89,7 +97,8 @@
     "material": "Wooden Shiv",
     "unlock": "Use the \"Walker's Dream\" item and defeat the \"Bane\" abberation. To get the \"Walker's Dream\" item use the Dreamcatcher melee weapon on the sleeping walker special enemy (glowing blue) in an area just off the main path between the Corrupted Harbour and Blackened Citadel checkpoint.",
     "id": 9,
-    "category": "archetypes"
+    "category": "archetypes",
+    "fragment": "invader"
   },
   {
     "name": "Medic",
@@ -99,7 +108,8 @@
     "material": "Medic Pin",
     "unlock": "Buy from Dr. Norah at Ward 13 for 1500 Scrap",
     "id": 10,
-    "category": "archetypes"
+    "category": "archetypes",
+    "fragment": "medic"
   },
   {
     "name": "Summoner",
@@ -109,7 +119,8 @@
     "material": "Faded Grimoire",
     "unlock": "Available at the Bloodmoon Altar for 15 Bloodmoon Essence. Acquire Bloodmoon Essence from killing Root Wisps during a bloodmoon (red moon in sky) in any of Yaesha's outside areas",
     "id": 11,
-    "category": "archetypes"
+    "category": "archetypes",
+    "fragment": "summoner"
   },
   {
     "name": "Resonance",
@@ -119,7 +130,8 @@
     "unlock": "Find the secret area at the back left (need to drop down), and activate the fail safe protocol (Co-Op, one player recieving the trait needs to stay outside)",
     "values": "5% -> 50%",
     "id": 487,
-    "category": "traits"
+    "category": "traits",
+    "fragment": "resonance"
   },
   {
     "name": "Vigor",
@@ -129,7 +141,8 @@
     "location": "",
     "unlock": "",
     "id": 12,
-    "category": "traits"
+    "category": "traits",
+    "fragment": "vigor"
   },
   {
     "name": "Endurance",
@@ -139,7 +152,8 @@
     "location": "",
     "unlock": "",
     "id": 13,
-    "category": "traits"
+    "category": "traits",
+    "fragment": "endurance"
   },
   {
     "name": "Spirit",
@@ -149,7 +163,8 @@
     "location": "",
     "unlock": "",
     "id": 14,
-    "category": "traits"
+    "category": "traits",
+    "fragment": "spirit"
   },
   {
     "name": "Expertise",
@@ -159,7 +174,8 @@
     "location": "",
     "unlock": "",
     "id": 15,
-    "category": "traits"
+    "category": "traits",
+    "fragment": "expertise"
   },
   {
     "name": "Ammo Reserves",
@@ -169,7 +185,8 @@
     "location": "",
     "unlock": "Archetype trait of the Gunslinger. Reach Gunslinger level 10 to unlock trait for use in any build",
     "id": 16,
-    "category": "traits"
+    "category": "traits",
+    "fragment": "ammo_reserves"
   },
   {
     "name": "Flash Caster",
@@ -179,7 +196,8 @@
     "location": "Terminus Station",
     "unlock": "Complete the side path",
     "id": 17,
-    "category": "traits"
+    "category": "traits",
+    "fragment": "flash_caster"
   },
   {
     "name": "Fortify",
@@ -189,7 +207,8 @@
     "location": "",
     "unlock": "Archetype trait of the Archon. Reach Archon level 10 to unlock trait for use in any build",
     "id": 18,
-    "category": "traits"
+    "category": "traits",
+    "fragment": "fortify"
   },
   {
     "name": "Kinship",
@@ -199,7 +218,8 @@
     "location": "",
     "unlock": "Archetype Trait of the Handler. Reach Handler level 10 to unlock trait for use in any build",
     "id": 19,
-    "category": "traits"
+    "category": "traits",
+    "fragment": "kinship"
   },
   {
     "name": "Longshot",
@@ -209,7 +229,8 @@
     "location": "",
     "unlock": "Archetype Trait of the Hunter. Reach Hunter level 10 to unlock trait for use in any build",
     "id": 20,
-    "category": "traits"
+    "category": "traits",
+    "fragment": "longshot"
   },
   {
     "name": "Potency",
@@ -219,7 +240,8 @@
     "location": "",
     "unlock": "Archetype Trait of the Alchemist. Reach Alchemist level 10 to unlock trait for use in any build",
     "id": 21,
-    "category": "traits"
+    "category": "traits",
+    "fragment": "potency"
   },
   {
     "name": "Regrowth",
@@ -229,7 +251,8 @@
     "location": "",
     "unlock": "Archetype Trait of the Summoner. Reach Summoner level 10 to unlock trait for use in any build",
     "id": 22,
-    "category": "traits"
+    "category": "traits",
+    "fragment": "regrowth"
   },
   {
     "name": "Strong Back",
@@ -239,7 +262,8 @@
     "location": "",
     "unlock": "Archetype Trait of the Challenger. Reach Challenger level 10 to unlock trait for use in any build",
     "id": 23,
-    "category": "traits"
+    "category": "traits",
+    "fragment": "strong_back"
   },
   {
     "name": "Swiftness",
@@ -249,7 +273,8 @@
     "location": "",
     "unlock": "Archetype Trait of the Explorer. Reach Explorer level 10 to unlock trait for use in any build",
     "id": 24,
-    "category": "traits"
+    "category": "traits",
+    "fragment": "swiftness"
   },
   {
     "name": "Triage",
@@ -259,7 +284,8 @@
     "location": "",
     "unlock": "Archetype Trait of the Medic. Reach Medic level 10 to unlock trait for use in any build",
     "id": 25,
-    "category": "traits"
+    "category": "traits",
+    "fragment": "triage"
   },
   {
     "name": "Untouchable",
@@ -269,7 +295,8 @@
     "location": "",
     "unlock": "Archetype Trait of the Invader. Reach Invader level 10 to unlock trait use for any build",
     "id": 26,
-    "category": "traits"
+    "category": "traits",
+    "fragment": "untouchable"
   },
   {
     "name": "Amplitude",
@@ -279,7 +306,8 @@
     "location": "Colosseum of Ruin",
     "unlock": "Through the portal that switches locations, go for the one where you can see a world stone. There will be a room with a light cube, shoot it to start the event. After finishing the event it will be rewarded.",
     "id": 27,
-    "category": "traits"
+    "category": "traits",
+    "fragment": "amplitude"
   },
   {
     "name": "Arcane Strike",
@@ -289,7 +317,8 @@
     "location": "Harvester's Reach",
     "unlock": "Defeat a miniboss that spawns in the bone piles",
     "id": 28,
-    "category": "traits"
+    "category": "traits",
+    "fragment": "arcane_strike"
   },
   {
     "name": "Barkskin",
@@ -299,7 +328,8 @@
     "location": "The Forbidden Grove",
     "unlock": "When talking to Meidre respond positively/selflessly. Ultimately choosing the dialogue option \"helping the others",
     "id": 29,
-    "category": "traits"
+    "category": "traits",
+    "fragment": "barkskin"
   },
   {
     "name": "Blood Bond",
@@ -309,7 +339,8 @@
     "location": "The Far Woods",
     "unlock": "Defeat the Root Nexus",
     "id": 30,
-    "category": "traits"
+    "category": "traits",
+    "fragment": "blood_bond"
   },
   {
     "name": "Bloodstream",
@@ -319,7 +350,8 @@
     "location": "The Forbidden Grove",
     "unlock": "When talking to Meidre respond negtively/selfishly. Ultimately choosing the dialogue option \"helping myself",
     "id": 31,
-    "category": "traits"
+    "category": "traits",
+    "fragment": "bloodstream"
   },
   {
     "name": "Fitness",
@@ -329,7 +361,8 @@
     "location": "Vault of the Formless",
     "unlock": "Complete the side path",
     "id": 32,
-    "category": "traits"
+    "category": "traits",
+    "fragment": "fitness"
   },
   {
     "name": "Footwork",
@@ -339,7 +372,8 @@
     "location": "",
     "unlock": "Archetype trait of the Engineer. Reach Engineer level 10 to unlock trait for use in any build",
     "id": 33,
-    "category": "traits"
+    "category": "traits",
+    "fragment": "footwork"
   },
   {
     "name": "Glutton",
@@ -349,7 +383,8 @@
     "location": "The Great Hall",
     "unlock": "Eat a friendly player while you have the \"Ravenous\" status effect",
     "id": 34,
-    "category": "traits"
+    "category": "traits",
+    "fragment": "glutton"
   },
   {
     "name": "Handling",
@@ -359,7 +394,8 @@
     "location": "Ashen Wasteland",
     "unlock": "Progressing thorugh the area there will be a horde event, clear it to get the reward.",
     "id": 35,
-    "category": "traits"
+    "category": "traits",
+    "fragment": "handling"
   },
   {
     "name": "Recovery",
@@ -369,7 +405,8 @@
     "location": "Oracle's Refuge",
     "unlock": "Escort the child back to Oracle's Refuge and talk to the sewing NPC",
     "id": 36,
-    "category": "traits"
+    "category": "traits",
+    "fragment": "recovery"
   },
   {
     "name": "Rugged",
@@ -379,7 +416,8 @@
     "location": "Forgotten Field",
     "unlock": "Free the Pan that is imprisoned by the Root Nexus",
     "id": 39,
-    "category": "traits"
+    "category": "traits",
+    "fragment": "rugged"
   },
   {
     "name": "Scholar",
@@ -389,7 +427,8 @@
     "location": "Blackened Citadel",
     "unlock": "Defeat Annihilation.",
     "id": 40,
-    "category": "traits"
+    "category": "traits",
+    "fragment": "scholar"
   },
   {
     "name": "Shadeskin",
@@ -399,7 +438,8 @@
     "location": "The Butcher's Quarter",
     "unlock": "Save the villager who is being lynched",
     "id": 41,
-    "category": "traits"
+    "category": "traits",
+    "fragment": "shadeskin"
   },
   {
     "name": "Siphoner",
@@ -409,7 +449,8 @@
     "location": "Dormant N'Erudian Facility",
     "unlock": "Eliminate all enemies in the dungeon in less than 6 minutes",
     "id": 42,
-    "category": "traits"
+    "category": "traits",
+    "fragment": "siphoner"
   },
   {
     "name": "Wayfarer",
@@ -419,7 +460,8 @@
     "location": "Corrupted Harbor",
     "unlock": "Miniboss fight with waves",
     "id": 43,
-    "category": "traits"
+    "category": "traits",
+    "fragment": "wayfarer"
   },
   {
     "name": "XMG57 \"Bonesaw",
@@ -443,7 +485,8 @@
       "criticalHitChance": 10,
       "weakSpotDamageBonus": "+100%",
       "staggerModifier": 0
-    }
+    },
+    "fragment": "xmg57_bonesaw"
   },
   {
     "name": "AS-10 \"Bulldog",
@@ -467,7 +510,8 @@
       "criticalHitChance": 5,
       "weakSpotDamageBonus": "+100%",
       "staggerModifier": 10
-    }
+    },
+    "fragment": "as_10_bulldog"
   },
   {
     "name": "Wrangler 1860",
@@ -491,7 +535,8 @@
       "criticalHitChance": 10,
       "weakSpotDamageBonus": "+110%",
       "staggerModifier": 0
-    }
+    },
+    "fragment": "wrangler_1860"
   },
   {
     "name": "Huntmaster M1",
@@ -515,7 +560,8 @@
       "criticalHitChance": 5,
       "weakSpotDamageBonus": "+110%",
       "staggerModifier": 5
-    }
+    },
+    "fragment": "huntmaster_m1"
   },
   {
     "name": "Widowmaker",
@@ -539,7 +585,8 @@
       "criticalHitChance": 10,
       "weakSpotDamageBonus": "+120%",
       "staggerModifier": 20
-    }
+    },
+    "fragment": "widowmaker"
   },
   {
     "name": "Coach Gun",
@@ -563,7 +610,8 @@
       "criticalHitChance": 5,
       "weakSpotDamageBonus": "+100%",
       "staggerModifier": 10
-    }
+    },
+    "fragment": "coach_gun"
   },
   {
     "name": "Blackmaw AR-47",
@@ -587,7 +635,8 @@
       "criticalHitChance": 10,
       "weakSpotDamageBonus": "+100%",
       "staggerModifier": 0
-    }
+    },
+    "fragment": "blackmaw_ar_47"
   },
   {
     "name": "Chicago Typewriter",
@@ -615,7 +664,8 @@
       "weakSpotDamageBonus": "+105%",
       "staggerModifier": 0,
       "accuracy": 80
-    }
+    },
+    "fragment": "chicago_typewriter"
   },
   {
     "name": "Crossbow",
@@ -639,7 +689,8 @@
       "criticalHitChance": 10,
       "weakSpotDamageBonus": "+115%",
       "staggerModifier": 10
-    }
+    },
+    "fragment": "crossbow"
   },
   {
     "name": "Ford's Scattergun",
@@ -663,7 +714,8 @@
       "criticalHitChance": 5,
       "weakSpotDamageBonus": "+100%",
       "staggerModifier": 10
-    }
+    },
+    "fragment": "fords_scattergun"
   },
   {
     "name": "Pulse Rifle",
@@ -687,7 +739,8 @@
       "criticalHitChance": 10,
       "weakSpotDamageBonus": "+105%",
       "staggerModifier": 5
-    }
+    },
+    "fragment": "pulse_rifle"
   },
   {
     "name": "Royal Hunting Bow",
@@ -711,7 +764,8 @@
       "criticalHitChance": 10,
       "weakSpotDamageBonus": "+115%",
       "staggerModifier": 5
-    }
+    },
+    "fragment": "royal_hunting_bow"
   },
   {
     "name": "Rusty Lever Action",
@@ -735,7 +789,8 @@
       "criticalHitChance": 0,
       "weakSpotDamageBonus": "+100%",
       "staggerModifier": 0
-    }
+    },
+    "fragment": "rusty_lever_action"
   },
   {
     "name": "Aphelion",
@@ -760,7 +815,8 @@
       "criticalHitChance": 15,
       "weakSpotDamageBonus": "+100%",
       "staggerModifier": -25
-    }
+    },
+    "fragment": "aphelion"
   },
   {
     "name": "Crescent Moon",
@@ -785,7 +841,8 @@
       "criticalHitChance": 5,
       "weakSpotDamageBonus": "+70%",
       "staggerModifier": -15
-    }
+    },
+    "fragment": "crescent_moon"
   },
   {
     "name": "Deceit",
@@ -810,7 +867,8 @@
       "criticalHitChance": 15,
       "weakSpotDamageBonus": "+90%",
       "staggerModifier": 5
-    }
+    },
+    "fragment": "deceit"
   },
   {
     "name": "Merciless",
@@ -835,7 +893,8 @@
       "criticalHitChance": 10,
       "weakSpotDamageBonus": "+100%",
       "staggerModifier": 0
-    }
+    },
+    "fragment": "merciless"
   },
   {
     "name": "Nightfall",
@@ -860,7 +919,8 @@
       "criticalHitChance": 5,
       "weakSpotDamageBonus": "+105%",
       "staggerModifier": 15
-    }
+    },
+    "fragment": "nightfall"
   },
   {
     "name": "Plasma Cutter",
@@ -885,7 +945,8 @@
       "criticalHitChance": 5,
       "weakSpotDamageBonus": "+75%",
       "staggerModifier": -20
-    }
+    },
+    "fragment": "plasma_cutter"
   },
   {
     "name": "Sagittarius",
@@ -910,7 +971,8 @@
       "criticalHitChance": 10,
       "weakSpotDamageBonus": "+115%",
       "staggerModifier": 5
-    }
+    },
+    "fragment": "sagittarius"
   },
   {
     "name": "Twisted Arbalest",
@@ -935,7 +997,8 @@
       "criticalHitChance": 5,
       "weakSpotDamageBonus": "+100%",
       "staggerModifier": 5
-    }
+    },
+    "fragment": "twisted_arbalest"
   },
   {
     "name": "Alpha/Omega",
@@ -960,7 +1023,8 @@
       "criticalHitChance": 10,
       "weakSpotDamageBonus": "+100%",
       "staggerModifier": 0
-    }
+    },
+    "fragment": "alpha_omega"
   },
   {
     "name": "Repulsor",
@@ -972,7 +1036,8 @@
     "id": 377,
     "type": "Long Guns",
     "hasMod": true,
-    "category": "weapons"
+    "category": "weapons",
+    "fragment": "repulsor"
   },
   {
     "name": "Savior",
@@ -984,7 +1049,8 @@
     "id": 378,
     "type": "Long Guns",
     "hasMod": true,
-    "category": "weapons"
+    "category": "weapons",
+    "fragment": "savior"
   },
   {
     "name": "Sporebloom",
@@ -996,7 +1062,8 @@
     "id": 379,
     "type": "Long Guns",
     "hasMod": true,
-    "category": "weapons"
+    "category": "weapons",
+    "fragment": "sporebloom"
   },
   {
     "name": "Starkiller",
@@ -1008,7 +1075,8 @@
     "id": 380,
     "type": "Long Guns",
     "hasMod": true,
-    "category": "weapons"
+    "category": "weapons",
+    "fragment": "starkiller"
   },
   {
     "name": "Silverback Model 500",
@@ -1032,7 +1100,8 @@
       "criticalHitChance": 5,
       "weakSpotDamageBonus": "+105%",
       "staggerModifier": 20
-    }
+    },
+    "fragment": "silverback_model_500"
   },
   {
     "name": "Service Pistol",
@@ -1060,7 +1129,8 @@
       "weakSpotDamageBonus": "+105%",
       "staggerModifier": 0,
       "accuracy": 86
-    }
+    },
+    "fragment": "service_pistol"
   },
   {
     "name": "Repeater Pistol",
@@ -1088,7 +1158,8 @@
       "weakSpotDamageBonus": "+105%",
       "staggerModifier": -10,
       "accuracy": 95
-    }
+    },
+    "fragment": "repeater_pistol"
   },
   {
     "name": "Western Classic",
@@ -1112,7 +1183,8 @@
       "criticalHitChance": 5,
       "weakSpotDamageBonus": "+105%",
       "staggerModifier": 5
-    }
+    },
+    "fragment": "western_classic"
   },
   {
     "name": "Sureshot",
@@ -1136,7 +1208,8 @@
       "criticalHitChance": 10,
       "weakSpotDamageBonus": "+110%",
       "staggerModifier": 10
-    }
+    },
+    "fragment": "sureshot"
   },
   {
     "name": "Tech 22",
@@ -1160,7 +1233,8 @@
       "criticalHitChance": 10,
       "weakSpotDamageBonus": "+100%",
       "staggerModifier": -10
-    }
+    },
+    "fragment": "tech_22"
   },
   {
     "name": "Double Barrel",
@@ -1188,7 +1262,8 @@
       "weakSpotDamageBonus": "+100%",
       "staggerModifier": 10,
       "accuracy": 60
-    }
+    },
+    "fragment": "double_barrel"
   },
   {
     "name": "Rusty Repeater",
@@ -1212,7 +1287,8 @@
       "criticalHitChance": 0,
       "weakSpotDamageBonus": "+100%",
       "staggerModifier": -10
-    }
+    },
+    "fragment": "rusty_repeater"
   },
   {
     "name": "Star Shot",
@@ -1237,7 +1313,8 @@
       "criticalHitChance": 5,
       "weakSpotDamageBonus": "+110%",
       "staggerModifier": 10
-    }
+    },
+    "fragment": "star_shot"
   },
   {
     "name": "Cube Gun",
@@ -1262,7 +1339,8 @@
       "criticalHitChance": 5,
       "weakSpotDamageBonus": "+85%",
       "staggerModifier": 0
-    }
+    },
+    "fragment": "cube_gun"
   },
   {
     "name": "MP60-R",
@@ -1290,7 +1368,8 @@
       "weakSpotDamageBonus": "+100%",
       "staggerModifier": 0,
       "accuracy": 95
-    }
+    },
+    "fragment": "mp60_r"
   },
   {
     "name": "Sorrow",
@@ -1315,7 +1394,8 @@
       "criticalHitChance": 10,
       "weakSpotDamageBonus": "+115%",
       "staggerModifier": 5
-    }
+    },
+    "fragment": "sorrow"
   },
   {
     "name": "Enigma",
@@ -1344,7 +1424,8 @@
       "staggerModifier": -15,
       "accuracy": 58,
       "weakSpotDamageBonus": "+0%"
-    }
+    },
+    "fragment": "enigma"
   },
   {
     "name": "Bolt Driver",
@@ -1372,7 +1453,8 @@
       "weakSpotDamageBonus": "+105%",
       "staggerModifier": -10,
       "accuracy": 95
-    }
+    },
+    "fragment": "bolt_driver"
   },
   {
     "name": "Rupture Cannon",
@@ -1400,7 +1482,8 @@
       "weakSpotDamageBonus": "+100%",
       "staggerModifier": 10,
       "accuracy": 95
-    }
+    },
+    "fragment": "rupture_cannon"
   },
   {
     "name": "Hellfire",
@@ -1425,7 +1508,8 @@
       "criticalHitChance": 0,
       "weakSpotDamageBonus": "N/A",
       "staggerModifier": -15
-    }
+    },
+    "fragment": "hellfire"
   },
   {
     "name": "Nebula",
@@ -1450,7 +1534,8 @@
       "criticalHitChance": 0,
       "weakSpotDamageBonus": "N/A",
       "staggerModifier": -15
-    }
+    },
+    "fragment": "nebula"
   },
   {
     "name": "Meridian",
@@ -1475,7 +1560,8 @@
       "criticalHitChance": 0,
       "weakSpotDamageBonus": "N/A",
       "staggerModifier": 0
-    }
+    },
+    "fragment": "meridian"
   },
   {
     "name": "Rune Pistol",
@@ -1500,7 +1586,8 @@
       "criticalHitChance": 10,
       "weakSpotDamageBonus": "+100%",
       "staggerModifier": 0
-    }
+    },
+    "fragment": "rune_pistol"
   },
   {
     "name": "Steel Sword",
@@ -1519,7 +1606,8 @@
       "damage": 56,
       "criticalHitChance": 7,
       "staggerModifier": 2
-    }
+    },
+    "fragment": "steel_sword"
   },
   {
     "name": "Iron Greatsword",
@@ -1538,7 +1626,8 @@
       "damage": 105,
       "criticalHitChance": 5,
       "staggerModifier": 13
-    }
+    },
+    "fragment": "iron_greatsword"
   },
   {
     "name": "Steel Flail",
@@ -1557,7 +1646,8 @@
       "damage": 69,
       "criticalHitChance": 4,
       "staggerModifier": 6
-    }
+    },
+    "fragment": "steel_flail"
   },
   {
     "name": "Scrap Hatchet",
@@ -1576,7 +1666,8 @@
       "damage": 57,
       "criticalHitChance": 6,
       "staggerModifier": 1
-    }
+    },
+    "fragment": "scrap_hatchet"
   },
   {
     "name": "Scrap Hammer",
@@ -1595,7 +1686,8 @@
       "damage": 83,
       "criticalHitChance": 8,
       "staggerModifier": 9
-    }
+    },
+    "fragment": "scrap_hammer"
   },
   {
     "name": "Steel Spear",
@@ -1614,7 +1706,8 @@
       "damage": 61,
       "criticalHitChance": 9,
       "staggerModifier": -4
-    }
+    },
+    "fragment": "steel_spear"
   },
   {
     "name": "Scrap Staff",
@@ -1633,7 +1726,8 @@
       "damage": 65,
       "criticalHitChance": 6,
       "staggerModifier": 8
-    }
+    },
+    "fragment": "scrap_staff"
   },
   {
     "name": "Steel Katana",
@@ -1652,7 +1746,8 @@
       "damage": 56,
       "criticalHitChance": 10,
       "staggerModifier": -10
-    }
+    },
+    "fragment": "steel_katana"
   },
   {
     "name": "Knuckle Dusters",
@@ -1671,7 +1766,8 @@
       "damage": 43,
       "criticalHitChance": 5,
       "staggerModifier": 5
-    }
+    },
+    "fragment": "knuckle_dusters"
   },
   {
     "name": "Rusted Claws",
@@ -1690,7 +1786,8 @@
       "damage": 51,
       "criticalHitChance": 14,
       "staggerModifier": -9
-    }
+    },
+    "fragment": "rusted_claws"
   },
   {
     "name": "Ornate Blade",
@@ -1709,7 +1806,8 @@
       "damage": 52,
       "criticalHitChance": 11,
       "staggerModifier": -5
-    }
+    },
+    "fragment": "ornate_blade"
   },
   {
     "name": "Atom Smasher",
@@ -1729,7 +1827,8 @@
       "damage": 72,
       "criticalHitChance": 5,
       "staggerModifier": 11
-    }
+    },
+    "fragment": "atom_smasher"
   },
   {
     "name": "Edge of the Forest",
@@ -1748,7 +1847,8 @@
       "damage": 59,
       "criticalHitChance": 9,
       "staggerModifier": -15
-    }
+    },
+    "fragment": "edge_of_the_forest"
   },
   {
     "name": "Royal Broadsword",
@@ -1767,7 +1867,8 @@
       "damage": 102,
       "criticalHitChance": 7,
       "staggerModifier": 11
-    }
+    },
+    "fragment": "royal_broadsword"
   },
   {
     "name": "Dreamcatcher",
@@ -1787,7 +1888,8 @@
       "damage": 58,
       "criticalHitChance": 5,
       "staggerModifier": 3
-    }
+    },
+    "fragment": "dreamcatcher"
   },
   {
     "name": "Labyrinth Staff",
@@ -1806,7 +1908,8 @@
       "damage": 64,
       "criticalHitChance": 8,
       "staggerModifier": 5
-    }
+    },
+    "fragment": "labyrinth_staff"
   },
   {
     "name": "Atom Splitter",
@@ -1826,7 +1929,8 @@
       "damage": 100,
       "criticalHitChance": 5,
       "staggerModifier": 6
-    }
+    },
+    "fragment": "atom_splitter"
   },
   {
     "name": "Spectral Blade",
@@ -1846,7 +1950,8 @@
       "damage": 53,
       "criticalHitChance": 8,
       "staggerModifier": -25
-    }
+    },
+    "fragment": "spectral_blade"
   },
   {
     "name": "Blade of Gul",
@@ -1865,7 +1970,8 @@
       "damage": 57,
       "criticalHitChance": 4,
       "staggerModifier": 6
-    }
+    },
+    "fragment": "blade_of_gul"
   },
   {
     "name": "Bone Chopper",
@@ -1884,7 +1990,8 @@
       "damage": 58,
       "criticalHitChance": 7,
       "staggerModifier": -3
-    }
+    },
+    "fragment": "bone_chopper"
   },
   {
     "name": "Ornate Flail",
@@ -1903,7 +2010,8 @@
       "damage": 63,
       "criticalHitChance": 11,
       "staggerModifier": -3
-    }
+    },
+    "fragment": "ornate_flail"
   },
   {
     "name": "Rebellion Spear",
@@ -1922,7 +2030,8 @@
       "damage": 60,
       "criticalHitChance": 13,
       "staggerModifier": 2
-    }
+    },
+    "fragment": "rebellion_spear"
   },
   {
     "name": "Gas Giant",
@@ -1940,7 +2049,8 @@
       "damage": 78,
       "criticalHitChance": 5,
       "staggerModifier": 0
-    }
+    },
+    "fragment": "gas_giant"
   },
   {
     "name": "Vice Grips",
@@ -1959,7 +2069,8 @@
       "damage": 55,
       "criticalHitChance": 6,
       "staggerModifier": -18
-    }
+    },
+    "fragment": "vice_grips"
   },
   {
     "name": "Huntress Spear",
@@ -1979,7 +2090,8 @@
       "damage": 63,
       "criticalHitChance": 6,
       "staggerModifier": -5
-    }
+    },
+    "fragment": "huntress_spear"
   },
   {
     "name": "Krell Axe",
@@ -1999,7 +2111,8 @@
       "damage": 54,
       "criticalHitChance": 3,
       "staggerModifier": -10
-    }
+    },
+    "fragment": "krell_axe"
   },
   {
     "name": "Assassin's Dagger",
@@ -2019,7 +2132,8 @@
       "damage": 41,
       "criticalHitChance": -3,
       "staggerModifier": -15
-    }
+    },
+    "fragment": "assassins_dagger"
   },
   {
     "name": "Feral Judgement",
@@ -2039,7 +2153,8 @@
       "damage": 53,
       "criticalHitChance": 13,
       "staggerModifier": -15
-    }
+    },
+    "fragment": "feral_judgement"
   },
   {
     "name": "Godsplitter",
@@ -2059,7 +2174,8 @@
       "damage": 38,
       "criticalHitChance": 2,
       "staggerModifier": -20
-    }
+    },
+    "fragment": "godsplitter"
   },
   {
     "name": "Hero's Sword",
@@ -2078,7 +2194,8 @@
     "stats": {
       "criticalHitChance": 5,
       "staggerModifier": -10
-    }
+    },
+    "fragment": "heros_sword"
   },
   {
     "name": "Nightshade",
@@ -2098,7 +2215,8 @@
       "damage": 47,
       "criticalHitChance": 18,
       "staggerModifier": -20
-    }
+    },
+    "fragment": "nightshade"
   },
   {
     "name": "Red Doe Staff",
@@ -2118,7 +2236,8 @@
       "damage": 62,
       "criticalHitChance": 3,
       "staggerModifier": 8
-    }
+    },
+    "fragment": "red_doe_staff"
   },
   {
     "name": "Stonebreaker",
@@ -2138,7 +2257,8 @@
       "damage": 103,
       "criticalHitChance": 4,
       "staggerModifier": 10
-    }
+    },
+    "fragment": "stonebreaker"
   },
   {
     "name": "Decayed Claws",
@@ -2150,7 +2270,8 @@
     "id": 381,
     "type": "Melee Weapons",
     "hasMod": false,
-    "category": "weapons"
+    "category": "weapons",
+    "fragment": "decayed_claws"
   },
   {
     "name": "Smolder",
@@ -2162,7 +2283,8 @@
     "id": 382,
     "type": "Melee Weapons",
     "hasMod": true,
-    "category": "weapons"
+    "category": "weapons",
+    "fragment": "smolder"
   },
   {
     "name": "World's Edge",
@@ -2174,7 +2296,8 @@
     "id": 383,
     "type": "Melee Weapons",
     "hasMod": true,
-    "category": "weapons"
+    "category": "weapons",
+    "fragment": "worlds_edge"
   },
   {
     "name": "Hot Shot",
@@ -2184,7 +2307,8 @@
     "unlock": "Defeat Root Mantis Boss",
     "price_material": "Root Ganglia",
     "id": 119,
-    "category": "mods"
+    "category": "mods",
+    "fragment": "hot_shot"
   },
   {
     "name": "Healing Shot",
@@ -2194,7 +2318,8 @@
     "unlock": "Defeat Root Mantis Boss",
     "price_material": "Root Ganglia",
     "id": 120,
-    "category": "mods"
+    "category": "mods",
+    "fragment": "healing_shot"
   },
   {
     "name": "Concussive Shot",
@@ -2204,7 +2329,8 @@
     "unlock": "Defeat Root Mantis Boss",
     "price_material": "Root Ganglia",
     "id": 121,
-    "category": "mods"
+    "category": "mods",
+    "fragment": "concussive_shot"
   },
   {
     "name": "Scrap Shot",
@@ -2214,7 +2340,8 @@
     "unlock": "Defeat Root Mantis Boss",
     "price_material": "Root Ganglia",
     "id": 122,
-    "category": "mods"
+    "category": "mods",
+    "fragment": "scrap_shot"
   },
   {
     "name": "Voltaic Rondure",
@@ -2224,7 +2351,8 @@
     "unlock": "Defeat the Bloat King",
     "price_material": "Bone Sap",
     "id": 124,
-    "category": "mods"
+    "category": "mods",
+    "fragment": "voltaic_rondure"
   },
   {
     "name": "Space Crabs",
@@ -2234,7 +2362,8 @@
     "unlock": "Defeat Primogenitor Boss",
     "price_material": "Cracked Shell",
     "id": 125,
-    "category": "mods"
+    "category": "mods",
+    "fragment": "space_crabs"
   },
   {
     "name": "Prismatic Driver",
@@ -2244,7 +2373,8 @@
     "unlock": "Defeat The Custodian's Eye Boss",
     "price_material": "Sentry's Old Iris",
     "id": 126,
-    "category": "mods"
+    "category": "mods",
+    "fragment": "prismatic_driver"
   },
   {
     "name": "Tremor",
@@ -2254,7 +2384,8 @@
     "unlock": "Defeat the Mother Mind",
     "price_material": "Cordyceps Gland",
     "id": 127,
-    "category": "mods"
+    "category": "mods",
+    "fragment": "tremor"
   },
   {
     "name": "Fargazer",
@@ -2264,7 +2395,8 @@
     "unlock": "Deafeat Legion Boss",
     "price_material": "Agnosia Driftwood",
     "id": 128,
-    "category": "mods"
+    "category": "mods",
+    "fragment": "fargazer"
   },
   {
     "name": "Witchfire",
@@ -2274,7 +2406,8 @@
     "unlock": "Defeat Gwendil: The Unburnt",
     "price_material": "Alkahest Powder",
     "id": 129,
-    "category": "mods"
+    "category": "mods",
+    "fragment": "witchfire"
   },
   {
     "name": "Rotted Arrow",
@@ -2284,7 +2417,8 @@
     "unlock": "Defeat Shrewd Boss",
     "price_material": "Soul Sliver",
     "id": 130,
-    "category": "mods"
+    "category": "mods",
+    "fragment": "rotted_arrow"
   },
   {
     "name": "Overflow",
@@ -2294,7 +2428,8 @@
     "unlock": "",
     "price_material": "Escalation Circuit",
     "id": 131,
-    "category": "mods"
+    "category": "mods",
+    "fragment": "overflow"
   },
   {
     "name": "Soulbinder",
@@ -2304,7 +2439,8 @@
     "unlock": "Compleating the quest reaching the bottom of the Chimney",
     "price_material": "Heart Seed",
     "id": 132,
-    "category": "mods"
+    "category": "mods",
+    "fragment": "soulbinder"
   },
   {
     "name": "Time Lapse",
@@ -2314,7 +2450,8 @@
     "unlock": "Need to find the piece found in Lemark District, by using the same clock hour that the clock in Hewdas Clock. Then fix the clock in Hewdas Clock.",
     "price_material": "Broken Timepiece",
     "id": 133,
-    "category": "mods"
+    "category": "mods",
+    "fragment": "time_lapse"
   },
   {
     "name": "Firestorm",
@@ -2324,7 +2461,8 @@
     "unlock": "Defeat the Red Prince",
     "price_material": "Forlorn Fragment",
     "id": 134,
-    "category": "mods"
+    "category": "mods",
+    "fragment": "firestorm"
   },
   {
     "name": "Helix",
@@ -2334,7 +2472,8 @@
     "unlock": "Defeat the Astropath",
     "price_material": "Seeker Residue",
     "id": 135,
-    "category": "mods"
+    "category": "mods",
+    "fragment": "helix"
   },
   {
     "name": "Astral Burst",
@@ -2344,7 +2483,8 @@
     "unlock": "From the entrance, the triangle lever should be triggered until the triangle is facing left. The icons lever should be triggered until the doe is in front of you. The circles lever should be triggered until the Ravager, doe and death are encircled with the doe having two circles.",
     "price_material": "Faith Seed",
     "id": 136,
-    "category": "mods"
+    "category": "mods",
+    "fragment": "astral_burst"
   },
   {
     "name": "Blood Draw",
@@ -2354,7 +2494,8 @@
     "unlock": "Pay the tribute to the Red Prince",
     "price_material": "Blody Steel Splinter",
     "id": 137,
-    "category": "mods"
+    "category": "mods",
+    "fragment": "blood_draw"
   },
   {
     "name": "Bore",
@@ -2364,7 +2505,8 @@
     "unlock": "Defeat Abomination Boss",
     "price_material": "Mutated Growth",
     "id": 138,
-    "category": "mods"
+    "category": "mods",
+    "fragment": "bore"
   },
   {
     "name": "Corrosive Rounds",
@@ -2374,7 +2516,8 @@
     "unlock": "Defeat Magister Dullain",
     "price_material": "Tainted Ichor",
     "id": 139,
-    "category": "mods"
+    "category": "mods",
+    "fragment": "corrosive_rounds"
   },
   {
     "name": "Defrag",
@@ -2384,7 +2527,8 @@
     "unlock": "Defeat Cancer",
     "price_material": "Necrocyte Stand",
     "id": 140,
-    "category": "mods"
+    "category": "mods",
+    "fragment": "defrag"
   },
   {
     "name": "Energy Wall",
@@ -2394,7 +2538,8 @@
     "unlock": "Inside one of the towers of the overland. Take the elevator and it will be at the top of the statue that looks like the ones that holds the Seeker Keys",
     "price_material": "Ionic Crystal",
     "id": 141,
-    "category": "mods"
+    "category": "mods",
+    "fragment": "energy_wall"
   },
   {
     "name": "Familiar",
@@ -2404,7 +2549,8 @@
     "unlock": "Use the Dreamcatcher on the Huntress while she is asleep. Then use the item to defeat her in her dream",
     "price_material": "Sacred Hunt Feather",
     "id": 142,
-    "category": "mods"
+    "category": "mods",
+    "fragment": "familiar"
   },
   {
     "name": "Rootlash",
@@ -2414,7 +2560,8 @@
     "unlock": "Defeat Kaeula's Shadow",
     "price_material": "Twilight Dactylu",
     "id": 144,
-    "category": "mods"
+    "category": "mods",
+    "fragment": "rootlash"
   },
   {
     "name": "Skewer",
@@ -2424,7 +2571,8 @@
     "unlock": "Defeat Venom",
     "price_material": "Dread Core",
     "id": 145,
-    "category": "mods"
+    "category": "mods",
+    "fragment": "skewer"
   },
   {
     "name": "Song of Eafir",
@@ -2434,7 +2582,8 @@
     "unlock": "After lowering the bridge to the Ravager's Lair and before defeating him, talk to The Flautist and you can hear he is playing a new tune. Play that tune on the water Harp to get the The Bolt Driver. 1-4-0-2-5-0-3-0 Then talk to him to be rewarded with the crafting material",
     "price_material": "Scroll of Binding",
     "id": 146,
-    "category": "mods"
+    "category": "mods",
+    "fragment": "song_of_eafir"
   },
   {
     "name": "Stasis Beam",
@@ -2444,7 +2593,8 @@
     "unlock": "While exploring the overland you will find a room with a door. Open it and use the elevator. Go through the cave killing zombies and at the end of the cave you can find the material.",
     "price_material": "Stasis Core",
     "id": 147,
-    "category": "mods"
+    "category": "mods",
+    "fragment": "stasis_beam"
   },
   {
     "name": "Transpose",
@@ -2453,7 +2603,8 @@
     "location": "Void Vessel Facility / The Hatchery",
     "unlock": "Defeat the Aberration W.D. 109",
     "id": 148,
-    "category": "mutators"
+    "category": "mutators",
+    "fragment": "transpose"
   },
   {
     "name": "Feedback",
@@ -2462,7 +2613,8 @@
     "location": "Ward 13",
     "unlock": "Buy from Dwell",
     "id": 149,
-    "category": "mutators"
+    "category": "mutators",
+    "fragment": "feedback"
   },
   {
     "name": "Harmonizer",
@@ -2472,7 +2624,8 @@
     "unlock": "Buy from Dwell",
     "modDamage": 10,
     "id": 150,
-    "category": "mutators"
+    "category": "mutators",
+    "fragment": "harmonizer"
   },
   {
     "name": "Resentment",
@@ -2481,7 +2634,8 @@
     "location": "Ward 13",
     "unlock": "Buy from Dwell",
     "id": 151,
-    "category": "mutators"
+    "category": "mutators",
+    "fragment": "resentment"
   },
   {
     "name": "Shield Breaker",
@@ -2490,7 +2644,8 @@
     "location": "Ward 13",
     "unlock": "Buy from Dwell",
     "id": 152,
-    "category": "mutators"
+    "category": "mutators",
+    "fragment": "shield_breaker"
   },
   {
     "name": "Slayer",
@@ -2499,7 +2654,8 @@
     "location": "Ward 13",
     "unlock": "Buy from Dwell",
     "id": 153,
-    "category": "mutators"
+    "category": "mutators",
+    "fragment": "slayer"
   },
   {
     "name": "Weaponlord",
@@ -2508,7 +2664,8 @@
     "location": "Ward 13",
     "unlock": "Buy from Dwell",
     "id": 154,
-    "category": "mutators"
+    "category": "mutators",
+    "fragment": "weaponlord"
   },
   {
     "name": "Dervish",
@@ -2517,7 +2674,8 @@
     "location": "Ward 13",
     "unlock": "Buy from Dwell",
     "id": 155,
-    "category": "mutators"
+    "category": "mutators",
+    "fragment": "dervish"
   },
   {
     "name": "Deadly Calm",
@@ -2526,7 +2684,8 @@
     "location": "Ward 13",
     "unlock": "Buy from Dwell",
     "id": 156,
-    "category": "mutators"
+    "category": "mutators",
+    "fragment": "deadly_calm"
   },
   {
     "name": "Battery",
@@ -2535,7 +2694,8 @@
     "location": "Ward 13",
     "unlock": "Buy from Dwell",
     "id": 157,
-    "category": "mutators"
+    "category": "mutators",
+    "fragment": "battery"
   },
   {
     "name": "Timewave",
@@ -2544,7 +2704,8 @@
     "location": "Spectrum Nexus",
     "unlock": "Defeat Restless Spirit Boss",
     "id": 158,
-    "category": "mutators"
+    "category": "mutators",
+    "fragment": "timewave"
   },
   {
     "name": "Refunder",
@@ -2553,7 +2714,8 @@
     "location": "Tower of the Unseen",
     "unlock": "Defeat E.D. Alpha",
     "id": 159,
-    "category": "mutators"
+    "category": "mutators",
+    "fragment": "refunder"
   },
   {
     "name": "Momentum",
@@ -2562,7 +2724,8 @@
     "location": "Imperial Gardes",
     "unlock": "Defeat Mantagora",
     "id": 160,
-    "category": "mutators"
+    "category": "mutators",
+    "fragment": "momentum"
   },
   {
     "name": "Lithely",
@@ -2571,7 +2734,8 @@
     "location": "Harvester's Reach",
     "unlock": "Defeat the Aberration Barghest the Vile.",
     "id": 161,
-    "category": "mutators"
+    "category": "mutators",
+    "fragment": "lithely"
   },
   {
     "name": "Striker",
@@ -2580,7 +2744,8 @@
     "location": "Morrow Parish",
     "unlock": "Defeat Ripsaw Boss",
     "id": 162,
-    "category": "mutators"
+    "category": "mutators",
+    "fragment": "striker"
   },
   {
     "name": "Extender",
@@ -2589,7 +2754,8 @@
     "location": "The Chimney / The Lament",
     "unlock": "Defeat the Aberration Root Hulk",
     "id": 163,
-    "category": "mutators"
+    "category": "mutators",
+    "fragment": "extender"
   },
   {
     "name": "Bandit",
@@ -2598,7 +2764,8 @@
     "location": "Forgotten Field",
     "unlock": "Defeat The Weald Stalker and The Gnarled Archer",
     "id": 164,
-    "category": "mutators"
+    "category": "mutators",
+    "fragment": "bandit"
   },
   {
     "name": "Reinvigorate",
@@ -2607,7 +2774,8 @@
     "location": "Forgotten Field",
     "unlock": "Defeat Defiler Boss that spawns after killing Nexus Root with the imprissioned Pan",
     "id": 165,
-    "category": "mutators"
+    "category": "mutators",
+    "fragment": "reinvigorate"
   },
   {
     "name": "Bulletweaver",
@@ -2616,7 +2784,8 @@
     "location": "Endaira's End",
     "unlock": "Defeat Atrophy hidden boss. Found in the hidden library behind a pressure plated wall.",
     "id": 384,
-    "category": "mutators"
+    "category": "mutators",
+    "fragment": "bulletweaver"
   },
   {
     "name": "Failsafe",
@@ -2626,7 +2795,8 @@
     "unlock": "Don't kill any bugs in the area, instead run to the secret room and press the switch. That would kill all the bugs and make an Aberration appear.",
     "modDamage": 10,
     "id": 385,
-    "category": "mutators"
+    "category": "mutators",
+    "fragment": "failsafe"
   },
   {
     "name": "Ghost Shell",
@@ -2635,7 +2805,8 @@
     "location": "The Widow's Court",
     "unlock": "Up right in the area there will be a statue with the Doe and Ravager guarded by 2 Pan Warriors. Clear it and equip the Red Doe Sigil. At the front of the statue it will move revealing a hidden staircase leading to the Rotten Thaen Fruit, use it to get the Mutator.",
     "id": 386,
-    "category": "mutators"
+    "category": "mutators",
+    "fragment": "ghost_shell"
   },
   {
     "name": "Supercharger",
@@ -2644,7 +2815,8 @@
     "location": "Twilight Vale",
     "unlock": "Use the \"Walker's Dream\" item and defeat the \"Bane\" abberation. To get the \"Walker's Dream\" item use the Dreamcatcher melee weapon on the sleeping walker special enemy (glowing blue) in an area just off the main path between the Corrupted Harbour and Blackened Citadel checkpoint.",
     "id": 387,
-    "category": "mutators"
+    "category": "mutators",
+    "fragment": "supercharger"
   },
   {
     "name": "Twisting Wounds",
@@ -2653,7 +2825,8 @@
     "location": "Butcher's Quarters / Cotton's Kiln",
     "unlock": "Defeat the Aberration Grime Crawler",
     "id": 388,
-    "category": "mutators"
+    "category": "mutators",
+    "fragment": "twisting_wounds"
   },
   {
     "name": "Disengage",
@@ -2662,7 +2835,8 @@
     "location": "The Hatchery",
     "unlock": "Defeat The Progeny",
     "id": 389,
-    "category": "mutators"
+    "category": "mutators",
+    "fragment": "disengage"
   },
   {
     "name": "Misfortune",
@@ -2671,7 +2845,8 @@
     "location": "Malefic Palace",
     "unlock": "In the Jester's Card event, choose the devil card. Defeat the Aberration that Spawns",
     "id": 390,
-    "category": "mutators"
+    "category": "mutators",
+    "fragment": "misfortune"
   },
   {
     "name": "Overdrive",
@@ -2680,7 +2855,8 @@
     "location": "The Lament",
     "unlock": "Solve the Consort's Puzzle and loot the coffins after opening the door, then defeat the Aberration Wither",
     "id": 391,
-    "category": "mutators"
+    "category": "mutators",
+    "fragment": "overdrive"
   },
   {
     "name": "Steadfast",
@@ -2689,7 +2865,8 @@
     "location": "Council Chamber / The Great Hall",
     "unlock": "Defeat the Aberration Executioner",
     "id": 392,
-    "category": "mutators"
+    "category": "mutators",
+    "fragment": "steadfast"
   },
   {
     "name": "Transference",
@@ -2698,7 +2875,8 @@
     "location": "Void Vessel Facility",
     "unlock": "Defeat the Aberration Fetid Corpse. To access it you need to enter the pods that are at the last area.",
     "id": 393,
-    "category": "mutators"
+    "category": "mutators",
+    "fragment": "transference"
   },
   {
     "name": "Vampire Blade",
@@ -2707,7 +2885,8 @@
     "location": "Endaira's End",
     "unlock": "Defeat the Aberration Fester",
     "id": 394,
-    "category": "mutators"
+    "category": "mutators",
+    "fragment": "vampire_blade"
   },
   {
     "name": "Vengeful Strike",
@@ -2716,7 +2895,8 @@
     "location": "Labyrinth",
     "unlock": "Defeat the Aberration Bastion, just where you found the Labyrinth Staff",
     "id": 395,
-    "category": "mutators"
+    "category": "mutators",
+    "fragment": "vengeful_strike"
   },
   {
     "name": "Dragon Heart",
@@ -2725,7 +2905,8 @@
     "location": "",
     "unlock": "",
     "id": 166,
-    "category": "relics"
+    "category": "relics",
+    "fragment": "dragon_heart"
   },
   {
     "name": "Blooming Heart",
@@ -2734,7 +2915,8 @@
     "location": "The Expanding Glade",
     "unlock": "There is a Vault inside an illusory wall, to solve it use the elevator outside but don't jump in. Once the elevator is up you can see the symbols you need.",
     "id": 167,
-    "category": "relics"
+    "category": "relics",
+    "fragment": "blooming_heart"
   },
   {
     "name": "Crystal Heart",
@@ -2743,7 +2925,8 @@
     "location": "The Dark Conduit",
     "unlock": "Reach the final area and turn the facility on.",
     "id": 168,
-    "category": "relics"
+    "category": "relics",
+    "fragment": "crystal_heart"
   },
   {
     "name": "Decayed Heart",
@@ -2752,7 +2935,8 @@
     "location": "Corrupted Harbor",
     "unlock": "",
     "id": 169,
-    "category": "relics"
+    "category": "relics",
+    "fragment": "decayed_heart"
   },
   {
     "name": "Enlarged Heart",
@@ -2761,7 +2945,8 @@
     "location": "Ward 13",
     "unlock": "Buy it from Cass after Defeating 6 World Bosses. Only counts if the boss is killed with the 2 different kills if they have it",
     "id": 170,
-    "category": "relics"
+    "category": "relics",
+    "fragment": "enlarged_heart"
   },
   {
     "name": "Lifeless Heart",
@@ -2770,7 +2955,8 @@
     "location": "",
     "unlock": "Eat the Fruit of Death 3 times, each time takes a bite until it breaks and gives you the Lifeless Heart.",
     "id": 171,
-    "category": "relics"
+    "category": "relics",
+    "fragment": "lifeless_heart"
   },
   {
     "name": "Pulsing Heart",
@@ -2779,7 +2965,8 @@
     "location": "Endaira's End",
     "unlock": "At the end of the dungeon there is a preassure plate that opens a wall, at the end of the maze there are some stairs that leads you to a jump. In that room at your left should be an illusory wall.",
     "id": 172,
-    "category": "relics"
+    "category": "relics",
+    "fragment": "pulsing_heart"
   },
   {
     "name": "Quilted Heart",
@@ -2788,7 +2975,8 @@
     "location": "",
     "unlock": "",
     "id": 173,
-    "category": "relics"
+    "category": "relics",
+    "fragment": "quilted_heart"
   },
   {
     "name": "Reprocessed Heart",
@@ -2797,7 +2985,8 @@
     "location": "Entangled Gauntlet",
     "unlock": "",
     "id": 174,
-    "category": "relics"
+    "category": "relics",
+    "fragment": "reprocessed_heart"
   },
   {
     "name": "Resonating Heart",
@@ -2806,7 +2995,8 @@
     "location": "Ashen Wasteland",
     "unlock": "",
     "id": 175,
-    "category": "relics"
+    "category": "relics",
+    "fragment": "resonating_heart"
   },
   {
     "name": "Ripened Heart",
@@ -2815,7 +3005,8 @@
     "location": "",
     "unlock": "",
     "id": 176,
-    "category": "relics"
+    "category": "relics",
+    "fragment": "ripened_heart"
   },
   {
     "name": "Runed Heart",
@@ -2824,7 +3015,8 @@
     "location": "Entangled Gauntlet",
     "unlock": "",
     "id": 177,
-    "category": "relics"
+    "category": "relics",
+    "fragment": "runed_heart"
   },
   {
     "name": "Salvaged Heart",
@@ -2833,7 +3025,8 @@
     "location": "Ascension Spire",
     "unlock": "Crafted at Drzyr Replicator. 10 Lumenite Crystal, 15 Relic Dust, 1500 Scrap",
     "id": 178,
-    "category": "relics"
+    "category": "relics",
+    "fragment": "salvaged_heart"
   },
   {
     "name": "Shielded Heart",
@@ -2842,7 +3035,8 @@
     "location": "Tower of the Unseen",
     "unlock": "Find your way to the back of a statue that is located at the hall where E.D. Alpha is encountered to insert a Stellar-Powered Cell at the back of the statue, it's not reachable from the ground. You must make your way around to a higher level around the backside area of the statue, find an elevator, trigger it to go up but don't jump on it, it will reveal a hole underneath, jump down to access the slot and insert a Stellar-Powered Cell.\nThis will open a door on the side of the main hall, go through it.",
     "id": 179,
-    "category": "relics"
+    "category": "relics",
+    "fragment": "shielded_heart"
   },
   {
     "name": "Siphon Heart",
@@ -2851,7 +3045,8 @@
     "location": "Ascension Spire",
     "unlock": "Give the Essence Echo to the Custiodian. For that you will need to defeat Tal Ratha.",
     "id": 180,
-    "category": "relics"
+    "category": "relics",
+    "fragment": "siphon_heart"
   },
   {
     "name": "Tormented Heart",
@@ -2860,7 +3055,8 @@
     "location": "Asylum",
     "unlock": "Feed the Override Pin from N'Erud to the Nightweaver's Web.",
     "id": 181,
-    "category": "relics"
+    "category": "relics",
+    "fragment": "tormented_heart"
   },
   {
     "name": "Tranquil Heart",
@@ -2869,7 +3065,8 @@
     "location": "Nimue's Retreat",
     "unlock": "Crafted by giving Nimue a Tormented Heart",
     "id": 182,
-    "category": "relics"
+    "category": "relics",
+    "fragment": "tranquil_heart"
   },
   {
     "name": "Unsullied Heart",
@@ -2878,7 +3075,8 @@
     "location": "Beatific Palace",
     "unlock": "While wearing the One True King Sigil, stand in front of the statue that wields a greatsword while you are in the Beatific Palace. Use the lever to change zone if needed.",
     "id": 183,
-    "category": "relics"
+    "category": "relics",
+    "fragment": "unsullied_heart"
   },
   {
     "name": "Void Heart",
@@ -2887,7 +3085,8 @@
     "location": "Alepsis-Taura",
     "unlock": "Custodian storyline on N'Erud, do not use the override pin, talk to him and wait ~12 real life hours for him to send the ship to Alepsis-Taura. If you don't see it go to Ward 13. You can change your system date to be one day forward and get it.",
     "id": 184,
-    "category": "relics"
+    "category": "relics",
+    "fragment": "void_heart"
   },
   {
     "name": "Constrained Heart",
@@ -2896,7 +3095,8 @@
     "location": "Ward 13",
     "unlock": "Buy it from Cass after Defeating 12 World Bosses. Only counts if the boss is killed with the 2 different kills if they have it",
     "id": 396,
-    "category": "relics"
+    "category": "relics",
+    "fragment": "constrained_heart"
   },
   {
     "name": "Diverted Heart",
@@ -2905,7 +3105,8 @@
     "location": "Ward 13",
     "unlock": "Buy it from Cass after Defeating 18 World Bosses. Only counts if the boss is killed with the 2 different kills if they have it",
     "id": 397,
-    "category": "relics"
+    "category": "relics",
+    "fragment": "diverted_heart"
   },
   {
     "name": "Gunfire Security Lanyard",
@@ -2914,7 +3115,8 @@
     "location": "The Back Rooms",
     "unlock": "Become Ford",
     "id": 484,
-    "category": "amulets"
+    "category": "amulets",
+    "fragment": "gunfire_security_lanyard"
   },
   {
     "name": "Emergency Switch",
@@ -2923,7 +3125,8 @@
     "location": "Spectrum Nexus / The Eon Vault",
     "unlock": "Found on a corpse",
     "id": 185,
-    "category": "amulets"
+    "category": "amulets",
+    "fragment": "emergency_switch"
   },
   {
     "name": "Samoflange",
@@ -2932,7 +3135,8 @@
     "location": "Tower of the Unseen",
     "unlock": "After collecting two Stellar-Powered Cells you will be able to open a new path an elevator that takes you to a secret room. Just when the elevator arrives, to the side you will find this Amulet.",
     "id": 186,
-    "category": "amulets"
+    "category": "amulets",
+    "fragment": "samoflange"
   },
   {
     "name": "Hallowed Egg",
@@ -2941,7 +3145,8 @@
     "location": "The Far Woods",
     "unlock": "Defeat Root Nexus",
     "id": 187,
-    "category": "amulets"
+    "category": "amulets",
+    "fragment": "hallowed_egg"
   },
   {
     "name": "Talisman of the Sun",
@@ -2950,7 +3155,8 @@
     "location": "The Expanding Glade / Forgotten Field / The Nameless Nest",
     "unlock": "Inside a chest at the feet of a statue",
     "id": 188,
-    "category": "amulets"
+    "category": "amulets",
+    "fragment": "talisman_of_the_sun"
   },
   {
     "name": "Inert Overcharger",
@@ -2959,7 +3165,8 @@
     "location": "Terminus Station",
     "unlock": "",
     "id": 190,
-    "category": "amulets"
+    "category": "amulets",
+    "fragment": "inert_overcharger"
   },
   {
     "name": "Difference Engine",
@@ -2968,7 +3175,8 @@
     "location": "Phantom Wasteland / Dark Conduit",
     "unlock": "From the coffins in the ground using the big facility you need to power first the Dark Conduit area.",
     "id": 191,
-    "category": "amulets"
+    "category": "amulets",
+    "fragment": "difference_engine"
   },
   {
     "name": "Scavenger's Bauble",
@@ -2977,7 +3185,8 @@
     "location": "Random world drop",
     "unlock": "",
     "id": 192,
-    "category": "amulets"
+    "category": "amulets",
+    "fragment": "scavengers_bauble"
   },
   {
     "name": "Matriarch's Insignia",
@@ -2986,7 +3195,8 @@
     "location": "The Widow's Court",
     "unlock": "You need to open a door with a key you will find behind a waterfall",
     "id": 193,
-    "category": "amulets"
+    "category": "amulets",
+    "fragment": "matriarchs_insignia"
   },
   {
     "name": "Gunslinger's Charm",
@@ -2995,7 +3205,8 @@
     "location": "Ward 13",
     "unlock": "Exahust dialoge with Mudtooth after finishing the second world",
     "id": 194,
-    "category": "amulets"
+    "category": "amulets",
+    "fragment": "gunslingers_charm"
   },
   {
     "name": "Weightless Weight",
@@ -3004,7 +3215,8 @@
     "location": "Morrow Parish / Council Chamber",
     "unlock": "",
     "id": 195,
-    "category": "amulets"
+    "category": "amulets",
+    "fragment": "weightless_weight"
   },
   {
     "name": "Indignant Fetish",
@@ -3013,7 +3225,8 @@
     "location": "Random world drop",
     "unlock": "",
     "id": 196,
-    "category": "amulets"
+    "category": "amulets",
+    "fragment": "indignant_fetish"
   },
   {
     "name": "Spirit Wisp Amulet",
@@ -3022,7 +3235,8 @@
     "location": "Tiller's Rest",
     "unlock": "Get the whisp and progress through the dungeon till the beginning.",
     "id": 197,
-    "category": "amulets"
+    "category": "amulets",
+    "fragment": "spirit_wisp_amulet"
   },
   {
     "name": "Golden Ribbon",
@@ -3031,7 +3245,8 @@
     "location": "Gilded Chambers",
     "unlock": "While the outside plate is in \"light form\" use the Plain Ribbon on the statue. Leave the location and return to get the amulet.",
     "id": 198,
-    "category": "amulets"
+    "category": "amulets",
+    "fragment": "golden_ribbon"
   },
   {
     "name": "Rusted Navigator's Pendant",
@@ -3040,7 +3255,8 @@
     "location": "Astropath's Respite",
     "unlock": "",
     "id": 199,
-    "category": "amulets"
+    "category": "amulets",
+    "fragment": "rusted_navigators_pendant"
   },
   {
     "name": "Laemir Censer",
@@ -3049,7 +3265,8 @@
     "location": "Forgotten Field",
     "unlock": "Exahust every dialoge with the Pan you rescue in the boss fight with Defiler.",
     "id": 200,
-    "category": "amulets"
+    "category": "amulets",
+    "fragment": "laemir_censer"
   },
   {
     "name": "Soul Anchor",
@@ -3058,7 +3275,8 @@
     "location": "The Far Woods",
     "unlock": "Bloodmoon Altar need 10 Bloodmoon Essence",
     "id": 201,
-    "category": "amulets"
+    "category": "amulets",
+    "fragment": "soul_anchor"
   },
   {
     "name": "Ankh of Power",
@@ -3067,7 +3285,8 @@
     "location": "Ashen Wasteland",
     "unlock": "",
     "id": 202,
-    "category": "amulets"
+    "category": "amulets",
+    "fragment": "ankh_of_power"
   },
   {
     "name": "Abrasive Whetstone",
@@ -3076,7 +3295,8 @@
     "location": "Ward 13",
     "unlock": "Buy it from Cass (RNG)",
     "id": 204,
-    "category": "amulets"
+    "category": "amulets",
+    "fragment": "abrasive_whetstone"
   },
   {
     "name": "Broken Pocket Watch",
@@ -3085,7 +3305,8 @@
     "location": "Ward 13",
     "unlock": "Buy it from Cass (RNG)",
     "id": 205,
-    "category": "amulets"
+    "category": "amulets",
+    "fragment": "broken_pocket_watch"
   },
   {
     "name": "Butcher's Fetish",
@@ -3094,7 +3315,8 @@
     "location": "Ward 13",
     "unlock": "Buy from Reggie after finishing 5 Worlds, inlcuding adventure ones.",
     "id": 206,
-    "category": "amulets"
+    "category": "amulets",
+    "fragment": "butchers_fetish"
   },
   {
     "name": "Chains of Amplification",
@@ -3103,7 +3325,8 @@
     "location": "Random World Drop",
     "unlock": "",
     "id": 207,
-    "category": "amulets"
+    "category": "amulets",
+    "fragment": "chains_of_amplification"
   },
   {
     "name": "Cleansing Stone",
@@ -3112,7 +3335,8 @@
     "location": "Cotton's Kiln / Butcher's Quarter",
     "unlock": "You will need to access a secret passage to find it.",
     "id": 208,
-    "category": "amulets"
+    "category": "amulets",
+    "fragment": "cleansing_stone"
   },
   {
     "name": "Core Booster",
@@ -3121,7 +3345,8 @@
     "location": "Ascension Spire",
     "unlock": "Use Memory Core II in the secret area found in a hole at the left side of the entrance.",
     "id": 209,
-    "category": "amulets"
+    "category": "amulets",
+    "fragment": "core_booster"
   },
   {
     "name": "Daredevils Charm",
@@ -3130,7 +3355,8 @@
     "location": "Ward 13",
     "unlock": "Buy it from Reggie after Hardcore mode beat Root Earth World.",
     "id": 210,
-    "category": "amulets"
+    "category": "amulets",
+    "fragment": "daredevils_charm"
   },
   {
     "name": "Death Embrace",
@@ -3139,7 +3365,8 @@
     "location": "The Forbidden Grove",
     "unlock": "Buy from Bedel of the Vaunnt 1000 Scrap",
     "id": 211,
-    "category": "amulets"
+    "category": "amulets",
+    "fragment": "death_embrace"
   },
   {
     "name": "Decayed Margin",
@@ -3148,7 +3375,8 @@
     "location": "Ward 13",
     "unlock": "Buy it from Cass (RNG)",
     "id": 212,
-    "category": "amulets"
+    "category": "amulets",
+    "fragment": "decayed_margin"
   },
   {
     "name": "Detonation Trigger",
@@ -3157,7 +3385,8 @@
     "location": "Timeless Horizon / The Eon Vault",
     "unlock": "In a giant piston there is a hole, crouch and go underneath to get in the hole before it hits you. Go inside this tunnel to the end of it, you'll find Amulet item near a cliff.",
     "id": 213,
-    "category": "amulets"
+    "category": "amulets",
+    "fragment": "detonation_trigger"
   },
   {
     "name": "Effigy Pendant",
@@ -3166,7 +3395,8 @@
     "location": "Cotton's Kiln / Butcher's Quarter",
     "unlock": "You will need to access a secret passage to find a wooden box, inside it there will be the amulet.",
     "id": 214,
-    "category": "amulets"
+    "category": "amulets",
+    "fragment": "effigy_pendant"
   },
   {
     "name": "Effluvium Enhancer",
@@ -3175,7 +3405,8 @@
     "location": "Ascension Spire",
     "unlock": "Buy at the Drzyr Replicator. 15 Iron, 1000 Scrap",
     "id": 215,
-    "category": "amulets"
+    "category": "amulets",
+    "fragment": "effluvium_enhancer"
   },
   {
     "name": "Energized Neck Coil",
@@ -3184,7 +3415,8 @@
     "location": "",
     "unlock": "",
     "id": 216,
-    "category": "amulets"
+    "category": "amulets",
+    "fragment": "energized_neck_coil"
   },
   {
     "name": "Energy Diverter",
@@ -3193,7 +3425,8 @@
     "location": "Ascension Spire",
     "unlock": "Buy at the Drzyr Replicator. 15 Forged Iron, 1000 Scrap",
     "id": 217,
-    "category": "amulets"
+    "category": "amulets",
+    "fragment": "energy_diverter"
   },
   {
     "name": "Escalation Protocol",
@@ -3202,7 +3435,8 @@
     "location": "Corrupted Harbor",
     "unlock": "",
     "id": 218,
-    "category": "amulets"
+    "category": "amulets",
+    "fragment": "escalation_protocol"
   },
   {
     "name": "Full Moon Circlet",
@@ -3211,7 +3445,8 @@
     "location": "Imperial Gardens",
     "unlock": "Inside a hidden room below a pitfall trap",
     "id": 219,
-    "category": "amulets"
+    "category": "amulets",
+    "fragment": "full_moon_circlet"
   },
   {
     "name": "Hyper Conductor",
@@ -3220,7 +3455,8 @@
     "location": "Terminus Station",
     "unlock": "During the Train event just before ascending the ladder, there will be some canisters to the left of the ladder, shoot them to open a hole. Crouch through it to get the amulet.",
     "id": 220,
-    "category": "amulets"
+    "category": "amulets",
+    "fragment": "hyper_conductor"
   },
   {
     "name": "Insulation Driver",
@@ -3229,7 +3465,8 @@
     "location": "Void Vessel Facility",
     "unlock": "Inside a room you will find a terminal. Using it will start the Flooded Room Event. The room will fill with water, so climb up to not drown. While you climb you will see the amulet.",
     "id": 221,
-    "category": "amulets"
+    "category": "amulets",
+    "fragment": "insulation_driver"
   },
   {
     "name": "Jester's Bell",
@@ -3238,7 +3475,8 @@
     "location": "Beatific Palace",
     "unlock": "While the Jester is making his performance use the Clap Emote.",
     "id": 222,
-    "category": "amulets"
+    "category": "amulets",
+    "fragment": "jesters_bell"
   },
   {
     "name": "Kinetic Shield Exchanger",
@@ -3247,7 +3485,8 @@
     "location": "",
     "unlock": "",
     "id": 223,
-    "category": "amulets"
+    "category": "amulets",
+    "fragment": "kinetic_shield_exchanger"
   },
   {
     "name": "Kuri Kuri Charm",
@@ -3256,7 +3495,8 @@
     "location": "The Far Woods / The Forbidden Grove / The Withering Weald",
     "unlock": "In the bird's nest. Go around the map until he flies away.",
     "id": 224,
-    "category": "amulets"
+    "category": "amulets",
+    "fragment": "kuri_kuri_charm"
   },
   {
     "name": "Navigator's Pendant",
@@ -3265,7 +3505,8 @@
     "location": "",
     "unlock": "Chose to live forever while wearing the Rusted Navigator's Pendant at the world boss",
     "id": 225,
-    "category": "amulets"
+    "category": "amulets",
+    "fragment": "navigators_pendant"
   },
   {
     "name": "Neckbone Necklace",
@@ -3274,7 +3515,8 @@
     "location": "The Great Hall",
     "unlock": "After using the Ravenous Medallion to open the locked door, you will find a lonely creature sitting on a table filled with rotten food. This will bestow the RAVENOUS status effect on your character.\nHe will ask you to take part on the feast. Eat any meal served, and the event will begin. Fae of many types will spawn in the room and you will have to defeat them.\nOnce you are done with the Fae waves, the event ends and the host regains consciousness.",
     "id": 226,
-    "category": "amulets"
+    "category": "amulets",
+    "fragment": "neckbone_necklace"
   },
   {
     "name": "Necklace of Flowing Life",
@@ -3283,7 +3525,8 @@
     "location": "The Twisted Chantry",
     "unlock": "",
     "id": 227,
-    "category": "amulets"
+    "category": "amulets",
+    "fragment": "necklace_of_flowing_life"
   },
   {
     "name": "Necklace of Supremacy",
@@ -3292,7 +3535,8 @@
     "location": "Forgotten Field",
     "unlock": "Do the first phase of Root Nexus without receiving damage.",
     "id": 228,
-    "category": "amulets"
+    "category": "amulets",
+    "fragment": "necklace_of_supremacy"
   },
   {
     "name": "Nightweaver's Grudge",
@@ -3301,7 +3545,8 @@
     "location": "The Tormented Asylum",
     "unlock": "Give the Kolket's Razor (found in Yaesha) to the Nightweaver's Web.",
     "id": 229,
-    "category": "amulets"
+    "category": "amulets",
+    "fragment": "nightweavers_grudge"
   },
   {
     "name": "Nimue's Ribbon",
@@ -3310,7 +3555,8 @@
     "location": "Nimue's Retreat",
     "unlock": "Crafted at Nimue with Golden Ribbon and Silver Ribbon.",
     "id": 230,
-    "category": "amulets"
+    "category": "amulets",
+    "fragment": "nimues_ribbon"
   },
   {
     "name": "One True King Sigil",
@@ -3319,7 +3565,8 @@
     "location": "Nimue's Retreat",
     "unlock": "Crafted at Nimue with Faelin's Sigil and Faerin's Sigil.",
     "id": 231,
-    "category": "amulets"
+    "category": "amulets",
+    "fragment": "one_true_king_sigil"
   },
   {
     "name": "One-Eyed Joker Idol",
@@ -3328,7 +3575,8 @@
     "location": "Malefic Palace",
     "unlock": "Need more testing but... In the Jester Card Event check the cards, if there is no joker choose the wrong answer untill it appears.",
     "id": 232,
-    "category": "amulets"
+    "category": "amulets",
+    "fragment": "one_eyed_joker_idol"
   },
   {
     "name": "Range Finder",
@@ -3337,7 +3585,8 @@
     "location": "Ascension Spire",
     "unlock": "Crafted at Drzyr Replicator. 15 Galvanized Iron, 1000 Scrap",
     "id": 233,
-    "category": "amulets"
+    "category": "amulets",
+    "fragment": "range_finder"
   },
   {
     "name": "Ravager's Mark",
@@ -3346,7 +3595,8 @@
     "location": "Ravager's Lair",
     "unlock": "Kill The Doe",
     "id": 234,
-    "category": "amulets"
+    "category": "amulets",
+    "fragment": "ravagers_mark"
   },
   {
     "name": "Red Doe Sigil",
@@ -3355,7 +3605,8 @@
     "location": "The Red Throne",
     "unlock": "Return the Ornate Lockbox to Her Majesty.",
     "id": 235,
-    "category": "amulets"
+    "category": "amulets",
+    "fragment": "red_doe_sigil"
   },
   {
     "name": "Shaed Bloom Crystal",
@@ -3364,7 +3615,8 @@
     "location": "Malefic Palace",
     "unlock": "After you encounter the Jester the second time it will leave this amulet in the first location encounter.",
     "id": 236,
-    "category": "amulets"
+    "category": "amulets",
+    "fragment": "shaed_bloom_crystal"
   },
   {
     "name": "Shock Device",
@@ -3373,7 +3625,8 @@
     "location": "Asylum",
     "unlock": "In the basement of the Asylum, enter the first room on the right. Crouch through a small gap. You will find a note and the amulet.",
     "id": 237,
-    "category": "amulets"
+    "category": "amulets",
+    "fragment": "shock_device"
   },
   {
     "name": "Silver Ribbon",
@@ -3382,7 +3635,8 @@
     "location": "Shattered Gallery",
     "unlock": "While the outside plate is in \"dark form\" use the Plain Ribbon on the statue. Leave the location and return to get the amulet.",
     "id": 238,
-    "category": "amulets"
+    "category": "amulets",
+    "fragment": "silver_ribbon"
   },
   {
     "name": "Toxic Release Valve",
@@ -3391,7 +3645,8 @@
     "location": "Dormant N'Erudian Facility",
     "unlock": "Inside the locked door, you will need the key that is in the secret area. In your path thorugh the dungeon there is a railing that is missing a piece, if you fall off you will land on some tubes that lead to a passage, follow it and you will find it at a room.",
     "id": 239,
-    "category": "amulets"
+    "category": "amulets",
+    "fragment": "toxic_release_valve"
   },
   {
     "name": "Twisted Idol",
@@ -3400,7 +3655,8 @@
     "location": "Ward 13",
     "unlock": "Buy it from Cass (RNG)",
     "id": 240,
-    "category": "amulets"
+    "category": "amulets",
+    "fragment": "twisted_idol"
   },
   {
     "name": "Vengeance Idol",
@@ -3409,7 +3665,8 @@
     "location": "Random world drop",
     "unlock": "",
     "id": 241,
-    "category": "amulets"
+    "category": "amulets",
+    "fragment": "vengeance_idol"
   },
   {
     "name": "Void Idol",
@@ -3418,7 +3675,8 @@
     "location": "Ascension Spire",
     "unlock": "Crafted at Drzyr Replicator. Shinning Essence Echo (Dropped by Tal Ratha both forms, 15 Hardened Iron, 1000 Scrap",
     "id": 242,
-    "category": "amulets"
+    "category": "amulets",
+    "fragment": "void_idol"
   },
   {
     "name": "Downward Spiral",
@@ -3427,7 +3685,8 @@
     "location": "The Chimney",
     "unlock": "Once you make it to the bottom and finish the race, go back to the top. You will see a purple dot on the map. Go back to the spot where you had to shoot the orbs to progress but do not jump down the hole. Look towards the purple dot on the map and aim upwards. You will see the item. Shoot it and you will get the amulet.",
     "id": 398,
-    "category": "amulets"
+    "category": "amulets",
+    "fragment": "downward_spiral"
   },
   {
     "name": "Leto's Amulet",
@@ -3436,7 +3695,8 @@
     "location": "Ward 13",
     "unlock": "Buy it from Reggie after 100 flops. Use some heavy armor to make you flop instead of rolling.",
     "id": 399,
-    "category": "amulets"
+    "category": "amulets",
+    "fragment": "letos_amulet"
   },
   {
     "name": "Nightmare Spiral",
@@ -3445,7 +3705,8 @@
     "location": "Ward 13",
     "unlock": "Buy from Reggie after finishing 30 Worlds, inlcuding adventure ones.",
     "id": 400,
-    "category": "amulets"
+    "category": "amulets",
+    "fragment": "nightmare_spiral"
   },
   {
     "name": "Onyx Pendulum",
@@ -3454,7 +3715,8 @@
     "location": "Ward 13",
     "unlock": "Buy it from Reggie after Nightmare Difficulty Playthrough",
     "id": 401,
-    "category": "amulets"
+    "category": "amulets",
+    "fragment": "onyx_pendulum"
   },
   {
     "name": "Stalker's Brand",
@@ -3463,7 +3725,8 @@
     "location": "Forgotten Field",
     "unlock": "",
     "id": 402,
-    "category": "amulets"
+    "category": "amulets",
+    "fragment": "stalkers_brand"
   },
   {
     "name": "Bisected Ring",
@@ -3472,7 +3735,8 @@
     "location": "The Back rooms",
     "unlock": "Become Ford",
     "id": 483,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "bisected_ring"
   },
   {
     "name": "Worn Admiral's Ring",
@@ -3481,7 +3745,8 @@
     "location": "Ward 13",
     "unlock": "Buy from Reggie at Ward 13 for 500 Scrap",
     "id": 244,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "worn_admirals_ring"
   },
   {
     "name": "Fire Stone",
@@ -3490,7 +3755,8 @@
     "location": "Ward 13",
     "unlock": "Buy from Reggie at Ward 13 for 500 Scrap",
     "id": 245,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "fire_stone"
   },
   {
     "name": "Acid Stone",
@@ -3499,7 +3765,8 @@
     "location": "Ward 13",
     "unlock": "Buy from Reggie at Ward 13 for 500 Scrap",
     "id": 246,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "acid_stone"
   },
   {
     "name": "Grounding Stone",
@@ -3508,7 +3775,8 @@
     "location": "Ward 13",
     "unlock": "Buy from Reggie at Ward 13 for 500 Scrap",
     "id": 247,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "grounding_stone"
   },
   {
     "name": "Anastajia's Inspiration",
@@ -3517,7 +3785,8 @@
     "location": "Ward 13",
     "unlock": "Buy from Whispers",
     "id": 248,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "anastajias_inspiration"
   },
   {
     "name": "Gunslinger's Ring",
@@ -3526,7 +3795,8 @@
     "location": "Ward 13",
     "unlock": "Exahust dialog of Mudtooth",
     "id": 249,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "gunslingers_ring"
   },
   {
     "name": "Blood Jewel",
@@ -3535,7 +3805,8 @@
     "location": "The Forbidden Grove",
     "unlock": "Behind a Waterfall",
     "id": 250,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "blood_jewel"
   },
   {
     "name": "Feedback Loop",
@@ -3544,7 +3815,8 @@
     "location": "Tower of the Unseen / Terminus Station",
     "unlock": "",
     "id": 251,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "feedback_loop"
   },
   {
     "name": "Stone of Expanse",
@@ -3553,7 +3825,8 @@
     "location": "Abyssal Rift",
     "unlock": "Found on a corpse",
     "id": 252,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "stone_of_expanse"
   },
   {
     "name": "Deep Pocket Ring",
@@ -3562,7 +3835,8 @@
     "location": "The Hatchery",
     "unlock": "Found on a corpse",
     "id": 253,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "deep_pocket_ring"
   },
   {
     "name": "Hardcore Metal Band",
@@ -3571,7 +3845,8 @@
     "location": "The Eon Vault",
     "unlock": "",
     "id": 254,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "hardcore_metal_band"
   },
   {
     "name": "Constant Variable Ring",
@@ -3580,7 +3855,8 @@
     "location": "Spectrum Nexus / Astropath's Respite",
     "unlock": "",
     "id": 255,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "constant_variable_ring"
   },
   {
     "name": "Low Yield Recovery Ring",
@@ -3589,7 +3865,8 @@
     "location": "Spectrum Nexus / Astropath's Respite",
     "unlock": "Found on a corpse",
     "id": 256,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "low_yield_recovery_ring"
   },
   {
     "name": "Stone of Continuance",
@@ -3598,7 +3875,8 @@
     "location": "Tower of the Unseen",
     "unlock": "Found at the bottom of the tower",
     "id": 257,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "stone_of_continuance"
   },
   {
     "name": "Reserve Boosting Gem",
@@ -3607,7 +3885,8 @@
     "location": "The Hatchery",
     "unlock": "",
     "id": 258,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "reserve_boosting_gem"
   },
   {
     "name": "Conservation Seal",
@@ -3616,7 +3895,8 @@
     "location": "Vault of the Formless",
     "unlock": "",
     "id": 259,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "conservation_seal"
   },
   {
     "name": "Guardian's Ring",
@@ -3625,7 +3905,8 @@
     "location": "Forgotten Field / The Expanding Glade / The Nameless Nest / Faithless Thicket",
     "unlock": "",
     "id": 260,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "guardians_ring"
   },
   {
     "name": "Soul Link",
@@ -3634,7 +3915,8 @@
     "location": "The Expanding Glade / The Withering Weald / The Nameless Nest",
     "unlock": "",
     "id": 261,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "soul_link"
   },
   {
     "name": "Targeting Jewel",
@@ -3643,7 +3925,8 @@
     "location": "Phantom Wasteland / The Hatchery",
     "unlock": "",
     "id": 262,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "targeting_jewel"
   },
   {
     "name": "Generating Band",
@@ -3652,7 +3935,8 @@
     "location": "Void Vessel Facility",
     "unlock": "Inside a room you will find a terminal. Using it will start the Flooded Room Event. The room will fill with water, so climb up to not drown. While you climb you will see the ring.",
     "id": 263,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "generating_band"
   },
   {
     "name": "Subterfuge Link",
@@ -3661,7 +3945,8 @@
     "location": "",
     "unlock": "",
     "id": 264,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "subterfuge_link"
   },
   {
     "name": "Probability Cord",
@@ -3670,7 +3955,8 @@
     "location": "Corrupted Harbor",
     "unlock": "",
     "id": 265,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "probability_cord"
   },
   {
     "name": "Ring of Diversion",
@@ -3679,7 +3965,8 @@
     "location": "The Lament",
     "unlock": "Inside the tomb past the floating pillar trap. You will need Kolket's Key to open the door, you can find it after solving the Consort's Puzzle.",
     "id": 266,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "ring_of_diversion"
   },
   {
     "name": "Stone of Balance",
@@ -3688,7 +3975,8 @@
     "location": "The Twisted Chantry / Imperial Gardens",
     "unlock": "",
     "id": 267,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "stone_of_balance"
   },
   {
     "name": "Alchemy Stone",
@@ -3697,7 +3985,8 @@
     "location": "",
     "unlock": "",
     "id": 268,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "alchemy_stone"
   },
   {
     "name": "Alumni Ring",
@@ -3706,7 +3995,8 @@
     "location": "Asylum",
     "unlock": "Outside the Asylum after defeating the Nightweaver",
     "id": 269,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "alumni_ring"
   },
   {
     "name": "Shiny Hog Lure",
@@ -3715,7 +4005,8 @@
     "location": "Cotton's Kiln / Butcher's Quarter",
     "unlock": "Defeat Grime Crawler",
     "id": 270,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "shiny_hog_lure"
   },
   {
     "name": "Celerity Stone",
@@ -3724,7 +4015,8 @@
     "location": "The Twisted Chantry / The Far Woods / The Lament / The Nameless Nest",
     "unlock": "",
     "id": 271,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "celerity_stone"
   },
   {
     "name": "Vestige of Power",
@@ -3733,7 +4025,8 @@
     "location": "The Chimney",
     "unlock": "",
     "id": 272,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "vestige_of_power"
   },
   {
     "name": "Ring of the Forest Spirit",
@@ -3742,7 +4035,8 @@
     "location": "The Far Woods / The Twisted Chantry",
     "unlock": "",
     "id": 273,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "ring_of_the_forest_spirit"
   },
   {
     "name": "Heart of the Wolf",
@@ -3751,7 +4045,8 @@
     "location": "The Expanding Glade / Endaira's End",
     "unlock": "",
     "id": 274,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "heart_of_the_wolf"
   },
   {
     "name": "Hardened Coil",
@@ -3760,7 +4055,8 @@
     "location": "Forgotten Field / The Expanding Glade",
     "unlock": "",
     "id": 275,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "hardened_coil"
   },
   {
     "name": "Assassin's Seal",
@@ -3769,7 +4065,8 @@
     "location": "Council Tribunal",
     "unlock": "Inside the mirror side of the council. Change the keys to match the colors on the mirror floor.",
     "id": 276,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "assassins_seal"
   },
   {
     "name": "Booster Ring",
@@ -3778,7 +4075,8 @@
     "location": "Tiller's Rest / Ironborough",
     "unlock": "",
     "id": 277,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "booster_ring"
   },
   {
     "name": "Sagestone",
@@ -3787,7 +4085,8 @@
     "location": "The Lament / The Withering Weald",
     "unlock": "",
     "id": 278,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "sagestone"
   },
   {
     "name": "Lithic Signet",
@@ -3796,7 +4095,8 @@
     "location": "The Chimney / The Twisted Chantry / The Lament",
     "unlock": "Shot the crystal eyes from the 4 statues.",
     "id": 279,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "lithic_signet"
   },
   {
     "name": "Akari War Band",
@@ -3805,7 +4105,8 @@
     "location": "Ward 13",
     "unlock": "Buy it from Cass (RNG)",
     "id": 280,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "akari_war_band"
   },
   {
     "name": "Amber Moonstone",
@@ -3814,7 +4115,8 @@
     "location": "Ward 13",
     "unlock": "Buy it from Cass (RNG)",
     "id": 281,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "amber_moonstone"
   },
   {
     "name": "Archer's Crest",
@@ -3823,7 +4125,8 @@
     "location": "Endaira's End",
     "unlock": "Behind an illusory wall.",
     "id": 282,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "archers_crest"
   },
   {
     "name": "Band Band",
@@ -3832,7 +4135,8 @@
     "location": "Endaira's End",
     "unlock": "There is a circular building that sounds like a didgeridoo, each floor does one note. Behind a waterfall there is a book with the songs you need to play. Play the song of the Ship to get the Band Band.",
     "id": 283,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "band_band"
   },
   {
     "name": "Berserker's Crest",
@@ -3841,7 +4145,8 @@
     "location": "The Chimney / The Twisted Chantry",
     "unlock": "",
     "id": 284,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "berserkers_crest"
   },
   {
     "name": "Black Pawn Stamp",
@@ -3850,7 +4155,8 @@
     "location": "Council Chamber",
     "unlock": "In a large rectangular room there are blue and white torches, change the colors shooting them until all are blue.",
     "id": 285,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "black_pawn_stamp"
   },
   {
     "name": "Blasting Cap Ring",
@@ -3859,7 +4165,8 @@
     "location": "Timeless Horizon",
     "unlock": "There's a giant piston hitting the ground, you may hear it the pounding from far away. Get to the piston, time it well, crouch and go underneath it and get to a hole below it before it hits you.",
     "id": 287,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "blasting_cap_ring"
   },
   {
     "name": "Blessed Ring",
@@ -3868,7 +4175,8 @@
     "location": "Ward 13",
     "unlock": "Buy it from Cass (RNG)",
     "id": 288,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "blessed_ring"
   },
   {
     "name": "Blood Tinged Ring",
@@ -3877,7 +4185,8 @@
     "location": "The Lament",
     "unlock": "Inside the Vault. To open it you should check the book that in the first page show a symbol with a colour. That symbol and colour is the same as some of the fabric that covers the corpses in that room. Note the symbols that match the colour of the first symbol in the book. Then use them in the lock at the end of the room.",
     "id": 289,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "blood_tinged_ring"
   },
   {
     "name": "Braided Thorns",
@@ -3886,7 +4195,8 @@
     "location": "Ward 13",
     "unlock": "Buy it from Cass (RNG)",
     "id": 290,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "braided_thorns"
   },
   {
     "name": "Burden of the Audacious",
@@ -3895,7 +4205,8 @@
     "location": "Ward 13",
     "unlock": "Buy it from Cass (RNG)",
     "id": 291,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "burden_of_the_audacious"
   },
   {
     "name": "Burden of the Destroyer",
@@ -3904,7 +4215,8 @@
     "location": "Ward 13",
     "unlock": "Buy it from Cass (RNG)",
     "id": 292,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "burden_of_the_destroyer"
   },
   {
     "name": "Burden of the Divine",
@@ -3913,7 +4225,8 @@
     "location": "Random world drop",
     "unlock": "",
     "id": 293,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "burden_of_the_divine"
   },
   {
     "name": "Burden of the Follower",
@@ -3922,7 +4235,8 @@
     "location": "Random world drop",
     "unlock": "",
     "id": 294,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "burden_of_the_follower"
   },
   {
     "name": "Burden of the Gambler",
@@ -3931,7 +4245,8 @@
     "location": "Ward 13",
     "unlock": "Buy it from Cass (RNG)",
     "id": 295,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "burden_of_the_gambler"
   },
   {
     "name": "Burden of the Mariner",
@@ -3940,7 +4255,8 @@
     "location": "The Custodian",
     "unlock": "Crafted at Drzyr Replicator. 10 Iron, 500 Scrap",
     "id": 296,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "burden_of_the_mariner"
   },
   {
     "name": "Burden of the Warlock",
@@ -3949,7 +4265,8 @@
     "location": "Random world drop",
     "unlock": "",
     "id": 297,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "burden_of_the_warlock"
   },
   {
     "name": "Burden of the Rebel",
@@ -3958,7 +4275,8 @@
     "location": "Red Throne",
     "unlock": "Give the Thaen Seed to the Eternal Empress. The seed is inside the Ornate Lockbox which you need the Ornate Key, both found in Yaesha - The Widow's Court",
     "id": 298,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "burden_of_the_rebel"
   },
   {
     "name": "Burden of the Stargazer",
@@ -3967,7 +4285,8 @@
     "location": "Tower of the Unseen",
     "unlock": "",
     "id": 299,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "burden_of_the_stargazer"
   },
   {
     "name": "Fae Shaman Ring",
@@ -3976,7 +4295,8 @@
     "location": "Harvester's Reach",
     "unlock": "",
     "id": 300,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "fae_shaman_ring"
   },
   {
     "name": "Ring of Grace",
@@ -3985,7 +4305,8 @@
     "location": "Harvester's Reach",
     "unlock": "Give Dria's Anklet to the man near the World Stone. To get Dria's anklet you need to defeat Barghest the Vile that hides in the bone piles.",
     "id": 301,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "ring_of_grace"
   },
   {
     "name": "Ring of the Robust",
@@ -3994,7 +4315,8 @@
     "location": "Random world drop",
     "unlock": "",
     "id": 302,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "ring_of_the_robust"
   },
   {
     "name": "Timekeeper's Jewel",
@@ -4003,7 +4325,8 @@
     "location": "Morrow Parish",
     "unlock": "At the top of the clock tower inside a chest.",
     "id": 303,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "timekeepers_jewel"
   },
   {
     "name": "Fae Bruiser Ring",
@@ -4012,7 +4335,8 @@
     "location": "Council Chamber",
     "unlock": "",
     "id": 304,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "fae_bruiser_ring"
   },
   {
     "name": "White Pawn Stamp",
@@ -4021,7 +4345,8 @@
     "location": "Council Chamber",
     "unlock": "In a large rectangular room there are blue and white torches, change the colors shooting them until all are white.",
     "id": 305,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "white_pawn_stamp"
   },
   {
     "name": "Stream Coupler",
@@ -4030,7 +4355,8 @@
     "location": "Tiller's Rest",
     "unlock": "",
     "id": 306,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "stream_coupler"
   },
   {
     "name": "Stockpile Charger",
@@ -4039,7 +4365,8 @@
     "location": "Tiller's Rest",
     "unlock": "",
     "id": 307,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "stockpile_charger"
   },
   {
     "name": "Outcast Ring",
@@ -4048,7 +4375,8 @@
     "location": "Tiller's Rest",
     "unlock": "Give the Spirit Whisp Amulet to the man in the sewers.",
     "id": 308,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "outcast_ring"
   },
   {
     "name": "Ring of the Damned",
@@ -4057,7 +4385,8 @@
     "location": "Tiller's Rest / The Great Sewers",
     "unlock": "Shoot the hand of a man hanging out with a purple shine, then interact with the severed hand.",
     "id": 309,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "ring_of_the_damned"
   },
   {
     "name": "Shard Banded Ring",
@@ -4066,7 +4395,8 @@
     "location": "Fractured Ingress",
     "unlock": "",
     "id": 310,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "shard_banded_ring"
   },
   {
     "name": "Encrypted Ring",
@@ -4075,7 +4405,8 @@
     "location": "Fractured Ingress",
     "unlock": "",
     "id": 311,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "encrypted_ring"
   },
   {
     "name": "Dense Silicon Ring",
@@ -4084,7 +4415,8 @@
     "location": "Entangled Gauntlet",
     "unlock": "",
     "id": 312,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "dense_silicon_ring"
   },
   {
     "name": "Ring of Restocking",
@@ -4093,7 +4425,8 @@
     "location": "Random world drop",
     "unlock": "",
     "id": 313,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "ring_of_restocking"
   },
   {
     "name": "Vacuum Seal",
@@ -4102,7 +4435,8 @@
     "location": "Phantom Wasteland / Tower of the Unseen",
     "unlock": "",
     "id": 314,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "vacuum_seal"
   },
   {
     "name": "Momentum Driver",
@@ -4111,7 +4445,8 @@
     "location": "The Hatchery",
     "unlock": "",
     "id": 315,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "momentum_driver"
   },
   {
     "name": "Defensive Action Loop",
@@ -4120,7 +4455,8 @@
     "location": "Timeless Horizon / Astropath's Respite",
     "unlock": "",
     "id": 316,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "defensive_action_loop"
   },
   {
     "name": "Galvanized Resupply Band",
@@ -4129,7 +4465,8 @@
     "location": "Phantom Wasteland",
     "unlock": "From the coffins in the ground using the big facility you need to power first the Dark Conduit area.",
     "id": 317,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "galvanized_resupply_band"
   },
   {
     "name": "Spirit Stone",
@@ -4138,7 +4475,8 @@
     "location": "The Twisted Chantry",
     "unlock": "",
     "id": 318,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "spirit_stone"
   },
   {
     "name": "Soul Guard",
@@ -4147,7 +4485,8 @@
     "location": "The Far Woods",
     "unlock": "Buy from Bloodmoon Altar for 5 Blood Moon Essence",
     "id": 319,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "soul_guard"
   },
   {
     "name": "Slayer's Crest",
@@ -4156,7 +4495,8 @@
     "location": "Imperial Gardens / The Nameless Nest / The Expanding Glade",
     "unlock": "Take the elevator and inside the chest",
     "id": 320,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "slayers_crest"
   },
   {
     "name": "Reaping Stone",
@@ -4165,7 +4505,8 @@
     "location": "Ashen Wasteland",
     "unlock": "",
     "id": 321,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "reaping_stone"
   },
   {
     "name": "Flyweight's Sting",
@@ -4174,7 +4515,8 @@
     "location": "Corrupted Harbor",
     "unlock": "Inside a container",
     "id": 322,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "flyweights_sting"
   },
   {
     "name": "Kinetic Cycle Stone",
@@ -4183,7 +4525,8 @@
     "location": "Corrupted Harbor",
     "unlock": "",
     "id": 323,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "kinetic_cycle_stone"
   },
   {
     "name": "Captain's Insignia",
@@ -4192,7 +4535,8 @@
     "location": "Endaira's End",
     "unlock": "",
     "id": 324,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "captains_insignia"
   },
   {
     "name": "Cataloger's Jewel",
@@ -4201,7 +4545,8 @@
     "location": "Beatific Palace",
     "unlock": "",
     "id": 325,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "catalogers_jewel"
   },
   {
     "name": "Compulsion Loop",
@@ -4210,7 +4555,8 @@
     "location": "Ward 13",
     "unlock": "Buy it from Cass (RNG)",
     "id": 326,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "compulsion_loop"
   },
   {
     "name": "Dead King's Memento",
@@ -4219,7 +4565,8 @@
     "location": "Ward 13",
     "unlock": "Buy it from Cass (RNG)",
     "id": 327,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "dead_kings_memento"
   },
   {
     "name": "Deceiver's Band",
@@ -4228,7 +4575,8 @@
     "location": "Ward 13",
     "unlock": "Buy it from Cass (RNG)",
     "id": 328,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "deceivers_band"
   },
   {
     "name": "Drakestone Pearl",
@@ -4237,7 +4585,8 @@
     "location": "Any Dran dungeon area",
     "unlock": "Get grabbed by a Manticora standing close to a drain. If it leads you to it's lair in the sewers you can get the ring after defeating it.",
     "id": 330,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "drakestone_pearl"
   },
   {
     "name": "Dran Memento",
@@ -4246,7 +4595,8 @@
     "location": "Butcher's Quarter",
     "unlock": "Saving the Dran in The Burning Event.",
     "id": 331,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "dran_memento"
   },
   {
     "name": "Dread Font",
@@ -4255,7 +4605,8 @@
     "location": "Shattered Gallery",
     "unlock": "",
     "id": 332,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "dread_font"
   },
   {
     "name": "Dying Ember",
@@ -4264,7 +4615,8 @@
     "location": "Ashen Wasteland",
     "unlock": "",
     "id": 333,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "dying_ember"
   },
   {
     "name": "Endaira's Endless Loop",
@@ -4273,7 +4625,8 @@
     "location": "Endaria's End",
     "unlock": "",
     "id": 334,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "endairas_endless_loop"
   },
   {
     "name": "Excess Coil",
@@ -4282,7 +4635,8 @@
     "location": "Void Vessel Facility / The Hatchery / The Putrid Domain / The Dark Conduit",
     "unlock": "Robot Hanger event. When facing W.D. 109 Aberration you need to lure him all the way back to one of the rooms that is locked and has the ring in it.",
     "id": 335,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "excess_coil"
   },
   {
     "name": "Fae Hunter Ring",
@@ -4291,7 +4645,8 @@
     "location": "Random world drop",
     "unlock": "",
     "id": 336,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "fae_hunter_ring"
   },
   {
     "name": "Fae Protector Signet",
@@ -4300,7 +4655,8 @@
     "location": "Council Chamber",
     "unlock": "Defeat all members of the Council",
     "id": 337,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "fae_protector_signet"
   },
   {
     "name": "Fae Warrior Ring",
@@ -4309,7 +4665,8 @@
     "location": "Random world drop",
     "unlock": "",
     "id": 338,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "fae_warrior_ring"
   },
   {
     "name": "Faelin's Sigil",
@@ -4318,7 +4675,8 @@
     "location": "Malefic Gallery",
     "unlock": "Given by Faelin if you kill Faerin and report to him",
     "id": 339,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "faelins_sigil"
   },
   {
     "name": "Feastmaster's Signet",
@@ -4327,7 +4685,8 @@
     "location": "The Great Hall",
     "unlock": "In the Feast event room there will be a chimney with fire. Crouch through it and at the other side you will find the ring.",
     "id": 341,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "feastmasters_signet"
   },
   {
     "name": "Frivolous Band",
@@ -4336,7 +4695,8 @@
     "location": "",
     "unlock": "",
     "id": 343,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "frivolous_band"
   },
   {
     "name": "Game Master's Pride",
@@ -4345,7 +4705,8 @@
     "location": "Postulant's Parlor",
     "unlock": "In the bottom left room. You will need to put your white piece in the same corner and another player there to get it. After that leave the bottom left space without any piece.",
     "id": 344,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "game_masters_pride"
   },
   {
     "name": "Haymaker's Ring",
@@ -4354,7 +4715,8 @@
     "location": "Ashen Wasteland",
     "unlock": "",
     "id": 345,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "haymakers_ring"
   },
   {
     "name": "Hex Ward",
@@ -4363,7 +4725,8 @@
     "location": "Nimue's Retreat",
     "unlock": "Crafted by Nimue for 5 Lumenite Crystal",
     "id": 346,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "hex_ward"
   },
   {
     "name": "Lodestone Ring",
@@ -4372,7 +4735,8 @@
     "location": "The Forbidden Grove",
     "unlock": "Rewarded by Bedel of the Vaunnt if the players talks to him while wearing the Lodestone Crown after defeating the Ravager.",
     "id": 347,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "lodestone_ring"
   },
   {
     "name": "Mechanic's Cog",
@@ -4381,7 +4745,8 @@
     "location": "Ward 13",
     "unlock": "Buy it from Cass (RNG)",
     "id": 348,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "mechanics_cog"
   },
   {
     "name": "Metal Driver",
@@ -4390,7 +4755,8 @@
     "location": "Vault of the Formless",
     "unlock": "Wait in the second spinning tower to access the secret entrance. Behind the House Lythla Glyph, to the left, there is a breakable object you can shoot and jump over the ledge to find a secret entrance.",
     "id": 349,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "metal_driver"
   },
   {
     "name": "Meteorite Shard Ring",
@@ -4399,7 +4765,8 @@
     "location": "Ascension Spire",
     "unlock": "Crafted by Drzyr Replicator for 10 Iron, 750 Scrap",
     "id": 350,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "meteorite_shard_ring"
   },
   {
     "name": "Microcompressor",
@@ -4408,7 +4775,8 @@
     "location": "Ascension Spire",
     "unlock": "Crafted by Drzyr Replicator for 10 Forged Iron, 750 Scrap",
     "id": 351,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "microcompressor"
   },
   {
     "name": "Point Focus Ring",
@@ -4417,7 +4785,8 @@
     "location": "Phantom Wasteland",
     "unlock": "",
     "id": 352,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "point_focus_ring"
   },
   {
     "name": "Power Saver",
@@ -4426,7 +4795,8 @@
     "location": "Sentinel's Keep",
     "unlock": "",
     "id": 353,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "power_saver"
   },
   {
     "name": "Propulsion Loop",
@@ -4435,7 +4805,8 @@
     "location": "Astropath's Respite / Terminus Station / Tower of the Unseen / Spectrum Nexus",
     "unlock": "While riding an elevator check the walls to find a hole, follow the path to find the ring.",
     "id": 354,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "propulsion_loop"
   },
   {
     "name": "Rerouting Cable",
@@ -4444,7 +4815,8 @@
     "location": "Vault of the Formless / Void Vessel Facility",
     "unlock": "",
     "id": 355,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "rerouting_cable"
   },
   {
     "name": "Restriction Cord",
@@ -4453,7 +4825,8 @@
     "location": "The Forbidden Grove",
     "unlock": "Buy from Bedel of the Vaunnt",
     "id": 356,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "restriction_cord"
   },
   {
     "name": "Ring of Crisis",
@@ -4462,7 +4835,8 @@
     "location": "The Hatchery",
     "unlock": "Inside the dungeon you will find the Aerary Glyph that unlocks the locked door. After defeating the Aberration The Progeny you can find the ring.",
     "id": 357,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "ring_of_crisis"
   },
   {
     "name": "Ring of Deflection",
@@ -4471,7 +4845,8 @@
     "location": "The Hatchery",
     "unlock": "In the dungeon there will be an area that activates a purple Orb that will follow you to take you down. In the area you will find the ring.",
     "id": 358,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "ring_of_deflection"
   },
   {
     "name": "Ring of Omens",
@@ -4480,7 +4855,8 @@
     "location": "Cathedral of Omens",
     "unlock": "During a Blood Moon, you will need to solve the puzzle to enter the room at the right from when you enter to obtain it. If it's not during a Blood Moon the trapdor won't open.",
     "id": 360,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "ring_of_omens"
   },
   {
     "name": "Ring of Retribution",
@@ -4489,7 +4865,8 @@
     "location": "Random world drop / The Tormented Asylum",
     "unlock": "At the Nightweaver's Web you will need to give it the Dria's Anklet quest item.",
     "id": 361,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "ring_of_retribution"
   },
   {
     "name": "Rock of Anguish",
@@ -4498,7 +4875,8 @@
     "location": "Ward 13",
     "unlock": "Buy it from Cass (RNG)",
     "id": 362,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "rock_of_anguish"
   },
   {
     "name": "Rotward",
@@ -4507,7 +4885,8 @@
     "location": "The Forbidden Grove",
     "unlock": "Buy from Bedel of the Vaunnt",
     "id": 363,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "rotward"
   },
   {
     "name": "Rusted Heirloom",
@@ -4516,7 +4895,8 @@
     "location": "Tiller's Rest",
     "unlock": "Inside a Safe (3581). The code could be found using your flashlight to lit the numbers in the area.",
     "id": 364,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "rusted_heirloom"
   },
   {
     "name": "Sapphire Dreamstone",
@@ -4525,7 +4905,8 @@
     "location": "Council's Chamber",
     "unlock": "You have to take the secret passage in The Executioner Event. To enter this event you need to shoot a painting that you find when your character says \"something's odd",
     "id": 365,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "sapphire_dreamstone"
   },
   {
     "name": "Seal of the Empress",
@@ -4534,7 +4915,8 @@
     "location": "The Red Throne",
     "unlock": "Finish the quest without giving any specific item. For that you will need to defeat the world boss and come back to talk to her.",
     "id": 366,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "seal_of_the_empress"
   },
   {
     "name": "Singed Ring",
@@ -4543,7 +4925,8 @@
     "location": "Butcher's Quarter",
     "unlock": "At the Burning Event, watch or fail the event. Rest at a checkpoint, comeback to see a pig is eating the corpse. Kill the pig to obtain the ring.",
     "id": 367,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "singed_ring"
   },
   {
     "name": "Stone of Malevolence",
@@ -4552,7 +4935,8 @@
     "location": "Gilded Chambers",
     "unlock": "",
     "id": 368,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "stone_of_malevolence"
   },
   {
     "name": "Tarnished Ring",
@@ -4561,7 +4945,8 @@
     "location": "Ward 13",
     "unlock": "Behind Whisper's there is a ladder, climb it and talk to the man that is up there. If he's sleeping change worlds and try again.",
     "id": 370,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "tarnished_ring"
   },
   {
     "name": "Tear of Kauela",
@@ -4570,7 +4955,8 @@
     "location": "Kaeula's Rest",
     "unlock": "",
     "id": 371,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "tear_of_kauela"
   },
   {
     "name": "Tempest Conduit",
@@ -4579,7 +4965,8 @@
     "location": "Endaira's End",
     "unlock": "At the end of the dungeon there is a preassure plate that opens a wall, at the end of the preasure plate maze is the ring.",
     "id": 372,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "tempest_conduit"
   },
   {
     "name": "Tightly Wound Coil",
@@ -4588,7 +4975,8 @@
     "location": "Void Vessel Facility",
     "unlock": "Inside a capsule.",
     "id": 373,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "tightly_wound_coil"
   },
   {
     "name": "Tomb Dweller's Ring",
@@ -4597,7 +4985,8 @@
     "location": "The Twisted Chantry",
     "unlock": "",
     "id": 374,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "tomb_dwellers_ring"
   },
   {
     "name": "Wax Sealed Ring",
@@ -4606,7 +4995,8 @@
     "location": "The Far Woods / The Forbidden Grove",
     "unlock": "",
     "id": 375,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "wax_sealed_ring"
   },
   {
     "name": "Wind Hollow Circlet",
@@ -4615,7 +5005,8 @@
     "location": "Endaira's End",
     "unlock": "There is a circular building that sounds like a didgeridoo, each floor does one note. Behind a waterfall there is a book with the songs you need to play. Play the song of the Queen to get the Wind Hollow Circlet.",
     "id": 376,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "wind_hollow_circlet"
   },
   {
     "name": "Zania's Malice",
@@ -4624,7 +5015,8 @@
     "location": "Ashen Wasteland",
     "unlock": "",
     "id": 377,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "zanias_malice"
   },
   {
     "name": "Anahae Crystal",
@@ -4633,7 +5025,8 @@
     "location": "Ward 13",
     "unlock": "Buy it from Reggie after Hardcore mode beat Yaesha World.",
     "id": 403,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "anahae_crystal"
   },
   {
     "name": "Band of Accord",
@@ -4642,7 +5035,8 @@
     "location": "Ward 13",
     "unlock": "Buy from Reggie after killing 25 Aberrations",
     "id": 404,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "band_of_accord"
   },
   {
     "name": "Black Cat Ring",
@@ -4651,7 +5045,8 @@
     "location": "Ward 13",
     "unlock": "Buy it from Reggie after dying 15 times",
     "id": 405,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "black_cat_ring"
   },
   {
     "name": "Blackout Ring",
@@ -4660,7 +5055,8 @@
     "location": "Vault of the Formless",
     "unlock": "There is a room with crates that if you break there is hole that leads you to a room. Just before the exit of the room there is a hole that let you shoot into a the cable that gives energy to the door locked, shoot it.",
     "id": 406,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "blackout_ring"
   },
   {
     "name": "Bright Steel Ring",
@@ -4669,7 +5065,8 @@
     "location": "Ward 13",
     "unlock": "Buy from Reggie after finishing 15 Worlds, inlcuding adventure ones.",
     "id": 407,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "bright_steel_ring"
   },
   {
     "name": "Devourer Loop",
@@ -4678,7 +5075,8 @@
     "location": "Ward 13",
     "unlock": "Buy it from Reggie after Apocalypse Difficulty Playthrough",
     "id": 408,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "devourer_loop"
   },
   {
     "name": "Dran Scavenger Ring",
@@ -4687,7 +5085,8 @@
     "location": "Ward 13",
     "unlock": "Buy it from Reggie after Hardcore mode beat Losomn World.",
     "id": 409,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "dran_scavenger_ring"
   },
   {
     "name": "Drzyr Sniper Sigil",
@@ -4696,7 +5095,8 @@
     "location": "Ward 13",
     "unlock": "Buy it from Reggie after Hardcore mode beat N'Erud World.",
     "id": 410,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "drzyr_sniper_sigil"
   },
   {
     "name": "Embrace of Sha'Hala",
@@ -4705,7 +5105,8 @@
     "location": "Ascension Spire",
     "unlock": "Talk to The Custodian after defeating Sha'Hala",
     "id": 411,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "embrace_of_shahala"
   },
   {
     "name": "Focusing Shard",
@@ -4714,7 +5115,8 @@
     "location": "The Hatchery",
     "unlock": "In the dungeon there will be an area that activates a purple Orb that will follow you to take you down. In the area you will find the ring.",
     "id": 412,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "focusing_shard"
   },
   {
     "name": "Provisioner Ring",
@@ -4723,7 +5125,8 @@
     "location": "Ward 13",
     "unlock": "Buy it from Reggie after Hardcore mode beat Labyrinth World.",
     "id": 413,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "provisioner_ring"
   },
   {
     "name": "Ring of Flawed Beauty",
@@ -4732,7 +5135,8 @@
     "location": "Ward 13",
     "unlock": "Buy it from Cass (RNG)",
     "id": 414,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "ring_of_flawed_beauty"
   },
   {
     "name": "Supression Ward",
@@ -4741,7 +5145,8 @@
     "location": "Ascension Spire",
     "unlock": "Crafted by Drzyr Replicator for 5 Iron, 250 Scrap",
     "id": 415,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "supression_ward"
   },
   {
     "name": "Faerin's Sigil",
@@ -4750,7 +5155,8 @@
     "location": "Malefic Gallery",
     "unlock": "Given by Fearin, after killing Fealin",
     "id": 485,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "faerins_sigil"
   },
   {
     "name": "Zohee's Ring",
@@ -4759,266 +5165,304 @@
     "location": "The Red Throne",
     "unlock": "Given by the Attendant after being arrested and killing the corruptor",
     "id": 486,
-    "category": "rings"
+    "category": "rings",
+    "fragment": "zohees_ring"
   },
   {
     "name": "Ammo Pickups",
     "description": "Ammo Pickups",
     "id": 417,
     "type": "Yellow fragment relics",
-    "category": "relicfragments"
+    "category": "relicfragments",
+    "fragment": "ammo_pickups"
   },
   {
     "name": "Ammo Reserves",
     "description": "Ammo Reserves",
     "id": 418,
     "type": "Yellow fragment relics",
-    "category": "relicfragments"
+    "category": "relicfragments",
+    "fragment": "ammo_reserves"
   },
   {
     "name": "Casting Speed",
     "description": "Mod & Skill Cast Speed",
     "id": 419,
     "type": "Yellow fragment relics",
-    "category": "relicfragments"
+    "category": "relicfragments",
+    "fragment": "casting_speed"
   },
   {
     "name": "Consumable Duration",
     "description": "Consumable Duration",
     "id": 420,
     "type": "Yellow fragment relics",
-    "category": "relicfragments"
+    "category": "relicfragments",
+    "fragment": "consumable_duration"
   },
   {
     "name": "Consumable Speed",
     "description": "Consumable Use Speed",
     "id": 421,
     "type": "Yellow fragment relics",
-    "category": "relicfragments"
+    "category": "relicfragments",
+    "fragment": "consumable_speed"
   },
   {
     "name": "Mod Cost",
     "description": "Reduces Mod Cost",
     "id": 422,
     "type": "Yellow fragment relics",
-    "category": "relicfragments"
+    "category": "relicfragments",
+    "fragment": "mod_cost"
   },
   {
     "name": "Mod Duration",
     "description": "Reduces Mod Duration",
     "id": 423,
     "type": "Yellow fragment relics",
-    "category": "relicfragments"
+    "category": "relicfragments",
+    "fragment": "mod_duration"
   },
   {
     "name": "Recoil",
     "description": "Reduces Recoil",
     "id": 424,
     "type": "Yellow fragment relics",
-    "category": "relicfragments"
+    "category": "relicfragments",
+    "fragment": "recoil"
   },
   {
     "name": "Skill Cooldown",
     "description": "Reduces Skill Cooldown",
     "id": 425,
     "type": "Yellow fragment relics",
-    "category": "relicfragments"
+    "category": "relicfragments",
+    "fragment": "skill_cooldown"
   },
   {
     "name": "Skill Duration",
     "description": "Increase Skill Duration",
     "id": 426,
     "type": "Yellow fragment relics",
-    "category": "relicfragments"
+    "category": "relicfragments",
+    "fragment": "skill_duration"
   },
   {
     "name": "Spread Recovery",
     "description": "Reticle Spread Recovery Speed",
     "id": 427,
     "type": "Yellow fragment relics",
-    "category": "relicfragments"
+    "category": "relicfragments",
+    "fragment": "spread_recovery"
   },
   {
     "name": "Weapon Spread",
     "description": "Reduces Weapon Spread",
     "id": 428,
     "type": "Yellow fragment relics",
-    "category": "relicfragments"
+    "category": "relicfragments",
+    "fragment": "weapon_spread"
   },
   {
     "name": "Weapon Swap",
     "description": "Weapon Swap Speed",
     "id": 429,
     "type": "Yellow fragment relics",
-    "category": "relicfragments"
+    "category": "relicfragments",
+    "fragment": "weapon_swap"
   },
   {
     "name": "Armor Effectiveness",
     "description": "Increases Armor",
     "id": 431,
     "type": "Blue fragment relics",
-    "category": "relicfragments"
+    "category": "relicfragments",
+    "fragment": "armor_effectiveness"
   },
   {
     "name": "Blight Resistance",
     "description": "Increases Blight Resistance",
     "id": 432,
     "type": "Blue fragment relics",
-    "category": "relicfragments"
+    "category": "relicfragments",
+    "fragment": "blight_resistance"
   },
   {
     "name": "Damage Reduction",
     "description": "Increases Damage Reduction",
     "id": 433,
     "type": "Blue fragment relics",
-    "category": "relicfragments"
+    "category": "relicfragments",
+    "fragment": "damage_reduction"
   },
   {
     "name": "Elemental Resistance",
     "description": "Increases Elemental Damage Resistance",
     "id": 434,
     "type": "Blue fragment relics",
-    "category": "relicfragments"
+    "category": "relicfragments",
+    "fragment": "elemental_resistance"
   },
   {
     "name": "Grey Health Rate",
     "description": "Increases Grey Health Rate",
     "id": 435,
     "type": "Blue fragment relics",
-    "category": "relicfragments"
+    "category": "relicfragments",
+    "fragment": "grey_health_rate"
   },
   {
     "name": "Health",
     "description": "Increases Health",
     "id": 436,
     "type": "Blue fragment relics",
-    "category": "relicfragments"
+    "category": "relicfragments",
+    "fragment": "health"
   },
   {
     "name": "Revive Speed",
     "description": "Revive Speed",
     "id": 437,
     "type": "Blue fragment relics",
-    "category": "relicfragments"
+    "category": "relicfragments",
+    "fragment": "revive_speed"
   },
   {
     "name": "Shield Effectiveness",
     "description": "Shield Ammount",
     "id": 438,
     "type": "Blue fragment relics",
-    "category": "relicfragments"
+    "category": "relicfragments",
+    "fragment": "shield_effectiveness"
   },
   {
     "name": "Stamina",
     "description": "Stamina",
     "id": 439,
     "type": "Blue fragment relics",
-    "category": "relicfragments"
+    "category": "relicfragments",
+    "fragment": "stamina"
   },
   {
     "name": "Stamina Cost",
     "description": "Reduced Stamina Cost",
     "id": 440,
     "type": "Blue fragment relics",
-    "category": "relicfragments"
+    "category": "relicfragments",
+    "fragment": "stamina_cost"
   },
   {
     "name": "Stamina Recovery Delay",
     "description": "Stamina Recovery Delay",
     "id": 441,
     "type": "Blue fragment relics",
-    "category": "relicfragments"
+    "category": "relicfragments",
+    "fragment": "stamina_recovery_delay"
   },
   {
     "name": "Elemental Damage",
     "description": "Elemental Damage",
     "id": 443,
     "type": "Red fragment relics",
-    "category": "relicfragments"
+    "category": "relicfragments",
+    "fragment": "elemental_damage"
   },
   {
     "name": "Melee Attack Speed",
     "description": "Melee Attack Speed",
     "id": 444,
     "type": "Red fragment relics",
-    "category": "relicfragments"
+    "category": "relicfragments",
+    "fragment": "melee_attack_speed"
   },
   {
     "name": "Melee Critical Chance",
     "description": "Melee Critical Chance",
     "id": 445,
     "type": "Red fragment relics",
-    "category": "relicfragments"
+    "category": "relicfragments",
+    "fragment": "melee_critical_chance"
   },
   {
     "name": "Melee Critical Damage",
     "description": "Melee Critical Damage",
     "id": 446,
     "type": "Red fragment relics",
-    "category": "relicfragments"
+    "category": "relicfragments",
+    "fragment": "melee_critical_damage"
   },
   {
     "name": "Melee Damage",
     "description": "Melee Damage",
     "id": 447,
     "type": "Red fragment relics",
-    "category": "relicfragments"
+    "category": "relicfragments",
+    "fragment": "melee_damage"
   },
   {
     "name": "Mod Damage",
     "description": "Mod Damage",
     "id": 448,
     "type": "Red fragment relics",
-    "category": "relicfragments"
+    "category": "relicfragments",
+    "fragment": "mod_damage"
   },
   {
     "name": "Ranged Critical Chance",
     "description": "Ranged Critical Chance",
     "id": 449,
     "type": "Red fragment relics",
-    "category": "relicfragments"
+    "category": "relicfragments",
+    "fragment": "ranged_critical_chance"
   },
   {
     "name": "Ranged Critical Damage",
     "description": "Ranged Critical Damage",
     "id": 450,
     "type": "Red fragment relics",
-    "category": "relicfragments"
+    "category": "relicfragments",
+    "fragment": "ranged_critical_damage"
   },
   {
     "name": "Ranged Damage",
     "description": "Ranged Damage",
     "id": 451,
     "type": "Red fragment relics",
-    "category": "relicfragments"
+    "category": "relicfragments",
+    "fragment": "ranged_damage"
   },
   {
     "name": "Ranged Fire Rate",
     "description": "Fire Rate",
     "id": 452,
     "type": "Red fragment relics",
-    "category": "relicfragments"
+    "category": "relicfragments",
+    "fragment": "ranged_fire_rate"
   },
   {
     "name": "Skill Damage",
     "description": "Skill Damage",
     "id": 453,
     "type": "Red fragment relics",
-    "category": "relicfragments"
+    "category": "relicfragments",
+    "fragment": "skill_damage"
   },
   {
     "name": "Stagger Damage",
     "description": "Stagger Damage",
     "id": 454,
     "type": "Red fragment relics",
-    "category": "relicfragments"
+    "category": "relicfragments",
+    "fragment": "stagger_damage"
   },
   {
     "name": "Weakspot Damage",
     "description": "Weakspot Damage",
     "id": 455,
     "type": "Red fragment relics",
-    "category": "relicfragments"
+    "category": "relicfragments",
+    "fragment": "weakspot_damage"
   },
   {
     "name": "Academic's Hat",
@@ -5037,7 +5481,8 @@
         "blight": 2,
         "corrosion": 3
       }
-    }
+    },
+    "fragment": "academics_hat"
   },
   {
     "name": "Academic's Overcoat",
@@ -5056,7 +5501,8 @@
         "blight": 3,
         "corrosion": 6
       }
-    }
+    },
+    "fragment": "academics_overcoat"
   },
   {
     "name": "Academic's Gloves",
@@ -5075,7 +5521,8 @@
         "blight": 1,
         "corrosion": 2
       }
-    }
+    },
+    "fragment": "academics_gloves"
   },
   {
     "name": "Academic's Trousers",
@@ -5094,7 +5541,8 @@
         "blight": 1,
         "corrosion": 4
       }
-    }
+    },
+    "fragment": "academics_trousers"
   },
   {
     "name": "Bruiser Helmet",
@@ -5113,7 +5561,8 @@
         "blight": 0,
         "corrosion": 1
       }
-    }
+    },
+    "fragment": "bruiser_helmet"
   },
   {
     "name": "Bruiser Bodyplate",
@@ -5132,7 +5581,8 @@
         "blight": 0,
         "corrosion": 2
       }
-    }
+    },
+    "fragment": "bruiser_bodyplate"
   },
   {
     "name": "Bruiser Gloves",
@@ -5151,7 +5601,8 @@
         "blight": 0,
         "corrosion": 1
       }
-    }
+    },
+    "fragment": "bruiser_gloves"
   },
   {
     "name": "Bruiser Boots",
@@ -5170,7 +5621,8 @@
         "blight": 0,
         "corrosion": 2
       }
-    }
+    },
+    "fragment": "bruiser_boots"
   },
   {
     "name": "Dendroid Mask",
@@ -5189,7 +5641,8 @@
         "blight": 0,
         "corrosion": 2
       }
-    }
+    },
+    "fragment": "dendroid_mask"
   },
   {
     "name": "Dendroid Chest",
@@ -5208,7 +5661,8 @@
         "blight": 2,
         "corrosion": 5
       }
-    }
+    },
+    "fragment": "dendroid_chest"
   },
   {
     "name": "Dendroid Grips",
@@ -5227,7 +5681,8 @@
         "blight": 1,
         "corrosion": 1
       }
-    }
+    },
+    "fragment": "dendroid_grips"
   },
   {
     "name": "Dendroid Leggings",
@@ -5246,7 +5701,8 @@
         "blight": 2,
         "corrosion": 0
       }
-    }
+    },
+    "fragment": "dendroid_leggings"
   },
   {
     "name": "Elder Headdress",
@@ -5265,7 +5721,8 @@
         "blight": 2,
         "corrosion": 0
       }
-    }
+    },
+    "fragment": "elder_headdress"
   },
   {
     "name": "Elder Raiment",
@@ -5284,7 +5741,8 @@
         "blight": 4,
         "corrosion": 2
       }
-    }
+    },
+    "fragment": "elder_raiment"
   },
   {
     "name": "Elder Gloves",
@@ -5303,7 +5761,8 @@
         "blight": 1,
         "corrosion": 1
       }
-    }
+    },
+    "fragment": "elder_gloves"
   },
   {
     "name": "Elder Leggings",
@@ -5322,7 +5781,8 @@
         "blight": 2,
         "corrosion": 1
       }
-    }
+    },
+    "fragment": "elder_leggings"
   },
   {
     "name": "Fae Royal Headcover",
@@ -5341,7 +5801,8 @@
         "blight": 2,
         "corrosion": 0
       }
-    }
+    },
+    "fragment": "fae_royal_headcover"
   },
   {
     "name": "Fae Royal Bodyplate",
@@ -5360,7 +5821,8 @@
         "blight": 2,
         "corrosion": 0
       }
-    }
+    },
+    "fragment": "fae_royal_bodyplate"
   },
   {
     "name": "Fae Royal Vambraces",
@@ -5379,7 +5841,8 @@
         "blight": 1,
         "corrosion": 0
       }
-    }
+    },
+    "fragment": "fae_royal_vambraces"
   },
   {
     "name": "Fae Royal Greaves",
@@ -5398,7 +5861,8 @@
         "blight": 2,
         "corrosion": 0
       }
-    }
+    },
+    "fragment": "fae_royal_greaves"
   },
   {
     "name": "Field Medic Hat",
@@ -5417,7 +5881,8 @@
         "blight": 2,
         "corrosion": 1
       }
-    }
+    },
+    "fragment": "field_medic_hat"
   },
   {
     "name": "Field Medic Overcoat",
@@ -5436,7 +5901,8 @@
         "blight": 3,
         "corrosion": 0
       }
-    }
+    },
+    "fragment": "field_medic_overcoat"
   },
   {
     "name": "Field Medic Gloves",
@@ -5455,7 +5921,8 @@
         "blight": 1,
         "corrosion": 1
       }
-    }
+    },
+    "fragment": "field_medic_gloves"
   },
   {
     "name": "Field Medic Trousers",
@@ -5474,7 +5941,8 @@
         "blight": 2,
         "corrosion": 0
       }
-    }
+    },
+    "fragment": "field_medic_trousers"
   },
   {
     "name": "Void Skull",
@@ -5493,7 +5961,8 @@
         "blight": 0,
         "corrosion": 1
       }
-    }
+    },
+    "fragment": "void_skull"
   },
   {
     "name": "Void Carapace",
@@ -5512,7 +5981,8 @@
         "blight": 0,
         "corrosion": 4
       }
-    }
+    },
+    "fragment": "void_carapace"
   },
   {
     "name": "Void Wraps",
@@ -5531,7 +6001,8 @@
         "blight": 0,
         "corrosion": 1
       }
-    }
+    },
+    "fragment": "void_wraps"
   },
   {
     "name": "Void Greaves",
@@ -5550,7 +6021,8 @@
         "blight": 0,
         "corrosion": 3
       }
-    }
+    },
+    "fragment": "void_greaves"
   },
   {
     "name": "High Noon Hat",
@@ -5569,7 +6041,8 @@
         "blight": 0,
         "corrosion": 1
       }
-    }
+    },
+    "fragment": "high_noon_hat"
   },
   {
     "name": "High Noon Duds",
@@ -5588,7 +6061,8 @@
         "blight": 0,
         "corrosion": 2
       }
-    }
+    },
+    "fragment": "high_noon_duds"
   },
   {
     "name": "High Noon Armguards",
@@ -5607,7 +6081,8 @@
         "blight": 0,
         "corrosion": 1
       }
-    }
+    },
+    "fragment": "high_noon_armguards"
   },
   {
     "name": "High Noon Soles",
@@ -5626,7 +6101,8 @@
         "blight": 0,
         "corrosion": 2
       }
-    }
+    },
+    "fragment": "high_noon_soles"
   },
   {
     "name": "Knotted Helm",
@@ -5645,7 +6121,8 @@
         "blight": 1,
         "corrosion": 2
       }
-    }
+    },
+    "fragment": "knotted_helm"
   },
   {
     "name": "Knotted Cage",
@@ -5664,7 +6141,8 @@
         "blight": 3,
         "corrosion": 7
       }
-    }
+    },
+    "fragment": "knotted_cage"
   },
   {
     "name": "Knotted Gloves",
@@ -5683,7 +6161,8 @@
         "blight": 1,
         "corrosion": 2
       }
-    }
+    },
+    "fragment": "knotted_gloves"
   },
   {
     "name": "Knotted Greaves",
@@ -5702,7 +6181,8 @@
         "blight": 2,
         "corrosion": 4
       }
-    }
+    },
+    "fragment": "knotted_greaves"
   },
   {
     "name": "Leto Mark II Helmet",
@@ -5721,7 +6201,8 @@
         "blight": 1,
         "corrosion": 2
       }
-    }
+    },
+    "fragment": "leto_mark_ii_helmet"
   },
   {
     "name": "Leto Mark II Armor",
@@ -5740,7 +6221,8 @@
         "blight": 5,
         "corrosion": 3
       }
-    }
+    },
+    "fragment": "leto_mark_ii_armor"
   },
   {
     "name": "Leto Mark II Gloves",
@@ -5759,7 +6241,8 @@
         "blight": 1,
         "corrosion": 3
       }
-    }
+    },
+    "fragment": "leto_mark_ii_gloves"
   },
   {
     "name": "Leto Mark II Leggings",
@@ -5778,7 +6261,8 @@
         "blight": 3,
         "corrosion": 2
       }
-    }
+    },
+    "fragment": "leto_mark_ii_leggings"
   },
   {
     "name": "Nightstalker Shroud",
@@ -5797,7 +6281,8 @@
         "blight": 3,
         "corrosion": 0
       }
-    }
+    },
+    "fragment": "nightstalker_shroud"
   },
   {
     "name": "Nightstalker Garb",
@@ -5816,7 +6301,8 @@
         "blight": 2,
         "corrosion": 0
       }
-    }
+    },
+    "fragment": "nightstalker_garb"
   },
   {
     "name": "Nightstalker Gloves",
@@ -5835,7 +6321,8 @@
         "blight": 7,
         "corrosion": 0
       }
-    }
+    },
+    "fragment": "nightstalker_gloves"
   },
   {
     "name": "Nightstalker Pants",
@@ -5854,7 +6341,8 @@
         "blight": 1,
         "corrosion": 0
       }
-    }
+    },
+    "fragment": "nightstalker_pants"
   },
   {
     "name": "Radiant Visage",
@@ -5873,7 +6361,8 @@
         "blight": 3,
         "corrosion": 0
       }
-    }
+    },
+    "fragment": "radiant_visage"
   },
   {
     "name": "Radiant Protector",
@@ -5892,7 +6381,8 @@
         "blight": 1,
         "corrosion": 0
       }
-    }
+    },
+    "fragment": "radiant_protector"
   },
   {
     "name": "Radiant Bracers",
@@ -5911,7 +6401,8 @@
         "blight": 0,
         "corrosion": 0
       }
-    }
+    },
+    "fragment": "radiant_bracers"
   },
   {
     "name": "Radiant Greaves",
@@ -5930,7 +6421,8 @@
         "blight": 1,
         "corrosion": 0
       }
-    }
+    },
+    "fragment": "radiant_greaves"
   },
   {
     "name": "Realmwalker Beret",
@@ -5949,7 +6441,8 @@
         "blight": 1,
         "corrosion": 0
       }
-    }
+    },
+    "fragment": "realmwalker_beret"
   },
   {
     "name": "Realmwalker Tunic",
@@ -5968,7 +6461,8 @@
         "blight": 4,
         "corrosion": 0
       }
-    }
+    },
+    "fragment": "realmwalker_tunic"
   },
   {
     "name": "Realmwalker Gloves",
@@ -5987,7 +6481,8 @@
         "blight": 1,
         "corrosion": 0
       }
-    }
+    },
+    "fragment": "realmwalker_gloves"
   },
   {
     "name": "Realmwalker Pantaloons",
@@ -6006,7 +6501,8 @@
         "blight": 3,
         "corrosion": 0
       }
-    }
+    },
+    "fragment": "realmwalker_pantaloons"
   },
   {
     "name": "Red Widow Headdress",
@@ -6025,7 +6521,8 @@
         "blight": 2,
         "corrosion": 0
       }
-    }
+    },
+    "fragment": "red_widow_headdress"
   },
   {
     "name": "Red Widow Raiment",
@@ -6044,7 +6541,8 @@
         "blight": 4,
         "corrosion": 1
       }
-    }
+    },
+    "fragment": "red_widow_raiment"
   },
   {
     "name": "Red Widow Bracers",
@@ -6063,7 +6561,8 @@
         "blight": 2,
         "corrosion": 0
       }
-    }
+    },
+    "fragment": "red_widow_bracers"
   },
   {
     "name": "Red Widow Leggings",
@@ -6082,7 +6581,8 @@
         "blight": 3,
         "corrosion": 1
       }
-    }
+    },
+    "fragment": "red_widow_leggings"
   },
   {
     "name": "Space Worker Mask",
@@ -6101,7 +6601,8 @@
         "blight": 0,
         "corrosion": 2
       }
-    }
+    },
+    "fragment": "space_worker_mask"
   },
   {
     "name": "Space Worker Body",
@@ -6120,7 +6621,8 @@
         "blight": 0,
         "corrosion": 2
       }
-    }
+    },
+    "fragment": "space_worker_body"
   },
   {
     "name": "Space Worker Gloves",
@@ -6139,7 +6641,8 @@
         "blight": 0,
         "corrosion": 1
       }
-    }
+    },
+    "fragment": "space_worker_gloves"
   },
   {
     "name": "Space Worker Legs",
@@ -6158,7 +6661,8 @@
         "blight": 0,
         "corrosion": 2
       }
-    }
+    },
+    "fragment": "space_worker_legs"
   },
   {
     "name": "Survivor Overcoat",
@@ -6177,7 +6681,8 @@
         "blight": 2,
         "corrosion": 2
       }
-    }
+    },
+    "fragment": "survivor_overcoat"
   },
   {
     "name": "Survivor Gloves",
@@ -6196,7 +6701,8 @@
         "blight": 1,
         "corrosion": 1
       }
-    }
+    },
+    "fragment": "survivor_gloves"
   },
   {
     "name": "Survivor Leggings",
@@ -6215,7 +6721,8 @@
         "blight": 1,
         "corrosion": 2
       }
-    }
+    },
+    "fragment": "survivor_leggings"
   },
   {
     "name": "Technician Helmet",
@@ -6234,7 +6741,8 @@
         "blight": 0,
         "corrosion": 2
       }
-    }
+    },
+    "fragment": "technician_helmet"
   },
   {
     "name": "Technician Bodyplate",
@@ -6253,7 +6761,8 @@
         "blight": 0,
         "corrosion": 2
       }
-    }
+    },
+    "fragment": "technician_bodyplate"
   },
   {
     "name": "Technician Gloves",
@@ -6272,7 +6781,8 @@
         "blight": 0,
         "corrosion": 1
       }
-    }
+    },
+    "fragment": "technician_gloves"
   },
   {
     "name": "Technician Greaves",
@@ -6291,7 +6801,8 @@
         "blight": 0,
         "corrosion": 2
       }
-    }
+    },
+    "fragment": "technician_greaves"
   },
   {
     "name": "Trainer Cap",
@@ -6310,7 +6821,8 @@
         "blight": 0,
         "corrosion": 1
       }
-    }
+    },
+    "fragment": "trainer_cap"
   },
   {
     "name": "Trainer Clothes",
@@ -6329,7 +6841,8 @@
         "blight": 1,
         "corrosion": 3
       }
-    }
+    },
+    "fragment": "trainer_clothes"
   },
   {
     "name": "Trainer Bracer",
@@ -6348,7 +6861,8 @@
         "blight": 1,
         "corrosion": 1
       }
-    }
+    },
+    "fragment": "trainer_bracer"
   },
   {
     "name": "Trainer Workboots",
@@ -6367,7 +6881,8 @@
         "blight": 1,
         "corrosion": 2
       }
-    }
+    },
+    "fragment": "trainer_workboots"
   },
   {
     "name": "Labyrinth Headplate",
@@ -6386,7 +6901,8 @@
         "blight": 0,
         "corrosion": 0
       }
-    }
+    },
+    "fragment": "labyrinth_headplate"
   },
   {
     "name": "Labyrinth Mantle",
@@ -6405,7 +6921,8 @@
         "blight": 0,
         "corrosion": 0
       }
-    }
+    },
+    "fragment": "labyrinth_mantle"
   },
   {
     "name": "Labyrinth Gauntlets",
@@ -6424,7 +6941,8 @@
         "blight": 0,
         "corrosion": 0
       }
-    }
+    },
+    "fragment": "labyrinth_gauntlets"
   },
   {
     "name": "Labyrinth Treads",
@@ -6443,7 +6961,8 @@
         "blight": 0,
         "corrosion": 0
       }
-    }
+    },
+    "fragment": "labyrinth_treads"
   },
   {
     "name": "Lodestone Crown",
@@ -6465,7 +6984,8 @@
         "blight": 5,
         "corrosion": 0
       }
-    }
+    },
+    "fragment": "lodestone_crown"
   },
   {
     "name": "Navigator's Helm",
@@ -6487,7 +7007,8 @@
         "blight": -1,
         "corrosion": 3
       }
-    }
+    },
+    "fragment": "navigators_helm"
   },
   {
     "id": 467,
@@ -6500,7 +7021,8 @@
     "stats": {
       "weakspot": "Sword Hilt"
     },
-    "category": "worldbosses"
+    "category": "worldbosses",
+    "fragment": "faelin"
   },
   {
     "id": 468,
@@ -6513,7 +7035,8 @@
     "stats": {
       "weakspot": "Sword Hilt"
     },
-    "category": "worldbosses"
+    "category": "worldbosses",
+    "fragment": "faerin"
   },
   {
     "id": 469,
@@ -6525,7 +7048,8 @@
     "material": "Cursed Dream Silks",
     "unlock": "Defeat her normally.",
     "world": "Losomn",
-    "category": "worldbosses"
+    "category": "worldbosses",
+    "fragment": "nightweaver"
   },
   {
     "id": 470,
@@ -6537,7 +7061,8 @@
     "material": "Nightweaver's Finger",
     "unlock": "This is easier done in the first phase. When she summons minions she will have in her chest a bright spot, that's her Heart, destroy it and defeat her.",
     "world": "Losomn",
-    "category": "worldbosses"
+    "category": "worldbosses",
+    "fragment": "nightweaver_spectral"
   },
   {
     "id": 471,
@@ -6550,7 +7075,8 @@
     "material": "Eidolon Shard",
     "unlock": "Interact just with the terminal to defeat the Spectral form of Sha'hala.",
     "world": "N'Erud",
-    "category": "worldbosses"
+    "category": "worldbosses",
+    "fragment": "shahala_spectral"
   },
   {
     "id": 472,
@@ -6563,7 +7089,8 @@
     "material": "Void Cinder",
     "unlock": "Before interacting with the terminal use the Override Pin in the hole the terminal has, after that defeat the Physical form of Sha'hala. This will cause your N'Erud world ends so make sure you have collected everything beforehand.",
     "world": "N'Erud",
-    "category": "worldbosses"
+    "category": "worldbosses",
+    "fragment": "shahala"
   },
   {
     "id": 473,
@@ -6575,7 +7102,8 @@
     "material": "Shining Essence Echo / Spiced Bile",
     "unlock": "When you talk to him refuse to be eaten. It won't be that obvious but the dialog will be in that line. After that defeat him.",
     "world": "N'Erud",
-    "category": "worldbosses"
+    "category": "worldbosses",
+    "fragment": "talratha"
   },
   {
     "id": 474,
@@ -6587,7 +7115,8 @@
     "material": "Shining Essence Echo / Acidic Jawbone",
     "unlock": "When you talk to him let him eat you. It won't be that obvious but the dialog will be in that line. After that defeat him.",
     "world": "N'Erud",
-    "category": "worldbosses"
+    "category": "worldbosses",
+    "fragment": "talratha_metaphysical"
   },
   {
     "id": 475,
@@ -6599,7 +7128,8 @@
     "material": "Twisted Lazurite",
     "unlock": "Defeat The Corruptor when at least you kill one time the Guardian.",
     "world": "Yaesha",
-    "category": "worldbosses"
+    "category": "worldbosses",
+    "fragment": "corruptor"
   },
   {
     "id": 476,
@@ -6611,7 +7141,8 @@
     "material": "Hollow Heart",
     "unlock": "Defeat The Corruptor but don't kill Guardian, not even once.",
     "world": "Yaesha",
-    "category": "worldbosses"
+    "category": "worldbosses",
+    "fragment": "corruptor"
   },
   {
     "id": 477,
@@ -6623,7 +7154,8 @@
     "material": "Ravager's Maw",
     "unlock": "The Ravager will ask you to kill the Doe. Shoot the Ravager to start the fight and then kill the Doe before he does.",
     "world": "Yaesha",
-    "category": "worldbosses"
+    "category": "worldbosses",
+    "fragment": "corrupted_ravager"
   },
   {
     "id": 478,
@@ -6635,7 +7167,8 @@
     "material": "Crimson Membrane",
     "unlock": "The Ravager will ask you to kill the Doe. Shoot the Ravager to start the fight, be carefull to not kill the Doe midfight, after that at some point of the fight the Ravager will eat the Doe.",
     "world": "Yaesha",
-    "category": "worldbosses"
+    "category": "worldbosses",
+    "fragment": "corrupted_ravager"
   },
   {
     "id": 479,
@@ -6647,7 +7180,8 @@
     "material": "Ravager's Mark",
     "unlock": "Kill the Doe when The Ravager asks to kill it.",
     "world": "Yaesha",
-    "category": "worldbosses"
+    "category": "worldbosses",
+    "fragment": "corrupted_ravager"
   },
   {
     "id": 480,
@@ -6659,7 +7193,8 @@
     "material": "Broken Antler",
     "unlock": "Heal the Doe when The Ravager asks to kill it.",
     "world": "Yaesha",
-    "category": "worldbosses"
+    "category": "worldbosses",
+    "fragment": "corrupted_ravager"
   },
   {
     "id": 481,
@@ -6668,7 +7203,8 @@
     "material": "Conflux Prism",
     "unlock": "Shoot the white squares on the cubes. When you hit all the white squares of a cube it stops having purple light around it.",
     "world": "Labyrinth",
-    "category": "worldbosses"
+    "category": "worldbosses",
+    "fragment": "labyrinth_sentinel"
   },
   {
     "id": 482,
@@ -6680,7 +7216,8 @@
     "material": "Forgotten Memory / Broken Compass",
     "unlock": "",
     "world": "Root Earth",
-    "category": "worldbosses"
+    "category": "worldbosses",
+    "fragment": "annihilation"
   },
   {
     "name": "Crown of the Red Prince",
@@ -6699,7 +7236,8 @@
         "blight": 13,
         "corrosion": -6
       }
-    }
+    },
+    "fragment": "crown_of_the_red_prince"
   },
   {
     "name": "Field Medic Mask",
@@ -6718,7 +7256,8 @@
         "blight": 2,
         "corrosion": 1
       }
-    }
+    },
+    "fragment": "field_medic_mask"
   },
   {
     "name": "Bandit's Mask",
@@ -6737,7 +7276,8 @@
         "blight": 3,
         "corrosion": 3
       }
-    }
+    },
+    "fragment": "bandits_mask"
   },
   {
     "name": "Bandit's Jacket",
@@ -6756,7 +7296,8 @@
         "blight": 2,
         "corrosion": 2
       }
-    }
+    },
+    "fragment": "bandits_jacket"
   },
   {
     "name": "Bandit's Trousers",
@@ -6775,7 +7316,8 @@
         "blight": 2,
         "corrosion": 1
       }
-    }
+    },
+    "fragment": "bandits_trousers"
   },
   {
     "name": "Bandit's Gloves",
@@ -6794,7 +7336,8 @@
         "blight": 2,
         "corrosion": 1
       }
-    }
+    },
+    "fragment": "bandits_gloves"
   },
   {
     "name": "Cultist Head",
@@ -6813,7 +7356,8 @@
         "blight": 1,
         "corrosion": 1
       }
-    }
+    },
+    "fragment": "cultist_head"
   },
   {
     "name": "Cultist Duster",
@@ -6832,7 +7376,8 @@
         "blight": 3,
         "corrosion": 2
       }
-    }
+    },
+    "fragment": "cultist_duster"
   },
   {
     "name": "Cultist Britches",
@@ -6851,7 +7396,8 @@
         "blight": 2,
         "corrosion": 2
       }
-    }
+    },
+    "fragment": "cultist_britches"
   },
   {
     "name": "Cultist Gloves",
@@ -6870,7 +7416,8 @@
         "blight": 1,
         "corrosion": 1
       }
-    }
+    },
+    "fragment": "cultist_gloves"
   },
   {
     "name": "Leto Mark I Helmet",
@@ -6889,7 +7436,8 @@
         "blight": 4,
         "corrosion": 2
       }
-    }
+    },
+    "fragment": "leto_mark_i_helmet"
   },
   {
     "name": "Leto Mark I Armor",
@@ -6908,7 +7456,8 @@
         "blight": 5,
         "corrosion": 5
       }
-    }
+    },
+    "fragment": "leto_mark_i_armor"
   },
   {
     "name": "Leto Mark I Leggings",
@@ -6927,7 +7476,8 @@
         "blight": 3,
         "corrosion": 4
       }
-    }
+    },
+    "fragment": "leto_mark_i_leggings"
   },
   {
     "name": "Leto Mark I Gloves",
@@ -6946,7 +7496,8 @@
         "blight": 3,
         "corrosion": 2
       }
-    }
+    },
+    "fragment": "leto_mark_i_gloves"
   },
   {
     "name": "Revivalist",
@@ -6956,21 +7507,24 @@
     "location": "",
     "unlock": "Revive a teammate 15 times",
     "id": 614,
-    "category": "traits"
+    "category": "traits",
+    "fragment": "revivalist"
   },
   {
     "name": "Charge Melee Cost",
     "description": "-X% Melee Charge Attack Stamina Cost",
     "id": 615,
     "type": "Blue fragment relics",
-    "category": "relicfragments"
+    "category": "relicfragments",
+    "fragment": "charge_melee_cost"
   },
   {
     "name": "Healing Effectiveness",
     "description": "+X% Healing Effectiveness",
     "id": 616,
     "type": "Blue fragment relics",
-    "category": "relicfragments"
+    "category": "relicfragments",
+    "fragment": "healing_effectiveness"
   },
   {
     "name": "Cube Shield",
@@ -6978,7 +7532,9 @@
     "weaponMod": true,
     "onlyDB": true,
     "id": 617,
-    "category": "mods"
+    "category": "mods",
+    "fragment": "cube_shield",
+    "weapon": "Cube Gun"
   },
   {
     "name": "Chaos Driver",
@@ -6986,7 +7542,9 @@
     "weaponMod": true,
     "onlyDB": true,
     "id": 618,
-    "category": "mods"
+    "category": "mods",
+    "fragment": "chaos_driver",
+    "weapon": "Enigma"
   },
   {
     "name": "Explosive Shot",
@@ -6994,7 +7552,9 @@
     "weaponMod": true,
     "onlyDB": true,
     "id": 619,
-    "category": "mods"
+    "category": "mods",
+    "fragment": "explosive_shot",
+    "weapon": "Hellfire"
   },
   {
     "name": "Screamer",
@@ -7002,7 +7562,9 @@
     "weaponMod": true,
     "onlyDB": true,
     "id": 620,
-    "category": "mods"
+    "category": "mods",
+    "fragment": "screamer",
+    "weapon": "Meridian"
   },
   {
     "name": "Nano Swarm",
@@ -7010,7 +7572,9 @@
     "weaponMod": true,
     "onlyDB": true,
     "id": 621,
-    "category": "mods"
+    "category": "mods",
+    "fragment": "nano_swarm",
+    "weapon": "Nebula"
   },
   {
     "name": "Soul Brand",
@@ -7018,7 +7582,9 @@
     "weaponMod": true,
     "onlyDB": true,
     "id": 622,
-    "category": "mods"
+    "category": "mods",
+    "fragment": "soul_brand",
+    "weapon": "Rune Pistol"
   },
   {
     "name": "Eulogy",
@@ -7026,7 +7592,9 @@
     "weaponMod": true,
     "onlyDB": true,
     "id": 623,
-    "category": "mods"
+    "category": "mods",
+    "fragment": "eulogy",
+    "weapon": "Sorrow"
   },
   {
     "name": "Big Bang",
@@ -7034,7 +7602,9 @@
     "weaponMod": true,
     "onlyDB": true,
     "id": 624,
-    "category": "mods"
+    "category": "mods",
+    "fragment": "big_bang",
+    "weapon": "Star Shot"
   },
   {
     "name": "Beta Ray",
@@ -7042,7 +7612,9 @@
     "weaponMod": true,
     "onlyDB": true,
     "id": 625,
-    "category": "mods"
+    "category": "mods",
+    "fragment": "beta_ray",
+    "weapon": "Alpha/Omega"
   },
   {
     "name": "Supernova",
@@ -7050,7 +7622,9 @@
     "weaponMod": true,
     "onlyDB": true,
     "id": 626,
-    "category": "mods"
+    "category": "mods",
+    "fragment": "supernova",
+    "weapon": "Aphelion"
   },
   {
     "name": "Moonlight Barrage",
@@ -7058,7 +7632,9 @@
     "weaponMod": true,
     "onlyDB": true,
     "id": 627,
-    "category": "mods"
+    "category": "mods",
+    "fragment": "moonlight_barrage",
+    "weapon": "Crescent Moon"
   },
   {
     "name": "Ouroboros",
@@ -7066,7 +7642,9 @@
     "weaponMod": true,
     "onlyDB": true,
     "id": 628,
-    "category": "mods"
+    "category": "mods",
+    "fragment": "ouroboros",
+    "weapon": "Deceit"
   },
   {
     "name": "Bloodline",
@@ -7074,7 +7652,9 @@
     "weaponMod": true,
     "onlyDB": true,
     "id": 629,
-    "category": "mods"
+    "category": "mods",
+    "fragment": "bloodline",
+    "weapon": "Merciless"
   },
   {
     "name": "Dreadwalker",
@@ -7082,7 +7662,9 @@
     "weaponMod": true,
     "onlyDB": true,
     "id": 630,
-    "category": "mods"
+    "category": "mods",
+    "fragment": "dreadwalker",
+    "weapon": "Nightfall"
   },
   {
     "name": "Heat Sink",
@@ -7090,7 +7672,8 @@
     "weaponMod": true,
     "onlyDB": true,
     "id": 631,
-    "category": "mods"
+    "category": "mods",
+    "fragment": "heat_sink"
   },
   {
     "name": "Starfall",
@@ -7098,7 +7681,9 @@
     "weaponMod": true,
     "onlyDB": true,
     "id": 632,
-    "category": "mods"
+    "category": "mods",
+    "fragment": "starfall",
+    "weapon": "Sagittarius"
   },
   {
     "name": "Guardian's Call",
@@ -7106,7 +7691,9 @@
     "weaponMod": true,
     "onlyDB": true,
     "id": 633,
-    "category": "mods"
+    "category": "mods",
+    "fragment": "guardians_call",
+    "weapon": "Twisted Arbalest"
   },
   {
     "name": "Bloodthirst",
@@ -7114,7 +7701,9 @@
     "weaponMod": true,
     "onlyDB": true,
     "id": 634,
-    "category": "mods"
+    "category": "mods",
+    "fragment": "bloodthirst",
+    "weapon": "Assassin's Dagger"
   },
   {
     "name": "Fission Strike",
@@ -7122,7 +7711,9 @@
     "weaponMod": true,
     "onlyDB": true,
     "id": 635,
-    "category": "mods"
+    "category": "mods",
+    "fragment": "fission_strike",
+    "weapon": "Atom Splitter"
   },
   {
     "name": "Dreamwave",
@@ -7130,7 +7721,9 @@
     "weaponMod": true,
     "onlyDB": true,
     "id": 636,
-    "category": "mods"
+    "category": "mods",
+    "fragment": "dreamwave",
+    "weapon": "Dreamcatcher"
   },
   {
     "name": "Death Sentence",
@@ -7138,7 +7731,9 @@
     "weaponMod": true,
     "onlyDB": true,
     "id": 637,
-    "category": "mods"
+    "category": "mods",
+    "fragment": "death_sentence",
+    "weapon": "Feral Judgement"
   },
   {
     "name": "Fracture",
@@ -7146,7 +7741,9 @@
     "weaponMod": true,
     "onlyDB": true,
     "id": 638,
-    "category": "mods"
+    "category": "mods",
+    "fragment": "fracture",
+    "weapon": "Godsplitter"
   },
   {
     "name": "Energy Wave",
@@ -7154,7 +7751,9 @@
     "weaponMod": true,
     "onlyDB": true,
     "id": 639,
-    "category": "mods"
+    "category": "mods",
+    "fragment": "energy_wave",
+    "weapon": "Hero's Sword"
   },
   {
     "name": "Athibar",
@@ -7162,7 +7761,8 @@
     "weaponMod": true,
     "onlyDB": true,
     "id": 640,
-    "category": "mods"
+    "category": "mods",
+    "fragment": "athibar"
   },
   {
     "name": "Krell Edge",
@@ -7170,7 +7770,9 @@
     "weaponMod": true,
     "onlyDB": true,
     "id": 641,
-    "category": "mods"
+    "category": "mods",
+    "fragment": "krell_edge",
+    "weapon": "Krell Axe"
   },
   {
     "name": "Beyond The Veil",
@@ -7178,7 +7780,8 @@
     "weaponMod": true,
     "onlyDB": true,
     "id": 642,
-    "category": "mods"
+    "category": "mods",
+    "fragment": "beyond_the_veil"
   },
   {
     "name": "Lifeline",
@@ -7186,7 +7789,9 @@
     "weaponMod": true,
     "onlyDB": true,
     "id": 643,
-    "category": "mods"
+    "category": "mods",
+    "fragment": "lifeline",
+    "weapon": "Red Doe Staff"
   },
   {
     "name": "Whirlwind",
@@ -7194,7 +7799,9 @@
     "weaponMod": true,
     "onlyDB": true,
     "id": 644,
-    "category": "mods"
+    "category": "mods",
+    "fragment": "whirlwind",
+    "weapon": "Spectral Blade"
   },
   {
     "name": "Faultline",
@@ -7202,7 +7809,9 @@
     "weaponMod": true,
     "onlyDB": true,
     "id": 645,
-    "category": "mods"
+    "category": "mods",
+    "fragment": "faultline",
+    "weapon": "Stonebreaker"
   },
   {
     "name": "Root Blades",
@@ -7210,7 +7819,8 @@
     "weaponMod": true,
     "onlyDB": true,
     "id": 646,
-    "category": "mods"
+    "category": "mods",
+    "fragment": "root_blades"
   },
   {
     "name": "Accelerator",
@@ -7218,7 +7828,9 @@
     "weaponMod": true,
     "onlyDB": true,
     "id": 647,
-    "category": "mods"
+    "category": "mods",
+    "fragment": "accelerator",
+    "weapon": "Atom Smasher"
   },
   {
     "id": 648,
@@ -7230,7 +7842,8 @@
     },
     "world": "Yaesha",
     "location": "Kaula's Rest",
-    "category": "bosses"
+    "category": "bosses",
+    "fragment": "kaulas_shadow"
   },
   {
     "id": 649,
@@ -7238,7 +7851,8 @@
     "description": "",
     "world": "Yaesha",
     "location": "The Expanding Glade",
-    "category": "bosses"
+    "category": "bosses",
+    "fragment": "shrewd"
   },
   {
     "id": 650,
@@ -7246,7 +7860,8 @@
     "description": "",
     "world": "Yaesha",
     "location": "The Forgotten Field",
-    "category": "bosses"
+    "category": "bosses",
+    "fragment": "the_weald_stalker_and_the_gnarled_archer"
   },
   {
     "id": 651,
@@ -7260,7 +7875,8 @@
       "weakspot": "Red core",
       "resistance": "Damage to its armor"
     },
-    "category": "bosses"
+    "category": "bosses",
+    "fragment": "defiler"
   },
   {
     "id": 652,
@@ -7272,7 +7888,8 @@
     },
     "world": "Yaesha",
     "location": "The Nameless Nest",
-    "category": "bosses"
+    "category": "bosses",
+    "fragment": "mother_mind"
   },
   {
     "id": 653,
@@ -7285,7 +7902,8 @@
     "stats": {
       "weakspot": "Red parasite in the chest"
     },
-    "category": "bosses"
+    "category": "bosses",
+    "fragment": "wither"
   },
   {
     "id": 654,
@@ -7298,7 +7916,8 @@
     "stats": {
       "weakspot": "Glowing orb"
     },
-    "category": "bosses"
+    "category": "bosses",
+    "fragment": "rot"
   },
   {
     "id": 655,
@@ -7309,7 +7928,8 @@
       "weakspot": "Big glowing sphere in its head"
     },
     "world": "Labyrinth",
-    "category": "bosses"
+    "category": "bosses",
+    "fragment": "bastion"
   },
   {
     "id": 656,
@@ -7321,7 +7941,8 @@
     },
     "world": "Losomn",
     "location": "Brocwithe Quarter",
-    "category": "bosses"
+    "category": "bosses",
+    "fragment": "the_huntress"
   },
   {
     "id": 657,
@@ -7333,7 +7954,8 @@
     "description": "",
     "world": "Losomn",
     "location": "Cotton's Kiln",
-    "category": "bosses"
+    "category": "bosses",
+    "fragment": "gwendil_the_unburnt"
   },
   {
     "id": 658,
@@ -7345,7 +7967,8 @@
     },
     "world": "Losomn",
     "location": "Council Chamber",
-    "category": "bosses"
+    "category": "bosses",
+    "fragment": "the_council"
   },
   {
     "id": 659,
@@ -7357,7 +7980,8 @@
     },
     "world": "Losomn",
     "location": "Guilded Chambers",
-    "category": "bosses"
+    "category": "bosses",
+    "fragment": "the_red_prince"
   },
   {
     "id": 660,
@@ -7366,7 +7990,8 @@
     "world": "Losomn",
     "location": "Guilded Chambers",
     "unlock": "Kill The Red Prince with the Assassin's dagger.",
-    "category": "bosses"
+    "category": "bosses",
+    "fragment": "the_red_prince___assassins_dagger"
   },
   {
     "id": 661,
@@ -7378,7 +8003,8 @@
     },
     "world": "Losomn",
     "location": "Shattered Gallery",
-    "category": "bosses"
+    "category": "bosses",
+    "fragment": "magister_dullain"
   },
   {
     "id": 662,
@@ -7390,7 +8016,8 @@
     },
     "world": "Losomn",
     "location": "The Great Sewers",
-    "category": "bosses"
+    "category": "bosses",
+    "fragment": "bloat_king"
   },
   {
     "id": 663,
@@ -7402,7 +8029,8 @@
     "description": "",
     "world": "N'Erud",
     "location": "Astropath's Respite",
-    "category": "bosses"
+    "category": "bosses",
+    "fragment": "the_astropath"
   },
   {
     "id": 664,
@@ -7414,7 +8042,8 @@
     },
     "world": "N'Erud",
     "location": "Spectrum Nexus",
-    "category": "bosses"
+    "category": "bosses",
+    "fragment": "custodians_eye"
   },
   {
     "id": 665,
@@ -7423,7 +8052,8 @@
     "race": "Bug",
     "world": "N'Erud",
     "location": "The Hatchery",
-    "category": "bosses"
+    "category": "bosses",
+    "fragment": "primogenitor"
   },
   {
     "id": 666,
@@ -7437,7 +8067,8 @@
       "weakspot": "Expose the core and shoot at it.",
       "resistance": "The Core is protected by Armor you'll have to break first."
     },
-    "category": "bosses"
+    "category": "bosses",
+    "fragment": "abomination"
   },
   {
     "id": 667,
@@ -7450,7 +8081,8 @@
     "stats": {
       "weakspot": "Eye"
     },
-    "category": "bosses"
+    "category": "bosses",
+    "fragment": "e.d._alpha"
   },
   {
     "id": 668,
@@ -7462,7 +8094,8 @@
     },
     "world": "Root Earth",
     "location": "Ashen Wasteland",
-    "category": "bosses"
+    "category": "bosses",
+    "fragment": "cancer"
   },
   {
     "id": 669,
@@ -7474,7 +8107,8 @@
     },
     "world": "Root Earth",
     "location": "Corrupted Harbor",
-    "category": "bosses"
+    "category": "bosses",
+    "fragment": "venom"
   },
   {
     "name": "Academic's Set",
@@ -7492,7 +8126,8 @@
     },
     "pieces": 4,
     "unlock": "Can be found on a body during the Monster in the Drain event in Losomn",
-    "id": 670
+    "id": 670,
+    "fragment": "academics_set"
   },
   {
     "name": "Bruiser Set",
@@ -7510,7 +8145,8 @@
     },
     "pieces": 4,
     "unlock": "Starting Armor set for the Challenger / Sold by Whispers in Ward 13",
-    "id": 671
+    "id": 671,
+    "fragment": "bruiser_set"
   },
   {
     "name": "Dendroid Set",
@@ -7528,7 +8164,8 @@
     },
     "pieces": 4,
     "unlock": "Can be found in Root Earth - Ashen Wasteland",
-    "id": 672
+    "id": 672,
+    "fragment": "dendroid_set"
   },
   {
     "name": "Elder Set",
@@ -7546,7 +8183,8 @@
     },
     "pieces": 4,
     "unlock": "Obtained by purchasing Remnant 2 Deluxe Edition or Ultimate Edition",
-    "id": 673
+    "id": 673,
+    "fragment": "elder_set"
   },
   {
     "name": "Fae Royal Set",
@@ -7564,7 +8202,8 @@
     },
     "pieces": 4,
     "unlock": "Can be found in Losomn - Postulant's Parlor",
-    "id": 674
+    "id": 674,
+    "fragment": "fae_royal_set"
   },
   {
     "name": "Field Medic Set",
@@ -7582,7 +8221,8 @@
     },
     "pieces": 4,
     "unlock": "Starting Equipment for the Medic Archetype.\nSold by Whispers in Ward 13",
-    "id": 675
+    "id": 675,
+    "fragment": "field_medic_set"
   },
   {
     "name": "Void Set",
@@ -7600,7 +8240,8 @@
     },
     "pieces": 4,
     "unlock": "Obtained by purchasing Remnant 2 Deluxe Edition or Ultimate Edition",
-    "id": 676
+    "id": 676,
+    "fragment": "void_set"
   },
   {
     "name": "High Noon Set",
@@ -7618,7 +8259,8 @@
     },
     "pieces": 4,
     "unlock": "Starting equipment for the Gunslinger Archetype.",
-    "id": 677
+    "id": 677,
+    "fragment": "high_noon_set"
   },
   {
     "name": "Knotted Set",
@@ -7636,7 +8278,8 @@
     },
     "pieces": 4,
     "unlock": "Can be crafted at Bloodmoon Altar. Required Material: Blood Moon Essence",
-    "id": 678
+    "id": 678,
+    "fragment": "knotted_set"
   },
   {
     "name": "Leto Mark II Set",
@@ -7654,7 +8297,8 @@
     },
     "pieces": 4,
     "unlock": "Use This Link To Find Out How To Obtain This Armour",
-    "id": 679
+    "id": 679,
+    "fragment": "leto_mark_ii_set"
   },
   {
     "name": "Nightstalker Set",
@@ -7672,7 +8316,8 @@
     },
     "pieces": 4,
     "unlock": "Whispers in Ward 13 sells this equipment\nStarting equipment for the Hunter Archetype",
-    "id": 680
+    "id": 680,
+    "fragment": "nightstalker_set"
   },
   {
     "name": "Radiant Set",
@@ -7690,7 +8335,8 @@
     },
     "pieces": 4,
     "unlock": "Obtained by purchasing Remnant 2 Deluxe Edition or Ultimate Edition",
-    "id": 681
+    "id": 681,
+    "fragment": "radiant_set"
   },
   {
     "name": "Realmwalker Set",
@@ -7708,10 +8354,11 @@
     },
     "pieces": 4,
     "unlock": "Starting equipment for the Explorer",
-    "id": 682
+    "id": 682,
+    "fragment": "realmwalker_set"
   },
   {
-    "name": "Redwidow Set",
+    "name": "Red Widow Set",
     "category": "armorset",
     "stats": {
       "armor": 88,
@@ -7726,7 +8373,8 @@
     },
     "pieces": 4,
     "unlock": "Use This Link To Find Out How To Obtain This Armour",
-    "id": 683
+    "id": 683,
+    "fragment": "red_widow_set"
   },
   {
     "name": "Space Worker Set",
@@ -7744,7 +8392,8 @@
     },
     "pieces": 4,
     "unlock": "Found in N'Erud. Enter the Void Vessel Facility. Find the Stasis Pod Glyph in one of the capsule that can be opened by interacting with a console next to them, in the same dungeon there's a door with a light in the middle, interact with it using the Stasis Pod Glyph to open it. Enter the room, the complete Space Worker Set can be found in a locker.",
-    "id": 684
+    "id": 684,
+    "fragment": "space_worker_set"
   },
   {
     "name": "Survivor Set",
@@ -7762,10 +8411,11 @@
     },
     "pieces": 3,
     "unlock": "Automatically equipped as you begin your first character in the game",
-    "id": 685
+    "id": 685,
+    "fragment": "survivor_set"
   },
   {
-    "name": "Technical Set",
+    "name": "Technician Set",
     "category": "armorset",
     "stats": {
       "armor": 106,
@@ -7780,7 +8430,8 @@
     },
     "pieces": 4,
     "unlock": "Use This Link To Find Out How To Obtain This Armour",
-    "id": 686
+    "id": 686,
+    "fragment": "technician_set"
   },
   {
     "name": "Trainer Set",
@@ -7798,7 +8449,8 @@
     },
     "pieces": 4,
     "unlock": "Whispers sells this equipment in Ward 13\nStarting equipment for the Handler",
-    "id": 687
+    "id": 687,
+    "fragment": "trainer_set"
   },
   {
     "id": 688,
@@ -7811,7 +8463,8 @@
     "stats": {
       "weakspot": "Loin"
     },
-    "category": "bosses"
+    "category": "bosses",
+    "fragment": "gorge"
   },
   {
     "id": 689,
@@ -7824,7 +8477,8 @@
     "stats": {
       "weakspot": "Unarmored Areas (Arms and Legs)"
     },
-    "category": "bosses"
+    "category": "bosses",
+    "fragment": "the_executioner"
   },
   {
     "id": 690,
@@ -7837,7 +8491,8 @@
     "stats": {
       "weakspot": "Head"
     },
-    "category": "bosses"
+    "category": "bosses",
+    "fragment": "ripsaw"
   },
   {
     "id": 691,
@@ -7850,7 +8505,8 @@
     "stats": {
       "weakspot": "Head"
     },
-    "category": "bosses"
+    "category": "bosses",
+    "fragment": "firth_the_oathkeeper"
   },
   {
     "id": 692,
@@ -7863,7 +8519,8 @@
     "stats": {
       "weakspot": "Head"
     },
-    "category": "bosses"
+    "category": "bosses",
+    "fragment": "barghest_the_vile"
   },
   {
     "id": 693,
@@ -7876,7 +8533,8 @@
     "stats": {
       "weakspot": "Exposed Core"
     },
-    "category": "bosses"
+    "category": "bosses",
+    "fragment": "fetid_corpse"
   },
   {
     "id": 694,
@@ -7889,7 +8547,8 @@
     "stats": {
       "weakspot": "Head"
     },
-    "category": "bosses"
+    "category": "bosses",
+    "fragment": "restless_spirit"
   },
   {
     "id": 695,
@@ -7899,7 +8558,8 @@
     "race": "N'Erud Robots",
     "world": "N'Erud",
     "location": "Void Vessel Facility\n\nThe Putrid Domain \n\nVault of the Formless\n\nThe Hatchery",
-    "category": "bosses"
+    "category": "bosses",
+    "fragment": "w.d._109"
   },
   {
     "id": 696,
@@ -7912,7 +8572,8 @@
     "stats": {
       "weakspot": "Exposed head"
     },
-    "category": "bosses"
+    "category": "bosses",
+    "fragment": "the_progeny"
   },
   {
     "id": 697,
@@ -7925,7 +8586,8 @@
       "weakspot": "Eye",
       "resistance": "Fire"
     },
-    "category": "bosses"
+    "category": "bosses",
+    "fragment": "bane"
   },
   {
     "id": 698,
@@ -7937,7 +8599,8 @@
     "stats": {
       "weakspot": "Center red spiral (while glowing)"
     },
-    "category": "bosses"
+    "category": "bosses",
+    "fragment": "legion"
   },
   {
     "id": 699,
@@ -7950,6 +8613,7 @@
     "stats": {
       "weakspot": "Head"
     },
-    "category": "bosses"
+    "category": "bosses",
+    "fragment": "mantagora"
   }
 ]
