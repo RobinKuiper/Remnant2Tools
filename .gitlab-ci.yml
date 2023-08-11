@@ -93,45 +93,14 @@ before_script:
       when: always
 
 create_release:
+  image: python:3.8-alpine
   stage: deploy
 #  needs:
 #    - pages
   before_script:
-    - apk add curl jq
-    - export VERSION=$(cat .version)
-    - export PREVIOUS_VERSION=$(echo $VERSION | cut -d '.' -f 1,2)
-    - export NEXT_VERSION=$(echo $VERSION | awk -F. '{print $NF+1}')
-    - export RELEASE_NAME="Release v$PREVIOUS_VERSION.$NEXT_VERSION"
-    - export MILESTONE_NAME="Release v$PREVIOUS_VERSION.$NEXT_VERSION"
-    - export LATEST_SECTION=$(awk '/^## Version/{n++}{print > "section" n ".md"}' UPDATES.md && cat section1.md)
-    - export ISSUE_TITLE="Ready release"
-    - export ISSUE_DESCRIPTION="- [ ] Update version in .version\n- [ ] Add/update update log to UPDATES.md"
-    - export ISSUE2_TITLE="Check & update packages"
+    - pip install --upgrade python-gitlab
   script:
-    - >
-      curl --request POST --header "PRIVATE-TOKEN: $CI_JOB_TOKEN" --header "Content-Type: application/json" --data '{
-        "tag_name": "$VERSION",
-        "name": "$RELEASE_NAME",
-        "description": "$LATEST_SECTION",
-        "ref": "$CI_COMMIT_REF_NAME"
-      }' "https://gitlab.com/api/v4/projects/$CI_PROJECT_ID/releases"
-    - >
-      curl --request POST --header "PRIVATE-TOKEN: $CI_JOB_TOKEN" --header "Content-Type: application/json" --data '{
-        "title": "$MILESTONE_NAME"
-      }' "https://gitlab.com/api/v4/projects/$CI_PROJECT_ID/milestones"
-    - >
-      export MILESTONE_ID=$(curl --header "PRIVATE-TOKEN: $CI_JOB_TOKEN" "https://gitlab.com/api/v4/projects/$CI_PROJECT_ID/milestones?search=$MILESTONE_NAME" | jq -r '.[0].id')
-      curl --request POST --header "PRIVATE-TOKEN: $CI_JOB_TOKEN" --header "Content-Type: application/json" --data '{
-        "title": "$ISSUE_TITLE",
-        "description": "$ISSUE_DESCRIPTION",
-        "milestone_id": "$MILESTONE_ID"
-      }' "https://gitlab.com/api/v4/projects/$CI_PROJECT_ID/issues"
-    - >
-      curl --request POST --header "PRIVATE-TOKEN: $CI_JOB_TOKEN" --header "Content-Type: application/json" --data '{
-              "title": "$ISSUE2_TITLE",
-              "description": "",
-              "milestone_id": "$MILESTONE_ID"
-            }' "https://gitlab.com/api/v4/projects/$CI_PROJECT_ID/issues"
+    - python scripts updateGitlab.py
   rules:
     - if: "$CI_COMMIT_REF_NAME == 'master'"
       when: always
