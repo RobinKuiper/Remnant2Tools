@@ -7938,5 +7938,18 @@
       "weakspot": "Center red spiral (while glowing)"
     },
     "category": "bosses"
+  },
+  {
+    "id": 699,
+    "name": "Mantagora",
+    "description": "",
+    "type": "Aberration",
+    "race": "Root",
+    "world": "Yaesha",
+    "location": "Imperial Gardens",
+    "stats": {
+      "weakspot": "Head"
+    },
+    "category": "bosses"
   }
 ]
