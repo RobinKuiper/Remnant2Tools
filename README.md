@@ -37,10 +37,10 @@ Remnant Tools is a web application designed to help players of the game "Remnant
 
 ## Contributing
 
-Contributions are welcome! If you find any issues or have suggestions for improvements, please open an issue or submit a pull request. You can also support the development of this project by contributing through [Patreon](https://www.patreon.com/bePatron?u=10835266) or making a donation via [PayPal](https://paypal.me/robinkuiper).
+Contributions are welcome! If you find any issues or have suggestions for improvements, please open an issue or submit a pull request. You can also support the development of this project by contributing through [Patreon](https://www.patreon.com/bePatron?u=10835266) or making a donation via [PayPal](https://www.paypal.com/paypalme/reCodeNL).
 
 [![Patreon](https://img.shields.io/badge/Support-Patreon-orange?logo=patreon)](https://www.patreon.com/bePatron?u=10835266)
-[![PayPal](https://img.shields.io/badge/Donate-PayPal-blue?logo=paypal)](https://paypal.me/robinkuiper)
+[![PayPal](https://img.shields.io/badge/Donate-PayPal-blue?logo=paypal)](https://www.paypal.com/paypalme/reCodeNL)
 
 ## Contact
 
