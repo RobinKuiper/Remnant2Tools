@@ -61,6 +61,10 @@ const StatisticsPanel = () => {
         <table cellSpacing={0} cellPadding={10}>
           <tbody>
             {CATEGORIES.map(category => {
+              if (category.onlyDB) {
+                return;
+              }
+
               const { fragment, label } = category;
               const { unlocked, total } = statistics[fragment];
               const perc = calculatePercentage(unlocked, total, 2);
