@@ -312,7 +312,10 @@ export const query = graphql`
         }
       }
     }
-    items: allItem(filter: { category: { eq: $categoryFragment } }, sort: { fields: name, order: ASC }) {
+    items: allItem(
+      filter: {category: {eq: $categoryFragment}}
+      sort: {fields: name, order: ASC}
+    ) {
       totalCount
       nodes {
         id

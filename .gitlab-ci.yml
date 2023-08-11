@@ -1,8 +1,8 @@
 image: "node:lts-alpine"
 
 stages:
-  - build
-  - test
+#  - build
+#  - test
   - deploy
 
 # These folders are cached between builds
@@ -21,7 +21,7 @@ cache:
 before_script:
   - npm install -g pnpm
 
-build:install:
+.build:install:
   stage: build
   script:
     - pnpm install
@@ -71,7 +71,7 @@ test:lint:
   only:
     - tags
 
-pages:
+.pages:
   stage: deploy
   needs:
     - build:install
@@ -94,16 +94,17 @@ pages:
 
 create_release:
   stage: deploy
-  needs:
-    - pages
+#  needs:
+#    - pages
   before_script:
+    - apk add curl
     - export VERSION=$(cat .version)
     - export PREVIOUS_VERSION=$(echo $VERSION | cut -d '.' -f 1,2)
     - export NEXT_VERSION=$(echo $VERSION | awk -F. '{print $NF+1}')
     - export MILESTONE_NAME="Release v$PREVIOUS_VERSION.$NEXT_VERSION"
     - export LATEST_SECTION=$(awk '/^## Version/{n++}{print > "section" n ".md"}' UPDATES.md && cat section1.md)
     - export ISSUE_TITLE="Ready release"
-    - export ISSUE_DESCRIPTION="- [ ] Package.json version\n- [ ] Update version in .version\n- [ ] Add/update update log to UPDATES.md\n- [ ] README pipeline badges update?"
+    - export ISSUE_DESCRIPTION="- [ ] Update version in .version\n- [ ] Add/update update log to UPDATES.md"
     - export ISSUE2_TITLE="Check & update packages"
   script:
     - >
