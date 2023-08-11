@@ -30,6 +30,8 @@ build:install:
       changes:
         - pnpm-lock.yaml
       when: always
+    - if: "$CI_COMMIT_REF_NAME == 'master'"
+      when: always
 
 test:lint:
   stage: test
@@ -71,6 +73,8 @@ test:lint:
 
 pages:
   stage: deploy
+  needs:
+    - build:install
   script:
     - export VERSION=$(cat .version)
     - sed -i "s/SITE_VERSION/$VERSION/g" src/constants.ts
