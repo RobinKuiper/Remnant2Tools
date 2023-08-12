@@ -112,25 +112,6 @@ const Page = styled.div`
       }
     }
 
-    #settings {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-
-      input {
-        background: transparent;
-        border: none;
-        border-bottom: 1px solid #000;
-
-        &:focus {
-          outline: none;
-        }
-      }
-
-      div {
-      }
-    }
-
     @media (max-width: 1500px) {
       width: 100%;
     }
