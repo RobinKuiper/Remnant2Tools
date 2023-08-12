@@ -4,6 +4,7 @@ import subprocess
 import gitlab
 
 BOARD_ID="5954639"
+CREATE_DEPENDENCY_ISSUE=False
 
 # Extract version from .version file
 with open(".version", "r") as version_file:
@@ -20,6 +21,24 @@ RELEASE_NAME = f"Release v{CURRENT_VERSION}"
 MILESTONE_NAME = f"Release v{MAJOR_VERSION_NUMBERS}.{NEXT_VERSION}"
 BOARD_NAME = MILESTONE_NAME
 
+# Define issue titles and descriptions
+READY_RELEASE_ISSUE_TITLE = "Ready release"
+READY_RELEASE_ISSUE_DESCRIPTION = (
+    "- [ ] Update version in .version\n- [ ] Add/update update log to UPDATES.md"
+)
+DEPENDENCY_ISSUE_TITLE = "Check & update dependencies"
+RELEASE_ISSUE_TITLE = MILESTONE_NAME
+
+# Get the environment variables from Gitlab
+GITLAB_TOKEN = sys.argv[1]
+PROJECT_ID = sys.argv[2]
+REF_NAME = sys.argv[3]
+
+# Labels
+FINAL_TOUCHES_LABEL = "Final Touches"
+RELEASE_LABEL = "Release"
+CODEBASE_LABEL = "Codebase"
+
 # Extract latest release section from UPDATES.md
 with open("UPDATES.md", "r") as updates_file:
     updates_lines = updates_file.readlines()
@@ -35,19 +54,6 @@ for line in updates_lines:
         section_lines.append(line)
 
 UPDATES_TEXT = "\n".join(section_lines)
-
-# Define issue title and description
-READY_RELEASE_ISSUE_TITLE = "Ready release"
-READY_RELEASE_ISSUE_DESCRIPTION = (
-    "- [ ] Update version in .version\n- [ ] Add/update update log to UPDATES.md"
-)
-DEPENDENCY_ISSUE_TITLE = "Check & update dependencies"
-RELEASE_ISSUE_TITLE = MILESTONE_NAME
-
-# Get the environment variables from Gitlab
-GITLAB_TOKEN = sys.argv[1]
-PROJECT_ID = sys.argv[2]
-REF_NAME = sys.argv[3]
 
 gl = gitlab.Gitlab("https://gitlab.com", private_token=GITLAB_TOKEN)
 
@@ -96,20 +102,17 @@ issue = project.issues.create(
     }
 )
 
-FINAL_TOUCHES_LABEL = "Final Touches"
-RELEASE_LABEL = "Release"
-CODEBASE_LABEL = "Codebase"
-
 issue.labels = [RELEASE_LABEL, FINAL_TOUCHES_LABEL]
 issue.save()
 
-# Create the dependencies issue
-issue = project.issues.create(
-    {"title": DEPENDENCY_ISSUE_TITLE, "description": "", "milestone_id": milestone.id}
-)
-
-issue.labels = [CODEBASE_LABEL, FINAL_TOUCHES_LABEL]
-issue.save()
+if CREATE_DEPENDENCY_ISSUE:
+  # Create the dependencies issue
+  issue = project.issues.create(
+      {"title": DEPENDENCY_ISSUE_TITLE, "description": "", "milestone_id": milestone.id}
+  )
+  
+  issue.labels = [CODEBASE_LABEL, FINAL_TOUCHES_LABEL]
+  issue.save()
 
 # Create the release issue
 issue = project.issues.create(
