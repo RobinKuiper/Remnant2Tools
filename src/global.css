@@ -33,6 +33,10 @@ button {
   cursor: pointer;
 }
 
+button:disabled, input:disabled {
+  cursor: not-allowed;
+}
+
 .tooltip {
   z-index: 9999999;
 }

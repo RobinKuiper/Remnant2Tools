@@ -4,6 +4,8 @@ import { findImageById } from "../../helpers";
 import type { Build } from "../../interface/Build";
 import { Tooltip } from "react-tooltip";
 import { styled } from "styled-components";
+import type { Filter } from "../../interface/IData";
+import { getFieldValue } from "../../dataHelpers";
 
 const Container = styled.div`
   border: 1px solid #000;
@@ -20,37 +22,26 @@ const Container = styled.div`
 `;
 
 interface Props {
-  openModal: any;
+  openModal: (filters: Filter[], buildPath: string) => void;
   build: Build;
-  images: any;
-  type: string;
-  category: string;
-  subCategory?: string | null;
-  index?: number | null;
+  images: any[];
+  buildPath: string;
+  filters: Filter[];
   disabled?: boolean;
 }
 
-const BuildItemBox = ({
-  openModal,
-  build,
-  images,
-  type,
-  category,
-  subCategory = null,
-  index = null,
-  disabled = false,
-}: Props) => {
-  const [item, setItem] = useState();
+const BuildItemBox = ({ openModal, build, images, buildPath, filters, disabled = false }: Props) => {
+  const [item, setItem] = useState<object | null>(null);
 
   useEffect(() => {
-    const newItem = index !== null ? build[type][index] : build[type];
+    const newItem = buildPath ? getFieldValue(build, buildPath) : null;
     setItem(newItem);
-  }, [index, type, build]);
+  }, [build]);
 
   const handleClick = () => {
     if (disabled) return;
 
-    openModal(category, type, index, subCategory);
+    openModal(filters, buildPath);
   };
 
   return (

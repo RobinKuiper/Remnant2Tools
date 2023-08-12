@@ -1,11 +1,63 @@
-import React, { useContext, useState } from "react";
-import { AiFillLock, AiFillUnlock } from "react-icons/ai";
-import { Tooltip } from "react-tooltip";
+import React from "react";
 import BuildItemBox from "./BuildItemBox";
 import { styled } from "styled-components";
-import { BuildsContext } from "../../context/BuildContext";
-import { calculateWeightType, isUnlocked } from "../../dataHelpers";
-import { graphql, useStaticQuery } from "gatsby";
+
+const ITEM_BOXES = {
+  topLeft: [
+    {
+      buildPath: "headpiece",
+      filters: [{ category: "armor" }, { type: "headpiece" }],
+    },
+    {
+      buildPath: "chest",
+      filters: [{ category: "armor" }, { type: "chest" }],
+    },
+    {
+      buildPath: "feet",
+      filters: [{ category: "armor" }, { type: "feet" }],
+    },
+    {
+      buildPath: "hands",
+      filters: [{ category: "armor" }, { type: "hands" }],
+    },
+  ],
+  fragments: [
+    {
+      buildPath: "fragments.0",
+      filters: [{ category: "relicfragments" }],
+    },
+    {
+      buildPath: "fragments.1",
+      filters: [{ category: "relicfragments" }],
+    },
+    {
+      buildPath: "fragments.2",
+      filters: [{ category: "relicfragments" }],
+    },
+  ],
+  topRight: [
+    {
+      buildPath: "amulet",
+      filters: [{ category: "amulets" }],
+    },
+    {
+      buildPath: "rings.0",
+      filters: [{ category: "rings" }],
+    },
+    {
+      buildPath: "rings.1",
+      filters: [{ category: "rings" }],
+    },
+    {
+      buildPath: "rings.2",
+      filters: [{ category: "rings" }],
+    },
+    {
+      buildPath: "rings.3",
+      filters: [{ category: "rings" }],
+    },
+  ],
+};
 
 const Container = styled.div`
   display: flex;
@@ -13,15 +65,7 @@ const Container = styled.div`
   gap: 10px;
 
   width: 400px;
-  margin: 20px auto;
-
-  #settings {
-    input {
-      box-sizing: border-box;
-      width: 100%;
-      padding: 10px;
-    }
-  }
+  margin: 10px auto;
 
   #top {
     display: flex;
@@ -129,210 +173,87 @@ const Container = styled.div`
   //}
 `;
 
-const BuildInterface = ({
-  setName,
-  oldName,
-  name,
-  build,
-  images,
-  setIndex,
-  setModalItems,
-  setModalCategory,
-  setType,
-  setIsOpen,
-  statistics,
-}) => {
-  const { changeName } = useContext(BuildsContext);
-  const [onlyUnlocked, setOnlyUnlocked] = useState(false);
-  const data = useStaticQuery(graphql`
-    {
-      items: allItem {
-        totalCount
-        nodes {
-          name
-          category
-          type
-          id
-          externalId
-        }
-      }
-    }
-  `);
-
-  const openModal = (
-    category: string,
-    type: string,
-    index: number | null = null,
-    subCategory: string | null = null,
-  ) => {
-    const allItems = onlyUnlocked
-      ? data.items.nodes.filter(item => isUnlocked(category, item.externalId))
-      : data.items.nodes;
-    let items;
-    if (subCategory) {
-      items = allItems.filter(item => item.category === category && item.type === subCategory);
-    } else if (category === "armor") {
-      items = allItems.filter(item => item.category === category && item.type === type);
-    } else {
-      items = allItems.filter(item => item.category === category);
-    }
-
-    setIndex(index);
-    setType(type);
-    setModalCategory(category);
-    setModalItems(items);
-    setIsOpen(true);
-  };
-
-  const handleNameChange = e => {
-    setName(e.target.value);
-  };
-
-  const handleNameSave = () => {
-    changeName(oldName, name);
-  };
-
-  const toggleOnlyUnlocked = () => {
-    setOnlyUnlocked(!onlyUnlocked);
-  };
-
+const BuildInterface = ({ build, images, openModal }) => {
   return (
     <Container>
-      <div id="settings">
-        <input type="text" placeholder="Name" value={name} onChange={handleNameChange} onBlur={handleNameSave} />
-        <div>
-          <button
-            onClick={toggleOnlyUnlocked}
-            data-tooltip-id="unlocked"
-            data-tooltip-content={onlyUnlocked ? "Showing only unlocked items" : "Showing all items"}
-            data-tooltip-place="bottom"
-          >
-            {onlyUnlocked ? <AiFillUnlock size={"30px"} /> : <AiFillLock size={"30px"} />}
-          </button>
-          <Tooltip id="unlocked" />
-        </div>
-      </div>
-
       <div id="top">
         <div id="armor" className="item-category">
-          <BuildItemBox
-            openModal={openModal}
-            build={build}
-            images={images.nodes}
-            type={"headpiece"}
-            category={"armor"}
-          />
-          <BuildItemBox openModal={openModal} build={build} images={images.nodes} type={"chest"} category={"armor"} />
-          <BuildItemBox openModal={openModal} build={build} images={images.nodes} type={"hands"} category={"armor"} />
-          <BuildItemBox openModal={openModal} build={build} images={images.nodes} type={"feet"} category={"armor"} />
+          {ITEM_BOXES.topLeft.map(box => (
+            <BuildItemBox
+              key={box.buildPath}
+              openModal={openModal}
+              build={build}
+              images={images}
+              buildPath={box.buildPath}
+              filters={box.filters}
+            />
+          ))}
+
           <div className="main-box">
             <BuildItemBox
               openModal={openModal}
               build={build}
-              images={images.nodes}
-              type={"relic"}
-              category={"relics"}
+              images={images}
+              buildPath={"relic"}
+              filters={[{ category: "relics" }]}
             />
 
             <div className="sub-boxes">
-              <BuildItemBox
-                openModal={openModal}
-                build={build}
-                images={images.nodes}
-                type={"fragments"}
-                category={"relicfragments"}
-                index={0}
-              />
-              <BuildItemBox
-                openModal={openModal}
-                build={build}
-                images={images.nodes}
-                type={"fragments"}
-                category={"relicfragments"}
-                index={1}
-              />
-              <BuildItemBox
-                openModal={openModal}
-                build={build}
-                images={images.nodes}
-                type={"fragments"}
-                category={"relicfragments"}
-                index={2}
-              />
+              {ITEM_BOXES.fragments.map(box => (
+                <BuildItemBox
+                  key={box.buildPath}
+                  openModal={openModal}
+                  build={build}
+                  images={images}
+                  buildPath={box.buildPath}
+                  filters={box.filters}
+                />
+              ))}
             </div>
           </div>
         </div>
 
-        <div id="stats">
-          <span className="subtitle">Statistics*</span>
-          <span>
-            <span className="key">Armor Type:</span>
-            <span className="value">{calculateWeightType(statistics.weight)}</span>
-          </span>
-          {Object.entries(statistics).map(([key, value]) => {
-            if (key === "resistances") {
-              return (
-                <div key="resistances" className="resistances">
-                  <span className="subtitle">Resistances</span>
-                  {Object.entries(statistics.resistances).map(([key, value]) => (
-                    <span key={key}>
-                      <span className="key">{key}:</span>
-                      <span className="value">{value}</span>
-                    </span>
-                  ))}
-                </div>
-              );
-            }
+        {/*<div id="stats">*/}
+        {/*  <span className="subtitle">Statistics*</span>*/}
+        {/*  <span>*/}
+        {/*    <span className="key">Armor Type:</span>*/}
+        {/*    <span className="value">{calculateWeightType(statistics.weight)}</span>*/}
+        {/*  </span>*/}
+        {/*  {Object.entries(statistics).map(([key, value]) => {*/}
+        {/*    if (key === "resistances") {*/}
+        {/*      return (*/}
+        {/*        <div key="resistances" className="resistances">*/}
+        {/*          <span className="subtitle">Resistances</span>*/}
+        {/*          {Object.entries(statistics.resistances).map(([key, value]) => (*/}
+        {/*            <span key={key}>*/}
+        {/*              <span className="key">{key}:</span>*/}
+        {/*              <span className="value">{value}</span>*/}
+        {/*            </span>*/}
+        {/*          ))}*/}
+        {/*        </div>*/}
+        {/*      );*/}
+        {/*    }*/}
 
-            return (
-              <span key={key}>
-                <span className="key">{key}:</span>
-                <span className="value">{value}</span>
-              </span>
-            );
-          })}
-        </div>
+        {/*    return (*/}
+        {/*      <span key={key}>*/}
+        {/*        <span className="key">{key}:</span>*/}
+        {/*        <span className="value">{value}</span>*/}
+        {/*      </span>*/}
+        {/*    );*/}
+        {/*  })}*/}
+        {/*</div>*/}
 
         <div id="accessoires" className="item-category">
-          <BuildItemBox
-            openModal={openModal}
-            build={build}
-            images={images.nodes}
-            type={"amulet"}
-            category={"amulets"}
-          />
-          <BuildItemBox
-            openModal={openModal}
-            build={build}
-            images={images.nodes}
-            type={"rings"}
-            category={"rings"}
-            index={0}
-          />
-          <BuildItemBox
-            openModal={openModal}
-            build={build}
-            images={images.nodes}
-            type={"rings"}
-            category={"rings"}
-            index={1}
-          />
-          <BuildItemBox
-            openModal={openModal}
-            build={build}
-            images={images.nodes}
-            type={"rings"}
-            category={"rings"}
-            index={2}
-          />
-          <BuildItemBox
-            openModal={openModal}
-            build={build}
-            images={images.nodes}
-            type={"rings"}
-            category={"rings"}
-            index={3}
-          />
+          {ITEM_BOXES.topRight.map(box => (
+            <BuildItemBox
+              key={box.buildPath}
+              openModal={openModal}
+              build={build}
+              images={images}
+              buildPath={box.buildPath}
+              filters={box.filters}
+            />
+          ))}
         </div>
       </div>
 
@@ -341,29 +262,26 @@ const BuildInterface = ({
           <BuildItemBox
             openModal={openModal}
             build={build}
-            images={images.nodes}
-            type={"mainHand"}
-            category={"weapons"}
-            subCategory={"Long Guns"}
+            images={images}
+            buildPath={"mainHand"}
+            filters={[{ category: "weapons" }, { type: "Long Guns" }]}
           />
 
           <div className="sub-boxes">
             <BuildItemBox
               openModal={openModal}
               build={build}
-              images={images.nodes}
-              type={"mods"}
-              category={"mods"}
-              index={0}
+              images={images}
+              buildPath={"mods.0"}
+              filters={[{ category: "mods" }]}
               disabled={!!(build.mainHand && build.mainHand.mod && build.mainHand.mod !== "")}
             />
             <BuildItemBox
               openModal={openModal}
               build={build}
-              images={images.nodes}
-              type={"mutators"}
-              category={"mutators"}
-              index={0}
+              images={images}
+              buildPath={"mutators.0"}
+              filters={[{ category: "mutators" }]}
             />
           </div>
         </div>
@@ -371,10 +289,9 @@ const BuildInterface = ({
           <BuildItemBox
             openModal={openModal}
             build={build}
-            images={images.nodes}
-            type={"melee"}
-            category={"weapons"}
-            subCategory={"Melee Weapons"}
+            images={images}
+            buildPath={"melee"}
+            filters={[{ category: "weapons" }, { type: "Melee Weapons" }]}
           />
 
           <div className="sub-boxes">
@@ -382,20 +299,18 @@ const BuildInterface = ({
               <BuildItemBox
                 openModal={openModal}
                 build={build}
-                images={images.nodes}
-                type={"mods"}
-                category={"mods"}
-                index={1}
+                images={images}
+                buildPath={"mods.1"}
+                filters={[{ category: "mods" }]}
                 disabled={true}
               />
             )}
             <BuildItemBox
               openModal={openModal}
               build={build}
-              images={images.nodes}
-              type={"mutators"}
-              category={"mutators"}
-              index={1}
+              images={images}
+              buildPath={"mutators.1"}
+              filters={[{ category: "mutators" }]}
             />
           </div>
         </div>
@@ -403,29 +318,26 @@ const BuildInterface = ({
           <BuildItemBox
             openModal={openModal}
             build={build}
-            images={images.nodes}
-            type={"offhand"}
-            category={"weapons"}
-            subCategory={"Hand Guns"}
+            images={images}
+            buildPath={"offhand"}
+            filters={[{ category: "weapons" }, { type: "Hand Guns" }]}
           />
 
           <div className="sub-boxes">
             <BuildItemBox
               openModal={openModal}
               build={build}
-              images={images.nodes}
-              type={"mods"}
-              category={"mods"}
-              index={2}
+              images={images}
+              buildPath={"mods.2"}
+              filters={[{ category: "mods" }]}
               disabled={!!(build.offhand && build.offhand.mod && build.offhand.mod !== "")}
             />
             <BuildItemBox
               openModal={openModal}
               build={build}
-              images={images.nodes}
-              type={"mutators"}
-              category={"mutators"}
-              index={2}
+              images={images}
+              buildPath={"mutators.2"}
+              filters={[{ category: "mutators" }]}
             />
           </div>
         </div>

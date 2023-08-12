@@ -7,7 +7,7 @@ import Layout from "../components/layout/Layout";
 import Search from "../components/Search";
 import { DataContext } from "../context/DataContext";
 import { SettingContext } from "../context/SettingContext";
-import { getFieldValue, isUnlocked } from "../dataHelpers";
+import { isUnlocked, sorter } from "../dataHelpers";
 import { Flex } from "../style/global";
 import Item from "../components/database/Item";
 import ItemCategory from "../components/database/ItemCategory";
@@ -103,21 +103,6 @@ const Category = props => {
     setViewAsList(defaultView === "list");
   }, [defaultView]);
 
-  const sorter = (a, b) => {
-    const aValue = getFieldValue(a, sortBy) ?? 0;
-    const bValue = getFieldValue(b, sortBy) ?? 0;
-
-    if (typeof aValue === "string") {
-      return sortDir === 0 ? bValue.localeCompare(aValue) : aValue.localeCompare(bValue);
-    }
-
-    if (sortDir === 0) {
-      return bValue > aValue ? -1 : 1;
-    } else {
-      return aValue < bValue ? -1 : 1;
-    }
-  };
-
   const groupText = (value: any) => {
     if (typeof value === "boolean") {
       return value ? "Yes" : "No";
@@ -138,7 +123,7 @@ const Category = props => {
       grouped[group].items.push(item);
     });
     return Object.values(grouped).map(group => {
-      group.items.sort(sorter);
+      group.items.sort((a, b) => sorter(a, b, sortBy, sortDir));
       return group;
     });
   };
@@ -171,7 +156,7 @@ const Category = props => {
     const items = props.data.items.nodes
       .filter(item => (hideUnlocked && isTracker ? !isUnlocked(categoryFragment, item.externalId) : true))
       .filter(item => !(isTracker && typeof item.onlyDB !== "undefined" && item.onlyDB))
-      .sort(sorter);
+      .sort((a, b) => sorter(a, b, sortBy, sortDir));
 
     setData(group(search(items)));
   }, [query, category, type, categoryFragment, hideUnlocked, groupBy, sortBy]);
