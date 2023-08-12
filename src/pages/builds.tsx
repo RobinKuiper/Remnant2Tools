@@ -16,6 +16,7 @@ import TraitsInterface from "../components/builder/TraitsInterface";
 import Settings from "../components/builder/Settings";
 import "react-toastify/dist/ReactToastify.css";
 import { toast } from "react-toastify";
+import BuildStatisticsSidebar from "../components/builder/BuildStatisticsSidebar";
 
 const NEW_BUILD: Build = {
   headpiece: null,
@@ -36,17 +37,7 @@ const NEW_BUILD: Build = {
   archetype1: null,
   archetype2: null,
 };
-// const NEW_STATISTICS = {
-//   armor: 0,
-//   weight: 0,
-//   resistances: {
-//     bleed: 0,
-//     fire: 0,
-//     shock: 0,
-//     blight: 0,
-//     corrosion: 0,
-//   },
-// };
+
 const MOD_INDEXES = {
   mainHand: 0,
   melee: 1,
@@ -124,7 +115,6 @@ const Builds = props => {
   const [modalIsOpen, setIsOpen] = useState(false);
   const [modalFilters, setModalFilters] = useState<Filter[]>([]);
   const [buildPath, setBuildPath] = useState<string>("");
-  // const [statistics, setStatistics] = useState(NEW_STATISTICS);
   const [tab, setTab] = useState<string>("equipment");
   const [name, setName] = useState<string>("");
   const [oldName, setOldName] = useState<string>("");
@@ -212,102 +202,6 @@ const Builds = props => {
     }
   };
 
-  // STATISTICS
-  // useEffect(() => {
-  //   const newStats = {
-  //     armor: 0,
-  //     weight: 0,
-  //     resistances: {
-  //       bleed: 0,
-  //       fire: 0,
-  //       shock: 0,
-  {
-    /*      blight: 0,*/
-  }
-  //       corrosion: 0,
-  //     },
-  //   };
-  {
-    /*  Object.values(build).forEach(item => {*/
-  }
-  {
-    /*    if (!item) return;*/
-  }
-
-  {
-    /*    if (Array.isArray(item)) {*/
-  }
-  {
-    /*      item.forEach(i => {*/
-  }
-  {
-    /*        if (!i) return;*/
-  }
-
-  {
-    /*        Object.keys(newStats).forEach(key => {*/
-  }
-  {
-    /*          if (key === "resistances") {*/
-  }
-  {
-    /*            Object.keys(statistics.resistances).forEach(rKey => {*/
-  }
-  {
-    /*              if (i.resistances && i.resistances[rKey]) {*/
-  }
-  {
-    /*                newStats.resistances[rKey] += parseInt(i.resistances[rKey]);*/
-  }
-  {
-    /*              }*/
-  }
-  {
-    /*            });*/
-  }
-  {
-    /*          } else {*/
-  }
-  {
-    /*            if (i[key]) {*/
-  }
-  {
-    /*              newStats[key] += parseInt(i[key]);*/
-  }
-  //             }
-  //           }
-  //         });
-  //       });
-  {
-    /*    } else {*/
-  }
-  {
-    /*      Object.keys(newStats).forEach(key => {*/
-  }
-  //         if (key === "resistances") {
-  //           Object.keys(statistics.resistances).forEach(rKey => {
-  {
-    /*            if (item.resistances && item.resistances[rKey]) {*/
-  }
-  {
-    /*              newStats.resistances[rKey] += parseInt(item.resistances[rKey]);*/
-  }
-  {
-    /*            }*/
-  }
-  //           });
-  //         } else {
-  //           if (item[key]) {
-  //             newStats[key] += parseInt(item[key]);
-  //           }
-  //         }
-  //       });
-  //     }
-  //   });
-  //
-  //   setStatistics(() => ({ ...newStats }));
-  // }, [build]);
-
   return (
     <Layout>
       <Head title="Builder" description="Save your favorite builds in this Remnant II builder." />
@@ -374,6 +268,7 @@ const Builds = props => {
         callback={selectItem}
         onlyShowUnlocked={onlyUnlocked}
       />
+      <BuildStatisticsSidebar build={build} />
     </Layout>
   );
 };

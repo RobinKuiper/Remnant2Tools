@@ -18,10 +18,9 @@ const Container = styled.div`
   background: #292929;
   color: #fff;
   //min-height: 100%;
-  padding: 100px 20px;
+  padding: 100px 0;
   box-sizing: border-box;
   width: 0;
-  opacity: 0;
   display: flex;
   flex-direction: column;
   gap: 30px;
@@ -30,11 +29,12 @@ const Container = styled.div`
 
   transition:
     width 0.5s ease-in-out,
+    padding 0.5s ease-in-out,
     opacity 0.2s ease-in-out 0.3s;
 
   &.active {
+    padding: 100px 20px;
     width: 300px;
-    opacity: 1;
   }
 
   .layout {
