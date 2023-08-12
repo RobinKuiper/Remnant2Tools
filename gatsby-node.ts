@@ -2,7 +2,7 @@ import data from "./src/data/data.json";
 import type { GatsbyNode, NodeInput } from "gatsby";
 import { resolve } from "path";
 import { CATEGORIES } from "./src/constants";
-import { calculateStringMatchPercentage, slugify } from "./src/helpers";
+import { calculateStringMatchPercentage } from "./src/helpers";
 
 export const onCreateNode = ({ node, actions }) => {
   const { createNodeField } = actions;
@@ -16,7 +16,7 @@ export const onCreateNode = ({ node, actions }) => {
     const name = arr[2].split(".")[0];
 
     const item = data.find(
-      item => item.category === categoryFragment && calculateStringMatchPercentage(slugify(item.name), name) > 80,
+      item => item.category === categoryFragment && calculateStringMatchPercentage(item.fragment, name) > 80,
     );
 
     if (item) {
