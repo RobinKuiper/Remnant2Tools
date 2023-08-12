@@ -2,6 +2,8 @@
 
 [![Latest Release](https://gitlab.com/RobinKuiper/remnantcollectables/-/badges/release.svg)](https://gitlab.com/RobinKuiper/remnantcollectables/-/releases)
 
+## Version 1.0.5
+
 ## Version 1.0.4
 
 - Added [archetype](https://remnant.rkuiper.nl/database/archetypes) selection to [builder](https://remnant.rkuiper.nl/builds)

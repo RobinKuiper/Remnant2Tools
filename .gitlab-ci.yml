@@ -76,6 +76,7 @@ pages:
   needs:
     - build:install
   script:
+    - rm ./src/pages/data.tsx
     - export VERSION=$(cat .version)
     - sed -i "s/SITE_VERSION/$VERSION/g" src/constants.ts
     - sed -i "s/SITE_VERSION/$VERSION/g" static/humans.txt
