@@ -4,6 +4,7 @@
 
 ## Version 1.0.5
 
+- Added a sidebar to the [builder](https://remnant.rkuiper.nl/builds) with statistics
 - Improved design for the [builder](https://remnant.rkuiper.nl/builds)
 - Improved design for the single item pages
 - Added tooltips for items

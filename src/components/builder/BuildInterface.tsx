@@ -213,35 +213,7 @@ const BuildInterface = ({ build, images, openModal }) => {
           </div>
         </div>
 
-        {/*<div id="stats">*/}
-        {/*  <span className="subtitle">Statistics*</span>*/}
-        {/*  <span>*/}
-        {/*    <span className="key">Armor Type:</span>*/}
-        {/*    <span className="value">{calculateWeightType(statistics.weight)}</span>*/}
-        {/*  </span>*/}
-        {/*  {Object.entries(statistics).map(([key, value]) => {*/}
-        {/*    if (key === "resistances") {*/}
-        {/*      return (*/}
-        {/*        <div key="resistances" className="resistances">*/}
-        {/*          <span className="subtitle">Resistances</span>*/}
-        {/*          {Object.entries(statistics.resistances).map(([key, value]) => (*/}
-        {/*            <span key={key}>*/}
-        {/*              <span className="key">{key}:</span>*/}
-        {/*              <span className="value">{value}</span>*/}
-        {/*            </span>*/}
-        {/*          ))}*/}
-        {/*        </div>*/}
-        {/*      );*/}
-        {/*    }*/}
-
-        {/*    return (*/}
-        {/*      <span key={key}>*/}
-        {/*        <span className="key">{key}:</span>*/}
-        {/*        <span className="value">{value}</span>*/}
-        {/*      </span>*/}
-        {/*    );*/}
-        {/*  })}*/}
-        {/*</div>*/}
+        <div id="stats"></div>
 
         <div id="accessoires" className="item-category">
           {ITEM_BOXES.topRight.map(box => (
@@ -342,10 +314,6 @@ const BuildInterface = ({ build, images, openModal }) => {
           </div>
         </div>
       </div>
-      <p style={{ fontSize: "0.8em" }}>
-        * Please be aware that the database might not have received all the data at this time. As a result, the
-        statistics could be somewhat inaccurate.
-      </p>
     </Container>
   );
 };
