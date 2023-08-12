@@ -1,10 +1,11 @@
-import React, {useContext, useEffect, useRef, useState} from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { styled } from "styled-components";
 import { DataContext } from "../../context/DataContext";
 import { findImageById } from "../../helpers";
 import ListItem from "./ListItem";
 import GridItem from "./GridItem";
-import {SettingContext} from "../../context/SettingContext";
+import { SettingContext } from "../../context/SettingContext";
+import ItemTooltip from "./ItemTooltip";
 
 const Container = styled.div`
   position: relative;
@@ -64,8 +65,8 @@ const Container = styled.div`
 `;
 const STATE_CLASSES = {
   true: "unlocked",
-  false: "locked"
-}
+  false: "locked",
+};
 
 interface Props {
   item: any;
@@ -103,7 +104,7 @@ const Item = ({ item, category, images, type }: Props) => {
 
   const handleChange = e => {
     const id = parseInt(e.target.id);
-    
+
     if (ref.current) {
       ref.current.classList.toggle("unlocked");
       ref.current.classList.toggle("locked");
@@ -143,6 +144,8 @@ const Item = ({ item, category, images, type }: Props) => {
           type={type ?? "tracker"}
         />
       )}
+
+      <ItemTooltip id={`${item.name}_tooltip`} item={item} image={image} />
     </Container>
   );
 };

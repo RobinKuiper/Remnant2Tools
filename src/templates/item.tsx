@@ -6,11 +6,10 @@ import Layout from "../components/layout/Layout";
 import Head from "../components/layout/Head";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import Redacted from "../components/database/Redacted";
-import { calculateWeightType, isUnlocked } from "../dataHelpers";
-import ItemStat from "../components/item/ItemStat";
+import { isUnlocked } from "../dataHelpers";
 import { slugify, uppercaseFirstLetter } from "../helpers";
 import Breadcrumb from "../components/layout/Breadcrumb";
-import { Tooltip } from "react-tooltip";
+import ItemStatistics from "../components/database/ItemStatistics";
 
 const Page = styled.div`
   display: flex;
@@ -106,18 +105,6 @@ const Page = styled.div`
         gap: 30px;
 
         .left {
-          .stats {
-            padding: 20px;
-            border: 1px solid #ddd;
-            background: #f9f9f9;
-            color: #333;
-            width: 300px;
-            border-radius: 10px;
-
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-          }
         }
 
         .right {
@@ -277,20 +264,7 @@ const Category = ({ data, pageContext, location }) => {
             </div>
 
             <div className="information">
-              <div className="left">
-                {item.stats && (
-                  <div className="stats">
-                    {item.stats.weight && (
-                      <ItemStat valueKey="Weight type" value={calculateWeightType(item.stats.weight)} />
-                    )}
-                    {Object.entries(item.stats)
-                      .filter(([key, value]) => key && value)
-                      .map(([key, value]) => (
-                        <ItemStat key={key} valueKey={key} value={value} />
-                      ))}
-                  </div>
-                )}
-              </div>
+              <div className="left">{item.stats && <ItemStatistics stats={item.stats} />}</div>
 
               <div className="right">
                 {item.description && (
@@ -333,7 +307,6 @@ const Category = ({ data, pageContext, location }) => {
           </div>
         </div>
       </Page>
-      <Tooltip id="item" />
     </Layout>
   );
 };

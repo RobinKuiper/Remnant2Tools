@@ -59,46 +59,46 @@ const StatisticsPanel = () => {
   return (
     <Container className="panel">
       {!loading ? (
-     <>
-       <h3>Unlockable Statistics</h3>
+        <>
+          <h3>Unlockable Statistics</h3>
 
-       <table cellSpacing={0} cellPadding={10}>
-         <tbody>
-         {CATEGORIES.map(category => {
-           if (category.onlyDB) {
-             return;
-           }
+          <table cellSpacing={0} cellPadding={10}>
+            <tbody>
+              {CATEGORIES.map(category => {
+                if (category.onlyDB) {
+                  return;
+                }
 
-           const { fragment, label } = category;
-           const { unlocked, total } = statistics[fragment];
-           const perc = calculatePercentage(unlocked, total, 2);
+                const { fragment, label } = category;
+                const { unlocked, total } = statistics[fragment];
+                const perc = calculatePercentage(unlocked, total, 2);
 
-           return (
-             <tr key={fragment}>
-               <td className="title">
-                 <Link to={`/tracker/${fragment}`} title={label}>
-                   {label}
-                 </Link>
-               </td>
-               <td>
-                 {unlocked}/{total}
-               </td>
-               <td>{perc}%</td>
-             </tr>
-           );
-         })}
-         </tbody>
-         <tfoot>
-         <tr>
-           <td className="title">Overall</td>
-           <td>
-             {totals.unlocked}/{totals.total}
-           </td>
-           <td>{totals.percentage}%</td>
-         </tr>
-         </tfoot>
-       </table>
-     </>
+                return (
+                  <tr key={fragment}>
+                    <td className="title">
+                      <Link to={`/tracker/${fragment}`} title={label}>
+                        {label}
+                      </Link>
+                    </td>
+                    <td>
+                      {unlocked}/{total}
+                    </td>
+                    <td>{perc}%</td>
+                  </tr>
+                );
+              })}
+            </tbody>
+            <tfoot>
+              <tr>
+                <td className="title">Overall</td>
+                <td>
+                  {totals.unlocked}/{totals.total}
+                </td>
+                <td>{totals.percentage}%</td>
+              </tr>
+            </tfoot>
+          </table>
+        </>
       ) : (
         <Loader color={"#fff"} />
       )}

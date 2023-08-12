@@ -81,12 +81,12 @@ const SettingProvider: React.FC<Props> = ({ children }: Props) => {
   const toggleDefaultShowRedacted = () => {
     setDefaultShowRedacted(!defaultShowRedacted);
   };
-  
+
   const toggleView = () => {
     const newView = view === "list" ? "grid" : "list";
     localStorage.setItem("view", newView);
     setView(newView);
-  }
+  };
 
   const contextValue = useMemo(
     () => ({

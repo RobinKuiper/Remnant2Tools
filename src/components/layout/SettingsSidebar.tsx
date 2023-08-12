@@ -117,8 +117,7 @@ const Container = styled.div`
 `;
 
 const SettingsSidebar = () => {
-  const { showSettings, defaultShowRedacted, toggleDefaultShowRedacted } =
-    useContext(SettingContext);
+  const { showSettings, defaultShowRedacted, toggleDefaultShowRedacted } = useContext(SettingContext);
   const { updateUnlocks } = useContext(DataContext);
   const { updateBuilds } = useContext(BuildsContext);
   const unlockDataRef = useRef<HTMLTextAreaElement>();

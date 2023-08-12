@@ -239,26 +239,12 @@ const Category = props => {
                       <ItemCategory item={item} category={category} type={type} />
                       {item.items &&
                         item.items.map(i => (
-                          <Item
-                            key={i.id}
-                            item={i}
-                            type={type}
-                            category={category}
-                            images={images.nodes}
-                          />
+                          <Item key={i.id} item={i} type={type} category={category} images={images.nodes} />
                         ))}
                     </>
                   );
                 } else if (item.name) {
-                  return (
-                    <Item
-                      key={item.id}
-                      item={item}
-                      type={type}
-                      category={category}
-                      images={images.nodes}
-                    />
-                  );
+                  return <Item key={item.id} item={item} type={type} category={category} images={images.nodes} />;
                 }
               })
             ) : (
@@ -303,13 +289,33 @@ export const query = graphql`
         type
         race
         hasMod
+        mod
         armorset
         onlyDB
         stats {
+          weight
+          armor
           damage
           rps
-          armor
-          weight
+          magazine
+          idealRange
+          falloffRange
+          maxAmmo
+          criticalHitChance
+          weakSpotDamageBonus
+          staggerModifier
+          weakspot
+          accuracy
+          resistance
+          weakness
+          immunity
+          resistances {
+            bleed
+            fire
+            shock
+            blight
+            corrosion
+          }
         }
       }
     }
