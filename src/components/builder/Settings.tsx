@@ -6,7 +6,8 @@ import { BuildsContext } from "../../context/BuildContext";
 
 const Container = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
+  align-items: center;
   width: 400px;
   margin: 20px auto;
 
@@ -14,6 +15,13 @@ const Container = styled.div`
     box-sizing: border-box;
     width: 100%;
     padding: 10px;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #000;
+
+    &:focus {
+      outline: none;
+    }
   }
 `;
 

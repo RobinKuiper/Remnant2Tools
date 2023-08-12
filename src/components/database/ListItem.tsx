@@ -4,7 +4,6 @@ import Redacted from "./Redacted";
 import ItemLevel from "./ItemLevel";
 import { Flex } from "../../style/global";
 import { BsInfoCircleFill } from "react-icons/bs";
-import { Tooltip } from "react-tooltip";
 import { styled } from "styled-components";
 import { getFieldValue } from "../../dataHelpers";
 import { Link } from "gatsby";
@@ -85,7 +84,9 @@ const ListItem = (props: Props) => {
 
           <div className="title">
             <Link to={`/database/${category.fragment}/${slugify(item.name)}`} title={item.name} state={{ type }}>
-              <h3>{item.name}</h3>
+              <h3>
+                <span data-tooltip-id={`${item.name}_tooltip`}>{item.name}</span>
+              </h3>
             </Link>
 
             {item.description && <p>{item.description}</p>}
@@ -121,20 +122,11 @@ const ListItem = (props: Props) => {
         </Flex>
 
         {type === "tracker" && item.unlock && (
-          <>
-            <div className="unlock-information">
-              <button data-tooltip-id={`${item.name}_tooltip`} data-tooltip-content={item.unlock}>
-                <BsInfoCircleFill /> Unlock information
-              </button>
-            </div>
-            <Tooltip
-              className="tooltip"
-              id={`${item.name}_tooltip`}
-              style={{
-                maxWidth: "200px",
-              }}
-            />
-          </>
+          <div className="unlock-information">
+            <button data-tooltip-id={`${item.name}_tooltip`} data-tooltip-content={item.unlock}>
+              <BsInfoCircleFill /> Unlock information
+            </button>
+          </div>
         )}
       </Flex>
     </Container>

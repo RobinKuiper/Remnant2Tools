@@ -11,10 +11,13 @@ const Container = styled.div`
   margin-top: 20px;
 
   .totals {
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin: 20px;
     font-size: 1.2em;
     font-weight: 900;
-    margin-bottom: 20px;
   }
 
   .items {
@@ -69,27 +72,21 @@ const Container = styled.div`
         flex-direction: row;
         justify-content: center;
         gap: 3px;
-
-        .node {
-          width: 10px;
-          height: 10px;
-          border-radius: 50%;
-          border: 1px solid #000;
-          background: #fff;
-
-          &.active {
-            &.archetype-point {
-              background: #932020;
-            }
-
-            &.trait-point {
-              background: #b6a441;
-            }
-          }
-        }
       }
     }
   }
+`;
+
+const TRAIT_POINT_COLORS = {
+  archetype: "#932020",
+  trait: "#b6a441",
+};
+const TraitCircle = styled.div`
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 1px solid #000;
+  background: ${props => TRAIT_POINT_COLORS[props.type] ?? "#fff"};
 `;
 
 interface Props {
@@ -184,7 +181,10 @@ const TraitsInterface = ({ build, images, showOnlyUnlocked, updateBuildValue }: 
   return (
     <Container>
       <div className="totals">
-        {currentTotalPoints}/{MAX_TRAIT_POINTS} Trait points
+        <TraitCircle type="trait" />
+        <span>
+          {currentTotalPoints}/{MAX_TRAIT_POINTS} Trait points
+        </span>
       </div>
       <div className="items">
         {traits.map(trait => (
@@ -209,15 +209,16 @@ const TraitsInterface = ({ build, images, showOnlyUnlocked, updateBuildValue }: 
             <h3>{trait.name}</h3>
             <div className="nodes">
               {Array.from({ length: 10 }, (_, k) => {
-                let classes = "node ";
+                let type;
                 const archetypeLevel = getArchetypeLevel(trait);
-                if (archetypeLevel > 0) {
-                  classes += k < archetypeLevel ? "active archetype-point" : "";
-                }
                 const traitPoints = build.traits[trait.fragment] ?? 0;
-                classes += k >= archetypeLevel && k < traitPoints + archetypeLevel ? "active trait-point" : "";
+                if (archetypeLevel > 0 && k < archetypeLevel) {
+                  type = "archetype";
+                } else if (k >= archetypeLevel && k < traitPoints + archetypeLevel) {
+                  type = "trait";
+                }
 
-                return <div key={`${trait.fragment}_${k}`} className={classes} />;
+                return <TraitCircle key={`${trait.fragment}_${k}`} type={type} />;
               })}
             </div>
           </div>

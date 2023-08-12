@@ -9,7 +9,7 @@ import "react-tooltip/dist/react-tooltip.css";
 import BuildInterface from "../components/builder/BuildInterface";
 import Head from "../components/layout/Head";
 import { getFieldValue, setFieldValue } from "../dataHelpers";
-import ItemSelectModalNew from "../components/modals/ItemSelectModalNew";
+import ItemSelectModal from "../components/modals/ItemSelectModal";
 import type { Filter } from "../interface/IData";
 import ArchetypesInterface from "../components/builder/ArchetypesInterface";
 import TraitsInterface from "../components/builder/TraitsInterface";
@@ -109,25 +109,6 @@ const Page = styled.div`
             color: #fff;
           }
         }
-      }
-    }
-
-    #settings {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-
-      input {
-        background: transparent;
-        border: none;
-        border-bottom: 1px solid #000;
-
-        &:focus {
-          outline: none;
-        }
-      }
-
-      div {
       }
     }
 
@@ -391,7 +372,7 @@ const Builds = props => {
         </div>
       </Page>
 
-      <ItemSelectModalNew
+      <ItemSelectModal
         setIsOpen={setIsOpen}
         isOpen={modalIsOpen}
         filters={modalFilters}

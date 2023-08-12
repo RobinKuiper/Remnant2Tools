@@ -85,7 +85,7 @@ const Page = styled.div`
 `;
 
 const Category = props => {
-  const { hideUnlocked, toggleHideUnlocked, defaultView } = useContext(SettingContext);
+  const { hideUnlocked, toggleHideUnlocked, view, toggleView } = useContext(SettingContext);
   const { statistics } = useContext(DataContext);
   const categoryFragment = props.pageContext.settings.fragment;
   const type = getPageType(props.path);
@@ -96,12 +96,7 @@ const Category = props => {
   const [query, setQuery] = useState("");
   const [groupBy, setGroupBy] = useState();
   const [sortBy, setSortBy] = useState("name");
-  const [viewAsList, setViewAsList] = useState(defaultView === "list");
   const sortDir = 1;
-
-  useEffect(() => {
-    setViewAsList(defaultView === "list");
-  }, [defaultView]);
 
   const groupText = (value: any) => {
     if (typeof value === "boolean") {
@@ -171,8 +166,6 @@ const Category = props => {
     setSortBy(key);
   };
 
-  const toggleViewType = () => setViewAsList(!viewAsList);
-
   return (
     <Layout>
       <Head title={category.label} description="Track your progress in Remnant II." />
@@ -217,8 +210,8 @@ const Category = props => {
                 </button>
               )}
 
-              <button className="view-switcher" onClick={toggleViewType}>
-                {viewAsList ? <BsFillGrid3X3GapFill size={"30px"} /> : <BsList size={"30px"} />}
+              <button className="view-switcher" onClick={toggleView}>
+                {view === "list" ? <BsFillGrid3X3GapFill size={"30px"} /> : <BsList size={"30px"} />}
               </button>
             </div>
 
@@ -237,7 +230,7 @@ const Category = props => {
             </div>
           </div>
 
-          <Flex wrap="wrap" direction={viewAsList ? "column" : "row"} justifyContent="center">
+          <Flex wrap="wrap" direction={view === "list" ? "column" : "row"} justifyContent="center">
             {data.length > 0 ? (
               data.map(item => {
                 if (groupBy) {
@@ -246,28 +239,12 @@ const Category = props => {
                       <ItemCategory item={item} category={category} type={type} />
                       {item.items &&
                         item.items.map(i => (
-                          <Item
-                            key={i.id}
-                            viewAsList={viewAsList}
-                            item={i}
-                            type={type}
-                            category={category}
-                            images={images.nodes}
-                          />
+                          <Item key={i.id} item={i} type={type} category={category} images={images.nodes} />
                         ))}
                     </>
                   );
                 } else if (item.name) {
-                  return (
-                    <Item
-                      key={item.id}
-                      viewAsList={viewAsList}
-                      item={item}
-                      type={type}
-                      category={category}
-                      images={images.nodes}
-                    />
-                  );
+                  return <Item key={item.id} item={item} type={type} category={category} images={images.nodes} />;
                 }
               })
             ) : (
@@ -312,13 +289,33 @@ export const query = graphql`
         type
         race
         hasMod
+        mod
         armorset
         onlyDB
         stats {
+          weight
+          armor
           damage
           rps
-          armor
-          weight
+          magazine
+          idealRange
+          falloffRange
+          maxAmmo
+          criticalHitChance
+          weakSpotDamageBonus
+          staggerModifier
+          weakspot
+          accuracy
+          resistance
+          weakness
+          immunity
+          resistances {
+            bleed
+            fire
+            shock
+            blight
+            corrosion
+          }
         }
       }
     }

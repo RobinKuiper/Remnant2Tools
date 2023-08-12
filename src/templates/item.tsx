@@ -6,17 +6,19 @@ import Layout from "../components/layout/Layout";
 import Head from "../components/layout/Head";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import Redacted from "../components/database/Redacted";
-import { calculateWeightType, isUnlocked } from "../dataHelpers";
-import ItemStat from "../components/item/ItemStat";
+import { isUnlocked } from "../dataHelpers";
 import { slugify, uppercaseFirstLetter } from "../helpers";
 import Breadcrumb from "../components/layout/Breadcrumb";
-import { Tooltip } from "react-tooltip";
+import ItemStatistics from "../components/database/ItemStatistics";
 
 const Page = styled.div`
   display: flex;
   flex-direction: row;
 
   .item-content {
+    position: relative;
+    background: url("/images/bg3.webp");
+    background-size: cover;
     z-index: 65;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
     width: 90%;
@@ -32,6 +34,21 @@ const Page = styled.div`
 
     @media (max-width: 1500px) {
       width: 100%;
+    }
+
+    .background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(
+        45deg,
+        rgba(255, 255, 255, 1) 11%,
+        rgba(231, 231, 231, 1) 40%,
+        rgba(255, 255, 255, 0) 100%
+      );
+      z-index: -1;
     }
 
     .item {
@@ -88,18 +105,6 @@ const Page = styled.div`
         gap: 30px;
 
         .left {
-          .stats {
-            padding: 20px;
-            border: 1px solid #ddd;
-            background: #f9f9f9;
-            color: #333;
-            width: 300px;
-            border-radius: 10px;
-
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-          }
         }
 
         .right {
@@ -146,6 +151,8 @@ const Category = ({ data, pageContext, location }) => {
         <CategorySidebar type="database" />
 
         <div className="item-content">
+          <div className="background" />
+
           <Breadcrumb
             data={[
               { path: "/", label: "Home" },
@@ -257,20 +264,7 @@ const Category = ({ data, pageContext, location }) => {
             </div>
 
             <div className="information">
-              <div className="left">
-                {item.stats && (
-                  <div className="stats">
-                    {item.stats.weight && (
-                      <ItemStat valueKey="Weight type" value={calculateWeightType(item.stats.weight)} />
-                    )}
-                    {Object.entries(item.stats)
-                      .filter(([key, value]) => key && value)
-                      .map(([key, value]) => (
-                        <ItemStat key={key} valueKey={key} value={value} />
-                      ))}
-                  </div>
-                )}
-              </div>
+              <div className="left">{item.stats && <ItemStatistics stats={item.stats} />}</div>
 
               <div className="right">
                 {item.description && (
@@ -313,7 +307,6 @@ const Category = ({ data, pageContext, location }) => {
           </div>
         </div>
       </Page>
-      <Tooltip id="item" />
     </Layout>
   );
 };

@@ -46,7 +46,7 @@ const ArchetypesInterface = ({ build, openModal, images, handleLevelChange }: Pr
           filters={[{ category: "archetypes" }]}
         />
         <strong>
-          <Link to={`/database/mods/${build.archetype1?.trait.fragment}`} title={build.archetype1?.trait.name}>
+          <Link to={`/database/traits/${build.archetype1?.trait.fragment}`} title={build.archetype1?.trait.name}>
             {build.archetype1?.trait.name}
           </Link>
         </strong>

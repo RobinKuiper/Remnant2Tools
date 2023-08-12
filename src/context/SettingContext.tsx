@@ -12,12 +12,12 @@ interface SettingContextData {
   darkMode: boolean;
   hideUnlocked: boolean;
   showSettings: boolean;
-  defaultView: string;
+  view: string;
   defaultShowRedacted: boolean;
   toggleDarkMode: () => void;
   toggleHideUnlocked: () => void;
   toggleShowSettings: () => void;
-  changeDefaultView: (view: string) => void;
+  toggleView: () => void;
   toggleDefaultShowRedacted: () => void;
 }
 
@@ -25,12 +25,12 @@ const SettingContext = createContext<SettingContextData>({
   darkMode: DEFAULT_VALUES.darkMode,
   hideUnlocked: DEFAULT_VALUES.hideUnlocked,
   showSettings: DEFAULT_VALUES.showSettings,
-  defaultView: DEFAULT_VALUES.defaultView,
+  view: DEFAULT_VALUES.defaultView,
   defaultShowRedacted: DEFAULT_VALUES.defaultShowRedacted,
   toggleDarkMode: () => {},
   toggleHideUnlocked: () => {},
   toggleShowSettings: () => {},
-  changeDefaultView: () => {},
+  toggleView: () => {},
   toggleDefaultShowRedacted: () => {},
 });
 
@@ -42,7 +42,7 @@ const SettingProvider: React.FC<Props> = ({ children }: Props) => {
   const [darkMode, setDarkMode] = useState<boolean>(DEFAULT_VALUES.darkMode);
   const [hideUnlocked, setHideUnlocked] = useState<boolean>(DEFAULT_VALUES.hideUnlocked);
   const [showSettings, setShowSettings] = useState<boolean>(DEFAULT_VALUES.showSettings);
-  const [defaultView, setDefaultView] = useState<string>(DEFAULT_VALUES.defaultView);
+  const [view, setView] = useState<string>(DEFAULT_VALUES.defaultView);
   const [defaultShowRedacted, setDefaultShowRedacted] = useState<boolean>(DEFAULT_VALUES.defaultShowRedacted);
 
   useEffect(() => {
@@ -56,9 +56,9 @@ const SettingProvider: React.FC<Props> = ({ children }: Props) => {
       setHideUnlocked(storedHideUnlocked === "yes");
     }
 
-    const storedDefaultView = localStorage.getItem("view");
-    if (storedDefaultView) {
-      setDefaultView(storedDefaultView);
+    const storedView = localStorage.getItem("view");
+    if (storedView) {
+      setView(storedView);
     }
   }, []);
 
@@ -82,9 +82,10 @@ const SettingProvider: React.FC<Props> = ({ children }: Props) => {
     setDefaultShowRedacted(!defaultShowRedacted);
   };
 
-  const changeDefaultView = view => {
-    localStorage.setItem("view", view);
-    setDefaultView(view);
+  const toggleView = () => {
+    const newView = view === "list" ? "grid" : "list";
+    localStorage.setItem("view", newView);
+    setView(newView);
   };
 
   const contextValue = useMemo(
@@ -92,15 +93,15 @@ const SettingProvider: React.FC<Props> = ({ children }: Props) => {
       darkMode,
       hideUnlocked,
       showSettings,
-      defaultView,
+      view,
       defaultShowRedacted,
       toggleDarkMode,
       toggleHideUnlocked,
       toggleShowSettings,
-      changeDefaultView,
+      toggleView,
       toggleDefaultShowRedacted,
     }),
-    [darkMode, hideUnlocked, showSettings, defaultView, defaultShowRedacted],
+    [darkMode, hideUnlocked, showSettings, view, defaultShowRedacted],
   );
 
   return <SettingContext.Provider value={contextValue}>{children}</SettingContext.Provider>;

@@ -8,6 +8,7 @@ import Search from "../Search";
 import { graphql, useStaticQuery } from "gatsby";
 import { filterItems, isUnlocked, searchItems, sorter } from "../../dataHelpers";
 import type { Filter } from "../../interface/IData";
+import Loader from "../Loader";
 
 Modal.setAppElement("#___gatsby");
 
@@ -65,7 +66,7 @@ interface Props {
   onlyShowUnlocked?: boolean;
 }
 
-const ItemSelectModalNew = ({ setIsOpen, isOpen, filters, callback, onlyShowUnlocked = false }: Props) => {
+const ItemSelectModal = ({ setIsOpen, isOpen, filters, callback, onlyShowUnlocked = false }: Props) => {
   const data = useStaticQuery(graphql`
     {
       images: allFile(filter: { relativePath: { regex: "/items/" } }) {
@@ -146,35 +147,33 @@ const ItemSelectModalNew = ({ setIsOpen, isOpen, filters, callback, onlyShowUnlo
       overlayClassName="overlay"
     >
       <Content>
+        <div id="search">
+          <Search placeholder={"Search items"} onChange={e => setQuery(e.target.value)} width={"100%"} />
+        </div>
+
         {!loading ? (
-          <>
-            <div id="search">
-              <Search placeholder={"Search items"} onChange={e => setQuery(e.target.value)} width={"100%"} />
-            </div>
+          <div id="list">
+            {itemsToShow.length > 0 &&
+              itemsToShow.map(item => (
+                <button key={item.id} onClick={() => handleItemPick(item)}>
+                  <div>
+                    <GatsbyImage alt={item.name} image={getImage(findImageById(item.externalId, images))} />
+                  </div>
+                  <div>
+                    {!isUnlocked(item.category, item.externalId) && <BsLock />}
+                    {item.name}
+                  </div>
+                </button>
+              ))}
 
-            <div id="list">
-              {itemsToShow.length > 0 &&
-                itemsToShow.map(item => (
-                  <button key={item.id} onClick={() => handleItemPick(item)}>
-                    <div>
-                      <GatsbyImage alt={item.name} image={getImage(findImageById(item.externalId, images))} />
-                    </div>
-                    <div>
-                      {!isUnlocked(item.category, item.externalId) && <BsLock />}
-                      {item.name}
-                    </div>
-                  </button>
-                ))}
-
-              {itemsToShow.length === 0 && <p>No (unlocked) items found.</p>}
-            </div>
-          </>
+            {itemsToShow.length === 0 && <p>No (unlocked) items found.</p>}
+          </div>
         ) : (
-          <span>Loading...</span>
+          <Loader loading={loading} />
         )}
       </Content>
     </Modal>
   );
 };
 
-export default ItemSelectModalNew;
+export default ItemSelectModal;
