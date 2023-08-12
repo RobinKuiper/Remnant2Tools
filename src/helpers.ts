@@ -17,7 +17,7 @@ export const findImageById = (id: number, images: any, placeholder: boolean = tr
   }
 
   return (
-    Object.values(images).find(i => i.fields && i.fields.itemId === id) ||
+    images.find(i => i.fields && i.fields.itemId === id) ||
     (placeholder ? Object.values(images).find(i => i.name === "placeholder") : null)
   );
 };

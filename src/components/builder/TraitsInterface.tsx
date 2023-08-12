@@ -91,12 +91,11 @@ const TraitCircle = styled.div`
 
 interface Props {
   build: Build;
-  images: any[];
   showOnlyUnlocked: boolean;
   updateBuildValue: (buildPath: string, value: any) => void;
 }
 
-const TraitsInterface = ({ build, images, showOnlyUnlocked, updateBuildValue }: Props) => {
+const TraitsInterface = ({ build, showOnlyUnlocked, updateBuildValue }: Props) => {
   const data = useStaticQuery(graphql`
     {
       images: allFile(filter: { relativePath: { regex: "/traits/" } }) {
@@ -110,38 +109,25 @@ const TraitsInterface = ({ build, images, showOnlyUnlocked, updateBuildValue }: 
           }
         }
       }
-      items: allItem(filter: { category: { eq: "traits" } }) {
+      traits: allTrait {
         nodes {
-          id
           externalId
           name
           fragment
-          category
-          type
-          trait
-          stats {
-            armor
-          }
         }
       }
     }
   `);
+  const images = data.images.nodes;
   const [traits, setTraits] = useState([]);
   const [currentTotalPoints, setCurrentTotalPoints] = useState(0);
 
   useEffect(() => {
-    let items = data.items.nodes
-      .map(item => {
-        if (item.archetype) {
-          item.archetype = data.find(i => i.category === "archetypes" && i.name === item.archetype) ?? item.archetype;
-        }
-        return item;
-      })
-      .sort((a, b) => sorter(a, b));
+    let traits = data.traits.nodes.sort((a, b) => sorter(a, b));
     if (showOnlyUnlocked) {
-      items = items.filter(item => isUnlocked(item.category, item.externalId));
+      traits = traits.filter(item => isUnlocked(item.category, item.externalId));
     }
-    setTraits(items);
+    setTraits(traits);
   }, [data, showOnlyUnlocked]);
   useEffect(() => {
     let total = 0;

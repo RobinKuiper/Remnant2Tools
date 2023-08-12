@@ -1,7 +1,6 @@
 import React, { createContext, useEffect, useMemo, useState } from "react";
 import { isUnlocked } from "../dataHelpers";
 import { graphql, useStaticQuery } from "gatsby";
-import { CATEGORIES } from "../constants";
 
 const DEFAULT_VALUES = {
   unlocks: {},
@@ -47,14 +46,18 @@ interface Props {
 const DataProvider: React.FC<Props> = ({ children }: Props) => {
   const [unlocks, setUnlocks] = useState<Unlocks>(DEFAULT_VALUES.unlocks);
   const [statistics, setStatistics] = useState<Statistics>(DEFAULT_VALUES.statistics);
-  const data = useStaticQuery(graphql`
+  const { categories } = useStaticQuery(graphql`
     {
-      items: allItem {
-        totalCount
+      categories: allCategory(filter: { settings: { onlyDB: { ne: false }, tracker: {} } }) {
         nodes {
-          category
-          externalId
-          onlyDB
+          settings {
+            fragment
+          }
+          items {
+            category
+            onlyDB
+            externalId
+          }
         }
       }
     }
@@ -76,34 +79,28 @@ const DataProvider: React.FC<Props> = ({ children }: Props) => {
       },
     };
 
-    const allItems = data.items.nodes;
-    allItems
-      .filter(item => {
-        if (typeof item.onlyDB !== "undefined" && item.onlyDB) {
-          return false;
-        }
+    categories.nodes.forEach(category => {
+      const fragment = category.settings.fragment;
+      const items = category.items.filter(item => !item.onlyDB || item.onlyDB === false);
 
-        const categorySettings = CATEGORIES.find(cat => cat.fragment === item.category);
-        return !(!categorySettings || categorySettings.onlyDB);
-      })
-      .forEach(item => {
-        const categoryFragment = item.category;
+      if (!newStatistics[fragment]) {
+        newStatistics[fragment] = {
+          total: items.length,
+          unlocked: 0,
+        };
+      }
 
-        if (!newStatistics[categoryFragment]) {
-          newStatistics[categoryFragment] = {
-            total: 0,
-            unlocked: 0,
-          };
-        }
+      category.items
+        .filter(item => !item.onlyDB || item.onlyDB === false)
+        .forEach(item => {
+          if (isUnlocked(fragment, item.externalId)) {
+            newStatistics[fragment].unlocked++;
+            newStatistics.overall.unlocked++;
+          }
 
-        if (isUnlocked(categoryFragment, item.externalId, unlocks)) {
-          newStatistics[categoryFragment].unlocked++;
-          newStatistics.overall.unlocked++;
-        }
-
-        newStatistics[categoryFragment].total++;
-        newStatistics.overall.total++;
-      });
+          newStatistics.overall.total++;
+        });
+    });
 
     setStatistics(newStatistics);
   };

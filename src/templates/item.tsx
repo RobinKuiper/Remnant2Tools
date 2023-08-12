@@ -10,6 +10,7 @@ import { isUnlocked } from "../dataHelpers";
 import { slugify, uppercaseFirstLetter } from "../helpers";
 import Breadcrumb from "../components/layout/Breadcrumb";
 import ItemStatistics from "../components/database/ItemStatistics";
+import LinkedItem from "../components/LinkedItem";
 
 const Page = styled.div`
   display: flex;
@@ -91,6 +92,11 @@ const Page = styled.div`
             font-size: 0.9em;
 
             span {
+              &.gi-item:not(:last-child) {
+                border-right: 1px solid #000;
+                padding: 0 10px 0 0;
+              }
+
               .key {
                 font-weight: 900;
                 margin-right: 5px;
@@ -138,8 +144,8 @@ const Page = styled.div`
 const REDACTED_COLOR = "#bbbbbb";
 
 const Category = ({ data, pageContext, location }) => {
-  const { category } = pageContext;
-  const { image, item } = data;
+  const { category, item } = pageContext;
+  const { image } = data;
   const unlocked = isUnlocked(item.category, item.externalId);
   const type = category.onlyDB ? "database" : location.state?.type ?? "database";
 
@@ -176,89 +182,39 @@ const Category = ({ data, pageContext, location }) => {
                 <h1>{item.name}</h1>
 
                 <div className="general-information">
-                  <span>{category.singular}</span>
+                  <span className="gi-item">{category.singular}</span>
 
-                  {item.type && (
-                    <>
-                      <span> | </span>
-                      <span>{item.type}</span>
-                    </>
-                  )}
+                  {item.type && <span className="gi-item">{item.type}</span>}
 
                   {item.armorset && (
-                    <>
-                      <span> | </span>
-                      <span>
-                        <Link to={`/database/armorset/${slugify(item.armorset)}`} title={item.armorset}>
-                          {item.armorset}
-                        </Link>
-                      </span>
-                    </>
+                    <span className="gi-item">
+                      <Link to={`/database/armorset/${slugify(item.armorset)}`} title={item.armorset}>
+                        {item.armorset}
+                      </Link>
+                    </span>
                   )}
 
                   {item.world && (
-                    <>
-                      <span> | </span>
-                      <span>
-                        <Redacted value={item.world} defaultShow={unlocked} bgColor={REDACTED_COLOR} />
-                        {item.location && (
-                          <>
-                            &nbsp;-&nbsp;
-                            <Redacted
-                              value={item.location}
-                              defaultShow={unlocked}
-                              bgColor={REDACTED_COLOR}
-                              tooltip={item.locationInformation}
-                            />
-                          </>
-                        )}
-                      </span>
-                    </>
+                    <span className="gi-item">
+                      <Redacted value={item.world} defaultShow={unlocked} bgColor={REDACTED_COLOR} />
+                      {item.location && (
+                        <>
+                          &nbsp;-&nbsp;
+                          <Redacted
+                            value={item.location}
+                            defaultShow={unlocked}
+                            bgColor={REDACTED_COLOR}
+                            tooltip={item.locationInformation}
+                          />
+                        </>
+                      )}
+                    </span>
                   )}
 
-                  {item.hasMod && (
-                    <>
-                      <span> | </span>
-                      <span>
-                        <Link to={`/database/mods/${slugify(item.mod)}`} title={item.mod}>
-                          {item.mod}
-                        </Link>
-                      </span>
-                    </>
-                  )}
-
-                  {item.weapon && (
-                    <>
-                      <span> | </span>
-                      <span>
-                        <Link to={`/database/weapons/${slugify(item.weapon)}`} title={item.weapon}>
-                          {item.weapon}
-                        </Link>
-                      </span>
-                    </>
-                  )}
-
-                  {item.trait && (
-                    <>
-                      <span> | </span>
-                      <span>
-                        <Link to={`/database/traits/${slugify(item.trait)}`} title={item.trait}>
-                          {item.trait}
-                        </Link>
-                      </span>
-                    </>
-                  )}
-
-                  {item.archetype && (
-                    <>
-                      <span> | </span>
-                      <span>
-                        <Link to={`/database/archetypes/${slugify(item.archetype)}`} title={item.archetype}>
-                          {item.archetype}
-                        </Link>
-                      </span>
-                    </>
-                  )}
+                  {item.hasMod && <LinkedItem className="gi-item" item={item.mod} />}
+                  {item.weapon && <LinkedItem className="gi-item" item={item.weapon} />}
+                  {item.trait && <LinkedItem className="gi-item" item={item.trait} />}
+                  {item.archetype && <LinkedItem className="gi-item" item={item.archetype} />}
                 </div>
               </div>
             </div>
@@ -320,55 +276,6 @@ export const query = graphql`
       relativePath
       childImageSharp {
         gatsbyImageData(quality: 80, layout: CONSTRAINED)
-      }
-    }
-    item: item(externalId: { eq: $itemId }) {
-      category
-      externalId
-      name
-      description
-      type
-      armorset
-      world
-      location
-      locationInformation
-      hasMod
-      mod
-      weapon
-      archetype
-      trait
-      unlock
-      links {
-        label
-        items {
-          name
-          category
-        }
-      }
-      stats {
-        weight
-        armor
-        damage
-        rps
-        magazine
-        idealRange
-        falloffRange
-        maxAmmo
-        criticalHitChance
-        weakSpotDamageBonus
-        staggerModifier
-        weakspot
-        accuracy
-        resistance
-        weakness
-        immunity
-        resistances {
-          bleed
-          fire
-          shock
-          blight
-          corrosion
-        }
       }
     }
   }

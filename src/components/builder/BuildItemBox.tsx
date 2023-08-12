@@ -2,10 +2,10 @@ import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import React, { useEffect, useState } from "react";
 import { findImageById } from "../../helpers";
 import type { Build } from "../../interface/Build";
-import { Tooltip } from "react-tooltip";
 import { styled } from "styled-components";
 import type { Filter } from "../../interface/IData";
 import { getFieldValue } from "../../dataHelpers";
+import ItemTooltip from "../database/ItemTooltip";
 
 const Container = styled.div`
   border: 1px solid #000;
@@ -45,22 +45,17 @@ const BuildItemBox = ({ openModal, build, images, buildPath, filters, disabled =
   };
 
   return (
-    <Container
-      className={disabled ? "item-box disabled" : "item-box"}
-      onClick={handleClick}
-      data-tooltip-id={item?.name}
-      data-tooltip-content={item?.name}
-    >
+    <Container className={disabled ? "item-box disabled" : "item-box"} onClick={handleClick}>
       {item && (
-        <div>
+        <div data-tooltip-id={buildPath}>
           {findImageById(item.externalId, images, false) ? (
             <GatsbyImage alt={item.name} image={getImage(findImageById(item.externalId, images, false))} />
           ) : (
             <span>{item.name}</span>
           )}
-          <Tooltip id={item.name} />
         </div>
       )}
+      <ItemTooltip id={buildPath} item={item} />
     </Container>
   );
 };

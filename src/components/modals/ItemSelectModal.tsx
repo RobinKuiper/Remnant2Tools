@@ -82,9 +82,25 @@ const ItemSelectModal = ({ setIsOpen, isOpen, filters, callback, onlyShowUnlocke
           }
         }
       }
-      items: allItem {
+      items: allItem(
+        filter: {
+          category: {
+            in: [
+              "mutators"
+              "armor"
+              "rings"
+              "amulets"
+              "relics"
+              "relicfragments"
+              "mods"
+              "traits"
+              "weapons"
+              "archetypes"
+            ]
+          }
+        }
+      ) {
         nodes {
-          id
           externalId
           name
           fragment
@@ -92,9 +108,34 @@ const ItemSelectModal = ({ setIsOpen, isOpen, filters, callback, onlyShowUnlocke
           type
           trait
           mod
-          modDescription
+
+          race
+          mod
+          armorset
           stats {
+            weight
             armor
+            damage
+            rps
+            magazine
+            idealRange
+            falloffRange
+            maxAmmo
+            criticalHitChance
+            weakSpotDamageBonus
+            staggerModifier
+            weakspot
+            accuracy
+            resistance
+            weakness
+            immunity
+            resistances {
+              bleed
+              fire
+              shock
+              blight
+              corrosion
+            }
           }
         }
       }
@@ -155,7 +196,7 @@ const ItemSelectModal = ({ setIsOpen, isOpen, filters, callback, onlyShowUnlocke
           <div id="list">
             {itemsToShow.length > 0 &&
               itemsToShow.map(item => (
-                <button key={item.id} onClick={() => handleItemPick(item)}>
+                <button key={item.externalId} onClick={() => handleItemPick(item)}>
                   <div>
                     <GatsbyImage alt={item.name} image={getImage(findImageById(item.externalId, images))} />
                   </div>
