@@ -17,6 +17,9 @@ const Page = styled.div`
   flex-direction: row;
 
   .item-content {
+    position: relative;
+    background: url("/images/bg3.webp");
+    background-size: cover;
     z-index: 65;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
     width: 90%;
@@ -32,6 +35,21 @@ const Page = styled.div`
 
     @media (max-width: 1500px) {
       width: 100%;
+    }
+
+    .background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(
+        45deg,
+        rgba(255, 255, 255, 1) 11%,
+        rgba(231, 231, 231, 1) 40%,
+        rgba(255, 255, 255, 0) 100%
+      );
+      z-index: -1;
     }
 
     .item {
@@ -146,6 +164,8 @@ const Category = ({ data, pageContext, location }) => {
         <CategorySidebar type="database" />
 
         <div className="item-content">
+          <div className="background" />
+          
           <Breadcrumb
             data={[
               { path: "/", label: "Home" },
