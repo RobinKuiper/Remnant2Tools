@@ -4,9 +4,11 @@ import { DataContext } from "../../context/DataContext";
 import { calculatePercentage } from "../../helpers";
 import { CATEGORIES } from "../../constants";
 import { Link } from "gatsby";
+import Loader from "../Loader";
 
 const Container = styled.div`
   width: 400px;
+  min-height: 600px;
 
   table {
     width: 100%;
@@ -56,46 +58,49 @@ const StatisticsPanel = () => {
 
   return (
     <Container className="panel">
-      <h3>Unlockable Statistics</h3>
       {!loading ? (
-        <table cellSpacing={0} cellPadding={10}>
-          <tbody>
-            {CATEGORIES.map(category => {
-              if (category.onlyDB) {
-                return;
-              }
+     <>
+       <h3>Unlockable Statistics</h3>
 
-              const { fragment, label } = category;
-              const { unlocked, total } = statistics[fragment];
-              const perc = calculatePercentage(unlocked, total, 2);
+       <table cellSpacing={0} cellPadding={10}>
+         <tbody>
+         {CATEGORIES.map(category => {
+           if (category.onlyDB) {
+             return;
+           }
 
-              return (
-                <tr key={fragment}>
-                  <td className="title">
-                    <Link to={`/tracker/${fragment}`} title={label}>
-                      {label}
-                    </Link>
-                  </td>
-                  <td>
-                    {unlocked}/{total}
-                  </td>
-                  <td>{perc}%</td>
-                </tr>
-              );
-            })}
-          </tbody>
-          <tfoot>
-            <tr>
-              <td className="title">Overall</td>
-              <td>
-                {totals.unlocked}/{totals.total}
-              </td>
-              <td>{totals.percentage}%</td>
-            </tr>
-          </tfoot>
-        </table>
+           const { fragment, label } = category;
+           const { unlocked, total } = statistics[fragment];
+           const perc = calculatePercentage(unlocked, total, 2);
+
+           return (
+             <tr key={fragment}>
+               <td className="title">
+                 <Link to={`/tracker/${fragment}`} title={label}>
+                   {label}
+                 </Link>
+               </td>
+               <td>
+                 {unlocked}/{total}
+               </td>
+               <td>{perc}%</td>
+             </tr>
+           );
+         })}
+         </tbody>
+         <tfoot>
+         <tr>
+           <td className="title">Overall</td>
+           <td>
+             {totals.unlocked}/{totals.total}
+           </td>
+           <td>{totals.percentage}%</td>
+         </tr>
+         </tfoot>
+       </table>
+     </>
       ) : (
-        <span>Loading...</span>
+        <Loader color={"#fff"} />
       )}
     </Container>
   );

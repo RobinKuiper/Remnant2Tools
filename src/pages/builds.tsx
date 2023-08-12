@@ -9,7 +9,7 @@ import "react-tooltip/dist/react-tooltip.css";
 import BuildInterface from "../components/builder/BuildInterface";
 import Head from "../components/layout/Head";
 import { getFieldValue, setFieldValue } from "../dataHelpers";
-import ItemSelectModalNew from "../components/modals/ItemSelectModalNew";
+import ItemSelectModal from "../components/modals/ItemSelectModal";
 import type { Filter } from "../interface/IData";
 import ArchetypesInterface from "../components/builder/ArchetypesInterface";
 import TraitsInterface from "../components/builder/TraitsInterface";
@@ -372,7 +372,7 @@ const Builds = props => {
         </div>
       </Page>
 
-      <ItemSelectModalNew
+      <ItemSelectModal
         setIsOpen={setIsOpen}
         isOpen={modalIsOpen}
         filters={modalFilters}

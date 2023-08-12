@@ -78,9 +78,9 @@ const Container = styled.div`
 `;
 
 const TRAIT_POINT_COLORS = {
-  "archetype": "#932020",
-  "trait": "#b6a441"
-}
+  archetype: "#932020",
+  trait: "#b6a441",
+};
 const TraitCircle = styled.div`
   width: 10px;
   height: 10px;
@@ -182,7 +182,9 @@ const TraitsInterface = ({ build, images, showOnlyUnlocked, updateBuildValue }: 
     <Container>
       <div className="totals">
         <TraitCircle type="trait" />
-        <span>{currentTotalPoints}/{MAX_TRAIT_POINTS} Trait points</span>
+        <span>
+          {currentTotalPoints}/{MAX_TRAIT_POINTS} Trait points
+        </span>
       </div>
       <div className="items">
         {traits.map(trait => (
@@ -215,8 +217,8 @@ const TraitsInterface = ({ build, images, showOnlyUnlocked, updateBuildValue }: 
                 } else if (k >= archetypeLevel && k < traitPoints + archetypeLevel) {
                   type = "trait";
                 }
-                
-                return <TraitCircle key={`${trait.fragment}_${k}`} type={type} />
+
+                return <TraitCircle key={`${trait.fragment}_${k}`} type={type} />;
               })}
             </div>
           </div>

@@ -165,7 +165,7 @@ const Category = ({ data, pageContext, location }) => {
 
         <div className="item-content">
           <div className="background" />
-          
+
           <Breadcrumb
             data={[
               { path: "/", label: "Home" },

@@ -4,11 +4,17 @@
 
 ## Version 1.0.5
 
+- Improved design for the [builder](https://remnant.rkuiper.nl/builds)
+- Improved design for the single item pages
+- Added loading indicators to different parts of the site
+- Improved list/grid view system
+- Removed default view setting from settings
+
 ## Version 1.0.4
 
 - Added [archetype](https://remnant.rkuiper.nl/database/archetypes) selection to [builder](https://remnant.rkuiper.nl/builds)
 - Added [Mantagora](https://remnant.rkuiper.nl/database/bosses/mantagora) boss
-- Linking more items between eachother
+- Linking more items between each other
 - Fixed [statistic](https://remnant.rkuiper.nl/tracker/statistics) count bugs
 - Removed [armorsets](https://remnant.rkuiper.nl/database/armorset) from [statistics](https://remnant.rkuiper.nl/tracker/statistics) lists
 - Complete [builder](https://remnant.rkuiper.nl/builds) codebase overhaul

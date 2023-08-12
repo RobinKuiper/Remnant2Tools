@@ -1,9 +1,10 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, {useContext, useEffect, useRef, useState} from "react";
 import { styled } from "styled-components";
 import { DataContext } from "../../context/DataContext";
 import { findImageById } from "../../helpers";
 import ListItem from "./ListItem";
 import GridItem from "./GridItem";
+import {SettingContext} from "../../context/SettingContext";
 
 const Container = styled.div`
   position: relative;
@@ -61,21 +62,25 @@ const Container = styled.div`
     width: 100%;
   }
 `;
+const STATE_CLASSES = {
+  true: "unlocked",
+  false: "locked"
+}
 
 interface Props {
   item: any;
   category: any;
   images: any;
-  viewAsList: boolean;
   type?: string;
 }
 
-const Item = ({ item, category, images, viewAsList, type = "tracker" }: Props) => {
+const Item = ({ item, category, images, type }: Props) => {
+  const { view } = useContext(SettingContext);
+  const ref = useRef();
   const { unlocks, toggleUnlock, updateLevel } = useContext(DataContext);
   const [unlocked, setUnlocked] = useState(false);
   const [level, setLevel] = useState<number>();
   const [image, setImage] = useState<any | null>(null);
-  const [classNames, setClassNames] = useState<string>("");
 
   useEffect(() => {
     setImage(findImageById(item.externalId, images));
@@ -96,15 +101,13 @@ const Item = ({ item, category, images, viewAsList, type = "tracker" }: Props) =
     }
   }, [item, unlocks, type]);
 
-  useEffect(() => {
-    let classes = "";
-    classes += !unlocked ? "locked " : "unlocked ";
-    classes += viewAsList ? "list " : "grid ";
-    setClassNames(classes);
-  }, [viewAsList, unlocked]);
-
   const handleChange = e => {
     const id = parseInt(e.target.id);
+    
+    if (ref.current) {
+      ref.current.classList.toggle("unlocked");
+      ref.current.classList.toggle("locked");
+    }
 
     toggleUnlock(category.fragment, id);
   };
@@ -116,17 +119,17 @@ const Item = ({ item, category, images, viewAsList, type = "tracker" }: Props) =
   }, [level]);
 
   return (
-    <Container className={classNames}>
-      {viewAsList ? (
+    <Container ref={ref} className={`${view} ${STATE_CLASSES[unlocked]}`}>
+      {view === "list" ? (
         <ListItem
           item={item}
           category={category}
           unlocked={unlocked}
           handleChange={handleChange}
-          level={level}
+          level={level ?? 0}
           setLevel={setLevel}
           image={image}
-          type={type}
+          type={type ?? "tracker"}
         />
       ) : (
         <GridItem
@@ -134,10 +137,10 @@ const Item = ({ item, category, images, viewAsList, type = "tracker" }: Props) =
           category={category}
           unlocked={unlocked}
           handleChange={handleChange}
-          level={level}
+          level={level ?? 0}
           setLevel={setLevel}
           image={image}
-          type={type}
+          type={type ?? "tracker"}
         />
       )}
     </Container>

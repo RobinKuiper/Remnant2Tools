@@ -117,7 +117,7 @@ const Container = styled.div`
 `;
 
 const SettingsSidebar = () => {
-  const { showSettings, changeDefaultView, defaultView, defaultShowRedacted, toggleDefaultShowRedacted } =
+  const { showSettings, defaultShowRedacted, toggleDefaultShowRedacted } =
     useContext(SettingContext);
   const { updateUnlocks } = useContext(DataContext);
   const { updateBuilds } = useContext(BuildsContext);
@@ -170,33 +170,7 @@ const SettingsSidebar = () => {
       <h2>Settings</h2>
 
       <div className="layout">
-        <h3>Layout</h3>
-
-        <div className="layout-settings-item">
-          <label
-            for="defaultView"
-            className="title"
-            data-tooltip-id="tooltip"
-            data-tooltip-content={"Change the default view for the tracker and database items"}
-            data-tooltip-place="bottom"
-          >
-            Default View
-          </label>
-          <select
-            id="defaultView"
-            onChange={e => changeDefaultView(e.target.value)}
-            data-tooltip-id="tooltip"
-            data-tooltip-content={"Change the default view for the tracker and database items"}
-            data-tooltip-place="bottom"
-          >
-            <option value="list" selected={defaultView === "list"}>
-              List
-            </option>
-            <option value="grid" selected={defaultView === "grid"}>
-              Grid
-            </option>
-          </select>
-        </div>
+        <h3>Data</h3>
 
         <div className="layout-settings-item">
           <label

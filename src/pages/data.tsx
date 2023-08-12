@@ -1,10 +1,10 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import data from "../data/data.json";
 import { slugify } from "../helpers";
 
 const Data = () => {
   const [items, setItems] = useState([]);
-  
+
   useEffect(() => {
     const newItems = [];
     data.forEach(item => {
@@ -24,8 +24,8 @@ const Data = () => {
     });
 
     setItems(newItems);
-  }, [])
-  
+  }, []);
+
   return (
     <div>
       <textarea>{JSON.stringify(items)}</textarea>
