@@ -8,8 +8,8 @@ const Container = styled.span`
 
   span {
     &.redacted {
-      color: ${props => props.bgColor} !important;
-      background: ${props => props.bgColor} !important;
+      color: ${props => props.bgcolor} !important;
+      background: ${props => props.bgcolor} !important;
     }
   }
 `;
@@ -33,7 +33,7 @@ const Redacted = ({ value, defaultShow = false, bgColor = "#f1f1f1", tooltip }: 
 
   return (
     <Container
-      bgColor={bgColor}
+      bgcolor={bgColor}
       onClick={toggleShow}
       data-tooltip-id="redacted-tooltip"
       data-tooltip-content={(show && tooltip) || ""}
