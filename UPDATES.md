@@ -6,10 +6,11 @@
 
 - Improved design for the [builder](https://remnant.rkuiper.nl/builds)
 - Improved design for the single item pages
-- Added tooltips for items (this doesn't work for linked items yet)
+- Added tooltips for items
 - Added loading indicators to different parts of the site
 - Improved list/grid view system
 - Removed default view setting from settings
+- And yet another complete data overhaul
 
 ## Version 1.0.4
 

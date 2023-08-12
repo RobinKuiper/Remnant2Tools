@@ -7,17 +7,16 @@ import { calculateStringMatchPercentage } from "./src/helpers";
 export const onCreateNode = ({ node, actions }) => {
   const { createNodeField } = actions;
 
+  // Add item id to images
   if (node.internal.type === "File" && node.relativePath && typeof node.relativePath === "string") {
     const arr = node.relativePath.split("/");
     const categoryFragment = arr[1];
-    if (!arr[2] || typeof arr[2] !== "string") {
+    if (!arr[2] || typeof arr[2] !== "string" || !data[categoryFragment]) {
       return;
     }
     const name = arr[2].split(".")[0];
 
-    const item = data.find(
-      item => item.category === categoryFragment && calculateStringMatchPercentage(item.fragment, name) > 80,
-    );
+    const item = data[categoryFragment].items.find(item => calculateStringMatchPercentage(item.fragment, name) > 80);
 
     if (item) {
       createNodeField({
@@ -30,80 +29,127 @@ export const onCreateNode = ({ node, actions }) => {
 };
 
 export const sourceNodes: GatsbyNode[`sourceNodes`] = gatsbyApi => {
-  data.forEach(item => {
-    const settings = CATEGORIES.find(c => c.fragment === item.category);
-    if (!settings) {
-      return;
-    }
+  // Loop over all categories
+  Object.values(data).forEach(category => {
+    const settings = category.settings;
+    const items = category.items;
 
-    if (settings.linkedBy && settings.linkedBy.length > 0) {
-      item.links = [];
-      settings.linkedBy.forEach(link => {
-        const linkedItems = data.filter(i => {
-          return item.category
-            ? link.category === i.category && item[link.link[0]] === i[link.link[1]]
-            : link.link[0] === i[link.link[1]];
-        });
+    category.items = items.map(item => ({ ...item, externalId: item.id }));
 
-        item.links.push({
-          label: link.label,
-          items: linkedItems,
-        });
-      });
-    }
-
+    // Create a category node
     const node = {
-      ...item,
-      externalId: item.id,
+      ...category,
+      itemCount: category.items.length,
       // Required fields
-      id: gatsbyApi.createNodeId(item.id),
+      id: gatsbyApi.createNodeId(settings.fragment),
       internal: {
-        type: `item`,
-        contentDigest: gatsbyApi.createContentDigest(item),
+        type: "category",
+        contentDigest: gatsbyApi.createContentDigest(category),
       },
     } as NodeInput;
-
     gatsbyApi.actions.createNode(node);
+
+    // Loop over all items in the category
+    items.forEach(item => {
+      // Link linked items to this item
+      if (settings.linkedBy && settings.linkedBy.length > 0) {
+        item.links = [];
+        settings.linkedBy.forEach(link => {
+          const linkedItems = data[link.category].items.filter(i => item[link.link[0]] === i[link.link[1]]);
+
+          item.links.push({
+            label: link.label,
+            items: linkedItems,
+          });
+        });
+      }
+
+      // Create a node in the correct category
+      let node = {
+        ...item,
+        externalId: item.id,
+        // Required fields
+        id: item.id.toString(),
+        internal: {
+          type: settings.singular.replace(" ", ""),
+          contentDigest: gatsbyApi.createContentDigest(item),
+        },
+      } as NodeInput;
+      gatsbyApi.actions.createNode(node);
+
+      // Create a node in all items
+      node = {
+        ...item,
+        externalId: item.id,
+        // Required fields
+        id: gatsbyApi.createNodeId(item.id),
+        internal: {
+          type: "item",
+          contentDigest: gatsbyApi.createContentDigest(item),
+        },
+      } as NodeInput;
+      gatsbyApi.actions.createNode(node);
+    });
   });
 };
 
-export const createPages: GatsbyNode["createPages"] = async ({ actions, graphql }) => {
+export const createPages: GatsbyNode["createPages"] = async ({ actions, getNodesByType }) => {
   const { createPage } = actions;
 
   // Create category pages for tracker and database
-  CATEGORIES.forEach(category => {
+  const categories = getNodesByType("category");
+  categories.forEach(category => {
     const page = {
-      path: `/tracker/${category.fragment}`,
+      path: `/tracker/${category.settings.fragment}`,
       component: resolve(__dirname, "./src/templates/category.tsx"),
       context: {
-        settings: category,
-        categoryFragment: category.fragment,
-        imgRegex: `/${category.fragment}/`,
+        settings: category.settings,
+        items: category.items.map(i => ({ ...i, externalId: i.id })),
+        imgRegex: `/${category.settings.fragment}/`,
       },
     };
 
-    if (category.tracker) {
-      page.path = `/tracker/${category.fragment}`;
+    // Create tracker category page
+    if (category.settings.tracker) {
+      page.path = `/tracker/${category.settings.fragment}`;
 
       createPage(page);
     }
 
-    if (category.database) {
-      page.path = `/database/${category.fragment}`;
+    // Create database category page
+    if (category.settings.database) {
+      page.path = `/database/${category.settings.fragment}`;
 
       createPage(page);
     }
   });
 
   // Create a page for every item
-  data.forEach(item => {
-    const name = slugify(item.name);
+  const items = getNodesByType("item");
+  items.forEach(item => {
+    const newItem = { ...item };
+    // Link items
+    if (newItem.weapon && newItem.weapon !== "") {
+      const weapons = getNodesByType("Weapon");
+      newItem.weapon = weapons.find(weapon => weapon.name === newItem.weapon);
+    } else if (newItem.mod && newItem.mod !== "") {
+      const mods = getNodesByType("Mod");
+      newItem.mod = mods.find(mod => mod.name === newItem.mod);
+    } else if (newItem.trait && newItem.trait !== "") {
+      const traits = getNodesByType("Trait");
+      newItem.trait = traits.find(trait => trait.name === newItem.trait);
+    } else if (newItem.archetype && newItem.archetype !== "") {
+      const archetypes = getNodesByType("Archetype");
+      newItem.archetype = archetypes.find(archetype => archetype.name === newItem.archetype);
+    }
+
     const page = {
-      path: `/database/${item.category}/${name}`,
+      path: `/database/${newItem.category}/${newItem.fragment}`,
       component: resolve(__dirname, "./src/templates/item.tsx"),
       context: {
-        itemId: item.id,
-        category: CATEGORIES.find(c => c.fragment === item.category),
+        item: newItem,
+        category: CATEGORIES.find(c => c.fragment === newItem.category),
+        itemId: newItem.externalId,
       },
     };
 

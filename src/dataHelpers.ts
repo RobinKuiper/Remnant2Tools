@@ -86,11 +86,6 @@ export const getAllItems = (trackables: boolean = false) => {
     : data;
 };
 
-export const getAllLockedItems = () => {
-  const allItems = getAllItems();
-  return allItems.filter(item => !isUnlocked(item.category, item.externalId));
-};
-
 export const isUnlocked = (categoryFragment: string, id: number): boolean => {
   const unlocks = getUnlocks();
   return unlocks[categoryFragment] && unlocks[categoryFragment][id] && unlocks[categoryFragment][id].unlocked;

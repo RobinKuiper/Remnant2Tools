@@ -88,6 +88,7 @@ const Category = props => {
   const { hideUnlocked, toggleHideUnlocked, view, toggleView } = useContext(SettingContext);
   const { statistics } = useContext(DataContext);
   const categoryFragment = props.pageContext.settings.fragment;
+  const categoryItems = props.pageContext.items;
   const type = getPageType(props.path);
   const images = props.data.images;
   const isTracker = type === "tracker";
@@ -148,7 +149,7 @@ const Category = props => {
     }
 
     // const allItems = hideUnlocked && isTracker ? getAllLockedItems() : getAllItems(isTracker),
-    const items = props.data.items.nodes
+    const items = categoryItems
       .filter(item => (hideUnlocked && isTracker ? !isUnlocked(categoryFragment, item.externalId) : true))
       .filter(item => !(isTracker && typeof item.onlyDB !== "undefined" && item.onlyDB))
       .sort((a, b) => sorter(a, b, sortBy, sortDir));
@@ -264,7 +265,7 @@ const Category = props => {
 export default Category;
 
 export const query = graphql`
-  query ($imgRegex: String!, $categoryFragment: String!) {
+  query ($imgRegex: String!) {
     images: allFile(filter: { relativePath: { regex: $imgRegex } }) {
       nodes {
         relativePath
@@ -273,49 +274,6 @@ export const query = graphql`
         }
         childImageSharp {
           gatsbyImageData(quality: 80, layout: CONSTRAINED)
-        }
-      }
-    }
-    items: allItem(filter: { category: { eq: $categoryFragment } }, sort: { name: ASC }) {
-      totalCount
-      nodes {
-        id
-        externalId
-        name
-        description
-        world
-        location
-        unlock
-        type
-        race
-        hasMod
-        mod
-        armorset
-        onlyDB
-        stats {
-          weight
-          armor
-          damage
-          rps
-          magazine
-          idealRange
-          falloffRange
-          maxAmmo
-          criticalHitChance
-          weakSpotDamageBonus
-          staggerModifier
-          weakspot
-          accuracy
-          resistance
-          weakness
-          immunity
-          resistances {
-            bleed
-            fire
-            shock
-            blight
-            corrosion
-          }
         }
       }
     }

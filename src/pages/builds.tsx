@@ -350,12 +350,7 @@ const Builds = props => {
                 {tab === "equipment" && <BuildInterface build={build} images={images.nodes} openModal={openModal} />}
 
                 {tab === "traits" && (
-                  <TraitsInterface
-                    build={build}
-                    images={images.nodes}
-                    showOnlyUnlocked={onlyUnlocked}
-                    updateBuildValue={updateBuildValue}
-                  />
+                  <TraitsInterface build={build} showOnlyUnlocked={onlyUnlocked} updateBuildValue={updateBuildValue} />
                 )}
 
                 {tab === "archetypes" && (
