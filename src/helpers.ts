@@ -68,3 +68,16 @@ export const calculateStringMatchPercentage = (string1, string2) => {
 
 export const uppercaseFirstLetter = (word: string): string =>
   word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+
+export const getTimeElapsedInSeconds = (date: Date): number => {
+  const currentDate = new Date();
+  return (currentDate.getTime() - date.getTime()) / 1000;
+};
+
+export const restrainNumber = (value: number, max: number, subtract: boolean = false) => {
+  if (subtract) {
+    return value - 1 < max ? max : value - 1;
+  }
+
+  return value + 1 > max ? max : value + 1;
+};

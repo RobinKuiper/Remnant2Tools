@@ -1,5 +1,6 @@
 import React from "react";
 import { styled } from "styled-components";
+import { restrainNumber } from "../../helpers";
 
 const Container = styled.div`
   display: flex;
@@ -27,36 +28,35 @@ const Container = styled.div`
   }
 `;
 
-const restrainNumber = (value: number, max: number, subtract: boolean = false) => {
-  if (subtract) {
-    return value - 1 < max ? max : value - 1;
-  }
-
-  return value + 1 > max ? max : value + 1;
-};
-
-const ItemLevel = ({ level, setLevel, maxLevel }) => {
+const ItemLevelNew = ({ level, callback, maxLevel, minLevel = 1, disabled = false }) => {
   const addLevel = () => {
-    setLevel(prevState => (prevState ? restrainNumber(prevState, maxLevel) : 1));
+    callback(restrainNumber(level ?? minLevel, maxLevel));
   };
 
   const subLevel = () => {
-    setLevel(prevState => (prevState ? restrainNumber(prevState, 1, true) : 1));
+    callback(restrainNumber(level ?? minLevel, minLevel, true));
   };
 
   const handleChange = e => {
     const value = parseInt(e.target.value);
 
-    setLevel(value);
+    if (value > maxLevel || value < minLevel) {
+      return;
+    }
+    callback(value);
   };
 
   return (
     <Container>
-      <button onClick={subLevel}>-</button>
-      <input type="number" value={level} onChange={handleChange} />
-      <button onClick={addLevel}>+</button>
+      <button onClick={subLevel} disabled={disabled}>
+        -
+      </button>
+      <input type="number" value={level} onChange={handleChange} disabled={disabled} />
+      <button onClick={addLevel} disabled={disabled}>
+        +
+      </button>
     </Container>
   );
 };
 
-export default ItemLevel;
+export default ItemLevelNew;

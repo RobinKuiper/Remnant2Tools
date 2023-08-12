@@ -237,7 +237,7 @@ const Category = ({ data, pageContext, location }) => {
                       <span>
                         <Link to={`/database/traits/${slugify(item.trait)}`} title={item.trait}>
                           {item.trait}
-                        </Link> 
+                        </Link>
                       </span>
                     </>
                   )}

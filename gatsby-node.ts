@@ -52,10 +52,6 @@ export const sourceNodes: GatsbyNode[`sourceNodes`] = gatsbyApi => {
       });
     }
 
-    if (item.category === "armorset") {
-      console.log(item);
-    }
-
     const node = {
       ...item,
       externalId: item.id,

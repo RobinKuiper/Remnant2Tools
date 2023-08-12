@@ -7,12 +7,18 @@ import { graphql, useStaticQuery } from "gatsby";
 import SettingsSidebar from "./SettingsSidebar";
 import { BiLogoPatreon, BiLogoPaypal } from "react-icons/bi";
 import { StaticImage } from "gatsby-plugin-image";
+import { ToastContainer } from "react-toastify";
 // import CookieConsent from "react-cookie-consent";
 
 const Container = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
+
+  .toast {
+    background: #292929;
+    top: 100px;
+  }
 
   #content {
     margin-top: 70px;
@@ -158,6 +164,8 @@ const Layout = ({ children }: Props) => {
       {/*  This website uses cookies to enhance the user experience.*/}
       {/*</CookieConsent>*/}
       <SettingsSidebar />
+
+      <ToastContainer theme="dark" />
     </Container>
   );
 };

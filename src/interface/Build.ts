@@ -5,15 +5,24 @@ export interface Mod extends Item {
 export interface Weapon extends Item {
   mod?: string;
   modDescription?: string;
-  description?: string;
 }
 
 export interface Item {
   name: string;
   id: number;
-  mod?: string;
-  modDescription?: string;
+  externalId: number;
   description?: string;
+}
+
+export interface Trait extends Item {
+  fragment: string;
+}
+
+export interface Archetype extends Item {
+  externalId: number;
+  name: string;
+  trait: Trait;
+  level: number;
 }
 
 export interface Build {
@@ -31,11 +40,9 @@ export interface Build {
   amulet: Item | null;
   rings: [Item?, Item?, Item?, Item?];
   usedTraitPoints: number;
-  traits?: {
+  traits: {
     [key: string]: number;
   };
-  archetype1: Item | null;
-  archetype2: Item | null;
-  archetype1_level: number;
-  archetype2_level: number;
+  archetype1: Archetype | null;
+  archetype2: Archetype | null;
 }

@@ -1,22 +1,23 @@
-import {graphql} from "gatsby";
-import React, { useContext, useEffect, useState } from "react";
+import { graphql } from "gatsby";
+import React, { useContext, useState } from "react";
 import { styled } from "styled-components";
-import ItemSelectModal from "../components/builder/ItemSelectModal";
 import BuildsSidebar from "../components/builder/BuildsSidebar";
 import Layout from "../components/layout/Layout";
 import { BuildsContext } from "../context/BuildContext";
 import type { Build, Item } from "../interface/Build";
 import "react-tooltip/dist/react-tooltip.css";
 import BuildInterface from "../components/builder/BuildInterface";
-import { GatsbyImage, getImage } from "gatsby-plugin-image";
-import { findImageById } from "../helpers";
-import { MAX_TRAIT_POINTS } from "../constants";
 import Head from "../components/layout/Head";
-import BuildItemBox from "../components/builder/BuildItemBox";
-import {isUnlocked} from "../dataHelpers";
-import ItemLevel from "../components/database/ItemLevel";
+import { getFieldValue, setFieldValue } from "../dataHelpers";
+import ItemSelectModalNew from "../components/modals/ItemSelectModalNew";
+import type { Filter } from "../interface/IData";
+import ArchetypesInterface from "../components/builder/ArchetypesInterface";
+import TraitsInterface from "../components/builder/TraitsInterface";
+import Settings from "../components/builder/Settings";
+import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
 
-const newBuild: Build = {
+const NEW_BUILD: Build = {
   headpiece: null,
   chest: null,
   hands: null,
@@ -34,19 +35,22 @@ const newBuild: Build = {
   traits: {},
   archetype1: null,
   archetype2: null,
-  archetype1_level: 1,
-  archetype2_level: 1
 };
-const newStatistics = {
-  armor: 0,
-  weight: 0,
-  resistances: {
-    bleed: 0,
-    fire: 0,
-    shock: 0,
-    blight: 0,
-    corrosion: 0,
-  },
+// const NEW_STATISTICS = {
+//   armor: 0,
+//   weight: 0,
+//   resistances: {
+//     bleed: 0,
+//     fire: 0,
+//     shock: 0,
+//     blight: 0,
+//     corrosion: 0,
+//   },
+// };
+const MOD_INDEXES = {
+  mainHand: 0,
+  melee: 1,
+  offhand: 2,
 };
 
 const Page = styled.div`
@@ -131,319 +135,197 @@ const Page = styled.div`
       width: 100%;
     }
   }
-
-  .traits {
-    margin-top: 20px;
-
-    .totals {
-      text-align: center;
-      font-size: 1.2em;
-      font-weight: 900;
-      margin-bottom: 20px;
-    }
-
-    .items {
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: center;
-
-      @media (max-width: 1500px) {
-      }
-
-      .trait {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-        text-align: center;
-        cursor: pointer;
-        padding: 10px;
-        box-sizing: border-box;
-        transition: all 0.3s ease-in-out;
-
-        &:hover {
-          background: #b0b0b0;
-        }
-
-        .image {
-          width: 150px;
-          height: auto;
-          overflow: hidden;
-
-          @media (max-width: 1200px) {
-            height: 100px;
-          }
-
-          img {
-            width: 150px;
-
-            @media (max-width: 1200px) {
-              transform: translateY(-80px);
-            }
-          }
-        }
-
-        .nodes {
-          display: flex;
-          flex-direction: row;
-          justify-content: center;
-          gap: 3px;
-
-          .node {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            border: 1px solid #000;
-            background: #fff;
-
-            &.active {
-              background: #932020;
-            }
-          }
-        }
-      }
-    }
-  }
-
-  .archetypes {
-    margin-top: 20px;
-    display: flex;
-    justify-content: center;
-    gap: 40px;
-
-    .archetype {
-      
-      .item-box {
-        width: 128px;
-        height: 128px;
-      }
-    }
-  }
 `;
 
 const Builds = props => {
   const { saveBuild } = useContext(BuildsContext);
-  const {images, items} = props.data;
+  const { images } = props.data;
   const [modalIsOpen, setIsOpen] = useState(false);
-  const [statistics, setStatistics] = useState(newStatistics);
-  const [modalItems, setModalItems] = useState([]);
-  const [modalCategory, setModalCategory] = useState("");
-  const [index, setIndex] = useState<number | null>(null);
-  const [type, setType] = useState<string>(null);
+  const [modalFilters, setModalFilters] = useState<Filter[]>([]);
+  const [buildPath, setBuildPath] = useState<string>("");
+  // const [statistics, setStatistics] = useState(NEW_STATISTICS);
   const [tab, setTab] = useState<string>("equipment");
   const [name, setName] = useState<string>("");
   const [oldName, setOldName] = useState<string>("");
-  const [build, setBuild] = useState<Build>(newBuild);
-  const [archetype1Level, setArchetype1Level] = useState<number>(1);
-  const [archetype2Level, setArchetype2Level] = useState<number>(1);
-  const traits = props.data.items.categories.find(category => category.fragment === "traits").nodes;
+  const [build, setBuild] = useState<Build>(NEW_BUILD);
   const [onlyUnlocked, setOnlyUnlocked] = useState(false);
 
+  const openModal = (filters: Filter[], buildPath: string) => {
+    setBuildPath(buildPath);
+    setModalFilters(filters);
+    setIsOpen(true);
+  };
   const toggleOnlyUnlocked = () => {
     setOnlyUnlocked(!onlyUnlocked);
   };
-
-  // STATISTICS
-  useEffect(() => {
-    const newStats = {
-      armor: 0,
-      weight: 0,
-      resistances: {
-        bleed: 0,
-        fire: 0,
-        shock: 0,
-        blight: 0,
-        corrosion: 0,
-      },
-    };
-    Object.values(build).forEach(item => {
-      if (!item) return;
-
-      if (Array.isArray(item)) {
-        item.forEach(i => {
-          if (!i) return;
-
-          Object.keys(newStats).forEach(key => {
-            if (key === "resistances") {
-              Object.keys(statistics.resistances).forEach(rKey => {
-                if (i.resistances && i.resistances[rKey]) {
-                  newStats.resistances[rKey] += parseInt(i.resistances[rKey]);
-                }
-              });
-            } else {
-              if (i[key]) {
-                newStats[key] += parseInt(i[key]);
-              }
-            }
-          });
-        });
-      } else {
-        Object.keys(newStats).forEach(key => {
-          if (key === "resistances") {
-            Object.keys(statistics.resistances).forEach(rKey => {
-              if (item.resistances && item.resistances[rKey]) {
-                newStats.resistances[rKey] += parseInt(item.resistances[rKey]);
-              }
-            });
-          } else {
-            if (item[key]) {
-              newStats[key] += parseInt(item[key]);
-            }
-          }
-        });
-      }
-    });
-
-    setStatistics(() => ({ ...newStats }));
-  }, [build]);
-
   const resetBuild = () => {
     setName("");
-    setArchetype1Level(1);
-    setArchetype2Level(1);
-    setBuild(newBuild);
+    setBuild(NEW_BUILD);
   };
-
   const selectItem = (item: Item) => {
-    let nBuild = build;
-    if (index !== null) {
-      nBuild[type][index] = item;
-    } else {
-      nBuild[type] = item;
-    }
-
-    nBuild = checkMod(item, nBuild);
-
-    setBuild(prevState => ({ ...prevState, ...nBuild }));
-    save(nBuild);
+    updateBuildValue(buildPath, item);
   };
-  
-  useEffect(() => {
-    const nBuild = { ...build };
-    
-    nBuild["archetype1_level"] = archetype1Level;
-    if (nBuild.archetype1) {
-      const oldTraitLevel = nBuild.traits[nBuild.archetype1.trait]
-      if (oldTraitLevel) {
-        const difference = oldTraitLevel - archetype1Level;
-        nBuild.usedTraitPoints -= difference < 0 ? 0 : difference;
-        
-      } else {
-        nBuild.traits[nBuild.archetype1.trait] = 0;
-      }
-      nBuild.traits[nBuild.archetype1.trait] += archetype1Level;
-    }
-    
-    nBuild["archetype2_level"] = archetype2Level;
-    if (nBuild.archetype2) {
-      const oldTraitLevel = nBuild.traits[nBuild.archetype2.trait]
-      if (oldTraitLevel) {
-        const difference = oldTraitLevel - archetype2Level;
-        nBuild.usedTraitPoints -= difference < 0 ? 0 : difference;
-      } else {
-        nBuild.traits[nBuild.archetype2.trait] = 0;
-      }
-      nBuild.traits[nBuild.archetype1.trait] += archetype2Level;
-    }
-    
-    setBuild(nBuild);
-    save(nBuild);
-  }, [archetype1Level, archetype2Level, build.archetype1, build.archetype2])
-
   const checkMod = (item: Item, build: Build) => {
-    let index = null;
-    if (type === "mainHand") {
-      index = 0;
-    } else if (type === "melee") {
-      index = 1;
-    } else if (type === "offhand") {
-      index = 2;
-    }
+    const index = MOD_INDEXES[buildPath] ?? null;
 
     if (index !== null) {
-      build.mods[index] =
-        item.mod && item.mod !== ""
-          ? {
-              name: item.mod,
-              description: item.modDescription,
-            }
-          : null;
+      build.mods[index] = item.mod && item.mod !== "" ? item.mod : null;
     }
-    return build;
   };
-
-  const handlePickTrait = (name: string) => {
-    if (MAX_TRAIT_POINTS === build.usedTraitPoints) return;
-
-    const newBuild = { ...build };
-    if (!newBuild.traits[name]) {
-      newBuild.traits[name] = 0;
-    }
-
-    if (newBuild.traits[name] !== 10) {
-      newBuild.traits[name] += 1;
-      newBuild.usedTraitPoints += 1;
-    }
-
-    setBuild(newBuild);
-    save(newBuild);
-  };
-
-  const save = newBuild => {
+  const save = () => {
     let usedName = name;
     if (!usedName || usedName === "") {
       usedName = "New Build";
       setName(usedName);
+      setOldName(usedName);
     }
 
-    saveBuild(usedName, newBuild);
+    saveBuild(usedName, build);
+    toast.success(`Build "${name}" saved.`, { className: "toast" });
+  };
+  const handleLevelChange = (level: number, buildPath: string) => {
+    updateBuildValue(buildPath, level);
+  };
+  const updateBuildValue = (buildPath: string, value: any) => {
+    const nBuild = { ...build };
+    setFieldValue(nBuild, buildPath, value);
+    preProcessBuild(value, nBuild, buildPath);
+    setBuild(nBuild);
+    save();
+  };
+  const preProcessBuild = (value: any, nBuild: Build, buildPath: string) => {
+    if (buildPath === "archetype1.level") {
+      const traitFragment = getFieldValue(nBuild, "archetype1.trait.fragment");
+      checkTrait(traitFragment, value);
+    } else if (buildPath === "archetype2.level") {
+      const traitFragment = getFieldValue(nBuild, "archetype2.trait.fragment");
+      checkTrait(traitFragment, value);
+    }
+
+    if (buildPath === "archetype1") {
+      const traitFragment = getFieldValue(nBuild, "archetype1.trait.fragment");
+      checkTrait(traitFragment, getFieldValue(nBuild, "archetype1.level"));
+    } else if (buildPath === "archetype2") {
+      const traitFragment = getFieldValue(nBuild, "archetype2.trait.fragment");
+      checkTrait(traitFragment, getFieldValue(nBuild, "archetype2.level"));
+    }
+
+    if (typeof value === "object") {
+      if (value.category === "weapons") {
+        checkMod(value, nBuild);
+      }
+
+      if (value.category === "archetypes") {
+        nBuild[buildPath].level = 1;
+      }
+    }
+  };
+  const checkTrait = (fragment?: string, points?: number) => {
+    if (fragment && build.traits[fragment]) {
+      points = points ?? 0;
+      const traitLevel = build.traits[fragment];
+      if (traitLevel + points > 10) {
+        const difference = traitLevel + points - 10;
+        updateBuildValue(`traits.${fragment}`, difference < 0 ? 0 : build.traits[fragment] - difference);
+      }
+    }
   };
 
-  const reduceTrait = (id: number) => {
-    if (0 === build.usedTraitPoints) return;
+  // STATISTICS
+  // useEffect(() => {
+  //   const newStats = {
+  //     armor: 0,
+  //     weight: 0,
+  //     resistances: {
+  //       bleed: 0,
+  //       fire: 0,
+  //       shock: 0,
+  {
+    /*      blight: 0,*/
+  }
+  //       corrosion: 0,
+  //     },
+  //   };
+  {
+    /*  Object.values(build).forEach(item => {*/
+  }
+  {
+    /*    if (!item) return;*/
+  }
 
-    const newBuild = { ...build };
-    if (!newBuild.traits[id]) {
-      newBuild.traits[id] = 0;
-    }
+  {
+    /*    if (Array.isArray(item)) {*/
+  }
+  {
+    /*      item.forEach(i => {*/
+  }
+  {
+    /*        if (!i) return;*/
+  }
 
-    if (newBuild.traits[id] !== 0) {
-      newBuild.traits[id] -= 1;
-      newBuild.usedTraitPoints -= 1;
-    }
-
-    setBuild(newBuild);
-    saveBuild(name, newBuild);
-  };
-
-  const openModal = (
-    category: string,
-    type: string,
-    index: number | null = null,
-    subCategory: string | null = null
-  ) => {
-    const categoryItems = items.categories.find(c => c.fragment === category).nodes;
-    let allItems = onlyUnlocked
-      ? categoryItems.filter(item => isUnlocked(category, item.externalId))
-      : categoryItems;
-    
-    if (subCategory) {
-      allItems = allItems.filter(item => item.type === subCategory);
-    } else if (category === "armor") {
-      allItems = allItems.filter(item => item.type === type);
-    }
-    
-    if (category === "archetypes" && (build.archetype1 || build.archetype2)) {
-      allItems = allItems.filter(item => item.name !== build.archetype1?.name && item.name !== build.archetype2?.name)
-    }
-
-    setIndex(index);
-    setType(type);
-    setModalCategory(category);
-    setModalItems(allItems);
-    setIsOpen(true);
-  };
+  {
+    /*        Object.keys(newStats).forEach(key => {*/
+  }
+  {
+    /*          if (key === "resistances") {*/
+  }
+  {
+    /*            Object.keys(statistics.resistances).forEach(rKey => {*/
+  }
+  {
+    /*              if (i.resistances && i.resistances[rKey]) {*/
+  }
+  {
+    /*                newStats.resistances[rKey] += parseInt(i.resistances[rKey]);*/
+  }
+  {
+    /*              }*/
+  }
+  {
+    /*            });*/
+  }
+  {
+    /*          } else {*/
+  }
+  {
+    /*            if (i[key]) {*/
+  }
+  {
+    /*              newStats[key] += parseInt(i[key]);*/
+  }
+  //             }
+  //           }
+  //         });
+  //       });
+  {
+    /*    } else {*/
+  }
+  {
+    /*      Object.keys(newStats).forEach(key => {*/
+  }
+  //         if (key === "resistances") {
+  //           Object.keys(statistics.resistances).forEach(rKey => {
+  {
+    /*            if (item.resistances && item.resistances[rKey]) {*/
+  }
+  {
+    /*              newStats.resistances[rKey] += parseInt(item.resistances[rKey]);*/
+  }
+  {
+    /*            }*/
+  }
+  //           });
+  //         } else {
+  //           if (item[key]) {
+  //             newStats[key] += parseInt(item[key]);
+  //           }
+  //         }
+  //       });
+  //     }
+  //   });
+  //
+  //   setStatistics(() => ({ ...newStats }));
+  // }, [build]);
 
   return (
     <Layout>
@@ -457,7 +339,10 @@ const Builds = props => {
 
           <div className="tabs">
             <div className="tabs-menu">
-              <div className={`${tab === "archetypes" ? "active" : ""} tabs-menu-item`} onClick={() => setTab("archetypes")}>
+              <div
+                className={`${tab === "archetypes" ? "active" : ""} tabs-menu-item`}
+                onClick={() => setTab("archetypes")}
+              >
                 Archetypes
               </div>
               <div
@@ -471,70 +356,34 @@ const Builds = props => {
               </div>
             </div>
 
+            <Settings
+              name={name}
+              setName={setName}
+              oldName={oldName}
+              onlyUnlocked={onlyUnlocked}
+              toggleOnlyUnlocked={toggleOnlyUnlocked}
+            />
+
             <div className="tabs-content">
               <div className="tabs-content-item">
-                {tab === "equipment" && (
-                  <BuildInterface
-                    setName={setName}
-                    oldName={oldName}
-                    name={name}
-                    build={build}
-                    images={images}
-                    openModal={openModal}
-                    toggleOnlyUnlocked={toggleOnlyUnlocked}
-                    onlyUnlocked={onlyUnlocked}
-                    statistics={statistics}
-                  />
-                )}
+                {tab === "equipment" && <BuildInterface build={build} images={images.nodes} openModal={openModal} />}
+
                 {tab === "traits" && (
-                  <div className="traits">
-                    <div className="totals">
-                      {build.usedTraitPoints}/{MAX_TRAIT_POINTS} Trait points
-                    </div>
-                    <div className="items">
-                      {traits.map(trait => (
-                        <div
-                          key={trait.name}
-                          className="trait"
-                          onClick={() => handlePickTrait(trait.name)}
-                          onContextMenu={e => {
-                            e.preventDefault();
-                            reduceTrait(trait.name);
-                          }}
-                        >
-                          <div className="image">
-                            <GatsbyImage
-                              alt={trait.name ?? ""}
-                              image={getImage(findImageById(trait.externalId, images.nodes))}
-                            />
-                          </div>
-                          <h3>{trait.name}</h3>
-                          <div className="nodes">
-                            {Array.from({ length: 10 }, (_, k) => (
-                              <div
-                                key={trait.id}
-                                className={`node ${k < build.traits[trait.name] ?? 0 ? "active" : ""}`}
-                              />
-                            ))}
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
+                  <TraitsInterface
+                    build={build}
+                    images={images.nodes}
+                    showOnlyUnlocked={onlyUnlocked}
+                    updateBuildValue={updateBuildValue}
+                  />
                 )}
 
                 {tab === "archetypes" && (
-                  <div className="archetypes">
-                    <div className="archetype one">
-                      <BuildItemBox openModal={openModal} build={build} images={images.nodes} type={"archetype1"} category={"archetypes"} />
-                      <ItemLevel level={build.archetype1_level} setLevel={setArchetype1Level} maxLevel={10} />
-                    </div>
-
-                    <div className="archetype two">
-                      <BuildItemBox openModal={openModal} build={build} images={images.nodes} type={"archetype2"} category={"archetypes"} />
-                      <ItemLevel level={build.archetype2_level} setLevel={setArchetype2Level} maxLevel={10} />
-                    </div>
-                  </div>
+                  <ArchetypesInterface
+                    build={build}
+                    openModal={openModal}
+                    images={images.nodes}
+                    handleLevelChange={handleLevelChange}
+                  />
                 )}
               </div>
             </div>
@@ -542,13 +391,12 @@ const Builds = props => {
         </div>
       </Page>
 
-      <ItemSelectModal
-        isOpen={modalIsOpen}
+      <ItemSelectModalNew
         setIsOpen={setIsOpen}
-        items={modalItems}
-        category={modalCategory}
+        isOpen={modalIsOpen}
+        filters={modalFilters}
         callback={selectItem}
-        images={images.nodes}
+        onlyShowUnlocked={onlyUnlocked}
       />
     </Layout>
   );
@@ -568,24 +416,6 @@ export const query = graphql`
         relativePath
         childImageSharp {
           gatsbyImageData(quality: 80, layout: CONSTRAINED)
-        }
-      }
-    }
-    items: allItem {
-      totalCount
-      categories: group(field: { category: SELECT }) {
-        fragment: fieldValue
-        totalCount
-        nodes {
-          id
-          externalId
-          name
-          category
-          type
-          trait
-          stats {
-            armor
-          }
         }
       }
     }
