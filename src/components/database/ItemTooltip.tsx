@@ -6,11 +6,15 @@ import { Tooltip } from "react-tooltip";
 
 const Container = styled.div`
   .head {
-    .general-information {
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      font-size: 0.9em;
+    .title {
+      text-align: center;
+
+      .general-information {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        font-size: 0.9em;
+      }
     }
   }
 

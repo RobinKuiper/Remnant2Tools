@@ -32,6 +32,8 @@ build:install:
       when: always
     - if: "$CI_COMMIT_REF_NAME == 'master'"
       when: always
+    - if: "$CI_COMMIT_REF_NAME == 'staging'"
+      when: always
 
 test:lint:
   stage: test
@@ -71,7 +73,7 @@ test:lint:
   only:
     - tags
 
-pages:
+deploy:pages:
   stage: deploy
   needs:
     - build:install
@@ -84,13 +86,35 @@ pages:
     - sed -i "s/CURRENT_DATE/$(date '+%Y-%m-%d')/g" static/humans.txt
     - pnpm build
   environment:
-    name: production
+    name: Production
     url: https://remnant.rkuiper.nl
   artifacts:
     paths:
       - public
   rules:
     - if: "$CI_COMMIT_REF_NAME == 'master'"
+      when: always
+      
+deploy:firebase:
+  stage: deploy
+  needs:
+    - build:install
+  before_script:
+    - npm install -g pnpm firebase-tools
+  script:
+    - rm ./src/pages/data.tsx
+    - export VERSION=$(cat .version)
+    - sed -i "s/SITE_VERSION/$VERSION/g" src/constants.ts
+    - sed -i "s/SITE_VERSION/$VERSION/g" static/humans.txt
+    - sed -i "s/CURRENT_DATE/$(date '+%Y-%m-%d')/g" src/constants.ts
+    - sed -i "s/CURRENT_DATE/$(date '+%Y-%m-%d')/g" static/humans.txt
+    - pnpm build
+    - firebase deploy
+  environment:
+    name: Staging
+    url: https://remnant-staging.rkuiper.nl
+  rules:
+    - if: "$CI_COMMIT_REF_NAME == 'staging'"
       when: always
 
 create_release:
