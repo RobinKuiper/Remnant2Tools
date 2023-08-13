@@ -1,14 +1,9 @@
 import { Link, Slice, graphql } from "gatsby";
 import React from "react";
 import { styled } from "styled-components";
-import CategorySidebar from "../components/database/CategorySidebar";
-import Layout from "../components/layout/Layout";
-import Head from "../components/layout/Head";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
-import Redacted from "../components/database/Redacted";
 import { isUnlocked } from "../dataHelpers";
 import { slugify, uppercaseFirstLetter } from "../helpers";
-import Breadcrumb from "../components/layout/Breadcrumb";
 import ItemStatistics from "../components/database/ItemStatistics";
 
 const Page = styled.div`
