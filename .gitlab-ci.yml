@@ -21,7 +21,7 @@ cache:
 before_script:
   - npm install -g pnpm
 
-.build:install:
+build:install:
   stage: build
   script:
     - pnpm install
@@ -109,9 +109,9 @@ test:lint:
 create_release:
 #  image: python:3.8-alpine
   stage: deploy
-  cache: [] # Disable caching for this job
-#  needs:
-#    - pages
+#  cache: [] # Disable caching for this job
+  needs:
+    - build:install
 #  before_script:
 #    - pip install --upgrade python-gitlab
   script:
