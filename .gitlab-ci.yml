@@ -86,7 +86,7 @@ deploy:pages:
     - sed -i "s/CURRENT_DATE/$(date '+%Y-%m-%d')/g" static/humans.txt
     - pnpm build
   environment:
-    name: Production
+    name: production
     url: https://remnant.rkuiper.nl
   artifacts:
     paths:
