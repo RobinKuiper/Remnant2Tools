@@ -121,7 +121,6 @@ const DataProvider: React.FC<Props> = ({ children }: Props) => {
     }
 
     if (newUnlocks[categoryFragment][id].unlocked) {
-      console.log(categories)
       const item = categories.nodes
         .find(cat => cat.settings.fragment === categoryFragment)
         .items.find(i => i.externalId === id);

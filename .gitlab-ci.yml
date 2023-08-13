@@ -101,6 +101,7 @@ firebase:
     - sed -i "s/SITE_VERSION/$VERSION/g" static/humans.txt
     - sed -i "s/CURRENT_DATE/$(date '+%Y-%m-%d')/g" src/constants.ts
     - sed -i "s/CURRENT_DATE/$(date '+%Y-%m-%d')/g" static/humans.txt
+    - pnpm clean
     - pnpm build
     - firebase deploy --token $FIREBASE_TOKEN
   environment:
