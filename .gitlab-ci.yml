@@ -66,13 +66,6 @@ test:lint:
         - "**/*.{js,ts,jsx,tsx}"
       when: always
 
-.test:gatsby:
-  stage: test
-  script:
-    - ./node_modules/.bin/gatsby info
-  only:
-    - tags
-
 deploy:pages:
   stage: deploy
   needs:
@@ -109,7 +102,7 @@ deploy:firebase:
     - sed -i "s/CURRENT_DATE/$(date '+%Y-%m-%d')/g" src/constants.ts
     - sed -i "s/CURRENT_DATE/$(date '+%Y-%m-%d')/g" static/humans.txt
     - pnpm build
-    - firebase deploy
+    - firebase deploy --token $FIREBASE_TOKEN
   environment:
     name: Staging
     url: https://remnant-staging.rkuiper.nl
