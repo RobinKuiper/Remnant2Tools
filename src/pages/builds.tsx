@@ -143,7 +143,7 @@ const Builds = props => {
       build.mods[index] = item.links?.mod ? item.links.mod : null;
     }
   };
-  const save = () => {
+  const save = (build: Build) => {
     let usedName = name;
     if (!usedName || usedName === "") {
       usedName = "New Build";
@@ -162,7 +162,7 @@ const Builds = props => {
     setFieldValue(nBuild, buildPath, value);
     preProcessBuild(value, nBuild, buildPath);
     setBuild(nBuild);
-    save();
+    save(nBuild);
   };
   const preProcessBuild = (value: any, nBuild: Build, buildPath: string) => {
     if (buildPath === "archetype1.level") {

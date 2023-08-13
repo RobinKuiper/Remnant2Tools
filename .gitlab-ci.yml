@@ -66,7 +66,7 @@ test:lint:
         - "**/*.{js,ts,jsx,tsx}"
       when: always
 
-pages:
+.pages:
   stage: deploy
   needs:
     - build:install
@@ -90,12 +90,12 @@ firebase:
   before_script:
     - npm install -g pnpm firebase-tools
   script:
-#    - rm ./src/pages/data.tsx
-#    - export VERSION=$(cat .version)
-#    - sed -i "s/SITE_VERSION/$VERSION/g" src/constants.ts
-#    - sed -i "s/SITE_VERSION/$VERSION/g" static/humans.txt
-#    - sed -i "s/CURRENT_DATE/$(date '+%Y-%m-%d')/g" src/constants.ts
-#    - sed -i "s/CURRENT_DATE/$(date '+%Y-%m-%d')/g" static/humans.txt
+    #    - rm ./src/pages/data.tsx
+    #    - export VERSION=$(cat .version)
+    #    - sed -i "s/SITE_VERSION/$VERSION/g" src/constants.ts
+    #    - sed -i "s/SITE_VERSION/$VERSION/g" static/humans.txt
+    #    - sed -i "s/CURRENT_DATE/$(date '+%Y-%m-%d')/g" src/constants.ts
+    #    - sed -i "s/CURRENT_DATE/$(date '+%Y-%m-%d')/g" static/humans.txt
     - pnpm preBuild
     - pnpm build
     - firebase deploy --token $FIREBASE_TOKEN
@@ -106,7 +106,7 @@ firebase:
     - if: "$CI_COMMIT_REF_NAME == 'staging'"
       when: always
 
-create_release:
+.create_release:
   image: python:3.8-alpine
   stage: deploy
   cache: [] # Disable caching for this job

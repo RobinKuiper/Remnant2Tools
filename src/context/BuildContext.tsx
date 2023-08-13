@@ -49,21 +49,22 @@ const BuildsProvider: React.FC<Props> = ({ children }: Props) => {
     if (name === "") {
       name = "New build";
     }
+    
+    const newBuilds = { ...builds };
+    newBuilds[name] = build;
 
-    setBuilds(prevBuilds => ({
-      ...prevBuilds,
-      [name]: build,
-    }));
+    setBuilds(newBuilds);
+    localStorage.setItem("builds", JSON.stringify(newBuilds));
   };
 
   const deleteBuild = (name: string) => {
     if (!name || name === "") return;
 
-    setBuilds(prevBuilds => {
-      const newBuilds = { ...prevBuilds };
-      delete newBuilds[name];
-      return newBuilds;
-    });
+    const newBuilds = { ...builds };
+    delete newBuilds[name];
+
+    setBuilds(newBuilds);
+    localStorage.setItem("builds", JSON.stringify(newBuilds));
   };
 
   const copyBuild = (name: string) => {
@@ -80,10 +81,6 @@ const BuildsProvider: React.FC<Props> = ({ children }: Props) => {
       saveBuild(newName, renamedBuild);
     }
   };
-
-  useEffect(() => {
-    localStorage.setItem("builds", JSON.stringify(builds));
-  }, [builds]);
 
   const contextValue = useMemo(
     () => ({
