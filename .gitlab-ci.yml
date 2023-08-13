@@ -122,7 +122,7 @@ create_release:
   stage: deploy
   cache: [] # Disable caching for this job
   needs:
-    - deplay:pages
+    - deploy:pages
   before_script:
     - pip install --upgrade python-gitlab
   script:
