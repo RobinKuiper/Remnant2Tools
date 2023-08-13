@@ -5,7 +5,6 @@ import Layout from "../components/layout/Layout";
 import { styled } from "styled-components";
 import Head from "../components/layout/Head";
 import { calculateStringMatchPercentage } from "../helpers";
-import Layout from "../components/layout/Layout";
 
 const Container = styled.div`
   display: flex;

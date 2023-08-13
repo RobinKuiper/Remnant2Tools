@@ -7,6 +7,10 @@ import { slugify, uppercaseFirstLetter } from "../helpers";
 import ItemStatistics from "../components/database/ItemStatistics";
 import Layout from "../components/layout/Layout";
 import LinkedItem from "../components/LinkedItem";
+import Redacted from "../components/database/Redacted";
+import CategorySidebar from "../components/database/CategorySidebar";
+import Breadcrumb from "../components/layout/Breadcrumb";
+import Head from "../components/layout/Head";
 
 const Page = styled.div`
   display: flex;
