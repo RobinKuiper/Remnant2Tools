@@ -94,7 +94,7 @@ deploy:pages:
   rules:
     - if: "$CI_COMMIT_REF_NAME == 'master'"
       when: always
-      
+
 deploy:firebase:
   stage: deploy
   needs:
@@ -122,7 +122,7 @@ create_release:
   stage: deploy
   cache: [] # Disable caching for this job
   needs:
-    - pages
+    - deploy:pages
   before_script:
     - pip install --upgrade python-gitlab
   script:

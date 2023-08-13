@@ -51,7 +51,7 @@ const ItemTooltip = ({ id, item, image }) => {
         </div>
 
         <div className="content">
-          {item.stats && <ItemStatistics stats={item.stats} background="#292929" color="#fff" border="" />}
+          {item.stats && <ItemStatistics item={item} background="#292929" color="#fff" border="" />}
         </div>
       </Container>
     </Tooltip>
