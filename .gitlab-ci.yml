@@ -66,13 +66,6 @@ test:lint:
         - "**/*.{js,ts,jsx,tsx}"
       when: always
 
-.test:gatsby:
-  stage: test
-  script:
-    - ./node_modules/.bin/gatsby info
-  only:
-    - tags
-
 deploy:pages:
   stage: deploy
   needs:
