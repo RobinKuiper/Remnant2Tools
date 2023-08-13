@@ -1,4 +1,4 @@
-import { Link, graphql } from "gatsby";
+import { Link, Slice, graphql } from "gatsby";
 import React from "react";
 import { styled } from "styled-components";
 import CategorySidebar from "../components/database/CategorySidebar";
@@ -10,7 +10,6 @@ import { isUnlocked } from "../dataHelpers";
 import { slugify, uppercaseFirstLetter } from "../helpers";
 import Breadcrumb from "../components/layout/Breadcrumb";
 import ItemStatistics from "../components/database/ItemStatistics";
-import LinkedItem from "../components/LinkedItem";
 
 const Page = styled.div`
   display: flex;
@@ -150,16 +149,17 @@ const Category = ({ data, pageContext, location }) => {
   const type = category.onlyDB ? "database" : location.state?.type ?? "database";
 
   return (
-    <Layout>
-      <Head title={item.name} description="Track your progress in Remnant II." />
+    <Slice alias="Layout">
+      <Slice alias="Head" title={item.name} description="Track your progress in Remnant II." />
 
       <Page>
-        <CategorySidebar type="database" />
+        <Slice alias="CategorySidebar" type="database" />
 
         <div className="item-content">
           <div className="background" />
 
-          <Breadcrumb
+          <Slice
+            alias="Breadcrumb"
             data={[
               { path: "/", label: "Home" },
               { label: location.state?.type ? uppercaseFirstLetter(location.state.type) : "Database" },
@@ -196,11 +196,12 @@ const Category = ({ data, pageContext, location }) => {
 
                   {item.world && (
                     <span className="gi-item">
-                      <Redacted value={item.world} defaultShow={unlocked} bgColor={REDACTED_COLOR} />
+                      <Slice alias="Redacted" value={item.world} defaultShow={unlocked} bgColor={REDACTED_COLOR} />
                       {item.location && (
                         <>
                           &nbsp;-&nbsp;
-                          <Redacted
+                          <Slice
+                            alias="Redacted"
                             value={item.location}
                             defaultShow={unlocked}
                             bgColor={REDACTED_COLOR}
@@ -211,10 +212,10 @@ const Category = ({ data, pageContext, location }) => {
                     </span>
                   )}
 
-                  {item.hasMod && <LinkedItem className="gi-item" item={item.mod} />}
-                  {item.weapon && <LinkedItem className="gi-item" item={item.weapon} />}
-                  {item.trait && <LinkedItem className="gi-item" item={item.trait} />}
-                  {item.archetype && <LinkedItem className="gi-item" item={item.archetype} />}
+                  {item.hasMod && <Slice alias="LinkedItem" className="gi-item" item={item.mod} />}
+                  {item.weapon && <Slice alias="LinkedItem" className="gi-item" item={item.weapon} />}
+                  {item.trait && <Slice alias="LinkedItem" className="gi-item" item={item.trait} />}
+                  {item.archetype && <Slice alias="LinkedItem" className="gi-item" item={item.archetype} />}
                 </div>
               </div>
             </div>
@@ -238,7 +239,7 @@ const Category = ({ data, pageContext, location }) => {
                     <h3>Unlock Information</h3>
 
                     <p>
-                      <Redacted value={item.unlock} defaultShow={unlocked} bgColor={REDACTED_COLOR} />
+                      <Slice alias="Redacted" value={item.unlock} defaultShow={unlocked} bgColor={REDACTED_COLOR} />
                     </p>
                   </div>
                 )}
@@ -265,7 +266,7 @@ const Category = ({ data, pageContext, location }) => {
           </div>
         </div>
       </Page>
-    </Layout>
+    </Slice>
   );
 };
 

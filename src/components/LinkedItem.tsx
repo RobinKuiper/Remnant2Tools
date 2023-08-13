@@ -1,6 +1,5 @@
 import React from "react";
-import { Link } from "gatsby";
-import ItemTooltip from "./database/ItemTooltip";
+import { Link, Slice } from "gatsby";
 
 const LinkedItem = ({ item }) => {
   return (
@@ -8,7 +7,7 @@ const LinkedItem = ({ item }) => {
       <Link to={`/database/${item.category}/${item.fragment}`} title={item.name}>
         {item.name}
       </Link>
-      <ItemTooltip id={`${item.fragment}_tooltip`} item={item} />
+      <Slice alias="ItemTooltip" id={`${item.fragment}_tooltip`} item={item} />
     </span>
   );
 };

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import ItemStat from "../item/ItemStat";
 import { calculateWeightType } from "../../dataHelpers";
 import { styled } from "styled-components";
+import { Slice } from "gatsby";
 
 const Container = styled.div`
   padding: 20px;
@@ -61,7 +62,7 @@ const ItemStatistics = ({ item, background, color, border }) => {
           {Object.entries(stats)
             .filter(([key, value]) => key && value)
             .map(([key, value]) => (
-              <ItemStat key={key} valueKey={key} value={value} />
+              <Slice alias="ItemStat" key={key} valueKey={key} value={value} />
             ))}
         </div>
       )}

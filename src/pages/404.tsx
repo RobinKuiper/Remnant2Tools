@@ -1,9 +1,7 @@
 import * as React from "react";
 import type { PageProps } from "gatsby";
-import { Link, graphql } from "gatsby";
-import Layout from "../components/layout/Layout";
+import { Link, Slice, graphql } from "gatsby";
 import { styled } from "styled-components";
-import Head from "../components/layout/Head";
 import { calculateStringMatchPercentage } from "../helpers";
 
 const Container = styled.div`
@@ -69,8 +67,8 @@ const NotFoundPage: React.FC<PageProps> = ({ data, location }) => {
     .slice(0, 3);
 
   return (
-    <Layout>
-      <Head title="Not found" description="We couldn't find the page you where looking for." />
+    <Slice alias="Layout">
+      <Slice alias="Head" title="Not found" description="We couldn't find the page you where looking for." />
 
       <Container>
         <main>
@@ -95,7 +93,7 @@ const NotFoundPage: React.FC<PageProps> = ({ data, location }) => {
           )}
         </main>
       </Container>
-    </Layout>
+    </Slice>
   );
 };
 

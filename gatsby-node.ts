@@ -4,6 +4,69 @@ import { resolve } from "path";
 import { CATEGORIES } from "./src/constants";
 import { calculateStringMatchPercentage } from "./src/helpers";
 
+const SLICES = [
+  {
+    id: `BuildStatisticsSidebar`,
+    component: resolve(__dirname, "./src/components/builder/BuildStatisticsSidebar.tsx"),
+  },
+  {
+    id: `TopBar`,
+    component: resolve(__dirname, "./src/components/layout/TopBar.tsx"),
+  },
+  {
+    id: `Layout`,
+    component: resolve(__dirname, "./src/components/layout/Layout.tsx"),
+  },
+  {
+    id: `Head`,
+    component: resolve(__dirname, "./src/components/layout/Head.tsx"),
+  },
+  {
+    id: `Breadcrumb`,
+    component: resolve(__dirname, "./src/components/layout/Breadcrumb.tsx"),
+  },
+  {
+    id: `SettingsSidebar`,
+    component: resolve(__dirname, "./src/components/layout/SettingsSidebar.tsx"),
+  },
+  {
+    id: `CategorySidebar`,
+    component: resolve(__dirname, "./src/components/database/CategorySidebar.tsx"),
+  },
+  {
+    id: `ItemCategory`,
+    component: resolve(__dirname, "./src/components/database/ItemCategory.tsx"),
+  },
+  {
+    id: `ItemTooltip`,
+    component: resolve(__dirname, "./src/components/database/ItemTooltip.tsx"),
+  },
+  {
+    id: `Redacted`,
+    component: resolve(__dirname, "./src/components/database/Redacted.tsx"),
+  },
+  {
+    id: `ItemStat`,
+    component: resolve(__dirname, "./src/components/item/ItemStat.tsx"),
+  },
+  {
+    id: `SecretWorldsPanel`,
+    component: resolve(__dirname, "./src/components/statistics/SecretWorldsPanel.tsx"),
+  },
+  {
+    id: `StatisticsPanel`,
+    component: resolve(__dirname, "./src/components/statistics/StatisticsPanel.tsx"),
+  },
+  {
+    id: `LinkedItem`,
+    component: resolve(__dirname, "./src/components/LinkedItem.tsx"),
+  },
+  {
+    id: `Loader`,
+    component: resolve(__dirname, "./src/components/Loader.tsx"),
+  },
+];
+
 export const onCreateNode = ({ node, actions }) => {
   const { createNodeField } = actions;
 
@@ -94,7 +157,12 @@ export const sourceNodes: GatsbyNode[`sourceNodes`] = gatsbyApi => {
 };
 
 export const createPages: GatsbyNode["createPages"] = async ({ actions, getNodesByType }) => {
-  const { createPage } = actions;
+  const { createPage, createSlice } = actions;
+
+  // Create slices for components
+  SLICES.forEach(({ id, component }) => {
+    createSlice({ id, component });
+  });
 
   // Create category pages for tracker and database
   const categories = getNodesByType("category");

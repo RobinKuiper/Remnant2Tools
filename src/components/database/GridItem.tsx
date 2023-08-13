@@ -1,12 +1,11 @@
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import React from "react";
-import Redacted from "./Redacted";
 import ItemLevel from "./ItemLevel";
 import { Flex } from "../../style/global";
 import { BsInfoCircleFill } from "react-icons/bs";
 import { getFieldValue } from "../../dataHelpers";
 import { slugify } from "../../helpers";
-import { Link } from "gatsby";
+import { Link, Slice } from "gatsby";
 
 interface Props {
   item: any;
@@ -84,7 +83,7 @@ const GridItem = (props: Props) => {
                   <div className="field-title">{field.label}</div>
                   <div>
                     {field.redacted && !unlocked ? (
-                      <Redacted value={value} defaultShow={unlocked} bgColor={"#c7c7c7"} />
+                      <Slice alias="Redacted" value={value} defaultShow={unlocked} bgColor={"#c7c7c7"} />
                     ) : (
                       value
                     )}

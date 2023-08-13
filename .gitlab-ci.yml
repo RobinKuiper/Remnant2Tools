@@ -41,7 +41,7 @@ test:lint:
     - pnpm lint:gitlab
   artifacts:
     reports:
-      codequality: gl-codequality.json
+      codequality: gl-code-quality-report.json
   rules:
     - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
       changes:

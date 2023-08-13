@@ -1,22 +1,18 @@
-import { graphql } from "gatsby";
+import { Slice, graphql } from "gatsby";
 import React, { useContext, useState } from "react";
 import { styled } from "styled-components";
 import BuildsSidebar from "../components/builder/BuildsSidebar";
-import Layout from "../components/layout/Layout";
 import { BuildsContext } from "../context/BuildContext";
 import type { Build, Item } from "../interface/Build";
 import "react-tooltip/dist/react-tooltip.css";
 import BuildInterface from "../components/builder/BuildInterface";
-import Head from "../components/layout/Head";
 import { getFieldValue, setFieldValue } from "../dataHelpers";
 import ItemSelectModal from "../components/modals/ItemSelectModal";
 import type { Filter } from "../interface/IData";
-import ArchetypesInterface from "../components/builder/ArchetypesInterface";
 import TraitsInterface from "../components/builder/TraitsInterface";
 import Settings from "../components/builder/Settings";
 import "react-toastify/dist/ReactToastify.css";
 import { toast } from "react-toastify";
-import BuildStatisticsSidebar from "../components/builder/BuildStatisticsSidebar";
 
 const NEW_BUILD: Build = {
   headpiece: null,
@@ -203,8 +199,8 @@ const Builds = props => {
   };
 
   return (
-    <Layout>
-      <Head title="Builder" description="Save your favorite builds in this Remnant II builder." />
+    <Slice alias="Layout">
+      <Slice alias="Head" title="Builder" description="Save your favorite builds in this Remnant II builder." />
 
       <Page>
         <BuildsSidebar setBuild={setBuild} setOldName={setOldName} setName={setName} resetBuild={resetBuild} />
@@ -268,8 +264,8 @@ const Builds = props => {
         callback={selectItem}
         onlyShowUnlocked={onlyUnlocked}
       />
-      <BuildStatisticsSidebar build={build} />
-    </Layout>
+      <Slice alias="BuildStatisticsSidebar" build={build} />
+    </Slice>
   );
 };
 
