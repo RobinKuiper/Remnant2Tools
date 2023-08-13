@@ -21,7 +21,7 @@ cache:
 before_script:
   - npm install -g pnpm
 
-build:install:
+.build:install:
   stage: build
   script:
     - pnpm install
@@ -115,6 +115,7 @@ create_release:
 #  before_script:
 #    - pip install --upgrade python-gitlab
   script:
+    - apk add git
     - npx semantic-release
 #    - python scripts/updateGitlab.py $RELEASE_PIPELINE_TOKEN $CI_PROJECT_ID $CI_COMMIT_REF_NAME
   rules:
