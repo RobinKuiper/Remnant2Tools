@@ -10,7 +10,6 @@ import { isUnlocked } from "../dataHelpers";
 import { slugify, uppercaseFirstLetter } from "../helpers";
 import Breadcrumb from "../components/layout/Breadcrumb";
 import ItemStatistics from "../components/database/ItemStatistics";
-import LinkedItem from "../components/LinkedItem";
 
 const Page = styled.div`
   display: flex;
