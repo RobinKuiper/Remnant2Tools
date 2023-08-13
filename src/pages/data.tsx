@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import data from "../data/data.json";
 import { sorter } from "../dataHelpers";
+import { slugify } from "../helpers";
 
 const POSSIBLE_LINKS = [
   {
@@ -37,16 +38,15 @@ const Data = () => {
 
     const newCategories = {};
     Object.values(data).forEach(category => {
-      if (category.settings.fragment === "armorset") {
-        const newItems = category.items.map(item => {
-          item.links = {};
+      const newItems = category.items.map(item => {
+        if (!item.fragment) {
+          item.fragment = slugify(item.name);
+        }
 
-          item.links.pieces = allItems.filter(i => i.category === "armor" && i.armorset === item.name).map(i => i.id);
-          return item;
-        });
-        category.items = newItems;
-        console.log(newItems);
-      }
+        return item;
+      });
+      category.items = newItems;
+      console.log(newItems);
 
       newCategories[category.settings.fragment] = category;
     });

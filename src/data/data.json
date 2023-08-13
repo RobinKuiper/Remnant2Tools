@@ -2538,6 +2538,7 @@
       },
       {
         "name": "Gas Giant",
+        "fragment": "gas_giant",
         "type": "Melee Weapons",
         "world": "N'Erud",
         "location": "Forgotten Prison",

@@ -276,16 +276,11 @@ export default Builds;
 export const query = graphql`
   {
     images: allFile(filter: { relativePath: { regex: "/items/" } }) {
-      totalCount
       nodes {
-        name
         fields {
           itemId
         }
-        relativePath
-        childImageSharp {
-          gatsbyImageData(quality: 80, layout: CONSTRAINED)
-        }
+        ...imageFragment
       }
     }
   }

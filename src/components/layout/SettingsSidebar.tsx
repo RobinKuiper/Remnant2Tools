@@ -173,7 +173,7 @@ const SettingsSidebar = () => {
 
         <div className="layout-settings-item">
           <label
-            for="defaultShowRedacted"
+            htmlFor="defaultShowRedacted"
             className="title"
             data-tooltip-id="tooltip"
             data-tooltip-content={"Show redacted information by default"}

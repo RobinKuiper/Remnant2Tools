@@ -70,16 +70,11 @@ const ItemSelectModal = ({ setIsOpen, isOpen, filters, callback, onlyShowUnlocke
   const data = useStaticQuery(graphql`
     {
       images: allFile(filter: { relativePath: { regex: "/items/" } }) {
-        totalCount
         nodes {
-          name
           fields {
             itemId
           }
-          relativePath
-          childImageSharp {
-            gatsbyImageData(quality: 80, layout: CONSTRAINED)
-          }
+          ...imageFragment
         }
       }
       items: allItem(
@@ -109,37 +104,10 @@ const ItemSelectModal = ({ setIsOpen, isOpen, filters, callback, onlyShowUnlocke
           race
           armorset
           stats {
-            weight
-            armor
-            damage
-            rps
-            magazine
-            idealRange
-            falloffRange
-            maxAmmo
-            criticalHitChance
-            weakSpotDamageBonus
-            staggerModifier
-            weakspot
-            accuracy
-            resistance
-            weakness
-            immunity
-            resistances {
-              bleed
-              fire
-              shock
-              blight
-              corrosion
-            }
+            ...itemStatsFragment
           }
           links {
-            mod {
-              externalId
-            }
-            trait {
-              externalId
-            }
+            ...itemLinkIdsFragment
           }
         }
       }

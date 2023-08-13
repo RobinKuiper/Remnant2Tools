@@ -153,7 +153,7 @@ const TopBar = () => {
 
   return (
     <Container>
-      <Flex direction="row" justifyContent="space-between">
+      <Flex direction="row" justifycontent="space-between">
         <div className="left">
           <div id="logo">
             <Link to="/">
@@ -164,7 +164,7 @@ const TopBar = () => {
 
         <div className="center">
           <nav>
-            <Flex gap="25px" alignItems="center">
+            <Flex gap="25px" alignitems="center">
               <Link to="/tracker/statistics" className={url.includes("tracker") ? "active" : ""}>
                 Tracker
               </Link>
@@ -179,7 +179,7 @@ const TopBar = () => {
         </div>
 
         <div className="right">
-          <Flex alignItems="center" justifyContent="right" gap={0}>
+          <Flex alignitems="center" justifycontent="right" gap={0}>
             {/*<button onClick={toggleDarkMode}>*/}
             {/*    {darkMode ? (*/}
             {/*        <MdLightMode size="25px"  />*/}
@@ -206,7 +206,7 @@ const TopBar = () => {
 
       <MobileNavigation className={isOpen ? "active" : ""}>
         <nav>
-          <Flex direction="column" justifyContent="center" alignItems="center" gap="40px">
+          <Flex direction="column" justifycontent="center" alignitems="center" gap="40px">
             <Link to="/database/archetypes">Database</Link>
             <Link to="/tracker">Unlockables Tracker</Link>
             <Link to="/builds">Builds</Link>

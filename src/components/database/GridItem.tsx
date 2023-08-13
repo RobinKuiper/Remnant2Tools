@@ -22,7 +22,7 @@ const GridItem = (props: Props) => {
   const { item, category, type = "tracker", image, unlocked, handleChange, level, setLevel } = props;
 
   return (
-    <Flex direction="column" justifyContent="center" alignItems="center">
+    <Flex direction="column" justifycontent="center" alignitems="center">
       {image && (
         <Link to={`/database/${category.fragment}/${slugify(item.name)}`} title={item.name} state={{ type }}>
           <GatsbyImage image={getImage(image)} alt={item.name} title={item.name} placeholder="none" />
@@ -31,11 +31,11 @@ const GridItem = (props: Props) => {
 
       <Link to={`/database/${category.fragment}/${slugify(item.name)}`} title={item.name} state={{ type }}>
         <h3>
-          <span data-tooltip-id={`${item.name}_tooltip`}>{item.name}</span>
+          <span data-tooltip-id={`${item.fragment}_tooltip`}>{item.name}</span>
         </h3>
       </Link>
 
-      <Flex justifyContent="center">
+      <Flex justifycontent="center">
         {type === "tracker" && (
           <div className="checkbox-wrapper">
             <label className="checkbox">

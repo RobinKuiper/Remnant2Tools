@@ -99,14 +99,11 @@ const TraitsInterface = ({ build, showOnlyUnlocked, updateBuildValue }: Props) =
   const data = useStaticQuery(graphql`
     {
       images: allFile(filter: { relativePath: { regex: "/traits/" } }) {
-        totalCount
         nodes {
           fields {
             itemId
           }
-          childImageSharp {
-            gatsbyImageData(quality: 80, layout: CONSTRAINED)
-          }
+          ...imageFragment
         }
       }
       traits: allTrait {

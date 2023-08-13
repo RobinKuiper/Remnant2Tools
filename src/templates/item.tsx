@@ -267,23 +267,24 @@ const Category = ({ data, pageContext, location }) => {
                   </div>
                 )}
 
-                {item.links &&
-                  item.links.length > 0 &&
-                  item.links.map(link => (
-                    <div key={link.label} className="section">
-                      <h3>{link.label}</h3>
+                {item.links.pieces && item.links.pieces.length > 0 && (
+                  <div className="section">
+                    <h3>Pieces</h3>
+                    <ul>
+                      {item.links.pieces.map(id => {
+                        const item = linkedItems.nodes.find(i => i.externalId === id);
 
-                      <ul>
-                        {link.items.map(i => (
-                          <li key={i.name}>
-                            <Link to={`/database/${i.category}/${i.fragment}`} title={i.name}>
-                              {i.name}
-                            </Link>
+                        if (!item) return "";
+
+                        return (
+                          <li key={id}>
+                            <LinkedItem item={item} />
                           </li>
-                        ))}
-                      </ul>
-                    </div>
-                  ))}
+                        );
+                      })}
+                    </ul>
+                  </div>
+                )}
               </div>
             </div>
           </div>
@@ -298,36 +299,22 @@ export default Category;
 export const query = graphql`
   query ($itemId: Int!, $linkedItemIds: [Int]!) {
     image: file(fields: { itemId: { eq: $itemId } }) {
-      name
-      relativePath
-      childImageSharp {
-        gatsbyImageData(quality: 80, layout: CONSTRAINED)
-      }
+      ...imageFragment
     }
     item: item(externalId: { eq: $itemId }) {
       name
-      description
       fragment
       externalId
       category
+      description
       armorset
       world
       type
       location
       locationInformation
       links {
-        mod {
-          externalId
-        }
-        weapon {
-          externalId
-        }
-        trait {
-          externalId
-        }
-        archetype {
-          externalId
-        }
+        ...itemLinkIdsFragment
+        pieces
       }
       unlock
       unitSymbol
@@ -336,29 +323,7 @@ export const query = graphql`
         min
       }
       stats {
-        weight
-        armor
-        damage
-        rps
-        magazine
-        idealRange
-        falloffRange
-        maxAmmo
-        criticalHitChance
-        weakSpotDamageBonus
-        staggerModifier
-        weakspot
-        accuracy
-        resistance
-        weakness
-        immunity
-        resistances {
-          bleed
-          fire
-          shock
-          blight
-          corrosion
-        }
+        ...itemStatsFragment
       }
     }
     linkedItems: allItem(filter: { externalId: { in: $linkedItemIds } }) {
@@ -370,43 +335,10 @@ export const query = graphql`
         type
         armorset
         links {
-          mod {
-            name
-          }
-          weapon {
-            name
-          }
-          archetype {
-            name
-          }
-          trait {
-            name
-          }
+          ...itemLinkNamesFragment
         }
         stats {
-          weight
-          armor
-          damage
-          rps
-          magazine
-          idealRange
-          falloffRange
-          maxAmmo
-          criticalHitChance
-          weakSpotDamageBonus
-          staggerModifier
-          weakspot
-          accuracy
-          resistance
-          weakness
-          immunity
-          resistances {
-            bleed
-            fire
-            shock
-            blight
-            corrosion
-          }
+          ...itemStatsFragment
         }
       }
     }

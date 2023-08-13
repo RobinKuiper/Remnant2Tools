@@ -170,28 +170,7 @@ export const createPages: GatsbyNode["createPages"] = async ({ actions, getNodes
     }
   });
 
-  const POSSIBLE_LINKS = [
-    {
-      field: "weapon",
-      category: "weapons",
-      linkedBy: "name",
-    },
-    {
-      field: "mod",
-      category: "mods",
-      linkedBy: "name",
-    },
-    {
-      field: "trait",
-      category: "traits",
-      linkedBy: "name",
-    },
-    {
-      field: "archetype",
-      category: "archetypes",
-      linkedBy: "name",
-    },
-  ];
+  const POSSIBLE_LINKS = ["weapon", "mod", "trait", "archetype", "pieces"];
 
   // Create a page for every item
   const items = getNodesByType("item");
@@ -199,9 +178,13 @@ export const createPages: GatsbyNode["createPages"] = async ({ actions, getNodes
     const linkedItemIds = [];
 
     // get linked item id's
-    POSSIBLE_LINKS.forEach(link => {
-      if (item.links && item.links[link.field]) {
-        linkedItemIds.push(item.links[link.field].externalId);
+    POSSIBLE_LINKS.forEach(field => {
+      if (item.links && item.links[field]) {
+        if (Array.isArray(item.links[field])) {
+          item.links[field].forEach(id => linkedItemIds.push(id));
+        } else {
+          linkedItemIds.push(item.links[field].externalId);
+        }
       }
     });
 

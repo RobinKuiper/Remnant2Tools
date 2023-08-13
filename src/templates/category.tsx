@@ -84,9 +84,9 @@ const Page = styled.div`
 const Category = props => {
   const { hideUnlocked, toggleHideUnlocked, view, toggleView } = useContext(SettingContext);
   const { statistics } = useContext(DataContext);
-  const categoryFragment = props.pageContext.settings.fragment;
   const type = getPageType(props.path);
   const { images, category } = props.data;
+  const categoryFragment = category.settings.fragment;
   const { items: categoryItems } = category;
   const isTracker = type === "tracker";
   const [data, setData] = useState([]);
@@ -176,10 +176,10 @@ const Category = props => {
               {category && category.settings.groups && category.settings.groups.length > 0 && (
                 <>
                   <div>Group by</div>
-                  <select onChange={handleGroupSelectChange}>
+                  <select onChange={handleGroupSelectChange} value={groupBy ?? "none"}>
                     <option value="none">None</option>
                     {category.settings.groups.map(group => (
-                      <option key={group.fragment} value={group.fragment} selected={groupBy === group.fragment}>
+                      <option key={group.fragment} value={group.fragment}>
                         {group.label}
                       </option>
                     ))}
@@ -190,10 +190,10 @@ const Category = props => {
               {category && category.settings.sortKeys && category.settings.sortKeys.length > 0 && (
                 <>
                   <div>Sort by</div>
-                  <select onChange={handleSortSelectChange}>
+                  <select onChange={handleSortSelectChange} value={sortBy ?? "none"}>
                     <option value="none">None</option>
                     {category.settings.sortKeys.map(key => (
-                      <option key={key.fragment} value={key.fragment} selected={groupBy === key.fragment}>
+                      <option key={key.fragment} value={key.fragment}>
                         {key.label}
                       </option>
                     ))}
@@ -227,13 +227,19 @@ const Category = props => {
             </div>
           </div>
 
-          <Flex wrap="wrap" direction={view === "list" ? "column" : "row"} justifyContent="center">
+          <Flex wrap="wrap" direction={view === "list" ? "column" : "row"} justifycontent="center">
             {data.length > 0 ? (
               data.map(item => {
                 if (groupBy) {
                   return (
                     <>
-                      <Slice alias="ItemCategory" item={item} category={category.settings} type={type} />
+                      <Slice
+                        key={item.fragment}
+                        alias="ItemCategory"
+                        item={item}
+                        category={category.settings}
+                        type={type}
+                      />
                       {item.items &&
                         item.items.map(i => (
                           <Item key={i.id} item={i} type={type} category={category.settings} images={images.nodes} />
@@ -266,13 +272,10 @@ export const query = graphql`
   query ($imgRegex: String!, $type: String!, $categoryFragment: String!) {
     images: allFile(filter: { relativePath: { regex: $imgRegex } }) {
       nodes {
-        relativePath
         fields {
           itemId
         }
-        childImageSharp {
-          gatsbyImageData(quality: 80, layout: CONSTRAINED)
-        }
+        ...imageFragment
       }
     }
     category: category(settings: { showIn: { eq: $type }, fragment: { eq: $categoryFragment } }) {
