@@ -12,6 +12,7 @@
 - Improved list/grid view system
 - Removed default view setting from settings
 - And yet another complete data overhaul
+- Codebase/build improvements
 
 ## Version 1.0.4
 
