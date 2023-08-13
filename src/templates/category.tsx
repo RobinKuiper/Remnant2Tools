@@ -1,19 +1,15 @@
-import { graphql } from "gatsby";
+import { Slice, graphql } from "gatsby";
 import React, { useContext, useEffect, useState } from "react";
 import { BiHide, BiShow } from "react-icons/bi";
 import { styled } from "styled-components";
-import CategorySidebar from "../components/database/CategorySidebar";
-import Layout from "../components/layout/Layout";
 import Search from "../components/Search";
 import { DataContext } from "../context/DataContext";
 import { SettingContext } from "../context/SettingContext";
 import { isUnlocked, sorter } from "../dataHelpers";
 import { Flex } from "../style/global";
 import Item from "../components/database/Item";
-import ItemCategory from "../components/database/ItemCategory";
 import { BsFillGrid3X3GapFill, BsList } from "react-icons/bs";
 import { getPageType } from "../helpers";
-import Head from "../components/layout/Head";
 
 const Page = styled.div`
   display: flex;
@@ -168,11 +164,11 @@ const Category = props => {
   };
 
   return (
-    <Layout>
-      <Head title={category.label} description="Track your progress in Remnant II." />
+    <Slice alias="Layout">
+      <Slice alias="Head" title={category.label} description="Track your progress in Remnant II." />
 
       <Page>
-        <CategorySidebar type={type} />
+        <Slice alias="CategorySidebar" type={type} />
 
         <div id="database-content">
           <div id="content-heading">
@@ -237,7 +233,7 @@ const Category = props => {
                 if (groupBy) {
                   return (
                     <>
-                      <ItemCategory item={item} category={category} type={type} />
+                      <Slice alias="ItemCategory" item={item} category={category} type={type} />
                       {item.items &&
                         item.items.map(i => (
                           <Item key={i.id} item={i} type={type} category={category} images={images.nodes} />
@@ -258,7 +254,7 @@ const Category = props => {
           </Flex>
         </div>
       </Page>
-    </Layout>
+    </Slice>
   );
 };
 

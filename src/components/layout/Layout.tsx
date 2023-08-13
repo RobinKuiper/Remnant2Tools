@@ -1,10 +1,8 @@
 import React from "react";
 import { styled } from "styled-components";
-import TopBar from "./TopBar";
 import { BsDiscord, BsLinkedin } from "react-icons/bs";
 import { AiFillGitlab } from "react-icons/ai";
-import { graphql, useStaticQuery } from "gatsby";
-import SettingsSidebar from "./SettingsSidebar";
+import { Slice, graphql, useStaticQuery } from "gatsby";
 import { BiLogoPatreon, BiLogoPaypal } from "react-icons/bi";
 import { StaticImage } from "gatsby-plugin-image";
 import { ToastContainer } from "react-toastify";
@@ -91,7 +89,7 @@ const Layout = ({ children }: Props) => {
 
   return (
     <Container>
-      <TopBar />
+      <Slice alias="TopBar" />
 
       <div id="content">{children}</div>
 
@@ -163,7 +161,7 @@ const Layout = ({ children }: Props) => {
       {/*>*/}
       {/*  This website uses cookies to enhance the user experience.*/}
       {/*</CookieConsent>*/}
-      <SettingsSidebar />
+      <Slice alias="SettingsSidebar" />
 
       <ToastContainer theme="dark" />
     </Container>

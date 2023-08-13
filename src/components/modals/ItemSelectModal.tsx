@@ -5,10 +5,9 @@ import Modal from "react-modal";
 import { styled } from "styled-components";
 import { findImageById } from "../../helpers";
 import Search from "../Search";
-import { graphql, useStaticQuery } from "gatsby";
+import { Slice, graphql, useStaticQuery } from "gatsby";
 import { filterItems, isUnlocked, searchItems, sorter } from "../../dataHelpers";
 import type { Filter } from "../../interface/IData";
-import Loader from "../Loader";
 
 Modal.setAppElement("#___gatsby");
 
@@ -210,7 +209,7 @@ const ItemSelectModal = ({ setIsOpen, isOpen, filters, callback, onlyShowUnlocke
             {itemsToShow.length === 0 && <p>No (unlocked) items found.</p>}
           </div>
         ) : (
-          <Loader loading={loading} />
+          <Slice alias="Loader" loading={loading} />
         )}
       </Content>
     </Modal>
