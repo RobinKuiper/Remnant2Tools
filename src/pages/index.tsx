@@ -5,6 +5,7 @@ import { styled } from "styled-components";
 import { Link, Slice, graphql, useStaticQuery } from "gatsby";
 import { StaticImage } from "gatsby-plugin-image";
 import { BiLogoPatreon, BiLogoPaypal } from "react-icons/bi";
+import Layout from "../components/layout/Layout";
 
 const HeroBanner = styled.div`
   position: relative;
@@ -213,7 +214,7 @@ const IndexPage: React.FC<PageProps> = () => {
   `);
 
   return (
-    <Slice alias="Layout">
+    <Layout>
       <Slice alias="Head" description="Tools for Remnant II" />
       <Homepage>
         <HeroBanner>
@@ -280,7 +281,7 @@ const IndexPage: React.FC<PageProps> = () => {
           </div>
         </div>
       </Homepage>
-    </Slice>
+    </Layout>
   );
 };
 

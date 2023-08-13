@@ -12,7 +12,7 @@
     "postinstall": "npx simple-git-hooks",
     "start": "cross-env ENABLE_GATSBY_REFRESH_ENDPOINT=true gatsby develop",
     "build": "gatsby build",
-    "pipeline:test": "pnpm lint:gitlab && pnpm build",
+    "build:test": "pnpm lint:gitlab && pnpm build",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "typecheck": "tsc --noEmit",

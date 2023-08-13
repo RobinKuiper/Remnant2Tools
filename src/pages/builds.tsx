@@ -13,6 +13,7 @@ import TraitsInterface from "../components/builder/TraitsInterface";
 import Settings from "../components/builder/Settings";
 import "react-toastify/dist/ReactToastify.css";
 import { toast } from "react-toastify";
+import Layout from "../components/layout/Layout";
 
 const NEW_BUILD: Build = {
   headpiece: null,
@@ -199,7 +200,7 @@ const Builds = props => {
   };
 
   return (
-    <Slice alias="Layout">
+    <Layout>
       <Slice alias="Head" title="Builder" description="Save your favorite builds in this Remnant II builder." />
 
       <Page>
@@ -265,7 +266,7 @@ const Builds = props => {
         onlyShowUnlocked={onlyUnlocked}
       />
       <Slice alias="BuildStatisticsSidebar" build={build} />
-    </Slice>
+    </Layout>
   );
 };
 

@@ -1,6 +1,7 @@
 import React from "react";
 import { styled } from "styled-components";
 import { Slice } from "gatsby";
+import Layout from "../../components/layout/Layout";
 
 const Page = styled.div`
   display: flex;
@@ -72,7 +73,7 @@ const Page = styled.div`
 
 const Statistics: React.FC = () => {
   return (
-    <Slice alias="Layout">
+    <Layout>
       <Slice
         alias="Head"
         title="Statistics"
@@ -91,7 +92,7 @@ const Statistics: React.FC = () => {
           </div>
         </div>
       </Page>
-    </Slice>
+    </Layout>
   );
 };
 

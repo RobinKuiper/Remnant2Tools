@@ -14,10 +14,6 @@ const SLICES = [
     component: resolve(__dirname, "./src/components/layout/TopBar.tsx"),
   },
   {
-    id: `Layout`,
-    component: resolve(__dirname, "./src/components/layout/Layout.tsx"),
-  },
-  {
     id: `Head`,
     component: resolve(__dirname, "./src/components/layout/Head.tsx"),
   },
@@ -56,14 +52,6 @@ const SLICES = [
   {
     id: `StatisticsPanel`,
     component: resolve(__dirname, "./src/components/statistics/StatisticsPanel.tsx"),
-  },
-  {
-    id: `LinkedItem`,
-    component: resolve(__dirname, "./src/components/LinkedItem.tsx"),
-  },
-  {
-    id: `Loader`,
-    component: resolve(__dirname, "./src/components/Loader.tsx"),
   },
 ];
 

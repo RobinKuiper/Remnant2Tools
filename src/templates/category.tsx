@@ -10,6 +10,7 @@ import { Flex } from "../style/global";
 import Item from "../components/database/Item";
 import { BsFillGrid3X3GapFill, BsList } from "react-icons/bs";
 import { getPageType } from "../helpers";
+import Layout from "../components/layout/Layout";
 
 const Page = styled.div`
   display: flex;
@@ -164,7 +165,7 @@ const Category = props => {
   };
 
   return (
-    <Slice alias="Layout">
+    <Layout>
       <Slice alias="Head" title={category.label} description="Track your progress in Remnant II." />
 
       <Page>
@@ -254,7 +255,7 @@ const Category = props => {
           </Flex>
         </div>
       </Page>
-    </Slice>
+    </Layout>
   );
 };
 

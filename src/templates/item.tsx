@@ -5,6 +5,8 @@ import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import { isUnlocked } from "../dataHelpers";
 import { slugify, uppercaseFirstLetter } from "../helpers";
 import ItemStatistics from "../components/database/ItemStatistics";
+import Layout from "../components/layout/Layout";
+import LinkedItem from "../components/LinkedItem";
 
 const Page = styled.div`
   display: flex;
@@ -144,7 +146,7 @@ const Category = ({ data, pageContext, location }) => {
   const type = category.onlyDB ? "database" : location.state?.type ?? "database";
 
   return (
-    <Slice alias="Layout">
+    <Layout>
       <Slice alias="Head" title={item.name} description="Track your progress in Remnant II." />
 
       <Page>
@@ -207,10 +209,10 @@ const Category = ({ data, pageContext, location }) => {
                     </span>
                   )}
 
-                  {item.hasMod && <Slice alias="LinkedItem" className="gi-item" item={item.mod} />}
-                  {item.weapon && <Slice alias="LinkedItem" className="gi-item" item={item.weapon} />}
-                  {item.trait && <Slice alias="LinkedItem" className="gi-item" item={item.trait} />}
-                  {item.archetype && <Slice alias="LinkedItem" className="gi-item" item={item.archetype} />}
+                  {item.hasMod && <LinkedItem className="gi-item" item={item.mod} />}
+                  {item.weapon && <LinkedItem className="gi-item" item={item.weapon} />}
+                  {item.trait && <LinkedItem className="gi-item" item={item.trait} />}
+                  {item.archetype && <LinkedItem className="gi-item" item={item.archetype} />}
                 </div>
               </div>
             </div>
@@ -261,7 +263,7 @@ const Category = ({ data, pageContext, location }) => {
           </div>
         </div>
       </Page>
-    </Slice>
+    </Layout>
   );
 };
 

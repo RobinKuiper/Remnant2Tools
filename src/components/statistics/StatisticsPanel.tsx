@@ -3,7 +3,8 @@ import { styled } from "styled-components";
 import { DataContext } from "../../context/DataContext";
 import { calculatePercentage } from "../../helpers";
 import { CATEGORIES } from "../../constants";
-import { Link, Slice } from "gatsby";
+import { Link } from "gatsby";
+import Loader from "../Loader";
 
 const Container = styled.div`
   width: 400px;
@@ -99,7 +100,7 @@ const StatisticsPanel = () => {
           </table>
         </>
       ) : (
-        <Slice alias="Loader" color={"#fff"} />
+        <Loader color={"#fff"} />
       )}
     </Container>
   );
