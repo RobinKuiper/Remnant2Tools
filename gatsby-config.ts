@@ -16,7 +16,7 @@ const config: GatsbyConfig = {
     patreon: "https://www.patreon.com/bePatron?u=10835266",
     paypal: "https://www.paypal.com/paypalme/reCodeNL",
   },
-  pathPrefix: "/remnantcollectables",
+  // pathPrefix: "/remnantcollectables",
   // More easily incorporate content into your pages through
   // automatic TypeScript type generation and better GraphQL IntelliSense.
   // If you use VSCode you can also use the GraphQL plugin
