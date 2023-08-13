@@ -5,7 +5,7 @@ import type { Build } from "../../interface/Build";
 import { styled } from "styled-components";
 import type { Filter } from "../../interface/IData";
 import { getFieldValue } from "../../dataHelpers";
-import { Slice } from "gatsby";
+import ItemTooltip from "../database/ItemTooltip";
 
 const Container = styled.div`
   border: 1px solid #000;
@@ -55,7 +55,7 @@ const BuildItemBox = ({ openModal, build, images, buildPath, filters, disabled =
           )}
         </div>
       )}
-      <Slice alias="ItemTooltip" id={buildPath} item={item} />
+      <ItemTooltip id={buildPath} item={item} />
     </Container>
   );
 };

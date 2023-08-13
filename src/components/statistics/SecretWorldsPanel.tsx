@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { styled } from "styled-components";
+import Redacted from "../database/Redacted";
 import { isUnlocked } from "../../dataHelpers";
-import { Slice, graphql, useStaticQuery } from "gatsby";
+import { graphql, useStaticQuery } from "gatsby";
 
 const Container = styled.div`
   .values {
@@ -46,7 +47,7 @@ const SecretWorldsPanel = () => {
       <p>Below are worlds where you still have secrets to unlock.</p>
       <div className="values">
         {worldsWithSecrets.map(worldName => (
-          <Slice alias="Redacted" key={worldName} value={worldName} bgColor="#5d5d5d" />
+          <Redacted key={worldName} value={worldName} bgColor="#5d5d5d" />
         ))}
       </div>
     </Container>

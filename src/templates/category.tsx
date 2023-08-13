@@ -1,16 +1,19 @@
-import { Slice, graphql } from "gatsby";
+import { graphql } from "gatsby";
 import React, { useContext, useEffect, useState } from "react";
 import { BiHide, BiShow } from "react-icons/bi";
 import { styled } from "styled-components";
+import CategorySidebar from "../components/database/CategorySidebar";
+import Layout from "../components/layout/Layout";
 import Search from "../components/Search";
 import { DataContext } from "../context/DataContext";
 import { SettingContext } from "../context/SettingContext";
 import { isUnlocked, sorter } from "../dataHelpers";
 import { Flex } from "../style/global";
 import Item from "../components/database/Item";
+import ItemCategory from "../components/database/ItemCategory";
 import { BsFillGrid3X3GapFill, BsList } from "react-icons/bs";
 import { getPageType } from "../helpers";
-import Layout from "../components/layout/Layout";
+import Head from "../components/layout/Head";
 
 const Page = styled.div`
   display: flex;
@@ -165,10 +168,10 @@ const Category = props => {
 
   return (
     <Layout>
-      <Slice alias="Head" title={category.settings.label} description="Track your progress in Remnant II." />
+      <Head title={category.settings.label} description="Track your progress in Remnant II." />
 
       <Page>
-        <Slice alias="CategorySidebar" type={type} />
+        <CategorySidebar type={type} />
 
         <div id="database-content">
           <div id="content-heading">
@@ -233,13 +236,7 @@ const Category = props => {
                 if (groupBy) {
                   return (
                     <>
-                      <Slice
-                        key={item.fragment}
-                        alias="ItemCategory"
-                        item={item}
-                        category={category.settings}
-                        type={type}
-                      />
+                      <ItemCategory key={item.fragment} item={item} category={category} type={type} />
                       {item.items &&
                         item.items.map(i => (
                           <Item key={i.id} item={i} type={type} category={category.settings} images={images.nodes} />

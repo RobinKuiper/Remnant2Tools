@@ -107,6 +107,7 @@ const Container = styled.div`
 `;
 
 interface Props {
+  isOpen: boolean;
   build: Build;
 }
 

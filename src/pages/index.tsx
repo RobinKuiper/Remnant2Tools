@@ -1,11 +1,14 @@
 import * as React from "react";
 import type { PageProps } from "gatsby";
 import "../global.css";
-import { styled } from "styled-components";
-import { Link, Slice, graphql, useStaticQuery } from "gatsby";
-import { StaticImage } from "gatsby-plugin-image";
-import { BiLogoPatreon, BiLogoPaypal } from "react-icons/bi";
 import Layout from "../components/layout/Layout";
+import { styled } from "styled-components";
+import { Link, graphql, useStaticQuery } from "gatsby";
+import { StaticImage } from "gatsby-plugin-image";
+import StatisticsPanel from "../components/statistics/StatisticsPanel";
+import SecretWorldsPanel from "../components/statistics/SecretWorldsPanel";
+import { BiLogoPatreon, BiLogoPaypal } from "react-icons/bi";
+import Head from "../components/layout/Head";
 
 const HeroBanner = styled.div`
   position: relative;
@@ -215,7 +218,8 @@ const IndexPage: React.FC<PageProps> = () => {
 
   return (
     <Layout>
-      <Slice alias="Head" description="Tools for Remnant II" />
+      <Head description="Tools for Remnant II" />
+
       <Homepage>
         <HeroBanner>
           <div className="bg" />
@@ -239,8 +243,8 @@ const IndexPage: React.FC<PageProps> = () => {
         </HeroBanner>
 
         <div className="panels">
-          <Slice alias="StatisticsPanel" />
-          <Slice alias="SecretWorldsPanel" />
+          <StatisticsPanel />
+          <SecretWorldsPanel />
 
           <div className="panel">
             <h3>Buy me a coffee!</h3>

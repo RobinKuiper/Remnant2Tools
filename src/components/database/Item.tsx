@@ -5,7 +5,7 @@ import { findImageById } from "../../helpers";
 import ListItem from "./ListItem";
 import GridItem from "./GridItem";
 import { SettingContext } from "../../context/SettingContext";
-import { Slice } from "gatsby";
+import ItemTooltip from "./ItemTooltip";
 
 const Container = styled.div`
   position: relative;
@@ -145,7 +145,7 @@ const Item = ({ item, category, images, type }: Props) => {
         />
       )}
 
-      <Slice alias="ItemTooltip" id={`${item.fragment}_tooltip`} item={item} image={image} />
+      <ItemTooltip id={`${item.name}_tooltip`} item={item} image={image} />
     </Container>
   );
 };

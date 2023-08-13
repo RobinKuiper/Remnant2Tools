@@ -1,7 +1,10 @@
 import React from "react";
 import { styled } from "styled-components";
-import { Slice } from "gatsby";
+import CategorySidebar from "../../components/database/CategorySidebar";
 import Layout from "../../components/layout/Layout";
+import StatisticsPanel from "../../components/statistics/StatisticsPanel";
+import SecretWorldsPanel from "../../components/statistics/SecretWorldsPanel";
+import Head from "../../components/layout/Head";
 
 const Page = styled.div`
   display: flex;
@@ -74,21 +77,17 @@ const Page = styled.div`
 const Statistics: React.FC = () => {
   return (
     <Layout>
-      <Slice
-        alias="Head"
-        title="Statistics"
-        description="All of the statistics of the items you have unlocked in Remnant II."
-      />
+      <Head title="Statistics" description="All of the statistics of the items you have unlocked in Remnant II." />
 
       <Page>
-        <Slice alias="CategorySidebar" type="tracker" />
+        <CategorySidebar type="tracker" />
 
         <div className="page-content">
           <div className="background" />
 
           <div className="panels">
-            <Slice alias="StatisticsPanel" />
-            <Slice alias="SecretWorldsPanel" />
+            <StatisticsPanel />
+            <SecretWorldsPanel />
           </div>
         </div>
       </Page>

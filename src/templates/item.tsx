@@ -1,4 +1,4 @@
-import { Link, Slice, graphql } from "gatsby";
+import { Link, graphql } from "gatsby";
 import React from "react";
 import { styled } from "styled-components";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
@@ -169,16 +169,15 @@ const Category = ({ data, pageContext, location }) => {
 
   return (
     <Layout>
-      <Slice alias="Head" title={item.name} description="Track your progress in Remnant II." />
+      <Head title={item.name} description="Track your progress in Remnant II." />
 
       <Page>
-        <Slice alias="CategorySidebar" type="database" />
+        <CategorySidebar type="database" />
 
         <div className="item-content">
           <div className="background" />
 
-          <Slice
-            alias="Breadcrumb"
+          <Breadcrumb
             data={[
               { path: "/", label: "Home" },
               { label: location.state?.type ? uppercaseFirstLetter(location.state.type) : "Database" },
@@ -215,12 +214,11 @@ const Category = ({ data, pageContext, location }) => {
 
                   {item.world && (
                     <span className="gi-item">
-                      <Slice alias="Redacted" value={item.world} defaultShow={unlocked} bgColor={REDACTED_COLOR} />
+                      <Redacted value={item.world} defaultShow={unlocked} bgColor={REDACTED_COLOR} />
                       {item.location && (
                         <>
                           &nbsp;-&nbsp;
-                          <Slice
-                            alias="Redacted"
+                          <Redacted
                             value={item.location}
                             defaultShow={unlocked}
                             bgColor={REDACTED_COLOR}
@@ -262,7 +260,7 @@ const Category = ({ data, pageContext, location }) => {
                     <h3>Unlock Information</h3>
 
                     <p>
-                      <Slice alias="Redacted" value={item.unlock} defaultShow={unlocked} bgColor={REDACTED_COLOR} />
+                      <Redacted value={item.unlock} defaultShow={unlocked} bgColor={REDACTED_COLOR} />
                     </p>
                   </div>
                 )}
