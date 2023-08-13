@@ -95,14 +95,14 @@ const Page = styled.div`
           @media (max-width: 850px) {
             text-align: center;
           }
-          
+
           .general-information {
             display: flex;
             flex-wrap: wrap;
             gap: 10px;
             margin-top: 10px;
             font-size: 0.9em;
-            
+
             //@media (max-width: 850px) {
             //  margin-left: 0;
             //  width: 100%;
@@ -162,8 +162,8 @@ const Page = styled.div`
 const REDACTED_COLOR = "#bbbbbb";
 
 const Category = ({ data, pageContext, location }) => {
-  const { category, item } = pageContext;
-  const { image } = data;
+  const { category } = pageContext;
+  const { item, image, linkedItems } = data;
   const unlocked = isUnlocked(item.category, item.externalId);
   const type = category.onlyDB ? "database" : location.state?.type ?? "database";
 
@@ -183,7 +183,7 @@ const Category = ({ data, pageContext, location }) => {
               { path: "/", label: "Home" },
               { label: location.state?.type ? uppercaseFirstLetter(location.state.type) : "Database" },
               { path: `/${type}/${category.fragment}`, label: category.label },
-              { path: `/database/${item.category}/${slugify(item.name)}`, label: item.name },
+              { path: `/database/${item.category}/${item.fragment}`, label: item.name },
             ]}
           />
 
@@ -231,18 +231,22 @@ const Category = ({ data, pageContext, location }) => {
                     </span>
                   )}
 
-                  {item.hasMod && <LinkedItem className="gi-item" item={item.mod} />}
-                  {item.weapon && <LinkedItem className="gi-item" item={item.weapon} />}
-                  {item.trait && <LinkedItem className="gi-item" item={item.trait} />}
-                  {item.archetype && <LinkedItem className="gi-item" item={item.archetype} />}
+                  {item.links &&
+                    Object.values(item.links)
+                      .filter(link => link !== null)
+                      .map(link => (
+                        <LinkedItem
+                          key={link.externalId}
+                          className="gi-item"
+                          item={linkedItems.nodes.find(i => i.externalId === link.externalId)}
+                        />
+                      ))}
                 </div>
               </div>
             </div>
 
             <div className="information">
-              <div className="left">
-                {(item.values || item.stats) && <ItemStatistics item={item} />}
-              </div>
+              <div className="left">{(item.values || item.stats) && <ItemStatistics item={item} />}</div>
 
               <div className="right">
                 {item.description && (
@@ -272,7 +276,7 @@ const Category = ({ data, pageContext, location }) => {
                       <ul>
                         {link.items.map(i => (
                           <li key={i.name}>
-                            <Link to={`/database/${i.category}/${slugify(i.name)}`} title={i.name}>
+                            <Link to={`/database/${i.category}/${i.fragment}`} title={i.name}>
                               {i.name}
                             </Link>
                           </li>
@@ -292,12 +296,118 @@ const Category = ({ data, pageContext, location }) => {
 export default Category;
 
 export const query = graphql`
-  query ($itemId: Int!) {
+  query ($itemId: Int!, $linkedItemIds: [Int]!) {
     image: file(fields: { itemId: { eq: $itemId } }) {
       name
       relativePath
       childImageSharp {
         gatsbyImageData(quality: 80, layout: CONSTRAINED)
+      }
+    }
+    item: item(externalId: { eq: $itemId }) {
+      name
+      description
+      fragment
+      externalId
+      category
+      armorset
+      world
+      type
+      location
+      locationInformation
+      links {
+        mod {
+          externalId
+        }
+        weapon {
+          externalId
+        }
+        trait {
+          externalId
+        }
+        archetype {
+          externalId
+        }
+      }
+      unlock
+      unitSymbol
+      values {
+        max
+        min
+      }
+      stats {
+        weight
+        armor
+        damage
+        rps
+        magazine
+        idealRange
+        falloffRange
+        maxAmmo
+        criticalHitChance
+        weakSpotDamageBonus
+        staggerModifier
+        weakspot
+        accuracy
+        resistance
+        weakness
+        immunity
+        resistances {
+          bleed
+          fire
+          shock
+          blight
+          corrosion
+        }
+      }
+    }
+    linkedItems: allItem(filter: { externalId: { in: $linkedItemIds } }) {
+      nodes {
+        name
+        fragment
+        externalId
+        category
+        type
+        armorset
+        links {
+          mod {
+            name
+          }
+          weapon {
+            name
+          }
+          archetype {
+            name
+          }
+          trait {
+            name
+          }
+        }
+        stats {
+          weight
+          armor
+          damage
+          rps
+          magazine
+          idealRange
+          falloffRange
+          maxAmmo
+          criticalHitChance
+          weakSpotDamageBonus
+          staggerModifier
+          weakspot
+          accuracy
+          resistance
+          weakness
+          immunity
+          resistances {
+            bleed
+            fire
+            shock
+            blight
+            corrosion
+          }
+        }
       }
     }
   }

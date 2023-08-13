@@ -46,8 +46,11 @@ const ArchetypesInterface = ({ build, openModal, images, handleLevelChange }: Pr
           filters={[{ category: "archetypes" }]}
         />
         <strong>
-          <Link to={`/database/traits/${build.archetype1?.trait.fragment}`} title={build.archetype1?.trait.name}>
-            {build.archetype1?.trait.name}
+          <Link
+            to={`/database/traits/${build.archetype1?.links.trait.fragment}`}
+            title={build.archetype1?.links.trait.name}
+          >
+            {build.archetype1?.links.trait.name}
           </Link>
         </strong>
         <ItemLevelNew
@@ -68,8 +71,11 @@ const ArchetypesInterface = ({ build, openModal, images, handleLevelChange }: Pr
           filters={[{ category: "archetypes" }]}
         />
         <strong>
-          <Link to={`/database/mods/${build.archetype2?.trait.fragment}`} title={build.archetype2?.trait.name}>
-            {build.archetype2?.trait.name}
+          <Link
+            to={`/database/mods/${build.archetype2?.links.trait.fragment}`}
+            title={build.archetype2?.links.trait.name}
+          >
+            {build.archetype2?.links.trait.name}
           </Link>
         </strong>
         <ItemLevelNew

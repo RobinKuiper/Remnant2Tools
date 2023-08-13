@@ -1,7 +1,6 @@
 import data from "./src/data/data.json";
 import type { GatsbyNode, NodeInput } from "gatsby";
 import { resolve } from "path";
-import { CATEGORIES } from "./src/constants";
 import { calculateStringMatchPercentage } from "./src/helpers";
 
 const SLICES = [
@@ -102,34 +101,23 @@ export const sourceNodes: GatsbyNode[`sourceNodes`] = gatsbyApi => {
 
     // Loop over all items in the category
     items.forEach(item => {
-      // Link linked items to this item
-      if (settings.linkedBy && settings.linkedBy.length > 0) {
-        item.links = [];
-        settings.linkedBy.forEach(link => {
-          const linkedItems = data[link.category].items.filter(i => item[link.link[0]] === i[link.link[1]]);
-
-          item.links.push({
-            label: link.label,
-            items: linkedItems,
-          });
-        });
+      // Create a node in the correct category
+      if (item.category === "traits") {
+        let node = {
+          ...item,
+          externalId: item.id,
+          // Required fields
+          id: item.id.toString(),
+          internal: {
+            type: settings.singular.replace(" ", ""),
+            contentDigest: gatsbyApi.createContentDigest(item),
+          },
+        } as NodeInput;
+        gatsbyApi.actions.createNode(node);
       }
 
-      // Create a node in the correct category
-      let node = {
-        ...item,
-        externalId: item.id,
-        // Required fields
-        id: item.id.toString(),
-        internal: {
-          type: settings.singular.replace(" ", ""),
-          contentDigest: gatsbyApi.createContentDigest(item),
-        },
-      } as NodeInput;
-      gatsbyApi.actions.createNode(node);
-
       // Create a node in all items
-      node = {
+      let node = {
         ...item,
         externalId: item.id,
         // Required fields
@@ -159,15 +147,16 @@ export const createPages: GatsbyNode["createPages"] = async ({ actions, getNodes
       path: `/tracker/${category.settings.fragment}`,
       component: resolve(__dirname, "./src/templates/category.tsx"),
       context: {
-        settings: category.settings,
-        items: category.items.map(i => ({ ...i, externalId: i.id })),
+        categoryFragment: category.settings.fragment,
         imgRegex: `/${category.settings.fragment}/`,
+        type: "tracker",
       },
     };
 
     // Create tracker category page
     if (category.settings.tracker) {
       page.path = `/tracker/${category.settings.fragment}`;
+      page.context.type = "tracker";
 
       createPage(page);
     }
@@ -175,37 +164,54 @@ export const createPages: GatsbyNode["createPages"] = async ({ actions, getNodes
     // Create database category page
     if (category.settings.database) {
       page.path = `/database/${category.settings.fragment}`;
+      page.context.type = "database";
 
       createPage(page);
     }
   });
 
+  const POSSIBLE_LINKS = [
+    {
+      field: "weapon",
+      category: "weapons",
+      linkedBy: "name",
+    },
+    {
+      field: "mod",
+      category: "mods",
+      linkedBy: "name",
+    },
+    {
+      field: "trait",
+      category: "traits",
+      linkedBy: "name",
+    },
+    {
+      field: "archetype",
+      category: "archetypes",
+      linkedBy: "name",
+    },
+  ];
+
   // Create a page for every item
   const items = getNodesByType("item");
   items.forEach(item => {
-    const newItem = { ...item };
-    // Link items
-    if (newItem.weapon && newItem.weapon !== "") {
-      const weapons = getNodesByType("Weapon");
-      newItem.weapon = weapons.find(weapon => weapon.name === newItem.weapon);
-    } else if (newItem.mod && newItem.mod !== "") {
-      const mods = getNodesByType("Mod");
-      newItem.mod = mods.find(mod => mod.name === newItem.mod);
-    } else if (newItem.trait && newItem.trait !== "") {
-      const traits = getNodesByType("Trait");
-      newItem.trait = traits.find(trait => trait.name === newItem.trait);
-    } else if (newItem.archetype && newItem.archetype !== "") {
-      const archetypes = getNodesByType("Archetype");
-      newItem.archetype = archetypes.find(archetype => archetype.name === newItem.archetype);
-    }
+    const linkedItemIds = [];
+
+    // get linked item id's
+    POSSIBLE_LINKS.forEach(link => {
+      if (item.links && item.links[link.field]) {
+        linkedItemIds.push(item.links[link.field].externalId);
+      }
+    });
 
     const page = {
-      path: `/database/${newItem.category}/${newItem.fragment}`,
+      path: `/database/${item.category}/${item.fragment}`,
       component: resolve(__dirname, "./src/templates/item.tsx"),
       context: {
-        item: newItem,
-        category: CATEGORIES.find(c => c.fragment === newItem.category),
-        itemId: newItem.externalId,
+        itemId: item.externalId,
+        linkedItemIds,
+        category: data[item.category].settings,
       },
     };
 

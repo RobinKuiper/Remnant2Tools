@@ -11,6 +11,7 @@ export interface Item {
   name: string;
   id: number;
   externalId: number;
+  links?: any;
   description?: string;
 }
 
@@ -21,7 +22,9 @@ export interface Trait extends Item {
 export interface Archetype extends Item {
   externalId: number;
   name: string;
-  trait: Trait;
+  links: {
+    trait: Trait;
+  };
   level: number;
 }
 

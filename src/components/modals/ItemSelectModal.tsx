@@ -106,11 +106,7 @@ const ItemSelectModal = ({ setIsOpen, isOpen, filters, callback, onlyShowUnlocke
           fragment
           category
           type
-          trait
-          mod
-
           race
-          mod
           armorset
           stats {
             weight
@@ -135,6 +131,14 @@ const ItemSelectModal = ({ setIsOpen, isOpen, filters, callback, onlyShowUnlocke
               shock
               blight
               corrosion
+            }
+          }
+          links {
+            mod {
+              externalId
+            }
+            trait {
+              externalId
             }
           }
         }
@@ -167,12 +171,13 @@ const ItemSelectModal = ({ setIsOpen, isOpen, filters, callback, onlyShowUnlocke
   };
 
   const handleItemPick = (item: any) => {
-    if (item.mod) {
-      item.mod = allItems.find(i => i.category === "mods" && i.name === item.mod) ?? item.mod;
+    if (item.links?.mod) {
+      item.links.mod = allItems.find(i => i.category === "mods" && i.externalId === item.links.mod.externalId) ?? null;
     }
 
-    if (item.trait) {
-      item.trait = allItems.find(i => i.category === "traits" && i.name === item.trait) ?? item.trait;
+    if (item.links?.trait) {
+      item.links.trait =
+        allItems.find(i => i.category === "traits" && i.externalId === item.links.trait.externalId) ?? null;
     }
 
     callback(item);

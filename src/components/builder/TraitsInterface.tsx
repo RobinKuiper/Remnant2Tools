@@ -140,9 +140,9 @@ const TraitsInterface = ({ build, showOnlyUnlocked, updateBuildValue }: Props) =
   const addTraitPoint = (trait: any) => {
     const currentPoints = build.traits[trait.fragment] ?? 0;
     let archetypeLevel = 0;
-    if (build.archetype1?.trait.fragment === trait.fragment) {
+    if (build.archetype1?.links.trait.fragment === trait.fragment) {
       archetypeLevel = build.archetype1?.level ?? 0;
-    } else if (build.archetype2?.trait.fragment === trait.fragment) {
+    } else if (build.archetype2?.links.trait.fragment === trait.fragment) {
       archetypeLevel = build.archetype2?.level ?? 0;
     }
     updateBuildValue(`traits.${trait.fragment}`, restrainNumber(currentPoints, 10 - archetypeLevel));
@@ -157,7 +157,7 @@ const TraitsInterface = ({ build, showOnlyUnlocked, updateBuildValue }: Props) =
     let archetypeLevel = 0;
     [1, 2].forEach(index => {
       if (archetypeLevel > 0) return;
-      if (build[`archetype${index}`]?.trait.fragment === trait.fragment) {
+      if (build[`archetype${index}`]?.links.trait.fragment === trait.fragment) {
         archetypeLevel = build[`archetype${index}`]?.level ?? 0;
       }
     });
@@ -178,8 +178,8 @@ const TraitsInterface = ({ build, showOnlyUnlocked, updateBuildValue }: Props) =
             key={trait.fragment}
             className={`trait ${
               build.traits[trait.fragment] ||
-              build.archetype1?.trait.fragment === trait.fragment ||
-              build.archetype2?.trait.fragment === trait.fragment
+              build.archetype1?.links.trait.fragment === trait.fragment ||
+              build.archetype2?.links.trait.fragment === trait.fragment
                 ? "active"
                 : ""
             }`}

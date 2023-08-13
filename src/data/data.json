@@ -1,16 +1,20 @@
 {
   "archetypes": {
     "settings": {
-      "label": "Archetypes",
+      "database": {
+        "fields": []
+      },
       "fragment": "archetypes",
-      "singular": "Archetype",
-      "hasLevels": false,
       "groups": [
         {
           "label": "World",
           "fragment": "world"
         }
       ],
+      "hasLevels": false,
+      "label": "Archetypes",
+      "showIn": ["tracker", "database"],
+      "singular": "Archetype",
       "tracker": {
         "fields": [
           {
@@ -24,9 +28,6 @@
             "redacted": true
           }
         ]
-      },
-      "database": {
-        "fields": []
       }
     },
     "items": [
@@ -39,9 +40,14 @@
         "material": "Phiolosopher's Stone",
         "unlock": "Approach every sewer drain on the edge of any of the Dran overland areas until you get grabbed by a Manticora. Once you load into the new area, defeat the white Manticora",
         "id": 1,
-        "trait": "Potency",
         "category": "archetypes",
-        "fragment": "alchemist"
+        "fragment": "alchemist",
+        "links": {
+          "trait": {
+            "name": "Potency",
+            "externalId": 21
+          }
+        }
       },
       {
         "name": "Archon",
@@ -51,9 +57,14 @@
         "material": "Hexahedron",
         "unlock": "To Unlock the Red Door you will need the following. Engram Explorer with skill Fortune Hunter (LV10), Engram Invader with skill Worm Hole (LV5), Armor set Realmwalker, Relic Consumable Void Heart, Leto's Amulet, Amber Moonstone, Black Cat Band, Zanias Malice, Anastasijas Inspiration, Cube Gun, Ford's Scattergun, Labyrinth Staff. With all this the door will open.",
         "id": 2,
-        "trait": "Flash Caster",
         "category": "archetypes",
-        "fragment": "archon"
+        "fragment": "archon",
+        "links": {
+          "trait": {
+            "name": "Flash Caster",
+            "externalId": 17
+          }
+        }
       },
       {
         "name": "Challenger",
@@ -63,9 +74,14 @@
         "material": "Old Metal Tool",
         "unlock": "Buy from Reggie at Ward 13 for 1500 Scrap",
         "id": 3,
-        "trait": "Strong Back",
         "category": "archetypes",
-        "fragment": "challenger"
+        "fragment": "challenger",
+        "links": {
+          "trait": {
+            "name": "Strong Back",
+            "externalId": 23
+          }
+        }
       },
       {
         "name": "Engineer",
@@ -76,9 +92,14 @@
         "material": "Alien Device",
         "unlock": "Found just out of bounds in either of the two overland areas you roll on N'Erud. For an easier time locating this item try using the Explorer Archtype's skill \"Fortune Hunter\" to highlight the item in the fog.",
         "id": 4,
-        "trait": "Fortify",
         "category": "archetypes",
-        "fragment": "engineer"
+        "fragment": "engineer",
+        "links": {
+          "trait": {
+            "name": "Fortify",
+            "externalId": 18
+          }
+        }
       },
       {
         "name": "Explorer",
@@ -88,9 +109,14 @@
         "material": "Broken Compass",
         "unlock": "Finish a full campaign playthrough",
         "id": 5,
-        "trait": "Swiftness",
         "category": "archetypes",
-        "fragment": "explorer"
+        "fragment": "explorer",
+        "links": {
+          "trait": {
+            "name": "Swiftness",
+            "externalId": 24
+          }
+        }
       },
       {
         "name": "Gunslinger",
@@ -100,9 +126,14 @@
         "material": "Worn Cylinder",
         "unlock": "Listen to 20 total Mudtooth stories in Ward 13 after finishing your second world in campaign mode",
         "id": 6,
-        "trait": "Ammo Reserves",
         "category": "archetypes",
-        "fragment": "gunslinger"
+        "fragment": "gunslinger",
+        "links": {
+          "trait": {
+            "name": "Ammo Reserves",
+            "externalId": 16
+          }
+        }
       },
       {
         "name": "Handler",
@@ -112,9 +143,14 @@
         "material": "Old Whistle",
         "unlock": "Buy from Mudtooth at Ward 13 for 1500 Scrap",
         "id": 7,
-        "trait": "Kinship",
         "category": "archetypes",
-        "fragment": "handler"
+        "fragment": "handler",
+        "links": {
+          "trait": {
+            "name": "Kinship",
+            "externalId": 19
+          }
+        }
       },
       {
         "name": "Hunter",
@@ -124,9 +160,14 @@
         "material": "Rusty Medal",
         "unlock": "Buy from Brabus at Ward 13 for 1500 Scrap",
         "id": 8,
-        "trait": "Longshot",
         "category": "archetypes",
-        "fragment": "hunter"
+        "fragment": "hunter",
+        "links": {
+          "trait": {
+            "name": "Longshot",
+            "externalId": 20
+          }
+        }
       },
       {
         "name": "Invader",
@@ -136,9 +177,14 @@
         "material": "Wooden Shiv",
         "unlock": "Use the \"Walker's Dream\" item and defeat the \"Bane\" abberation. To get the \"Walker's Dream\" item use the Dreamcatcher melee weapon on the sleeping walker special enemy (glowing blue) in an area just off the main path between the Corrupted Harbour and Blackened Citadel checkpoint.",
         "id": 9,
-        "trait": "Untouchable",
         "category": "archetypes",
-        "fragment": "invader"
+        "fragment": "invader",
+        "links": {
+          "trait": {
+            "name": "Untouchable",
+            "externalId": 26
+          }
+        }
       },
       {
         "name": "Medic",
@@ -148,9 +194,14 @@
         "material": "Medic Pin",
         "unlock": "Buy from Dr. Norah at Ward 13 for 1500 Scrap",
         "id": 10,
-        "trait": "Triage",
         "category": "archetypes",
-        "fragment": "medic"
+        "fragment": "medic",
+        "links": {
+          "trait": {
+            "name": "Triage",
+            "externalId": 25
+          }
+        }
       },
       {
         "name": "Summoner",
@@ -160,16 +211,27 @@
         "material": "Faded Grimoire",
         "unlock": "Available at the Bloodmoon Altar for 15 Bloodmoon Essence. Acquire Bloodmoon Essence from killing Root Wisps during a bloodmoon (red moon in sky) in any of Yaesha's outside areas",
         "id": 11,
-        "trait": "Regrowth",
         "category": "archetypes",
-        "fragment": "summoner"
+        "fragment": "summoner",
+        "links": {
+          "trait": {
+            "name": "Regrowth",
+            "externalId": 22
+          }
+        }
       }
     ]
   },
   "traits": {
     "settings": {
-      "label": "Traits",
-      "singular": "Trait",
+      "database": {
+        "fields": [
+          {
+            "label": "Values",
+            "fragment": "valueText"
+          }
+        ]
+      },
       "fragment": "traits",
       "groups": [
         {
@@ -177,6 +239,9 @@
           "fragment": "world"
         }
       ],
+      "label": "Traits",
+      "showIn": ["tracker", "database"],
+      "singular": "Trait",
       "tracker": {
         "fields": [
           {
@@ -188,14 +253,6 @@
             "label": "Location",
             "fragment": "location",
             "redacted": true
-          }
-        ]
-      },
-      "database": {
-        "fields": [
-          {
-            "label": "Values",
-            "fragment": "valueText"
           }
         ]
       }
@@ -290,11 +347,16 @@
         "location": "",
         "unlock": "Archetype trait of the Gunslinger. Reach Gunslinger level 10 to unlock trait for use in any build",
         "id": 16,
-        "archetype": "Gunslinger",
         "category": "traits",
         "fragment": "ammo_reserves",
         "valueText": "6% → 60%",
-        "unitSymbol": "%"
+        "unitSymbol": "%",
+        "links": {
+          "archetype": {
+            "name": "Gunslinger",
+            "externalId": 6
+          }
+        }
       },
       {
         "name": "Flash Caster",
@@ -307,11 +369,16 @@
         "location": "Terminus Station",
         "unlock": "Complete the side path",
         "id": 17,
-        "archetype": "Archon",
         "category": "traits",
         "fragment": "flash_caster",
         "valueText": "5% → 50%",
-        "unitSymbol": "%"
+        "unitSymbol": "%",
+        "links": {
+          "archetype": {
+            "name": "Archon",
+            "externalId": 2
+          }
+        }
       },
       {
         "name": "Fortify",
@@ -324,11 +391,16 @@
         "location": "",
         "unlock": "Archetype trait of the Archon. Reach Archon level 10 to unlock trait for use in any build",
         "id": 18,
-        "archetype": "Engineer",
         "category": "traits",
         "fragment": "fortify",
         "valueText": "5% → 50%",
-        "unitSymbol": "%"
+        "unitSymbol": "%",
+        "links": {
+          "archetype": {
+            "name": "Engineer",
+            "externalId": 4
+          }
+        }
       },
       {
         "name": "Kinship",
@@ -341,11 +413,16 @@
         "location": "",
         "unlock": "Archetype Trait of the Handler. Reach Handler level 10 to unlock trait for use in any build",
         "id": 19,
-        "archetype": "Handler",
         "category": "traits",
         "fragment": "kinship",
         "valueText": "8% → 80%",
-        "unitSymbol": "%"
+        "unitSymbol": "%",
+        "links": {
+          "archetype": {
+            "name": "Handler",
+            "externalId": 7
+          }
+        }
       },
       {
         "name": "Longshot",
@@ -358,11 +435,16 @@
         "location": "",
         "unlock": "Archetype Trait of the Hunter. Reach Hunter level 10 to unlock trait for use in any build",
         "id": 20,
-        "archetype": "Hunter",
         "category": "traits",
         "fragment": "longshot",
         "valueText": "60CM → 600CM",
-        "unitSymbol": "CM"
+        "unitSymbol": "CM",
+        "links": {
+          "archetype": {
+            "name": "Hunter",
+            "externalId": 8
+          }
+        }
       },
       {
         "name": "Potency",
@@ -375,11 +457,16 @@
         "location": "",
         "unlock": "Archetype Trait of the Alchemist. Reach Alchemist level 10 to unlock trait for use in any build",
         "id": 21,
-        "archetype": "Alchemist",
         "category": "traits",
         "fragment": "potency",
         "valueText": "10% → 100%",
-        "unitSymbol": "%"
+        "unitSymbol": "%",
+        "links": {
+          "archetype": {
+            "name": "Alchemist",
+            "externalId": 1
+          }
+        }
       },
       {
         "name": "Regrowth",
@@ -392,11 +479,16 @@
         "location": "",
         "unlock": "Archetype Trait of the Summoner. Reach Summoner level 10 to unlock trait for use in any build",
         "id": 22,
-        "archetype": "Summoner",
         "category": "traits",
         "fragment": "regrowth",
         "valueText": "0.15s → 1.5s",
-        "unitSymbol": "s"
+        "unitSymbol": "s",
+        "links": {
+          "archetype": {
+            "name": "Summoner",
+            "externalId": 11
+          }
+        }
       },
       {
         "name": "Strong Back",
@@ -409,10 +501,15 @@
         "location": "",
         "unlock": "Archetype Trait of the Challenger. Reach Challenger level 10 to unlock trait for use in any build",
         "id": 23,
-        "archetype": "Challenger",
         "category": "traits",
         "fragment": "strong_back",
-        "valueText": "-1 → -10"
+        "valueText": "-1 → -10",
+        "links": {
+          "archetype": {
+            "name": "Challenger",
+            "externalId": 3
+          }
+        }
       },
       {
         "name": "Swiftness",
@@ -425,11 +522,16 @@
         "location": "",
         "unlock": "Archetype Trait of the Explorer. Reach Explorer level 10 to unlock trait for use in any build",
         "id": 24,
-        "archetype": "Explorer",
         "category": "traits",
         "fragment": "swiftness",
         "valueText": "1% → 15%",
-        "unitSymbol": "%"
+        "unitSymbol": "%",
+        "links": {
+          "archetype": {
+            "name": "Explorer",
+            "externalId": 5
+          }
+        }
       },
       {
         "name": "Triage",
@@ -442,11 +544,16 @@
         "location": "",
         "unlock": "Archetype Trait of the Medic. Reach Medic level 10 to unlock trait for use in any build",
         "id": 25,
-        "archetype": "Medic",
         "category": "traits",
         "fragment": "triage",
         "valueText": "3% → 30%",
-        "unitSymbol": "%"
+        "unitSymbol": "%",
+        "links": {
+          "archetype": {
+            "name": "Medic",
+            "externalId": 10
+          }
+        }
       },
       {
         "name": "Untouchable",
@@ -459,11 +566,16 @@
         "location": "",
         "unlock": "Archetype Trait of the Invader. Reach Invader level 10 to unlock trait use for any build",
         "id": 26,
-        "archetype": "Invader",
         "category": "traits",
         "fragment": "untouchable",
         "valueText": "3% → 30%",
-        "unitSymbol": "%"
+        "unitSymbol": "%",
+        "links": {
+          "archetype": {
+            "name": "Invader",
+            "externalId": 9
+          }
+        }
       },
       {
         "name": "Amplitude",
@@ -725,54 +837,7 @@
   },
   "weapons": {
     "settings": {
-      "label": "Weapons",
-      "singular": "Weapon",
-      "fragment": "weapons",
-      "groups": [
-        {
-          "label": "Type",
-          "fragment": "type"
-        },
-        {
-          "label": "World",
-          "fragment": "world"
-        },
-        {
-          "label": "Has Mod",
-          "fragment": "hasMod"
-        }
-      ],
-      "sortKeys": [
-        {
-          "label": "Name",
-          "fragment": "name"
-        },
-        {
-          "label": "Damage",
-          "fragment": "stats.damage"
-        },
-        {
-          "label": "RPS",
-          "fragment": "stats.rps"
-        }
-      ],
       "categorized": true,
-      "defaultGroup": "type",
-      "hasLevels": true,
-      "tracker": {
-        "fields": [
-          {
-            "label": "World",
-            "fragment": "world",
-            "redacted": true
-          },
-          {
-            "label": "Location",
-            "fragment": "location",
-            "redacted": true
-          }
-        ]
-      },
       "database": {
         "fields": [
           {
@@ -788,6 +853,54 @@
             "fragment": "stats.rps"
           }
         ]
+      },
+      "defaultGroup": "type",
+      "fragment": "weapons",
+      "groups": [
+        {
+          "label": "Type",
+          "fragment": "type"
+        },
+        {
+          "label": "World",
+          "fragment": "world"
+        },
+        {
+          "label": "Has Mod",
+          "fragment": "hasMod"
+        }
+      ],
+      "hasLevels": true,
+      "label": "Weapons",
+      "showIn": ["tracker", "database"],
+      "singular": "Weapon",
+      "sortKeys": [
+        {
+          "label": "Name",
+          "fragment": "name"
+        },
+        {
+          "label": "Damage",
+          "fragment": "stats.damage"
+        },
+        {
+          "label": "RPS",
+          "fragment": "stats.rps"
+        }
+      ],
+      "tracker": {
+        "fields": [
+          {
+            "label": "World",
+            "fragment": "world",
+            "redacted": true
+          },
+          {
+            "label": "Location",
+            "fragment": "location",
+            "redacted": true
+          }
+        ]
       }
     },
     "items": [
@@ -795,7 +908,6 @@
         "name": "XMG57 \"Bonesaw",
         "type": "Long Guns",
         "description": "An experimental infantry support weapon used for prolonged suppressive fire. High capacity, long reload, and prone to overheating. Becomes more accurate while holding down the trigger.",
-        "mod": "",
         "world": "Earth",
         "location": "Ward 13",
         "unlock": "Buy from Brabus at Ward 13/Starting weapon for the Medic archetype",
@@ -820,7 +932,6 @@
         "name": "AS-10 \"Bulldog",
         "type": "Long Guns",
         "description": "A brutal drum-fed fully-automatic 10 gauge shotgun designed for close-quarters combat.",
-        "mod": "",
         "world": "Earth",
         "location": "Ward 13",
         "unlock": "Buy from Brabus at Ward 13/Starting weapon for the Challenger archetype",
@@ -845,7 +956,6 @@
         "name": "Wrangler 1860",
         "type": "Long Guns",
         "description": "A well-rounded lever-action rifle effective at most ranges, hampered only by a slow reload.",
-        "mod": "",
         "world": "Earth",
         "location": "Ward 13",
         "unlock": "Buy from Brabus at Ward 13/Starting weapon for the Gunslinger archetype",
@@ -870,7 +980,6 @@
         "name": "Huntmaster M1",
         "type": "Long Guns",
         "description": "A powerful single-shot sniper rifle with excellent range and pinpoint accuracy. Comes with a 3x scope. Tap SCOPE to toggle.",
-        "mod": "",
         "world": "Earth",
         "location": "Ward 13",
         "unlock": "Buy from Brabus at Ward 13/Starting weapon for the Hunter archetype",
@@ -895,7 +1004,6 @@
         "name": "Widowmaker",
         "type": "Long Guns",
         "description": "A powerful single-shot sniper rifle with excellent range and pinpoint accuracy. Comes with a 3x scope. Tap SCOPE to toggle.",
-        "mod": "",
         "world": "Earth",
         "location": "Ward 13",
         "unlock": "Buy from Brabus at Ward 13",
@@ -920,7 +1028,6 @@
         "name": "Coach Gun",
         "type": "Long Guns",
         "description": "A double-barrel over/under shotgun modified to fire powerful slugs. High damage with a decent fire rate, but very low magazine capacity.",
-        "mod": "",
         "world": "Earth",
         "location": "Ward 13",
         "unlock": "Buy from Brabus at Ward 13",
@@ -945,7 +1052,6 @@
         "name": "Blackmaw AR-47",
         "type": "Long Guns",
         "description": "A fully automatic rifle with a medium capacity. Highly effective with controlled bursts.",
-        "mod": "",
         "world": "Earth",
         "location": "Ward 13",
         "unlock": "Buy from Brabus at Ward 13 / Starting weapon for the Handler archetype",
@@ -971,7 +1077,6 @@
         "type": "Long Guns",
         "description": "A classic Tommy Gun with large ammo capacity and a slow reload. Poor initial accuracy which improves while holding down the trigger.",
         "fallOffRange": "55m",
-        "mod": "",
         "world": "Labyrinth",
         "location": "Fractured Ingress",
         "unlock": "Get the Biome Portal Key in The Labyrinth and use it on the door hidden in it. To reach it you need to find a portal and jump to the one behind it, enter the next one and enter in the opening in the wall to your left, do some parkour and at the end it will be the door that lead you to Ward 13 Leto's Stash.",
@@ -999,7 +1104,6 @@
         "name": "Crossbow",
         "type": "Long Guns",
         "description": "An accurate and deadly single-shot crossbow with a low sound profile.",
-        "mod": "",
         "world": "Yaesha",
         "location": "Imperial Gardens",
         "unlock": "Imperial Gardens puzzle, there are some symbols in the area but the pattern seems always the same.",
@@ -1024,7 +1128,6 @@
         "name": "Ford's Scattergun",
         "type": "Long Guns",
         "description": "An incredibly powerful 12 gauge shotgun with a wide spread. High damage, slow reload.",
-        "mod": "",
         "world": "Yaesha",
         "location": "Red Throne",
         "unlock": "From the The Red Throne worldstone on Yaesha, follow the pathway and go into the library on the left. While wearing the Seal of the Empress, the floor underneath you will open, revealing a basement with the weapon inside.",
@@ -1049,7 +1152,6 @@
         "name": "Pulse Rifle",
         "type": "Long Guns",
         "description": "An extremely accurate, high-tech pulse rifle which shoots quick three-round bursts.",
-        "mod": "",
         "world": "N'Erud",
         "location": "Ascension Spire",
         "unlock": "At the entrance of Ascension Spire, where the Custodian waits, there is a hole at the left of the entrance. Go down and check if you have to insert 1 or 2 keys. If you need 2 you will need to find the Decorum Cipher and Memory Core 2. If not try again.",
@@ -1074,7 +1176,6 @@
         "name": "Royal Hunting Bow",
         "type": "Long Guns",
         "description": "The Postulant grants these to those who can defeat him. None know why. Some suspect that the game is mere preamble—that perhaps the true game is what its players do next.",
-        "mod": "",
         "world": "Losomn",
         "location": "Postulant's Parlor",
         "unlock": "Win a game to the Postulant",
@@ -1099,7 +1200,6 @@
         "name": "Rusty Lever Action",
         "type": "Long Guns",
         "description": " A well-worn lever-action rifle.",
-        "mod": "",
         "world": "Earth",
         "location": "Ward 13",
         "unlock": "",
@@ -1124,8 +1224,6 @@
         "name": "Aphelion",
         "type": "Long Guns",
         "description": "Fires a hypercharged wide-arcing line that passes through targets.",
-        "mod": "Supernova",
-        "modDescription": "Fires the compressed remains of a dying star. On contact or hit wit the primary fire, causes Supernova to explode for 150 FIRE Damage, and 350 BURNING Damage over 10s to all targets within 4m.Striking the Supernova with Aphelion's primary fire increases its explosion radius by 25% and damage by 50%, and spawns a massive shockwave that deals 300 FIRE damage and also applies the initial BURNING amount.Mod Power Requirement: 1,250.",
         "hasMod": true,
         "world": "N'Erud",
         "location": "Sentinel's Keep",
@@ -1144,14 +1242,18 @@
           "weakSpotDamageBonus": "+100%",
           "staggerModifier": -25
         },
-        "fragment": "aphelion"
+        "fragment": "aphelion",
+        "links": {
+          "mod": {
+            "name": "Supernova",
+            "externalId": 626
+          }
+        }
       },
       {
         "name": "Crescent Moon",
         "type": "Long Guns",
         "description": " ",
-        "mod": "Moonlight Barrage",
-        "modDescription": "Empowers the Bow for 15s. Arrows apply Moonlight to enemies for 3s. Enemies struck by Crescent Moon while Moonlit release a Moon Essence which returns 1 arrow, heals 5% of Max Health, and grants 15% Fire and Reload Speed for 5s.Basic Shots automatically become Charged Shots. Manually Charged Shots fire two arrows.Power Requirement: 1,250",
         "hasMod": true,
         "world": "Losomn",
         "location": "Nimue's Retreat",
@@ -1170,14 +1272,18 @@
           "weakSpotDamageBonus": "+70%",
           "staggerModifier": -15
         },
-        "fragment": "crescent_moon"
+        "fragment": "crescent_moon",
+        "links": {
+          "mod": {
+            "name": "Moonlight Barrage",
+            "externalId": 627
+          }
+        }
       },
       {
         "name": "Deceit",
         "type": "Long Guns",
         "description": "A pinpoint accurate split-barreled rifle that fires two penetrating rails. High base damage, but cannot score Weakspot hits. Charge to fire",
-        "mod": "Ouroboros",
-        "modDescription": "Conjures 3 sword fragments that encircle the wielder for 30s.Performing a Melee Attack lets loose a Fragment which traints the blood of targets, causing all attacks from Deceit to register as Weakspot hits for short period of time.Charge Melee Attacks fires all remaining Fragments at once.Mod Power Requirement: 1.440 ",
         "hasMod": true,
         "world": "Losomn",
         "location": "Beatific Gallery",
@@ -1196,14 +1302,18 @@
           "weakSpotDamageBonus": "+90%",
           "staggerModifier": 5
         },
-        "fragment": "deceit"
+        "fragment": "deceit",
+        "links": {
+          "mod": {
+            "name": "Ouroboros",
+            "externalId": 628
+          }
+        }
       },
       {
         "name": "Merciless",
         "type": "Long Guns",
         "description": " Fires tooth-like flechettes. When weapon reticle is fully compressed, flechettes apply 250 BLEEDING Damage over 10s.",
-        "mod": "Bloodline",
-        "modDescription": "Fires a devastating blast which penetrates through all enemies in its path. Deals 150 damage with a 25% Critical damage bonus, and 3x additional stagger. Bloodline damage increases by 50% for each enemy penetratedMod Power Requirement: 350",
         "hasMod": true,
         "world": "Yaesha",
         "location": "Ravager's Lair",
@@ -1222,14 +1332,18 @@
           "weakSpotDamageBonus": "+100%",
           "staggerModifier": 0
         },
-        "fragment": "merciless"
+        "fragment": "merciless",
+        "links": {
+          "mod": {
+            "name": "Bloodline",
+            "externalId": 629
+          }
+        }
       },
       {
         "name": "Nightfall",
         "type": "Long Guns",
         "description": "A device forged of pure evil. Fires hardened bone shards at bonus stagger. Semi-automatic with a medium kick.",
-        "mod": "Dreadwalker",
-        "modDescription": "Enter the Nightmare Realm. Nightfall gains infinite Ammo, a 35% Fire Rate increase, 10% Lifesteal, and becomes fully automatic. The wielder becomes significantly harder to hit while moving.Disables other weapons and Skills for the duration, or until Dreadwalker is deactivated. Lasts 10s.Mod Power Requirement: 1,250",
         "hasMod": true,
         "world": "Losomn",
         "location": "The Tormented Asylum",
@@ -1248,14 +1362,18 @@
           "weakSpotDamageBonus": "+105%",
           "staggerModifier": 15
         },
-        "fragment": "nightfall"
+        "fragment": "nightfall",
+        "links": {
+          "mod": {
+            "name": "Dreadwalker",
+            "externalId": 630
+          }
+        }
       },
       {
         "name": "Plasma Cutter",
         "type": "Long Guns",
         "description": "An energy-based cutting tool that increases damage when focused on a target. Can overheat.",
-        "mod": "Heat Sinkg",
-        "modDescription": "Forces open Plasma Cutter's heat vents dispersing all heat. While active, Plasma Cutter generates 50% less heat, and ramping damage cap is increased to 3x Damage. Overheats automatically when deactivated. Lasts 20s.Mod Power Requirement: 850",
         "hasMod": true,
         "world": "N'Erud",
         "location": "Titan's Reach",
@@ -1274,14 +1392,18 @@
           "weakSpotDamageBonus": "+75%",
           "staggerModifier": -20
         },
-        "fragment": "plasma_cutter"
+        "fragment": "plasma_cutter",
+        "links": {
+          "mod": {
+            "name": "Heat Sink",
+            "externalId": 631
+          }
+        }
       },
       {
         "name": "Sagittarius",
         "type": "Long Guns",
         "description": "A high-powered Bow which deals bonus damage to Weakspots. Can be charged for increased effect. Perfect release after Charge for maximum damage",
-        "mod": "Starfall",
-        "modDescription": "Fires a powerful arrow which deals 30 damage and opens a 7m portal that rains down star fragments. Each fragment deals 50 damage within 4m. Lasts 6s. Mod Power Requirement: 750",
         "hasMod": true,
         "world": "Yaesha",
         "location": "Cathedral of Omens",
@@ -1300,14 +1422,18 @@
           "weakSpotDamageBonus": "+115%",
           "staggerModifier": 5
         },
-        "fragment": "sagittarius"
+        "fragment": "sagittarius",
+        "links": {
+          "mod": {
+            "name": "Starfall",
+            "externalId": 632
+          }
+        }
       },
       {
         "name": "Twisted Arbalest",
         "type": "Long Guns",
         "description": " A strange device which fires a bouncing Energy Disc that can hit up to 5 enemies in close proximity. Damage is reduced with each bounce.",
-        "mod": "Guardian's Call",
-        "modDescription": "When Mod Power is full, Primary Fire becomes Empowered and highlights enemies it strikes.Activation the Mod calls down a Guardian Sword on enemies struck by an Empowered Energy Disc. Swords deal 100 damage and 3x stagger within 5m. Mod Power Requirement: 750",
         "hasMod": true,
         "world": "Yaesha",
         "location": "The Great Bole",
@@ -1326,14 +1452,18 @@
           "weakSpotDamageBonus": "+100%",
           "staggerModifier": 5
         },
-        "fragment": "twisted_arbalest"
+        "fragment": "twisted_arbalest",
+        "links": {
+          "mod": {
+            "name": "Guardian's Call",
+            "externalId": 633
+          }
+        }
       },
       {
         "name": "Alpha/Omega",
         "type": "Long Guns",
         "description": "After charging, fires an accurate high-damage rail which penetrates any target. Each successful hit reduces the charge time by 0.1s and increases damage by 10% for 1.5s. Stacks 5x.",
-        "mod": "Beta Ray",
-        "modDescription": "Brands a target for 30s. Branded enemies that die leave a Brand at their location.Reloading or Swapping detonates Brands dealing 225 damage.Additional Brands (3Max) on the same target deal 50% damage.Slain enemies return 5-15% of Ammo and Mod power to the weapon.Mod Power Requirement: 450",
         "hasMod": true,
         "world": "Root Earth",
         "location": "Blackened Citadel",
@@ -1352,11 +1482,16 @@
           "weakSpotDamageBonus": "+100%",
           "staggerModifier": 0
         },
-        "fragment": "alpha_omega"
+        "fragment": "alpha_omega",
+        "links": {
+          "mod": {
+            "name": "Beta Ray",
+            "externalId": 625
+          }
+        }
       },
       {
         "name": "Repulsor",
-        "mod": "Banish",
         "world": "Earth",
         "location": "Ward 13",
         "unlock": "Buy it from Brabus after Nightmare Difficulty Playthrough",
@@ -1365,11 +1500,16 @@
         "type": "Long Guns",
         "hasMod": true,
         "category": "weapons",
-        "fragment": "repulsor"
+        "fragment": "repulsor",
+        "links": {
+          "mod": {
+            "name": "Banish",
+            "externalId": 702
+          }
+        }
       },
       {
         "name": "Savior",
-        "mod": "Shatterstar",
         "world": "Earth",
         "location": "Ward 13",
         "unlock": "Buy it from Brabus after Hardcore Veteran Difficulty Playthrough (Permadeath)",
@@ -1378,11 +1518,16 @@
         "type": "Long Guns",
         "hasMod": true,
         "category": "weapons",
-        "fragment": "savior"
+        "fragment": "savior",
+        "links": {
+          "mod": {
+            "name": "Shatterstar",
+            "externalId": 700
+          }
+        }
       },
       {
         "name": "Sporebloom",
-        "mod": "Spore Shot",
         "world": "Earth",
         "location": "Ward 13",
         "unlock": "Buy it from Brabus after Veteran Difficulty Playthrough",
@@ -1391,11 +1536,16 @@
         "type": "Long Guns",
         "hasMod": true,
         "category": "weapons",
-        "fragment": "sporebloom"
+        "fragment": "sporebloom",
+        "links": {
+          "mod": {
+            "name": "Spore Shot",
+            "externalId": 701
+          }
+        }
       },
       {
         "name": "Starkiller",
-        "mod": "Gravity Core",
         "world": "Earth",
         "location": "Ward 13",
         "unlock": "Buy it from Brabus after Apocalypse Difficulty Playthrough",
@@ -1404,13 +1554,18 @@
         "type": "Long Guns",
         "hasMod": true,
         "category": "weapons",
-        "fragment": "starkiller"
+        "fragment": "starkiller",
+        "links": {
+          "mod": {
+            "name": "Gravity Core",
+            "externalId": 703
+          }
+        }
       },
       {
         "name": "Silverback Model 500",
         "type": "Hand Guns",
         "description": "A powerful hand cannon witha low capacity cylinder. High damage and a heavy kick.",
-        "mod": "",
         "world": "Earth",
         "location": "Ward 13",
         "unlock": "Buy from Brabus at Ward 13/Starting weapon for the Challenger archetype",
@@ -1436,7 +1591,6 @@
         "type": "Hand Guns",
         "description": "Astandard issue military spec sidearm known for its reliability and accuracy.",
         "fallOffRange": "50m",
-        "mod": "",
         "world": "Earth",
         "location": "Ward 13",
         "unlock": "Buy from Brabus at Ward 13/Starting weapon for the Medic archetype",
@@ -1465,7 +1619,6 @@
         "type": "Hand Guns",
         "description": "An accurate semi-automatic pistol that can rapidly fire small-caliber bullets.",
         "fallOffRange": "55m",
-        "mod": "",
         "world": "Earth",
         "location": "Ward 13",
         "unlock": "Buy from Brabus at Ward 13/Starting weapon for the Hunter archetype",
@@ -1493,7 +1646,6 @@
         "name": "Western Classic",
         "type": "Hand Guns",
         "description": "A classic six-shooter. Tough. Dependable.",
-        "mod": "",
         "world": "Earth",
         "location": "Ward 13",
         "unlock": "Buy from Brabus at Ward 13/Starting weapon for the Gunslinger archetype",
@@ -1518,7 +1670,6 @@
         "name": "Sureshot",
         "type": "Hand Guns",
         "description": "A high-caliber single-shot hunting pistol that inflicts heavy damage at mid to long range.",
-        "mod": "",
         "world": "Earth",
         "location": "Ward 13",
         "unlock": "Buy from Brabus at Ward 13",
@@ -1543,7 +1694,6 @@
         "name": "Tech 22",
         "type": "Hand Guns",
         "description": "A suppressed small-caliber automatic pistol with medium magazine capacity and a high fire rate.",
-        "mod": "",
         "world": "Earth",
         "location": "Ward 13",
         "unlock": "Buy from Brabus at Ward 13/Starting weapon for the Handler archetype",
@@ -1569,7 +1719,6 @@
         "type": "Hand Guns",
         "description": " ",
         "fallOffRange": "20m",
-        "mod": "",
         "world": "Losomn",
         "location": "The Tormented Asylum",
         "unlock": "Inside the safe. You need to give the woman in the basement 3 little statues to give you the code. 2971",
@@ -1597,7 +1746,6 @@
         "name": "Rusty Repeater",
         "type": "Hand Guns",
         "description": "An old antique pistol.",
-        "mod": "",
         "world": "Earth",
         "location": "Ward 13",
         "unlock": "",
@@ -1622,8 +1770,6 @@
         "name": "Star Shot",
         "type": "Hand Guns",
         "description": "Fires a fast moving projectile which explodes on contact. Explosion has no damage falloff.",
-        "mod": "Big Bang",
-        "modDescription": "Funnels all current Mod Charges into the next shot. Projectile deals 65 direct damage and 65 Explosive damage in a 5m per Charge consumed. Explosion applies 75 BURNING damage over 10s per Charge consumed. Additional Charges consumed increase all damage by 5%. Max 5 Charges. Mod Power Requirement: 630",
         "hasMod": true,
         "world": "N'Erud",
         "location": "Phantom Wasteland / Dark Conduit",
@@ -1642,14 +1788,18 @@
           "weakSpotDamageBonus": "+110%",
           "staggerModifier": 10
         },
-        "fragment": "star_shot"
+        "fragment": "star_shot",
+        "links": {
+          "mod": {
+            "name": "Big Bang",
+            "externalId": 624
+          }
+        }
       },
       {
         "name": "Cube Gun",
         "type": "Hand Guns",
         "description": "Projectiles return on hit or after reaching max range. Reloading retrieves shot projectiles. Max 5 fired projectiles. Infinite Ammo. Can overheat.",
-        "mod": "Cube Shield",
-        "modDescription": "Cube Shield Generates a Cube Shield which absorbs up to 500 damage from incoming enemy projectiles. Lasts 15s. Reactivating fires the Cube Shield which damages enemies as is travels. Damage is increased if the Cube Shield has absorbed enemy projectile damage before firing. Mod Power Requirement: 1,000",
         "hasMod": true,
         "world": "Labyrinth",
         "location": "Labyrinth",
@@ -1668,14 +1818,19 @@
           "weakSpotDamageBonus": "+85%",
           "staggerModifier": 0
         },
-        "fragment": "cube_gun"
+        "fragment": "cube_gun",
+        "links": {
+          "mod": {
+            "name": "Cube Shield",
+            "externalId": 617
+          }
+        }
       },
       {
         "name": "MP60-R",
         "type": "Hand Guns",
         "description": "A small-caliber submachine gun best suited for close range skirmishes.",
         "fallOffRange": "50m",
-        "mod": "",
         "world": "Earth",
         "location": "Ward 13",
         "unlock": "Examine the flashlight Ford gave you with the code 0415. Put that code on the chest in Ward 13, take the key and go all way to north past some shipping containers. Open the locked door with the key.",
@@ -1703,8 +1858,6 @@
         "name": "Sorrow",
         "type": "Hand Guns",
         "description": "The last vestiges of a fallen sister, this mystical crossbow pistol has the ability to recall its bolts to heal the wielder.",
-        "mod": "Eulogy",
-        "modDescription": "Recalls bolts which deal 30 damage when pulled fro, when striking targets on their return. Recalled bolts grant 2% of Max HP. Recalled bolts can also overfill Sorrow by up to +5. Any bolts will be returned to reserves. Mod Power Requirement: 600",
         "hasMod": true,
         "world": "Yaesha",
         "location": "The Forbidden Grove",
@@ -1723,15 +1876,19 @@
           "weakSpotDamageBonus": "+115%",
           "staggerModifier": 5
         },
-        "fragment": "sorrow"
+        "fragment": "sorrow",
+        "links": {
+          "mod": {
+            "name": "Eulogy",
+            "externalId": 623
+          }
+        }
       },
       {
         "name": "Enigma",
         "type": "Hand Guns",
         "description": "Fires an electrical stream thatjumps to nearby targets within 7.5m, dealing 25% reduced damage perjump. Applies OVERLOADED for 5.2s.",
         "fallOffRange": "12m",
-        "mod": "Chaos Driver",
-        "modDescription": "<p>Drives electrified rods into targets which tether to other rods within 10m. Tethers last 10s and deal 20 SHOCK damage per second.</p><p>Targets embedded with a rod take 50 SHOCK damage per second. They take 25% additional damage per extra rod in the target. Damage is increased by 1.5x if linked to another rod. Rods in the same target will not link.</p><p>Mod Power Requirement: 450</p>",
         "hasMod": true,
         "world": "Labyrinth",
         "location": "",
@@ -1753,14 +1910,19 @@
           "accuracy": 58,
           "weakSpotDamageBonus": "+0%"
         },
-        "fragment": "enigma"
+        "fragment": "enigma",
+        "links": {
+          "mod": {
+            "name": "Chaos Driver",
+            "externalId": 618
+          }
+        }
       },
       {
         "name": "Bolt Driver",
         "type": "Hand Guns",
         "description": "An ingenius Gul rifle designed to harness energy from Pan crystals. Charge to fire a 3- shot burst.",
         "fallOffRange": "52m",
-        "mod": "",
         "world": "Yaesha",
         "location": "Forbidden Grove",
         "unlock": "After defeating Corrupted Ravager talk to The Flautist and you can hear he is playing a new tune. Play that tune on the water Harp to get the Weapon. 1-4-0-2-5-0-3-0",
@@ -1789,7 +1951,6 @@
         "type": "Hand Guns",
         "description": "A mid-range Pistol Shotgun with a brisk fire rate and medium recoil Slower reload.",
         "fallOffRange": "35m",
-        "mod": "",
         "world": "N'Erud",
         "location": "Vault of the Formless",
         "unlock": "Wait in the second spinning tower to access the secret entrance. There should be the House Lythla Glyph, then open the blocked door with it to get the handgun.",
@@ -1817,8 +1978,6 @@
         "name": "Hellfire",
         "type": "Hand Guns",
         "description": "Spews flames that apply BURNING which deals 300 FIRE damage over 10 seconds.",
-        "mod": "Explosive Shot",
-        "modDescription": "Fires an explosive round that deals up to 155 damage within 9m. Mod Power Requirement: 650",
         "hasMod": true,
         "world": "Root Earth",
         "location": "Ashen Wasteland",
@@ -1837,14 +1996,18 @@
           "weakSpotDamageBonus": "N/A",
           "staggerModifier": -15
         },
-        "fragment": "hellfire"
+        "fragment": "hellfire",
+        "links": {
+          "mod": {
+            "name": "Explosive Shot",
+            "externalId": 619
+          }
+        }
       },
       {
         "name": "Nebula",
         "type": "Hand Guns",
         "description": "Fires a stream of superhot ACID gas which applies the CORRODED effect, dealing 300 CORROSIVE Damage over 15s. Killing targets CORRODED by Nebula spawns a gas cloud which applies its on-hit effect. Gas clouds lasts 2s and can be refreshed.",
-        "mod": "Nano Swarm",
-        "modDescription": "Unleash a swarm of Nanomachines that seek after enemies within 20 meters and repeatedly attack dealing 6 ACID damage per hit. Lasts 15 seconds. Mod Power Requirement: 750",
         "hasMod": true,
         "world": "N'Erud",
         "location": "Forgotten Prison",
@@ -1863,14 +2026,18 @@
           "weakSpotDamageBonus": "N/A",
           "staggerModifier": -15
         },
-        "fragment": "nebula"
+        "fragment": "nebula",
+        "links": {
+          "mod": {
+            "name": "Nano Swarm",
+            "externalId": 621
+          }
+        }
       },
       {
         "name": "Meridian",
         "type": "Hand Guns",
         "description": " Fires volatile grenades that explode on direct contact with enemies and deal AOE damage within 4m. Dormant grenades eventually explode and can also be shot to detonate early.",
-        "mod": "Screamer",
-        "modDescription": "Fires a high-powered rocket that deals up to 200 damage within 2.5m. Mod Power Requirement: 650",
         "hasMod": true,
         "world": "Losomn",
         "location": "Great Sewers / Tiller's Rest / Harvester's Reach",
@@ -1889,14 +2056,18 @@
           "weakSpotDamageBonus": "N/A",
           "staggerModifier": 0
         },
-        "fragment": "meridian"
+        "fragment": "meridian",
+        "links": {
+          "mod": {
+            "name": "Screamer",
+            "externalId": 620
+          }
+        }
       },
       {
         "name": "Rune Pistol",
         "type": "Hand Guns",
         "description": "An accurate semi-automatic pistol that can rapidly fire small-caliber bullets.",
-        "mod": "Soul Brand",
-        "modDescription": "Applies Soul Brand to all enemies within 25m which lasts 25s. Enemies killed while bearing the Soul Brand leave behind an Echo which lasts 10s before returning to the Nightmare Realm.Echoes are drawn to any survivor who walks within 3m, granting 20% of Max Health on contact. Mod Power Requirement: 850",
         "hasMod": true,
         "world": "Losomn",
         "location": "Nimue's Retreat",
@@ -1915,14 +2086,19 @@
           "weakSpotDamageBonus": "+100%",
           "staggerModifier": 0
         },
-        "fragment": "rune_pistol"
+        "fragment": "rune_pistol",
+        "links": {
+          "mod": {
+            "name": "Soul Brand",
+            "externalId": 622
+          }
+        }
       },
       {
         "name": "Steel Sword",
         "type": "Melee Weapons",
         "description": "A long, sharp blade hammered out of vehicle leaf springs. Well-rounded for most situations.",
         "weakSpotDamage": "+100%",
-        "mod": "",
         "world": "Earth",
         "location": "Ward 13",
         "unlock": "Buy from Brabus at Ward 13",
@@ -1942,7 +2118,6 @@
         "type": "Melee Weapons",
         "description": "A giant broadsword made from flattened railroad tracks. Dozens of ridges cut in the side for causing irreparable damage.",
         "weakSpotDamage": "+95%",
-        "mod": "",
         "world": "Earth",
         "location": "Ward 13",
         "unlock": "Buy from Brabus at Ward 13",
@@ -1962,7 +2137,6 @@
         "type": "Melee Weapons",
         "description": "An unorthodox weapon meant to convert momentum into destruction. Some attacks can continuously chain overhead swings.",
         "weakSpotDamage": "+100%",
-        "mod": "",
         "world": "Earth",
         "location": "Ward 13",
         "unlock": "Buy from Brabus at Ward 13",
@@ -1982,7 +2156,6 @@
         "type": "Melee Weapons",
         "description": "A common chopping tool that has been repurposed for combat. Rapidly cycles attacks from right to left. Charge attacks strike twice.",
         "weakSpotDamage": "+105%",
-        "mod": "",
         "world": "Earth",
         "location": "Ward 13",
         "unlock": "Buy from Brabus at Ward 13",
@@ -2002,7 +2175,6 @@
         "type": "Melee Weapons",
         "description": "A large, heavy warhammer cobbled together from engine components. It is a slow- but-devastating weapon meant to destroy anything it hits.",
         "weakSpotDamage": "+95%",
-        "mod": "",
         "world": "Earth",
         "location": "Ward 13",
         "unlock": "Buy from Brabus at Ward 13",
@@ -2022,7 +2194,6 @@
         "type": "Melee Weapons",
         "description": "A spear perfect for staying at range with quick, focused attacks. High, single-target damage.",
         "weakSpotDamage": "+110%",
-        "mod": "",
         "world": "Earth",
         "location": "Ward 13",
         "unlock": "Buy from Brabus at Ward 13",
@@ -2042,7 +2213,6 @@
         "type": "Melee Weapons",
         "description": "A staff made from old plumbing parts used for controlling wide swaths in front of the wielder.",
         "weakSpotDamage": "+95%",
-        "mod": "",
         "world": "Earth",
         "location": "Ward 13",
         "unlock": "Buy from Brabus at Ward 13",
@@ -2062,7 +2232,6 @@
         "type": "Melee Weapons",
         "description": "An old piece of steel with serrations cut into one side. Pipe handle provides limited grip.",
         "weakSpotDamage": "+105%",
-        "mod": "",
         "world": "Root Earth",
         "location": "Ashen Wasteland",
         "unlock": "Buy from Brabus at Ward 13. Found next to the Dendroid armour set",
@@ -2082,7 +2251,6 @@
         "type": "Melee Weapons",
         "description": " Steel knuckles with rusty sawblade tips, designed to boost Unarmed damage.",
         "weakSpotDamage": "+110%",
-        "mod": "",
         "world": "Earth",
         "location": "Ward 13",
         "unlock": "Buy from Brabus at Ward 13",
@@ -2102,7 +2270,6 @@
         "type": "Melee Weapons",
         "description": "A pair of old-canine training bracers converted into deadly claws. Used for slashing and ripping.",
         "weakSpotDamage": "+110%%",
-        "mod": "",
         "world": "Earth",
         "location": "Ward 13",
         "unlock": "Buy from Brabus at Ward 13",
@@ -2122,7 +2289,6 @@
         "type": "Melee Weapons",
         "description": "An intricately-forged elongated sword. Designed to keep stronger enemies at bay, while remaining light enough for agile maneuvers.",
         "weakSpotDamage": "+105%",
-        "mod": "",
         "world": "Losomn",
         "location": "Council Chamber",
         "unlock": "Accuse the right Conspirator. Go to the mirror world and get the dagger, when you got it inspect it and accuse the same symbol as the daggers has in it's pommel.",
@@ -2142,8 +2308,6 @@
         "type": "Melee Weapons",
         "description": "A powerful crushing device that harnesses rocket technology to increase smashing force.",
         "weakSpotDamage": "+95%",
-        "mod": "Accelerator",
-        "modDescription": "Charge Melee Attacks increase the speed of all Melee Attacks by 10% for 5s.",
         "hasMod": true,
         "world": "N'Erud",
         "location": "Terminus Station",
@@ -2156,14 +2320,19 @@
           "criticalHitChance": 5,
           "staggerModifier": 11
         },
-        "fragment": "atom_smasher"
+        "fragment": "atom_smasher",
+        "links": {
+          "mod": {
+            "name": "Accelerator",
+            "externalId": 647
+          }
+        }
       },
       {
         "name": "Edge of the Forest",
         "type": "Melee Weapons",
         "description": "An elegant, yet light blade, designed to bring beauty to bloodshed. Unstoppable in the hands of a master swordsman.",
         "weakSpotDamage": "+105%",
-        "mod": "",
         "world": "Yaesha",
         "location": "Imperial Gardens",
         "unlock": "",
@@ -2183,7 +2352,6 @@
         "type": "Melee Weapons",
         "description": "Standard issue Greatsword for the Empress's Royal Guards. Razor-sharp edges, extremely heavy, yet perfectly balanced.",
         "weakSpotDamage": "+95%",
-        "mod": "",
         "world": "Yaesha",
         "location": "The Red Throne",
         "unlock": "When talking to the queen fight them and let them kill you.",
@@ -2203,8 +2371,6 @@
         "type": "Melee Weapons",
         "description": " There is an ethereal lightness to this weapon, as though it were made of paper or breath.Though it strikes its foes forcibly enough.",
         "weakSpotDamage": "+95%",
-        "mod": "Dreamwave",
-        "modDescription": "After dealing 250 damage, Charge Attack will release a Dreamwave, flowing outwards 20m and returning to caster.Dreamwave applies SLOW to all enemies for 10s and grants a Stack of REVERIE for each enemy affected. Each Stack grants +2% to All Damage and +2% Movement Speed, which lasts 15s.",
         "hasMod": true,
         "world": "Losomn",
         "location": "Asylum",
@@ -2217,14 +2383,19 @@
           "criticalHitChance": 5,
           "staggerModifier": 3
         },
-        "fragment": "dreamcatcher"
+        "fragment": "dreamcatcher",
+        "links": {
+          "mod": {
+            "name": "Dreamwave",
+            "externalId": 636
+          }
+        }
       },
       {
         "name": "Labyrinth Staff",
         "type": "Melee Weapons",
         "description": "Basic Strikes generate 10% additional Mod Power. Charge Attacks perform an AOE which strikes all enemies within 2m, dealing 75 Damage. AOE Damage generates 50% additional Mod Power.",
         "weakSpotDamage": "+95%",
-        "mod": "",
         "world": "Labyrinth",
         "location": "Fractured Ingress",
         "unlock": "From the first world stone, staircase down and left. Pass by the shifting portal and continue to an area that has a jump to an invisible bridge, the floating stones will make a path. Wait to the shifting portal to make you a bridge to continue and go forward. There will be the weapon and Bastion Aberration.",
@@ -2244,8 +2415,6 @@
         "type": "Melee Weapons",
         "description": " A giant tool for splitting heavy rocks.",
         "weakSpotDamage": "+90%%",
-        "mod": "Fission Strike",
-        "modDescription": "On Neutral Evade Attacks Atom Splitter achieves Nuclear Fission, releasing a wave of charged particles which deals 150 Damage to targets within 20m.Charged Neutral Evade Attacks increase Range by 3x and Damage by 25%.",
         "hasMod": true,
         "world": "N'Erud",
         "location": "The Hatchery",
@@ -2258,15 +2427,19 @@
           "criticalHitChance": 5,
           "staggerModifier": 6
         },
-        "fragment": "atom_splitter"
+        "fragment": "atom_splitter",
+        "links": {
+          "mod": {
+            "name": "Fission Strike",
+            "externalId": 635
+          }
+        }
       },
       {
         "name": "Spectral Blade",
         "type": "Melee Weapons",
         "description": "A super-heated laser sword with an infinitely sharp edge. Perfect for cutting... anything.",
         "weakSpotDamage": "+105%",
-        "mod": "Whirlwind",
-        "modDescription": "Neutral Backdash Charge creates a Whirlwind of slashes which strike all enemies within 8m for 75 damage.",
         "hasMod": true,
         "world": "N'Erud",
         "location": "Sentinel's Keep",
@@ -2279,14 +2452,19 @@
           "criticalHitChance": 8,
           "staggerModifier": -25
         },
-        "fragment": "spectral_blade"
+        "fragment": "spectral_blade",
+        "links": {
+          "mod": {
+            "name": "Whirlwind",
+            "externalId": 644
+          }
+        }
       },
       {
         "name": "Blade of Gul",
         "type": "Melee Weapons",
         "description": "A short, but thick sword, used by Gul Warriors. It's compact design makes for swift yet hard-hitting blows. An excellent close-range option.",
         "weakSpotDamage": "+100%%",
-        "mod": "",
         "world": "Yaesha",
         "location": "The Far Woods",
         "unlock": "Buy from Bloodmoon Altar for 10 Bloodmoon Essence",
@@ -2306,7 +2484,6 @@
         "type": "Melee Weapons",
         "description": "A razor-sharp hand axe. Excellent for separating flesh from bone. Charge for double attacks.",
         "weakSpotDamage": "+105%%",
-        "mod": "",
         "world": "Losomn",
         "location": "The Great Hall",
         "unlock": "Use one of the small lifts after completing The Feast Event to find it in a room.",
@@ -2326,7 +2503,6 @@
         "type": "Melee Weapons",
         "description": "An intricately-forged mace with uniquely designed airways. Allows smaller wielders to get the mace up to speed much quicker.",
         "weakSpotDamage": "+100%",
-        "mod": "",
         "world": "Losomn",
         "location": "Council Chamber",
         "unlock": "You have to take the secret passage in The Executioner Event. To enter this event you need to shoot a painting that you find when your character says \"something's odd",
@@ -2346,7 +2522,6 @@
         "type": "Melee Weapons",
         "description": "A spear perfect for staying at a distance. Has excellent range, great recovery, and focused direct damage for one on one combat.",
         "weakSpotDamage": "+110%",
-        "mod": "",
         "world": "Yaesha",
         "location": "The Forbidden Grove",
         "unlock": "After saving the Doe during the Corrupted Ravager boss, talk to Bedel of the Vaunnt to get this reward.",
@@ -2364,8 +2539,6 @@
       {
         "name": "Gas Giant",
         "type": "Melee Weapons",
-        "description": "Builds up charge with damage dealt. When full, basic attacks apply CORRODED, for 5s. Neutral Evade attacks explode in a 3m AOE and leave a TOXIC cloud.",
-        "mod": "Dying Breath",
         "world": "N'Erud",
         "location": "Forgotten Prison",
         "unlock": "Defeating Tal Ratha (Metaphysical)",
@@ -2378,14 +2551,18 @@
           "criticalHitChance": 5,
           "staggerModifier": 0
         },
-        "fragment": "gas_giant"
+        "links": {
+          "mod": {
+            "name": "Dying Breath",
+            "externalId": 707
+          }
+        }
       },
       {
         "name": "Vice Grips",
         "type": "Melee Weapons",
         "description": "A N'Erudian tool converted into a ruthless ripping device. High raw damage.",
         "weakSpotDamage": "+110%",
-        "mod": "",
         "world": "N'Erud",
         "location": "Ascension Spire",
         "unlock": "Crafted at Drzyr Replicator",
@@ -2405,8 +2582,6 @@
         "type": "Melee Weapons",
         "description": "The spear is oddly...quiet. Even when you slide your hand across its haft or drop it upon the ground, it makes an unthinkably small amount of noise.",
         "weakSpotDamage": "+100%",
-        "mod": "Javelin",
-        "modDescription": "Charge attacks use 25 stamina to throw the spear which returns to the wielder's hand.",
         "hasMod": true,
         "world": "Losomn",
         "location": "Brocwithe Quarter",
@@ -2419,15 +2594,19 @@
           "criticalHitChance": 6,
           "staggerModifier": -5
         },
-        "fragment": "huntress_spear"
+        "fragment": "huntress_spear",
+        "links": {
+          "mod": {
+            "name": "Athibar",
+            "externalId": 640
+          }
+        }
       },
       {
         "name": "Krell Axe",
         "type": "Melee Weapons",
         "description": "Infused with Krell Shock magic, can be thrown if the wielder has stamina. Axe will magically reappear in-hand. Charge to throw.",
         "weakSpotDamage": "+85%",
-        "mod": "Krell Edge",
-        "modDescription": "Charge to throw the Krell Axe which applies OVERLOADED on hit, dealing 50 SHOCK Damage every 5s for 10s. Shortly after throwing, another will appear in the wielders hand.Costs 25 Stamina.",
         "hasMod": true,
         "world": "Yaesha",
         "location": "Endairia's End",
@@ -2440,15 +2619,19 @@
           "criticalHitChance": 3,
           "staggerModifier": -10
         },
-        "fragment": "krell_axe"
+        "fragment": "krell_axe",
+        "links": {
+          "mod": {
+            "name": "Krell Edge",
+            "externalId": 641
+          }
+        }
       },
       {
         "name": "Assassin's Dagger",
         "type": "Melee Weapons",
         "description": "Lightweight. Silent. Deadly. It's rumored that the blade is meant to bestow a slow, agonizing death.",
         "weakSpotDamage": "+110%%",
-        "mod": "Bloodthirst",
-        "modDescription": "Damage increases by +25% against BLEEDING enemies, and +25% when attacking from behind. Charge Attacks deal 200 BLEEDING damage over 10s.",
         "hasMod": true,
         "world": "Losomn",
         "location": "Nimue's Retreat",
@@ -2461,15 +2644,19 @@
           "criticalHitChance": -3,
           "staggerModifier": -15
         },
-        "fragment": "assassins_dagger"
+        "fragment": "assassins_dagger",
+        "links": {
+          "mod": {
+            "name": "Bloodthirst",
+            "externalId": 634
+          }
+        }
       },
       {
         "name": "Feral Judgement",
         "type": "Melee Weapons",
         "description": "A pair of gauntlets with sharp crystal blades that strike with vicious speed and velocity.",
         "weakSpotDamage": "+110%",
-        "mod": "Death Sentence",
-        "modDescription": "Dealing Melee Damage 6 times over 10s empowers Feral Judgement. When empowered, Neutral Backdash Charge attacks apply Death Sentence.After 15s of being sentenced, the enemy will suffer 10 Phantom Strikes, dealing 25 Damage each. Deals 25% additional damage to BLEEDING enemies.",
         "hasMod": true,
         "world": "Yaesha",
         "location": "Ravager's Lair",
@@ -2482,15 +2669,19 @@
           "criticalHitChance": 13,
           "staggerModifier": -15
         },
-        "fragment": "feral_judgement"
+        "fragment": "feral_judgement",
+        "links": {
+          "mod": {
+            "name": "Death Sentence",
+            "externalId": 637
+          }
+        }
       },
       {
         "name": "Godsplitter",
         "type": "Melee Weapons",
         "description": "An expertly balanced blade that is the produc of advanced Fae metallurgy.",
         "weakSpotDamage": "+50%%",
-        "mod": "Fracture",
-        "modDescription": "Charge Attacks taint the blood of targets, causing all attacks from Godsplitter to register as Weakspot hits for 2s seconds.",
         "hasMod": true,
         "world": "Losomn",
         "location": "Malefic Gallery",
@@ -2503,15 +2694,19 @@
           "criticalHitChance": 2,
           "staggerModifier": -20
         },
-        "fragment": "godsplitter"
+        "fragment": "godsplitter",
+        "links": {
+          "mod": {
+            "name": "Fracture",
+            "externalId": 638
+          }
+        }
       },
       {
         "name": "Hero's Sword",
         "type": "Melee Weapons",
         "description": "An ancient, quick, and versatile blade suited for many situations. Charge attacks cast a projectile for dealing melee damage at range.",
         "weakSpotDamage": "+90%",
-        "mod": "Energy Wave",
-        "modDescription": "Charge attacks use 35 stamina to release an energy wave projectile allowing the wielder to strike enemies from much farther away.",
         "hasMod": true,
         "world": "Earth",
         "location": "Ward 13",
@@ -2523,15 +2718,19 @@
           "criticalHitChance": 5,
           "staggerModifier": -10
         },
-        "fragment": "heros_sword"
+        "fragment": "heros_sword",
+        "links": {
+          "mod": {
+            "name": "Energy Wave",
+            "externalId": 639
+          }
+        }
       },
       {
         "name": "Nightshade",
         "type": "Melee Weapons",
         "description": "Fast striking claws with a high Critical Hit Chance.Neutral Dodge grants the power of Lifesteal.",
         "weakSpotDamage": "+110%",
-        "mod": "Beyond the Veil",
-        "modDescription": "Neutral Evade turns to mist, granting Nightshade 5% base damage as Lifesteal for 5s. Perfect Dodge doubles duration.",
         "hasMod": true,
         "world": "Losomn",
         "location": "The Tormented Asylum",
@@ -2544,15 +2743,19 @@
           "criticalHitChance": 18,
           "staggerModifier": -20
         },
-        "fragment": "nightshade"
+        "fragment": "nightshade",
+        "links": {
+          "mod": {
+            "name": "Beyond the Veil",
+            "externalId": 704
+          }
+        }
       },
       {
         "name": "Red Doe Staff",
         "type": "Melee Weapons",
         "description": "A magical stave rumored to contain a healing spirit within. Strikes with wide swings.",
         "weakSpotDamage": "+95%",
-        "mod": "Lifeline",
-        "modDescription": "After dealing 250 damage, the next charge attack causes the spirit of the RED DOE to stampede forward, dealing 160 damage to enemies and regenerating 10% Health to allies in its path.",
         "hasMod": true,
         "world": "Yaesha",
         "location": "Ravager's Lair",
@@ -2565,15 +2768,19 @@
           "criticalHitChance": 3,
           "staggerModifier": 8
         },
-        "fragment": "red_doe_staff"
+        "fragment": "red_doe_staff",
+        "links": {
+          "mod": {
+            "name": "Lifeline",
+            "externalId": 643
+          }
+        }
       },
       {
         "name": "Stonebreaker",
         "type": "Melee Weapons",
         "description": "A massive Greatsword which contains the harnessed magic of a corrupted Guardian. Can summon small shockwaves.",
         "weakSpotDamage": "+95%",
-        "mod": "Faultline",
-        "modDescription": "Charge to fire off ground-based shockwaves which deals 115 damage. Costs 35 Stamina.",
         "hasMod": true,
         "world": "Yaesha",
         "location": "The Great Bole",
@@ -2586,11 +2793,16 @@
           "criticalHitChance": 4,
           "staggerModifier": 10
         },
-        "fragment": "stonebreaker"
+        "fragment": "stonebreaker",
+        "links": {
+          "mod": {
+            "name": "Faultline",
+            "externalId": 645
+          }
+        }
       },
       {
         "name": "Decayed Claws",
-        "mod": "",
         "world": "Root Earth",
         "location": "Corrupted Harbor",
         "unlock": "Jump off of a tree onto a hidden pathway. It will be atop of a pedastal.",
@@ -2603,7 +2815,6 @@
       },
       {
         "name": "Smolder",
-        "mod": "Blaze",
         "world": "Earth",
         "location": "Ward 14",
         "unlock": "Buy it from Brabus after Veteran Difficulty Playthrough",
@@ -2612,11 +2823,16 @@
         "type": "Melee Weapons",
         "hasMod": true,
         "category": "weapons",
-        "fragment": "smolder"
+        "fragment": "smolder",
+        "links": {
+          "mod": {
+            "name": "Blaze",
+            "externalId": 705
+          }
+        }
       },
       {
         "name": "World's Edge",
-        "mod": "Horizon Strike",
         "world": "Earth",
         "location": "Ward 13",
         "unlock": "Buy it from Brabus after Apocalypse Difficulty Playthrough",
@@ -2625,14 +2841,21 @@
         "type": "Melee Weapons",
         "hasMod": true,
         "category": "weapons",
-        "fragment": "worlds_edge"
+        "fragment": "worlds_edge",
+        "links": {
+          "mod": {
+            "name": "Horizon Strike",
+            "externalId": 706
+          }
+        }
       }
     ]
   },
   "mods": {
     "settings": {
-      "label": "Mods",
-      "singular": "Mod",
+      "database": {
+        "fields": []
+      },
       "fragment": "mods",
       "groups": [
         {
@@ -2640,6 +2863,9 @@
           "fragment": "world"
         }
       ],
+      "label": "Mods",
+      "showIn": ["tracker", "database"],
+      "singular": "Mod",
       "tracker": {
         "fields": [
           {
@@ -2653,9 +2879,6 @@
             "redacted": true
           }
         ]
-      },
-      "database": {
-        "fields": []
       }
     },
     "items": [
@@ -2964,7 +3187,12 @@
         "id": 617,
         "category": "mods",
         "fragment": "cube_shield",
-        "weapon": "Cube Gun"
+        "links": {
+          "weapon": {
+            "name": "Cube Gun",
+            "externalId": 76
+          }
+        }
       },
       {
         "name": "Chaos Driver",
@@ -2974,7 +3202,12 @@
         "id": 618,
         "category": "mods",
         "fragment": "chaos_driver",
-        "weapon": "Enigma"
+        "links": {
+          "weapon": {
+            "name": "Enigma",
+            "externalId": 79
+          }
+        }
       },
       {
         "name": "Explosive Shot",
@@ -2984,7 +3217,12 @@
         "id": 619,
         "category": "mods",
         "fragment": "explosive_shot",
-        "weapon": "Hellfire"
+        "links": {
+          "weapon": {
+            "name": "Hellfire",
+            "externalId": 82
+          }
+        }
       },
       {
         "name": "Screamer",
@@ -2994,7 +3232,12 @@
         "id": 620,
         "category": "mods",
         "fragment": "screamer",
-        "weapon": "Meridian"
+        "links": {
+          "weapon": {
+            "name": "Meridian",
+            "externalId": 84
+          }
+        }
       },
       {
         "name": "Nano Swarm",
@@ -3004,7 +3247,12 @@
         "id": 621,
         "category": "mods",
         "fragment": "nano_swarm",
-        "weapon": "Nebula"
+        "links": {
+          "weapon": {
+            "name": "Nebula",
+            "externalId": 83
+          }
+        }
       },
       {
         "name": "Soul Brand",
@@ -3014,7 +3262,12 @@
         "id": 622,
         "category": "mods",
         "fragment": "soul_brand",
-        "weapon": "Rune Pistol"
+        "links": {
+          "weapon": {
+            "name": "Rune Pistol",
+            "externalId": 85
+          }
+        }
       },
       {
         "name": "Eulogy",
@@ -3024,7 +3277,12 @@
         "id": 623,
         "category": "mods",
         "fragment": "eulogy",
-        "weapon": "Sorrow"
+        "links": {
+          "weapon": {
+            "name": "Sorrow",
+            "externalId": 78
+          }
+        }
       },
       {
         "name": "Big Bang",
@@ -3034,7 +3292,12 @@
         "id": 624,
         "category": "mods",
         "fragment": "big_bang",
-        "weapon": "Star Shot"
+        "links": {
+          "weapon": {
+            "name": "Star Shot",
+            "externalId": 75
+          }
+        }
       },
       {
         "name": "Beta Ray",
@@ -3044,7 +3307,12 @@
         "id": 625,
         "category": "mods",
         "fragment": "beta_ray",
-        "weapon": "Alpha/Omega"
+        "links": {
+          "weapon": {
+            "name": "Alpha/Omega",
+            "externalId": 445
+          }
+        }
       },
       {
         "name": "Supernova",
@@ -3054,7 +3322,12 @@
         "id": 626,
         "category": "mods",
         "fragment": "supernova",
-        "weapon": "Aphelion"
+        "links": {
+          "weapon": {
+            "name": "Aphelion",
+            "externalId": 59
+          }
+        }
       },
       {
         "name": "Moonlight Barrage",
@@ -3064,7 +3337,12 @@
         "id": 627,
         "category": "mods",
         "fragment": "moonlight_barrage",
-        "weapon": "Crescent Moon"
+        "links": {
+          "weapon": {
+            "name": "Crescent Moon",
+            "externalId": 60
+          }
+        }
       },
       {
         "name": "Ouroboros",
@@ -3074,7 +3352,12 @@
         "id": 628,
         "category": "mods",
         "fragment": "ouroboros",
-        "weapon": "Deceit"
+        "links": {
+          "weapon": {
+            "name": "Deceit",
+            "externalId": 61
+          }
+        }
       },
       {
         "name": "Bloodline",
@@ -3084,7 +3367,12 @@
         "id": 629,
         "category": "mods",
         "fragment": "bloodline",
-        "weapon": "Merciless"
+        "links": {
+          "weapon": {
+            "name": "Merciless",
+            "externalId": 62
+          }
+        }
       },
       {
         "name": "Dreadwalker",
@@ -3094,7 +3382,12 @@
         "id": 630,
         "category": "mods",
         "fragment": "dreadwalker",
-        "weapon": "Nightfall"
+        "links": {
+          "weapon": {
+            "name": "Nightfall",
+            "externalId": 63
+          }
+        }
       },
       {
         "name": "Heat Sink",
@@ -3113,7 +3406,12 @@
         "id": 632,
         "category": "mods",
         "fragment": "starfall",
-        "weapon": "Sagittarius"
+        "links": {
+          "weapon": {
+            "name": "Sagittarius",
+            "externalId": 65
+          }
+        }
       },
       {
         "name": "Guardian's Call",
@@ -3123,7 +3421,12 @@
         "id": 633,
         "category": "mods",
         "fragment": "guardians_call",
-        "weapon": "Twisted Arbalest"
+        "links": {
+          "weapon": {
+            "name": "Twisted Arbalest",
+            "externalId": 66
+          }
+        }
       },
       {
         "name": "Bloodthirst",
@@ -3133,7 +3436,12 @@
         "id": 634,
         "category": "mods",
         "fragment": "bloodthirst",
-        "weapon": "Assassin's Dagger"
+        "links": {
+          "weapon": {
+            "name": "Assassin's Dagger",
+            "externalId": 112
+          }
+        }
       },
       {
         "name": "Fission Strike",
@@ -3143,7 +3451,12 @@
         "id": 635,
         "category": "mods",
         "fragment": "fission_strike",
-        "weapon": "Atom Splitter"
+        "links": {
+          "weapon": {
+            "name": "Atom Splitter",
+            "externalId": 102
+          }
+        }
       },
       {
         "name": "Dreamwave",
@@ -3153,7 +3466,12 @@
         "id": 636,
         "category": "mods",
         "fragment": "dreamwave",
-        "weapon": "Dreamcatcher"
+        "links": {
+          "weapon": {
+            "name": "Dreamcatcher",
+            "externalId": 100
+          }
+        }
       },
       {
         "name": "Death Sentence",
@@ -3163,7 +3481,12 @@
         "id": 637,
         "category": "mods",
         "fragment": "death_sentence",
-        "weapon": "Feral Judgement"
+        "links": {
+          "weapon": {
+            "name": "Feral Judgement",
+            "externalId": 113
+          }
+        }
       },
       {
         "name": "Fracture",
@@ -3173,7 +3496,12 @@
         "id": 638,
         "category": "mods",
         "fragment": "fracture",
-        "weapon": "Godsplitter"
+        "links": {
+          "weapon": {
+            "name": "Godsplitter",
+            "externalId": 114
+          }
+        }
       },
       {
         "name": "Energy Wave",
@@ -3183,7 +3511,12 @@
         "id": 639,
         "category": "mods",
         "fragment": "energy_wave",
-        "weapon": "Hero's Sword"
+        "links": {
+          "weapon": {
+            "name": "Hero's Sword",
+            "externalId": 115
+          }
+        }
       },
       {
         "name": "Athibar",
@@ -3192,7 +3525,13 @@
         "onlyDB": true,
         "id": 640,
         "category": "mods",
-        "fragment": "athibar"
+        "fragment": "athibar",
+        "links": {
+          "weapon": {
+            "name": "Huntress Spear",
+            "externalId": 110
+          }
+        }
       },
       {
         "name": "Krell Edge",
@@ -3202,7 +3541,12 @@
         "id": 641,
         "category": "mods",
         "fragment": "krell_edge",
-        "weapon": "Krell Axe"
+        "links": {
+          "weapon": {
+            "name": "Krell Axe",
+            "externalId": 111
+          }
+        }
       },
       {
         "name": "Beyond The Veil",
@@ -3221,7 +3565,12 @@
         "id": 643,
         "category": "mods",
         "fragment": "lifeline",
-        "weapon": "Red Doe Staff"
+        "links": {
+          "weapon": {
+            "name": "Red Doe Staff",
+            "externalId": 117
+          }
+        }
       },
       {
         "name": "Whirlwind",
@@ -3231,7 +3580,12 @@
         "id": 644,
         "category": "mods",
         "fragment": "whirlwind",
-        "weapon": "Spectral Blade"
+        "links": {
+          "weapon": {
+            "name": "Spectral Blade",
+            "externalId": 103
+          }
+        }
       },
       {
         "name": "Faultline",
@@ -3241,7 +3595,12 @@
         "id": 645,
         "category": "mods",
         "fragment": "faultline",
-        "weapon": "Stonebreaker"
+        "links": {
+          "weapon": {
+            "name": "Stonebreaker",
+            "externalId": 118
+          }
+        }
       },
       {
         "name": "Root Blades",
@@ -3260,14 +3619,140 @@
         "id": 647,
         "category": "mods",
         "fragment": "accelerator",
-        "weapon": "Atom Smasher"
+        "links": {
+          "weapon": {
+            "name": "Atom Smasher",
+            "externalId": 97
+          }
+        }
+      },
+      {
+        "name": "Shatterstar",
+        "description": "Imbues shots with White hot FIRE. Hits apply BURNING, dealing 100 FIRE damage over 10 seconds. Lasts 20s.\n\nWeakspot Hits and Kills cause shots to fragment, automatically targeting nearby enemies. Fragments strike for 50% of the initial damage dealt and apply BURNING.\n\nMod Power Requirement:1.250",
+        "weaponMod": true,
+        "onlyDB": true,
+        "id": 700,
+        "category": "mods",
+        "fragment": "shatterstar",
+        "links": {
+          "weapon": {
+            "name": "Savior",
+            "externalId": 378
+          }
+        }
+      },
+      {
+        "name": "Spore Shot",
+        "description": "Fires a rotten spore that explodes dealing 125 damage within 6m and leaves a deadly gas cloud that applies SLOW while dealing 15 damage per second for 7s.\n\nMod Power Requirement: 350",
+        "weaponMod": true,
+        "onlyDB": true,
+        "id": 701,
+        "category": "mods",
+        "fragment": "spore_bloom",
+        "links": {
+          "weapon": {
+            "name": "Sporebloom",
+            "externalId": 379
+          }
+        }
+      },
+      {
+        "name": "Banish",
+        "description": "Banishes enemies or allies into another dimension for 4s. When Banish ends, enemies take 1.5x the damage from the Repulsor's primary fire for 8s\n\nPowerful enemies won't be banished, but will take increased damage from any Repulsor while debuffed.\n\nMod Power Requirement: 500",
+        "weaponMod": true,
+        "onlyDB": true,
+        "id": 702,
+        "category": "mods",
+        "fragment": "banish",
+        "links": {
+          "weapon": {
+            "name": "Repulsor",
+            "externalId": 377
+          }
+        }
+      },
+      {
+        "name": "Gravity Core",
+        "description": "Fires a highly compressed sphere which draws in objects and deals 50 damage on impact. When colliding with a target, a large Gravity Well opens and draws in objects for 5s.\n\nWhen the Gravity Well expires, it deals 250 damage within 10m. Adds 200 damage per enemy and divides total damage among all enemies.\n\nMod Power Requirement:1,500",
+        "weaponMod": true,
+        "onlyDB": true,
+        "id": 703,
+        "category": "mods",
+        "fragment": "gravity_core",
+        "links": {
+          "weapon": {
+            "name": "Starkiller",
+            "externalId": 380
+          }
+        }
+      },
+      {
+        "name": "Beyond the Veil",
+        "description": "Neutral Evade turns to mist, granting Nightshade 5% base damage as Lifesteal for 5s. Perfect Dodge doubles duration.",
+        "weaponMod": true,
+        "onlyDB": true,
+        "id": 704,
+        "category": "mods",
+        "fragment": "beyond_the_veil",
+        "links": {
+          "weapon": {
+            "name": "Nightshade",
+            "externalId": 116
+          }
+        }
+      },
+      {
+        "name": "Blaze",
+        "description": "Charge Melee Attacks apply BURNING which deals 150 FIRE damage over 5s",
+        "weaponMod": true,
+        "onlyDB": true,
+        "id": 705,
+        "category": "mods",
+        "fragment": "blaze",
+        "links": {
+          "weapon": {
+            "name": "Smolder",
+            "externalId": 382
+          }
+        }
+      },
+      {
+        "name": "Horizon Strike",
+        "description": "Charge Attacks release a wide horizontal projectile that penetrates through multiple enemies dealing 116 damage.",
+        "weaponMod": true,
+        "onlyDB": true,
+        "id": 706,
+        "category": "mods",
+        "fragment": "horizon_strike",
+        "links": {
+          "weapon": {
+            "name": "World's Edge",
+            "externalId": 383
+          }
+        }
+      },
+      {
+        "name": "Dying Breath",
+        "description": "Builds up charge with damage dealt. When full, basic attacks apply CORRODED, for 5s. Neutral Evade attacks explode in a 3m AOE and leave a TOXIC cloud.",
+        "weaponMod": true,
+        "onlyDB": true,
+        "id": 707,
+        "category": "mods",
+        "fragment": "dying_breath",
+        "links": {
+          "weapon": {
+            "name": "Gas Giant",
+            "externalId": 108
+          }
+        }
       }
     ]
   },
   "mutators": {
     "settings": {
-      "label": "Mutators",
-      "singular": "Mutator",
+      "database": {
+        "fields": []
+      },
       "fragment": "mutators",
       "groups": [
         {
@@ -3276,6 +3761,9 @@
         }
       ],
       "hasLevels": true,
+      "label": "Mutators",
+      "showIn": ["tracker", "database"],
+      "singular": "Mutator",
       "tracker": {
         "fields": [
           {
@@ -3289,9 +3777,6 @@
             "redacted": true
           }
         ]
-      },
-      "database": {
-        "fields": []
       }
     },
     "items": [
@@ -3601,8 +4086,9 @@
   },
   "relics": {
     "settings": {
-      "label": "Relics",
-      "singular": "Relic",
+      "database": {
+        "fields": []
+      },
       "fragment": "relics",
       "groups": [
         {
@@ -3610,6 +4096,9 @@
           "fragment": "world"
         }
       ],
+      "label": "Relics",
+      "showIn": ["tracker", "database"],
+      "singular": "Relic",
       "tracker": {
         "fields": [
           {
@@ -3623,9 +4112,6 @@
             "redacted": true
           }
         ]
-      },
-      "database": {
-        "fields": []
       }
     },
     "items": [
@@ -3843,8 +4329,9 @@
   },
   "amulets": {
     "settings": {
-      "label": "Amulets",
-      "singular": "Amulet",
+      "database": {
+        "fields": []
+      },
       "fragment": "amulets",
       "groups": [
         {
@@ -3852,6 +4339,9 @@
           "fragment": "world"
         }
       ],
+      "label": "Amulets",
+      "showIn": ["tracker", "database"],
+      "singular": "Amulet",
       "tracker": {
         "fields": [
           {
@@ -3865,9 +4355,6 @@
             "redacted": true
           }
         ]
-      },
-      "database": {
-        "fields": []
       }
     },
     "items": [
@@ -4495,8 +4982,9 @@
   },
   "rings": {
     "settings": {
-      "label": "Rings",
-      "singular": "Ring",
+      "database": {
+        "fields": []
+      },
       "fragment": "rings",
       "groups": [
         {
@@ -4504,6 +4992,9 @@
           "fragment": "world"
         }
       ],
+      "label": "Rings",
+      "showIn": ["tracker", "database"],
+      "singular": "Ring",
       "tracker": {
         "fields": [
           {
@@ -4517,9 +5008,6 @@
             "redacted": true
           }
         ]
-      },
-      "database": {
-        "fields": []
       }
     },
     "items": [
@@ -5967,8 +6455,11 @@
   },
   "relicfragments": {
     "settings": {
-      "label": "Relic Fragments",
-      "singular": "Relic Fragment",
+      "categorized": true,
+      "database": {
+        "fields": []
+      },
+      "defaultGroup": "type",
       "fragment": "relicfragments",
       "groups": [
         {
@@ -5976,9 +6467,10 @@
           "fragment": "type"
         }
       ],
-      "categorized": true,
-      "defaultGroup": "type",
       "hasLevels": true,
+      "label": "Relic Fragments",
+      "showIn": ["tracker", "database"],
+      "singular": "Relic Fragment",
       "tracker": {
         "fields": [
           {
@@ -5992,9 +6484,6 @@
             "redacted": true
           }
         ]
-      },
-      "database": {
-        "fields": []
       }
     },
     "items": [
@@ -6314,8 +6803,22 @@
   },
   "armor": {
     "settings": {
-      "label": "Armor",
-      "singular": "Armor",
+      "categorized": true,
+      "categoryHasValues": true,
+      "categoryIsCheckable": false,
+      "database": {
+        "fields": [
+          {
+            "label": "Armor",
+            "fragment": "stats.armor"
+          },
+          {
+            "label": "Weight",
+            "fragment": "stats.weight"
+          }
+        ]
+      },
+      "defaultGroup": "armorset",
       "fragment": "armor",
       "groups": [
         {
@@ -6327,6 +6830,9 @@
           "fragment": "type"
         }
       ],
+      "label": "Armor",
+      "showIn": ["tracker", "database"],
+      "singular": "Armor",
       "sortKeys": [
         {
           "label": "Name",
@@ -6345,10 +6851,6 @@
           "fragment": "stats.weight"
         }
       ],
-      "categorized": true,
-      "defaultGroup": "armorset",
-      "categoryHasValues": true,
-      "categoryIsCheckable": false,
       "tracker": {
         "fields": [
           {
@@ -6360,18 +6862,6 @@
             "label": "Location",
             "fragment": "location",
             "redacted": true
-          }
-        ]
-      },
-      "database": {
-        "fields": [
-          {
-            "label": "Armor",
-            "fragment": "stats.armor"
-          },
-          {
-            "label": "Weight",
-            "fragment": "stats.weight"
           }
         ]
       }
@@ -8207,8 +8697,11 @@
   },
   "worldbosses": {
     "settings": {
-      "label": "World Bosses",
-      "singular": "World Boss",
+      "categorized": true,
+      "database": {
+        "fields": []
+      },
+      "defaultGroup": "world",
       "fragment": "worldbosses",
       "groups": [
         {
@@ -8216,8 +8709,9 @@
           "fragment": "world"
         }
       ],
-      "categorized": true,
-      "defaultGroup": "world",
+      "label": "World Bosses",
+      "showIn": ["tracker", "database"],
+      "singular": "World Boss",
       "tracker": {
         "fields": [
           {
@@ -8231,9 +8725,6 @@
             "redacted": true
           }
         ]
-      },
-      "database": {
-        "fields": []
       }
     },
     "items": [
@@ -8450,8 +8941,11 @@
   },
   "bosses": {
     "settings": {
-      "label": "Bosses",
-      "singular": "Boss",
+      "categorized": true,
+      "database": {
+        "fields": []
+      },
+      "defaultGroup": "world",
       "fragment": "bosses",
       "groups": [
         {
@@ -8467,8 +8961,9 @@
           "fragment": "race"
         }
       ],
-      "categorized": true,
-      "defaultGroup": "world",
+      "label": "Bosses",
+      "showIn": ["tracker", "database"],
+      "singular": "Boss",
       "tracker": {
         "fields": [
           {
@@ -8481,9 +8976,6 @@
             "redacted": true
           }
         ]
-      },
-      "database": {
-        "fields": []
       }
     },
     "items": [
@@ -8933,11 +9425,6 @@
   },
   "armorset": {
     "settings": {
-      "label": "Armor Sets",
-      "singular": "Armor Set",
-      "fragment": "armorset",
-      "groups": [],
-      "onlyDB": true,
       "database": {
         "fields": [
           {
@@ -8950,13 +9437,18 @@
           }
         ]
       },
+      "fragment": "armorset",
+      "groups": [],
+      "label": "Armor Sets",
       "linkedBy": [
         {
           "label": "Pieces",
           "category": "armor",
           "link": ["name", "armorset"]
         }
-      ]
+      ],
+      "showIn": ["database"],
+      "singular": "Armor Set"
     },
     "items": [
       {
@@ -8976,7 +9468,10 @@
         "pieces": 4,
         "unlock": "Can be found on a body during the Monster in the Drain event in Losomn",
         "id": 670,
-        "fragment": "academics_set"
+        "fragment": "academics_set",
+        "links": {
+          "pieces": [500, 501, 502, 503]
+        }
       },
       {
         "name": "Bruiser Set",
@@ -8995,7 +9490,10 @@
         "pieces": 4,
         "unlock": "Starting Armor set for the Challenger / Sold by Whispers in Ward 13",
         "id": 671,
-        "fragment": "bruiser_set"
+        "fragment": "bruiser_set",
+        "links": {
+          "pieces": [504, 505, 506, 507]
+        }
       },
       {
         "name": "Dendroid Set",
@@ -9014,7 +9512,10 @@
         "pieces": 4,
         "unlock": "Can be found in Root Earth - Ashen Wasteland",
         "id": 672,
-        "fragment": "dendroid_set"
+        "fragment": "dendroid_set",
+        "links": {
+          "pieces": [508, 509, 510, 511]
+        }
       },
       {
         "name": "Elder Set",
@@ -9033,7 +9534,10 @@
         "pieces": 4,
         "unlock": "Obtained by purchasing Remnant 2 Deluxe Edition or Ultimate Edition",
         "id": 673,
-        "fragment": "elder_set"
+        "fragment": "elder_set",
+        "links": {
+          "pieces": [512, 513, 514, 515]
+        }
       },
       {
         "name": "Fae Royal Set",
@@ -9052,7 +9556,10 @@
         "pieces": 4,
         "unlock": "Can be found in Losomn - Postulant's Parlor",
         "id": 674,
-        "fragment": "fae_royal_set"
+        "fragment": "fae_royal_set",
+        "links": {
+          "pieces": [516, 517, 518, 519]
+        }
       },
       {
         "name": "Field Medic Set",
@@ -9071,7 +9578,10 @@
         "pieces": 4,
         "unlock": "Starting Equipment for the Medic Archetype.\nSold by Whispers in Ward 13",
         "id": 675,
-        "fragment": "field_medic_set"
+        "fragment": "field_medic_set",
+        "links": {
+          "pieces": [521, 522, 523, 601]
+        }
       },
       {
         "name": "Void Set",
@@ -9090,7 +9600,10 @@
         "pieces": 4,
         "unlock": "Obtained by purchasing Remnant 2 Deluxe Edition or Ultimate Edition",
         "id": 676,
-        "fragment": "void_set"
+        "fragment": "void_set",
+        "links": {
+          "pieces": [524, 525, 526, 527]
+        }
       },
       {
         "name": "High Noon Set",
@@ -9109,7 +9622,10 @@
         "pieces": 4,
         "unlock": "Starting equipment for the Gunslinger Archetype.",
         "id": 677,
-        "fragment": "high_noon_set"
+        "fragment": "high_noon_set",
+        "links": {
+          "pieces": [528, 529, 530, 531]
+        }
       },
       {
         "name": "Knotted Set",
@@ -9128,7 +9644,10 @@
         "pieces": 4,
         "unlock": "Can be crafted at Bloodmoon Altar. Required Material: Blood Moon Essence",
         "id": 678,
-        "fragment": "knotted_set"
+        "fragment": "knotted_set",
+        "links": {
+          "pieces": [532, 533, 534, 535]
+        }
       },
       {
         "name": "Leto Mark II Set",
@@ -9147,7 +9666,10 @@
         "pieces": 4,
         "unlock": "Use This Link To Find Out How To Obtain This Armour",
         "id": 679,
-        "fragment": "leto_mark_ii_set"
+        "fragment": "leto_mark_ii_set",
+        "links": {
+          "pieces": [536, 537, 538, 539]
+        }
       },
       {
         "name": "Nightstalker Set",
@@ -9166,7 +9688,10 @@
         "pieces": 4,
         "unlock": "Whispers in Ward 13 sells this equipment\nStarting equipment for the Hunter Archetype",
         "id": 680,
-        "fragment": "nightstalker_set"
+        "fragment": "nightstalker_set",
+        "links": {
+          "pieces": [540, 541, 542, 543]
+        }
       },
       {
         "name": "Radiant Set",
@@ -9185,7 +9710,10 @@
         "pieces": 4,
         "unlock": "Obtained by purchasing Remnant 2 Deluxe Edition or Ultimate Edition",
         "id": 681,
-        "fragment": "radiant_set"
+        "fragment": "radiant_set",
+        "links": {
+          "pieces": [544, 545, 546, 547]
+        }
       },
       {
         "name": "Realmwalker Set",
@@ -9204,7 +9732,10 @@
         "pieces": 4,
         "unlock": "Starting equipment for the Explorer",
         "id": 682,
-        "fragment": "realmwalker_set"
+        "fragment": "realmwalker_set",
+        "links": {
+          "pieces": [548, 549, 550, 551]
+        }
       },
       {
         "name": "Red Widow Set",
@@ -9223,7 +9754,10 @@
         "pieces": 4,
         "unlock": "Use This Link To Find Out How To Obtain This Armour",
         "id": 683,
-        "fragment": "red_widow_set"
+        "fragment": "red_widow_set",
+        "links": {
+          "pieces": [552, 553, 554, 555]
+        }
       },
       {
         "name": "Space Worker Set",
@@ -9242,7 +9776,10 @@
         "pieces": 4,
         "unlock": "Found in N'Erud. Enter the Void Vessel Facility. Find the Stasis Pod Glyph in one of the capsule that can be opened by interacting with a console next to them, in the same dungeon there's a door with a light in the middle, interact with it using the Stasis Pod Glyph to open it. Enter the room, the complete Space Worker Set can be found in a locker.",
         "id": 684,
-        "fragment": "space_worker_set"
+        "fragment": "space_worker_set",
+        "links": {
+          "pieces": [556, 557, 558, 559]
+        }
       },
       {
         "name": "Survivor Set",
@@ -9261,7 +9798,10 @@
         "pieces": 3,
         "unlock": "Automatically equipped as you begin your first character in the game",
         "id": 685,
-        "fragment": "survivor_set"
+        "fragment": "survivor_set",
+        "links": {
+          "pieces": [560, 561, 562]
+        }
       },
       {
         "name": "Technician Set",
@@ -9280,7 +9820,10 @@
         "pieces": 4,
         "unlock": "Use This Link To Find Out How To Obtain This Armour",
         "id": 686,
-        "fragment": "technician_set"
+        "fragment": "technician_set",
+        "links": {
+          "pieces": [563, 564, 565, 566]
+        }
       },
       {
         "name": "Trainer Set",
@@ -9299,7 +9842,10 @@
         "pieces": 4,
         "unlock": "Whispers sells this equipment in Ward 13\nStarting equipment for the Handler",
         "id": 687,
-        "fragment": "trainer_set"
+        "fragment": "trainer_set",
+        "links": {
+          "pieces": [567, 568, 569, 570]
+        }
       }
     ]
   }

@@ -48,7 +48,7 @@ const DataProvider: React.FC<Props> = ({ children }: Props) => {
   const [statistics, setStatistics] = useState<Statistics>(DEFAULT_VALUES.statistics);
   const { categories } = useStaticQuery(graphql`
     {
-      categories: allCategory(filter: { settings: { onlyDB: { ne: false }, tracker: {} } }) {
+      categories: allCategory(filter: { settings: { showIn: { eq: "tracker" } } }) {
         nodes {
           settings {
             fragment

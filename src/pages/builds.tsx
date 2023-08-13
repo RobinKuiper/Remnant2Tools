@@ -138,7 +138,7 @@ const Builds = props => {
     const index = MOD_INDEXES[buildPath] ?? null;
 
     if (index !== null) {
-      build.mods[index] = item.mod && item.mod !== "" ? item.mod : null;
+      build.mods[index] = item.links?.mod ? item.links.mod : null;
     }
   };
   const save = () => {
@@ -164,18 +164,18 @@ const Builds = props => {
   };
   const preProcessBuild = (value: any, nBuild: Build, buildPath: string) => {
     if (buildPath === "archetype1.level") {
-      const traitFragment = getFieldValue(nBuild, "archetype1.trait.fragment");
+      const traitFragment = getFieldValue(nBuild, "archetype1.links.trait.fragment");
       checkTrait(traitFragment, value);
     } else if (buildPath === "archetype2.level") {
-      const traitFragment = getFieldValue(nBuild, "archetype2.trait.fragment");
+      const traitFragment = getFieldValue(nBuild, "archetype2.links.trait.fragment");
       checkTrait(traitFragment, value);
     }
 
     if (buildPath === "archetype1") {
-      const traitFragment = getFieldValue(nBuild, "archetype1.trait.fragment");
+      const traitFragment = getFieldValue(nBuild, "archetype1.links.trait.fragment");
       checkTrait(traitFragment, getFieldValue(nBuild, "archetype1.level"));
     } else if (buildPath === "archetype2") {
-      const traitFragment = getFieldValue(nBuild, "archetype2.trait.fragment");
+      const traitFragment = getFieldValue(nBuild, "archetype2.links.trait.fragment");
       checkTrait(traitFragment, getFieldValue(nBuild, "archetype2.level"));
     }
 

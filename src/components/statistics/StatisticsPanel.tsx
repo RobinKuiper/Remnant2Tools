@@ -2,8 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { styled } from "styled-components";
 import { DataContext } from "../../context/DataContext";
 import { calculatePercentage } from "../../helpers";
-import { CATEGORIES } from "../../constants";
-import { Link } from "gatsby";
+import { Link, graphql, useStaticQuery } from "gatsby";
 import Loader from "../Loader";
 
 const Container = styled.div`
@@ -43,6 +42,18 @@ const Container = styled.div`
 `;
 
 const StatisticsPanel = () => {
+  const { categories } = useStaticQuery(graphql`
+    {
+      categories: allCategory(filter: { settings: { showIn: { eq: "tracker" } } }) {
+        nodes {
+          settings {
+            fragment
+            label
+          }
+        }
+      }
+    }
+  `);
   const { statistics } = useContext(DataContext);
   const [loading, setLoading] = useState(true);
   const [totals, setTotals] = useState({ total: 0, unlocked: 0, percentage: 0 });
@@ -64,12 +75,8 @@ const StatisticsPanel = () => {
 
           <table cellSpacing={0} cellPadding={10}>
             <tbody>
-              {CATEGORIES.map(category => {
-                if (category.onlyDB) {
-                  return;
-                }
-
-                const { fragment, label } = category;
+              {categories.nodes.map(category => {
+                const { fragment, label } = category.settings;
                 const { unlocked, total } = statistics[fragment];
                 const perc = calculatePercentage(unlocked, total, 2);
 
