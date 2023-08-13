@@ -16,11 +16,6 @@ const config: GatsbyConfig = {
     patreon: "https://www.patreon.com/bePatron?u=10835266",
     paypal: "https://www.paypal.com/paypalme/reCodeNL",
   },
-  // pathPrefix: "/remnantcollectables",
-  // More easily incorporate content into your pages through
-  // automatic TypeScript type generation and better GraphQL IntelliSense.
-  // If you use VSCode you can also use the GraphQL plugin
-  // Learn more at: https://gatsby.dev/graphql-typegen
   graphqlTypegen: true,
   plugins: [
     "gatsby-plugin-pnpm",
@@ -38,19 +33,6 @@ const config: GatsbyConfig = {
       },
       __key: "images",
     },
-    // {
-    //   resolve: `gatsby-plugin-gdpr-cookies`,
-    //   options: {
-    //     googleAnalytics: {
-    //       trackingId: "G-5DDHSZZHS9", // leave empty if you want to disable the tracker
-    //       cookieName: "remnantdb-gdpr-google-analytics", // default
-    //       anonymize: true, // default
-    //       allowAdFeatures: false // default
-    //     },
-    //     // defines the environments where the tracking should be available  - default is ["production"]
-    //     environments: ["production", "development"]
-    //   },
-    // }
     {
       resolve: "gatsby-plugin-google-gtag",
       options: {
