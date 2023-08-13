@@ -110,7 +110,7 @@ firebase:
     - if: "$CI_COMMIT_REF_NAME == 'staging'"
       when: always
 
-create_release:
+.create_release:
   image: python:3.8-alpine
   stage: deploy
   cache: [] # Disable caching for this job

@@ -14,6 +14,7 @@ import Settings from "../components/builder/Settings";
 import "react-toastify/dist/ReactToastify.css";
 import { toast } from "react-toastify";
 import Layout from "../components/layout/Layout";
+import ArchetypesInterface from "../components/builder/ArchetypesInterface";
 
 const NEW_BUILD: Build = {
   headpiece: null,

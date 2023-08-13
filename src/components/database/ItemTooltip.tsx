@@ -44,7 +44,7 @@ const ItemTooltip = ({ id, item, image }) => {
               {item.armorset && <span>{item.armorset}</span>}
               {item.hasMod && <span>{item.mod}</span>}
               {item.weapon && <span>{item.weapon}</span>}
-              {item.trait && <span>{item.trait}</span>}
+              {item.trait && <span>{typeof item.trait === "string" ? item.trait : item.trait.name}</span>}
               {item.archetype && <span>{item.archetype}</span>}
             </div>
           </div>
