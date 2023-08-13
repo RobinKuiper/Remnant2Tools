@@ -24,6 +24,10 @@ const Page = styled.div`
     margin-left: 235px;
     min-height: 87.5vh;
 
+    @media (max-width: 850px) {
+      padding-right: 80px;
+    }
+
     @media (max-width: 1200px) {
       margin-left: 0;
       width: 100%;
@@ -65,7 +69,14 @@ const Page = styled.div`
 
       .top {
         display: flex;
+        flex-wrap: wrap;
         gap: 50px;
+
+        @media (max-width: 850px) {
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+        }
 
         .image {
           border: 1px solid #ddd;
@@ -81,11 +92,21 @@ const Page = styled.div`
         }
 
         .title {
+          @media (max-width: 850px) {
+            text-align: center;
+          }
+          
           .general-information {
             display: flex;
+            flex-wrap: wrap;
             gap: 10px;
             margin-top: 10px;
             font-size: 0.9em;
+            
+            //@media (max-width: 850px) {
+            //  margin-left: 0;
+            //  width: 100%;
+            //}
 
             span {
               &.gi-item:not(:last-child) {
@@ -104,6 +125,7 @@ const Page = styled.div`
 
       .information {
         display: flex;
+        flex-wrap: wrap;
         gap: 30px;
 
         .left {
@@ -219,7 +241,7 @@ const Category = ({ data, pageContext, location }) => {
 
             <div className="information">
               <div className="left">
-                <ItemStatistics item={item} />
+                {item.values || item.stats && <ItemStatistics item={item} />}
               </div>
 
               <div className="right">
