@@ -267,7 +267,7 @@ const Category = ({ data, pageContext, location }) => {
                   </div>
                 )}
 
-                {item.links.pieces && item.links.pieces.length > 0 && (
+                {item.links?.pieces && item.links.pieces.length > 0 && (
                   <div className="section">
                     <h3>Pieces</h3>
                     <ul>
