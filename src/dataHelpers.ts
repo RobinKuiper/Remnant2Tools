@@ -1,5 +1,4 @@
 import data from "./data/data.json";
-import { CATEGORIES } from "./constants";
 import type { Filter } from "./interface/IData";
 
 export const getFieldValue = (object: any, fieldPath: string) => {
@@ -89,10 +88,6 @@ export const getAllItems = (trackables: boolean = false) => {
 export const isUnlocked = (categoryFragment: string, id: number): boolean => {
   const unlocks = getUnlocks();
   return unlocks[categoryFragment] && unlocks[categoryFragment][id] && unlocks[categoryFragment][id].unlocked;
-};
-
-export const getCategorySettings = categoryFragment => {
-  return CATEGORIES.find(category => category.fragment === categoryFragment);
 };
 
 export const filterItems = (items: any[], filters: Filter[], filterUnlocked: boolean = false) => {

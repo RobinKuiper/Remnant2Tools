@@ -50,7 +50,7 @@ export const camelCaseToText = (camelCaseString: string): string => {
     .replace(/(^|\s)(\w)/g, (match, p1, p2) => p1 + p2.toUpperCase()); // Capitalize the first letter of each word
 };
 
-export const calculateStringMatchPercentage = (string1, string2) => {
+export const calculateStringMatchPercentage = (string1: string, string2: string) => {
   const length1 = string1.length;
   const length2 = string2.length;
   const maxLength = Math.max(length1, length2);

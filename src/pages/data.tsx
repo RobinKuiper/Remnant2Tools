@@ -1,34 +1,57 @@
 import React, { useEffect, useState } from "react";
 import data from "../data/data.json";
+import { sorter } from "../dataHelpers";
+import { slugify } from "../helpers";
+
+const POSSIBLE_LINKS = [
+  {
+    field: "weapon",
+    category: "weapons",
+    linkedBy: "name",
+  },
+  {
+    field: "mod",
+    category: "mods",
+    linkedBy: "name",
+  },
+  {
+    field: "trait",
+    category: "traits",
+    linkedBy: "name",
+  },
+  {
+    field: "archetype",
+    category: "archetypes",
+    linkedBy: "name",
+  },
+];
 
 const Data = () => {
   const [items, setItems] = useState<object>();
-  const numberRegex = /-?\d+(\.\d+)?/g;
-  const symbolRegex = /[a-zA-Z%]+$/;
 
   useEffect(() => {
-    const newItems = [];
-    data.traits.items.forEach(item => {
-      const { valueText } = item;
-      if (valueText) {
-        const matches = valueText.match(numberRegex);
-        if (matches && matches.length >= 2) {
-          const symbolMatches = valueText.match(symbolRegex);
-          const [min, max] = matches;
-          item.values = {
-            min: parseFloat(min),
-            max: parseFloat(max),
-          };
-          if (symbolMatches && symbolMatches.length) {
-            item.unitSymbol = symbolMatches[0];
-          }
-        }
-      }
-      newItems.push(item);
+    const allItems = [];
+
+    Object.values(data).forEach(category => {
+      category.items.forEach(item => allItems.push(item));
     });
 
-    data.traits.items = newItems;
-    setItems(() => ({ ...data }));
+    const newCategories = {};
+    Object.values(data).forEach(category => {
+      const newItems = category.items.map(item => {
+        if (!item.fragment) {
+          item.fragment = slugify(item.name);
+        }
+
+        return item;
+      });
+      category.items = newItems;
+      console.log(newItems);
+
+      newCategories[category.settings.fragment] = category;
+    });
+
+    setItems(() => ({ ...newCategories }));
   }, [data]);
 
   return JSON.stringify(items);
@@ -36,3 +59,9 @@ const Data = () => {
 };
 
 export default Data;
+
+// const newSettings = {};
+// Object.keys(category.settings).sort((a, b) => a.localeCompare(b)).forEach(key => {
+//   newSettings[key] = category.settings[key];
+// })
+// category.settings = newSettings;

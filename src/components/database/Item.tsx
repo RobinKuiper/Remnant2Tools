@@ -145,7 +145,7 @@ const Item = ({ item, category, images, type }: Props) => {
         />
       )}
 
-      <Slice alias="ItemTooltip" id={`${item.name}_tooltip`} item={item} image={image} />
+      <Slice alias="ItemTooltip" id={`${item.fragment}_tooltip`} item={item} image={image} />
     </Container>
   );
 };

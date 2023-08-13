@@ -84,12 +84,11 @@ const Page = styled.div`
 const Category = props => {
   const { hideUnlocked, toggleHideUnlocked, view, toggleView } = useContext(SettingContext);
   const { statistics } = useContext(DataContext);
-  const categoryFragment = props.pageContext.settings.fragment;
-  const categoryItems = props.pageContext.items;
   const type = getPageType(props.path);
-  const images = props.data.images;
+  const { images, category } = props.data;
+  const categoryFragment = category.settings.fragment;
+  const { items: categoryItems } = category;
   const isTracker = type === "tracker";
-  const category = props.pageContext.settings;
   const [data, setData] = useState([]);
   const [query, setQuery] = useState("");
   const [groupBy, setGroupBy] = useState();
@@ -136,12 +135,12 @@ const Category = props => {
   };
 
   useEffect(() => {
-    setGroupBy(category.defaultGroup);
+    setGroupBy(category.settings.defaultGroup);
     setSortBy("name");
   }, [category]);
 
   useEffect(() => {
-    if (category.fragment !== categoryFragment) {
+    if (category.settings.fragment !== categoryFragment) {
       return;
     }
 
@@ -166,7 +165,7 @@ const Category = props => {
 
   return (
     <Layout>
-      <Slice alias="Head" title={category.label} description="Track your progress in Remnant II." />
+      <Slice alias="Head" title={category.settings.label} description="Track your progress in Remnant II." />
 
       <Page>
         <Slice alias="CategorySidebar" type={type} />
@@ -174,13 +173,13 @@ const Category = props => {
         <div id="database-content">
           <div id="content-heading">
             <div className="left">
-              {category && category.groups && category.groups.length > 0 && (
+              {category && category.settings.groups && category.settings.groups.length > 0 && (
                 <>
                   <div>Group by</div>
-                  <select onChange={handleGroupSelectChange}>
+                  <select onChange={handleGroupSelectChange} value={groupBy ?? "none"}>
                     <option value="none">None</option>
-                    {category.groups.map(group => (
-                      <option key={group.fragment} value={group.fragment} selected={groupBy === group.fragment}>
+                    {category.settings.groups.map(group => (
+                      <option key={group.fragment} value={group.fragment}>
                         {group.label}
                       </option>
                     ))}
@@ -188,13 +187,13 @@ const Category = props => {
                 </>
               )}
 
-              {category && category.sortKeys && category.sortKeys.length > 0 && (
+              {category && category.settings.sortKeys && category.settings.sortKeys.length > 0 && (
                 <>
                   <div>Sort by</div>
-                  <select onChange={handleSortSelectChange}>
+                  <select onChange={handleSortSelectChange} value={sortBy ?? "none"}>
                     <option value="none">None</option>
-                    {category.sortKeys.map(key => (
-                      <option key={key.fragment} value={key.fragment} selected={groupBy === key.fragment}>
+                    {category.settings.sortKeys.map(key => (
+                      <option key={key.fragment} value={key.fragment}>
                         {key.label}
                       </option>
                     ))}
@@ -228,21 +227,29 @@ const Category = props => {
             </div>
           </div>
 
-          <Flex wrap="wrap" direction={view === "list" ? "column" : "row"} justifyContent="center">
+          <Flex wrap="wrap" direction={view === "list" ? "column" : "row"} justifycontent="center">
             {data.length > 0 ? (
               data.map(item => {
                 if (groupBy) {
                   return (
                     <>
-                      <Slice alias="ItemCategory" item={item} category={category} type={type} />
+                      <Slice
+                        key={item.fragment}
+                        alias="ItemCategory"
+                        item={item}
+                        category={category.settings}
+                        type={type}
+                      />
                       {item.items &&
                         item.items.map(i => (
-                          <Item key={i.id} item={i} type={type} category={category} images={images.nodes} />
+                          <Item key={i.id} item={i} type={type} category={category.settings} images={images.nodes} />
                         ))}
                     </>
                   );
                 } else if (item.name) {
-                  return <Item key={item.id} item={item} type={type} category={category} images={images.nodes} />;
+                  return (
+                    <Item key={item.id} item={item} type={type} category={category.settings} images={images.nodes} />
+                  );
                 }
               })
             ) : (
@@ -262,15 +269,61 @@ const Category = props => {
 export default Category;
 
 export const query = graphql`
-  query ($imgRegex: String!) {
+  query ($imgRegex: String!, $type: String!, $categoryFragment: String!) {
     images: allFile(filter: { relativePath: { regex: $imgRegex } }) {
       nodes {
-        relativePath
         fields {
           itemId
         }
-        childImageSharp {
-          gatsbyImageData(quality: 80, layout: CONSTRAINED)
+        ...imageFragment
+      }
+    }
+    category: category(settings: { showIn: { eq: $type }, fragment: { eq: $categoryFragment } }) {
+      settings {
+        label
+        fragment
+        defaultGroup
+        categoryIsCheckable
+        groups {
+          fragment
+          label
+        }
+        sortKeys {
+          fragment
+          label
+        }
+        tracker {
+          fields {
+            label
+            fragment
+            redacted
+          }
+        }
+        database {
+          fields {
+            label
+            fragment
+          }
+        }
+      }
+      items {
+        name
+        fragment
+        description
+        id
+        unlock
+        externalId
+        onlyDB
+        type
+        world
+        location
+        armorset
+        race
+        stats {
+          damage
+          rps
+          armor
+          weight
         }
       }
     }

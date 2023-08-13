@@ -70,16 +70,11 @@ const ItemSelectModal = ({ setIsOpen, isOpen, filters, callback, onlyShowUnlocke
   const data = useStaticQuery(graphql`
     {
       images: allFile(filter: { relativePath: { regex: "/items/" } }) {
-        totalCount
         nodes {
-          name
           fields {
             itemId
           }
-          relativePath
-          childImageSharp {
-            gatsbyImageData(quality: 80, layout: CONSTRAINED)
-          }
+          ...imageFragment
         }
       }
       items: allItem(
@@ -106,36 +101,13 @@ const ItemSelectModal = ({ setIsOpen, isOpen, filters, callback, onlyShowUnlocke
           fragment
           category
           type
-          trait
-          mod
-
           race
-          mod
           armorset
           stats {
-            weight
-            armor
-            damage
-            rps
-            magazine
-            idealRange
-            falloffRange
-            maxAmmo
-            criticalHitChance
-            weakSpotDamageBonus
-            staggerModifier
-            weakspot
-            accuracy
-            resistance
-            weakness
-            immunity
-            resistances {
-              bleed
-              fire
-              shock
-              blight
-              corrosion
-            }
+            ...itemStatsFragment
+          }
+          links {
+            ...itemLinkIdsFragment
           }
         }
       }
@@ -167,12 +139,13 @@ const ItemSelectModal = ({ setIsOpen, isOpen, filters, callback, onlyShowUnlocke
   };
 
   const handleItemPick = (item: any) => {
-    if (item.mod) {
-      item.mod = allItems.find(i => i.category === "mods" && i.name === item.mod) ?? item.mod;
+    if (item.links?.mod) {
+      item.links.mod = allItems.find(i => i.category === "mods" && i.externalId === item.links.mod.externalId) ?? null;
     }
 
-    if (item.trait) {
-      item.trait = allItems.find(i => i.category === "traits" && i.name === item.trait) ?? item.trait;
+    if (item.links?.trait) {
+      item.links.trait =
+        allItems.find(i => i.category === "traits" && i.externalId === item.links.trait.externalId) ?? null;
     }
 
     callback(item);

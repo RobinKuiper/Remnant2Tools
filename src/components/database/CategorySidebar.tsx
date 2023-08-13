@@ -1,8 +1,7 @@
-import { Link } from "gatsby";
+import { Link, graphql, useStaticQuery } from "gatsby";
 import React, { useContext } from "react";
 import { styled } from "styled-components";
 import { DataContext } from "../../context/DataContext";
-import { getCategorySettings } from "../../dataHelpers";
 import Sidebar from "../layout/Sidebar";
 
 const Container = styled.div`
@@ -103,6 +102,19 @@ const CATEGORY_ORDER = [
 ];
 
 const CategorySidebar = ({ type }: Props) => {
+  const { categories } = useStaticQuery(graphql`
+    {
+      categories: allCategory {
+        nodes {
+          settings {
+            fragment
+            showIn
+            label
+          }
+        }
+      }
+    }
+  `);
   const { statistics } = useContext(DataContext);
   const url = typeof window !== "undefined" ? window.location.href : "";
 
@@ -124,9 +136,15 @@ const CategorySidebar = ({ type }: Props) => {
                 <span>{mainCategory.label}</span>
                 <div className="sub-links">
                   {mainCategory.categories
-                    .filter(categoryFragment => getCategorySettings(categoryFragment)[type])
+                    .filter(categoryFragment =>
+                      categories.nodes
+                        .find(cat => cat.settings.fragment === categoryFragment)
+                        .settings.showIn.includes(type),
+                    )
                     .map(categoryFragment => {
-                      const categorySettings = getCategorySettings(categoryFragment);
+                      const categorySettings = categories.nodes.find(
+                        cat => cat.settings.fragment === categoryFragment,
+                      ).settings;
 
                       return (
                         <Link

@@ -286,3 +286,67 @@ const IndexPage: React.FC<PageProps> = () => {
 };
 
 export default IndexPage;
+
+export const query = graphql`
+  fragment imageFragment on File {
+    childImageSharp {
+      gatsbyImageData(quality: 80, layout: CONSTRAINED)
+    }
+  }
+
+  fragment itemStatsFragment on itemStats {
+    weight
+    armor
+    damage
+    rps
+    magazine
+    idealRange
+    falloffRange
+    maxAmmo
+    criticalHitChance
+    weakSpotDamageBonus
+    staggerModifier
+    weakspot
+    accuracy
+    resistance
+    weakness
+    immunity
+    resistances {
+      bleed
+      fire
+      shock
+      blight
+      corrosion
+    }
+  }
+
+  fragment itemLinkIdsFragment on itemLinks {
+    mod {
+      externalId
+    }
+    weapon {
+      externalId
+    }
+    trait {
+      externalId
+    }
+    archetype {
+      externalId
+    }
+  }
+
+  fragment itemLinkNamesFragment on itemLinks {
+    mod {
+      name
+    }
+    weapon {
+      name
+    }
+    trait {
+      name
+    }
+    archetype {
+      name
+    }
+  }
+`;

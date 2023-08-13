@@ -42,10 +42,12 @@ const ItemTooltip = ({ id, item, image }) => {
             <div className="general-information">
               {item.type && <span>{item.type}</span>}
               {item.armorset && <span>{item.armorset}</span>}
-              {item.hasMod && <span>{item.mod}</span>}
-              {item.weapon && <span>{item.weapon}</span>}
-              {item.trait && <span>{typeof item.trait === "string" ? item.trait : item.trait.name}</span>}
-              {item.archetype && <span>{item.archetype}</span>}
+              {item.links?.mod && <span>{item.links.mod.name}</span>}
+              {item.links?.weapon && <span>{item.links.weapon.name}</span>}
+              {item.links?.trait && (
+                <span>{typeof item.links.trait.name === "string" ? item.trait : item.trait.name}</span>
+              )}
+              {item.links?.archetype && <span>{item.links.archetype.name}</span>}
             </div>
           </div>
         </div>

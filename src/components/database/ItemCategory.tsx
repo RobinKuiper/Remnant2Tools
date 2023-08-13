@@ -42,7 +42,7 @@ const ItemCategory = ({ item, category, type = "tracker" }: Props) => {
 
   return (
     <Container className={unlocked ? "unlocked" : ""}>
-      <Flex alignItems="center">
+      <Flex alignitems="center">
         {type === "tracker" && category.categoryIsCheckable && (
           <div>
             <div className="checkbox-wrapper">
