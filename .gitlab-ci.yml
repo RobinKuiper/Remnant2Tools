@@ -109,7 +109,8 @@ deploy:firebase:
     - sed -i "s/CURRENT_DATE/$(date '+%Y-%m-%d')/g" src/constants.ts
     - sed -i "s/CURRENT_DATE/$(date '+%Y-%m-%d')/g" static/humans.txt
     - pnpm build
-    - firebase deploy
+    - firebase login:ci
+    - firebase deploy --token $FIREBASE_TOKEN
   environment:
     name: Staging
     url: https://remnant-staging.rkuiper.nl
