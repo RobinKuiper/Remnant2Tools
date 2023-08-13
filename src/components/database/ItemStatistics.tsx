@@ -9,7 +9,7 @@ const Container = styled.div`
   border: ${props => props.border ?? "1px solid #ddd"};
   background: ${props => props.background ?? "#f9f9f9"};
   color: ${props => props.color ?? "#333"};
-  width: 300px;
+  //width: 300px;
   border-radius: 10px;
 
   .statistics,
