@@ -66,7 +66,7 @@ test:lint:
         - "**/*.{js,ts,jsx,tsx}"
       when: always
 
-deploy:pages:
+pages:
   stage: deploy
   needs:
     - build:install
@@ -79,7 +79,7 @@ deploy:pages:
     - sed -i "s/CURRENT_DATE/$(date '+%Y-%m-%d')/g" static/humans.txt
     - pnpm build
   environment:
-    name: production
+    name: Production
     url: https://remnant.rkuiper.nl
   artifacts:
     paths:
@@ -88,7 +88,7 @@ deploy:pages:
     - if: "$CI_COMMIT_REF_NAME == 'master'"
       when: always
 
-deploy:firebase:
+firebase:
   stage: deploy
   needs:
     - build:install
@@ -115,7 +115,7 @@ create_release:
   stage: deploy
   cache: [] # Disable caching for this job
   needs:
-    - deploy:pages
+    - pages
   before_script:
     - pip install --upgrade python-gitlab
   script:
