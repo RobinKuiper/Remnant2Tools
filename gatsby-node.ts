@@ -195,8 +195,7 @@ export const createPages: GatsbyNode["createPages"] = async ({ actions, getNodes
         itemId: item.externalId,
         linkedItemIds,
         category: data[item.category].settings,
-      },
-      defer: true
+      }
     };
 
     createPage(page);
