@@ -195,7 +195,7 @@
         "fields": [
           {
             "label": "Values",
-            "fragment": "values"
+            "fragment": "valueText"
           }
         ]
       }
@@ -207,362 +207,519 @@
         "world": "N'Erud",
         "location": "Dormant N'Erudian Facility",
         "unlock": "Find the secret area at the back left (need to drop down), and activate the fail safe protocol (Co-Op, one player recieving the trait needs to stay outside)",
-        "values": "5% -> 50%",
+        "values": {
+          "min": 5,
+          "max": 50
+        },
         "id": 487,
         "category": "traits",
-        "fragment": "resonance"
+        "fragment": "resonance",
+        "valueText": "5% -> 50%",
+        "unitSymbol": "%"
       },
       {
         "name": "Vigor",
         "description": "Increases Max Health",
-        "values": "3 → 30",
+        "values": {
+          "min": 3,
+          "max": 30
+        },
         "world": "",
         "location": "",
         "unlock": "",
         "id": 12,
         "category": "traits",
-        "fragment": "vigor"
+        "fragment": "vigor",
+        "valueText": "3 → 30"
       },
       {
         "name": "Endurance",
         "description": "Increases Max Stamina",
-        "values": "3 → 30",
+        "values": {
+          "min": 3,
+          "max": 30
+        },
         "world": "",
         "location": "",
         "unlock": "",
         "id": 13,
         "category": "traits",
-        "fragment": "endurance"
+        "fragment": "endurance",
+        "valueText": "3 → 30"
       },
       {
         "name": "Spirit",
         "description": "Increases Mod Power Generation",
-        "values": "2% → 20%",
+        "values": {
+          "min": 2,
+          "max": 20
+        },
         "world": "",
         "location": "",
         "unlock": "",
         "id": 14,
         "category": "traits",
-        "fragment": "spirit"
+        "fragment": "spirit",
+        "valueText": "2% → 20%",
+        "unitSymbol": "%"
       },
       {
         "name": "Expertise",
         "description": "Reduces Skill Cooldowns",
-        "values": "- 2% → - 20%",
+        "values": {
+          "min": 2,
+          "max": -20
+        },
         "world": "",
         "location": "",
         "unlock": "",
         "id": 15,
         "category": "traits",
-        "fragment": "expertise"
+        "fragment": "expertise",
+        "valueText": "- 2% → -20%",
+        "unitSymbol": "%"
       },
       {
         "name": "Ammo Reserves",
         "description": "Increases Ammo Reserves",
-        "values": "6% → 60%",
+        "values": {
+          "min": 6,
+          "max": 60
+        },
         "world": "",
         "location": "",
         "unlock": "Archetype trait of the Gunslinger. Reach Gunslinger level 10 to unlock trait for use in any build",
         "id": 16,
         "archetype": "Gunslinger",
         "category": "traits",
-        "fragment": "ammo_reserves"
+        "fragment": "ammo_reserves",
+        "valueText": "6% → 60%",
+        "unitSymbol": "%"
       },
       {
         "name": "Flash Caster",
         "description": "Increases Movement Speed while Aiming",
-        "values": "5% → 50%",
+        "values": {
+          "min": 5,
+          "max": 50
+        },
         "world": "N'Erud",
         "location": "Terminus Station",
         "unlock": "Complete the side path",
         "id": 17,
         "archetype": "Archon",
         "category": "traits",
-        "fragment": "flash_caster"
+        "fragment": "flash_caster",
+        "valueText": "5% → 50%",
+        "unitSymbol": "%"
       },
       {
         "name": "Fortify",
         "description": "Increases Mod and Skill Casting Speed by 5%",
-        "values": "5% → 50%",
+        "values": {
+          "min": 5,
+          "max": 50
+        },
         "world": "",
         "location": "",
         "unlock": "Archetype trait of the Archon. Reach Archon level 10 to unlock trait for use in any build",
         "id": 18,
         "archetype": "Engineer",
         "category": "traits",
-        "fragment": "fortify"
+        "fragment": "fortify",
+        "valueText": "5% → 50%",
+        "unitSymbol": "%"
       },
       {
         "name": "Kinship",
         "description": "Reduces friendly fire damage dealt and received",
-        "values": "8% → 80%",
+        "values": {
+          "min": 8,
+          "max": 80
+        },
         "world": "",
         "location": "",
         "unlock": "Archetype Trait of the Handler. Reach Handler level 10 to unlock trait for use in any build",
         "id": 19,
         "archetype": "Handler",
         "category": "traits",
-        "fragment": "kinship"
+        "fragment": "kinship",
+        "valueText": "8% → 80%",
+        "unitSymbol": "%"
       },
       {
         "name": "Longshot",
         "description": "Increases Weapon Ideal Range",
-        "values": "60CM → 600CM",
+        "values": {
+          "min": 60,
+          "max": 600
+        },
         "world": "",
         "location": "",
         "unlock": "Archetype Trait of the Hunter. Reach Hunter level 10 to unlock trait for use in any build",
         "id": 20,
         "archetype": "Hunter",
         "category": "traits",
-        "fragment": "longshot"
+        "fragment": "longshot",
+        "valueText": "60CM → 600CM",
+        "unitSymbol": "CM"
       },
       {
         "name": "Potency",
         "description": "Increases Consumable Duration",
-        "values": "10% → 100%",
+        "values": {
+          "min": 10,
+          "max": 100
+        },
         "world": "",
         "location": "",
         "unlock": "Archetype Trait of the Alchemist. Reach Alchemist level 10 to unlock trait for use in any build",
         "id": 21,
         "archetype": "Alchemist",
         "category": "traits",
-        "fragment": "potency"
+        "fragment": "potency",
+        "valueText": "10% → 100%",
+        "unitSymbol": "%"
       },
       {
         "name": "Regrowth",
         "description": "Increases Health Regen",
-        "values": "0.15s → 1.5s",
+        "values": {
+          "min": 0.15,
+          "max": 1.5
+        },
         "world": "",
         "location": "",
         "unlock": "Archetype Trait of the Summoner. Reach Summoner level 10 to unlock trait for use in any build",
         "id": 22,
         "archetype": "Summoner",
         "category": "traits",
-        "fragment": "regrowth"
+        "fragment": "regrowth",
+        "valueText": "0.15s → 1.5s",
+        "unitSymbol": "s"
       },
       {
         "name": "Strong Back",
         "description": "Reduces Encumbrance",
-        "values": "- 1 → - 10",
+        "values": {
+          "min": -1,
+          "max": -10
+        },
         "world": "",
         "location": "",
         "unlock": "Archetype Trait of the Challenger. Reach Challenger level 10 to unlock trait for use in any build",
         "id": 23,
         "archetype": "Challenger",
         "category": "traits",
-        "fragment": "strong_back"
+        "fragment": "strong_back",
+        "valueText": "-1 → -10"
       },
       {
         "name": "Swiftness",
         "description": "Increases all Movement Speed",
-        "values": "1% → 15%",
+        "values": {
+          "min": 1,
+          "max": 15
+        },
         "world": "",
         "location": "",
         "unlock": "Archetype Trait of the Explorer. Reach Explorer level 10 to unlock trait for use in any build",
         "id": 24,
         "archetype": "Explorer",
         "category": "traits",
-        "fragment": "swiftness"
+        "fragment": "swiftness",
+        "valueText": "1% → 15%",
+        "unitSymbol": "%"
       },
       {
         "name": "Triage",
         "description": "Increases healing provided by Weapon Mods",
-        "values": "3% → 30%",
+        "values": {
+          "min": 3,
+          "max": 30
+        },
         "world": "",
         "location": "",
         "unlock": "Archetype Trait of the Medic. Reach Medic level 10 to unlock trait for use in any build",
         "id": 25,
         "archetype": "Medic",
         "category": "traits",
-        "fragment": "triage"
+        "fragment": "triage",
+        "valueText": "3% → 30%",
+        "unitSymbol": "%"
       },
       {
         "name": "Untouchable",
         "description": "Increases Evade Window",
-        "values": "3% → 30%",
+        "values": {
+          "min": 3,
+          "max": 30
+        },
         "world": "",
         "location": "",
         "unlock": "Archetype Trait of the Invader. Reach Invader level 10 to unlock trait use for any build",
         "id": 26,
         "archetype": "Invader",
         "category": "traits",
-        "fragment": "untouchable"
+        "fragment": "untouchable",
+        "valueText": "3% → 30%",
+        "unitSymbol": "%"
       },
       {
         "name": "Amplitude",
         "description": "Increases AOE Size",
-        "values": "5% → 50%",
+        "values": {
+          "min": 5,
+          "max": 50
+        },
         "world": "Labyrinth",
         "location": "Colosseum of Ruin",
         "unlock": "Through the portal that switches locations, go for the one where you can see a world stone. There will be a room with a light cube, shoot it to start the event. After finishing the event it will be rewarded.",
         "id": 27,
         "category": "traits",
-        "fragment": "amplitude"
+        "fragment": "amplitude",
+        "valueText": "5% → 50%",
+        "unitSymbol": "%"
       },
       {
         "name": "Arcane Strike",
         "description": "Increases Mod Power Generation for Melee Damage",
-        "values": "5% → 50%",
+        "values": {
+          "min": 5,
+          "max": 50
+        },
         "world": "Losomn",
         "location": "Harvester's Reach",
         "unlock": "Defeat a miniboss that spawns in the bone piles",
         "id": 28,
         "category": "traits",
-        "fragment": "arcane_strike"
+        "fragment": "arcane_strike",
+        "valueText": "5% → 50%",
+        "unitSymbol": "%"
       },
       {
         "name": "Barkskin",
         "description": "Reduces ALL incoming Damage",
-        "values": "1% → 10%",
+        "values": {
+          "min": 1,
+          "max": 10
+        },
         "world": "Yaesha",
         "location": "The Forbidden Grove",
         "unlock": "When talking to Meidre respond positively/selflessly. Ultimately choosing the dialogue option \"helping the others",
         "id": 29,
         "category": "traits",
-        "fragment": "barkskin"
+        "fragment": "barkskin",
+        "valueText": "1% → 10%",
+        "unitSymbol": "%"
       },
       {
         "name": "Blood Bond",
         "description": "Summon Absorb damage taken by the caster",
-        "values": "1% → 10%",
+        "values": {
+          "min": 1,
+          "max": 10
+        },
         "world": "Yaesha",
         "location": "The Far Woods",
         "unlock": "Defeat the Root Nexus",
         "id": 30,
         "category": "traits",
-        "fragment": "blood_bond"
+        "fragment": "blood_bond",
+        "valueText": "1% → 10%",
+        "unitSymbol": "%"
       },
       {
         "name": "Bloodstream",
         "description": "Increases Grey Health regen",
-        "values": "0.3s → 3.0s",
+        "values": {
+          "min": 0.3,
+          "max": 3
+        },
         "world": "Yaesha",
         "location": "The Forbidden Grove",
         "unlock": "When talking to Meidre respond negtively/selfishly. Ultimately choosing the dialogue option \"helping myself",
         "id": 31,
         "category": "traits",
-        "fragment": "bloodstream"
+        "fragment": "bloodstream",
+        "valueText": "0.3s → 3.0s",
+        "unitSymbol": "s"
       },
       {
         "name": "Fitness",
         "description": "Increases Evade Distance",
-        "values": "3% → 30%",
+        "values": {
+          "min": 3,
+          "max": 30
+        },
         "world": "N'Erud",
         "location": "Vault of the Formless",
         "unlock": "Complete the side path",
         "id": 32,
         "category": "traits",
-        "fragment": "fitness"
+        "fragment": "fitness",
+        "valueText": "3% → 30%",
+        "unitSymbol": "%"
       },
       {
         "name": "Footwork",
         "description": "Increases Armor Effectiveness",
-        "values": "5% → 50%",
+        "values": {
+          "min": 5,
+          "max": 50
+        },
         "world": "",
         "location": "",
         "unlock": "Archetype trait of the Engineer. Reach Engineer level 10 to unlock trait for use in any build",
         "id": 33,
         "category": "traits",
-        "fragment": "footwork"
+        "fragment": "footwork",
+        "valueText": "5% → 50%",
+        "unitSymbol": "%"
       },
       {
         "name": "Glutton",
         "description": "Increases the Use Speed of Consumables and Relics",
-        "values": "3% → 30%",
+        "values": {
+          "min": 3,
+          "max": 30
+        },
         "world": "Losomn",
         "location": "The Great Hall",
         "unlock": "Eat a friendly player while you have the \"Ravenous\" status effect",
         "id": 34,
         "category": "traits",
-        "fragment": "glutton"
+        "fragment": "glutton",
+        "valueText": "3% → 30%",
+        "unitSymbol": "%"
       },
       {
         "name": "Handling",
         "description": "Reduces Weapon Spread and Recoil",
-        "values": "4% → 40%",
+        "values": {
+          "min": 4,
+          "max": 40
+        },
         "world": "Root Earth",
         "location": "Ashen Wasteland",
         "unlock": "Progressing thorugh the area there will be a horde event, clear it to get the reward.",
         "id": 35,
         "category": "traits",
-        "fragment": "handling"
+        "fragment": "handling",
+        "valueText": "4% → 40%",
+        "unitSymbol": "%"
       },
       {
         "name": "Recovery",
         "description": "Increases Stamina Regen",
-        "values": "3s → 30s",
+        "values": {
+          "min": 3,
+          "max": 30
+        },
         "world": "Losomn",
         "location": "Oracle's Refuge",
         "unlock": "Escort the child back to Oracle's Refuge and talk to the sewing NPC",
         "id": 36,
         "category": "traits",
-        "fragment": "recovery"
+        "fragment": "recovery",
+        "valueText": "3s → 30s",
+        "unitSymbol": "s"
       },
       {
         "name": "Rugged",
         "description": "Increases the Health of Archetype Summons",
-        "values": "10% → 100%",
+        "values": {
+          "min": 10,
+          "max": 100
+        },
         "world": "Yaesha",
         "location": "Forgotten Field",
         "unlock": "Free the Pan that is imprisoned by the Root Nexus",
         "id": 39,
         "category": "traits",
-        "fragment": "rugged"
+        "fragment": "rugged",
+        "valueText": "10% → 100%",
+        "unitSymbol": "%"
       },
       {
         "name": "Scholar",
         "description": "Increases Experience Gain",
-        "values": "1% → 15%",
+        "values": {
+          "min": 1,
+          "max": 15
+        },
         "world": "Root Earth",
         "location": "Blackened Citadel",
         "unlock": "Defeat Annihilation.",
         "id": 40,
         "category": "traits",
-        "fragment": "scholar"
+        "fragment": "scholar",
+        "valueText": "1% → 15%",
+        "unitSymbol": "%"
       },
       {
         "name": "Shadeskin",
         "description": "Increases Resistance to Elemental Status Effect Damage",
-        "values": "2% → 20%",
+        "values": {
+          "min": 2,
+          "max": 20
+        },
         "world": "Losomn",
         "location": "The Butcher's Quarter",
         "unlock": "Save the villager who is being lynched",
         "id": 41,
         "category": "traits",
-        "fragment": "shadeskin"
+        "fragment": "shadeskin",
+        "valueText": "2% → 20%",
+        "unitSymbol": "%"
       },
       {
         "name": "Siphoner",
         "description": "Increases Lifesteal",
-        "values": "0.3% → 3%",
+        "values": {
+          "min": 0.3,
+          "max": 3
+        },
         "world": "N'Erud",
         "location": "Dormant N'Erudian Facility",
         "unlock": "Eliminate all enemies in the dungeon in less than 6 minutes",
         "id": 42,
         "category": "traits",
-        "fragment": "siphoner"
+        "fragment": "siphoner",
+        "valueText": "0.3% → 3%",
+        "unitSymbol": "%"
       },
       {
         "name": "Wayfarer",
         "description": "Increeses Traversal Movement",
-        "values": "5% → 50%",
+        "values": {
+          "min": 5,
+          "max": 50
+        },
         "world": "Root Earth",
         "location": "Corrupted Harbor",
         "unlock": "Miniboss fight with waves",
         "id": 43,
         "category": "traits",
-        "fragment": "wayfarer"
+        "fragment": "wayfarer",
+        "valueText": "5% → 50%",
+        "unitSymbol": "%"
       },
       {
         "name": "Revivalist",
         "description": "Increases the Speed of Reviving and being Revived",
-        "values": "5% → 50%",
+        "values": {
+          "min": 5,
+          "max": 50
+        },
         "world": "",
         "location": "",
         "unlock": "Revive a teammate 15 times",
         "id": 614,
         "category": "traits",
-        "fragment": "revivalist"
+        "fragment": "revivalist",
+        "valueText": "5% → 50%",
+        "unitSymbol": "%"
       }
     ]
   },

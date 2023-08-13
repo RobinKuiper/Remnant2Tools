@@ -94,7 +94,7 @@ deploy:pages:
   rules:
     - if: "$CI_COMMIT_REF_NAME == 'master'"
       when: always
-      
+
 deploy:firebase:
   stage: deploy
   needs:

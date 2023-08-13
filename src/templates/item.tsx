@@ -220,7 +220,9 @@ const Category = ({ data, pageContext, location }) => {
             </div>
 
             <div className="information">
-              <div className="left">{item.stats && <ItemStatistics stats={item.stats} />}</div>
+              <div className="left">
+                <ItemStatistics item={item} />
+              </div>
 
               <div className="right">
                 {item.description && (
