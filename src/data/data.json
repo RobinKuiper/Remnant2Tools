@@ -9475,6 +9475,28 @@
         }
       },
       {
+        "name": "Labyrinth Set",
+        "category": "armorset",
+        "stats": {
+          "armor": 87,
+          "weight": 47,
+          "resistances": {
+            "bleed": 0,
+            "fire": 12,
+            "shock": 17,
+            "blight": 0,
+            "corrosion": 0
+          }
+        },
+        "pieces": 4,
+        "unlock": "Starting Gear for the Archon class",
+        "id": 709,
+        "fragment": "labyrinth_set",
+        "links": {
+          "pieces": [572, 573, 574, 5]
+        }
+      },
+      {
         "name": "Bruiser Set",
         "category": "armorset",
         "stats": {
