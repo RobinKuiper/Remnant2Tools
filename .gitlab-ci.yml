@@ -117,7 +117,7 @@ create_release:
   script:
     - apk add git
     - npx semantic-release
-#    - python scripts/updateGitlab.py $RELEASE_PIPELINE_TOKEN $CI_PROJECT_ID $CI_COMMIT_REF_NAME
+#    - python scripts/updateGitlab.py $GITLAB_TOKEN $CI_PROJECT_ID $CI_COMMIT_REF_NAME
   rules:
     - if: "$CI_COMMIT_REF_NAME == 'master'"
       when: always

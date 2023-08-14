@@ -1469,7 +1469,7 @@
         "location": "Blackened Citadel",
         "unlock": "Defeat the Final Boss",
         "price_material": "Forgotten Memory",
-        "id": 445,
+        "id": 708,
         "category": "weapons",
         "stats": {
           "damage": 15,
@@ -3311,7 +3311,7 @@
         "links": {
           "weapon": {
             "name": "Alpha/Omega",
-            "externalId": 445
+            "externalId": 708
           }
         }
       },
