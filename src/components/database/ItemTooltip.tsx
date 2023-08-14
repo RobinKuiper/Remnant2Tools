@@ -6,10 +6,13 @@ import { Tooltip } from "react-tooltip";
 
 const Container = styled.div`
   .head {
-    .title {
-      text-align: center;
-
-      .general-information {
+    .general-information {        
+      .title {
+        display: flex;
+        justify-content: center;
+      }
+      
+      .tags {
         display: flex;
         justify-content: center;
         gap: 10px;
@@ -36,10 +39,12 @@ const ItemTooltip = ({ id, item, image }) => {
             </div>
           )}
 
+          <div className="general-information">
           <div className="title">
             <h3>{item.name}</h3>
+          </div>
 
-            <div className="general-information">
+            <div className="tags">
               {item.type && <span>{item.type}</span>}
               {item.armorset && <span>{item.armorset}</span>}
               {item.links?.mod && <span>{item.links.mod.name}</span>}
