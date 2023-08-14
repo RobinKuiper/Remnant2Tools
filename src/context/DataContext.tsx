@@ -155,9 +155,15 @@ const DataProvider: React.FC<Props> = ({ children }: Props) => {
     const storedData = localStorage.getItem("data");
     if (storedData) {
       const data = JSON.parse(storedData);
-      if (data.weapons[445]) {
+      if (data.weapons && data.weapons[445]) {
         data.weapons[708] = data.weapons[445];
         delete data.weapons[445];
+        localStorage.setItem("data", JSON.stringify(data));
+      }
+
+      if (data.rings && data.rings[377]) {
+        data.rings[710] = data.rings[377];
+        delete data.rings[377];
         localStorage.setItem("data", JSON.stringify(data));
       }
       setUnlocks(prevUnlocks => ({ ...prevUnlocks, ...data }));
