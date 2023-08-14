@@ -5,6 +5,8 @@ import Layout from "../../components/layout/Layout";
 import StatisticsPanel from "../../components/statistics/StatisticsPanel";
 import SecretWorldsPanel from "../../components/statistics/SecretWorldsPanel";
 import Head from "../../components/layout/Head";
+import BackgroundImage from "../../components/BackgroundImage";
+import { graphql } from "gatsby";
 
 const Page = styled.div`
   display: flex;
@@ -13,34 +15,18 @@ const Page = styled.div`
   .page-content {
     z-index: 65;
     box-shadow: 0 0 20px rgba(0, 0, 0, 1);
-    width: 90%;
-    padding: 20px;
     margin-left: 235px;
-    min-height: 83vh;
-
-    position: relative;
-    background: url("/images/bg2.webp");
-    background-size: cover;
 
     @media (max-width: 1200px) {
       margin-left: 0;
       width: 100%;
     }
 
-    .background {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: linear-gradient(45deg, rgba(255, 255, 255, 1) 11%, rgba(231, 231, 231, 1) 23%, rgba(0, 0, 0, 0) 100%);
-      z-index: -1;
-    }
-
     .panels {
       display: flex;
       flex-wrap: wrap;
       gap: 20px;
+      padding: 20px;
 
       .panel {
         border: 1px solid #000;
@@ -74,7 +60,9 @@ const Page = styled.div`
   }
 `;
 
-const Statistics: React.FC = () => {
+const Statistics: React.FC = props => {
+  const { bgImage } = props.data;
+
   return (
     <Layout>
       <Head title="Statistics" description="All of the statistics of the items you have unlocked in Remnant II." />
@@ -83,12 +71,12 @@ const Statistics: React.FC = () => {
         <CategorySidebar type="tracker" />
 
         <div className="page-content">
-          <div className="background" />
-
-          <div className="panels">
-            <StatisticsPanel />
-            <SecretWorldsPanel />
-          </div>
+          <BackgroundImage image={bgImage}>
+            <div className="panels">
+              <StatisticsPanel />
+              <SecretWorldsPanel />
+            </div>
+          </BackgroundImage>
         </div>
       </Page>
     </Layout>
@@ -96,3 +84,11 @@ const Statistics: React.FC = () => {
 };
 
 export default Statistics;
+
+export const query = graphql`
+  {
+    bgImage: file(name: { eq: "bg2" }) {
+      ...imageFragment
+    }
+  }
+`;

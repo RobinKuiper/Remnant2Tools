@@ -8,6 +8,14 @@ const Container = styled.div`
   margin-bottom: 30px;
   font-size: 14px;
   color: #888;
+
+  a {
+    color: #888 !important;
+
+    &:hover {
+      color: #795c5c !important;
+    }
+  }
 `;
 
 interface BreadcrumbItem {

@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect, useRef } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { styled } from "styled-components";
 import { SettingContext } from "../../context/SettingContext";
 import Loader from "../Loader";
