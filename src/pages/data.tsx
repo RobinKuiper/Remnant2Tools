@@ -3,58 +3,50 @@ import data from "../data/data.json";
 import { sorter } from "../dataHelpers";
 import { slugify } from "../helpers";
 
-const POSSIBLE_LINKS = [
-  {
-    field: "weapon",
-    category: "weapons",
-    linkedBy: "name",
-  },
-  {
-    field: "mod",
-    category: "mods",
-    linkedBy: "name",
-  },
-  {
-    field: "trait",
-    category: "traits",
-    linkedBy: "name",
-  },
-  {
-    field: "archetype",
-    category: "archetypes",
-    linkedBy: "name",
-  },
-];
-
 const Data = () => {
   const [items, setItems] = useState<object>();
 
   useEffect(() => {
     const allItems = [];
 
+    const ids = [];
+    const duplicates = []
+    
     Object.values(data).forEach(category => {
-      category.items.forEach(item => allItems.push(item));
-    });
-
-    const newCategories = {};
-    Object.values(data).forEach(category => {
-      const newItems = category.items.map(item => {
-        if (!item.fragment) {
-          item.fragment = slugify(item.name);
+      category.items.forEach(item => {
+        if (!ids.includes(item.id)) {
+          ids.push(item.id);
+        } else {
+          duplicates.push(item.id);
         }
-
-        return item;
       });
-      category.items = newItems;
-      console.log(newItems);
-
-      newCategories[category.settings.fragment] = category;
     });
+    
+        
+        console.log(duplicates);
+  }, [])
+  
+  return "";
 
-    setItems(() => ({ ...newCategories }));
-  }, [data]);
-
-  return JSON.stringify(items);
+  // //   const newCategories = {};
+  // //   Object.values(data).forEach(category => {
+  // //     const newItems = category.items.map(item => {
+  // //       if (!item.fragment) {
+  // //         item.fragment = slugify(item.name);
+  // //       }
+  // //
+  // //       return item;
+  // //     });
+  // //     category.items = newItems;
+  // //     console.log(newItems);
+  // //
+  // //     newCategories[category.settings.fragment] = category;
+  // //   });
+  // //
+  // //   setItems(() => ({ ...newCategories }));
+  // // }, [data]);
+  //
+  // return JSON.stringify(items);
   // return <textarea>{JSON.stringify(items)}</textarea>;
 };
 

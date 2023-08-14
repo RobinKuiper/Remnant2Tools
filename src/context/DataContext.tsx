@@ -160,6 +160,12 @@ const DataProvider: React.FC<Props> = ({ children }: Props) => {
         delete data.weapons[445];
         localStorage.setItem("data", JSON.stringify(data));
       }
+
+      if (data.rings[377]) {
+        data.rings[710] = data.rings[377];
+        delete data.rings[377];
+        localStorage.setItem("data", JSON.stringify(data));
+      }
       setUnlocks(prevUnlocks => ({ ...prevUnlocks, ...data }));
     }
   };
