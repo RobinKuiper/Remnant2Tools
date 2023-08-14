@@ -9,12 +9,11 @@ import ItemTooltip from "../database/ItemTooltip";
 
 const Container = styled.div`
   border: 1px solid #000;
-  background: #fff;
   box-shadow: 0 0 6px 2px rgba(0, 0, 0, 0.3);
   box-sizing: border-box;
   cursor: pointer;
 
-  background: radial-gradient(#fff, #e1e1e1);
+  background: radial-gradient(#e5e5e5, #b9b9b9);
 
   &.disabled {
     cursor: not-allowed;
