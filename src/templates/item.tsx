@@ -1,5 +1,5 @@
 import { Link, graphql } from "gatsby";
-import React, {useContext, useRef} from "react";
+import React, { useContext, useRef } from "react";
 import { styled } from "styled-components";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import { isUnlocked } from "../dataHelpers";
@@ -11,8 +11,8 @@ import Redacted from "../components/database/Redacted";
 import CategorySidebar from "../components/database/CategorySidebar";
 import Breadcrumb from "../components/layout/Breadcrumb";
 import Head from "../components/layout/Head";
-import {SettingContext} from "../context/SettingContext";
-import {DataContext} from "../context/DataContext";
+import { SettingContext } from "../context/SettingContext";
+import { DataContext } from "../context/DataContext";
 
 const Page = styled.div`
   display: flex;
@@ -240,18 +240,18 @@ const Category = ({ data, pageContext, location }) => {
                         onChange={handleLockStateChange}
                       />
                       <span className="checkbox__symbol">
-                    <svg
-                      aria-hidden="true"
-                      className="icon-checkbox"
-                      width="28px"
-                      height="28px"
-                      viewBox="0 0 28 28"
-                      version="1"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path d="M4 14l8 7L24 7"></path>
-                    </svg>
-                  </span>
+                        <svg
+                          aria-hidden="true"
+                          className="icon-checkbox"
+                          width="28px"
+                          height="28px"
+                          viewBox="0 0 28 28"
+                          version="1"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path d="M4 14l8 7L24 7"></path>
+                        </svg>
+                      </span>
                     </label>
                   </div>
 

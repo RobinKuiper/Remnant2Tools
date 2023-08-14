@@ -15,7 +15,7 @@ import ArchetypesInterface from "../components/builder/ArchetypesInterface";
 import TraitsInterface from "../components/builder/TraitsInterface";
 import Settings from "../components/builder/Settings";
 import BuildStatisticsSidebar from "../components/builder/BuildStatisticsSidebar";
-import {SettingContext} from "../context/SettingContext";
+import { SettingContext } from "../context/SettingContext";
 
 const NEW_BUILD: Build = {
   headpiece: null,
