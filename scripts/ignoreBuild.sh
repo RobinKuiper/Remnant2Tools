@@ -2,13 +2,13 @@
 
 echo "VERCEL_GIT_COMMIT_REF: $VERCEL_GIT_COMMIT_REF"
 
-if [[ "$VERCEL_GIT_COMMIT_REF" == "development" || "$VERCEL_GIT_COMMIT_REF" == "master"  ]] ; then
+if [[ "$VERCEL_GIT_COMMIT_REF" == "development" || "$VERCEL_GIT_COMMIT_REF" == "master" || "$VERCEL_GIT_COMMIT_REF" == release/* ]]; then
   # Proceed with the build
-    echo "✅ - Build can proceed"
-  exit 1;
+  echo "✅ - Build can proceed"
+  exit 1
 
 else
   # Don't build
   echo "🛑 - Build cancelled"
-  exit 0;
+  exit 0
 fi
