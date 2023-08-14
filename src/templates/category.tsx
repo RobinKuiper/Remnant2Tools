@@ -39,7 +39,8 @@ const Page = styled.div`
       align-items: center;
       text-align: center;
       margin: 10px 0;
-      padding: 0 10px;
+      padding: 0 10px 20px 10px;
+      border-bottom: 1px solid #888;
 
       .left {
         display: flex;
@@ -244,17 +245,27 @@ const Category = props => {
               </button>
             </div>
 
-            <Search
-              placeholder={`Search ${categoryFragment}`}
-              onChange={e => setQuery(e.target.value)}
-              width={"250px"}
-            />
+            {isTracker && (
+              <Search
+                placeholder={`Search ${categoryFragment}`}
+                onChange={e => setQuery(e.target.value)}
+                width={"250px"}
+              />
+            )}
 
             <div className="right">
               {isTracker && statistics[categoryFragment] && (
                 <span>
                   {statistics[categoryFragment].unlocked}/{statistics[categoryFragment].total} unlocked
                 </span>
+              )}
+
+              {!isTracker && (
+                <Search
+                  placeholder={`Search ${categoryFragment}`}
+                  onChange={e => setQuery(e.target.value)}
+                  width={"250px"}
+                />
               )}
             </div>
           </div>

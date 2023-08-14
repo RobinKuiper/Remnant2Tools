@@ -2,6 +2,17 @@
 
 [![Latest Release](https://gitlab.com/RobinKuiper/remnantcollectables/-/badges/release.svg)](https://gitlab.com/RobinKuiper/remnantcollectables/-/releases)
 
+## Version 1.0.6
+
+- Added a global search feature in the top bar to search through all data
+- Added a way to unlock an item from the single item page
+- Added a "Saved" indicator to the top bar
+- Removed the annoying "Saved" toast
+- Added tooltips to multiple buttons
+- Added the Labyrinth Set to the armor sets data
+- Improved single item page mobile layout
+- Fixed Alpha/Omega not 404'ing
+
 ## Version 1.0.5
 
 - Added a sidebar to the [builder](https://remnant.rkuiper.nl/builds) with statistics

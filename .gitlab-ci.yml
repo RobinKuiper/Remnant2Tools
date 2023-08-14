@@ -31,8 +31,12 @@ build:install:
         - pnpm-lock.yaml
       when: always
     - if: "$CI_COMMIT_REF_NAME == 'master'"
+      changes:
+        - pnpm-lock.yaml
       when: always
     - if: "$CI_COMMIT_REF_NAME == 'staging'"
+      changes:
+        - pnpm-lock.yaml
       when: always
 
 test:lint:
