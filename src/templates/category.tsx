@@ -14,6 +14,7 @@ import ItemCategory from "../components/database/ItemCategory";
 import { BsFillGrid3X3GapFill, BsList } from "react-icons/bs";
 import { getPageType } from "../helpers";
 import Head from "../components/layout/Head";
+import {Tooltip} from "react-tooltip";
 
 const Page = styled.div`
   display: flex;
@@ -206,12 +207,40 @@ const Category = props => {
 
               {isTracker && (
                 <button onClick={toggleHideUnlocked}>
-                  {hideUnlocked ? <BiShow size={"30px"} /> : <BiHide size={"30px"} />}
+                  {hideUnlocked ? (
+                    <BiShow 
+                      size={"30px"}
+                      data-tooltip-id="tooltip"
+                    data-tooltip-content="Show unlocked items"
+                    data-tooltip-place="bottom"
+                    />
+                  ) : (
+                    <BiHide 
+                      size={"30px"}
+                      data-tooltip-id="tooltip"
+                    data-tooltip-content="Hide unlocked items"
+                    data-tooltip-place="bottom"
+                    />
+                  )}
                 </button>
               )}
 
               <button className="view-switcher" onClick={toggleView}>
-                {view === "list" ? <BsFillGrid3X3GapFill size={"30px"} /> : <BsList size={"30px"} />}
+                {view === "list" ? (
+                  <BsFillGrid3X3GapFill 
+                    size={"30px"} 
+                    data-tooltip-id="tooltip"
+                    data-tooltip-content="Grid view"
+                    data-tooltip-place="bottom"
+                  />
+                ) : (
+                  <BsList 
+                    size={"30px"}
+                    data-tooltip-id="tooltip"
+                    data-tooltip-content="List view"
+                    data-tooltip-place="bottom"
+                  />
+                )}
               </button>
             </div>
 
@@ -259,6 +288,8 @@ const Category = props => {
           </Flex>
         </div>
       </Page>
+      
+      <Tooltip id="tooltip" style={{ zIndex: 9999 }} />
     </Layout>
   );
 };
