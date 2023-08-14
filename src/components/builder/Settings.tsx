@@ -11,6 +11,10 @@ const Container = styled.div`
   width: 400px;
   margin: 20px auto;
 
+  @media (max-width: 450px) {
+    width: 300px;
+  }
+
   input {
     box-sizing: border-box;
     width: 100%;

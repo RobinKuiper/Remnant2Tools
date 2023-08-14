@@ -1,5 +1,5 @@
 import { Link, graphql } from "gatsby";
-import React, { useContext, useRef } from "react";
+import React, { useContext, useRef, useState } from "react";
 import { styled } from "styled-components";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import { isUnlocked } from "../dataHelpers";
@@ -80,6 +80,10 @@ const Page = styled.div`
           flex-shrink: 0;
           display: flex;
           justify-content: center;
+
+          @media (max-width: 450px) {
+            width: 100%;
+          }
         }
 
         .general-information {
@@ -104,6 +108,9 @@ const Page = styled.div`
             //  margin-left: 0;
             //  width: 100%;
             //}
+            @media (max-width: 450px) {
+              justify-content: center;
+            }
 
             span {
               &.gi-item:not(:last-child) {
@@ -168,19 +175,15 @@ const Category = ({ data, pageContext, location }) => {
   const { toggleUnlock } = useContext(DataContext);
   const { category } = pageContext;
   const { item, image, linkedItems, bgImage } = data;
-  const unlocked = isUnlocked(item.category, item.externalId);
+  const gatsbyImage = getImage(image);
+  const [unlocked, setUnlocked] = useState(isUnlocked(item.category, item.externalId));
   const type = category.onlyDB ? "database" : location.state?.type ?? "database";
 
   const handleLockStateChange = e => {
     startSaving();
     const id = parseInt(e.target.id);
-
-    if (ref.current) {
-      ref.current.classList.toggle("unlocked");
-      ref.current.classList.toggle("locked");
-    }
-
     toggleUnlock(category.fragment, id);
+    setUnlocked(!unlocked);
     stopSaving();
   };
 
@@ -204,11 +207,9 @@ const Category = ({ data, pageContext, location }) => {
               />
 
               <div className="top">
-                {image && (
+                {gatsbyImage && (
                   <div className="image">
-                    {image && (
-                      <GatsbyImage image={getImage(image)} alt={item.name} title={item.name} placeholder="none" />
-                    )}
+                    <GatsbyImage image={gatsbyImage} alt={item.name} title={item.name} placeholder="none" />
                   </div>
                 )}
 

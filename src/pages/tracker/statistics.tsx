@@ -36,7 +36,7 @@ const Page = styled.div`
         background: #292929;
         color: #fff;
         min-width: 300px;
-        max-width: 400px;
+        max-width: 450px;
 
         h3 {
           text-align: center;

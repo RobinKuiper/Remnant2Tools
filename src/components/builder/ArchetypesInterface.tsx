@@ -13,6 +13,10 @@ const Container = styled.div`
   width: 400px;
   margin: 20px auto;
 
+  @media (max-width: 450px) {
+    width: 300px;
+  }
+
   .archetype {
     display: flex;
     flex-direction: column;

@@ -100,7 +100,7 @@ const Homepage = styled.div`
     justify-content: center;
 
     .panel {
-      max-width: 400px;
+      max-width: 450px;
       min-width: 300px;
       width: 100%;
 
