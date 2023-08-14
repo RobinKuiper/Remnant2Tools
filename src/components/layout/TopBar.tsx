@@ -213,7 +213,7 @@ const TopBar = () => {
         <nav>
           <Flex direction="column" justifycontent="center" alignitems="center" gap="40px">
             <Link to="/database/archetypes">Database</Link>
-            <Link to="/tracker">Unlockables Tracker</Link>
+            <Link to="/tracker/statistics">Tracker</Link>
             <Link to="/builds">Builds</Link>
           </Flex>
         </nav>
