@@ -8,7 +8,7 @@ import SettingsSidebar from "./SettingsSidebar";
 import { BiLogoPatreon, BiLogoPaypal } from "react-icons/bi";
 import { StaticImage } from "gatsby-plugin-image";
 import { ToastContainer } from "react-toastify";
-// import CookieConsent from "react-cookie-consent";
+import "react-toastify/dist/ReactToastify.css";
 
 const Container = styled.div`
   position: relative;
