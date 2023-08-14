@@ -254,7 +254,7 @@ const SettingsSidebar = () => {
       </div>
 
       <div className="version">
-        <span>Version: {VERSION}</span>
+        {/*<span>Version: {VERSION}</span>*/}
         <span>Last updated: {LAST_UPDATED}</span>
       </div>
 
