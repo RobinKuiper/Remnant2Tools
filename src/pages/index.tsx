@@ -3,8 +3,8 @@ import type { PageProps } from "gatsby";
 import "../global.css";
 import Layout from "../components/layout/Layout";
 import { styled } from "styled-components";
-import { Link, graphql, useStaticQuery } from "gatsby";
-import { StaticImage } from "gatsby-plugin-image";
+import { Link, graphql } from "gatsby";
+import { GatsbyImage, StaticImage, getImage } from "gatsby-plugin-image";
 import StatisticsPanel from "../components/statistics/StatisticsPanel";
 import SecretWorldsPanel from "../components/statistics/SecretWorldsPanel";
 import { BiLogoPatreon, BiLogoPaypal } from "react-icons/bi";
@@ -17,7 +17,6 @@ const HeroBanner = styled.div`
   justify-content: center;
   align-items: center;
   gap: 80px;
-  //background-color: #3b3b3b;
   padding: 40px 20px;
   text-align: center;
   color: #fff;
@@ -29,19 +28,11 @@ const HeroBanner = styled.div`
     bottom: 0;
     left: 0;
     right: 0;
-    //backdrop-filter: blur(5px);
-    z-index: 5;
-
-    background: url("/images/bg2.webp") no-repeat fixed;
-    background-size: cover;
-    //background-size: cover;
-    //background-position: 0 -150px;
-    filter: grayscale(100%);
+    //filter: grayscale(100%);
   }
 
   .left {
-    //background: rgba(41, 41, 41, 0.85);
-    background: rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.3);
     color: #000;
     padding: 30px 20px;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.6);
@@ -204,17 +195,10 @@ const PaypalButton = styled.div`
   }
 `;
 
-const IndexPage: React.FC<PageProps> = () => {
-  const data = useStaticQuery(graphql`
-    {
-      site {
-        siteMetadata {
-          patreon
-          paypal
-        }
-      }
-    }
-  `);
+const IndexPage: React.FC<PageProps> = props => {
+  const { data } = props;
+  const { bgImage } = data;
+  const gatsbyImage = getImage(bgImage);
 
   return (
     <Layout>
@@ -222,7 +206,7 @@ const IndexPage: React.FC<PageProps> = () => {
 
       <Homepage>
         <HeroBanner>
-          <div className="bg" />
+          {gatsbyImage && <GatsbyImage className="bg" alt="" image={gatsbyImage} />}
 
           <div className="left">
             <h1>Remnant2 Tools</h1>
@@ -292,6 +276,18 @@ const IndexPage: React.FC<PageProps> = () => {
 export default IndexPage;
 
 export const query = graphql`
+  {
+    site {
+      siteMetadata {
+        patreon
+        paypal
+      }
+    }
+    bgImage: file(name: { eq: "bg3" }) {
+      ...imageFragment
+    }
+  }
+
   fragment imageFragment on File {
     childImageSharp {
       gatsbyImageData(quality: 80, layout: CONSTRAINED)
