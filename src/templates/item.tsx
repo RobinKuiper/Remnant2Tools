@@ -1,5 +1,5 @@
 import { Link, graphql } from "gatsby";
-import React from "react";
+import React, {useContext, useRef} from "react";
 import { styled } from "styled-components";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import { isUnlocked } from "../dataHelpers";
@@ -11,6 +11,8 @@ import Redacted from "../components/database/Redacted";
 import CategorySidebar from "../components/database/CategorySidebar";
 import Breadcrumb from "../components/layout/Breadcrumb";
 import Head from "../components/layout/Head";
+import {SettingContext} from "../context/SettingContext";
+import {DataContext} from "../context/DataContext";
 
 const Page = styled.div`
   display: flex;
@@ -95,12 +97,18 @@ const Page = styled.div`
           justify-content: center;
         }
 
-        .title {
-          @media (max-width: 850px) {
-            text-align: center;
+        .general-information {
+          .title {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+
+            @media (max-width: 850px) {
+              justify-content: center;
+            }
           }
 
-          .general-information {
+          .tags {
             display: flex;
             flex-wrap: wrap;
             gap: 10px;
@@ -164,18 +172,38 @@ const Page = styled.div`
 `;
 
 const REDACTED_COLOR = "#bbbbbb";
+const STATE_CLASSES = {
+  true: "unlocked",
+  false: "locked",
+};
 
 const Category = ({ data, pageContext, location }) => {
+  const ref = useRef();
+  const { startSaving, stopSaving } = useContext(SettingContext);
+  const { toggleUnlock } = useContext(DataContext);
   const { category } = pageContext;
   const { item, image, linkedItems } = data;
   const unlocked = isUnlocked(item.category, item.externalId);
   const type = category.onlyDB ? "database" : location.state?.type ?? "database";
 
+  const handleLockStateChange = e => {
+    startSaving();
+    const id = parseInt(e.target.id);
+
+    if (ref.current) {
+      ref.current.classList.toggle("unlocked");
+      ref.current.classList.toggle("locked");
+    }
+
+    toggleUnlock(category.fragment, id);
+    stopSaving();
+  };
+
   return (
     <Layout>
       <Head title={item.name} description="Track your progress in Remnant II." />
 
-      <Page>
+      <Page ref={ref} className={`${STATE_CLASSES[unlocked]}`}>
         <CategorySidebar type="database" />
 
         <div className="item-content">
@@ -200,10 +228,37 @@ const Category = ({ data, pageContext, location }) => {
                 </div>
               )}
 
-              <div className="title">
-                <h1>{item.name}</h1>
+              <div className="general-information">
+                <div className="title">
+                  <div className="checkbox-wrapper">
+                    <label className="checkbox">
+                      <input
+                        id={item.externalId}
+                        className="checkbox__trigger visuallyhidden"
+                        type="checkbox"
+                        checked={unlocked}
+                        onChange={handleLockStateChange}
+                      />
+                      <span className="checkbox__symbol">
+                    <svg
+                      aria-hidden="true"
+                      className="icon-checkbox"
+                      width="28px"
+                      height="28px"
+                      viewBox="0 0 28 28"
+                      version="1"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path d="M4 14l8 7L24 7"></path>
+                    </svg>
+                  </span>
+                    </label>
+                  </div>
 
-                <div className="general-information">
+                  <h1>{item.name}</h1>
+                </div>
+
+                <div className="tags">
                   <span className="gi-item">{category.singular}</span>
 
                   {item.type && <span className="gi-item">{item.type}</span>}
