@@ -272,6 +272,8 @@ const TopBar = () => {
               </SearchResults>
             </div>
 
+            <SavingIndicator />
+
             <button className={`settings ${showSettings && "active"}`} onClick={toggleShowSettings}>
               <RiSettings3Line size="30px"/>
             </button>
