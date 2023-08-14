@@ -86,83 +86,64 @@ const Page = styled.div`
   }
 `;
 
-const Category = props => {
+const Category = ({ path, data }) => {
   const { hideUnlocked, toggleHideUnlocked, view, toggleView } = useContext(SettingContext);
   const { statistics } = useContext(DataContext);
-  const type = getPageType(props.path);
-  const { images, category } = props.data;
-  const categoryFragment = category.settings.fragment;
-  const { items: categoryItems } = category;
+  const { images, category } = data;
+  const { items } = category;
+  const type = getPageType(path);
   const isTracker = type === "tracker";
-  const [data, setData] = useState([]);
+  const [filteredItems, setFilteredItems] = useState(items);
   const [query, setQuery] = useState("");
-  const [groupBy, setGroupBy] = useState();
+  const [groupBy, setGroupBy] = useState(category.settings.defaultGroup);
   const [sortBy, setSortBy] = useState("name");
   const sortDir = 1;
 
-  const groupText = (value: any) => {
-    if (typeof value === "boolean") {
-      return value ? "Yes" : "No";
-    }
+  const group = (items: any) => {
+    return items.reduce((result, item) => {
+      const group = item[groupBy];
+      const existingGroup = result.find(g => g.name === group);
 
-    return value;
+      if (existingGroup) {
+        existingGroup.items.push(item);
+      } else {
+        result.push({ name: group, items: [item] });
+      }
+
+      return result;
+    }, []);
   };
 
-  const group = (data: any) => {
-    if (!groupBy) {
-      return data;
+  const filter = item => {
+    if (isTracker) {
+      if (hideUnlocked && isUnlocked(category.settings.fragment, item.externalId)) {
+        return false;
+      }
+
+      if (item.onlyDB) {
+        return false;
+      }
     }
 
-    const grouped = {};
-    data.forEach(item => {
-      const group = groupText(item[groupBy]);
-      grouped[group] = grouped[group] || { label: group, items: [] };
-      grouped[group].items.push(item);
-    });
-    return Object.values(grouped).map(group => {
-      group.items.sort((a, b) => sorter(a, b, sortBy, sortDir));
-      return group;
-    });
-  };
-
-  const search = (data: any) => {
     if (query && query.length > 0) {
-      return data.filter(item => {
-        for (const value of Object.values(item)) {
-          if (typeof value === "string" && value.toLowerCase().includes(query.toLowerCase())) {
-            return true;
-          }
-        }
+      const itemValues = Object.values(item);
+      return itemValues.some(value => {
+        return typeof value === "string" && value.toLowerCase().includes(query.toLowerCase());
       });
     }
 
-    return data;
+    return true;
   };
 
   useEffect(() => {
-    setGroupBy(category.settings.defaultGroup);
-    setSortBy("name");
-  }, [category]);
-
-  useEffect(() => {
-    if (category.settings.fragment !== categoryFragment) {
-      return;
-    }
-
-    // const allItems = hideUnlocked && isTracker ? getAllLockedItems() : getAllItems(isTracker),
-    const items = categoryItems
-      .filter(item => (hideUnlocked && isTracker ? !isUnlocked(categoryFragment, item.externalId) : true))
-      .filter(item => !(isTracker && typeof item.onlyDB !== "undefined" && item.onlyDB))
-      .sort((a, b) => sorter(a, b, sortBy, sortDir));
-
-    setData(group(search(items)));
-  }, [query, category, type, categoryFragment, hideUnlocked, groupBy, sortBy]);
+    const newItems = items.filter(filter).sort((a, b) => sorter(a, b, sortBy, sortDir));
+    setFilteredItems(groupBy ? group(newItems) : newItems);
+  }, [query, hideUnlocked, sortBy, groupBy]);
 
   const handleGroupSelectChange = e => {
     const group = e.target.value === "none" ? null : e.target.value;
     setGroupBy(group);
   };
-
   const handleSortSelectChange = e => {
     const key = e.target.value === "none" ? "name" : e.target.value;
     setSortBy(key);
@@ -196,7 +177,6 @@ const Category = props => {
                 <>
                   <div>Sort by</div>
                   <select onChange={handleSortSelectChange} value={sortBy ?? "none"}>
-                    <option value="none">None</option>
                     {category.settings.sortKeys.map(key => (
                       <option key={key.fragment} value={key.fragment}>
                         {key.label}
@@ -247,22 +227,23 @@ const Category = props => {
 
             {isTracker && (
               <Search
-                placeholder={`Search ${categoryFragment}`}
+                placeholder={`Search ${category.settings.fragment}`}
                 onChange={e => setQuery(e.target.value)}
                 width={"250px"}
               />
             )}
 
             <div className="right">
-              {isTracker && statistics[categoryFragment] && (
+              {isTracker && statistics[category.settings.fragment] && (
                 <span>
-                  {statistics[categoryFragment].unlocked}/{statistics[categoryFragment].total} unlocked
+                  {statistics[category.settings.fragment].unlocked}/{statistics[category.settings.fragment].total}{" "}
+                  unlocked
                 </span>
               )}
 
               {!isTracker && (
                 <Search
-                  placeholder={`Search ${categoryFragment}`}
+                  placeholder={`Search ${category.settings.fragment}`}
                   onChange={e => setQuery(e.target.value)}
                   width={"250px"}
                 />
@@ -271,12 +252,12 @@ const Category = props => {
           </div>
 
           <Flex wrap="wrap" direction={view === "list" ? "column" : "row"} justifycontent="center">
-            {data.length > 0 ? (
-              data.map(item => {
+            {filteredItems.length > 0 ? (
+              filteredItems.map(item => {
                 if (groupBy) {
                   return (
                     <>
-                      <ItemCategory key={item.fragment} item={item} category={category} type={type} />
+                      <ItemCategory key={item.name} item={item} category={category} type={type} />
                       {item.items &&
                         item.items.map(i => (
                           <Item key={i.id} item={i} type={type} category={category.settings} images={images.nodes} />

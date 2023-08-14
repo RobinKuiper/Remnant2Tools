@@ -51,6 +51,10 @@ const Container = styled.div`
     justify-content: right;
     min-width: 300px;
 
+    @media (max-width: 700px) {
+      min-width: 0;
+    }
+
     .settings {
       svg {
         transform: rotate(180deg);

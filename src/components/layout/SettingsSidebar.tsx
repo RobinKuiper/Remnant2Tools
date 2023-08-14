@@ -41,6 +41,7 @@ const Container = styled.div`
     display: flex;
     flex-direction: column;
     gap: 20px;
+    min-width: 260px;
 
     .layout-settings-item {
       display: flex;
@@ -61,6 +62,7 @@ const Container = styled.div`
     display: flex;
     flex-direction: column;
     gap: 20px;
+    min-width: 260px;
 
     .export-item {
       display: flex;
@@ -74,6 +76,7 @@ const Container = styled.div`
       .data {
         textarea {
           width: 100%;
+          min-width: 150px;
           height: 100px;
         }
       }
@@ -113,6 +116,7 @@ const Container = styled.div`
     flex-direction: column;
     gap: 5px;
     font-size: 0.8em;
+    min-width: 260px;
   }
 `;
 

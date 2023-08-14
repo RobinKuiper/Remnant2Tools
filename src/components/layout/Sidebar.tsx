@@ -21,10 +21,16 @@ const Container = styled.div`
     position: fixed;
     top: 80px;
     left: 235px;
-    color: #fff;
+    color: #ffffff;
     background: #292929;
     padding: 5px;
-    opacity: 0.5;
+    opacity: 0.8;
+
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+      opacity: 1;
+    }
   }
 
   @media (max-width: 1200px) {

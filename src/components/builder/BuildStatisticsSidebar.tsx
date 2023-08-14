@@ -4,8 +4,7 @@ import "react-toggle/style.css";
 import { Tooltip } from "react-tooltip";
 import type { Build } from "../../interface/Build";
 import { calculateWeightType, getFieldValue, setFieldValue } from "../../dataHelpers";
-import { IoMdClose } from "react-icons/io";
-import { GoSidebarExpand } from "react-icons/go";
+import { BiSolidLeftArrow, BiSolidRightArrow } from "react-icons/bi";
 
 const Container = styled.div`
   position: fixed;
@@ -52,7 +51,7 @@ const Container = styled.div`
     color: #fff;
     background: #292929;
     padding: 5px;
-    opacity: 0.5;
+    opacity: 1;
     z-index: 100;
 
     transition:
@@ -68,7 +67,7 @@ const Container = styled.div`
     display: flex;
     flex-direction: column;
     gap: 10px;
-    min-width: 200px;
+    min-width: 260px;
 
     .key {
       font-weight: 600;
@@ -238,7 +237,9 @@ const BuildStatisticsSidebar = ({ build }: Props) => {
 
       <Tooltip id="tooltip" />
       <div className="opener">
-        <button onClick={toggleOpen}>{isOpen ? <IoMdClose size="35px" /> : <GoSidebarExpand size="35px" />}</button>
+        <button onClick={toggleOpen}>
+          {isOpen ? <BiSolidRightArrow size="35px" /> : <BiSolidLeftArrow size="35px" />}
+        </button>
       </div>
     </Container>
   );

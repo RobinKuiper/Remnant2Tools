@@ -10,8 +10,8 @@ const Data = () => {
     const allItems = [];
 
     const ids = [];
-    const duplicates = []
-    
+    const duplicates = [];
+
     Object.values(data).forEach(category => {
       category.items.forEach(item => {
         if (!ids.includes(item.id)) {
@@ -21,11 +21,10 @@ const Data = () => {
         }
       });
     });
-    
-        
-        console.log(duplicates);
-  }, [])
-  
+
+    console.log(duplicates);
+  }, []);
+
   return "";
 
   // //   const newCategories = {};

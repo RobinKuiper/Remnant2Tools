@@ -71,7 +71,7 @@ const ItemCategory = ({ item, category, type = "tracker" }: Props) => {
             </div>
           </div>
         )}
-        <div className="title">{item.label}</div>
+        <div className="title">{item.name}</div>
       </Flex>
     </Container>
   );

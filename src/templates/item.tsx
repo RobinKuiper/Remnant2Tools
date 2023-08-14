@@ -14,6 +14,7 @@ import Head from "../components/layout/Head";
 import { SettingContext } from "../context/SettingContext";
 import { DataContext } from "../context/DataContext";
 import BackgroundImage from "../components/BackgroundImage";
+import Checkbox from "../components/Checkbox";
 
 const Page = styled.div`
   display: flex;
@@ -213,30 +214,7 @@ const Category = ({ data, pageContext, location }) => {
 
                 <div className="general-information">
                   <div className="title">
-                    <div className="checkbox-wrapper">
-                      <label className="checkbox">
-                        <input
-                          id={item.externalId}
-                          className="checkbox__trigger visuallyhidden"
-                          type="checkbox"
-                          checked={unlocked}
-                          onChange={handleLockStateChange}
-                        />
-                        <span className="checkbox__symbol">
-                          <svg
-                            aria-hidden="true"
-                            className="icon-checkbox"
-                            width="28px"
-                            height="28px"
-                            viewBox="0 0 28 28"
-                            version="1"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path d="M4 14l8 7L24 7"></path>
-                          </svg>
-                        </span>
-                      </label>
-                    </div>
+                    <Checkbox id={item.externalId} checked={unlocked} handleChange={handleLockStateChange} />
 
                     <h1>{item.name}</h1>
                   </div>
