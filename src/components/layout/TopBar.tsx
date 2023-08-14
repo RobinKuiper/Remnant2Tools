@@ -19,7 +19,6 @@ const Container = styled.div`
   min-height: 74px;
 
   .center {
-    
     nav {
       height: 100%;
       display: flex;
@@ -195,7 +194,7 @@ const TopBar = () => {
             {/*<div className="search">*/}
             {/*  <Search placeholder="Search" disabled={true} />*/}
             {/*</div>*/}
-            
+
             <SavingIndicator />
 
             <button className={`settings ${showSettings && "active"}`} onClick={toggleShowSettings}>

@@ -94,17 +94,17 @@ const SettingProvider: React.FC<Props> = ({ children }: Props) => {
     localStorage.setItem("view", newView);
     setView(newView);
   };
-  
+
   const startSaving = () => {
     setSaving(true);
-  }
-  
+  };
+
   const stopSaving = () => {
     setTimeout(() => {
-      console.log("Stop saving")
+      console.log("Stop saving");
       setSaving(false);
-    }, 500)
-  }
+    }, 500);
+  };
 
   const contextValue = useMemo(
     () => ({
@@ -120,7 +120,7 @@ const SettingProvider: React.FC<Props> = ({ children }: Props) => {
       toggleView,
       toggleDefaultShowRedacted,
       startSaving,
-      stopSaving
+      stopSaving,
     }),
     [darkMode, hideUnlocked, showSettings, view, defaultShowRedacted, saving],
   );
