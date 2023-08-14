@@ -1,11 +1,13 @@
-import { Link } from "gatsby";
-import React, { useContext, useState } from "react";
-import { styled } from "styled-components";
-import { Flex } from "../../style/global";
-import { RiSettings3Line } from "react-icons/ri";
-import { SettingContext } from "../../context/SettingContext";
-import { StaticImage } from "gatsby-plugin-image";
+import {graphql, Link, useStaticQuery} from "gatsby";
+import React, {useContext, useState} from "react";
+import {styled} from "styled-components";
+import {Flex} from "../../style/global";
+import {RiSettings3Line} from "react-icons/ri";
+import {SettingContext} from "../../context/SettingContext";
+import {StaticImage} from "gatsby-plugin-image";
 import SavingIndicator from "./SavingIndicator";
+import Search from "../Search";
+import {searchItems} from "../../dataHelpers";
 
 const Container = styled.div`
   padding: 10px 10px;
@@ -47,7 +49,7 @@ const Container = styled.div`
   .right {
     display: flex;
     justify-content: right;
-    min-width: 100px;
+    min-width: 300px;
 
     .settings {
       svg {
@@ -62,6 +64,8 @@ const Container = styled.div`
     }
 
     .search {
+      position: relative;
+
       @media (max-width: 670px) {
         display: none;
       }
@@ -145,14 +149,70 @@ const Hamburger = styled.button`
   }
 `;
 
+const SearchResults = styled.div`
+  position: absolute;
+  left: 0;
+  top: 50px;
+  background: #292929;
+  width: 100%;
+
+  .result {
+    padding: 10px;
+
+    .title {
+
+    }
+
+    .info {
+      display: flex;
+      font-size: .7em;
+
+      span:not(:last-child) {
+        border-right: 1px solid #fff;
+        padding-right: 5px;
+        margin-right: 5px;
+      }
+    }
+  }
+`;
+
 const TopBar = () => {
-  const { toggleShowSettings, showSettings } = useContext(SettingContext);
+  const {items} = useStaticQuery(graphql`
+    {
+      items: allItem {
+        nodes {
+          externalId
+          name
+          description
+          fragment
+          category
+          type
+          race
+          armorset
+        }
+      }
+    }
+  `);
+  const {toggleShowSettings, showSettings} = useContext(SettingContext);
   const [isOpen, setOpen] = useState(false);
+  const [searchedItems, setSearchedItems] = useState([]);
   const url = typeof window !== "undefined" ? window.location.href : "";
 
   const toggleOpen = () => {
     setOpen(!isOpen);
   };
+
+  const handleSearch = e => {
+    const query = e.target.value;
+
+    if (!query || query === "") {
+      setSearchedItems([]);
+    } else {
+      const foundItems = searchItems(items.nodes, query).slice(0, 10);
+      ;
+      setSearchedItems(foundItems)
+    }
+  }
 
   return (
     <Container>
@@ -160,7 +220,7 @@ const TopBar = () => {
         <div className="left">
           <div id="logo">
             <Link to="/">
-              <StaticImage src="../../images/logo.webp" alt="Remnant 2 Logo" height={50} />
+              <StaticImage src="../../images/logo.webp" alt="Remnant 2 Logo" height={50}/>
             </Link>
           </div>
         </div>
@@ -191,19 +251,34 @@ const TopBar = () => {
             {/*    )}*/}
             {/*</button>*/}
 
-            {/*<div className="search">*/}
-            {/*  <Search placeholder="Search" disabled={true} />*/}
-            {/*</div>*/}
+            <SavingIndicator/>
 
-            <SavingIndicator />
+            <div className="search">
+              <Search placeholder="Search" onChange={handleSearch}/>
+
+              <SearchResults>
+                {searchedItems.map(item => (
+                  <Link key={item.fragment} to={`/database/${item.category}/${item.fragment}`} title={item.title}>
+                    <div className="result">
+                      <span className="title">{item.name}</span>
+                      <div className="info">
+                        {item.category && <span>{item.category}</span>}
+                        {item.type && <span>{item.type}</span>}
+                        {item.race && <span>{item.race}</span>}
+                      </div>
+                    </div>
+                  </Link>
+                ))}
+              </SearchResults>
+            </div>
 
             <button className={`settings ${showSettings && "active"}`} onClick={toggleShowSettings}>
-              <RiSettings3Line size="30px" />
+              <RiSettings3Line size="30px"/>
             </button>
 
             <Hamburger id="hamburger" className={isOpen ? "open hamburger" : "hamburger"} onClick={toggleOpen}>
-              <span className="hamburger__top-bun" />
-              <span className="hamburger__bottom-bun" />
+              <span className="hamburger__top-bun"/>
+              <span className="hamburger__bottom-bun"/>
             </Hamburger>
           </Flex>
         </div>
