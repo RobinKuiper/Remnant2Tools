@@ -49,7 +49,7 @@ const BuildsProvider: React.FC<Props> = ({ children }: Props) => {
     if (name === "") {
       name = "New build";
     }
-    
+
     const newBuilds = { ...builds };
     newBuilds[name] = build;
 

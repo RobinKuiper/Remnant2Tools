@@ -14,7 +14,7 @@ import ItemCategory from "../components/database/ItemCategory";
 import { BsFillGrid3X3GapFill, BsList } from "react-icons/bs";
 import { getPageType } from "../helpers";
 import Head from "../components/layout/Head";
-import {Tooltip} from "react-tooltip";
+import { Tooltip } from "react-tooltip";
 
 const Page = styled.div`
   display: flex;
@@ -208,18 +208,18 @@ const Category = props => {
               {isTracker && (
                 <button onClick={toggleHideUnlocked}>
                   {hideUnlocked ? (
-                    <BiShow 
+                    <BiShow
                       size={"30px"}
                       data-tooltip-id="tooltip"
-                    data-tooltip-content="Show unlocked items"
-                    data-tooltip-place="bottom"
+                      data-tooltip-content="Show unlocked items"
+                      data-tooltip-place="bottom"
                     />
                   ) : (
-                    <BiHide 
+                    <BiHide
                       size={"30px"}
                       data-tooltip-id="tooltip"
-                    data-tooltip-content="Hide unlocked items"
-                    data-tooltip-place="bottom"
+                      data-tooltip-content="Hide unlocked items"
+                      data-tooltip-place="bottom"
                     />
                   )}
                 </button>
@@ -227,14 +227,14 @@ const Category = props => {
 
               <button className="view-switcher" onClick={toggleView}>
                 {view === "list" ? (
-                  <BsFillGrid3X3GapFill 
-                    size={"30px"} 
+                  <BsFillGrid3X3GapFill
+                    size={"30px"}
                     data-tooltip-id="tooltip"
                     data-tooltip-content="Grid view"
                     data-tooltip-place="bottom"
                   />
                 ) : (
-                  <BsList 
+                  <BsList
                     size={"30px"}
                     data-tooltip-id="tooltip"
                     data-tooltip-content="List view"
@@ -288,7 +288,7 @@ const Category = props => {
           </Flex>
         </div>
       </Page>
-      
+
       <Tooltip id="tooltip" style={{ zIndex: 9999 }} />
     </Layout>
   );
