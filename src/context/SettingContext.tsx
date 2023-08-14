@@ -14,11 +14,14 @@ interface SettingContextData {
   showSettings: boolean;
   view: string;
   defaultShowRedacted: boolean;
+  saving: boolean;
   toggleDarkMode: () => void;
   toggleHideUnlocked: () => void;
   toggleShowSettings: () => void;
   toggleView: () => void;
   toggleDefaultShowRedacted: () => void;
+  startSaving: () => void;
+  stopSaving: () => void;
 }
 
 const SettingContext = createContext<SettingContextData>({
@@ -27,11 +30,14 @@ const SettingContext = createContext<SettingContextData>({
   showSettings: DEFAULT_VALUES.showSettings,
   view: DEFAULT_VALUES.defaultView,
   defaultShowRedacted: DEFAULT_VALUES.defaultShowRedacted,
+  saving: false,
   toggleDarkMode: () => {},
   toggleHideUnlocked: () => {},
   toggleShowSettings: () => {},
   toggleView: () => {},
   toggleDefaultShowRedacted: () => {},
+  startSaving: () => {},
+  stopSaving: () => {},
 });
 
 interface Props {
@@ -44,6 +50,7 @@ const SettingProvider: React.FC<Props> = ({ children }: Props) => {
   const [showSettings, setShowSettings] = useState<boolean>(DEFAULT_VALUES.showSettings);
   const [view, setView] = useState<string>(DEFAULT_VALUES.defaultView);
   const [defaultShowRedacted, setDefaultShowRedacted] = useState<boolean>(DEFAULT_VALUES.defaultShowRedacted);
+  const [saving, setSaving] = useState<boolean>(false);
 
   useEffect(() => {
     const storedDarkMode = localStorage.getItem("darkMode");
@@ -87,6 +94,17 @@ const SettingProvider: React.FC<Props> = ({ children }: Props) => {
     localStorage.setItem("view", newView);
     setView(newView);
   };
+  
+  const startSaving = () => {
+    setSaving(true);
+  }
+  
+  const stopSaving = () => {
+    setTimeout(() => {
+      console.log("Stop saving")
+      setSaving(false);
+    }, 500)
+  }
 
   const contextValue = useMemo(
     () => ({
@@ -95,13 +113,16 @@ const SettingProvider: React.FC<Props> = ({ children }: Props) => {
       showSettings,
       view,
       defaultShowRedacted,
+      saving,
       toggleDarkMode,
       toggleHideUnlocked,
       toggleShowSettings,
       toggleView,
       toggleDefaultShowRedacted,
+      startSaving,
+      stopSaving
     }),
-    [darkMode, hideUnlocked, showSettings, view, defaultShowRedacted],
+    [darkMode, hideUnlocked, showSettings, view, defaultShowRedacted, saving],
   );
 
   return <SettingContext.Provider value={contextValue}>{children}</SettingContext.Provider>;

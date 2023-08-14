@@ -49,10 +49,6 @@ const Container = styled.div`
 
   &.unlocked {
     background: #fff;
-
-    .checkbox-wrapper {
-      --c-primary: green;
-    }
   }
 
   &.locked {
@@ -76,7 +72,7 @@ interface Props {
 }
 
 const Item = ({ item, category, images, type }: Props) => {
-  const { view } = useContext(SettingContext);
+  const { view, startSaving, stopSaving } = useContext(SettingContext);
   const ref = useRef();
   const { unlocks, toggleUnlock, updateLevel } = useContext(DataContext);
   const [unlocked, setUnlocked] = useState(false);
@@ -103,6 +99,7 @@ const Item = ({ item, category, images, type }: Props) => {
   }, [item, unlocks, type]);
 
   const handleChange = e => {
+    startSaving();
     const id = parseInt(e.target.id);
 
     if (ref.current) {
@@ -111,6 +108,7 @@ const Item = ({ item, category, images, type }: Props) => {
     }
 
     toggleUnlock(category.fragment, id);
+    stopSaving();
   };
 
   useEffect(() => {

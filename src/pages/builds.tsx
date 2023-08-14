@@ -14,9 +14,8 @@ import type { Filter } from "../interface/IData";
 import ArchetypesInterface from "../components/builder/ArchetypesInterface";
 import TraitsInterface from "../components/builder/TraitsInterface";
 import Settings from "../components/builder/Settings";
-import "react-toastify/dist/ReactToastify.css";
-import { toast } from "react-toastify";
 import BuildStatisticsSidebar from "../components/builder/BuildStatisticsSidebar";
+import {SettingContext} from "../context/SettingContext";
 
 const NEW_BUILD: Build = {
   headpiece: null,
@@ -111,6 +110,7 @@ const Page = styled.div`
 
 const Builds = props => {
   const { saveBuild } = useContext(BuildsContext);
+  const { startSaving, stopSaving } = useContext(SettingContext);
   const { images } = props.data;
   const [modalIsOpen, setIsOpen] = useState(false);
   const [modalFilters, setModalFilters] = useState<Filter[]>([]);
@@ -144,6 +144,7 @@ const Builds = props => {
     }
   };
   const save = (build: Build) => {
+    startSaving();
     let usedName = name;
     if (!usedName || usedName === "") {
       usedName = "New Build";
@@ -152,7 +153,7 @@ const Builds = props => {
     }
 
     saveBuild(usedName, build);
-    toast.success(`Build "${name}" saved.`, { className: "toast" });
+    stopSaving();
   };
   const handleLevelChange = (level: number, buildPath: string) => {
     updateBuildValue(buildPath, level);

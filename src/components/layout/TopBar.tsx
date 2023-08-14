@@ -5,6 +5,7 @@ import { Flex } from "../../style/global";
 import { RiSettings3Line } from "react-icons/ri";
 import { SettingContext } from "../../context/SettingContext";
 import { StaticImage } from "gatsby-plugin-image";
+import SavingIndicator from "./SavingIndicator";
 
 const Container = styled.div`
   padding: 10px 10px;
@@ -18,6 +19,7 @@ const Container = styled.div`
   min-height: 74px;
 
   .center {
+    
     nav {
       height: 100%;
       display: flex;
@@ -45,6 +47,8 @@ const Container = styled.div`
 
   .right {
     display: flex;
+    justify-content: right;
+    min-width: 100px;
 
     .settings {
       svg {
@@ -53,7 +57,7 @@ const Container = styled.div`
         transition: all 0.5s ease-in-out;
       }
 
-      &:hover svg {
+      &.active svg {
         transform: rotate(0deg);
       }
     }
@@ -143,7 +147,7 @@ const Hamburger = styled.button`
 `;
 
 const TopBar = () => {
-  const { toggleShowSettings } = useContext(SettingContext);
+  const { toggleShowSettings, showSettings } = useContext(SettingContext);
   const [isOpen, setOpen] = useState(false);
   const url = typeof window !== "undefined" ? window.location.href : "";
 
@@ -191,8 +195,10 @@ const TopBar = () => {
             {/*<div className="search">*/}
             {/*  <Search placeholder="Search" disabled={true} />*/}
             {/*</div>*/}
+            
+            <SavingIndicator />
 
-            <button className="settings" onClick={toggleShowSettings}>
+            <button className={`settings ${showSettings && "active"}`} onClick={toggleShowSettings}>
               <RiSettings3Line size="30px" />
             </button>
 
