@@ -101,7 +101,6 @@ const SettingProvider: React.FC<Props> = ({ children }: Props) => {
 
   const stopSaving = () => {
     setTimeout(() => {
-      console.log("Stop saving");
       setSaving(false);
     }, 500);
   };

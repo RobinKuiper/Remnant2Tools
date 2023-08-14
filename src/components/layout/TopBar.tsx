@@ -1,13 +1,13 @@
-import {graphql, Link, useStaticQuery} from "gatsby";
-import React, {useContext, useState} from "react";
-import {styled} from "styled-components";
-import {Flex} from "../../style/global";
-import {RiSettings3Line} from "react-icons/ri";
-import {SettingContext} from "../../context/SettingContext";
-import {StaticImage} from "gatsby-plugin-image";
+import { Link, graphql, useStaticQuery } from "gatsby";
+import React, { useContext, useState } from "react";
+import { styled } from "styled-components";
+import { Flex } from "../../style/global";
+import { RiSettings3Line } from "react-icons/ri";
+import { SettingContext } from "../../context/SettingContext";
+import { StaticImage } from "gatsby-plugin-image";
 import SavingIndicator from "./SavingIndicator";
 import Search from "../Search";
-import {searchItems} from "../../dataHelpers";
+import { searchItems } from "../../dataHelpers";
 
 const Container = styled.div`
   padding: 10px 10px;
@@ -160,12 +160,11 @@ const SearchResults = styled.div`
     padding: 10px;
 
     .title {
-
     }
 
     .info {
       display: flex;
-      font-size: .7em;
+      font-size: 0.7em;
 
       span:not(:last-child) {
         border-right: 1px solid #fff;
@@ -177,7 +176,7 @@ const SearchResults = styled.div`
 `;
 
 const TopBar = () => {
-  const {items} = useStaticQuery(graphql`
+  const { items } = useStaticQuery(graphql`
     {
       items: allItem {
         nodes {
@@ -193,7 +192,7 @@ const TopBar = () => {
       }
     }
   `);
-  const {toggleShowSettings, showSettings} = useContext(SettingContext);
+  const { toggleShowSettings, showSettings } = useContext(SettingContext);
   const [isOpen, setOpen] = useState(false);
   const [searchedItems, setSearchedItems] = useState([]);
   const url = typeof window !== "undefined" ? window.location.href : "";
@@ -209,10 +208,9 @@ const TopBar = () => {
       setSearchedItems([]);
     } else {
       const foundItems = searchItems(items.nodes, query).slice(0, 10);
-      ;
-      setSearchedItems(foundItems)
+      setSearchedItems(foundItems);
     }
-  }
+  };
 
   return (
     <Container>
@@ -220,7 +218,7 @@ const TopBar = () => {
         <div className="left">
           <div id="logo">
             <Link to="/">
-              <StaticImage src="../../images/logo.webp" alt="Remnant 2 Logo" height={50}/>
+              <StaticImage src="../../images/logo.webp" alt="Remnant 2 Logo" height={50} />
             </Link>
           </div>
         </div>
@@ -251,10 +249,10 @@ const TopBar = () => {
             {/*    )}*/}
             {/*</button>*/}
 
-            <SavingIndicator/>
+            <SavingIndicator />
 
             <div className="search">
-              <Search placeholder="Search" onChange={handleSearch}/>
+              <Search placeholder="Search" onChange={handleSearch} />
 
               <SearchResults>
                 {searchedItems.map(item => (
@@ -275,12 +273,12 @@ const TopBar = () => {
             <SavingIndicator />
 
             <button className={`settings ${showSettings && "active"}`} onClick={toggleShowSettings}>
-              <RiSettings3Line size="30px"/>
+              <RiSettings3Line size="30px" />
             </button>
 
             <Hamburger id="hamburger" className={isOpen ? "open hamburger" : "hamburger"} onClick={toggleOpen}>
-              <span className="hamburger__top-bun"/>
-              <span className="hamburger__bottom-bun"/>
+              <span className="hamburger__top-bun" />
+              <span className="hamburger__bottom-bun" />
             </Hamburger>
           </Flex>
         </div>
