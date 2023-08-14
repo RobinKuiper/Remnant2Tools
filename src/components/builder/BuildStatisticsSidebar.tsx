@@ -53,6 +53,27 @@ const Container = styled.div`
     padding: 5px;
     opacity: 1;
     z-index: 100;
+    animation: scale 1.2s ease-in-out;
+    
+    button {
+      position: relative;
+        
+        &:after {
+          content: "";
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          width: 0.25em;
+          height: 0.25em;
+          background-color: rgba(255, 255, 255, .9);
+          opacity: 0;
+          border-radius: 3em;
+          transform: scale(1);
+          transform-origin: 50% 50%;
+          -webkit-animation: ripple-33 1.5s cubic-bezier(.11,.29,.18,.98);
+          animation: ripple-33 1.5s cubic-bezier(.11,.29,.18,.98);
+        }
+    }
 
     transition:
       right 0.5s ease-in-out,
@@ -142,7 +163,7 @@ const STATS = [
 ];
 
 const BuildStatisticsSidebar = ({ build }: Props) => {
-  const [isOpen, setIsOpen] = useState<boolean>(true);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
   const [statistics, setStatistics] = useState({
     armor: 0,
     weight: 0,
