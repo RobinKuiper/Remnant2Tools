@@ -1,8 +1,7 @@
 import { graphql } from "gatsby";
-import React, {useContext, useEffect, useState} from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { styled } from "styled-components";
-import BuildsSidebar from "../components/builder/BuildsSidebar";
-import Layout from "../components/layout/Layout";
+import BuildsSidebarContent from "../components/builder/BuildsSidebarContent";
 import { BuildsContext } from "../context/BuildContext";
 import type { Build, Item } from "../interface/Build";
 import "react-tooltip/dist/react-tooltip.css";
@@ -14,9 +13,11 @@ import type { Filter } from "../interface/IData";
 import ArchetypesInterface from "../components/builder/ArchetypesInterface";
 import TraitsInterface from "../components/builder/TraitsInterface";
 import Settings from "../components/builder/Settings";
-import BuildStatisticsSidebar from "../components/builder/BuildStatisticsSidebar";
+import BuildStatisticsSidebarContent from "../components/builder/BuildStatisticsSidebarContent";
 import { SettingContext } from "../context/SettingContext";
 import BackgroundImage from "../components/BackgroundImage";
+import Layout from "../components/layout/Layout";
+import PageLayout from "../components/layout/PageLayout";
 
 const NEW_BUILD: Build = {
   headpiece: null,
@@ -44,47 +45,30 @@ const MOD_INDEXES = {
   offhand: 2,
 };
 
-const Page = styled.div`
-  display: flex;
-  flex-direction: row;
+const Container = styled.div`
+  height: auto;
 
-  #builds-content {
-    z-index: 65;
-    box-shadow: 0 -20px 20px rgba(0, 0, 0, 1);
-    margin-left: 235px;
-    box-sizing: border-box;
+  .tabs {
+    padding-top: 40px;
 
-    @media (max-width: 1200px) {
-      margin-left: 0;
-      width: 100%;
-    }
+    .tabs-menu {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
 
-    .tabs {
-      padding-top: 40px;
+      .tabs-menu-item {
+        padding: 10px;
+        border: 1px solid #000;
+        cursor: pointer;
 
-      .tabs-menu {
-        display: flex;
-        justify-content: center;
-        gap: 10px;
+        transition: all 0.5s ease-in-out;
 
-        .tabs-menu-item {
-          padding: 10px;
-          border: 1px solid #000;
-          cursor: pointer;
-
-          transition: all 0.5s ease-in-out;
-
-          &:hover,
-          &.active {
-            background: darkred;
-            color: #fff;
-          }
+        &:hover,
+        &.active {
+          background: darkred;
+          color: #fff;
         }
       }
-    }
-
-    @media (max-width: 1500px) {
-      width: 100%;
     }
   }
 `;
@@ -101,14 +85,14 @@ const Builds = props => {
   const [oldName, setOldName] = useState<string>("");
   const [build, setBuild] = useState<Build>(NEW_BUILD);
   const [onlyUnlocked, setOnlyUnlocked] = useState(false);
-  
+
   useEffect(() => {
-    const build = Object.entries(builds).find(() => true)
+    const build = Object.entries(builds).find(() => true);
     if (build) {
       setBuild(build[1]);
       setName(build[0]);
     }
-  }, [])
+  }, []);
 
   const openModal = (filters: Filter[], buildPath: string) => {
     setBuildPath(buildPath);
@@ -196,10 +180,24 @@ const Builds = props => {
     <Layout>
       <Head title="Builder" description="Save your favorite builds in this Remnant II builder." />
 
-      <Page>
-        <BuildsSidebar currentBuildName={name} setBuild={setBuild} setOldName={setOldName} setName={setName} resetBuild={resetBuild} />
-
-        <div id="builds-content">
+      <PageLayout
+        leftSidebarContent={
+          <BuildsSidebarContent
+            currentBuildName={name}
+            setBuild={setBuild}
+            setOldName={setOldName}
+            setName={setName}
+            resetBuild={resetBuild}
+          />
+        }
+        rightSidebarContent={<BuildStatisticsSidebarContent build={build} />}
+        // config={{
+        //   rightSidebar: {
+        //     alwaysShowOpener: true
+        //   }
+        // }}
+      >
+        <Container>
           <BackgroundImage image={bgImage}>
             <div className="tabs">
               <div className="tabs-menu">
@@ -252,8 +250,8 @@ const Builds = props => {
               </div>
             </div>
           </BackgroundImage>
-        </div>
-      </Page>
+        </Container>
+      </PageLayout>
 
       <ItemSelectModal
         setIsOpen={setIsOpen}
@@ -262,7 +260,6 @@ const Builds = props => {
         callback={selectItem}
         onlyShowUnlocked={onlyUnlocked}
       />
-      <BuildStatisticsSidebar build={build} />
     </Layout>
   );
 };

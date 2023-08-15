@@ -51,10 +51,10 @@ const AuthProvider: React.FC<Props> = ({ children }: Props) => {
       setIsLoggedIn(true);
       setLoggingIn(false);
     },
-    onError: err => {
+    onError: () => {
       setLoggingIn(false);
     },
-    onNonOAuthError: err => {
+    onNonOAuthError: () => {
       setLoggingIn(false);
     },
     scope: "https://www.googleapis.com/auth/drive.file",

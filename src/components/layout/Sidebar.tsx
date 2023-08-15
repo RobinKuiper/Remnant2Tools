@@ -4,34 +4,33 @@ import { BiSolidLeftArrow, BiSolidRightArrow } from "react-icons/bi";
 
 const Container = styled.div`
   position: fixed;
+  top: 0;
+  left: ${({ position }) => (position === "left" ? "0" : "auto")};
+  right: ${({ position }) => (position === "right" ? "0" : "auto")};
   background: #292929;
   color: #fff;
   height: 100vh;
-  padding: 20px 0;
+  padding: 74px 0 45px 0;
   box-sizing: border-box;
   width: 235px;
+  z-index: 50;
 
   .content {
     overflow: auto;
-    height: 78%;
   }
 
   .opener {
-    display: none;
+    display: ${({ alwaysshowopener }) => (alwaysshowopener ? "block" : "none")};
     position: fixed;
     top: 80px;
-    left: 235px;
+    left: ${({ position }) => (position === "left" ? "235px" : "auto")};
+    right: ${({ position }) => (position === "right" ? "235px" : "auto")};
     color: #ffffff;
     background: #292929;
     padding: 5px;
-    opacity: 0.8;
 
     animation: scale 1.2s ease-in-out;
     transition: all 0.3s ease-in-out;
-
-    &:hover {
-      opacity: 1;
-    }
 
     button {
       position: relative;
@@ -55,17 +54,10 @@ const Container = styled.div`
   }
 
   @media (max-width: 1200px) {
-    position: fixed;
-    z-index: 66;
-    height: 100%;
-    top: 74px;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.8);
-    transform: translateX(-235px);
+    transform: ${({ isopen, position }) =>
+      isopen ? `translateX(${position === "left" ? "-235px" : "235px"})` : "translateX(0px)"};
     transition: all 0.3s ease-out;
-
-    &.active {
-      transform: translateX(0px);
-    }
 
     .opener {
       display: block;
@@ -75,22 +67,27 @@ const Container = styled.div`
 
 interface Props {
   children: React.ReactNode;
+  position: "right" | "left";
+  useSidebarOpener?: boolean;
+  alwaysShowOpener?: boolean;
 }
 
-const Sidebar = ({ children }: Props) => {
+const Sidebar = ({ children, position, useSidebarOpener = true, alwaysShowOpener = false }: Props) => {
   const [isOpen, setIsOpen] = useState(false);
+  const openIcon = position === "left" ? <BiSolidRightArrow size="35px" /> : <BiSolidLeftArrow size="35px" />;
+  const closeIcon = position === "left" ? <BiSolidLeftArrow size="35px" /> : <BiSolidRightArrow size="35px" />;
 
   const toggleOpen = () => setIsOpen(!isOpen);
 
   return (
-    <Container className={isOpen ? "active" : ""}>
+    <Container isopen={isOpen} position={position} alwaysshowopener={alwaysShowOpener}>
       <div className="content">{children}</div>
 
-      <div className="opener">
-        <button onClick={toggleOpen}>
-          {!isOpen ? <BiSolidRightArrow size="35px" /> : <BiSolidLeftArrow size="35px" />}
-        </button>
-      </div>
+      {useSidebarOpener && (
+        <div className="opener">
+          <button onClick={toggleOpen}>{!isOpen ? closeIcon : openIcon}</button>
+        </div>
+      )}
     </Container>
   );
 };

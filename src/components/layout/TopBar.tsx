@@ -10,15 +10,16 @@ import Search from "../Search";
 import { searchItems } from "../../dataHelpers";
 
 const Container = styled.div`
+  position: fixed;
+  top: 0;
   padding: 10px 10px;
   box-sizing: border-box;
   background: #292929;
   color: #f1f1f1;
   box-shadow: 0 0 20px rgba(0, 0, 0, 1);
   z-index: 100;
-  position: fixed;
   width: 100%;
-  min-height: 74px;
+  height: 74px;
 
   .center {
     nav {

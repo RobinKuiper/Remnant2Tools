@@ -1,7 +1,7 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 import { DataContext } from "../../src/context/DataContext";
-import CategorySidebar from "../../src/components/database/CategorySidebar";
+import CategorySidebarContent from "../../src/components/database/CategorySidebarContent";
 
 // Mock the DataContext value
 const mockDataContextValue = {
@@ -26,7 +26,7 @@ describe("CategorySidebar", () => {
   it("renders the main categories and sub-categories correctly", () => {
     render(
       <DataContext.Provider value={mockDataContextValue}>
-        <CategorySidebar type="tracker" />
+        <CategorySidebarContent type="tracker" />
       </DataContext.Provider>,
     );
 
@@ -46,7 +46,7 @@ describe("CategorySidebar", () => {
   it("displays the correct statistics for the tracker type", () => {
     render(
       <DataContext.Provider value={mockDataContextValue}>
-        <CategorySidebar type="tracker" />
+        <CategorySidebarContent type="tracker" />
       </DataContext.Provider>,
     );
 

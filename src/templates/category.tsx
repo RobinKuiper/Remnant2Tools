@@ -2,8 +2,7 @@ import { graphql } from "gatsby";
 import React, { useContext, useEffect, useState } from "react";
 import { BiHide, BiShow } from "react-icons/bi";
 import { styled } from "styled-components";
-import CategorySidebar from "../components/database/CategorySidebar";
-import Layout from "../components/layout/Layout";
+import CategorySidebarContent from "../components/database/CategorySidebarContent";
 import Search from "../components/Search";
 import { DataContext } from "../context/DataContext";
 import { SettingContext } from "../context/SettingContext";
@@ -14,75 +13,57 @@ import ItemCategory from "../components/database/ItemCategory";
 import { BsFillGrid3X3GapFill, BsList } from "react-icons/bs";
 import { getPageType } from "../helpers";
 import Head from "../components/layout/Head";
-import { Tooltip } from "react-tooltip";
+import Layout from "../components/layout/Layout";
+import PageLayout from "../components/layout/PageLayout";
 
-const Page = styled.div`
-  display: flex;
-  flex-direction: row;
+const Container = styled.div`
+  padding: 20px;
 
-  #database-content {
-    z-index: 65;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 1);
-    width: 90%;
-    padding: 20px;
-    margin-left: 235px;
-    min-height: 83vh;
+  #content-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    margin: 10px 0;
+    padding: 0 10px 20px 10px;
+    border-bottom: 1px solid #888;
 
-    @media (max-width: 1200px) {
-      margin-left: 0;
-      width: 100%;
-    }
-
-    #content-heading {
+    .left {
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      text-align: center;
-      margin: 10px 0;
-      padding: 0 10px 20px 10px;
-      border-bottom: 1px solid #888;
+      gap: 10px;
 
-      .left {
-        display: flex;
-        align-items: center;
-        gap: 10px;
+      select {
+        padding: 6.5px;
 
-        select {
-          padding: 6.5px;
-
-          &:focus {
-            outline: none;
-          }
-        }
-
-        .view-switcher {
-          @media (max-width: 550px) {
-            display: none;
-          }
-        }
-
-        div {
+        &:focus {
+          outline: none;
         }
       }
 
-      .right {
-        font-size: 1.2em;
+      .view-switcher {
+        @media (max-width: 550px) {
+          display: none;
+        }
       }
 
-      @media (max-width: 670px) {
-        flex-direction: column;
-        gap: 20px;
+      div {
       }
     }
 
-    .no-data {
-      width: 100%;
-      text-align: center;
+    .right {
+      font-size: 1.2em;
     }
 
-    @media (max-width: 1500px) {
-      width: 100%;
+    @media (max-width: 670px) {
+      flex-direction: column;
+      gap: 20px;
     }
+  }
+
+  .no-data {
+    width: 100%;
+    text-align: center;
   }
 `;
 
@@ -153,10 +134,8 @@ const Category = ({ path, data }) => {
     <Layout>
       <Head title={category.settings.label} description="Track your progress in Remnant II." />
 
-      <Page>
-        <CategorySidebar type={type} />
-
-        <div id="database-content">
+      <PageLayout leftSidebarContent={<CategorySidebarContent type={type} />}>
+        <Container>
           <div id="content-heading">
             <div className="left">
               {category && category.settings.groups && category.settings.groups.length > 0 && (
@@ -278,10 +257,8 @@ const Category = ({ path, data }) => {
               </div>
             )}
           </Flex>
-        </div>
-      </Page>
-
-      <Tooltip id="tooltip" style={{ zIndex: 9999 }} />
+        </Container>
+      </PageLayout>
     </Layout>
   );
 };

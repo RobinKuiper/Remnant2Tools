@@ -4,156 +4,135 @@ import { styled } from "styled-components";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import { slugify, uppercaseFirstLetter } from "../helpers";
 import ItemStatistics from "../components/database/ItemStatistics";
-import Layout from "../components/layout/Layout";
 import LinkedItem from "../components/LinkedItem";
 import Redacted from "../components/database/Redacted";
-import CategorySidebar from "../components/database/CategorySidebar";
+import CategorySidebarContent from "../components/database/CategorySidebarContent";
 import Breadcrumb from "../components/layout/Breadcrumb";
 import Head from "../components/layout/Head";
 import { SettingContext } from "../context/SettingContext";
 import { DataContext } from "../context/DataContext";
 import BackgroundImage from "../components/BackgroundImage";
 import Checkbox from "../components/Checkbox";
+import Layout from "../components/layout/Layout";
+import PageLayout from "../components/layout/PageLayout";
 
-const Page = styled.div`
-  display: flex;
-  flex-direction: row;
+const Container = styled.div`
+  .item {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding: 50px;
 
-  .item-content {
-    z-index: 65;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 1);
-    margin-left: 235px;
-    box-sizing: border-box;
-
-    //min-height: 87.5vh;
-    //width: 90%;
-
-    @media (max-width: 1200px) {
-      margin-left: 0;
-      width: 100%;
+    @media (max-width: 850px) {
+      padding-right: 80px;
     }
 
-    //@media (max-width: 1500px) {
-    //  width: 100%;
-    //}
+    a {
+      color: darkred;
+      text-decoration: none;
+      transition: color 0.3s ease;
 
-    .item {
+      &:hover {
+        color: red;
+      }
+    }
+
+    .top {
       display: flex;
-      flex-direction: column;
-      gap: 30px;
-      padding: 50px;
+      flex-wrap: wrap;
+      gap: 50px;
 
       @media (max-width: 850px) {
-        padding-right: 80px;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
       }
 
-      a {
-        color: darkred;
-        text-decoration: none;
-        transition: color 0.3s ease;
-
-        &:hover {
-          color: red;
-        }
-      }
-
-      .top {
+      .image {
+        border: 1px solid #ddd;
+        background: #f9f9f9;
+        box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.1);
+        border-radius: 5px;
+        overflow: hidden;
+        flex-basis: 200px;
+        flex-grow: 0;
+        flex-shrink: 0;
         display: flex;
-        flex-wrap: wrap;
-        gap: 50px;
+        justify-content: center;
 
-        @media (max-width: 850px) {
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
+        @media (max-width: 450px) {
+          width: 100%;
         }
+      }
 
-        .image {
-          border: 1px solid #ddd;
-          background: #f9f9f9;
-          box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.1);
-          border-radius: 5px;
-          overflow: hidden;
-          flex-basis: 200px;
-          flex-grow: 0;
-          flex-shrink: 0;
+      .general-information {
+        .title {
           display: flex;
-          justify-content: center;
+          align-items: center;
+          gap: 20px;
 
-          @media (max-width: 450px) {
-            width: 100%;
+          @media (max-width: 850px) {
+            justify-content: center;
           }
         }
 
-        .general-information {
-          .title {
-            display: flex;
-            align-items: center;
-            gap: 20px;
+        .tags {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 10px;
+          margin-top: 10px;
+          font-size: 0.9em;
 
-            @media (max-width: 850px) {
-              justify-content: center;
-            }
+          //@media (max-width: 850px) {
+          //  margin-left: 0;
+          //  width: 100%;
+          //}
+          @media (max-width: 450px) {
+            justify-content: center;
           }
 
-          .tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 10px;
-            font-size: 0.9em;
-
-            //@media (max-width: 850px) {
-            //  margin-left: 0;
-            //  width: 100%;
-            //}
-            @media (max-width: 450px) {
-              justify-content: center;
+          span {
+            &.gi-item:not(:last-child) {
+              border-right: 1px solid #000;
+              padding: 0 10px 0 0;
             }
 
-            span {
-              &.gi-item:not(:last-child) {
-                border-right: 1px solid #000;
-                padding: 0 10px 0 0;
-              }
-
-              .key {
-                font-weight: 900;
-                margin-right: 5px;
-              }
+            .key {
+              font-weight: 900;
+              margin-right: 5px;
             }
           }
         }
       }
+    }
 
-      .information {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 30px;
+    .information {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
 
-        .left {
-        }
+      .left {
+      }
 
-        .right {
-          .section {
-            h3 {
-              font-size: 18px;
-              font-weight: bold;
+      .right {
+        .section {
+          h3 {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+          }
+
+          p {
+            font-size: 16px;
+            line-height: 1.5;
+          }
+
+          ul {
+            list-style: disc;
+            margin-left: 20px;
+
+            li {
               margin-bottom: 10px;
-            }
-
-            p {
-              font-size: 16px;
-              line-height: 1.5;
-            }
-
-            ul {
-              list-style: disc;
-              margin-left: 20px;
-
-              li {
-                margin-bottom: 10px;
-              }
             }
           }
         }
@@ -194,10 +173,8 @@ const Category = ({ data, pageContext, location }) => {
     <Layout>
       <Head title={item.name} description="Track your progress in Remnant II." />
 
-      <Page ref={ref} className={`${STATE_CLASSES[unlocked]}`}>
-        <CategorySidebar type={type} />
-
-        <div className="item-content">
+      <PageLayout leftSidebarContent={<CategorySidebarContent type={type} />}>
+        <Container ref={ref} className={`${STATE_CLASSES[unlocked]}`}>
           <BackgroundImage image={bgImage}>
             <div className="item">
               <Breadcrumb
@@ -311,8 +288,8 @@ const Category = ({ data, pageContext, location }) => {
               </div>
             </div>
           </BackgroundImage>
-        </div>
-      </Page>
+        </Container>
+      </PageLayout>
     </Layout>
   );
 };

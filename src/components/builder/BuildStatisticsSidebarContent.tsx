@@ -3,91 +3,18 @@ import { styled } from "styled-components";
 import "react-toggle/style.css";
 import type { Build } from "../../interface/Build";
 import { calculateWeightType, getFieldValue, setFieldValue } from "../../dataHelpers";
-import { BiSolidLeftArrow, BiSolidRightArrow } from "react-icons/bi";
 
 const Container = styled.div`
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  background: #292929;
-  color: #fff;
-  //min-height: 100%;
-  padding: 100px 0;
-  box-sizing: border-box;
-  width: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
-  z-index: 75;
-  overflow: auto;
+  padding: 10px;
 
-  transition: all 0.5s ease-in-out;
-
-  &.active {
-    width: 300px;
-    padding: 100px 20px;
-
-    .content {
-      opacity: 1;
-    }
-
-    .opener {
-      right: 300px;
-    }
-  }
-
-  .content {
-    opacity: 0;
-
-    transition: opacity 0.2s ease-in-out;
-  }
-
-  .opener {
-    position: fixed;
-    top: 100px;
-    right: 0;
-    color: #fff;
-    background: #292929;
-    padding: 5px;
-    opacity: 1;
-    z-index: 100;
-    animation: scale 1.2s ease-in-out;
-
-    button {
-      position: relative;
-
-      &:after {
-        content: "";
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        width: 0.25em;
-        height: 0.25em;
-        background-color: rgba(255, 255, 255, 0.9);
-        opacity: 0;
-        border-radius: 3em;
-        transform: scale(1);
-        transform-origin: 50% 50%;
-        -webkit-animation: ripple-33 1.5s cubic-bezier(0.11, 0.29, 0.18, 0.98);
-        animation: ripple-33 1.5s cubic-bezier(0.11, 0.29, 0.18, 0.98);
-      }
-    }
-
-    transition:
-      right 0.5s ease-in-out,
-      opacity 0.2s ease-in-out;
-
-    &:hover {
-      opacity: 1;
-    }
+  h2 {
+    margin-bottom: 10px;
   }
 
   .statisticsContainer {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    min-width: 260px;
 
     .key {
       font-weight: 600;
@@ -119,16 +46,10 @@ const Container = styled.div`
   .footer {
     position: absolute;
     bottom: 50px;
-    min-width: 280px;
     box-sizing: border-box;
     padding: 0 10px 0 0;
   }
 `;
-
-interface Props {
-  isOpen: boolean;
-  build: Build;
-}
 
 const STATS = [
   {
@@ -161,8 +82,11 @@ const STATS = [
   },
 ];
 
-const BuildStatisticsSidebar = ({ build }: Props) => {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
+interface Props {
+  build: Build;
+}
+
+const BuildStatisticsSidebarContent = ({ build }: Props) => {
   const [statistics, setStatistics] = useState({
     armor: 0,
     weight: 0,
@@ -174,10 +98,6 @@ const BuildStatisticsSidebar = ({ build }: Props) => {
       corrosion: 0,
     },
   });
-
-  const toggleOpen = () => {
-    setIsOpen(!isOpen);
-  };
 
   useEffect(() => {
     const newStatistics = { ...statistics };
@@ -197,7 +117,7 @@ const BuildStatisticsSidebar = ({ build }: Props) => {
   }, [build]);
 
   return (
-    <Container className={isOpen && "active"}>
+    <Container>
       <h2>Statistics</h2>
 
       <div className="statisticsContainer">
@@ -254,14 +174,8 @@ const BuildStatisticsSidebar = ({ build }: Props) => {
           statistics could be somewhat inaccurate.
         </p>
       </div>
-      
-      <div className="opener">
-        <button onClick={toggleOpen}>
-          {isOpen ? <BiSolidRightArrow size="35px" /> : <BiSolidLeftArrow size="35px" />}
-        </button>
-      </div>
     </Container>
   );
 };
 
-export default BuildStatisticsSidebar;
+export default BuildStatisticsSidebarContent;

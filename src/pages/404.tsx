@@ -5,14 +5,15 @@ import Layout from "../components/layout/Layout";
 import { styled } from "styled-components";
 import Head from "../components/layout/Head";
 import { calculateStringMatchPercentage } from "../helpers";
+import PageLayout from "../components/layout/PageLayout";
 
 const Container = styled.div`
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   background: #383838;
   color: #fff;
-  height: 87.5vh;
   box-sizing: border-box;
 
   main {
@@ -72,29 +73,31 @@ const NotFoundPage: React.FC<PageProps> = ({ data, location }) => {
     <Layout>
       <Head title="Not found" description="We couldn't find the page you where looking for." />
 
-      <Container>
-        <main>
-          <h1>Sorry!</h1>
-          <p>
-            Either you aren't cool enough to visit this page or it doesn't exist <em>. . .</em>
-          </p>
-          {relevantPages.length > 0 && (
-            <div className="relevant">
-              <strong>Did you mean?</strong>
-              <div>
-                {relevantPages.map(page => (
-                  <Link key={page.path} to={page.path}>
-                    {page.path
-                      .split("/")
-                      .filter(word => word !== "")
-                      .join(" - ")}
-                  </Link>
-                ))}
+      <PageLayout>
+        <Container>
+          <main>
+            <h1>Sorry!</h1>
+            <p>
+              Either you aren't cool enough to visit this page or it doesn't exist <em>. . .</em>
+            </p>
+            {relevantPages.length > 0 && (
+              <div className="relevant">
+                <strong>Did you mean?</strong>
+                <div>
+                  {relevantPages.map(page => (
+                    <Link key={page.path} to={page.path}>
+                      {page.path
+                        .split("/")
+                        .filter(word => word !== "")
+                        .join(" - ")}
+                    </Link>
+                  ))}
+                </div>
               </div>
-            </div>
-          )}
-        </main>
-      </Container>
+            )}
+          </main>
+        </Container>
+      </PageLayout>
     </Layout>
   );
 };

@@ -245,7 +245,7 @@ const DataProvider: React.FC<Props> = ({ children }: Props) => {
 
     const newData = Object.entries(data).flatMap(([category, items]) =>
       Object.entries(items)
-        .filter(([id, item]) => item.unlocked)
+        .filter(([id, item]) => item.unlocked) 
         .map(([id]) => parseInt(id)),
     );
     localStorage.setItem("data", JSON.stringify(newData));

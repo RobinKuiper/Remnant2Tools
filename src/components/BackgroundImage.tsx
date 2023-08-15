@@ -4,15 +4,11 @@ import { GatsbyImage, getImage } from "gatsby-plugin-image";
 
 const Container = styled.div`
   position: relative;
+  display: grid;
+  min-height: 100vh;
 
   .bgimage {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-
-    @media (max-width: 450px) {
-      display: none;
-    }
+    grid-area: 1/1;
   }
 
   .gradient {
@@ -39,9 +35,8 @@ const Container = styled.div`
   }
 
   .children {
-    position: absolute;
-    top: 0;
-    width: 100%;
+    grid-area: 1/1;
+    position: relative;
   }
 `;
 
@@ -55,29 +50,21 @@ const BackgroundImage = ({ children, image }: Props) => {
 
   return (
     <Container>
-      {/* You can use a GatsbyImage component if the image is dynamic */}
       {bgImage && (
         <>
           <GatsbyImage
             className="bgimage"
-            // layout="fullWidth"
-            // You can optionally force an aspect ratio for the generated image
-            aspectRatio={2}
+            layout="fullWidth"
+            aspectRatio={3}
             // This is a presentational image, so the alt should be an empty string
             alt=""
-            // src={
-            //   "../images/bg1.webp"
-            // }
             image={bgImage}
             formats={["auto", "webp", "avif"]}
           />
           <div className="gradient"></div>
         </>
       )}
-      <div className="children">
-        {/* Any content here will be centered in the component */}
-        {children}
-      </div>
+      <div className="children">{children}</div>
     </Container>
   );
 };
