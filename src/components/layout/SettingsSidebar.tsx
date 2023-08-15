@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { styled } from "styled-components";
 import Toggle from "react-toggle";
 import { SettingContext } from "../../context/SettingContext";
@@ -9,6 +9,10 @@ import { BuildsContext } from "../../context/BuildContext";
 import { LAST_UPDATED } from "../../constants";
 import "react-toggle/style.css";
 import { Tooltip } from "react-tooltip";
+import { AuthContext } from "../../context/AuthContext";
+import { FaGoogleDrive } from "react-icons/fa";
+import Loader from "../Loader";
+import { toast } from "react-toastify";
 
 const Container = styled.div`
   position: fixed;
@@ -119,29 +123,47 @@ const Container = styled.div`
     min-width: 260px;
   }
 `;
+const GDriveButton = styled.button`
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 8px 12px;
+  background-color: #4285f4;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+
+  .google-drive-text {
+    font-weight: bold;
+  }
+`;
 
 const SettingsSidebar = () => {
   const { showSettings, defaultShowRedacted, toggleDefaultShowRedacted } = useContext(SettingContext);
-  const { updateUnlocks } = useContext(DataContext);
-  const { updateBuilds } = useContext(BuildsContext);
+  const { isLoggedIn, loggingIn, login, logout } = useContext(AuthContext);
+  const { updateUnlocks, unlocks } = useContext(DataContext);
+  const { updateBuilds, builds } = useContext(BuildsContext);
   const unlockDataRef = useRef<HTMLTextAreaElement>();
   const buildsDataRef = useRef<HTMLTextAreaElement>();
+  const [retrievingFromGoogle, setRetrievingFromGoogle] = useState(false);
 
   useEffect(() => {
-    if (!unlockDataRef.current || !buildsDataRef.current) {
+    if (!unlockDataRef.current) {
       return;
     }
 
-    const storedBuildData = localStorage.getItem("builds");
-    if (storedBuildData) {
-      buildsDataRef.current.value = storedBuildData;
+    unlockDataRef.current.value = JSON.stringify(unlocks);
+  }, [unlocks]);
+
+  useEffect(() => {
+    if (!buildsDataRef.current) {
+      return;
     }
 
-    const storedUnlockData = localStorage.getItem("data");
-    if (storedUnlockData) {
-      unlockDataRef.current.value = storedUnlockData;
-    }
-  }, [unlockDataRef, buildsDataRef]);
+    buildsDataRef.current.value = JSON.stringify(builds);
+  }, [builds]);
 
   const copyToClipboard = (e, ref: React.RefObject<HTMLTextAreaElement>) => {
     if (ref.current) {
@@ -168,6 +190,40 @@ const SettingsSidebar = () => {
     updateBuilds();
   };
 
+  const handleGoogleLink = () => {
+    if (isLoggedIn) {
+      logout();
+    } else {
+      login();
+    }
+  };
+
+  const retrieveFromGoogleDrive = async () => {
+    if (!isLoggedIn || retrievingFromGoogle) {
+      return;
+    }
+
+    setRetrievingFromGoogle(true);
+
+    const tokens = JSON.parse(localStorage.getItem("google_oauth"));
+
+    const result = await fetch("http://localhost:3000/api/data/google/retrieve", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        tokens,
+      }),
+    });
+
+    setRetrievingFromGoogle(false);
+    const { body } = await result.json();
+    localStorage.setItem("data", body.contents);
+    updateUnlocks();
+    toast.success("Successfully retrieved data from Google.");
+  };
+
   return (
     <Container className={showSettings && "active"}>
       <h2>Settings</h2>
@@ -175,6 +231,22 @@ const SettingsSidebar = () => {
       <div className="layout">
         <h3>Data</h3>
 
+        <div className="layout-settings-item">
+          <label
+            className="title"
+            data-tooltip-id="tooltip"
+            data-tooltip-content={"PLACEHOLDER"}
+            data-tooltip-place="bottom"
+          >
+            Link Google Drive
+          </label>
+          <div data-tooltip-id="tooltip" data-tooltip-content={"PLACEHOLDER"} data-tooltip-place="bottom">
+            <GDriveButton className="google-drive-button" onClick={handleGoogleLink} disabled={loggingIn}>
+              {loggingIn ? <Loader size="25px" color="#fff" /> : <FaGoogleDrive size="25px" />}
+              <span className="google-drive-text">{isLoggedIn ? "Unlink" : "Link"}</span>
+            </GDriveButton>
+          </div>
+        </div>
         <div className="layout-settings-item">
           <label
             htmlFor="defaultShowRedacted"
@@ -210,6 +282,16 @@ const SettingsSidebar = () => {
             <textarea ref={unlockDataRef}></textarea>
           </div>
           <div className="buttons">
+            <button
+              onClick={retrieveFromGoogleDrive}
+              data-tooltip-id="tooltip"
+              data-tooltip-content={"Import data from Google Drive"}
+              data-tooltip-place="bottom"
+              disabled={!isLoggedIn || retrievingFromGoogle}
+            >
+              {retrievingFromGoogle ? <Loader size="25px" color="#fff" /> : <FaGoogleDrive size="25px" />}
+            </button>
+
             <button
               onClick={saveUnlocks}
               data-tooltip-id="tooltip"

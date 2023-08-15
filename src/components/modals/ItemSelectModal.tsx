@@ -1,14 +1,15 @@
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { BsLock } from "react-icons/bs";
 import Modal from "react-modal";
 import { styled } from "styled-components";
 import { findImageById } from "../../helpers";
 import Search from "../Search";
 import { graphql, useStaticQuery } from "gatsby";
-import { filterItems, isUnlocked, searchItems, sorter } from "../../dataHelpers";
+import { filterItems, searchItems, sorter } from "../../dataHelpers";
 import type { Filter } from "../../interface/IData";
 import Loader from "../Loader";
+import { DataContext } from "../../context/DataContext";
 
 Modal.setAppElement("#___gatsby");
 
@@ -113,6 +114,7 @@ const ItemSelectModal = ({ setIsOpen, isOpen, filters, callback, onlyShowUnlocke
       }
     }
   `);
+  const { unlocks } = useContext(DataContext);
   const allItems = data.items.nodes;
   const images = data.images.nodes;
   const [query, setQuery] = useState("");
@@ -174,7 +176,7 @@ const ItemSelectModal = ({ setIsOpen, isOpen, filters, callback, onlyShowUnlocke
                     <GatsbyImage alt={item.name} image={getImage(findImageById(item.externalId, images))} />
                   </div>
                   <div>
-                    {!isUnlocked(item.category, item.externalId) && <BsLock />}
+                    {unlocks.includes(item.externalId) && <BsLock />}
                     {item.name}
                   </div>
                 </button>

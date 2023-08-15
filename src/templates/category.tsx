@@ -7,7 +7,7 @@ import Layout from "../components/layout/Layout";
 import Search from "../components/Search";
 import { DataContext } from "../context/DataContext";
 import { SettingContext } from "../context/SettingContext";
-import { isUnlocked, sorter } from "../dataHelpers";
+import { sorter } from "../dataHelpers";
 import { Flex } from "../style/global";
 import Item from "../components/database/Item";
 import ItemCategory from "../components/database/ItemCategory";
@@ -88,7 +88,7 @@ const Page = styled.div`
 
 const Category = ({ path, data }) => {
   const { hideUnlocked, toggleHideUnlocked, view, toggleView } = useContext(SettingContext);
-  const { statistics } = useContext(DataContext);
+  const { statistics, unlocks } = useContext(DataContext);
   const { images, category } = data;
   const { items } = category;
   const type = getPageType(path);
@@ -116,7 +116,7 @@ const Category = ({ path, data }) => {
 
   const filter = item => {
     if (isTracker) {
-      if (hideUnlocked && isUnlocked(category.settings.fragment, item.externalId)) {
+      if (hideUnlocked && unlocks.includes(item.externalId)) {
         return false;
       }
 

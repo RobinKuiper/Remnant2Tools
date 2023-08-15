@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { styled } from "styled-components";
 import { DataContext } from "../../context/DataContext";
 import { findImageById } from "../../helpers";
@@ -6,7 +6,6 @@ import ListItem from "./ListItem";
 import GridItem from "./GridItem";
 import { SettingContext } from "../../context/SettingContext";
 import ItemTooltip from "./ItemTooltip";
-import { isUnlocked } from "../../dataHelpers";
 
 const Container = styled.div`
   position: relative;
@@ -74,16 +73,19 @@ interface Props {
 
 const Item = ({ item, category, images, type }: Props) => {
   const { view, startSaving, stopSaving } = useContext(SettingContext);
-  const { toggleUnlock } = useContext(DataContext);
-  const [unlocked, setUnlocked] = useState(isUnlocked(category.fragment, item.externalId));
+  const { toggleUnlock, unlocks } = useContext(DataContext);
+  const [unlocked, setUnlocked] = useState(unlocks.includes(item.externalId));
   const [level, setLevel] = useState<number>();
   const image = findImageById(item.externalId, images);
+
+  useEffect(() => {
+    setUnlocked(unlocks.includes(item.externalId));
+  }, [unlocks]);
 
   const handleChange = e => {
     startSaving();
     const id = parseInt(e.target.id);
-    toggleUnlock(category.fragment, id);
-    setUnlocked(!unlocked);
+    toggleUnlock(id);
     stopSaving();
   };
 

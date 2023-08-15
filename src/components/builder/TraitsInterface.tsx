@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { MAX_TRAIT_POINTS } from "../../constants";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import { findImageById, restrainNumber } from "../../helpers";
 import { styled } from "styled-components";
 import type { Build } from "../../interface/Build";
 import { graphql, useStaticQuery } from "gatsby";
-import { isUnlocked, sorter } from "../../dataHelpers";
+import { sorter } from "../../dataHelpers";
+import { DataContext } from "../../context/DataContext";
 
 const Container = styled.div`
   margin-top: 20px;
@@ -115,6 +116,7 @@ const TraitsInterface = ({ build, showOnlyUnlocked, updateBuildValue }: Props) =
       }
     }
   `);
+  const { unlocks } = useContext(DataContext);
   const images = data.images.nodes;
   const [traits, setTraits] = useState([]);
   const [currentTotalPoints, setCurrentTotalPoints] = useState(0);
@@ -122,10 +124,10 @@ const TraitsInterface = ({ build, showOnlyUnlocked, updateBuildValue }: Props) =
   useEffect(() => {
     let traits = data.traits.nodes.sort((a, b) => sorter(a, b));
     if (showOnlyUnlocked) {
-      traits = traits.filter(item => isUnlocked(item.category, item.externalId));
+      traits = traits.filter(item => unlocks.includes(item.externalId));
     }
     setTraits(traits);
-  }, [data, showOnlyUnlocked]);
+  }, [data, showOnlyUnlocked, unlocks]);
   useEffect(() => {
     let total = 0;
     traits.forEach(({ fragment }) => {
