@@ -1,7 +1,7 @@
 # Remnant Tools
 
-[![Latest Release](https://gitlab.com/RobinKuiper/remnantcollectables/-/badges/release.svg)](https://gitlab.com/RobinKuiper/remnantcollectables/-/releases)
 [![Website](https://img.shields.io/badge/Visit-Website-blue?logo=google-chrome)](https://remnant.rkuiper.nl)
+[![Latest Release](https://gitlab.com/RobinKuiper/remnantcollectables/-/badges/release.svg)](https://gitlab.com/RobinKuiper/remnantcollectables/-/releases)
 [![pipeline status](https://gitlab.com/RobinKuiper/remnantcollectables/badges/master/pipeline.svg)](https://gitlab.com/RobinKuiper/remnantcollectables/-/commits/master)
 
 [//]: # "[![coverage report](https://gitlab.com/RobinKuiper/remnantcollectables/badges/master/coverage.svg)](https://gitlab.com/RobinKuiper/remnantcollectables/-/commits/master)"
@@ -21,6 +21,7 @@ Remnant Tools is a web application designed to help players of the game "Remnant
 
 1. Clone the repository: `git clone https://gitlab.com/RobinKuiper/remnantcollectables.git`
 2. Install dependencies: `pnm install`
+3. (Optional) For a working integration with Google Drive, copy the `example.env` to `.env` and fill the values.
 
 ## Usage
 
@@ -37,7 +38,7 @@ Remnant Tools is a web application designed to help players of the game "Remnant
 
 ## Contributing
 
-Contributions are welcome! If you find any issues or have suggestions for improvements, please open an issue or submit a pull request. You can also support the development of this project by contributing through [Patreon](https://www.patreon.com/bePatron?u=10835266) or making a donation via [PayPal](https://www.paypal.com/paypalme/reCodeNL).
+Contributions are welcome! If you find any issues or have suggestions for improvements, please open an issue or submit a pull request. You can also support the development of this project by becoming a [Patron](https://www.patreon.com/bePatron?u=10835266) or making a donation via [PayPal](https://www.paypal.com/paypalme/reCodeNL).
 
 [![Patreon](https://img.shields.io/badge/Support-Patreon-orange?logo=patreon)](https://www.patreon.com/bePatron?u=10835266)
 [![PayPal](https://img.shields.io/badge/Donate-PayPal-blue?logo=paypal)](https://www.paypal.com/paypalme/reCodeNL)
