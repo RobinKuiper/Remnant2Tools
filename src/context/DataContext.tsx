@@ -42,7 +42,7 @@ interface Props {
 }
 
 const DataProvider: React.FC<Props> = ({ children }: Props) => {
-  const toastId = useRef<string|null>(null);
+  const toastId = useRef<string | null>(null);
   const { isLoggedIn } = useContext(AuthContext);
   const [lastGoogleSave, setLastGoogleSave] = useState<Date>(new Date());
   const [waitingForSaveToGoogle, setWaitingForSaveToGoogle] = useState(false);
@@ -73,7 +73,7 @@ const DataProvider: React.FC<Props> = ({ children }: Props) => {
     updateStatistics();
   }, [unlocks]);
 
-  const updateToast = (type) => {
+  const updateToast = type => {
     const config: ToastOptions = {
       type: type === "saved" ? toast.TYPE.SUCCESS : toast.TYPE.INFO,
       position: toast.POSITION.BOTTOM_RIGHT,
@@ -83,7 +83,7 @@ const DataProvider: React.FC<Props> = ({ children }: Props) => {
       pauseOnHover: true,
       draggable: true,
       toastId: TOAST_ID,
-      onClose: () => toastId.current = null,
+      onClose: () => (toastId.current = null),
     };
 
     let contents;

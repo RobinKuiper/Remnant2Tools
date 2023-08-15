@@ -1,5 +1,5 @@
 import { Link, graphql } from "gatsby";
-import React, {useContext, useEffect, useRef, useState} from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { styled } from "styled-components";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import { slugify, uppercaseFirstLetter } from "../helpers";
@@ -179,8 +179,8 @@ const Category = ({ data, pageContext, location }) => {
   const type = category.onlyDB ? "database" : location.state?.type ?? "database";
 
   useEffect(() => {
-    setUnlocked(unlocks.includes(item.externalId))
-  }, [unlocks])
+    setUnlocked(unlocks.includes(item.externalId));
+  }, [unlocks]);
 
   const handleLockStateChange = e => {
     startSaving();

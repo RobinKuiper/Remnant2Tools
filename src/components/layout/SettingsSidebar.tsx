@@ -156,14 +156,14 @@ const SettingsSidebar = () => {
 
     unlockDataRef.current.value = JSON.stringify(unlocks);
   }, [unlocks]);
-  
+
   useEffect(() => {
     if (!buildsDataRef.current) {
       return;
     }
 
     buildsDataRef.current.value = JSON.stringify(builds);
-  }, [builds])
+  }, [builds]);
 
   const copyToClipboard = (e, ref: React.RefObject<HTMLTextAreaElement>) => {
     if (ref.current) {
