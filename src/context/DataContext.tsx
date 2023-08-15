@@ -43,6 +43,7 @@ interface Props {
 
 const DataProvider: React.FC<Props> = ({ children }: Props) => {
   const toastId = useRef<string | null>(null);
+  const loggedIn = useRef<boolean>(false);
   const { isLoggedIn } = useContext(AuthContext);
   const [lastGoogleSave, setLastGoogleSave] = useState<Date>(new Date());
   const [waitingForSaveToGoogle, setWaitingForSaveToGoogle] = useState(false);
@@ -72,6 +73,10 @@ const DataProvider: React.FC<Props> = ({ children }: Props) => {
   useEffect(() => {
     updateStatistics();
   }, [unlocks]);
+  
+  useEffect(() => {
+    loggedIn.current = isLoggedIn;
+  }, [isLoggedIn])
 
   const updateToast = type => {
     const config: ToastOptions = {
@@ -196,7 +201,7 @@ const DataProvider: React.FC<Props> = ({ children }: Props) => {
     localStorage.setItem("data", JSON.stringify(newUnlocks));
     updateStatistics();
 
-    if (isLoggedIn) {
+    if (loggedIn.current) {
       triggerGoogleSave();
     }
   };
