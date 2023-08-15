@@ -12,6 +12,13 @@ ul {
   list-style: none;
 }
 
+html,
+body,
+#___gatsby,
+#gatsby-focus-wrapper {
+  height: 100%;
+}
+
 body {
   color: #000;
   font-family: Roboto, serif;
@@ -194,10 +201,5 @@ button:disabled, input:disabled {
   flex-direction: row;
   gap: 10px;
   align-items: center;
-}
-.google-saving-toast.success {
-  svg {
-    color: green;
-  }
 }
 
