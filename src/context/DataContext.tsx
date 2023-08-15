@@ -25,7 +25,6 @@ interface DataContextData {
   updateLevel: (id: number, level: number) => void;
   statistics: Statistics;
   updateUnlocks: () => void;
-  isUnlocked: (id: number) => boolean;
   waitingForSaveToGoogle: boolean;
 }
 
@@ -35,7 +34,6 @@ const DataContext = createContext<DataContextData>({
   updateLevel: () => {},
   statistics: DEFAULT_VALUES.statistics,
   updateUnlocks: () => {},
-  isUnlocked: () => {},
   waitingForSaveToGoogle: false,
 });
 
@@ -44,11 +42,10 @@ interface Props {
 }
 
 const DataProvider: React.FC<Props> = ({ children }: Props) => {
+  const toastId = useRef<string|null>(null);
   const { isLoggedIn } = useContext(AuthContext);
-  const firstUpdate = useRef(true);
   const [lastGoogleSave, setLastGoogleSave] = useState<Date>(new Date());
   const [waitingForSaveToGoogle, setWaitingForSaveToGoogle] = useState(false);
-  const [toastActive, setToastActive] = useState(false);
   const [unlocks, setUnlocks] = useState<number[]>(DEFAULT_VALUES.unlocks);
   const [statistics, setStatistics] = useState<Statistics>(DEFAULT_VALUES.statistics);
   const { categories } = useStaticQuery(graphql`
@@ -76,7 +73,7 @@ const DataProvider: React.FC<Props> = ({ children }: Props) => {
     updateStatistics();
   }, [unlocks]);
 
-  const updateToast = (type: "pending" | "saving" | "saved") => {
+  const updateToast = (type) => {
     const config: ToastOptions = {
       type: type === "saved" ? toast.TYPE.SUCCESS : toast.TYPE.INFO,
       position: toast.POSITION.BOTTOM_RIGHT,
@@ -86,7 +83,7 @@ const DataProvider: React.FC<Props> = ({ children }: Props) => {
       pauseOnHover: true,
       draggable: true,
       toastId: TOAST_ID,
-      onClose: () => setToastActive(false),
+      onClose: () => toastId.current = null,
     };
 
     let contents;
@@ -98,22 +95,18 @@ const DataProvider: React.FC<Props> = ({ children }: Props) => {
       contents = "Saved to Google Drive!";
     }
 
-    if (toastActive) {
+    if (toastId.current) {
       const updateConfig: UpdateOptions = config;
       updateConfig.render = contents;
+      delete updateConfig.toastId;
       toast.update(TOAST_ID, config);
     } else {
       toast(contents, config);
-      setToastActive(true);
+      toastId.current = TOAST_ID;
     }
   };
 
   const triggerGoogleSave = () => {
-    if (firstUpdate.current) {
-      firstUpdate.current = false;
-      return;
-    }
-
     const saveTimeElapsed = getTimeElapsedInSeconds(lastGoogleSave);
     if (saveTimeElapsed < MAX_GOOGLE_SAVE_TIME) {
       if (!waitingForSaveToGoogle) {
@@ -151,7 +144,7 @@ const DataProvider: React.FC<Props> = ({ children }: Props) => {
     });
 
     const { body } = await result.json();
-    // console.log(body);
+    console.log(body);
 
     updateToast("saved");
   };
@@ -178,7 +171,7 @@ const DataProvider: React.FC<Props> = ({ children }: Props) => {
       category.items
         .filter(item => !item.onlyDB || item.onlyDB === false)
         .forEach(item => {
-          if (isUnlocked(item.externalId)) {
+          if (unlocks.includes(item.externalId)) {
             newStatistics[fragment].unlocked++;
             newStatistics.overall.unlocked++;
           }
@@ -242,15 +235,12 @@ const DataProvider: React.FC<Props> = ({ children }: Props) => {
     return newData;
   };
 
-  const isUnlocked = (id: number): boolean => unlocks.includes(id);
-
   const contextValue = useMemo(
     () => ({
       unlocks,
       toggleUnlock,
       statistics,
       updateUnlocks,
-      isUnlocked,
       waitingForSaveToGoogle,
     }),
     [unlocks, statistics, waitingForSaveToGoogle],

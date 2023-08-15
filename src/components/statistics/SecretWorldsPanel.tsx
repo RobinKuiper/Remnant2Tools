@@ -25,18 +25,18 @@ const SecretWorldsPanel = () => {
       }
     }
   `);
-  const { isUnlocked } = useContext(DataContext);
+  const { unlocks } = useContext(DataContext);
   const [worldsWithSecrets, setWorldsWithSecrets] = useState<string[]>([]);
 
   useEffect(() => {
     const worldsWithLockedItems = items.nodes
-      .filter(item => !isUnlocked(item.externalId) && item.world) // Filter locked items with worlds
+      .filter(item => !unlocks.includes(item.externalId) && item.world) // Filter locked items with worlds
       .map(item => item.world) // Get only the world
       .filter((world, index, array) => array.indexOf(world) === index) // Filter for uniques
       .sort((a, b) => a.localeCompare(b));
 
     setWorldsWithSecrets(worldsWithLockedItems);
-  }, []);
+  }, [unlocks]);
 
   if (worldsWithSecrets.length <= 0) {
     return "";

@@ -116,7 +116,7 @@ const TraitsInterface = ({ build, showOnlyUnlocked, updateBuildValue }: Props) =
       }
     }
   `);
-  const { isUnlocked } = useContext(DataContext);
+  const { unlocks } = useContext(DataContext);
   const images = data.images.nodes;
   const [traits, setTraits] = useState([]);
   const [currentTotalPoints, setCurrentTotalPoints] = useState(0);
@@ -124,10 +124,10 @@ const TraitsInterface = ({ build, showOnlyUnlocked, updateBuildValue }: Props) =
   useEffect(() => {
     let traits = data.traits.nodes.sort((a, b) => sorter(a, b));
     if (showOnlyUnlocked) {
-      traits = traits.filter(item => isUnlocked(item.externalId));
+      traits = traits.filter(item => unlocks.includes(item.externalId));
     }
     setTraits(traits);
-  }, [data, showOnlyUnlocked]);
+  }, [data, showOnlyUnlocked, unlocks]);
   useEffect(() => {
     let total = 0;
     traits.forEach(({ fragment }) => {

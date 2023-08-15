@@ -114,7 +114,7 @@ const ItemSelectModal = ({ setIsOpen, isOpen, filters, callback, onlyShowUnlocke
       }
     }
   `);
-  const { isUnlocked } = useContext(DataContext);
+  const { unlocks } = useContext(DataContext);
   const allItems = data.items.nodes;
   const images = data.images.nodes;
   const [query, setQuery] = useState("");
@@ -176,7 +176,7 @@ const ItemSelectModal = ({ setIsOpen, isOpen, filters, callback, onlyShowUnlocke
                     <GatsbyImage alt={item.name} image={getImage(findImageById(item.externalId, images))} />
                   </div>
                   <div>
-                    {!isUnlocked(item.externalId) && <BsLock />}
+                    {unlocks.includes(item.externalId) && <BsLock />}
                     {item.name}
                   </div>
                 </button>

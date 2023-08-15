@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, {useContext, useEffect, useState} from "react";
 import { styled } from "styled-components";
 import { DataContext } from "../../context/DataContext";
 import { findImageById } from "../../helpers";
@@ -73,16 +73,19 @@ interface Props {
 
 const Item = ({ item, category, images, type }: Props) => {
   const { view, startSaving, stopSaving } = useContext(SettingContext);
-  const { toggleUnlock, isUnlocked } = useContext(DataContext);
-  const [unlocked, setUnlocked] = useState(isUnlocked(item.externalId));
+  const { toggleUnlock, unlocks } = useContext(DataContext);
+  const [unlocked, setUnlocked] = useState(unlocks.includes(item.externalId));
   const [level, setLevel] = useState<number>();
   const image = findImageById(item.externalId, images);
+  
+  useEffect(() => {
+    setUnlocked(unlocks.includes(item.externalId))
+  }, [unlocks])
 
   const handleChange = e => {
     startSaving();
     const id = parseInt(e.target.id);
     toggleUnlock(id);
-    setUnlocked(!unlocked);
     stopSaving();
   };
 

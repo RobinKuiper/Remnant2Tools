@@ -88,7 +88,7 @@ const Page = styled.div`
 
 const Category = ({ path, data }) => {
   const { hideUnlocked, toggleHideUnlocked, view, toggleView } = useContext(SettingContext);
-  const { statistics, isUnlocked } = useContext(DataContext);
+  const { statistics, unlocks } = useContext(DataContext);
   const { images, category } = data;
   const { items } = category;
   const type = getPageType(path);
@@ -116,7 +116,7 @@ const Category = ({ path, data }) => {
 
   const filter = item => {
     if (isTracker) {
-      if (hideUnlocked && isUnlocked(item.externalId)) {
+      if (hideUnlocked && unlocks.includes(item.externalId)) {
         return false;
       }
 
