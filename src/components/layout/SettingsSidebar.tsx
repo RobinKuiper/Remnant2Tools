@@ -144,21 +144,10 @@ const SettingsSidebar = () => {
   const { showSettings, defaultShowRedacted, toggleDefaultShowRedacted } = useContext(SettingContext);
   const { isLoggedIn, loggingIn, login, logout } = useContext(AuthContext);
   const { updateUnlocks, unlocks } = useContext(DataContext);
-  const { updateBuilds } = useContext(BuildsContext);
+  const { updateBuilds, builds } = useContext(BuildsContext);
   const unlockDataRef = useRef<HTMLTextAreaElement>();
   const buildsDataRef = useRef<HTMLTextAreaElement>();
   const [retrievingFromGoogle, setRetrievingFromGoogle] = useState(false);
-
-  useEffect(() => {
-    if (!buildsDataRef.current) {
-      return;
-    }
-
-    const storedBuildData = localStorage.getItem("builds");
-    if (storedBuildData) {
-      buildsDataRef.current.value = storedBuildData;
-    }
-  }, [buildsDataRef]);
 
   useEffect(() => {
     if (!unlockDataRef.current) {
@@ -167,6 +156,14 @@ const SettingsSidebar = () => {
 
     unlockDataRef.current.value = JSON.stringify(unlocks);
   }, [unlocks]);
+  
+  useEffect(() => {
+    if (!buildsDataRef.current) {
+      return;
+    }
+
+    buildsDataRef.current.value = JSON.stringify(builds);
+  }, [builds])
 
   const copyToClipboard = (e, ref: React.RefObject<HTMLTextAreaElement>) => {
     if (ref.current) {
