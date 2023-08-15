@@ -299,7 +299,7 @@ const SettingsSidebar = () => {
         </GDriveButton>
         <Tooltip id="google-login-tooltip">
           <p>
-            Linking to Google will save your data to your Google Drive account. Saving happens once each{" "}
+            Linking to Google will save your data to your Google Drive. Saving happens once each{" "}
             <strong>{MAX_GOOGLE_SAVE_TIME} seconds</strong> if their are changes.
           </p>
           <p>At the moment this only works for unlockable data.</p>
