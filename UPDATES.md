@@ -12,9 +12,9 @@
 - Improved mobile layout for different pages
 
 #### Data
+
 - Added the Labyrinth Set to the armor sets data
 - Fixed a bug where going to the [Alpha/Omega](https://remnant.rkuiper.nl/database/weapons/alpha_omega) item page it would return Not Found
-
 
 ## Version 1.0.5
 
