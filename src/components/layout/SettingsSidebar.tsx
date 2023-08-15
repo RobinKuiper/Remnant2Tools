@@ -207,7 +207,7 @@ const SettingsSidebar = () => {
 
     const tokens = JSON.parse(localStorage.getItem("google_oauth"));
 
-    const result = await fetch("http://localhost:3000/api/data/google/retrieve", {
+    const result = await fetch("/api/data/google/retrieve", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

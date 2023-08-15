@@ -132,7 +132,7 @@ const DataProvider: React.FC<Props> = ({ children }: Props) => {
 
     updateToast("saving");
 
-    const result = await fetch("http://localhost:3000/api/data/google", {
+    const result = await fetch("/api/data/google", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

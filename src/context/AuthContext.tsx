@@ -36,7 +36,7 @@ const AuthProvider: React.FC<Props> = ({ children }: Props) => {
 
   const googleLogin = useGoogleLogin({
     onSuccess: async ({ code }) => {
-      const result = await fetch("http://localhost:3000/api/auth/google", {
+      const result = await fetch("/api/auth/google", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
