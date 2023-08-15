@@ -4,6 +4,7 @@ import refreshTokens from "../../auth/google/_refreshTokens.mjs";
 
 const client_id = process.env.CLIENT_ID
 const secret = process.env.CLIENT_SECRET
+const unlocksbackupfilename = process.env.UNLOCKS_BACKUP_FILE_NAME
 
 const oAuth2Client = new OAuth2Client(
   client_id,
@@ -22,7 +23,7 @@ export default async function handler(request, response) {
 
   const drive = google.drive({version: 'v3', auth: oAuth2Client});
   const files = await getFiles(drive)
-  const unlocksBackupFile = findFile(files, "unlocks_backup");
+  const unlocksBackupFile = findFile(files, unlocksbackupfilename);
   if (!unlocksBackupFile) {
     body.message = "NOT_FOUND";
     status = 404;

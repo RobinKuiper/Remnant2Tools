@@ -46,7 +46,7 @@ const Container = styled.div`
 
   .opener {
     position: fixed;
-    top: 80px;
+    top: 100px;
     right: 0;
     color: #fff;
     background: #292929;
