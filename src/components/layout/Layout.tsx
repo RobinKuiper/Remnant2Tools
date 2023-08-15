@@ -16,6 +16,10 @@ const Container = styled.div`
     box-sizing: border-box;
     height: 100%;
   }
+  
+  #tooltip {
+    z-index: 999999;
+  }
 `;
 
 interface Props {
