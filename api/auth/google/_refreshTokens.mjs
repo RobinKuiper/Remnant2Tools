@@ -13,8 +13,8 @@ export default async function refreshTokens(tokens) {
       refresh_token
     );
     const { credentials } = await user.refreshAccessToken();
-    return credentials;
+    return { refreshed: true, tokens: credentials };
   }
   
-  return tokens;
+  return { refreshed: false, tokens };
 }

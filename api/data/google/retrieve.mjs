@@ -16,7 +16,9 @@ export default async function handler(request, response) {
   let status = 200;
 
   const tokensToUse = await refreshTokens(tokens);
-  oAuth2Client.setCredentials(tokensToUse);
+  oAuth2Client.setCredentials(tokensToUse.tokens);
+
+  body.credentials = tokens.refreshed ? tokensToUse : null;
 
   const drive = google.drive({version: 'v3', auth: oAuth2Client});
   const files = await getFiles(drive)

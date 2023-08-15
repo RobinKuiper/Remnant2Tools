@@ -5,6 +5,8 @@ import refreshTokens from "../../auth/google/_refreshTokens.mjs";
 const client_id = process.env.CLIENT_ID
 const secret = process.env.CLIENT_SECRET
 
+const UNLOCK_BACKUP_FILENAME = "remnant2tools_unlocks_backup";
+
 const oAuth2Client = new OAuth2Client(
   client_id,
   secret
@@ -16,13 +18,15 @@ export default async function handler(request, response) {
   let status = 200;
 
   const tokensToUse = await refreshTokens(tokens);
-  oAuth2Client.setCredentials(tokensToUse);
+  oAuth2Client.setCredentials(tokensToUse.tokens);
+
+  body.credentials = tokens.refreshed ? tokensToUse : null;
 
   const drive = google.drive({version: 'v3', auth: oAuth2Client});
   const files = await getFiles(drive)
-  const unlocksBackupFile = findFile(files, "unlocks_backup");
+  const unlocksBackupFile = findFile(files, UNLOCK_BACKUP_FILENAME);
   if (!unlocksBackupFile) {
-    await createFileWithData(drive, "unlocks_backup", unlocks)
+    await createFileWithData(drive, UNLOCK_BACKUP_FILENAME, unlocks)
   } else {
     await updateFileWithData(drive, unlocksBackupFile.id, unlocks)
   }
@@ -46,16 +50,28 @@ const findFile = (files, name) => {
 }
 
 const createFileWithData = async (drive, name, data) => {
-  await drive.files.create({
+  // Create folder
+  const res = await drive.files.create({
     requestBody: {
-      name,
-      mimeType: 'text/plain'
-    },
-    media: {
-      mimeType: 'text/plain',
-      body: data
+      name: "Remnant2Tools",
+      mimeType: 'application/vnd.google-apps.folder'
     }
   });
+
+  if (res.status === 200) {
+    const folderId = res.data.id;
+    await drive.files.create({
+      requestBody: {
+        name,
+        mimeType: 'text/plain',
+        parents: [folderId]
+      },
+      media: {
+        mimeType: 'text/plain',
+        body: data
+      }
+    });
+  }
 }
 
 const updateFileWithData = async (drive, id, data) => {

@@ -1,13 +1,13 @@
 import React, { createContext, useContext, useEffect, useMemo, useRef, useState } from "react";
 import { graphql, useStaticQuery } from "gatsby";
 import { AuthContext } from "./AuthContext";
-import { getTimeElapsedInSeconds } from "../helpers";
+import { getTimeElapsedInSeconds, refreshTokens } from "../helpers";
 import type { ToastOptions, UpdateOptions } from "react-toastify";
 import { toast } from "react-toastify";
-import {FaGoogleDrive} from "react-icons/fa";
+import { FaGoogleDrive } from "react-icons/fa";
+import { MAX_GOOGLE_SAVE_TIME } from "../constants";
 
 const TOAST_ID = "google-saving-toast";
-const MAX_GOOGLE_SAVE_TIME = 10;
 const DEFAULT_VALUES = {
   unlocks: [],
   statistics: {},
@@ -74,10 +74,10 @@ const DataProvider: React.FC<Props> = ({ children }: Props) => {
   useEffect(() => {
     updateStatistics();
   }, [unlocks]);
-  
+
   useEffect(() => {
     loggedIn.current = isLoggedIn;
-  }, [isLoggedIn])
+  }, [isLoggedIn]);
 
   const updateToast = type => {
     const config: ToastOptions = {
@@ -90,16 +90,19 @@ const DataProvider: React.FC<Props> = ({ children }: Props) => {
       draggable: true,
       progressStyle: { background: "green" },
       toastId: TOAST_ID,
-      onClose: () => (toastId.current = null),
+      onClose: () => {
+        toastId.current = null;
+      },
     };
 
-    let contents = (text, className) => (
+    const contents = (text, className) => (
       <div className={`google-saving-toast ${className}`}>
         <FaGoogleDrive size="25px" color={className === "success" ? "green" : "white"} />
         {text}
       </div>
     );
-    let text, className = "";
+    let text,
+      className = "";
     if (type === "saving") {
       text = "Saving...";
     } else if (type === "pending") {
@@ -158,7 +161,7 @@ const DataProvider: React.FC<Props> = ({ children }: Props) => {
     });
 
     const { body } = await result.json();
-    console.log(body);
+    refreshTokens(body.credentials);
 
     updateToast("saved");
   };
