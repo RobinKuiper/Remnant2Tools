@@ -22,9 +22,9 @@ export default async function handler(request, response) {
   const files = await getFiles(drive)
   const unlocksBackupFile = findFile(files, "unlocks_backup");
   if (!unlocksBackupFile) {
-    await createFileWithData("unlocks_backup", unlocks)
+    await createFileWithData(drive, "unlocks_backup", unlocks)
   } else {
-    await updateFileWithData(unlocksBackupFile.id, unlocks)
+    await updateFileWithData(drive, unlocksBackupFile.id, unlocks)
   }
 
   response.status(status).json({ body });
@@ -45,7 +45,7 @@ const findFile = (files, name) => {
   return null;
 }
 
-const createFileWithData = async (name, data) => {
+const createFileWithData = async (drive, name, data) => {
   await drive.files.create({
     requestBody: {
       name,
@@ -58,7 +58,7 @@ const createFileWithData = async (name, data) => {
   });
 }
 
-const updateFileWithData = async (id, data) => {
+const updateFileWithData = async (drive, id, data) => {
   await drive.files.update({
     fileId: id,
     media: {

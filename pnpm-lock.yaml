@@ -133,6 +133,9 @@ devDependencies:
   '@types/react-toggle':
     specifier: ^4.0.3
     version: 4.0.3
+  '@types/semantic-release':
+    specifier: ^20.0.1
+    version: 20.0.1
   '@types/styled-components':
     specifier: ^5.1.26
     version: 5.1.26
@@ -3419,6 +3422,12 @@ packages:
 
   /@types/scheduler@0.16.3:
     resolution: {integrity: sha512-5cJ8CB4yAx7BH1oMvdU0Jh9lrEXyPkar6F9G/ERswkCuvP4KQZfZkSjcMbAICCpQTN4OuZn8tz0HiKv9TGZgrQ==}
+
+  /@types/semantic-release@20.0.1:
+    resolution: {integrity: sha512-rANSSye4mYTnP6szFSFUPl9GEowqxKjfKKnE06/axdgOLIL3pQNB4u3gXelZ2wiL6J6Clzb8PSyX8Bbv/JOPHw==}
+    dependencies:
+      '@types/node': 20.4.10
+    dev: true
 
   /@types/semver@7.5.0:
     resolution: {integrity: sha512-G8hZ6XJiHnuhQKR7ZmysCeJWE08o8T0AXtk5darsCaTVsYZhhgUrq53jizaR2FvsoeCwJhlmwTjkXBY5Pn/ZHw==}

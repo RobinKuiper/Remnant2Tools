@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useRef, useState} from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { styled } from "styled-components";
 import Toggle from "react-toggle";
 import { SettingContext } from "../../context/SettingContext";
@@ -12,7 +12,7 @@ import { Tooltip } from "react-tooltip";
 import { AuthContext } from "../../context/AuthContext";
 import { FaGoogleDrive } from "react-icons/fa";
 import Loader from "../Loader";
-import {toast} from "react-toastify";
+import { toast } from "react-toastify";
 
 const Container = styled.div`
   position: fixed;
@@ -159,12 +159,12 @@ const SettingsSidebar = () => {
       buildsDataRef.current.value = storedBuildData;
     }
   }, [buildsDataRef]);
-  
+
   useEffect(() => {
     if (!unlockDataRef.current) {
       return;
     }
-    
+
     unlockDataRef.current.value = JSON.stringify(unlocks);
   }, [unlocks]);
 
@@ -202,10 +202,12 @@ const SettingsSidebar = () => {
   };
 
   const retrieveFromGoogleDrive = async () => {
-    if (!isLoggedIn || retrievingFromGoogle) { return; }
-    
+    if (!isLoggedIn || retrievingFromGoogle) {
+      return;
+    }
+
     setRetrievingFromGoogle(true);
-    
+
     const tokens = JSON.parse(localStorage.getItem("google_oauth"));
 
     const result = await fetch("http://localhost:3000/api/data/google/retrieve", {
@@ -290,11 +292,7 @@ const SettingsSidebar = () => {
               data-tooltip-place="bottom"
               disabled={!isLoggedIn || retrievingFromGoogle}
             >
-              {retrievingFromGoogle ? (
-                <Loader size="25px" color="#fff" />
-              ) : (
-                <FaGoogleDrive size="25px" />
-              )}
+              {retrievingFromGoogle ? <Loader size="25px" color="#fff" /> : <FaGoogleDrive size="25px" />}
             </button>
 
             <button

@@ -51,35 +51,33 @@ const AuthProvider: React.FC<Props> = ({ children }: Props) => {
       setIsLoggedIn(true);
       setLoggingIn(false);
     },
-    onError: (err) => {
-      console.error(err);
+    onError: err => {
       setLoggingIn(false);
     },
-    onNonOAuthError: (err) => {
-      console.error(err);
+    onNonOAuthError: err => {
       setLoggingIn(false);
     },
     scope: "https://www.googleapis.com/auth/drive.file",
     flow: "auth-code",
   });
-  
+
   const login = () => {
     setLoggingIn(true);
     googleLogin();
-  }
-  
+  };
+
   const logout = () => {
     // TODO: implement real? logout
     localStorage.removeItem("google_oauth");
     setIsLoggedIn(false);
-  }
+  };
 
   const contextValue = useMemo(
     () => ({
       isLoggedIn,
       loggingIn,
       login,
-      logout
+      logout,
     }),
     [isLoggedIn, loggingIn],
   );

@@ -1,8 +1,11 @@
-import React, { createContext, useContext, useEffect, useMemo, useState } from "react";
+import React, { createContext, useContext, useEffect, useMemo, useRef, useState } from "react";
 import { graphql, useStaticQuery } from "gatsby";
 import { AuthContext } from "./AuthContext";
 import { getTimeElapsedInSeconds } from "../helpers";
+import type { ToastOptions, UpdateOptions } from "react-toastify";
+import { toast } from "react-toastify";
 
+const TOAST_ID = "google-saving-toast";
 const MAX_GOOGLE_SAVE_TIME = 10;
 const DEFAULT_VALUES = {
   unlocks: [],
@@ -23,6 +26,7 @@ interface DataContextData {
   statistics: Statistics;
   updateUnlocks: () => void;
   isUnlocked: (id: number) => boolean;
+  waitingForSaveToGoogle: boolean;
 }
 
 const DataContext = createContext<DataContextData>({
@@ -32,6 +36,7 @@ const DataContext = createContext<DataContextData>({
   statistics: DEFAULT_VALUES.statistics,
   updateUnlocks: () => {},
   isUnlocked: () => {},
+  waitingForSaveToGoogle: false,
 });
 
 interface Props {
@@ -40,8 +45,10 @@ interface Props {
 
 const DataProvider: React.FC<Props> = ({ children }: Props) => {
   const { isLoggedIn } = useContext(AuthContext);
-  const [lastGoogleSave, setLastGoogleSave] = useState<Date | null>();
-  const [waitingForSave, setWaitingForSave] = useState(false);
+  const firstUpdate = useRef(true);
+  const [lastGoogleSave, setLastGoogleSave] = useState<Date>(new Date());
+  const [waitingForSaveToGoogle, setWaitingForSaveToGoogle] = useState(false);
+  const [toastActive, setToastActive] = useState(false);
   const [unlocks, setUnlocks] = useState<number[]>(DEFAULT_VALUES.unlocks);
   const [statistics, setStatistics] = useState<Statistics>(DEFAULT_VALUES.statistics);
   const { categories } = useStaticQuery(graphql`
@@ -67,39 +74,70 @@ const DataProvider: React.FC<Props> = ({ children }: Props) => {
 
   useEffect(() => {
     updateStatistics();
-
-    if (isLoggedIn) {
-      triggerGoogleSave();
-    }
   }, [unlocks]);
 
-  const triggerGoogleSave = () => {
-    if (!lastGoogleSave) {
-      // First run, no need to save yet.
-      setLastGoogleSave(new Date());
+  const updateToast = (type: "pending" | "saving" | "saved") => {
+    const config: ToastOptions = {
+      type: type === "saved" ? toast.TYPE.SUCCESS : toast.TYPE.INFO,
+      position: toast.POSITION.BOTTOM_RIGHT,
+      autoClose: type === "saved" ? 5000 : false,
+      hideProgressBar: type !== "saved",
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      toastId: TOAST_ID,
+      onClose: () => setToastActive(false),
+    };
+
+    let contents;
+    if (type === "saving") {
+      contents = "Saving...";
+    } else if (type === "pending") {
+      contents = "Pending changes...";
     } else {
-      const saveTimeElapsed = getTimeElapsedInSeconds(lastGoogleSave);
-      if (saveTimeElapsed < MAX_GOOGLE_SAVE_TIME) {
-        if (!waitingForSave) {
-          setTimeout(
-            () => {
-              saveToGoogle();
-              setWaitingForSave(false);
-              setLastGoogleSave(new Date());
-            },
-            (MAX_GOOGLE_SAVE_TIME - saveTimeElapsed) * 1000,
-          );
-          setWaitingForSave(true);
-        }
-      } else {
-        saveToGoogle();
-        setLastGoogleSave(new Date());
+      contents = "Saved to Google Drive!";
+    }
+
+    if (toastActive) {
+      const updateConfig: UpdateOptions = config;
+      updateConfig.render = contents;
+      toast.update(TOAST_ID, config);
+    } else {
+      toast(contents, config);
+      setToastActive(true);
+    }
+  };
+
+  const triggerGoogleSave = () => {
+    if (firstUpdate.current) {
+      firstUpdate.current = false;
+      return;
+    }
+
+    const saveTimeElapsed = getTimeElapsedInSeconds(lastGoogleSave);
+    if (saveTimeElapsed < MAX_GOOGLE_SAVE_TIME) {
+      if (!waitingForSaveToGoogle) {
+        setTimeout(
+          () => {
+            saveToGoogle();
+            setWaitingForSaveToGoogle(false);
+            setLastGoogleSave(new Date());
+          },
+          (MAX_GOOGLE_SAVE_TIME - saveTimeElapsed) * 1000,
+        );
+        setWaitingForSaveToGoogle(true);
+        updateToast("pending");
       }
+    } else {
+      saveToGoogle();
+      setLastGoogleSave(new Date());
     }
   };
 
   const saveToGoogle = async () => {
     const tokens = JSON.parse(localStorage.getItem("google_oauth"));
+
+    updateToast("saving");
 
     const result = await fetch("http://localhost:3000/api/data/google", {
       method: "POST",
@@ -113,6 +151,9 @@ const DataProvider: React.FC<Props> = ({ children }: Props) => {
     });
 
     const { body } = await result.json();
+    // console.log(body);
+
+    updateToast("saved");
   };
 
   const updateStatistics = () => {
@@ -161,6 +202,10 @@ const DataProvider: React.FC<Props> = ({ children }: Props) => {
     setUnlocks(newUnlocks); // Update unlocks state with the newUnlocks object
     localStorage.setItem("data", JSON.stringify(newUnlocks));
     updateStatistics();
+
+    if (isLoggedIn) {
+      triggerGoogleSave();
+    }
   };
 
   const updateUnlocks = () => {
@@ -171,7 +216,7 @@ const DataProvider: React.FC<Props> = ({ children }: Props) => {
         // Data isn't converted to the new array structure yet
         data = convertDataToNewArrayStructure(data);
       }
-      setUnlocks(prevUnlocks => [...data]);
+      setUnlocks([...data]);
     }
   };
 
@@ -206,8 +251,9 @@ const DataProvider: React.FC<Props> = ({ children }: Props) => {
       statistics,
       updateUnlocks,
       isUnlocked,
+      waitingForSaveToGoogle,
     }),
-    [unlocks, statistics],
+    [unlocks, statistics, waitingForSaveToGoogle],
   );
 
   return <DataContext.Provider value={contextValue}>{children}</DataContext.Provider>;
