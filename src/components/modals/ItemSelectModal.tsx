@@ -131,7 +131,15 @@ const ItemSelectModal = ({ setIsOpen, isOpen, filters, callback, onlyShowUnlocke
 
   // Search items when query or filtered items change
   useEffect(() => {
-    setItemsToShow(searchItems(itemsFiltered, query).sort((a, b) => sorter(a, b, "name")));
+    let searchedItems = itemsFiltered;
+    if (query && query !== "") {
+      const filter = item => item.name.toLowerCase().includes(query.toLowerCase());
+      searchedItems = searchedItems.filter(filter)
+    }
+
+    const sort = (a, b) => sorter(a, b, "name");
+    searchedItems.sort(sort)
+    setItemsToShow(searchedItems);
     setLoading(false);
   }, [query, itemsFiltered]);
 
