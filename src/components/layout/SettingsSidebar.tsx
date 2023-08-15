@@ -215,13 +215,6 @@ const SettingsSidebar = () => {
     <Container className={showSettings && "active"}>
       <h2>Settings</h2>
 
-      <Link
-        to="https://accounts.google.com/o/oauth2/v2/auth?access_type=offline&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fdrive.file&response_type=code&client_id=533488485201-kate80qg9t6ccdgknrh1or1o46ue7m56.apps.googleusercontent.com&redirect_uri=http%3A%2F%2Flocalhost%3A8000%2Freturn"
-        title={"Sign in with google"}
-      >
-        Auth Google
-      </Link>
-
       <div className="layout">
         <h3>Data</h3>
 
