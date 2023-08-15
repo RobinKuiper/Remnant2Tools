@@ -34,11 +34,6 @@ export const setFieldValue = (object: any, fieldPath: string, value: any) => {
   currentObject[lastKey] = value;
 };
 
-const getUnlocks = () => {
-  const unlocks = typeof localStorage !== "undefined" && localStorage.getItem("data");
-  return unlocks ? JSON.parse(unlocks) : {};
-};
-
 export const calculateWeightType = (weight: number) => {
   if (weight > 75) {
     return "Ultra Heavy";
@@ -85,15 +80,10 @@ export const getAllItems = (trackables: boolean = false) => {
     : data;
 };
 
-export const isUnlocked = (categoryFragment: string, id: number): boolean => {
-  const unlocks = getUnlocks();
-  return unlocks[categoryFragment] && unlocks[categoryFragment][id] && unlocks[categoryFragment][id].unlocked;
-};
-
 export const filterItems = (items: any[], filters: Filter[], filterUnlocked: boolean = false) => {
   return items.filter(item => {
     let returnValue = true;
-    if (filterUnlocked && !isUnlocked(item.category, item.externalId)) {
+    if (filterUnlocked && !isUnlocked(item.externalId)) {
       return false;
     } else {
       // Go through filters

@@ -6,7 +6,6 @@ import ListItem from "./ListItem";
 import GridItem from "./GridItem";
 import { SettingContext } from "../../context/SettingContext";
 import ItemTooltip from "./ItemTooltip";
-import { isUnlocked } from "../../dataHelpers";
 
 const Container = styled.div`
   position: relative;
@@ -74,15 +73,15 @@ interface Props {
 
 const Item = ({ item, category, images, type }: Props) => {
   const { view, startSaving, stopSaving } = useContext(SettingContext);
-  const { toggleUnlock } = useContext(DataContext);
-  const [unlocked, setUnlocked] = useState(isUnlocked(category.fragment, item.externalId));
+  const { toggleUnlock, isUnlocked } = useContext(DataContext);
+  const [unlocked, setUnlocked] = useState(isUnlocked(item.externalId));
   const [level, setLevel] = useState<number>();
   const image = findImageById(item.externalId, images);
 
   const handleChange = e => {
     startSaving();
     const id = parseInt(e.target.id);
-    toggleUnlock(category.fragment, id);
+    toggleUnlock(id);
     setUnlocked(!unlocked);
     stopSaving();
   };

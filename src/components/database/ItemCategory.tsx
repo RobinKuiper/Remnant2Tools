@@ -37,7 +37,7 @@ const ItemCategory = ({ item, category, type = "tracker" }: Props) => {
   const handleChange = e => {
     const id = e.target.id;
 
-    toggleUnlock(category.fragment, id);
+    toggleUnlock(id);
   };
 
   return (

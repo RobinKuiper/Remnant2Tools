@@ -2,7 +2,6 @@ import { Link, graphql } from "gatsby";
 import React, { useContext, useRef, useState } from "react";
 import { styled } from "styled-components";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
-import { isUnlocked } from "../dataHelpers";
 import { slugify, uppercaseFirstLetter } from "../helpers";
 import ItemStatistics from "../components/database/ItemStatistics";
 import Layout from "../components/layout/Layout";
@@ -172,17 +171,17 @@ const STATE_CLASSES = {
 const Category = ({ data, pageContext, location }) => {
   const ref = useRef();
   const { startSaving, stopSaving } = useContext(SettingContext);
-  const { toggleUnlock } = useContext(DataContext);
+  const { toggleUnlock, isUnlocked } = useContext(DataContext);
   const { category } = pageContext;
   const { item, image, linkedItems, bgImage } = data;
   const gatsbyImage = getImage(image);
-  const [unlocked, setUnlocked] = useState(isUnlocked(item.category, item.externalId));
+  const [unlocked, setUnlocked] = useState(isUnlocked(item.externalId));
   const type = category.onlyDB ? "database" : location.state?.type ?? "database";
 
   const handleLockStateChange = e => {
     startSaving();
     const id = parseInt(e.target.id);
-    toggleUnlock(category.fragment, id);
+    toggleUnlock(id);
     setUnlocked(!unlocked);
     stopSaving();
   };

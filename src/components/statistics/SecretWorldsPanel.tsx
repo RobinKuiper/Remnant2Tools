@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { styled } from "styled-components";
 import Redacted from "../database/Redacted";
-import { isUnlocked } from "../../dataHelpers";
 import { graphql, useStaticQuery } from "gatsby";
+import { DataContext } from "../../context/DataContext";
 
 const Container = styled.div`
   .values {
@@ -25,11 +25,12 @@ const SecretWorldsPanel = () => {
       }
     }
   `);
+  const { isUnlocked } = useContext(DataContext);
   const [worldsWithSecrets, setWorldsWithSecrets] = useState<string[]>([]);
 
   useEffect(() => {
     const worldsWithLockedItems = items.nodes
-      .filter(item => !isUnlocked(item.category, item.externalId) && item.world) // Filter locked items with worlds
+      .filter(item => !isUnlocked(item.externalId) && item.world) // Filter locked items with worlds
       .map(item => item.world) // Get only the world
       .filter((world, index, array) => array.indexOf(world) === index) // Filter for uniques
       .sort((a, b) => a.localeCompare(b));

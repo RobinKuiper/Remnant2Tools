@@ -43,13 +43,13 @@ const Container = styled.div`
         left: 50%;
         width: 0.25em;
         height: 0.25em;
-        background-color: rgba(255, 255, 255, .9);
+        background-color: rgba(255, 255, 255, 0.9);
         opacity: 0;
         border-radius: 3em;
         transform: scale(1);
         transform-origin: 50% 50%;
-        -webkit-animation: ripple-33 1.5s cubic-bezier(.11,.29,.18,.98);
-        animation: ripple-33 1.5s cubic-bezier(.11,.29,.18,.98);
+        -webkit-animation: ripple-33 1.5s cubic-bezier(0.11, 0.29, 0.18, 0.98);
+        animation: ripple-33 1.5s cubic-bezier(0.11, 0.29, 0.18, 0.98);
       }
     }
   }
