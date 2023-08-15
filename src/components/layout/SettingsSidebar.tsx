@@ -9,6 +9,8 @@ import { BuildsContext } from "../../context/BuildContext";
 import { LAST_UPDATED } from "../../constants";
 import "react-toggle/style.css";
 import { Tooltip } from "react-tooltip";
+import { AuthContext } from "../../context/AuthContext";
+import { FaGoogleDrive } from "react-icons/fa";
 
 const Container = styled.div`
   position: fixed;
@@ -119,9 +121,26 @@ const Container = styled.div`
     min-width: 260px;
   }
 `;
+const GDriveButton = styled.button`
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 8px 12px;
+  background-color: #4285f4;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+
+  .google-drive-text {
+    font-weight: bold;
+  }
+`;
 
 const SettingsSidebar = () => {
   const { showSettings, defaultShowRedacted, toggleDefaultShowRedacted } = useContext(SettingContext);
+  const { isLoggedIn, login } = useContext(AuthContext);
   const { updateUnlocks } = useContext(DataContext);
   const { updateBuilds } = useContext(BuildsContext);
   const unlockDataRef = useRef<HTMLTextAreaElement>();
@@ -168,13 +187,60 @@ const SettingsSidebar = () => {
     updateBuilds();
   };
 
+  const handleGoogleLink = () => {
+    if (isLoggedIn) {
+      // TODO: Logout
+    } else {
+      login();
+    }
+  };
+
+  const retrieveFromGoogleDrive = async () => {
+    const tokens = JSON.parse(localStorage.getItem("google_oauth"));
+
+    const result = await fetch("http://localhost:3000/api/data/google/retrieve", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        tokens,
+      }),
+    });
+
+    const { body } = await result.json();
+  };
+
   return (
     <Container className={showSettings && "active"}>
       <h2>Settings</h2>
 
+      <Link
+        to="https://accounts.google.com/o/oauth2/v2/auth?access_type=offline&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fdrive.file&response_type=code&client_id=533488485201-kate80qg9t6ccdgknrh1or1o46ue7m56.apps.googleusercontent.com&redirect_uri=http%3A%2F%2Flocalhost%3A8000%2Freturn"
+        title={"Sign in with google"}
+      >
+        Auth Google
+      </Link>
+
       <div className="layout">
         <h3>Data</h3>
 
+        <div className="layout-settings-item">
+          <label
+            className="title"
+            data-tooltip-id="tooltip"
+            data-tooltip-content={"PLACEHOLDER"}
+            data-tooltip-place="bottom"
+          >
+            Link Google Drive
+          </label>
+          <div data-tooltip-id="tooltip" data-tooltip-content={"PLACEHOLDER"} data-tooltip-place="bottom">
+            <GDriveButton className="google-drive-button" onClick={handleGoogleLink}>
+              <FaGoogleDrive />
+              <span className="google-drive-text">{isLoggedIn ? "Unlink" : "Link"}</span>
+            </GDriveButton>
+          </div>
+        </div>
         <div className="layout-settings-item">
           <label
             htmlFor="defaultShowRedacted"
@@ -210,6 +276,15 @@ const SettingsSidebar = () => {
             <textarea ref={unlockDataRef}></textarea>
           </div>
           <div className="buttons">
+            <button
+              onClick={retrieveFromGoogleDrive}
+              data-tooltip-id="tooltip"
+              data-tooltip-content={"Import data from Google Drive"}
+              data-tooltip-place="bottom"
+            >
+              <FaGoogleDrive size="25px" />
+            </button>
+
             <button
               onClick={saveUnlocks}
               data-tooltip-id="tooltip"
