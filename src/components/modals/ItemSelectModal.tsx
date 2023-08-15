@@ -176,7 +176,7 @@ const ItemSelectModal = ({ setIsOpen, isOpen, filters, callback, onlyShowUnlocke
                     <GatsbyImage alt={item.name} image={getImage(findImageById(item.externalId, images))} />
                   </div>
                   <div>
-                    {unlocks.includes(item.externalId) && <BsLock />}
+                    {!unlocks.includes(item.externalId) && <BsLock />}
                     {item.name}
                   </div>
                 </button>
