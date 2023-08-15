@@ -1,9 +1,9 @@
+.vercel
 data.tsx
 
 # NODE
 node_modules
 
 # APP
-coverage
 public
 .cache

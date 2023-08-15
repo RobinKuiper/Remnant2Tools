@@ -1,4 +1,7 @@
-.vercel
+src/images
+.gitlab
+__mocks__
+__tests__
 
 # Created by https://www.toptal.com/developers/gitignore/api/gatsby,webstorm,windows,linux
 # Edit at https://www.toptal.com/developers/gitignore?templates=gatsby,webstorm,windows,linux
@@ -184,3 +187,4 @@ $RECYCLE.BIN/
 .firebase/
 
 # End of https://www.toptal.com/developers/gitignore/api/gatsby,webstorm,windows,linux
+.vercel
