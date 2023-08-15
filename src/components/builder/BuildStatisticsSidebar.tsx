@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { styled } from "styled-components";
 import "react-toggle/style.css";
-import { Tooltip } from "react-tooltip";
 import type { Build } from "../../interface/Build";
 import { calculateWeightType, getFieldValue, setFieldValue } from "../../dataHelpers";
 import { BiSolidLeftArrow, BiSolidRightArrow } from "react-icons/bi";
@@ -255,8 +254,7 @@ const BuildStatisticsSidebar = ({ build }: Props) => {
           statistics could be somewhat inaccurate.
         </p>
       </div>
-
-      <Tooltip id="tooltip" />
+      
       <div className="opener">
         <button onClick={toggleOpen}>
           {isOpen ? <BiSolidRightArrow size="35px" /> : <BiSolidLeftArrow size="35px" />}

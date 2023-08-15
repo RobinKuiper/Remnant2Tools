@@ -409,8 +409,6 @@ const SettingsSidebar = () => {
         {/*<span>Version: {VERSION}</span>*/}
         <span>Last updated: {LAST_UPDATED}</span>
       </div>
-
-      <Tooltip id="tooltip" />
     </Container>
   );
 };

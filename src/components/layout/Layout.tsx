@@ -9,6 +9,7 @@ import { BiLogoPatreon, BiLogoPaypal } from "react-icons/bi";
 import { StaticImage } from "gatsby-plugin-image";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import {Tooltip} from "react-tooltip";
 
 const Container = styled.div`
   position: relative;
@@ -166,6 +167,7 @@ const Layout = ({ children }: Props) => {
       <SettingsSidebar />
 
       <ToastContainer theme="dark" />
+      <Tooltip id="tooltip" />
     </Container>
   );
 };

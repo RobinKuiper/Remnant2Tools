@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { styled } from "styled-components";
 import { SettingContext } from "../../context/SettingContext";
-import { Tooltip } from "react-tooltip";
 
 const Container = styled.span`
   cursor: pointer;
@@ -35,11 +34,10 @@ const Redacted = ({ value, defaultShow = false, bgColor = "#f1f1f1", tooltip }: 
     <Container
       bgcolor={bgColor}
       onClick={toggleShow}
-      data-tooltip-id="redacted-tooltip"
+      data-tooltip-id="tooltip"
       data-tooltip-content={(show && tooltip) || ""}
     >
       <span className={show ? "" : "redacted"}>{value}</span>
-      <Tooltip id="redacted-tooltip" />
     </Container>
   );
 };

@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import { AiFillLock, AiFillUnlock } from "react-icons/ai";
-import { Tooltip } from "react-tooltip";
 import { styled } from "styled-components";
 import { BuildsContext } from "../../context/BuildContext";
 
@@ -54,13 +53,12 @@ const Settings = ({ name, oldName, toggleOnlyUnlocked, onlyUnlocked, setName }: 
       <div>
         <button
           onClick={toggleOnlyUnlocked}
-          data-tooltip-id="unlocked"
+          data-tooltip-id="tooltip"
           data-tooltip-content={onlyUnlocked ? "Showing only unlocked items" : "Showing all items"}
           data-tooltip-place="bottom"
         >
           {onlyUnlocked ? <AiFillUnlock size={"30px"} /> : <AiFillLock size={"30px"} />}
         </button>
-        <Tooltip id="unlocked" />
       </div>
     </Container>
   );
