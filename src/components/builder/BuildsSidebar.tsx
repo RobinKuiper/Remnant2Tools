@@ -23,7 +23,7 @@ const Container = styled.div`
       color: white;
       width: 180px;
 
-      &:hover {
+      &:hover, &.active {
         background: #000;
       }
     }
@@ -34,7 +34,7 @@ const Container = styled.div`
   }
 `;
 
-const BuildsSidebar = ({ setBuild, setOldName, setName, resetBuild }) => {
+const BuildsSidebar = ({ setBuild, setOldName, setName, resetBuild, currentBuildName }) => {
   const { builds, deleteBuild, copyBuild } = useContext(BuildsContext);
 
   const selectBuild = (name: string) => {
@@ -50,7 +50,7 @@ const BuildsSidebar = ({ setBuild, setOldName, setName, resetBuild }) => {
           <strong>Saved builds</strong>
           {Object.keys(builds).length > 0 ? (
             Object.keys(builds).map(name => (
-              <div key={name} className="nav-item">
+              <div key={name} className={`nav-item ${name === currentBuildName && "active"}`}>
                 <button key={name} onClick={() => selectBuild(name)}>
                   {name}
                 </button>

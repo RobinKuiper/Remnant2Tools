@@ -1,5 +1,5 @@
 import { graphql } from "gatsby";
-import React, { useContext, useState } from "react";
+import React, {useContext, useEffect, useState} from "react";
 import { styled } from "styled-components";
 import BuildsSidebar from "../components/builder/BuildsSidebar";
 import Layout from "../components/layout/Layout";
@@ -90,7 +90,7 @@ const Page = styled.div`
 `;
 
 const Builds = props => {
-  const { saveBuild } = useContext(BuildsContext);
+  const { saveBuild, builds } = useContext(BuildsContext);
   const { startSaving, stopSaving } = useContext(SettingContext);
   const { images, bgImage } = props.data;
   const [modalIsOpen, setIsOpen] = useState(false);
@@ -101,6 +101,14 @@ const Builds = props => {
   const [oldName, setOldName] = useState<string>("");
   const [build, setBuild] = useState<Build>(NEW_BUILD);
   const [onlyUnlocked, setOnlyUnlocked] = useState(false);
+  
+  useEffect(() => {
+    const build = Object.entries(builds).find(() => true)
+    if (build) {
+      setBuild(build[1]);
+      setName(build[0]);
+    }
+  }, [])
 
   const openModal = (filters: Filter[], buildPath: string) => {
     setBuildPath(buildPath);
@@ -189,7 +197,7 @@ const Builds = props => {
       <Head title="Builder" description="Save your favorite builds in this Remnant II builder." />
 
       <Page>
-        <BuildsSidebar setBuild={setBuild} setOldName={setOldName} setName={setName} resetBuild={resetBuild} />
+        <BuildsSidebar currentBuildName={name} setBuild={setBuild} setOldName={setOldName} setName={setName} resetBuild={resetBuild} />
 
         <div id="builds-content">
           <BackgroundImage image={bgImage}>
