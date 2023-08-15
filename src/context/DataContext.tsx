@@ -4,6 +4,7 @@ import { AuthContext } from "./AuthContext";
 import { getTimeElapsedInSeconds } from "../helpers";
 import type { ToastOptions, UpdateOptions } from "react-toastify";
 import { toast } from "react-toastify";
+import {FaGoogleDrive} from "react-icons/fa";
 
 const TOAST_ID = "google-saving-toast";
 const MAX_GOOGLE_SAVE_TIME = 10;
@@ -80,33 +81,41 @@ const DataProvider: React.FC<Props> = ({ children }: Props) => {
 
   const updateToast = type => {
     const config: ToastOptions = {
-      type: type === "saved" ? toast.TYPE.SUCCESS : toast.TYPE.INFO,
+      // type: type === "saved" ? toast.TYPE.SUCCESS : toast.TYPE.INFO,
       position: toast.POSITION.BOTTOM_RIGHT,
       autoClose: type === "saved" ? 5000 : false,
       hideProgressBar: type !== "saved",
       closeOnClick: true,
       pauseOnHover: true,
       draggable: true,
+      progressStyle: { background: "green" },
       toastId: TOAST_ID,
       onClose: () => (toastId.current = null),
     };
 
-    let contents;
+    let contents = (text, className) => (
+      <div className={`google-saving-toast ${className}`}>
+        <FaGoogleDrive size="25px" color={className === "success" ? "green" : "white"} />
+        {text}
+      </div>
+    );
+    let text, className = "";
     if (type === "saving") {
-      contents = "Saving...";
+      text = "Saving...";
     } else if (type === "pending") {
-      contents = "Pending changes...";
+      text = "Pending changes...";
     } else {
-      contents = "Saved to Google Drive!";
+      text = "Saved to Google Drive!";
+      className = "success";
     }
 
     if (toastId.current) {
       const updateConfig: UpdateOptions = config;
-      updateConfig.render = contents;
+      updateConfig.render = contents(text, className);
       delete updateConfig.toastId;
       toast.update(TOAST_ID, config);
     } else {
-      toast(contents, config);
+      toast(contents(text, className), config);
       toastId.current = TOAST_ID;
     }
   };

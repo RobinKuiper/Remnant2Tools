@@ -188,3 +188,16 @@ button:disabled, input:disabled {
     transform: scale(1);
   }
 }
+
+.google-saving-toast {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+}
+.google-saving-toast.success {
+  svg {
+    color: green;
+  }
+}
+
