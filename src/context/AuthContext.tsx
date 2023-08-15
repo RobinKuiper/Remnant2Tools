@@ -7,12 +7,16 @@ const DEFAULT_VALUES = {
 
 interface AuthContextData {
   isLoggedIn: boolean;
+  loggingIn: boolean;
   login: () => void;
+  logout: () => void;
 }
 
 const AuthContext = createContext<AuthContextData>({
   isLoggedIn: DEFAULT_VALUES.isLoggedIn,
+  loggingIn: false,
   login: () => {},
+  logout: () => {},
 });
 
 interface Props {
@@ -21,6 +25,7 @@ interface Props {
 
 const AuthProvider: React.FC<Props> = ({ children }: Props) => {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(DEFAULT_VALUES.isLoggedIn);
+  const [loggingIn, setLoggingIn] = useState<boolean>(false);
 
   useEffect(() => {
     const storedGoogleOAuth = localStorage.getItem("google_oauth");
@@ -29,7 +34,7 @@ const AuthProvider: React.FC<Props> = ({ children }: Props) => {
     }
   }, []);
 
-  const login = useGoogleLogin({
+  const googleLogin = useGoogleLogin({
     onSuccess: async ({ code }) => {
       const result = await fetch("http://localhost:3000/api/auth/google", {
         method: "POST",
@@ -44,17 +49,39 @@ const AuthProvider: React.FC<Props> = ({ children }: Props) => {
       const { body } = await result.json();
       localStorage.setItem("google_oauth", JSON.stringify(body));
       setIsLoggedIn(true);
+      setLoggingIn(false);
+    },
+    onError: (err) => {
+      console.error(err);
+      setLoggingIn(false);
+    },
+    onNonOAuthError: (err) => {
+      console.error(err);
+      setLoggingIn(false);
     },
     scope: "https://www.googleapis.com/auth/drive.file",
     flow: "auth-code",
   });
+  
+  const login = () => {
+    setLoggingIn(true);
+    googleLogin();
+  }
+  
+  const logout = () => {
+    // TODO: implement real? logout
+    localStorage.removeItem("google_oauth");
+    setIsLoggedIn(false);
+  }
 
   const contextValue = useMemo(
     () => ({
       isLoggedIn,
+      loggingIn,
       login,
+      logout
     }),
-    [isLoggedIn],
+    [isLoggedIn, loggingIn],
   );
 
   return <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>;

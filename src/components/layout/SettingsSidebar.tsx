@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef } from "react";
+import React, {useContext, useEffect, useRef, useState} from "react";
 import { styled } from "styled-components";
 import Toggle from "react-toggle";
 import { SettingContext } from "../../context/SettingContext";
@@ -11,6 +11,8 @@ import "react-toggle/style.css";
 import { Tooltip } from "react-tooltip";
 import { AuthContext } from "../../context/AuthContext";
 import { FaGoogleDrive } from "react-icons/fa";
+import Loader from "../Loader";
+import {toast} from "react-toastify";
 
 const Container = styled.div`
   position: fixed;
@@ -140,14 +142,15 @@ const GDriveButton = styled.button`
 
 const SettingsSidebar = () => {
   const { showSettings, defaultShowRedacted, toggleDefaultShowRedacted } = useContext(SettingContext);
-  const { isLoggedIn, login } = useContext(AuthContext);
-  const { updateUnlocks } = useContext(DataContext);
+  const { isLoggedIn, loggingIn, login, logout } = useContext(AuthContext);
+  const { updateUnlocks, unlocks } = useContext(DataContext);
   const { updateBuilds } = useContext(BuildsContext);
   const unlockDataRef = useRef<HTMLTextAreaElement>();
   const buildsDataRef = useRef<HTMLTextAreaElement>();
+  const [retrievingFromGoogle, setRetrievingFromGoogle] = useState(false);
 
   useEffect(() => {
-    if (!unlockDataRef.current || !buildsDataRef.current) {
+    if (!buildsDataRef.current) {
       return;
     }
 
@@ -155,12 +158,15 @@ const SettingsSidebar = () => {
     if (storedBuildData) {
       buildsDataRef.current.value = storedBuildData;
     }
-
-    const storedUnlockData = localStorage.getItem("data");
-    if (storedUnlockData) {
-      unlockDataRef.current.value = storedUnlockData;
+  }, [buildsDataRef]);
+  
+  useEffect(() => {
+    if (!unlockDataRef.current) {
+      return;
     }
-  }, [unlockDataRef, buildsDataRef]);
+    
+    unlockDataRef.current.value = JSON.stringify(unlocks);
+  }, [unlocks]);
 
   const copyToClipboard = (e, ref: React.RefObject<HTMLTextAreaElement>) => {
     if (ref.current) {
@@ -189,13 +195,17 @@ const SettingsSidebar = () => {
 
   const handleGoogleLink = () => {
     if (isLoggedIn) {
-      // TODO: Logout
+      logout();
     } else {
       login();
     }
   };
 
   const retrieveFromGoogleDrive = async () => {
+    if (!isLoggedIn || retrievingFromGoogle) { return; }
+    
+    setRetrievingFromGoogle(true);
+    
     const tokens = JSON.parse(localStorage.getItem("google_oauth"));
 
     const result = await fetch("http://localhost:3000/api/data/google/retrieve", {
@@ -208,7 +218,11 @@ const SettingsSidebar = () => {
       }),
     });
 
+    setRetrievingFromGoogle(false);
     const { body } = await result.json();
+    localStorage.setItem("data", body.contents);
+    updateUnlocks();
+    toast.success("Successfully retrieved data from Google.");
   };
 
   return (
@@ -228,8 +242,8 @@ const SettingsSidebar = () => {
             Link Google Drive
           </label>
           <div data-tooltip-id="tooltip" data-tooltip-content={"PLACEHOLDER"} data-tooltip-place="bottom">
-            <GDriveButton className="google-drive-button" onClick={handleGoogleLink}>
-              <FaGoogleDrive />
+            <GDriveButton className="google-drive-button" onClick={handleGoogleLink} disabled={loggingIn}>
+              {loggingIn ? <Loader size="25px" color="#fff" /> : <FaGoogleDrive size="25px" />}
               <span className="google-drive-text">{isLoggedIn ? "Unlink" : "Link"}</span>
             </GDriveButton>
           </div>
@@ -274,8 +288,13 @@ const SettingsSidebar = () => {
               data-tooltip-id="tooltip"
               data-tooltip-content={"Import data from Google Drive"}
               data-tooltip-place="bottom"
+              disabled={!isLoggedIn || retrievingFromGoogle}
             >
-              <FaGoogleDrive size="25px" />
+              {retrievingFromGoogle ? (
+                <Loader size="25px" color="#fff" />
+              ) : (
+                <FaGoogleDrive size="25px" />
+              )}
             </button>
 
             <button
