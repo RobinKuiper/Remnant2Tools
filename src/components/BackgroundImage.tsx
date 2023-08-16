@@ -12,11 +12,8 @@ const Container = styled.div`
   }
 
   .gradient {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    grid-area: 1/1;
+    z-index: 1;
     background: linear-gradient(45deg, rgba(255, 255, 255, 1) 11%, rgba(231, 231, 231, 1) 23%, rgba(0, 0, 0, 0) 100%);
 
     // BUILDS
@@ -37,6 +34,7 @@ const Container = styled.div`
   .children {
     grid-area: 1/1;
     position: relative;
+    z-index: 2;
   }
 `;
 

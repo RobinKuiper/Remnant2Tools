@@ -16,6 +16,10 @@ const Container = styled.div`
     gap: 20px;
     padding: 20px;
 
+    @media (max-width: 1200px) {
+      justify-content: center;
+    }
+
     .panel {
       border: 1px solid #000;
       padding: 10px;
