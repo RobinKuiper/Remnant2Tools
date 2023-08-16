@@ -6,54 +6,22 @@ import gitlab
 BOARD_ID="5954639"
 CREATE_DEPENDENCY_ISSUE=False
 
-# Extract version from .version file
-with open(".version", "r") as version_file:
-    CURRENT_VERSION = version_file.read().strip()
-
-# Extract major and minor version components
-MAJOR_VERSION_NUMBERS = ".".join(CURRENT_VERSION.split(".")[:2])
-
-# Calculate the next patch version
-NEXT_VERSION = str(int(CURRENT_VERSION.split(".")[-1]) + 1)
-
-# Create release and milestone names
-RELEASE_NAME = f"Release v{CURRENT_VERSION}"
-MILESTONE_NAME = f"Release v{MAJOR_VERSION_NUMBERS}.{NEXT_VERSION}"
-BOARD_NAME = MILESTONE_NAME
-
-# Define issue titles and descriptions
-READY_RELEASE_ISSUE_TITLE = "Ready release"
-READY_RELEASE_ISSUE_DESCRIPTION = (
-    "- [ ] Update version in .version\n- [ ] Add/update update log to UPDATES.md"
-)
-DEPENDENCY_ISSUE_TITLE = "Check & update dependencies"
-RELEASE_ISSUE_TITLE = MILESTONE_NAME
-
 # Get the environment variables from Gitlab
 GITLAB_TOKEN = sys.argv[1]
 PROJECT_ID = sys.argv[2]
 REF_NAME = sys.argv[3]
 
+# Define issue titles and descriptions
+READY_RELEASE_ISSUE_TITLE = "Ready release"
+READY_RELEASE_ISSUE_DESCRIPTION = (
+    "- [ ] Add/update update log to UPDATES.md"
+)
+DEPENDENCY_ISSUE_TITLE = "Check & update dependencies"
+
 # Labels
 FINAL_TOUCHES_LABEL = "Final Touches"
 RELEASE_LABEL = "Release"
 CODEBASE_LABEL = "Codebase"
-
-# Extract latest release section from UPDATES.md
-with open("UPDATES.md", "r") as updates_file:
-    updates_lines = updates_file.readlines()
-
-section_lines = []
-found_section = False
-for line in updates_lines:
-    if line.startswith("## Version"):
-        if found_section:
-            break
-        found_section = True
-    if found_section:
-        section_lines.append(line)
-
-UPDATES_TEXT = "\n".join(section_lines)
 
 gl = gitlab.Gitlab("https://gitlab.com", private_token=GITLAB_TOKEN)
 
@@ -62,38 +30,61 @@ gl = gitlab.Gitlab("https://gitlab.com", private_token=GITLAB_TOKEN)
 # Get the project from gitlab
 project = project = gl.projects.get(PROJECT_ID, lazy=True)
 
-# Create a new release
-release = project.releases.create(
-    {
-        "name": RELEASE_NAME,
-        "tag_name": CURRENT_VERSION,
-        "description": UPDATES_TEXT,
-        "ref": REF_NAME,
-    }
-)
+# Get the releases from gitlab
+releases = project.releases.list()
 
-# Close previous milestone
+latest_release_version = releases[0].name[1:]
+major, minor, patch = latest_release_version.split(".")
+
+major_version_number = int(major)
+minor_version_number = int(minor)
+patch_version_number = int(patch)
+
+# Set variables
+LASTEST_RELEASE_FULL_NAME = f"Release v{latest_release_version}"
+NEW_RELEASE_FULL_NAME = f"Release v{major_version_number}.x.x"
+
+print(f"Last release full: {LASTEST_RELEASE_FULL_NAME}")
+print(f"New release full: {NEW_RELEASE_FULL_NAME}")
+
+# Update board name
+print(f"Renamed board to: {NEW_RELEASE_FULL_NAME}")
+board = project.boards.get(BOARD_ID)
+board.name = NEW_RELEASE_FULL_NAME
+board.save()
+
+# Get all milestones
 milestones = project.milestones.list(state='active')
-target_milestone_name = RELEASE_NAME
 
-# Loop through the milestones to find the target milestone and its ID
-target_milestone = None
+target_milestone_name = NEW_RELEASE_FULL_NAME
+# Loop through the milestones to find the target milestone
 for milestone in milestones:
     if milestone.title == target_milestone_name:
-        target_milestone = milestone
+        print(f"Closing milestone with id: {milestone.id}")
+        
+        # Find the release issue
+        target_issue_name = NEW_RELEASE_FULL_NAME
+        for issue in milestone.issues():
+          if issue.title == target_issue_name:
+            print(f"Closing issue with id: {issue.id}")
+            # Rename and close the issue
+            issue.title = LASTEST_RELEASE_FULL_NAME
+            issue.state_event = 'close'
+            issue.save()
+            break
+        
+        # Rename and close the milestone
+        milestone.title = LASTEST_RELEASE_FULL_NAME
+        milestone.state_event = 'close'
+        milestone.save()
         break
 
-# Close the milestone
-if target_milestone is not None:
-    print(f"Closing milestone with id: {target_milestone.id}")
-    
-    milestone.state_event = 'close'
-    milestone.save()
-
 # Create a new milestone
-milestone = project.milestones.create({"title": MILESTONE_NAME})
+print(f"Creating milestone: {NEW_RELEASE_FULL_NAME}")
+milestone = project.milestones.create({"title": NEW_RELEASE_FULL_NAME})
 
 # Create the ready release issue
+print(f"Creating issue: {READY_RELEASE_ISSUE_TITLE}")
 issue = project.issues.create(
     {
         "title": READY_RELEASE_ISSUE_TITLE,
@@ -106,6 +97,7 @@ issue.labels = [RELEASE_LABEL, FINAL_TOUCHES_LABEL]
 issue.save()
 
 if CREATE_DEPENDENCY_ISSUE:
+  print(f"Creating issue: {DEPENDENCY_ISSUE_TITLE}")
   # Create the dependencies issue
   issue = project.issues.create(
       {"title": DEPENDENCY_ISSUE_TITLE, "description": "", "milestone_id": milestone.id}
@@ -115,14 +107,27 @@ if CREATE_DEPENDENCY_ISSUE:
   issue.save()
 
 # Create the release issue
+print(f"Creating issue: {NEW_RELEASE_FULL_NAME}")
 issue = project.issues.create(
-    {"title": RELEASE_ISSUE_TITLE, "description": "", "milestone_id": milestone.id}
+    {"title": NEW_RELEASE_FULL_NAME, "description": "", "milestone_id": milestone.id}
 )
 
 issue.labels = [RELEASE_LABEL, FINAL_TOUCHES_LABEL]
 issue.save()
 
-# Update board name
-board = project.boards.get(BOARD_ID)
-board.name = BOARD_NAME
-board.save()
+
+# Extract latest release section from UPDATES.md
+# with open("UPDATES.md", "r") as updates_file:
+#     updates_lines = updates_file.readlines()
+# 
+# section_lines = []
+# found_section = False
+# for line in updates_lines:
+#     if line.startswith("## Version"):
+#         if found_section:
+#             break
+#         found_section = True
+#     if found_section:
+#         section_lines.append(line)
+# 
+# UPDATES_TEXT = "\n".join(section_lines)
