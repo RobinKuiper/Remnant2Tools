@@ -17,7 +17,7 @@ const Container = styled.div`
     gap: 10px;
 
     .key {
-      font-weight: 600;
+      
     }
 
     .stat-item,
