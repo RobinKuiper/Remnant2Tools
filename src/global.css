@@ -194,6 +194,15 @@ button:disabled, input:disabled {
   }
 }
 
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}
+
 .google-saving-toast {
   display: flex;
   flex-direction: row;

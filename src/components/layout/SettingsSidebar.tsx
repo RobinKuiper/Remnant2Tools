@@ -149,6 +149,12 @@ const GDriveButton = styled.button`
   .google-icon {
     background: #fff;
     padding: 7px;
+    
+    &.active {
+      svg {
+        animation: rotation 2s infinite linear;
+      }
+    }
   }
 
   .google-text {
@@ -292,7 +298,7 @@ const SettingsSidebar = () => {
 
       <div className="google-login-setting-item" data-tooltip-id="google-login-tooltip" data-tooltip-place="bottom">
         <GDriveButton className="google-drive-button" onClick={handleGoogleLink} disabled={loggingIn}>
-          <div className="google-icon">{loggingIn ? <Loader size="20px" color="red" /> : GoogleIcon}</div>
+          <div className={`google-icon ${loggingIn && "active"}`}>{GoogleIcon}</div>
           <span className="google-text">
             {loggingIn ? "Linking..." : isLoggedIn ? "Unlink from Google" : "Link with Google"}
           </span>
