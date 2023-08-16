@@ -7,13 +7,13 @@ const Container = styled.div`
   gap: 10px;
   margin-bottom: 30px;
   font-size: 14px;
-  color: #888;
+  color: #6c6c6c;
 
   a {
-    color: #888 !important;
+    color: #6c6c6c !important;
 
     &:hover {
-      color: #795c5c !important;
+      color: #733333 !important;
     }
   }
 `;
