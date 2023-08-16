@@ -65,6 +65,8 @@ create_release:
     - if: $CI_COMMIT_REF_NAME == 'master'
       when: always
 
+
+
 .test:jest: # disabled for now
   stage: test
   script:
@@ -116,5 +118,6 @@ create_release:
   rules:
     - if: $CI_COMMIT_REF_NAME == 'staging'
       when: always
+
 # image: python:3.8-alpine # python alpine image
 # cache: [] # disable caching for a job

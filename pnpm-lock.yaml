@@ -8,9 +8,6 @@ dependencies:
   "@react-oauth/google":
     specifier: ^0.11.1
     version: 0.11.1(react-dom@18.2.0)(react@18.2.0)
-  "@unleash/proxy-client-react":
-    specifier: ^3.6.0
-    version: 3.6.0(unleash-proxy-client@2.5.0)
   babel-plugin-styled-components:
     specifier: ^2.1.4
     version: 2.1.4(@babel/core@7.22.10)(styled-components@6.0.7)
@@ -92,9 +89,6 @@ dependencies:
   styled-components:
     specifier: ^6.0.7
     version: 6.0.7(babel-plugin-styled-components@2.1.4)(react-dom@18.2.0)(react@18.2.0)
-  unleash-proxy-client:
-    specifier: ^2.5.0
-    version: 2.5.0
 
 devDependencies:
   "@babel/preset-typescript":
@@ -3978,15 +3972,6 @@ packages:
     dependencies:
       "@typescript-eslint/types": 5.62.0
       eslint-visitor-keys: 3.4.3
-
-  /@unleash/proxy-client-react@3.6.0(unleash-proxy-client@2.5.0):
-    resolution:
-      { integrity: sha512-maQ3PYdBWUpIraD9z/2C8oVoCAS/EryV0WT4HiZQWxzrwvrZ+XHQJw1sImzRdWlGMvl1qJcgdEoxXhNSuYIrEQ== }
-    peerDependencies:
-      unleash-proxy-client: ^2.5.0
-    dependencies:
-      unleash-proxy-client: 2.5.0
-    dev: false
 
   /@vercel/webpack-asset-relocator-loader@1.7.3:
     resolution:
@@ -13921,11 +13906,6 @@ packages:
       es5-ext: 0.10.62
       next-tick: 1.1.0
 
-  /tiny-emitter@2.1.0:
-    resolution:
-      { integrity: sha512-NB6Dk1A9xgQPMoGqC5CVXn123gWyte215ONT5Pp5a0yt4nlEoO1ZWeCwpncaekPHXO60i47ihFnZPiRPjRMq4Q== }
-    dev: false
-
   /title-case@3.0.3:
     resolution:
       { integrity: sha512-e1zGYRvbffpcHIrnuqT0Dh+gEJtDaxDSoG4JAIpq4oDFyooziLBIiYQv0GBT4FUAnUop5uZ1hiIAj7oAF6sOCA== }
@@ -14278,14 +14258,6 @@ packages:
     engines: { node: ">=0.10.0" }
     dependencies:
       normalize-path: 2.1.1
-
-  /unleash-proxy-client@2.5.0:
-    resolution:
-      { integrity: sha512-GWYLcQDW2UVhqAVwZX7jNzD6Lp96UJXEi66r9MiDd/C3Xw7rbTdFziNJAhEZpLNqR7j75+TfZaEYMCMy/k778g== }
-    dependencies:
-      tiny-emitter: 2.1.0
-      uuid: 8.3.2
-    dev: false
 
   /unpipe@1.0.0:
     resolution:
