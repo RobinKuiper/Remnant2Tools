@@ -57,7 +57,7 @@ create_release:
   needs:
     - build:install
   script:
-    - apk add git python
+    - apk update && apk add python3 git
     - pip install --upgrade python-gitlab
     - npx semantic-release
     - python scripts/updateGitlab.py $GITLAB_TOKEN $CI_PROJECT_ID $CI_COMMIT_REF_NAME
