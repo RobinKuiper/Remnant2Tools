@@ -48,13 +48,18 @@ interface Props {
   width?: string | number;
   setQuery: (value: ((prevState: string) => string) | string) => void;
   query: string;
+  tooltip?: string;
   disabled?: boolean;
   ref?: MutableRefObject<HTMLInputElement | undefined>;
 }
 
-const Search = ({ placeholder = "", width, setQuery, query, disabled = false, ref }: Props) => {
+const Search = ({ placeholder = "", width, setQuery, query, disabled = false, ref, tooltip = "" }: Props) => {
   return (
-    <Container width={width}>
+    <Container 
+      width={width}
+      data-tooltip-id="tooltip"
+      data-tooltip-content={tooltip}
+    >
       <input
         ref={ref}
         type="text"

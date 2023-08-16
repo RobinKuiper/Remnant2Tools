@@ -211,6 +211,7 @@ const Category = ({ path, data }) => {
                 query={query}
                 setQuery={setQuery}
                 width={"250px"}
+                tooltip="Searches through name, description, world, etc."
               />
             )}
 
@@ -228,6 +229,7 @@ const Category = ({ path, data }) => {
                   setQuery={setQuery}
                   query={query}
                   width={"250px"}
+                  tooltip="Searches through name, description, world, etc."
                 />
               )}
             </div>
