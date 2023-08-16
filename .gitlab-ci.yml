@@ -26,15 +26,15 @@ build:install:
   script:
     - pnpm install
   rules:
-    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+    - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
       changes:
         - pnpm-lock.yaml
       when: always
-    - if: "$CI_COMMIT_REF_NAME == 'master'"
+    - if: $CI_COMMIT_REF_NAME == 'master'
       changes:
         - pnpm-lock.yaml
       when: always
-    - if: "$CI_COMMIT_REF_NAME == 'staging'"
+    - if: $CI_COMMIT_REF_NAME == 'staging'
       changes:
         - pnpm-lock.yaml
       when: always
@@ -47,12 +47,27 @@ test:lint:
     reports:
       codequality: gl-code-quality-report.json
   rules:
-    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+    - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
       changes:
         - "**/*.{js,ts,jsx,tsx}"
       when: always
 
-.test:jest:
+create_release:
+  stage: deploy
+  needs:
+    - build:install
+  script:
+    - apk add git python
+    - pip install --upgrade python-gitlab
+    - npx semantic-release
+    - python scripts/updateGitlab.py $GITLAB_TOKEN $CI_PROJECT_ID $CI_COMMIT_REF_NAME
+  rules:
+    - if: $CI_COMMIT_REF_NAME == 'master'
+      when: always
+
+
+
+.test:jest: # disabled for now
   stage: test
   script:
     - pnpm test:gitlab
@@ -65,12 +80,12 @@ test:lint:
         coverage_format: cobertura
         path: coverage/cobertura-coverage.xml
   rules:
-    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+    - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
       changes:
         - "**/*.{js,ts,jsx,tsx}"
       when: always
 
-.pages:
+.pages: # switched to Vercel
   stage: deploy
   needs:
     - build:install
@@ -84,22 +99,16 @@ test:lint:
     paths:
       - public
   rules:
-    - if: "$CI_COMMIT_REF_NAME == 'master'"
+    - if: $CI_COMMIT_REF_NAME == 'master'
       when: always
 
-.firebase:
+.firebase: # switched to Vercel
   stage: deploy
   needs:
     - build:install
   before_script:
     - npm install -g pnpm firebase-tools
   script:
-    #    - rm ./src/pages/data.tsx
-    #    - export VERSION=$(cat .version)
-    #    - sed -i "s/SITE_VERSION/$VERSION/g" src/constants.ts
-    #    - sed -i "s/SITE_VERSION/$VERSION/g" static/humans.txt
-    #    - sed -i "s/CURRENT_DATE/$(date '+%Y-%m-%d')/g" src/constants.ts
-    #    - sed -i "s/CURRENT_DATE/$(date '+%Y-%m-%d')/g" static/humans.txt
     - pnpm preBuild
     - pnpm build
     - firebase deploy --token $FIREBASE_TOKEN
@@ -107,21 +116,8 @@ test:lint:
     name: Staging
     url: https://remnant-staging.rkuiper.nl
   rules:
-    - if: "$CI_COMMIT_REF_NAME == 'staging'"
+    - if: $CI_COMMIT_REF_NAME == 'staging'
       when: always
 
-create_release:
-  #  image: python:3.8-alpine
-  stage: deploy
-  #  cache: [] # Disable caching for this job
-  needs:
-    - build:install
-  #  before_script:
-  #    - pip install --upgrade python-gitlab
-  script:
-    - apk add git
-    - npx semantic-release
-  #    - python scripts/updateGitlab.py $GITLAB_TOKEN $CI_PROJECT_ID $CI_COMMIT_REF_NAME
-  rules:
-    - if: "$CI_COMMIT_REF_NAME == 'master'"
-      when: always
+# image: python:3.8-alpine # python alpine image
+# cache: [] # disable caching for a job
