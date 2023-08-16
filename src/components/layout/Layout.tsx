@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import { styled } from "styled-components";
 import TopBar from "./TopBar";
 import SettingsSidebar from "./SettingsSidebar";
@@ -6,7 +6,9 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Tooltip } from "react-tooltip";
 import Footer from "./Footer";
-import { SettingContext } from "../../context/SettingContext";
+import {toggleSidebar} from "../../features/settings/settingsSlice"
+import {useAppDispatch, useAppSelector} from "../../hooks";
+import {RootState} from "../../store";
 
 const Container = styled.div`
   height: 100%;
@@ -28,11 +30,12 @@ interface Props {
 }
 
 const Layout = ({ children }: Props) => {
-  const { showSettings, toggleShowSettings } = useContext(SettingContext);
+  const showSettingsSidebar = useAppSelector((state: RootState) => state.settings.showSidebar)
+  const dispatch = useAppDispatch();
 
   const handleClick = () => {
-    if (showSettings) {
-      toggleShowSettings();
+    if (showSettingsSidebar) {
+      dispatch(toggleSidebar());
     }
   };
 

@@ -1,7 +1,9 @@
-import React, { useContext } from "react";
+import React  from "react";
 import { styled } from "styled-components";
-import { BuildsContext } from "../../context/BuildContext";
 import { AiFillCopy, AiFillDelete } from "react-icons/ai";
+import { deleteBuild, copyBuild } from '../../features/data/dataSlice';
+import {useAppDispatch, useAppSelector} from "../../hooks";
+import {RootState} from "../../store";
 
 const Container = styled.div`
   margin-top: 10px;
@@ -38,7 +40,8 @@ const Container = styled.div`
 `;
 
 const BuildsSidebarContent = ({ setBuild, setOldName, setName, resetBuild, currentBuildName }) => {
-  const { builds, deleteBuild, copyBuild } = useContext(BuildsContext);
+  const { builds } = useAppSelector((state: RootState) => state.data)
+  const dispatch = useAppDispatch();
 
   const selectBuild = (name: string) => {
     setBuild(builds[name]);
@@ -58,10 +61,10 @@ const BuildsSidebarContent = ({ setBuild, setOldName, setName, resetBuild, curre
               </button>
 
               <div>
-                <button onClick={() => copyBuild(name)}>
+                <button onClick={() => dispatch(copyBuild(name))}>
                   <AiFillCopy />
                 </button>
-                <button onClick={() => deleteBuild(name)}>
+                <button onClick={() => dispatch(deleteBuild(name))}>
                   <AiFillDelete />
                 </button>
               </div>

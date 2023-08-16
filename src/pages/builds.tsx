@@ -1,8 +1,7 @@
 import { graphql } from "gatsby";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { styled } from "styled-components";
 import BuildsSidebarContent from "../components/builder/BuildsSidebarContent";
-import { BuildsContext } from "../context/BuildContext";
 import type { Build, Item } from "../interface/Build";
 import "react-tooltip/dist/react-tooltip.css";
 import BuildInterface from "../components/builder/BuildInterface";
@@ -14,10 +13,12 @@ import ArchetypesInterface from "../components/builder/ArchetypesInterface";
 import TraitsInterface from "../components/builder/TraitsInterface";
 import Settings from "../components/builder/Settings";
 import BuildStatisticsSidebarContent from "../components/builder/BuildStatisticsSidebarContent";
-import { SettingContext } from "../context/SettingContext";
 import BackgroundImage from "../components/BackgroundImage";
 import Layout from "../components/layout/Layout";
 import PageLayout from "../components/layout/PageLayout";
+import {useAppDispatch, useAppSelector} from "../hooks";
+import {RootState} from "../store";
+import { saveBuild } from '../features/data/dataSlice';
 
 const NEW_BUILD: Build = {
   headpiece: null,
@@ -74,8 +75,8 @@ const Container = styled.div`
 `;
 
 const Builds = props => {
-  const { saveBuild, builds } = useContext(BuildsContext);
-  const { startSaving, stopSaving } = useContext(SettingContext);
+  const dispatch = useAppDispatch();
+  const { builds } = useAppSelector((state: RootState) => state.data)
   const { images, bgImage } = props.data;
   const [modalIsOpen, setIsOpen] = useState(false);
   const [modalFilters, setModalFilters] = useState<Filter[]>([]);
@@ -116,34 +117,16 @@ const Builds = props => {
       build.mods[index] = item.links?.mod ? item.links.mod : null;
     }
   };
-  const save = (build: Build) => {
-    startSaving();
-    let usedName = name;
-    if (!usedName || usedName === "") {
-      usedName = "New Build";
-
-      let i = 0;
-      while (builds[usedName]) {
-        i++;
-        usedName = `New Build ${i}`;
-      }
-
-      setName(usedName);
-      setOldName(usedName);
-    }
-
-    saveBuild(usedName, build);
-    stopSaving();
-  };
   const handleLevelChange = (level: number, buildPath: string) => {
     updateBuildValue(buildPath, level);
   };
   const updateBuildValue = (buildPath: string, value: any) => {
     const nBuild = { ...build };
+    console.log(nBuild)
     setFieldValue(nBuild, buildPath, value);
     preProcessBuild(value, nBuild, buildPath);
     setBuild(nBuild);
-    save(nBuild);
+    dispatch(saveBuild({name, build: nBuild}));
   };
   const preProcessBuild = (value: any, nBuild: Build, buildPath: string) => {
     if (buildPath === "archetype1.level") {

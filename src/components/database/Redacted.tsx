@@ -1,6 +1,7 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { styled } from "styled-components";
-import { SettingContext } from "../../context/SettingContext";
+import {useAppSelector} from "../../hooks";
+import {RootState} from "../../store";
 
 const Container = styled.span`
   cursor: pointer;
@@ -21,14 +22,14 @@ interface Props {
 }
 
 const Redacted = ({ value, defaultShow = false, bgColor = "#f1f1f1", tooltip }: Props) => {
-  const { defaultShowRedacted } = useContext(SettingContext);
-  const [show, setShow] = useState(defaultShow);
+  const { showRedacted } = useAppSelector((state: RootState) => state.settings)
+  const [show, setShow] = useState(showRedacted);
 
   const toggleShow = () => setShow(!show);
 
   useEffect(() => {
-    setShow(defaultShow || defaultShowRedacted);
-  }, [defaultShow, defaultShowRedacted]);
+    setShow(defaultShow || showRedacted);
+  }, [defaultShow, showRedacted]);
 
   return (
     <Container

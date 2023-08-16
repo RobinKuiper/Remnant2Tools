@@ -1,11 +1,12 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { styled } from "styled-components";
-import { DataContext } from "../../context/DataContext";
 import { findImageById } from "../../helpers";
 import ListItem from "./ListItem";
 import GridItem from "./GridItem";
-import { SettingContext } from "../../context/SettingContext";
 import ItemTooltip from "./ItemTooltip";
+import {useAppDispatch, useAppSelector} from "../../hooks";
+import {RootState} from "../../store";
+import { toggleUnlock } from '../../features/data/dataSlice';
 
 const Container = styled.div`
   position: relative;
@@ -72,8 +73,9 @@ interface Props {
 }
 
 const Item = ({ item, category, images, type }: Props) => {
-  const { view, startSaving, stopSaving } = useContext(SettingContext);
-  const { toggleUnlock, unlocks } = useContext(DataContext);
+  const dispatch = useAppDispatch();
+  const { view } = useAppSelector((state: RootState) => state.settings)
+  const { unlocks } = useAppSelector((state: RootState) => state.data)
   const [unlocked, setUnlocked] = useState(unlocks.includes(item.externalId));
   const [level, setLevel] = useState<number>();
   const image = findImageById(item.externalId, images);
@@ -83,10 +85,8 @@ const Item = ({ item, category, images, type }: Props) => {
   }, [unlocks]);
 
   const handleChange = e => {
-    startSaving();
     const id = parseInt(e.target.id);
-    toggleUnlock(id);
-    stopSaving();
+    dispatch(toggleUnlock(id));
   };
 
   return (

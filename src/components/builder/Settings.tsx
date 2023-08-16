@@ -1,7 +1,8 @@
-import React, { useContext } from "react";
+import React from "react";
 import { AiFillLock, AiFillUnlock } from "react-icons/ai";
 import { styled } from "styled-components";
-import { BuildsContext } from "../../context/BuildContext";
+import { changeName } from '../../features/data/dataSlice';
+import {useAppDispatch} from "../../hooks";
 
 const Container = styled.div`
   display: flex;
@@ -37,10 +38,10 @@ interface Props {
 }
 
 const Settings = ({ name, oldName, toggleOnlyUnlocked, onlyUnlocked, setName }: Props) => {
-  const { changeName } = useContext(BuildsContext);
+  const dispatch = useAppDispatch();
 
   const handleNameSave = () => {
-    changeName(oldName, name);
+    dispatch(changeName({ oldName, newName: name }));
   };
 
   const handleNameChange = e => {

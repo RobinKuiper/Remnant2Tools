@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { MAX_TRAIT_POINTS } from "../../constants";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import { findImageById, restrainNumber } from "../../helpers";
@@ -6,8 +6,9 @@ import { styled } from "styled-components";
 import type { Build } from "../../interface/Build";
 import { graphql, useStaticQuery } from "gatsby";
 import { sorter } from "../../dataHelpers";
-import { DataContext } from "../../context/DataContext";
 import Search from "../Search";
+import {useAppSelector} from "../../hooks";
+import {RootState} from "../../store";
 
 const Container = styled.div`
   margin-top: 20px;
@@ -124,7 +125,7 @@ const TraitsInterface = ({ build, showOnlyUnlocked, updateBuildValue }: Props) =
       }
     }
   `);
-  const { unlocks } = useContext(DataContext);
+  const { unlocks } = useAppSelector((state: RootState) => state.data)
   const images = data.images.nodes;
   const [traits, setTraits] = useState([]);
   const [query, setQuery] = useState("");

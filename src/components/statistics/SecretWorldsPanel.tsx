@@ -1,8 +1,9 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { styled } from "styled-components";
 import Redacted from "../database/Redacted";
 import { graphql, useStaticQuery } from "gatsby";
-import { DataContext } from "../../context/DataContext";
+import {useAppSelector} from "../../hooks";
+import {RootState} from "../../store";
 
 const Container = styled.div`
   .values {
@@ -25,7 +26,7 @@ const SecretWorldsPanel = () => {
       }
     }
   `);
-  const { unlocks } = useContext(DataContext);
+  const { unlocks } = useAppSelector((state: RootState) => state.data)
   const [worldsWithSecrets, setWorldsWithSecrets] = useState<string[]>([]);
 
   useEffect(() => {

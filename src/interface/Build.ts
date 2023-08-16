@@ -37,11 +37,11 @@ export interface Build {
   melee: Weapon | null;
   offhand: Weapon | null;
   relic: Weapon | null;
-  fragments: [Item?, Item?, Item?];
-  mutators: [Item?, Item?, Item?];
-  mods: [Mod?, Mod?, Mod?];
+  fragments: Item[];
+  mutators: Item[];
+  mods: Mod[];
   amulet: Item | null;
-  rings: [Item?, Item?, Item?, Item?];
+  rings: Item[];
   usedTraitPoints: number;
   traits: {
     [key: string]: number;
