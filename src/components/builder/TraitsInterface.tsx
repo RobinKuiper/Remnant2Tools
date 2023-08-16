@@ -7,18 +7,26 @@ import type { Build } from "../../interface/Build";
 import { graphql, useStaticQuery } from "gatsby";
 import { sorter } from "../../dataHelpers";
 import { DataContext } from "../../context/DataContext";
+import Search from "../Search";
 
 const Container = styled.div`
   margin-top: 20px;
 
-  .totals {
+  .traits-interface-top {
     display: flex;
-    justify-content: center;
+    flex-direction: row;
     align-items: center;
-    gap: 10px;
-    margin: 20px;
-    font-size: 1.2em;
-    font-weight: 900;
+    justify-content: center;
+    
+    .totals {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      margin: 20px;
+      font-size: 1.2em;
+      font-weight: 900;
+    }
   }
 
   .items {
@@ -119,6 +127,7 @@ const TraitsInterface = ({ build, showOnlyUnlocked, updateBuildValue }: Props) =
   const { unlocks } = useContext(DataContext);
   const images = data.images.nodes;
   const [traits, setTraits] = useState([]);
+  const [query, setQuery] = useState("");
   const [currentTotalPoints, setCurrentTotalPoints] = useState(0);
 
   useEffect(() => {
@@ -126,8 +135,11 @@ const TraitsInterface = ({ build, showOnlyUnlocked, updateBuildValue }: Props) =
     if (showOnlyUnlocked) {
       traits = traits.filter(item => unlocks.includes(item.externalId));
     }
+    if (query && query !== "") {
+      traits = traits.filter(item => item.name.toLowerCase().includes(query.toLowerCase()))
+    }
     setTraits(traits);
-  }, [data, showOnlyUnlocked, unlocks]);
+  }, [data.traits, showOnlyUnlocked, unlocks, query]);
   useEffect(() => {
     let total = 0;
     traits.forEach(({ fragment }) => {
@@ -165,11 +177,15 @@ const TraitsInterface = ({ build, showOnlyUnlocked, updateBuildValue }: Props) =
 
   return (
     <Container>
-      <div className="totals">
-        <TraitCircle type="trait" />
-        <span>
+      <div className="traits-interface-top">
+        <div className="totals">
+          <TraitCircle type="trait" />
+          <span>
           {currentTotalPoints}/{MAX_TRAIT_POINTS} Trait points
         </span>
+        </div>
+
+        <Search query={query} setQuery={setQuery} placeholder="Search trait" />
       </div>
       <div className="items">
         {traits.map(trait => (

@@ -4,6 +4,7 @@
 
 ## 15-08-2023
 
+- Trait search in builder
 - Google sync
 - Improved ui performance
 - Added a global search feature in the top bar to search through all data

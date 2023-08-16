@@ -45,7 +45,7 @@ const Container = styled.span`
 interface Props {
   placeholder?: string;
   width?: string | number;
-  setQuery: ((prevState: string) => string);
+  setQuery: (value: (((prevState: string) => string) | string)) => void;
   query: string;
   disabled?: boolean;
 }
