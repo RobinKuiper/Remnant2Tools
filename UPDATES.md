@@ -2,7 +2,11 @@
 
 [![Latest Release](https://gitlab.com/RobinKuiper/remnantcollectables/-/badges/release.svg)](https://gitlab.com/RobinKuiper/remnantcollectables/-/releases)
 
-## 16-08-2023
+## Next
+
+- Mobile layout improvements
+
+## v1.2.0
 
 - Added a way to link your Google account and save the unlocks data to Google Drive
 - Added a global search feature in the top bar to search through all data (with keyboard navigation)

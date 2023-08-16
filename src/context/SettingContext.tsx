@@ -4,7 +4,7 @@ const DEFAULT_VALUES = {
   darkMode: true,
   hideUnlocked: false,
   showSettings: false,
-  defaultView: "list",
+  defaultView: "grid",
   defaultShowRedacted: false,
 };
 
@@ -15,6 +15,7 @@ interface SettingContextData {
   view: string;
   defaultShowRedacted: boolean;
   saving: boolean;
+  isMobile: boolean;
   toggleDarkMode: () => void;
   toggleHideUnlocked: () => void;
   toggleShowSettings: () => void;
@@ -31,6 +32,7 @@ const SettingContext = createContext<SettingContextData>({
   view: DEFAULT_VALUES.defaultView,
   defaultShowRedacted: DEFAULT_VALUES.defaultShowRedacted,
   saving: false,
+  isMobile: false,
   toggleDarkMode: () => {},
   toggleHideUnlocked: () => {},
   toggleShowSettings: () => {},
@@ -51,6 +53,7 @@ const SettingProvider: React.FC<Props> = ({ children }: Props) => {
   const [view, setView] = useState<string>(DEFAULT_VALUES.defaultView);
   const [defaultShowRedacted, setDefaultShowRedacted] = useState<boolean>(DEFAULT_VALUES.defaultShowRedacted);
   const [saving, setSaving] = useState<boolean>(false);
+  const [isMobile, setIsMobile] = useState<boolean>(false);
 
   useEffect(() => {
     const storedDarkMode = localStorage.getItem("darkMode");
@@ -67,7 +70,35 @@ const SettingProvider: React.FC<Props> = ({ children }: Props) => {
     if (storedView) {
       setView(storedView);
     }
+    
+    checkIfMobile();
   }, []);
+  
+  // Force grid view if mobile
+  useEffect(() => {
+    if (isMobile) {
+      setView("grid");
+    }
+  }, [isMobile]);
+
+  const checkIfMobile = () => {
+    const mediaQuery = window.matchMedia("(max-width: 768px)"); // Adjust the breakpoint as per your needs
+
+    const handleResize = (event: MediaQueryListEvent) => {
+      setIsMobile(event.matches);
+    };
+
+    // Initial check
+    setIsMobile(mediaQuery.matches);
+
+    // Listen for changes in the media query
+    mediaQuery.addEventListener("change", handleResize);
+
+    // Clean up the event listener when the component unmounts
+    return () => {
+      mediaQuery.removeEventListener("change", handleResize);
+    };
+  }
 
   const toggleDarkMode = () => {
     const newDarkMode = !darkMode;
