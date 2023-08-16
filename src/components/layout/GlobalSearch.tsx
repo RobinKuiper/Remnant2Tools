@@ -116,7 +116,12 @@ const GlobalSearch = () => {
 
   return (
     <Container>
-      <Search placeholder="Search" query={query} setQuery={setQuery} tooltip="Searches through name, description, world, etc." />
+      <Search
+        placeholder="Search"
+        query={query}
+        setQuery={setQuery}
+        tooltip="Searches through name, description, world, etc."
+      />
 
       <SearchResults>
         {searchedItems.map((item, i) => (
