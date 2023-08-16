@@ -7,7 +7,7 @@
 - Trait search in builder
 - Google sync
 - Improved ui performance
-- Added a global search feature in the top bar to search through all data
+- Added a global search feature in the top bar to search through all data (with keyboard navigation)
 - Added a way to unlock an item from the single item page
 - Added a "Saved" indicator to the top bar
 - Removed the annoying "Saved" toast

@@ -121,13 +121,13 @@ const Builds = props => {
     let usedName = name;
     if (!usedName || usedName === "") {
       usedName = "New Build";
-      
+
       let i = 0;
       while (builds[usedName]) {
         i++;
-        usedName = `New Build ${i}`
+        usedName = `New Build ${i}`;
       }
-      
+
       setName(usedName);
       setOldName(usedName);
     }

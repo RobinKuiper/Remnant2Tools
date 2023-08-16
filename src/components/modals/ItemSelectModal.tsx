@@ -6,7 +6,7 @@ import { styled } from "styled-components";
 import { findImageById } from "../../helpers";
 import Search from "../Search";
 import { graphql, useStaticQuery } from "gatsby";
-import { filterItems, searchItems, sorter } from "../../dataHelpers";
+import { filterItems, sorter } from "../../dataHelpers";
 import type { Filter } from "../../interface/IData";
 import Loader from "../Loader";
 import { DataContext } from "../../context/DataContext";
@@ -134,11 +134,11 @@ const ItemSelectModal = ({ setIsOpen, isOpen, filters, callback, onlyShowUnlocke
     let searchedItems = itemsFiltered;
     if (query && query !== "") {
       const filter = item => item.name.toLowerCase().includes(query.toLowerCase());
-      searchedItems = searchedItems.filter(filter)
+      searchedItems = searchedItems.filter(filter);
     }
 
     const sort = (a, b) => sorter(a, b, "name");
-    searchedItems.sort(sort)
+    searchedItems.sort(sort);
     setItemsToShow(searchedItems);
     setLoading(false);
   }, [query, itemsFiltered]);

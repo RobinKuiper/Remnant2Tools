@@ -149,7 +149,7 @@ const GDriveButton = styled.button`
   .google-icon {
     background: #fff;
     padding: 7px;
-    
+
     &.active {
       svg {
         animation: rotation 2s infinite linear;

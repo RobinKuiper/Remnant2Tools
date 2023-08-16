@@ -136,7 +136,7 @@ const TraitsInterface = ({ build, showOnlyUnlocked, updateBuildValue }: Props) =
       traits = traits.filter(item => unlocks.includes(item.externalId));
     }
     if (query && query !== "") {
-      traits = traits.filter(item => item.name.toLowerCase().includes(query.toLowerCase()))
+      traits = traits.filter(item => item.name.toLowerCase().includes(query.toLowerCase()));
     }
     setTraits(traits);
   }, [data.traits, showOnlyUnlocked, unlocks, query]);
@@ -181,8 +181,8 @@ const TraitsInterface = ({ build, showOnlyUnlocked, updateBuildValue }: Props) =
         <div className="totals">
           <TraitCircle type="trait" />
           <span>
-          {currentTotalPoints}/{MAX_TRAIT_POINTS} Trait points
-        </span>
+            {currentTotalPoints}/{MAX_TRAIT_POINTS} Trait points
+          </span>
         </div>
 
         <Search query={query} setQuery={setQuery} placeholder="Search trait" />
