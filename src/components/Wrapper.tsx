@@ -11,7 +11,8 @@ interface Props {
 
 const Wrapper = ({ children }: Props) => {
   return (
-    <GoogleOAuthProvider clientId="851510059194-6e0lir2109658livib14ockc0snumh7h.apps.googleusercontent.com">
+    // TODO: change to env variable
+    <GoogleOAuthProvider clientId="712088662534-av71tvgru83it5ll3tra1snpgfund263.apps.googleusercontent.com">
       <AuthProvider>
         <SettingProvider>
           <DataProvider>
