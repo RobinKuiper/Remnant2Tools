@@ -55,7 +55,7 @@ test:lint:
 create_release:
   stage: deploy
   script:
-    - apk update && apk add python3 git
+    - apk update && apk add python3 git py3-pip
     - pip install --upgrade python-gitlab
     - npx semantic-release
     - python scripts/updateGitlab.py $GITLAB_TOKEN $CI_PROJECT_ID $CI_COMMIT_REF_NAME
