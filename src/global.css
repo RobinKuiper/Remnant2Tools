@@ -17,9 +17,13 @@ body,
   min-height: 100vh;
 }
 
+/* 1. Roboto */
+/* 2. Montserrat */
+/* 3. Bricolage Grotesque */
+
 body {
   color: #000;
-  font-family: Roboto, serif;
+  font-family: "Montserrat", serif;
   margin: 0;
   padding: 0;
   background: repeating-linear-gradient(0deg, #fff 25%, #fff 50%, #dadada 50%, #dadada 75%, #fff 100%);
