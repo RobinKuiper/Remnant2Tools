@@ -55,11 +55,7 @@ interface Props {
 
 const Search = ({ placeholder = "", width, setQuery, query, disabled = false, ref, tooltip = "" }: Props) => {
   return (
-    <Container 
-      width={width}
-      data-tooltip-id="tooltip"
-      data-tooltip-content={tooltip}
-    >
+    <Container width={width} data-tooltip-id="tooltip" data-tooltip-content={tooltip}>
       <input
         ref={ref}
         type="text"

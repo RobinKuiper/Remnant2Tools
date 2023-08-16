@@ -14,6 +14,7 @@ import { FaGoogleDrive } from "react-icons/fa";
 import Loader from "../Loader";
 import { toast } from "react-toastify";
 import { refreshTokens } from "../../helpers";
+import { useFlag } from "@unleash/proxy-client-react";
 
 const Container = styled.div`
   position: fixed;
@@ -165,6 +166,8 @@ const GDriveButton = styled.button`
 `;
 
 const SettingsSidebar = () => {
+  const isBrowser = typeof window !== "undefined";
+  const googleEnabled = useFlag("google-integration");
   const { showSettings, defaultShowRedacted, toggleDefaultShowRedacted } = useContext(SettingContext);
   const { isLoggedIn, loggingIn, login, logout } = useContext(AuthContext);
   const { updateUnlocks, unlocks } = useContext(DataContext);
@@ -296,25 +299,27 @@ const SettingsSidebar = () => {
     <Container className={showSettings && "active"}>
       <h2>Settings</h2>
 
-      <div className="google-login-setting-item" data-tooltip-id="google-login-tooltip" data-tooltip-place="bottom">
-        <GDriveButton className="google-drive-button" onClick={handleGoogleLink} disabled={loggingIn}>
-          <div className={`google-icon ${loggingIn && "active"}`}>{GoogleIcon}</div>
-          <span className="google-text">
-            {loggingIn ? "Linking..." : isLoggedIn ? "Unlink from Google" : "Link with Google"}
-          </span>
-        </GDriveButton>
-        <Tooltip id="google-login-tooltip">
-          <p>
-            Linking to Google will save your data to your Google Drive. Saving happens once each{" "}
-            <strong>{MAX_GOOGLE_SAVE_TIME} seconds</strong> if their are changes.
-          </p>
-          <p>At the moment this only works for unlockable data.</p>
-          <p>
-            This will run as a test for some time to see how much resources this requires. If the resources are
-            manageable I will also implement this for builds.
-          </p>
-        </Tooltip>
-      </div>
+      {(googleEnabled || (isBrowser && localStorage.getItem("googleIntegration"))) && (
+        <div className="google-login-setting-item" data-tooltip-id="google-login-tooltip" data-tooltip-place="bottom">
+          <GDriveButton className="google-drive-button" onClick={handleGoogleLink} disabled={loggingIn}>
+            <div className={`google-icon ${loggingIn && "active"}`}>{GoogleIcon}</div>
+            <span className="google-text">
+              {loggingIn ? "Linking..." : isLoggedIn ? "Unlink from Google" : "Link with Google"}
+            </span>
+          </GDriveButton>
+          <Tooltip id="google-login-tooltip">
+            <p>
+              Linking to Google will save your data to your Google Drive. Saving happens once each{" "}
+              <strong>{MAX_GOOGLE_SAVE_TIME} seconds</strong> if their are changes.
+            </p>
+            <p>At the moment this only works for unlockable data.</p>
+            <p>
+              This will run as a test for some time to see how much resources this requires. If the resources are
+              manageable I will also implement this for builds.
+            </p>
+          </Tooltip>
+        </div>
+      )}
 
       <div className="layout">
         <h3>Data</h3>
@@ -354,15 +359,17 @@ const SettingsSidebar = () => {
             <textarea ref={unlockDataRef}></textarea>
           </div>
           <div className="buttons">
-            <button
-              onClick={retrieveFromGoogleDrive}
-              data-tooltip-id="tooltip"
-              data-tooltip-content={"Import data from Google Drive"}
-              data-tooltip-place="bottom"
-              disabled={!isLoggedIn || retrievingFromGoogle}
-            >
-              {retrievingFromGoogle ? <Loader size="25px" color="#fff" /> : <FaGoogleDrive size="25px" />}
-            </button>
+            {(googleEnabled || (isBrowser && localStorage.getItem("googleIntegration"))) && (
+              <button
+                onClick={retrieveFromGoogleDrive}
+                data-tooltip-id="tooltip"
+                data-tooltip-content={"Import data from Google Drive"}
+                data-tooltip-place="bottom"
+                disabled={!isLoggedIn || retrievingFromGoogle}
+              >
+                {retrievingFromGoogle ? <Loader size="25px" color="#fff" /> : <FaGoogleDrive size="25px" />}
+              </button>
+            )}
 
             <button
               onClick={saveUnlocks}
