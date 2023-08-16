@@ -1,13 +1,12 @@
-import { Link, graphql, useStaticQuery } from "gatsby";
-import React, {useContext, useEffect, useState} from "react";
+import { Link } from "gatsby";
+import React, { useContext, useState } from "react";
 import { styled } from "styled-components";
 import { Flex } from "../../style/global";
 import { RiSettings3Line } from "react-icons/ri";
 import { SettingContext } from "../../context/SettingContext";
 import { StaticImage } from "gatsby-plugin-image";
 import SavingIndicator from "./SavingIndicator";
-import Search from "../Search";
-import { searchItems } from "../../dataHelpers";
+import GlobalSearch from "./GlobalSearch";
 
 const Container = styled.div`
   position: fixed;
@@ -65,14 +64,6 @@ const Container = styled.div`
 
       &.active svg {
         transform: rotate(0deg);
-      }
-    }
-
-    .search {
-      position: relative;
-
-      @media (max-width: 670px) {
-        display: none;
       }
     }
   }
@@ -154,71 +145,14 @@ const Hamburger = styled.button`
   }
 `;
 
-const SearchResults = styled.div`
-  position: absolute;
-  left: 0;
-  top: 50px;
-  background: #292929;
-  width: 100%;
-
-  .result {
-    padding: 10px;
-    
-    &:hover {
-      background: #000;
-    }
-
-    .title {
-    }
-
-    .info {
-      display: flex;
-      font-size: 0.7em;
-
-      span:not(:last-child) {
-        border-right: 1px solid #fff;
-        padding-right: 5px;
-        margin-right: 5px;
-      }
-    }
-  }
-`;
-
 const TopBar = () => {
-  const { items } = useStaticQuery(graphql`
-    {
-      items: allItem {
-        nodes {
-          externalId
-          name
-          description
-          fragment
-          category
-          type
-          race
-          armorset
-        }
-      }
-    }
-  `);
   const { toggleShowSettings, showSettings } = useContext(SettingContext);
   const [isOpen, setOpen] = useState(false);
-  const [query, setQuery] = useState("");
-  const [searchedItems, setSearchedItems] = useState([]);
   const url = typeof window !== "undefined" ? window.location.href : "";
 
   const toggleOpen = () => {
     setOpen(!isOpen);
   };
-  
-  useEffect(() => {
-    if (!query || query === "") {
-      setSearchedItems([]);
-    } else {
-      const foundItems = searchItems(items.nodes, query).slice(0, 10);
-      setSearchedItems(foundItems);
-    }
-  }, [query])
 
   return (
     <Container>
@@ -259,24 +193,7 @@ const TopBar = () => {
 
             <SavingIndicator />
 
-            <div className="search">
-              <Search placeholder="Search" query={query} setQuery={setQuery} />
-
-              <SearchResults>
-                {searchedItems.map(item => (
-                  <Link key={item.fragment} to={`/database/${item.category}/${item.fragment}`} title={item.title}>
-                    <div className="result">
-                      <span className="title">{item.name}</span>
-                      <div className="info">
-                        {item.category && <span>{item.category}</span>}
-                        {item.type && <span>{item.type}</span>}
-                        {item.race && <span>{item.race}</span>}
-                      </div>
-                    </div>
-                  </Link>
-                ))}
-              </SearchResults>
-            </div>
+            <GlobalSearch />
 
             <button className={`settings ${showSettings && "active"}`} onClick={toggleShowSettings}>
               <RiSettings3Line size="30px" />

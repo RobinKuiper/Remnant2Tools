@@ -1,7 +1,8 @@
+import type { MutableRefObject } from "react";
 import React from "react";
 import { AiOutlineSearch } from "react-icons/ai";
 import { styled } from "styled-components";
-import {ImCross} from "react-icons/im";
+import { ImCross } from "react-icons/im";
 
 const Container = styled.span`
   display: flex;
@@ -45,18 +46,31 @@ const Container = styled.span`
 interface Props {
   placeholder?: string;
   width?: string | number;
-  setQuery: (value: (((prevState: string) => string) | string)) => void;
+  setQuery: (value: ((prevState: string) => string) | string) => void;
   query: string;
   disabled?: boolean;
+  ref?: MutableRefObject<HTMLInputElement | undefined>;
 }
 
-const Search = ({ placeholder = "", width, setQuery, query, disabled = false }: Props) => {
+const Search = ({ placeholder = "", width, setQuery, query, disabled = false, ref }: Props) => {
   return (
     <Container width={width}>
-      <input type="text" placeholder={placeholder} value={query} onChange={e => setQuery(e.target.value)} disabled={disabled} autoFocus />
+      <input
+        ref={ref}
+        type="text"
+        placeholder={placeholder}
+        value={query}
+        onChange={e => setQuery(e.target.value)}
+        disabled={disabled}
+        autoFocus
+      />
       <span className="icon">
-        {!query ? <AiOutlineSearch size="25px" /> : (
-          <button onClick={() => setQuery("")}><ImCross size="15px" /></button>
+        {!query ? (
+          <AiOutlineSearch size="25px" />
+        ) : (
+          <button onClick={() => setQuery("")}>
+            <ImCross size="15px" />
+          </button>
         )}
       </span>
     </Container>
