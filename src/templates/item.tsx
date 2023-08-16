@@ -106,16 +106,24 @@ const Container = styled.div`
       }
     }
 
-    .information {
+    .item-descriptions {
       display: flex;
-      flex-wrap: wrap;
+      flex-wrap: nowrap;
       gap: 30px;
 
-      .left {
+      @media (max-width: 850px) {
+        flex-wrap: wrap;
+        justify-content: center;
       }
 
-      .right {
+      .item-descriptions-left {
+        
+      }
+
+      .item-descriptions-right {
         .section {
+          max-width: 400px;
+          
           h3 {
             font-size: 18px;
             font-weight: bold;
@@ -244,10 +252,10 @@ const Category = ({ data, pageContext, location }) => {
                 </div>
               </div>
 
-              <div className="information">
-                <div className="left">{(item.values || item.stats) && <ItemStatistics item={item} />}</div>
+              <div className="item-descriptions">
+                <div className="item-descriptions-left">{(item.values || item.stats) && <ItemStatistics item={item} />}</div>
 
-                <div className="right">
+                <div className="item-descriptions-right">
                   {item.description && (
                     <div className="section">
                       <h3>Description</h3>
