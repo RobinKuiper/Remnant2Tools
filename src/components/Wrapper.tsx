@@ -9,7 +9,7 @@ import { FlagProvider } from "@unleash/proxy-client-react";
 const unleashConfig = {
   url: `${process.env.GATSBY_UNLEASH_URL}api/frontend`,
   clientKey: process.env.GATSBY_UNLEASH_TOKEN,
-  refreshInterval: 60, //60*60, 
+  refreshInterval: 60, //60*60,
   appName: "Remnant II Tools",
 };
 

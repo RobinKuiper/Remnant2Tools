@@ -2,17 +2,17 @@
 
 [![Latest Release](https://gitlab.com/RobinKuiper/remnantcollectables/-/badges/release.svg)](https://gitlab.com/RobinKuiper/remnantcollectables/-/releases)
 
-## 15-08-2023
+## 16-08-2023
 
-- Trait search in builder
-- Google sync
-- Improved ui performance
+- Added a way to link your Google account and save the unlocks data to Google Drive
 - Added a global search feature in the top bar to search through all data (with keyboard navigation)
+- Added trait search on the [builder](https://remnant.rkuiper.nl/builds) (traits) page
 - Added a way to unlock an item from the single item page
 - Added a "Saved" indicator to the top bar
 - Removed the annoying "Saved" toast
 - Added tooltips to multiple buttons
 - Improved mobile layout for different pages
+- Improved ui performance (everything should feel smoother now)
 
 #### Data
 
