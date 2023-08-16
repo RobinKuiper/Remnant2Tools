@@ -63,7 +63,7 @@ const config: GatsbyConfig = {
     {
       resolve: `gatsby-plugin-google-fonts`,
       options: {
-        fonts: [`Fontdiner Swanky`, `roboto`],
+        fonts: [`Fontdiner Swanky`, `roboto`, `Bricolage Grotesque`, `Montserrat`],
         display: "swap",
       },
     },
