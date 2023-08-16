@@ -54,8 +54,6 @@ test:lint:
 
 create_release:
   stage: deploy
-  needs:
-    - build:install
   script:
     - apk update && apk add python3 git
     - pip install --upgrade python-gitlab
