@@ -72,7 +72,9 @@ const Container = styled.div`
 const MobileNavigation = styled.div`
   display: none;
   height: 100vh;
-  margin-top: 30px;
+  margin: 0 -20px;
+  padding-top: 20px;
+  background: #292929;
 
   transition: all 0.3s ease-in-out;
 
