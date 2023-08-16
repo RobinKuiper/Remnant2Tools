@@ -18,6 +18,7 @@ import PageLayout from "../components/layout/PageLayout";
 
 const Container = styled.div`
   padding: 20px;
+  min-height: 100vh;
 
   #content-heading {
     display: flex;
@@ -75,7 +76,7 @@ const Category = ({ path, data }) => {
   const type = getPageType(path);
   const isTracker = type === "tracker";
   const [filteredItems, setFilteredItems] = useState(items);
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useState<string>("");
   const [groupBy, setGroupBy] = useState(category.settings.defaultGroup);
   const [sortBy, setSortBy] = useState("name");
   const sortDir = 1;
@@ -207,7 +208,8 @@ const Category = ({ path, data }) => {
             {isTracker && (
               <Search
                 placeholder={`Search ${category.settings.fragment}`}
-                onChange={e => setQuery(e.target.value)}
+                query={query}
+                setQuery={setQuery}
                 width={"250px"}
               />
             )}
@@ -223,7 +225,8 @@ const Category = ({ path, data }) => {
               {!isTracker && (
                 <Search
                   placeholder={`Search ${category.settings.fragment}`}
-                  onChange={e => setQuery(e.target.value)}
+                  setQuery={setQuery}
+                  query={query}
                   width={"250px"}
                 />
               )}

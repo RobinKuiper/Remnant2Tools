@@ -4,6 +4,8 @@
 
 ## 15-08-2023
 
+- Google sync
+- Improved ui performance
 - Added a global search feature in the top bar to search through all data
 - Added a way to unlock an item from the single item page
 - Added a "Saved" indicator to the top bar

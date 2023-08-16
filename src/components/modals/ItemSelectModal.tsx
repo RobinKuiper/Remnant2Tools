@@ -172,7 +172,7 @@ const ItemSelectModal = ({ setIsOpen, isOpen, filters, callback, onlyShowUnlocke
     >
       <Content>
         <div id="search">
-          <Search placeholder={"Search items"} onChange={e => setQuery(e.target.value)} width={"100%"} />
+          <Search placeholder={"Search items"} query={query} setQuery={setQuery} width={"100%"} />
         </div>
 
         {!loading ? (

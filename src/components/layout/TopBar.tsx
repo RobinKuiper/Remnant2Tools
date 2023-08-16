@@ -1,5 +1,5 @@
 import { Link, graphql, useStaticQuery } from "gatsby";
-import React, { useContext, useState } from "react";
+import React, {useContext, useEffect, useState} from "react";
 import { styled } from "styled-components";
 import { Flex } from "../../style/global";
 import { RiSettings3Line } from "react-icons/ri";
@@ -163,6 +163,10 @@ const SearchResults = styled.div`
 
   .result {
     padding: 10px;
+    
+    &:hover {
+      background: #000;
+    }
 
     .title {
     }
@@ -199,23 +203,22 @@ const TopBar = () => {
   `);
   const { toggleShowSettings, showSettings } = useContext(SettingContext);
   const [isOpen, setOpen] = useState(false);
+  const [query, setQuery] = useState("");
   const [searchedItems, setSearchedItems] = useState([]);
   const url = typeof window !== "undefined" ? window.location.href : "";
 
   const toggleOpen = () => {
     setOpen(!isOpen);
   };
-
-  const handleSearch = e => {
-    const query = e.target.value;
-
+  
+  useEffect(() => {
     if (!query || query === "") {
       setSearchedItems([]);
     } else {
       const foundItems = searchItems(items.nodes, query).slice(0, 10);
       setSearchedItems(foundItems);
     }
-  };
+  }, [query])
 
   return (
     <Container>
@@ -257,7 +260,7 @@ const TopBar = () => {
             <SavingIndicator />
 
             <div className="search">
-              <Search placeholder="Search" onChange={handleSearch} />
+              <Search placeholder="Search" query={query} setQuery={setQuery} />
 
               <SearchResults>
                 {searchedItems.map(item => (

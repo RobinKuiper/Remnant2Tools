@@ -1,6 +1,7 @@
 import React from "react";
 import { AiOutlineSearch } from "react-icons/ai";
 import { styled } from "styled-components";
+import {ImCross} from "react-icons/im";
 
 const Container = styled.span`
   display: flex;
@@ -16,7 +17,7 @@ const Container = styled.span`
 
   .icon {
     position: absolute;
-    right: 0;
+    right: 3px;
     color: #000;
 
     transition: all 0.3s ease-in-out;
@@ -44,16 +45,19 @@ const Container = styled.span`
 interface Props {
   placeholder?: string;
   width?: string | number;
-  onChange?: (e: React.FormEvent<HTMLInputElement>) => void;
+  setQuery: ((prevState: string) => string);
+  query: string;
   disabled?: boolean;
 }
 
-const Search = ({ placeholder = "", width, onChange, disabled = false }: Props) => {
+const Search = ({ placeholder = "", width, setQuery, query, disabled = false }: Props) => {
   return (
     <Container width={width}>
-      <input type="text" placeholder={placeholder} onChange={onChange} disabled={disabled} autoFocus />
+      <input type="text" placeholder={placeholder} value={query} onChange={e => setQuery(e.target.value)} disabled={disabled} autoFocus />
       <span className="icon">
-        <AiOutlineSearch size="25px" />
+        {!query ? <AiOutlineSearch size="25px" /> : (
+          <button onClick={() => setQuery("")}><ImCross size="15px" /></button>
+        )}
       </span>
     </Container>
   );
