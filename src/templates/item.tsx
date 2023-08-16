@@ -117,13 +117,12 @@ const Container = styled.div`
       }
 
       .item-descriptions-left {
-        
       }
 
       .item-descriptions-right {
         .section {
           max-width: 400px;
-          
+
           h3 {
             font-size: 18px;
             font-weight: bold;
@@ -253,7 +252,9 @@ const Category = ({ data, pageContext, location }) => {
               </div>
 
               <div className="item-descriptions">
-                <div className="item-descriptions-left">{(item.values || item.stats) && <ItemStatistics item={item} />}</div>
+                <div className="item-descriptions-left">
+                  {(item.values || item.stats) && <ItemStatistics item={item} />}
+                </div>
 
                 <div className="item-descriptions-right">
                   {item.description && (

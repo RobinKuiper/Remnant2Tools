@@ -172,7 +172,13 @@ const ItemSelectModal = ({ setIsOpen, isOpen, filters, callback, onlyShowUnlocke
     >
       <Content>
         <div id="search">
-          <Search placeholder={"Search items"} query={query} setQuery={setQuery} width={"100%"} tooltip="Search by name" />
+          <Search
+            placeholder={"Search items"}
+            query={query}
+            setQuery={setQuery}
+            width={"100%"}
+            tooltip="Search by name"
+          />
         </div>
 
         {!loading ? (
