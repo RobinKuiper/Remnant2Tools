@@ -17,7 +17,7 @@ const Container = styled.div`
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    
+
     .totals {
       display: flex;
       justify-content: center;
@@ -35,9 +35,8 @@ const Container = styled.div`
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-
-    @media (max-width: 1500px) {
-    }
+    row-gap: 20px;
+    column-gap: 10px;
 
     .trait {
       display: flex;
@@ -50,8 +49,9 @@ const Container = styled.div`
       transition: all 0.3s ease-in-out;
 
       &.active {
-        box-shadow: 0 0 10px #670808;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.49);
         z-index: 10;
+        background: rgba(241, 241, 241, 0.62);
       }
 
       &:hover {
