@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 import { styled } from "styled-components";
 import { BiSolidLeftArrow, BiSolidRightArrow } from "react-icons/bi";
 
@@ -56,7 +56,7 @@ const Container = styled.div`
   @media (max-width: 1200px) {
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.8);
     transform: ${({ isopen, position }) =>
-      isopen ? `translateX(${position === "left" ? "-235px" : "235px"})` : "translateX(0px)"};
+      !isopen ? `translateX(${position === "left" ? "-235px" : "235px"})` : "translateX(0px)"};
     transition: all 0.3s ease-out;
 
     .opener {
@@ -85,7 +85,7 @@ const Sidebar = ({ children, position, useSidebarOpener = true, alwaysShowOpener
 
       {useSidebarOpener && (
         <div className="opener">
-          <button onClick={toggleOpen}>{!isOpen ? closeIcon : openIcon}</button>
+          <button onClick={toggleOpen}>{isOpen ? closeIcon : openIcon}</button>
         </div>
       )}
     </Container>
