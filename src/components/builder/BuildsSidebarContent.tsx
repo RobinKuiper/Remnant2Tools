@@ -1,7 +1,7 @@
-import React, {useContext} from "react";
-import {styled} from "styled-components";
-import {BuildsContext} from "../../context/BuildContext";
-import {AiFillCopy, AiFillDelete} from "react-icons/ai";
+import React, { useContext } from "react";
+import { styled } from "styled-components";
+import { BuildsContext } from "../../context/BuildContext";
+import { AiFillCopy, AiFillDelete } from "react-icons/ai";
 
 const BuildsSidebarContent = ({ setBuild, resetBuild, build }) => {
   const { builds, deleteBuild, copyBuild } = useContext(BuildsContext);

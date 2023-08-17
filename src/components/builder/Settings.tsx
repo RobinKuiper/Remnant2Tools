@@ -1,8 +1,8 @@
-import React, {useContext, useState} from "react";
-import {AiFillLock, AiFillUnlock} from "react-icons/ai";
-import {styled} from "styled-components";
-import {BuildsContext} from "../../context/BuildContext";
-import type {Build} from "../../interface/Build";
+import React, { useContext, useState } from "react";
+import { AiFillLock, AiFillUnlock } from "react-icons/ai";
+import { styled } from "styled-components";
+import { BuildsContext } from "../../context/BuildContext";
+import type { Build } from "../../interface/Build";
 
 const Container = styled.div`
   display: flex;

@@ -1,9 +1,9 @@
 import React from "react";
-import {GoogleOAuthProvider} from "@react-oauth/google";
-import {SettingProvider} from "../context/SettingContext";
-import {DataProvider} from "../context/DataContext";
-import {BuildsProvider} from "../context/BuildContext";
-import {AuthProvider} from "../context/AuthContext";
+import { GoogleOAuthProvider } from "@react-oauth/google";
+import { SettingProvider } from "../context/SettingContext";
+import { DataProvider } from "../context/DataContext";
+import { BuildsProvider } from "../context/BuildContext";
+import { AuthProvider } from "../context/AuthContext";
 
 interface Props {
   children: React.ReactNode;

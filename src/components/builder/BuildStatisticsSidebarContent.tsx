@@ -1,9 +1,9 @@
-import React, {useEffect, useState} from "react";
-import {styled} from "styled-components";
+import React, { useEffect, useState } from "react";
+import { styled } from "styled-components";
 import "react-toggle/style.css";
-import type {Build} from "../../interface/Build";
-import {calculateWeightType, getFieldValue, setFieldValue} from "../../dataHelpers";
-import {graphql, useStaticQuery} from "gatsby";
+import type { Build } from "../../interface/Build";
+import { calculateWeightType, getFieldValue, setFieldValue } from "../../dataHelpers";
+import { graphql, useStaticQuery } from "gatsby";
 
 const STATS = [
   {
@@ -43,15 +43,7 @@ interface Props {
 const BuildStatisticsSidebarContent = ({ build }: Props) => {
   const { items } = useStaticQuery(graphql`
     {
-      items: allItem(
-        filter: {
-          category: {
-            in: [
-              "armor"
-            ]
-          }
-        }
-      ) {
+      items: allItem(filter: { category: { in: ["armor"] } }) {
         nodes {
           externalId
           stats {
@@ -85,7 +77,7 @@ const BuildStatisticsSidebarContent = ({ build }: Props) => {
         if (itemId) {
           const item = items.nodes.find(node => node.externalId === itemId);
           if (item) {
-            value += getFieldValue(item, `stats.${stat.statisticsPath}`)
+            value += getFieldValue(item, `stats.${stat.statisticsPath}`);
           }
         }
 

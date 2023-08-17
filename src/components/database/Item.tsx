@@ -1,10 +1,10 @@
-import React, {useContext, useEffect, useState} from "react";
-import {styled} from "styled-components";
-import {DataContext} from "../../context/DataContext";
-import {findImageById} from "../../helpers";
+import React, { useContext, useEffect, useState } from "react";
+import { styled } from "styled-components";
+import { DataContext } from "../../context/DataContext";
+import { findImageById } from "../../helpers";
 import ListItem from "./ListItem";
 import GridItem from "./GridItem";
-import {SettingContext} from "../../context/SettingContext";
+import { SettingContext } from "../../context/SettingContext";
 import ItemTooltip from "./ItemTooltip";
 
 const Container = styled.div`

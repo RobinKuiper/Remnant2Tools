@@ -1,19 +1,19 @@
-import React, {useContext, useEffect, useRef, useState} from "react";
-import {styled} from "styled-components";
+import React, { useContext, useEffect, useRef, useState } from "react";
+import { styled } from "styled-components";
 import Toggle from "react-toggle";
-import {SettingContext} from "../../context/SettingContext";
-import {CiImport} from "react-icons/ci";
-import {AiOutlineCopy} from "react-icons/ai";
-import {DataContext} from "../../context/DataContext";
-import {BuildsContext} from "../../context/BuildContext";
-import {LAST_UPDATED, MAX_GOOGLE_SAVE_TIME} from "../../constants";
+import { SettingContext } from "../../context/SettingContext";
+import { CiImport } from "react-icons/ci";
+import { AiOutlineCopy } from "react-icons/ai";
+import { DataContext } from "../../context/DataContext";
+import { BuildsContext } from "../../context/BuildContext";
+import { LAST_UPDATED, MAX_GOOGLE_SAVE_TIME } from "../../constants";
 import "react-toggle/style.css";
-import {Tooltip} from "react-tooltip";
-import {AuthContext} from "../../context/AuthContext";
-import {FaGoogleDrive} from "react-icons/fa";
+import { Tooltip } from "react-tooltip";
+import { AuthContext } from "../../context/AuthContext";
+import { FaGoogleDrive } from "react-icons/fa";
 import Loader from "../Loader";
-import {toast} from "react-toastify";
-import {refreshTokens} from "../../helpers";
+import { toast } from "react-toastify";
+import { refreshTokens } from "../../helpers";
 
 const Container = styled.div`
   position: fixed;

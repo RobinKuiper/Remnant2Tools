@@ -1,4 +1,4 @@
-import React, {createContext, useEffect, useMemo, useState} from "react";
+import React, { createContext, useEffect, useMemo, useState } from "react";
 
 const DEFAULT_VALUES = {
   darkMode: true,

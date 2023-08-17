@@ -1,5 +1,5 @@
-import React, {createContext, useEffect, useMemo, useState} from "react";
-import type {Build} from "../interface/Build";
+import React, { createContext, useEffect, useMemo, useState } from "react";
+import type { Build } from "../interface/Build";
 import data from "../data/data.json";
 
 const DEFAULT_VALUES = {

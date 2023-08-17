@@ -1,8 +1,8 @@
 import React from "react";
-import {styled} from "styled-components";
+import { styled } from "styled-components";
 import ItemStatistics from "./ItemStatistics";
-import {GatsbyImage, getImage} from "gatsby-plugin-image";
-import {Tooltip} from "react-tooltip";
+import { GatsbyImage, getImage } from "gatsby-plugin-image";
+import { Tooltip } from "react-tooltip";
 
 const Container = styled.div`
   .head {
