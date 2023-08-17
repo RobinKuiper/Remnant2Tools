@@ -1,7 +1,7 @@
 import data from "./src/data/data.json";
-import type { GatsbyNode, NodeInput } from "gatsby";
-import { resolve } from "path";
-import { calculateStringMatchPercentage } from "./src/helpers";
+import type {GatsbyNode, NodeInput} from "gatsby";
+import {resolve} from "path";
+import {calculateStringMatchPercentage} from "./src/helpers";
 
 export const onCreateNode = ({ node, actions }) => {
   const { createNodeField } = actions;
@@ -15,7 +15,23 @@ export const onCreateNode = ({ node, actions }) => {
     }
     const name = arr[2].split(".")[0];
 
-    const item = data[categoryFragment].items.find(item => calculateStringMatchPercentage(item.fragment, name) > 80);
+    const items = data[categoryFragment].items.filter(item => calculateStringMatchPercentage(item.fragment, name) > 80);
+    
+    let item;
+    if (items.length > 1) {
+      let biggestIndex;
+      let currentMatchPerc = 0;
+      items.forEach((item, index) => {
+        const matchPerc = calculateStringMatchPercentage(item.fragment, name);
+        if (matchPerc > currentMatchPerc) {
+          currentMatchPerc = parseFloat(matchPerc);
+          biggestIndex = index;
+        }
+      })
+      item = items[biggestIndex];
+    } else {
+      item = items[0]
+    }
 
     if (item) {
       createNodeField({
