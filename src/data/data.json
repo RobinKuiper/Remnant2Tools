@@ -4317,14 +4317,14 @@
         "fragment": "constrained_heart"
       },
       {
-        "name": "Diverted Heart",
+        "name": "Diverting Heart",
         "description": "",
         "world": "Earth",
         "location": "Ward 13",
         "unlock": "Buy it from Cass after Defeating 18 World Bosses. Only counts if the boss is killed with the 2 different kills if they have it",
         "id": 397,
         "category": "relics",
-        "fragment": "diverted_heart"
+        "fragment": "diverting_heart"
       }
     ]
   },
