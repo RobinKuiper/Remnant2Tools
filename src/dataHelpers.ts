@@ -81,9 +81,15 @@ export const getAllItems = (trackables: boolean = false) => {
 };
 
 export const filterItems = (items: any[], filters: Filter[], filterUnlocked: boolean = false) => {
+  let unlocks = [];
+  const storedUnlocks = localStorage.getItem("data");
+  if (storedUnlocks) {
+    unlocks = JSON.parse(storedUnlocks);
+  }
+
   return items.filter(item => {
     let returnValue = true;
-    if (filterUnlocked && !isUnlocked(item.externalId)) {
+    if (filterUnlocked && !unlocks.includes(item.externalId)) {
       return false;
     } else {
       // Go through filters
