@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useMemo, useState } from "react";
+import React, {createContext, useEffect, useMemo, useState} from "react";
 
 const DEFAULT_VALUES = {
   darkMode: true,
@@ -70,10 +70,10 @@ const SettingProvider: React.FC<Props> = ({ children }: Props) => {
     if (storedView) {
       setView(storedView);
     }
-    
+
     checkIfMobile();
   }, []);
-  
+
   // Force grid view if mobile
   useEffect(() => {
     if (isMobile) {
@@ -98,7 +98,7 @@ const SettingProvider: React.FC<Props> = ({ children }: Props) => {
     return () => {
       mediaQuery.removeEventListener("change", handleResize);
     };
-  }
+  };
 
   const toggleDarkMode = () => {
     const newDarkMode = !darkMode;
