@@ -16,7 +16,7 @@ export const onCreateNode = ({ node, actions }) => {
     const name = arr[2].split(".")[0];
 
     const items = data[categoryFragment].items.filter(item => calculateStringMatchPercentage(item.fragment, name) > 80);
-    
+
     let item;
     if (items.length > 1) {
       let biggestIndex;
@@ -27,10 +27,10 @@ export const onCreateNode = ({ node, actions }) => {
           currentMatchPerc = parseFloat(matchPerc);
           biggestIndex = index;
         }
-      })
+      });
       item = items[biggestIndex];
     } else {
-      item = items[0]
+      item = items[0];
     }
 
     if (item) {

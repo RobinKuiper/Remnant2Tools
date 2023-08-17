@@ -15,7 +15,7 @@ const Wrapper = ({ children }: Props) => {
     <GoogleOAuthProvider clientId={process.env.GATSBY_CLIENT_ID}>
       <AuthProvider>
         <SettingProvider>
-          <DataProvider> 
+          <DataProvider>
             <BuildsProvider>{children}</BuildsProvider>
           </DataProvider>
         </SettingProvider>

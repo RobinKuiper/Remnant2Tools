@@ -1,6 +1,6 @@
 import React from "react";
 import BuildItemBox from "./BuildItemBox";
-import { styled } from "styled-components";
+import {styled} from "styled-components";
 
 const ITEM_BOXES = {
   topLeft: [
@@ -23,15 +23,15 @@ const ITEM_BOXES = {
   ],
   fragments: [
     {
-      buildPath: "fragments.0",
+      buildPath: "relic.fragment1",
       filters: [{ category: "relicfragments" }],
     },
     {
-      buildPath: "fragments.1",
+      buildPath: "relic.fragment2",
       filters: [{ category: "relicfragments" }],
     },
     {
-      buildPath: "fragments.2",
+      buildPath: "relic.fragment3",
       filters: [{ category: "relicfragments" }],
     },
   ],
@@ -41,23 +41,170 @@ const ITEM_BOXES = {
       filters: [{ category: "amulets" }],
     },
     {
-      buildPath: "rings.0",
+      buildPath: "ring1",
       filters: [{ category: "rings" }],
     },
     {
-      buildPath: "rings.1",
+      buildPath: "ring2",
       filters: [{ category: "rings" }],
     },
     {
-      buildPath: "rings.2",
+      buildPath: "ring3",
       filters: [{ category: "rings" }],
     },
     {
-      buildPath: "rings.3",
+      buildPath: "ring4",
       filters: [{ category: "rings" }],
     },
   ],
 };
+
+const BuildInterface = ({ build, images, openModal }) => {
+  return (
+    <Container>
+      <div id="top">
+        <div id="armor" className="item-category">
+          {ITEM_BOXES.topLeft.map(box => (
+            <BuildItemBox
+              key={box.buildPath}
+              openModal={openModal}
+              build={build}
+              images={images}
+              buildPath={box.buildPath}
+              filters={box.filters}
+            />
+          ))}
+
+          <div className="main-box">
+            <BuildItemBox
+              openModal={openModal}
+              build={build}
+              images={images}
+              buildPath={"relic.externalId"}
+              filters={[{ category: "relics" }]}
+            />
+
+            <div className="sub-boxes">
+              {ITEM_BOXES.fragments.map(box => (
+                <BuildItemBox
+                  key={box.buildPath}
+                  openModal={openModal}
+                  build={build}
+                  images={images}
+                  buildPath={box.buildPath}
+                  filters={box.filters}
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div id="stats"></div>
+
+        <div id="accessoires" className="item-category">
+          {ITEM_BOXES.topRight.map(box => (
+            <BuildItemBox
+              key={box.buildPath}
+              openModal={openModal}
+              build={build}
+              images={images}
+              buildPath={box.buildPath}
+              filters={box.filters}
+            />
+          ))}
+        </div>
+      </div>
+
+      <div id="bottom">
+        <div className="main-box">
+          <BuildItemBox
+            openModal={openModal}
+            build={build}
+            images={images}
+            buildPath={"mainHand.externalId"}
+            filters={[{ category: "weapons" }, { type: "Long Guns" }]}
+          />
+
+          <div className="sub-boxes">
+            <BuildItemBox
+              openModal={openModal}
+              build={build}
+              images={images}
+              buildPath={"mainHand.mod"}
+              filters={[{ category: "mods" }]}
+              disabled={!!(build.mainHand && build.mainHand.mod && build.mainHand.mod !== "")}
+            />
+            <BuildItemBox
+              openModal={openModal}
+              build={build}
+              images={images}
+              buildPath={"mainHand.mutator"}
+              filters={[{ category: "mutators" }]}
+            />
+          </div>
+        </div>
+        <div className="main-box">
+          <BuildItemBox
+            openModal={openModal}
+            build={build}
+            images={images}
+            buildPath={"melee.externalId"}
+            filters={[{ category: "weapons" }, { type: "Melee Weapons" }]}
+          />
+
+          <div className="sub-boxes">
+            {build.melee && build.melee.mod && (
+              <BuildItemBox
+                openModal={openModal}
+                build={build}
+                images={images}
+                buildPath={"melee.mod"}
+                filters={[{ category: "mods" }]}
+                disabled={true}
+              />
+            )}
+            <BuildItemBox
+              openModal={openModal}
+              build={build}
+              images={images}
+              buildPath={"melee.mutator"}
+              filters={[{ category: "mutators" }]}
+            />
+          </div>
+        </div>
+        <div className="main-box">
+          <BuildItemBox
+            openModal={openModal}
+            build={build}
+            images={images}
+            buildPath={"offhand.externalId"}
+            filters={[{ category: "weapons" }, { type: "Hand Guns" }]}
+          />
+
+          <div className="sub-boxes">
+            <BuildItemBox
+              openModal={openModal}
+              build={build}
+              images={images}
+              buildPath={"offhand.mod"}
+              filters={[{ category: "mods" }]}
+              disabled={!!(build.offhand && build.offhand.mod && build.offhand.mod !== "")}
+            />
+            <BuildItemBox
+              openModal={openModal}
+              build={build}
+              images={images}
+              buildPath={"offhand.mutator"}
+              filters={[{ category: "mutators" }]}
+            />
+          </div>
+        </div>
+      </div>
+    </Container>
+  );
+};
+
+export default BuildInterface;
 
 const Container = styled.div`
   display: flex;
@@ -172,150 +319,3 @@ const Container = styled.div`
   //  width: 75%;
   //}
 `;
-
-const BuildInterface = ({ build, images, openModal }) => {
-  return (
-    <Container>
-      <div id="top">
-        <div id="armor" className="item-category">
-          {ITEM_BOXES.topLeft.map(box => (
-            <BuildItemBox
-              key={box.buildPath}
-              openModal={openModal}
-              build={build}
-              images={images}
-              buildPath={box.buildPath}
-              filters={box.filters}
-            />
-          ))}
-
-          <div className="main-box">
-            <BuildItemBox
-              openModal={openModal}
-              build={build}
-              images={images}
-              buildPath={"relic"}
-              filters={[{ category: "relics" }]}
-            />
-
-            <div className="sub-boxes">
-              {ITEM_BOXES.fragments.map(box => (
-                <BuildItemBox
-                  key={box.buildPath}
-                  openModal={openModal}
-                  build={build}
-                  images={images}
-                  buildPath={box.buildPath}
-                  filters={box.filters}
-                />
-              ))}
-            </div>
-          </div>
-        </div>
-
-        <div id="stats"></div>
-
-        <div id="accessoires" className="item-category">
-          {ITEM_BOXES.topRight.map(box => (
-            <BuildItemBox
-              key={box.buildPath}
-              openModal={openModal}
-              build={build}
-              images={images}
-              buildPath={box.buildPath}
-              filters={box.filters}
-            />
-          ))}
-        </div>
-      </div>
-
-      <div id="bottom">
-        <div className="main-box">
-          <BuildItemBox
-            openModal={openModal}
-            build={build}
-            images={images}
-            buildPath={"mainHand"}
-            filters={[{ category: "weapons" }, { type: "Long Guns" }]}
-          />
-
-          <div className="sub-boxes">
-            <BuildItemBox
-              openModal={openModal}
-              build={build}
-              images={images}
-              buildPath={"mods.0"}
-              filters={[{ category: "mods" }]}
-              disabled={!!(build.mainHand && build.mainHand.mod && build.mainHand.mod !== "")}
-            />
-            <BuildItemBox
-              openModal={openModal}
-              build={build}
-              images={images}
-              buildPath={"mutators.0"}
-              filters={[{ category: "mutators" }]}
-            />
-          </div>
-        </div>
-        <div className="main-box">
-          <BuildItemBox
-            openModal={openModal}
-            build={build}
-            images={images}
-            buildPath={"melee"}
-            filters={[{ category: "weapons" }, { type: "Melee Weapons" }]}
-          />
-
-          <div className="sub-boxes">
-            {build.melee && build.melee.mod && build.melee.mod !== "" && (
-              <BuildItemBox
-                openModal={openModal}
-                build={build}
-                images={images}
-                buildPath={"mods.1"}
-                filters={[{ category: "mods" }]}
-                disabled={true}
-              />
-            )}
-            <BuildItemBox
-              openModal={openModal}
-              build={build}
-              images={images}
-              buildPath={"mutators.1"}
-              filters={[{ category: "mutators" }]}
-            />
-          </div>
-        </div>
-        <div className="main-box">
-          <BuildItemBox
-            openModal={openModal}
-            build={build}
-            images={images}
-            buildPath={"offhand"}
-            filters={[{ category: "weapons" }, { type: "Hand Guns" }]}
-          />
-
-          <div className="sub-boxes">
-            <BuildItemBox
-              openModal={openModal}
-              build={build}
-              images={images}
-              buildPath={"mods.2"}
-              filters={[{ category: "mods" }]}
-              disabled={!!(build.offhand && build.offhand.mod && build.offhand.mod !== "")}
-            />
-            <BuildItemBox
-              openModal={openModal}
-              build={build}
-              images={images}
-              buildPath={"mutators.2"}
-              filters={[{ category: "mutators" }]}
-            />
-          </div>
-        </div>
-      </div>
-    </Container>
-  );
-};
-
-export default BuildInterface;

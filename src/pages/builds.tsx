@@ -1,77 +1,70 @@
-import { graphql } from "gatsby";
-import React, { useContext, useEffect, useState } from "react";
-import { styled } from "styled-components";
+import {graphql} from "gatsby";
+import React, {useContext, useEffect, useState} from "react";
+import {styled} from "styled-components";
 import BuildsSidebarContent from "../components/builder/BuildsSidebarContent";
-import { BuildsContext } from "../context/BuildContext";
-import type { Build, Item } from "../interface/Build";
+import {BuildsContext} from "../context/BuildContext";
+import type {Build, Item} from "../interface/Build";
 import "react-tooltip/dist/react-tooltip.css";
 import BuildInterface from "../components/builder/BuildInterface";
 import Head from "../components/layout/Head";
-import { getFieldValue, setFieldValue } from "../dataHelpers";
+import {getFieldValue, setFieldValue} from "../dataHelpers";
 import ItemSelectModal from "../components/modals/ItemSelectModal";
-import type { Filter } from "../interface/IData";
+import type {Filter} from "../interface/IData";
 import ArchetypesInterface from "../components/builder/ArchetypesInterface";
 import TraitsInterface from "../components/builder/TraitsInterface";
 import Settings from "../components/builder/Settings";
 import BuildStatisticsSidebarContent from "../components/builder/BuildStatisticsSidebarContent";
-import { SettingContext } from "../context/SettingContext";
+import {SettingContext} from "../context/SettingContext";
 import BackgroundImage from "../components/BackgroundImage";
 import Layout from "../components/layout/Layout";
 import PageLayout from "../components/layout/PageLayout";
 
 const NEW_BUILD: Build = {
+  name: "New Build",
+  id: -1,
   headpiece: null,
   chest: null,
   hands: null,
   feet: null,
-  mainHand: null,
-  melee: null,
-  offhand: null,
-  mutators: [],
-  mods: [],
-  relic: null,
-  fragments: [],
+  mainHand: {
+    externalId: null,
+    mod: null,
+    mutator: null,
+  },
+  melee: {
+    externalId: null,
+    mod: null,
+    mutator: null,
+  },
+  offhand: {
+    externalId: null,
+    mod: null,
+    mutator: null,
+  },
+  relic: {
+    externalId: null,
+    fragment1: null,
+    fragment2: null,
+    fragment3: null,
+  },
   amulet: null,
-  rings: [],
+  ring1: null,
+  ring2: null,
+  ring3: null,
+  ring4: null,
+  archetype1: {
+    externalId: null,
+    trait: null,
+    level: 1,
+  },
+  archetype2: {
+    externalId: null,
+    trait: null,
+    level: 1,
+  },
   usedTraitPoints: 0,
-  traits: {},
-  archetype1: null,
-  archetype2: null,
+  traitLevels: {},
 };
-
-const MOD_INDEXES = {
-  mainHand: 0,
-  melee: 1,
-  offhand: 2,
-};
-
-const Container = styled.div`
-  height: auto;
-
-  .tabs {
-    padding-top: 40px;
-
-    .tabs-menu {
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-
-      .tabs-menu-item {
-        padding: 10px;
-        border: 1px solid #000;
-        cursor: pointer;
-
-        transition: all 0.5s ease-in-out;
-
-        &:hover,
-        &.active {
-          background: darkred;
-          color: #fff;
-        }
-      }
-    }
-  }
-`;
 
 const Builds = props => {
   const { saveBuild, builds } = useContext(BuildsContext);
@@ -81,16 +74,16 @@ const Builds = props => {
   const [modalFilters, setModalFilters] = useState<Filter[]>([]);
   const [buildPath, setBuildPath] = useState<string>("");
   const [tab, setTab] = useState<string>("equipment");
-  const [name, setName] = useState<string>("");
-  const [oldName, setOldName] = useState<string>("");
   const [build, setBuild] = useState<Build>(NEW_BUILD);
   const [onlyUnlocked, setOnlyUnlocked] = useState(false);
 
   useEffect(() => {
-    const build = Object.entries(builds).find(() => true);
+    const storedActiveBuildId = localStorage.getItem("activeBuildId");
+    const build = Object.values(builds).find(build =>
+      storedActiveBuildId ? build.id === parseInt(storedActiveBuildId) : true,
+    );
     if (build) {
-      setBuild(build[1]);
-      setName(build[0]);
+      setBuild(build);
     }
   }, []);
 
@@ -103,82 +96,78 @@ const Builds = props => {
     setOnlyUnlocked(!onlyUnlocked);
   };
   const resetBuild = () => {
-    setName("");
-    setBuild(NEW_BUILD);
+    let newId = 1;
+    while (builds[newId]) {
+      newId++;
+    }
+    const newBuild = { ...NEW_BUILD };
+    newBuild.id = newId;
+    setBuild(newBuild);
+    saveBuild(newBuild);
   };
   const selectItem = (item: Item) => {
-    updateBuildValue(buildPath, item);
+    updateBuildValue(buildPath, item.externalId, item);
   };
-  const checkMod = (item: Item, build: Build) => {
-    const index = MOD_INDEXES[buildPath] ?? null;
-
-    if (index !== null) {
-      build.mods[index] = item.links?.mod ? item.links.mod : null;
+  const checkMod = (item: Item) => {
+    if (item.links?.mod) {
+      const part1 = buildPath.split(".")[0];
+      updateBuildValue(`${part1}.mod`, item.links.mod.externalId);
+    }
+  };
+  const addMod = (item: Item) => {
+    if (item.links?.trait) {
+      const part1 = buildPath.split(".")[0];
+      updateBuildValue(`${part1}.trait`, item.links.trait.externalId);
     }
   };
   const save = (build: Build) => {
     startSaving();
-    let usedName = name;
-    if (!usedName || usedName === "") {
-      usedName = "New Build";
-
-      let i = 0;
-      while (builds[usedName]) {
-        i++;
-        usedName = `New Build ${i}`;
-      }
-
-      setName(usedName);
-      setOldName(usedName);
-    }
-
-    saveBuild(usedName, build);
+    saveBuild(build);
     stopSaving();
   };
   const handleLevelChange = (level: number, buildPath: string) => {
     updateBuildValue(buildPath, level);
   };
-  const updateBuildValue = (buildPath: string, value: any) => {
+  const updateBuildValue = (buildPath: string, value: any, item?: Item) => {
     const nBuild = { ...build };
     setFieldValue(nBuild, buildPath, value);
-    preProcessBuild(value, nBuild, buildPath);
+    preProcessBuild(value, nBuild, buildPath, item);
     setBuild(nBuild);
     save(nBuild);
   };
-  const preProcessBuild = (value: any, nBuild: Build, buildPath: string) => {
-    if (buildPath === "archetype1.level") {
-      const traitFragment = getFieldValue(nBuild, "archetype1.links.trait.fragment");
-      checkTrait(traitFragment, value);
-    } else if (buildPath === "archetype2.level") {
-      const traitFragment = getFieldValue(nBuild, "archetype2.links.trait.fragment");
-      checkTrait(traitFragment, value);
+  const preProcessBuild = (value: any, nBuild: Build, buildPath: string, item?: Item) => {
+    if (buildPath === "archetype1.level" || buildPath === "archetype2.level") {
+      const part1 = buildPath.split(".")[0];
+      const traitId = getFieldValue(nBuild, `${part1}.trait`);
+      checkTrait(traitId, value);
     }
 
-    if (buildPath === "archetype1") {
-      const traitFragment = getFieldValue(nBuild, "archetype1.links.trait.fragment");
-      checkTrait(traitFragment, getFieldValue(nBuild, "archetype1.level"));
-    } else if (buildPath === "archetype2") {
-      const traitFragment = getFieldValue(nBuild, "archetype2.links.trait.fragment");
-      checkTrait(traitFragment, getFieldValue(nBuild, "archetype2.level"));
+    if (buildPath === "archetype1.externalId" || buildPath === "archetype2.externalId") {
+      const part1 = buildPath.split(".")[0];
+      const traitId = getFieldValue(nBuild, `${part1}.trait`);
+      checkTrait(traitId, getFieldValue(nBuild, `${part1}.level`));
     }
 
-    if (typeof value === "object") {
-      if (value.category === "weapons") {
-        checkMod(value, nBuild);
-      }
+    if (buildPath === "archetype1.externalId" || buildPath === "archetype2.externalId") {
+      const part1 = buildPath.split(".")[0];
+      nBuild[part1].level = 1;
+    }
 
-      if (value.category === "archetypes") {
-        nBuild[buildPath].level = 1;
-      }
+    if (item && item.category === "weapons") {
+      checkMod(item);
+    }
+
+    if (item && item.category === "archetypes") {
+      addMod(item);
     }
   };
-  const checkTrait = (fragment?: string, points?: number) => {
-    if (fragment && build.traits[fragment]) {
+  const checkTrait = (id?: number, points?: number) => {
+    if (id && build.traitLevels[id]) {
       points = points ?? 0;
-      const traitLevel = build.traits[fragment];
+      const traitLevel = build.traitLevels[id];
       if (traitLevel + points > 10) {
         const difference = traitLevel + points - 10;
-        updateBuildValue(`traits.${fragment}`, difference < 0 ? 0 : build.traits[fragment] - difference);
+        updateBuildValue(`traits.${id}`, difference < 0 ? 0 : build.traitLevels[id] - difference);
       }
     }
   };
@@ -188,15 +177,7 @@ const Builds = props => {
       <Head title="Builder" description="Save your favorite builds in this Remnant II builder." />
 
       <PageLayout
-        leftSidebarContent={
-          <BuildsSidebarContent
-            currentBuildName={name}
-            setBuild={setBuild}
-            setOldName={setOldName}
-            setName={setName}
-            resetBuild={resetBuild}
-          />
-        }
+        leftSidebarContent={<BuildsSidebarContent build={build} setBuild={setBuild} resetBuild={resetBuild} />}
         rightSidebarContent={<BuildStatisticsSidebarContent build={build} />}
         // config={{
         //   rightSidebar: {
@@ -226,9 +207,8 @@ const Builds = props => {
               </div>
 
               <Settings
-                name={name}
-                setName={setName}
-                oldName={oldName}
+                build={build}
+                setBuild={setBuild}
                 onlyUnlocked={onlyUnlocked}
                 toggleOnlyUnlocked={toggleOnlyUnlocked}
               />
@@ -284,6 +264,34 @@ export const query = graphql`
           itemId
         }
         ...imageFragment
+      }
+    }
+  }
+`;
+
+const Container = styled.div`
+  height: auto;
+
+  .tabs {
+    padding-top: 40px;
+
+    .tabs-menu {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+
+      .tabs-menu-item {
+        padding: 10px;
+        border: 1px solid #000;
+        cursor: pointer;
+
+        transition: all 0.5s ease-in-out;
+
+        &:hover,
+        &.active {
+          background: darkred;
+          color: #fff;
+        }
       }
     }
   }

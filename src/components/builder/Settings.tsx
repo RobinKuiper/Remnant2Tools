@@ -1,7 +1,8 @@
-import React, { useContext } from "react";
-import { AiFillLock, AiFillUnlock } from "react-icons/ai";
-import { styled } from "styled-components";
-import { BuildsContext } from "../../context/BuildContext";
+import React, {useContext, useState} from "react";
+import {AiFillLock, AiFillUnlock} from "react-icons/ai";
+import {styled} from "styled-components";
+import {BuildsContext} from "../../context/BuildContext";
+import type {Build} from "../../interface/Build";
 
 const Container = styled.div`
   display: flex;
@@ -29,18 +30,24 @@ const Container = styled.div`
 `;
 
 interface Props {
-  name: string;
-  setName: (value: ((prevState: string) => string) | string) => void;
-  oldName: string;
+  build: Build;
+  setBuild: (value: ((prevState: Build) => Build) | Build) => void;
   onlyUnlocked: boolean;
   toggleOnlyUnlocked: () => void;
 }
 
-const Settings = ({ name, oldName, toggleOnlyUnlocked, onlyUnlocked, setName }: Props) => {
-  const { changeName } = useContext(BuildsContext);
+const Settings = ({ build, setBuild, toggleOnlyUnlocked, onlyUnlocked }: Props) => {
+  const { saveBuild } = useContext(BuildsContext);
+  const [name, setName] = useState(build.name);
 
   const handleNameSave = () => {
-    changeName(oldName, name);
+    const newBuild = { ...build };
+    if (name && name !== "") {
+      newBuild.name = name;
+    }
+
+    setBuild(newBuild);
+    saveBuild(newBuild);
   };
 
   const handleNameChange = e => {
