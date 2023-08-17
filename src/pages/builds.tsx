@@ -142,8 +142,7 @@ const Builds = props => {
       const traitId = getFieldValue(nBuild, `${part1}.trait`);
       checkTrait(traitId, value);
     }
-
-    console.log(buildPath)
+    
     if (buildPath === "archetype1.externalId" || buildPath === "archetype2.externalId") {
       const part1 = buildPath.split(".")[0];
       const traitId = item?.links?.trait?.externalId;
