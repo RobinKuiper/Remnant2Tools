@@ -1,22 +1,22 @@
-import React, { useEffect, useRef, useState } from "react";
-import { styled } from "styled-components";
+import React, {useEffect, useRef, useState} from "react";
+import {styled} from "styled-components";
 import Toggle from "react-toggle";
-import { CiImport } from "react-icons/ci";
-import { AiOutlineCopy } from "react-icons/ai";
-import { LAST_UPDATED, MAX_GOOGLE_SAVE_TIME } from "../../constants";
+import {CiImport} from "react-icons/ci";
+import {AiOutlineCopy} from "react-icons/ai";
+import {LAST_UPDATED, MAX_GOOGLE_SAVE_TIME} from "../../constants";
 import "react-toggle/style.css";
-import { Tooltip } from "react-tooltip";
-import { FaGoogleDrive } from "react-icons/fa";
+import {Tooltip} from "react-tooltip";
+import {FaGoogleDrive} from "react-icons/fa";
 import Loader from "../Loader";
-import { toast } from "react-toastify";
-import { refreshTokens } from "../../helpers";
+import {toast} from "react-toastify";
+import {refreshTokens} from "../../helpers";
 import {useGoogleLogin} from "@react-oauth/google";
 import {useAppDispatch, useAppSelector} from "../../hooks";
 import {RootState} from "../../store";
-import { userLogin } from '../../features/auth/authActions';
-import { logout } from '../../features/auth/authSlice';
-import { toggleShowRedacted } from '../../features/settings/settingsSlice';
-import { updateUnlocks, updateBuilds } from '../../features/data/dataSlice';
+import {userLogin} from '../../features/auth/authActions';
+import {logout} from '../../features/auth/authSlice';
+import {toggleShowRedacted} from '../../features/settings/settingsSlice';
+import {updateBuilds, updateUnlocks} from '../../features/data/dataSlice';
 
 const Container = styled.div`
   position: fixed;
@@ -203,7 +203,7 @@ const SettingsSidebar = () => {
       return;
     }
 
-    buildsDataRef.current.value = JSON.stringify(builds);
+    buildsDataRef.current.value = JSON.stringify({ ...builds, version: 2 });
   }, [builds]);
 
   const copyToClipboard = (e, ref: React.RefObject<HTMLTextAreaElement>) => {

@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from "react";
-import { styled } from "styled-components";
-import { findImageById } from "../../helpers";
+import React, {useEffect, useState} from "react";
+import {styled} from "styled-components";
+import {findImageById} from "../../helpers";
 import ListItem from "./ListItem";
 import GridItem from "./GridItem";
 import ItemTooltip from "./ItemTooltip";
 import {useAppDispatch, useAppSelector} from "../../hooks";
 import {RootState} from "../../store";
-import { toggleUnlock } from '../../features/data/dataSlice';
+import {toggleUnlock} from '../../features/data/dataSlice';
 
 const Container = styled.div`
   position: relative;
@@ -90,7 +90,7 @@ const Item = ({ item, category, images, type }: Props) => {
   };
 
   return (
-    <Container className={`${view} ${STATE_CLASSES[unlocked]}`}>
+    <Container className={`${view} ${type === "tracker" ? STATE_CLASSES[unlocked] : ""}`}>
       {view === "list" ? (
         <ListItem
           item={item}

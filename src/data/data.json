@@ -360,7 +360,7 @@
       },
       {
         "name": "Flash Caster",
-        "description": "Increases Movement Speed while Aiming",
+        "description": "Increases mod and skill casting speed by 5%",
         "values": {
           "min": 5,
           "max": 50
@@ -382,7 +382,7 @@
       },
       {
         "name": "Fortify",
-        "description": "Increases Mod and Skill Casting Speed by 5%",
+        "description": "Increases Armor Effectiveness",
         "values": {
           "min": 5,
           "max": 50
@@ -675,7 +675,7 @@
       },
       {
         "name": "Footwork",
-        "description": "Increases Armor Effectiveness",
+        "description": "Increases Movement Speed while Aiming",
         "values": {
           "min": 5,
           "max": 50
@@ -4317,14 +4317,14 @@
         "fragment": "constrained_heart"
       },
       {
-        "name": "Diverted Heart",
+        "name": "Diverting Heart",
         "description": "",
         "world": "Earth",
         "location": "Ward 13",
         "unlock": "Buy it from Cass after Defeating 18 World Bosses. Only counts if the boss is killed with the 2 different kills if they have it",
         "id": 397,
         "category": "relics",
-        "fragment": "diverted_heart"
+        "fragment": "diverting_heart"
       }
     ]
   },
@@ -5954,7 +5954,7 @@
       },
       {
         "name": "Faelin's Sigil",
-        "description": "Critical and Weak Spot Hits generate 10% additional Mod Power.",
+        "description": "Melee Damage generates 10% additional Mod Power.",
         "world": "Losomn",
         "location": "Malefic Gallery",
         "unlock": "Given by Faelin if you kill Faerin and report to him",

@@ -1,12 +1,3 @@
-export interface Mod extends Item {
-  description: string;
-}
-
-export interface Weapon extends Item {
-  mod?: string;
-  modDescription?: string;
-}
-
 export interface Item {
   name: string;
   id: number;
@@ -15,37 +6,45 @@ export interface Item {
   description?: string;
 }
 
-export interface Trait extends Item {
-  fragment: string;
+export interface Weapon {
+  externalId: number | null;
+  mod: number | null;
+  mutator: number | null;
 }
 
-export interface Archetype extends Item {
-  externalId: number;
-  name: string;
-  links: {
-    trait: Trait;
-  };
+export interface Archetype {
+  externalId: number | null;
+  trait: number | null;
   level: number;
 }
 
+export interface Relic {
+  externalId: number | null;
+  fragment1: number | null;
+  fragment2: number | null;
+  fragment3: number | null;
+}
+
 export interface Build {
-  headpiece: Item | null;
-  chest: Item | null;
-  hands: Item | null;
-  feet: Item | null;
-  mainHand: Item | null;
-  melee: Weapon | null;
-  offhand: Weapon | null;
-  relic: Weapon | null;
-  fragments: Item[];
-  mutators: Item[];
-  mods: Mod[];
-  amulet: Item | null;
-  rings: Item[];
+  name: string;
+  id: number;
+  headpiece: number | null;
+  chest: number | null;
+  hands: number | null;
+  feet: number | null;
+  mainHand: Weapon;
+  melee: Weapon;
+  offhand: Weapon;
+  relic: Relic;
+  amulet: number | null;
+  ring1: number | null;
+  ring2: number | null;
+  ring3: number | null;
+  ring4: number | null;
+  archetype1: Archetype;
+  archetype2: Archetype;
   usedTraitPoints: number;
-  traits: {
-    [key: string]: number;
+  traitLevels: {
+    [key: number]: number;
   };
-  archetype1: Archetype | null;
-  archetype2: Archetype | null;
 }

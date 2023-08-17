@@ -1,54 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { styled } from "styled-components";
+import React, {useEffect, useState} from "react";
+import {styled} from "styled-components";
 import "react-toggle/style.css";
-import type { Build } from "../../interface/Build";
-import { calculateWeightType, getFieldValue, setFieldValue } from "../../dataHelpers";
-
-const Container = styled.div`
-  padding: 10px;
-
-  h2 {
-    margin-bottom: 10px;
-  }
-
-  .statisticsContainer {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-
-    .key {
-    }
-
-    .stat-item,
-    .sub-item {
-      display: flex;
-      justify-content: space-between;
-    }
-
-    .multiple-item {
-      display: flex;
-      flex-direction: column;
-      gap: 5px;
-
-      .values {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-
-        .key {
-          padding-left: 10px;
-        }
-      }
-    }
-  }
-
-  .footer {
-    position: absolute;
-    bottom: 50px;
-    box-sizing: border-box;
-    padding: 0 10px 0 0;
-  }
-`;
+import type {Build} from "../../interface/Build";
+import {calculateWeightType, getFieldValue, setFieldValue} from "../../dataHelpers";
+import {graphql, useStaticQuery} from "gatsby";
 
 const STATS = [
   {
@@ -86,6 +41,26 @@ interface Props {
 }
 
 const BuildStatisticsSidebarContent = ({ build }: Props) => {
+  const { items } = useStaticQuery(graphql`
+    {
+      items: allItem(
+        filter: {
+          category: {
+            in: [
+              "armor"
+            ]
+          }
+        }
+      ) {
+        nodes {
+          externalId
+          stats {
+            ...itemStatsFragment
+          }
+        }
+      }
+    }
+  `);
   const [statistics, setStatistics] = useState({
     armor: 0,
     weight: 0,
@@ -106,7 +81,13 @@ const BuildStatisticsSidebarContent = ({ build }: Props) => {
       setFieldValue(newStatistics, stat.statisticsPath, value);
 
       stat.buildPaths.forEach(buildPath => {
-        value += getFieldValue(build, `${buildPath}.stats.${stat.statisticsPath}`) ?? 0;
+        const itemId = getFieldValue(build, buildPath);
+        if (itemId) {
+          const item = items.nodes.find(node => node.externalId === itemId);
+          if (item) {
+            value += getFieldValue(item, `stats.${stat.statisticsPath}`)
+          }
+        }
 
         setFieldValue(newStatistics, stat.statisticsPath, value);
       });
@@ -178,3 +159,49 @@ const BuildStatisticsSidebarContent = ({ build }: Props) => {
 };
 
 export default BuildStatisticsSidebarContent;
+
+const Container = styled.div`
+  padding: 10px;
+
+  h2 {
+    margin-bottom: 10px;
+  }
+
+  .statisticsContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    .key {
+    }
+
+    .stat-item,
+    .sub-item {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .multiple-item {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+
+      .values {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        .key {
+          padding-left: 10px;
+        }
+      }
+    }
+  }
+
+  .footer {
+    position: absolute;
+    bottom: 50px;
+    box-sizing: border-box;
+    padding: 0 10px 0 0;
+  }
+`;

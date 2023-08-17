@@ -1,6 +1,6 @@
-import React, {useEffect, useState} from "react";
-import { styled } from "styled-components";
-import { BiSolidLeftArrow, BiSolidRightArrow } from "react-icons/bi";
+import React, {useState} from "react";
+import {styled} from "styled-components";
+import {BiSolidLeftArrow, BiSolidRightArrow} from "react-icons/bi";
 
 const Container = styled.div`
   position: fixed;
@@ -17,6 +17,9 @@ const Container = styled.div`
 
   .content {
     overflow: auto;
+    height: 100%;
+    box-sizing: border-box;
+    padding-bottom: 20px;
   }
 
   .opener {
