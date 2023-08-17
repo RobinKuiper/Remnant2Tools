@@ -1,10 +1,10 @@
-import React, { useContext, useEffect, useState } from "react";
-import { styled } from "styled-components";
-import { DataContext } from "../../context/DataContext";
-import { findImageById } from "../../helpers";
+import React, {useContext, useEffect, useState} from "react";
+import {styled} from "styled-components";
+import {DataContext} from "../../context/DataContext";
+import {findImageById} from "../../helpers";
 import ListItem from "./ListItem";
 import GridItem from "./GridItem";
-import { SettingContext } from "../../context/SettingContext";
+import {SettingContext} from "../../context/SettingContext";
 import ItemTooltip from "./ItemTooltip";
 
 const Container = styled.div`
@@ -90,7 +90,7 @@ const Item = ({ item, category, images, type }: Props) => {
   };
 
   return (
-    <Container className={`${view} ${STATE_CLASSES[unlocked]}`}>
+    <Container className={`${view} ${type === "tracker" ? STATE_CLASSES[unlocked] : ""}`}>
       {view === "list" ? (
         <ListItem
           item={item}
