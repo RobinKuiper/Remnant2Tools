@@ -1,20 +1,20 @@
-import {graphql} from "gatsby";
-import React, {useContext, useEffect, useState} from "react";
-import {styled} from "styled-components";
+import { graphql } from "gatsby";
+import React, { useContext, useEffect, useState } from "react";
+import { styled } from "styled-components";
 import BuildsSidebarContent from "../components/builder/BuildsSidebarContent";
-import {BuildsContext} from "../context/BuildContext";
-import type {Build, Item} from "../interface/Build";
+import { BuildsContext } from "../context/BuildContext";
+import type { Build, Item } from "../interface/Build";
 import "react-tooltip/dist/react-tooltip.css";
 import BuildInterface from "../components/builder/BuildInterface";
 import Head from "../components/layout/Head";
-import {getFieldValue, setFieldValue} from "../dataHelpers";
+import { getFieldValue, setFieldValue } from "../dataHelpers";
 import ItemSelectModal from "../components/modals/ItemSelectModal";
-import type {Filter} from "../interface/IData";
+import type { Filter } from "../interface/IData";
 import ArchetypesInterface from "../components/builder/ArchetypesInterface";
 import TraitsInterface from "../components/builder/TraitsInterface";
 import Settings from "../components/builder/Settings";
 import BuildStatisticsSidebarContent from "../components/builder/BuildStatisticsSidebarContent";
-import {SettingContext} from "../context/SettingContext";
+import { SettingContext } from "../context/SettingContext";
 import BackgroundImage from "../components/BackgroundImage";
 import Layout from "../components/layout/Layout";
 import PageLayout from "../components/layout/PageLayout";
@@ -74,7 +74,8 @@ const Builds = props => {
   const [modalFilters, setModalFilters] = useState<Filter[]>([]);
   const [buildPath, setBuildPath] = useState<string>("");
   const [tab, setTab] = useState<string>("equipment");
-  const [build, setBuild] = useState<Build>(NEW_BUILD);
+  const newBuildCopy = JSON.parse(JSON.stringify(NEW_BUILD));
+  const [build, setBuild] = useState<Build>(newBuildCopy);
   const [onlyUnlocked, setOnlyUnlocked] = useState(false);
 
   useEffect(() => {
@@ -100,10 +101,10 @@ const Builds = props => {
     while (builds[newId]) {
       newId++;
     }
-    const newBuild = { ...NEW_BUILD };
-    newBuild.id = newId;
-    setBuild(newBuild);
-    saveBuild(newBuild);
+    const copy = JSON.parse(JSON.stringify(NEW_BUILD));
+    copy.id = newId;
+    setBuild(copy);
+    saveBuild(copy);
   };
   const selectItem = (item: Item) => {
     updateBuildValue(buildPath, item.externalId, item);

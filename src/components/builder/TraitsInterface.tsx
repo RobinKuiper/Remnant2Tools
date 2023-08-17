@@ -1,12 +1,12 @@
-import React, {useContext, useEffect, useState} from "react";
-import {MAX_TRAIT_POINTS} from "../../constants";
-import {GatsbyImage, getImage} from "gatsby-plugin-image";
-import {findImageById, restrainNumber} from "../../helpers";
-import {styled} from "styled-components";
-import type {Build} from "../../interface/Build";
-import {graphql, useStaticQuery} from "gatsby";
-import {sorter} from "../../dataHelpers";
-import {DataContext} from "../../context/DataContext";
+import React, { useContext, useEffect, useState } from "react";
+import { MAX_TRAIT_POINTS } from "../../constants";
+import { GatsbyImage, getImage } from "gatsby-plugin-image";
+import { findImageById, restrainNumber } from "../../helpers";
+import { styled } from "styled-components";
+import type { Build } from "../../interface/Build";
+import { graphql, useStaticQuery } from "gatsby";
+import { sorter } from "../../dataHelpers";
+import { DataContext } from "../../context/DataContext";
 import Search from "../Search";
 
 interface Props {
@@ -60,6 +60,8 @@ const TraitsInterface = ({ build, showOnlyUnlocked, updateBuildValue }: Props) =
   }, [build, traits]);
 
   const addTraitPoint = (trait: any) => {
+    if (currentTotalPoints === MAX_TRAIT_POINTS) return;
+
     const currentPoints = build.traitLevels[trait.externalId] ?? 0;
     if (currentPoints >= 10) return;
     let archetypeLevel = 0;
