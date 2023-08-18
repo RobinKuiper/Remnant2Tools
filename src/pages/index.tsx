@@ -213,7 +213,7 @@ const IndexPage: React.FC<PageProps> = props => {
             {gatsbyImage && <GatsbyImage className="bg" alt="" image={gatsbyImage} />}
 
             <div className="left">
-              <h1>Remnant II Tools</h1>
+              <h1>Remnant 2 Tools</h1>
               <p>Track Your Triumphs and Collectibles: Your Ultimate Remnant II Companion!</p>
               <div className="buttons">
                 <Link className="button" to="/tracker/statistics">
