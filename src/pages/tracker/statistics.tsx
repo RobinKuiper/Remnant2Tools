@@ -43,7 +43,10 @@ const Statistics: React.FC = props => {
 
   return (
     <Layout>
-      <Head title="Statistics" description="All of the statistics of the items you have unlocked in Remnant II." />
+      <Head 
+        title="Statistics" 
+        description="Dive into the numbers! Track all the stats for your unlocked items in Remnant 2 right here." 
+      />
 
       <PageLayout leftSidebarContent={<CategorySidebarContent type="tracker" />}>
         <Container>

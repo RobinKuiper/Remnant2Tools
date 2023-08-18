@@ -185,7 +185,8 @@ const Builds = props => {
 
   return (
     <Layout>
-      <Head title="Builder" description="Save your favorite builds in this Remnant II builder." />
+      {/*eslint-disable-next-line max-len*/}
+      <Head title="Builder" description="Get ready to rock your ideal builds with the Remnant 2 builder – your go-to for saving all those awesome creations in style!"/>
 
       <PageLayout
         leftSidebarContent={
