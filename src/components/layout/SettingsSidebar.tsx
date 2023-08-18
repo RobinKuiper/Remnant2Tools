@@ -14,6 +14,8 @@ import { FaGoogleDrive } from "react-icons/fa";
 import Loader from "../Loader";
 import { toast } from "react-toastify";
 import { refreshTokens } from "../../helpers";
+import { BiSolidFileImport } from "react-icons/bi";
+import ImportSaveModal from "../modals/ImportSaveModal";
 
 const Container = styled.div`
   position: fixed;
@@ -172,6 +174,7 @@ const SettingsSidebar = () => {
   const unlockDataRef = useRef<HTMLTextAreaElement>();
   const buildsDataRef = useRef<HTMLTextAreaElement>();
   const [retrievingFromGoogle, setRetrievingFromGoogle] = useState(false);
+  const [saveImportModalIsOpen, setSaveImportModalIsOpen] = useState(false);
 
   useEffect(() => {
     if (!unlockDataRef.current) {
@@ -212,6 +215,10 @@ const SettingsSidebar = () => {
     e.target.classList.add("success");
     localStorage.setItem("builds", buildsDataRef.current.value);
     updateBuilds();
+  };
+
+  const showImportSaveModal = () => {
+    setSaveImportModalIsOpen(true);
   };
 
   const handleGoogleLink = () => {
@@ -365,6 +372,15 @@ const SettingsSidebar = () => {
             </button>
 
             <button
+              onClick={showImportSaveModal}
+              data-tooltip-id="tooltip"
+              data-tooltip-content={"Import from save file"}
+              data-tooltip-place="bottom"
+            >
+              <BiSolidFileImport size="25px" />
+            </button>
+
+            <button
               onClick={saveUnlocks}
               data-tooltip-id="tooltip"
               data-tooltip-content={"Import unlock data"}
@@ -415,6 +431,8 @@ const SettingsSidebar = () => {
         {/*<span>Version: {VERSION}</span>*/}
         <span>Last updated: {LAST_UPDATED}</span>
       </div>
+
+      <ImportSaveModal setIsOpen={setSaveImportModalIsOpen} isOpen={saveImportModalIsOpen} />
     </Container>
   );
 };

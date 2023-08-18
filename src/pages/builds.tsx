@@ -142,7 +142,7 @@ const Builds = props => {
       const traitId = getFieldValue(nBuild, `${part1}.trait`);
       checkTrait(traitId, value);
     }
-    
+
     if (buildPath === "archetype1.externalId" || buildPath === "archetype2.externalId") {
       const part1 = buildPath.split(".")[0];
       const traitId = item?.links?.trait?.externalId;
@@ -166,10 +166,8 @@ const Builds = props => {
     if (id && build.traitLevels[id]) {
       points = points ?? 0;
       const traitLevel = build.traitLevels[id];
-      console.log(traitLevel, points)
       if (traitLevel + points > 10) {
         const difference = traitLevel + points - 10;
-        console.log(difference, difference < 0 ? 0 : build.traitLevels[id] - difference)
         updateBuildValue(`traitLevels.${id}`, difference < 0 ? 0 : build.traitLevels[id] - difference);
       }
     }
