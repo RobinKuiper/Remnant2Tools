@@ -8,24 +8,22 @@ interface Props {
 }
 
 const Head = ({title, description}: Props) => {
-  const title = title ? `${title} | ${SITE_TITLE}` : SITE_TITLE;
-  
   return (
     <Helmet defaultTitle={SITE_TITLE} title={title} titleTemplate={`%s | ${SITE_TITLE}`}>
       <meta name="description" content={description} />
       
-      <meta itemProp="name" content={title} />
+      <meta itemProp="name" content={title ? `${title} | ${SITE_TITLE}` : SITE_TITLE} />
       <meta itemProp="description" content={description} />
       <meta itemProp="image" content="https://remnant.rkuiper.nl/logo.webp"/>
       
       <meta property="og:url" content="https://remnant.rkuiper.nl"/>
       <meta property="og:type" content="website"/>
-      <meta property="og:title" content={title}/>
+      <meta property="og:title" content={title ? `${title} | ${SITE_TITLE}` : SITE_TITLE}/>
       <meta property="og:description" content={description}/>
       <meta property="og:image" content="https://remnant.rkuiper.nl/logo.webp"/>
       
       <meta name="twitter:card" content="summary_large_image"/>
-      <meta name="twitter:title" content={title}/>
+      <meta name="twitter:title" content={title ? `${title} | ${SITE_TITLE}` : SITE_TITLE}/>
       <meta name="twitter:description" content={description}/>
       <meta name="twitter:image" content="https://remnant.rkuiper.nl/logo.webp"/>
     </Helmet>
