@@ -10,16 +10,15 @@ const oAuth2Client = new OAuth2Client(
 );
 
 export default async function handler(request, response) {
+  console.log(request)
   try {
     const { tokens } = await oAuth2Client.getToken(request.body.code); // exchange code for tokens
     const { access_token, refresh_token, expiry_date } = tokens;
 
     response.status(200).json({
-      body: {
-        access_token,
-        refresh_token,
-        expiry_date
-      }
+      access_token,
+      refresh_token,
+      expiry_date
     });
   } catch (err) {
     response.status(500).json(err)

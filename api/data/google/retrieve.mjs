@@ -28,10 +28,10 @@ export default async function handler(request, response) {
     body.message = "NOT_FOUND";
     status = 404;
   } else {
-    body.contents = await getFileContents(drive, unlocksBackupFile.id)
+    body.unlocks = await getFileContents(drive, unlocksBackupFile.id)
   }
 
-  response.status(status).json({ body });
+  response.status(status).json(body);
 }
 
 const getFiles = async (drive) => {

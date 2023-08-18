@@ -1,5 +1,5 @@
 import data from "./data/data.json";
-import type {Filter} from "./interface/IData";
+import type { Filter } from "./interface/IData";
 
 export const getFieldValue = (object: any, fieldPath: string) => {
   const keys = fieldPath.split(".");

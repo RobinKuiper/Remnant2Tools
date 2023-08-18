@@ -3,8 +3,8 @@ import { styled } from "styled-components";
 import { calculatePercentage } from "../../helpers";
 import { Link, graphql, useStaticQuery } from "gatsby";
 import Loader from "../Loader";
-import {useAppSelector} from "../../hooks";
-import {RootState} from "../../store";
+import { useAppSelector } from "../../hooks";
+import type { RootState } from "../../store";
 
 const Container = styled.div`
   width: 400px;
@@ -55,7 +55,7 @@ const StatisticsPanel = () => {
       }
     }
   `);
-  const { statistics } = useAppSelector((state: RootState) => state.data)
+  const { statistics } = useAppSelector((state: RootState) => state.data);
   const [loading, setLoading] = useState(true);
   const [totals, setTotals] = useState({ total: 0, unlocked: 0, percentage: 0 });
 

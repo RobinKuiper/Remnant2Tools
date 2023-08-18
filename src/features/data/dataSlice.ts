@@ -1,8 +1,9 @@
-import type {PayloadAction} from '@reduxjs/toolkit'
-import {createSlice} from '@reduxjs/toolkit'
-import Statistics from "../../pages/tracker/statistics";
-import {Build} from "../../interface/Build";
+import type { PayloadAction } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
+import type Statistics from "../../pages/tracker/statistics";
+import type { Build } from "../../interface/Build";
 import data from "../../data/data.json";
+import { googleSave, googleSaveWithDelay } from "./dataActions";
 
 const convertDataToNewArrayStructure = data => {
   if (data.weapons && data.weapons[445]) {
@@ -90,7 +91,7 @@ const convertBuildsToVersion2 = builds => {
   });
   localStorage.setItem("builds", JSON.stringify({ ...newBuilds, version: 2 }));
   return newBuilds;
-}
+};
 
 const getUnlocksFromLocalStorage = (): number[] => {
   let unlocks = [];
@@ -103,7 +104,7 @@ const getUnlocksFromLocalStorage = (): number[] => {
     }
   }
   return unlocks;
-}
+};
 
 const getBuildsFromLocalStorage = (): Builds => {
   let builds = {};
@@ -116,7 +117,7 @@ const getBuildsFromLocalStorage = (): Builds => {
   }
   delete builds.version;
   return builds;
-}
+};
 
 const calculateStatistics = (categories, unlocks) => {
   const statistics: Statistics = {
@@ -126,7 +127,7 @@ const calculateStatistics = (categories, unlocks) => {
     },
   };
 
-  Object.values(categories).forEach((category) => {
+  Object.values(categories).forEach(category => {
     const fragment = category.settings.fragment;
     const items = category.items.filter(item => !item.onlyDB || item.onlyDB === false);
 
@@ -149,24 +150,34 @@ const calculateStatistics = (categories, unlocks) => {
       });
   });
 
-  return statistics
+  return statistics;
 };
 
 interface Builds {
   [name: string]: Build;
 }
 
-interface DataState {
+export interface DataState {
   unlocks: number[];
   statistics: Statistics;
   builds: Builds;
+  saved: boolean;
+  pending: boolean;
+  saving: boolean;
+  error: Error | null;
+  lastSave: Date;
 }
 
 const unlocks = getUnlocksFromLocalStorage();
 const initialState: DataState = {
   unlocks,
   statistics: calculateStatistics(data, unlocks),
-  builds: getBuildsFromLocalStorage()
+  builds: getBuildsFromLocalStorage(),
+  saved: false,
+  pending: false,
+  saving: false,
+  error: null,
+  lastSave: new Date(),
 };
 
 export const dataSlice = createSlice({
@@ -175,20 +186,14 @@ export const dataSlice = createSlice({
   reducers: {
     toggleUnlock: (state, action: PayloadAction<number>) => {
       const id = action.payload;
-      if (state.unlocks.includes(id)) {
-        state.unlocks = state.unlocks.filter(value => value !== id);
-      } else {
-        state.unlocks.push(id);
-      }
+      state.unlocks = toggleUnlockHelper(state.unlocks, id);
       localStorage.setItem("data", JSON.stringify(state.unlocks));
       state.statistics = calculateStatistics(data, state.unlocks);
+      return state;
     },
-    isUnlocked: (state, action: PayloadAction<number>) => {
-      const id = action.payload;
-      return state.unlocks.includes(id)
-    },
-    saveBuild: (state, action: PayloadAction<{ name: string, build: Build }>) => {
-      let { name, build } = action.payload;
+    saveBuild: (state, action: PayloadAction<{ name: string; build: Build }>) => {
+      let { name } = action.payload;
+      const { build } = action.payload;
       if (name === "") {
         name = "New build";
         let index = 1;
@@ -198,15 +203,17 @@ export const dataSlice = createSlice({
         }
       }
 
-      state.builds[name] = build
-      localStorage.setItem("builds", JSON.stringify(state.builds))
+      state.builds[name] = build;
+      localStorage.setItem("builds", JSON.stringify(state.builds));
+      return state;
     },
     deleteBuild: (state, action: PayloadAction<string>) => {
       const name = action.payload;
       if (state.builds[name]) {
         delete state.builds[name];
-        localStorage.setItem("builds", JSON.stringify(state.builds))
+        localStorage.setItem("builds", JSON.stringify(state.builds));
       }
+      return state;
     },
     copyBuild: (state, action: PayloadAction<string>) => {
       const name = action.payload;
@@ -217,26 +224,55 @@ export const dataSlice = createSlice({
         index++;
       }
 
-      state.builds[newName] = state.builds[name]
-      localStorage.setItem("builds", JSON.stringify(state.builds))
-    },
-    changeName: (state, action: PayloadAction<{ oldName: string, newName: string }>) => {
-      const { oldName, newName } = action.payload;
-      if (state.builds[oldName]) {
-        state.builds[newName] = state.builds[oldName]
-        delete state.builds[oldName]
-        localStorage.setItem("builds", JSON.stringify(state.builds))
-      }
+      state.builds[newName] = state.builds[name];
+      localStorage.setItem("builds", JSON.stringify(state.builds));
+      return state;
     },
     updateUnlocks: state => {
       state.unlocks = getUnlocksFromLocalStorage();
+      state.statistics = calculateStatistics(data, state.unlocks);
+      return state;
     },
     updateBuilds: state => {
       state.builds = getBuildsFromLocalStorage();
     },
-  }
+    setSaveCompleted: state => {
+      state.saved = false;
+      return state;
+    },
+  },
+  extraReducers: {
+    // Google save
+    [googleSave.pending]: state => {
+      state.saving = true;
+      state.saved = false;
+      state.error = null;
+      state.pending = false;
+      state.lastSave = new Date();
+      return state;
+    },
+    [googleSave.fulfilled]: (state, { payload }) => {
+      state.saving = false;
+      state.saved = true;
+      return state;
+    },
+    [googleSave.rejected]: (state, { payload }) => {
+      state.saving = false;
+      state.error = payload;
+      return state;
+    },
+    [googleSaveWithDelay.pending]: state => {
+      state.pending = true;
+      return state;
+    },
+  },
 });
 
-export const { toggleUnlock, isUnlocked, saveBuild, deleteBuild, copyBuild, changeName, updateUnlocks, updateBuilds } = dataSlice.actions;
+const toggleUnlockHelper = (unlocks, id) => {
+  return unlocks.includes(id) ? unlocks.filter(value => value !== id) : [...unlocks, id];
+};
+
+export const { toggleUnlock, saveBuild, deleteBuild, copyBuild, updateUnlocks, updateBuilds, setSaveCompleted } =
+  dataSlice.actions;
 
 export default dataSlice.reducer;

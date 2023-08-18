@@ -1,11 +1,11 @@
 import React from "react";
-import {styled} from "styled-components";
-import {AiFillCopy, AiFillDelete} from "react-icons/ai";
-import {useAppDispatch, useAppSelector} from "../../hooks";
-import {RootState} from "../../store";
+import { styled } from "styled-components";
+import { AiFillCopy, AiFillDelete } from "react-icons/ai";
+import { useAppDispatch, useAppSelector } from "../../hooks";
+import type { RootState } from "../../store";
 
 const BuildsSidebarContent = ({ setBuild, resetBuild, build }) => {
-  const { builds } = useAppSelector((state: RootState) => state.data)
+  const { builds } = useAppSelector((state: RootState) => state.data);
   const dispatch = useAppDispatch();
 
   const selectBuild = (id: number) => {

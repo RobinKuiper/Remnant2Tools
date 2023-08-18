@@ -1,12 +1,12 @@
-import React, {useEffect, useState} from "react";
-import {styled} from "styled-components";
-import {findImageById} from "../../helpers";
+import React, { useEffect, useState } from "react";
+import { styled } from "styled-components";
+import { findImageById } from "../../helpers";
 import ListItem from "./ListItem";
 import GridItem from "./GridItem";
 import ItemTooltip from "./ItemTooltip";
-import {useAppDispatch, useAppSelector} from "../../hooks";
-import {RootState} from "../../store";
-import {toggleUnlock} from '../../features/data/dataSlice';
+import { useAppDispatch, useAppSelector } from "../../hooks";
+import type { RootState } from "../../store";
+import { toggleUnlock } from "../../features/data/dataSlice";
 
 const Container = styled.div`
   position: relative;
@@ -74,8 +74,8 @@ interface Props {
 
 const Item = ({ item, category, images, type }: Props) => {
   const dispatch = useAppDispatch();
-  const { view } = useAppSelector((state: RootState) => state.settings)
-  const { unlocks } = useAppSelector((state: RootState) => state.data)
+  const { view } = useAppSelector((state: RootState) => state.settings);
+  const { unlocks } = useAppSelector((state: RootState) => state.data);
   const [unlocked, setUnlocked] = useState(unlocks.includes(item.externalId));
   const [level, setLevel] = useState<number>();
   const image = findImageById(item.externalId, images);

@@ -1,6 +1,7 @@
-import { createSlice } from '@reduxjs/toolkit'
-import type { PayloadAction } from '@reduxjs/toolkit'
-import { userLogin } from './authActions'
+import { createSlice } from "@reduxjs/toolkit";
+import type { PayloadAction } from "@reduxjs/toolkit";
+import { userLogin } from "./authActions";
+import { toast } from "react-toastify";
 
 interface Credentials {
   access_token: string;
@@ -11,8 +12,8 @@ interface Credentials {
 interface AuthState {
   isLoggedIn: boolean;
   loading: boolean;
-  error: Error|null;
-  credentials: Credentials|null;
+  error: Error | null;
+  credentials: Credentials | null;
 }
 
 const credentials = localStorage.getItem("google_oauth") ? JSON.parse(localStorage.getItem("google_oauth")) : null;
@@ -21,7 +22,7 @@ const initialState: AuthState = {
   isLoggedIn: credentials !== null,
   loading: false,
   error: null,
-  credentials: credentials
+  credentials: credentials,
 };
 
 export const authSlice = createSlice({
@@ -37,24 +38,25 @@ export const authSlice = createSlice({
     refreshCredentials: (state, payload: PayloadAction<Credentials>) => {
       state.credentials = payload;
       localStorage.setItem("google_oauth", JSON.stringify(payload));
-    }
+    },
   },
   extraReducers: {
     // login user
-    [userLogin.pending]: (state) => {
-      state.loading = true
-      state.error = null
+    [userLogin.pending]: state => {
+      state.loading = true;
+      state.error = null;
     },
     [userLogin.fulfilled]: (state, { payload }) => {
-      state.loading = false
-      state.credentials = payload
-      state.isLoggedIn = true
+      state.loading = false;
+      state.credentials = payload;
+      state.isLoggedIn = true;
     },
     [userLogin.rejected]: (state, { payload }) => {
-      state.loading = false
-      state.error = payload
+      state.loading = false;
+      state.error = payload;
+      toast.error(payload);
     },
-  }
+  },
 });
 
 export const { login, logout } = authSlice.actions;

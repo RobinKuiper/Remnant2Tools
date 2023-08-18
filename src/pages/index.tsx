@@ -1,12 +1,12 @@
 import * as React from "react";
-import type {PageProps} from "gatsby";
-import {graphql, Link} from "gatsby";
+import type { PageProps } from "gatsby";
+import { Link, graphql } from "gatsby";
 import "../global.css";
-import {styled} from "styled-components";
-import {GatsbyImage, getImage, StaticImage} from "gatsby-plugin-image";
+import { styled } from "styled-components";
+import { GatsbyImage, StaticImage, getImage } from "gatsby-plugin-image";
 import StatisticsPanel from "../components/statistics/StatisticsPanel";
 import SecretWorldsPanel from "../components/statistics/SecretWorldsPanel";
-import {BiLogoPatreon, BiLogoPaypal} from "react-icons/bi";
+import { BiLogoPatreon, BiLogoPaypal } from "react-icons/bi";
 import Head from "../components/layout/Head";
 import Layout from "../components/layout/Layout";
 import PageLayout from "../components/layout/PageLayout";

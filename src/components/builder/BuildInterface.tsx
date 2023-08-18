@@ -1,6 +1,6 @@
 import React from "react";
 import BuildItemBox from "./BuildItemBox";
-import {styled} from "styled-components";
+import { styled } from "styled-components";
 
 const ITEM_BOXES = {
   topLeft: [

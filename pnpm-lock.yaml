@@ -8,10 +8,10 @@ dependencies:
   "@react-oauth/google":
     specifier: ^0.11.1
     version: 0.11.1(react-dom@18.2.0)(react@18.2.0)
-  '@reduxjs/toolkit':
+  "@reduxjs/toolkit":
     specifier: ^1.9.5
     version: 1.9.5(react-redux@8.1.2)(react@18.2.0)
-  '@vercel/analytics':
+  "@vercel/analytics":
     specifier: ^1.0.2
     version: 1.0.2
   babel-plugin-styled-components:
@@ -3206,7 +3206,8 @@ packages:
     dev: false
 
   /@reduxjs/toolkit@1.9.5(react-redux@8.1.2)(react@18.2.0):
-    resolution: {integrity: sha512-Rt97jHmfTeaxL4swLRNPD/zV4OxTes4la07Xc4hetpUW/vc75t5m1ANyxG6ymnEQ2FsLQsoMlYB2vV1sO3m8tQ==}
+    resolution:
+      { integrity: sha512-Rt97jHmfTeaxL4swLRNPD/zV4OxTes4la07Xc4hetpUW/vc75t5m1ANyxG6ymnEQ2FsLQsoMlYB2vV1sO3m8tQ== }
     peerDependencies:
       react: ^16.9.0 || ^17.0.0 || ^18
       react-redux: ^7.2.1 || ^8.0.2
@@ -3755,7 +3756,7 @@ packages:
     resolution:
       { integrity: sha512-GRaAEriuT4zp9N4p1i8BDBYmEyfo+xQ3yHjJU4eiK5NDa1RmUZG+unZABUTK4/Ox/M+GaHwb6Ow8rUITrtjszA== }
     dependencies:
-      '@types/react': 18.2.20
+      "@types/react": 18.2.20
 
   /@types/react-helmet@6.1.6:
     resolution:
@@ -3857,7 +3858,8 @@ packages:
     dev: true
 
   /@types/use-sync-external-store@0.0.3:
-    resolution: {integrity: sha512-EwmlvuaxPNej9+T4v5AuBPJa2x2UOJVdjCtDHgcDqitUeOtjnJKJ+apYjVcAoBEMjKW1VVFGZLUb5+qqa09XFA==}
+    resolution:
+      { integrity: sha512-EwmlvuaxPNej9+T4v5AuBPJa2x2UOJVdjCtDHgcDqitUeOtjnJKJ+apYjVcAoBEMjKW1VVFGZLUb5+qqa09XFA== }
     dev: false
 
   /@types/yargs-parser@21.0.0:
@@ -12445,7 +12447,8 @@ packages:
     dev: true
 
   /react-is@18.2.0:
-    resolution: {integrity: sha512-xWGDIW6x921xtzPkhiULtthJHoJvBbF3q26fzloPCK0hsvxtPVelvftw3zjbHWSkR2km9Z+4uxbDDK/6Zw9B8w==}
+    resolution:
+      { integrity: sha512-xWGDIW6x921xtzPkhiULtthJHoJvBbF3q26fzloPCK0hsvxtPVelvftw3zjbHWSkR2km9Z+4uxbDDK/6Zw9B8w== }
 
   /react-lifecycles-compat@3.0.4:
     resolution:
@@ -12469,18 +12472,19 @@ packages:
     dev: false
 
   /react-redux@8.1.2(@types/react-dom@18.2.7)(@types/react@18.2.20)(react-dom@18.2.0)(react@18.2.0)(redux@4.2.1):
-    resolution: {integrity: sha512-xJKYI189VwfsFc4CJvHqHlDrzyFTY/3vZACbE+rr/zQ34Xx1wQfB4OTOSeOSNrF6BDVe8OOdxIrAnMGXA3ggfw==}
+    resolution:
+      { integrity: sha512-xJKYI189VwfsFc4CJvHqHlDrzyFTY/3vZACbE+rr/zQ34Xx1wQfB4OTOSeOSNrF6BDVe8OOdxIrAnMGXA3ggfw== }
     peerDependencies:
-      '@types/react': ^16.8 || ^17.0 || ^18.0
-      '@types/react-dom': ^16.8 || ^17.0 || ^18.0
+      "@types/react": ^16.8 || ^17.0 || ^18.0
+      "@types/react-dom": ^16.8 || ^17.0 || ^18.0
       react: ^16.8 || ^17.0 || ^18.0
       react-dom: ^16.8 || ^17.0 || ^18.0
-      react-native: '>=0.59'
+      react-native: ">=0.59"
       redux: ^4 || ^5.0.0-beta.0
     peerDependenciesMeta:
-      '@types/react':
+      "@types/react":
         optional: true
-      '@types/react-dom':
+      "@types/react-dom":
         optional: true
       react-dom:
         optional: true
@@ -12489,11 +12493,11 @@ packages:
       redux:
         optional: true
     dependencies:
-      '@babel/runtime': 7.22.10
-      '@types/hoist-non-react-statics': 3.3.1
-      '@types/react': 18.2.20
-      '@types/react-dom': 18.2.7
-      '@types/use-sync-external-store': 0.0.3
+      "@babel/runtime": 7.22.10
+      "@types/hoist-non-react-statics": 3.3.1
+      "@types/react": 18.2.20
+      "@types/react-dom": 18.2.7
+      "@types/use-sync-external-store": 0.0.3
       hoist-non-react-statics: 3.3.2
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
@@ -12827,7 +12831,8 @@ packages:
     dev: true
 
   /reselect@4.1.8:
-    resolution: {integrity: sha512-ab9EmR80F/zQTMNeneUr4cv+jSwPJgIlvEmVwLerwrWVbpLlBuls9XHzIeTFy4cegU2NHBp3va0LKOzU5qFEYQ==}
+    resolution:
+      { integrity: sha512-ab9EmR80F/zQTMNeneUr4cv+jSwPJgIlvEmVwLerwrWVbpLlBuls9XHzIeTFy4cegU2NHBp3va0LKOzU5qFEYQ== }
     dev: false
 
   /resolve-alpn@1.2.1:
@@ -14408,7 +14413,8 @@ packages:
     dev: false
 
   /use-sync-external-store@1.2.0(react@18.2.0):
-    resolution: {integrity: sha512-eEgnFxGQ1Ife9bzYs6VLi8/4X6CObHMw9Qr9tPY43iKwsPw8xE8+EFsf/2cFZ5S3esXgpWgtSCtLNS41F+sKPA==}
+    resolution:
+      { integrity: sha512-eEgnFxGQ1Ife9bzYs6VLi8/4X6CObHMw9Qr9tPY43iKwsPw8xE8+EFsf/2cFZ5S3esXgpWgtSCtLNS41F+sKPA== }
     peerDependencies:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0
     dependencies:

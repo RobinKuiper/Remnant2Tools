@@ -1,13 +1,13 @@
-import type {IGatsbyImageData} from "gatsby-plugin-image";
-import {GatsbyImage, getImage} from "gatsby-plugin-image";
-import React, {useEffect, useState} from "react";
-import {findImageById} from "../../helpers";
-import type {Build} from "../../interface/Build";
-import {styled} from "styled-components";
-import type {Filter} from "../../interface/IData";
-import {getFieldValue} from "../../dataHelpers";
+import type { IGatsbyImageData } from "gatsby-plugin-image";
+import { GatsbyImage, getImage } from "gatsby-plugin-image";
+import React, { useEffect, useState } from "react";
+import { findImageById } from "../../helpers";
+import type { Build } from "../../interface/Build";
+import { styled } from "styled-components";
+import type { Filter } from "../../interface/IData";
+import { getFieldValue } from "../../dataHelpers";
 import ItemTooltip from "../database/ItemTooltip";
-import {graphql, useStaticQuery} from "gatsby";
+import { graphql, useStaticQuery } from "gatsby";
 
 interface Props {
   openModal: (filters: Filter[], buildPath: string) => void;

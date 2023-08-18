@@ -4,11 +4,10 @@ import { styled } from "styled-components";
 import { Flex } from "../../style/global";
 import { RiSettings3Line } from "react-icons/ri";
 import { StaticImage } from "gatsby-plugin-image";
-import SavingIndicator from "./SavingIndicator";
 import GlobalSearch from "./GlobalSearch";
-import {useAppDispatch, useAppSelector} from "../../hooks";
-import {RootState} from "../../store";
-import {toggleSidebar} from "../../features/settings/settingsSlice"
+import { useAppDispatch, useAppSelector } from "../../hooks";
+import type { RootState } from "../../store";
+import { toggleSidebar } from "../../features/settings/settingsSlice";
 
 const Container = styled.div`
   position: fixed;
@@ -152,7 +151,7 @@ const Hamburger = styled.button`
 const TopBar = () => {
   const [isOpen, setOpen] = useState(false);
   const url = typeof window !== "undefined" ? window.location.href : "";
-  const showSidebar = useAppSelector((state: RootState) => state.settings.showSidebar)
+  const showSidebar = useAppSelector((state: RootState) => state.settings.showSidebar);
   const dispatch = useAppDispatch();
 
   const toggleOpen = () => {

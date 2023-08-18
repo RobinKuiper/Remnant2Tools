@@ -1,5 +1,5 @@
 import { graphql } from "gatsby";
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import { BiHide, BiShow } from "react-icons/bi";
 import { styled } from "styled-components";
 import CategorySidebarContent from "../components/database/CategorySidebarContent";
@@ -13,9 +13,9 @@ import { getPageType } from "../helpers";
 import Head from "../components/layout/Head";
 import Layout from "../components/layout/Layout";
 import PageLayout from "../components/layout/PageLayout";
-import {useAppDispatch, useAppSelector} from "../hooks";
-import {RootState} from "../store";
-import { toggleHideUnlocked, toggleView } from '../features/settings/settingsSlice';
+import { useAppDispatch, useAppSelector } from "../hooks";
+import type { RootState } from "../store";
+import { toggleHideUnlocked, toggleView } from "../features/settings/settingsSlice";
 
 const Container = styled.div`
   padding: 20px;
@@ -70,8 +70,8 @@ const Container = styled.div`
 `;
 
 const Category = ({ path, data }) => {
-  const { hideUnlocked, view } = useAppSelector((state: RootState) => state.settings)
-  const { unlocks, statistics } = useAppSelector((state: RootState) => state.data)
+  const { hideUnlocked, view } = useAppSelector((state: RootState) => state.settings);
+  const { unlocks, statistics } = useAppSelector((state: RootState) => state.data);
   const dispatch = useAppDispatch();
   const { images, category } = data;
   const { items } = category;

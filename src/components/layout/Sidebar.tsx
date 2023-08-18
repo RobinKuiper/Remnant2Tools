@@ -1,6 +1,6 @@
-import React, {useState} from "react";
-import {styled} from "styled-components";
-import {BiSolidLeftArrow, BiSolidRightArrow} from "react-icons/bi";
+import React, { useState } from "react";
+import { styled } from "styled-components";
+import { BiSolidLeftArrow, BiSolidRightArrow } from "react-icons/bi";
 
 const Container = styled.div`
   position: fixed;

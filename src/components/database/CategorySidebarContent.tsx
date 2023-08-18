@@ -1,8 +1,8 @@
 import { Link, graphql, useStaticQuery } from "gatsby";
 import React from "react";
 import { styled } from "styled-components";
-import {useAppSelector} from "../../hooks";
-import {RootState} from "../../store";
+import { useAppSelector } from "../../hooks";
+import type { RootState } from "../../store";
 
 const Container = styled.div`
   margin-top: 10px;
@@ -118,7 +118,7 @@ const CategorySidebarContent = ({ type }: Props) => {
       }
     }
   `);
-  const { statistics } = useAppSelector((state: RootState) => state.data)
+  const { statistics } = useAppSelector((state: RootState) => state.data);
   const url = typeof window !== "undefined" ? window.location.href : "";
 
   return (

@@ -1,9 +1,9 @@
-import React, {useState} from "react";
-import {AiFillLock, AiFillUnlock} from "react-icons/ai";
-import {styled} from "styled-components";
-import {saveBuild} from '../../features/data/dataSlice';
-import {useAppDispatch} from "../../hooks";
-import type {Build} from "../../interface/Build";
+import React, { useState } from "react";
+import { AiFillLock, AiFillUnlock } from "react-icons/ai";
+import { styled } from "styled-components";
+import { saveBuild } from "../../features/data/dataSlice";
+import { useAppDispatch } from "../../hooks";
+import type { Build } from "../../interface/Build";
 
 const Container = styled.div`
   display: flex;

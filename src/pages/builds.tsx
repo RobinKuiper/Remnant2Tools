@@ -1,14 +1,14 @@
-import {graphql} from "gatsby";
-import React, {useEffect, useState} from "react";
-import {styled} from "styled-components";
+import { graphql } from "gatsby";
+import React, { useEffect, useState } from "react";
+import { styled } from "styled-components";
 import BuildsSidebarContent from "../components/builder/BuildsSidebarContent";
-import type {Build, Item} from "../interface/Build";
+import type { Build, Item } from "../interface/Build";
 import "react-tooltip/dist/react-tooltip.css";
 import BuildInterface from "../components/builder/BuildInterface";
 import Head from "../components/layout/Head";
-import {getFieldValue, setFieldValue} from "../dataHelpers";
+import { getFieldValue, setFieldValue } from "../dataHelpers";
 import ItemSelectModal from "../components/modals/ItemSelectModal";
-import type {Filter} from "../interface/IData";
+import type { Filter } from "../interface/IData";
 import ArchetypesInterface from "../components/builder/ArchetypesInterface";
 import TraitsInterface from "../components/builder/TraitsInterface";
 import Settings from "../components/builder/Settings";
@@ -16,9 +16,9 @@ import BuildStatisticsSidebarContent from "../components/builder/BuildStatistics
 import BackgroundImage from "../components/BackgroundImage";
 import Layout from "../components/layout/Layout";
 import PageLayout from "../components/layout/PageLayout";
-import {useAppDispatch, useAppSelector} from "../hooks";
-import {RootState} from "../store";
-import {saveBuild} from '../features/data/dataSlice';
+import { useAppDispatch, useAppSelector } from "../hooks";
+import type { RootState } from "../store";
+import { saveBuild } from "../features/data/dataSlice";
 
 const NEW_BUILD: Build = {
   name: "New Build",
@@ -69,7 +69,7 @@ const NEW_BUILD: Build = {
 
 const Builds = props => {
   const dispatch = useAppDispatch();
-  const { builds } = useAppSelector((state: RootState) => state.data)
+  const { builds } = useAppSelector((state: RootState) => state.data);
   const { images, bgImage } = props.data;
   const [modalIsOpen, setIsOpen] = useState(false);
   const [modalFilters, setModalFilters] = useState<Filter[]>([]);
@@ -126,11 +126,10 @@ const Builds = props => {
   };
   const updateBuildValue = (buildPath: string, value: any, item?: Item) => {
     const nBuild = { ...build };
-    console.log(nBuild)
     setFieldValue(nBuild, buildPath, value);
     preProcessBuild(value, nBuild, buildPath, item);
     setBuild(nBuild);
-    dispatch(saveBuild({name, build: nBuild}));
+    dispatch(saveBuild({ name, build: nBuild }));
   };
   const preProcessBuild = (value: any, nBuild: Build, buildPath: string, item?: Item) => {
     if (buildPath === "archetype1.level" || buildPath === "archetype2.level") {

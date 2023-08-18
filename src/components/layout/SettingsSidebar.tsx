@@ -1,22 +1,22 @@
-import React, {useEffect, useRef, useState} from "react";
-import {styled} from "styled-components";
+import React, { useEffect, useRef, useState } from "react";
+import { styled } from "styled-components";
 import Toggle from "react-toggle";
-import {CiImport} from "react-icons/ci";
-import {AiOutlineCopy} from "react-icons/ai";
-import {LAST_UPDATED, MAX_GOOGLE_SAVE_TIME} from "../../constants";
+import { CiImport } from "react-icons/ci";
+import { AiOutlineCopy } from "react-icons/ai";
+import { LAST_UPDATED, MAX_GOOGLE_SAVE_TIME } from "../../constants";
 import "react-toggle/style.css";
-import {Tooltip} from "react-tooltip";
-import {FaGoogleDrive} from "react-icons/fa";
+import { Tooltip } from "react-tooltip";
+import { FaGoogleDrive } from "react-icons/fa";
 import Loader from "../Loader";
-import {toast} from "react-toastify";
-import {refreshTokens} from "../../helpers";
-import {useGoogleLogin} from "@react-oauth/google";
-import {useAppDispatch, useAppSelector} from "../../hooks";
-import {RootState} from "../../store";
-import {userLogin} from '../../features/auth/authActions';
-import {logout} from '../../features/auth/authSlice';
-import {toggleShowRedacted} from '../../features/settings/settingsSlice';
-import {updateBuilds, updateUnlocks} from '../../features/data/dataSlice';
+import { toast } from "react-toastify";
+import { refreshTokens } from "../../helpers";
+import { useGoogleLogin } from "@react-oauth/google";
+import { useAppDispatch, useAppSelector } from "../../hooks";
+import type { RootState } from "../../store";
+import { userLogin } from "../../features/auth/authActions";
+import { logout } from "../../features/auth/authSlice";
+import { toggleShowRedacted } from "../../features/settings/settingsSlice";
+import { updateBuilds, updateUnlocks } from "../../features/data/dataSlice";
 
 const Container = styled.div`
   position: fixed;
@@ -171,14 +171,14 @@ const SettingsSidebar = () => {
   const unlockDataRef = useRef<HTMLTextAreaElement>();
   const buildsDataRef = useRef<HTMLTextAreaElement>();
   const [retrievingFromGoogle, setRetrievingFromGoogle] = useState(false);
-  const {isLoggedIn, loggingIn} = useAppSelector((state: RootState) => state.auth)
-  const { showSidebar, showRedacted } = useAppSelector((state: RootState) => state.settings)
-  const { unlocks, builds } = useAppSelector((state: RootState) => state.data)
+  const { isLoggedIn, loading: loggingIn } = useAppSelector((state: RootState) => state.auth);
+  const { showSidebar, showRedacted } = useAppSelector((state: RootState) => state.settings);
+  const { unlocks, builds } = useAppSelector((state: RootState) => state.data);
   const dispatch = useAppDispatch();
-  
+
   const googleLogin = useGoogleLogin({
-    onSuccess: async ({ code }) => {
-      dispatch(userLogin(code))
+    onSuccess: ({ code }) => {
+      dispatch(userLogin(code));
     },
     onError: () => {
       toast.error("Something went wrong with the authentication.");
@@ -189,7 +189,7 @@ const SettingsSidebar = () => {
     scope: "https://www.googleapis.com/auth/drive.file",
     flow: "auth-code",
   });
-  
+
   useEffect(() => {
     if (!unlockDataRef.current) {
       return;
@@ -222,7 +222,7 @@ const SettingsSidebar = () => {
   const saveUnlocks = e => {
     e.target.classList.add("success");
     localStorage.setItem("data", unlockDataRef.current.value);
-    dispatch(updateUnlocks())
+    dispatch(updateUnlocks());
   };
 
   const saveBuilds = e => {
@@ -260,11 +260,11 @@ const SettingsSidebar = () => {
 
     if (result.ok) {
       setRetrievingFromGoogle(false);
-      const { body } = await result.json();
-      localStorage.setItem("data", body.contents);
-      updateUnlocks();
-      toast.success("Successfully retrieved data from Google.");
-      refreshTokens(body.credentials);
+      const { unlocks, credentials } = await result.json();
+      localStorage.setItem("data", unlocks);
+      dispatch(updateUnlocks());
+      toast.success("Successfully retrieved data from ");
+      refreshTokens(credentials);
     } else {
       if (result.status === 404) {
         toast.error("No data found.");

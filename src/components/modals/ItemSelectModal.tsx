@@ -1,16 +1,16 @@
-import {GatsbyImage, getImage} from "gatsby-plugin-image";
-import React, {useEffect, useState} from "react";
-import {BsLock} from "react-icons/bs";
+import { GatsbyImage, getImage } from "gatsby-plugin-image";
+import React, { useEffect, useState } from "react";
+import { BsLock } from "react-icons/bs";
 import Modal from "react-modal";
-import {styled} from "styled-components";
-import {findImageById} from "../../helpers";
+import { styled } from "styled-components";
+import { findImageById } from "../../helpers";
 import Search from "../Search";
-import {graphql, useStaticQuery} from "gatsby";
-import {filterItems, sorter} from "../../dataHelpers";
-import type {Filter} from "../../interface/IData";
+import { graphql, useStaticQuery } from "gatsby";
+import { filterItems, sorter } from "../../dataHelpers";
+import type { Filter } from "../../interface/IData";
 import Loader from "../Loader";
-import {useAppSelector} from "../../hooks";
-import {RootState} from "../../store";
+import { useAppSelector } from "../../hooks";
+import type { RootState } from "../../store";
 import ItemTooltip from "../database/ItemTooltip";
 
 Modal.setAppElement("#___gatsby");
@@ -116,7 +116,7 @@ const ItemSelectModal = ({ setIsOpen, isOpen, filters, callback, onlyShowUnlocke
       }
     }
   `);
-  const { unlocks } = useAppSelector((state: RootState) => state.data)
+  const { unlocks } = useAppSelector((state: RootState) => state.data);
   const allItems = data.items.nodes;
   const images = data.images.nodes;
   const [query, setQuery] = useState("");

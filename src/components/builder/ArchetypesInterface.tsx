@@ -1,11 +1,11 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import BuildItemBox from "./BuildItemBox";
-import {styled} from "styled-components";
-import type {Build} from "../../interface/Build";
-import type {Filter} from "../../interface/IData";
+import { styled } from "styled-components";
+import type { Build } from "../../interface/Build";
+import type { Filter } from "../../interface/IData";
 import ItemLevelNew from "../database/ItemLevelNew";
-import {graphql, Link, useStaticQuery} from "gatsby";
-import {getFieldValue} from "../../dataHelpers";
+import { Link, graphql, useStaticQuery } from "gatsby";
+import { getFieldValue } from "../../dataHelpers";
 
 const Container = styled.div`
   display: flex;

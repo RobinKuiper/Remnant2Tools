@@ -1,7 +1,7 @@
 import React from "react";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import { BuildsProvider } from "./context/BuildContext";
-import {Provider} from "react-redux";
+import { Provider } from "react-redux";
 import store from "./store";
 
 interface Props {
@@ -10,8 +10,7 @@ interface Props {
 
 const Wrapper = ({ children }: Props) => {
   return (
-    // TODO: change to env variable
-    <GoogleOAuthProvider clientId="712088662534-av71tvgru83it5ll3tra1snpgfund263.apps.googleusercontent.com">
+    <GoogleOAuthProvider clientId={process.env.GATSBY_CLIENT_ID}>
       <Provider store={store}>
         <BuildsProvider>{children}</BuildsProvider>
       </Provider>
@@ -20,4 +19,3 @@ const Wrapper = ({ children }: Props) => {
 };
 
 export default Wrapper;
- 

@@ -1,7 +1,7 @@
 import data from "./src/data/data.json";
-import type {GatsbyNode, NodeInput} from "gatsby";
-import {resolve} from "path";
-import {calculateStringMatchPercentage} from "./src/helpers";
+import type { GatsbyNode, NodeInput } from "gatsby";
+import { resolve } from "path";
+import { calculateStringMatchPercentage } from "./src/helpers";
 
 export const onCreateNode = ({ node, actions }) => {
   const { createNodeField } = actions;

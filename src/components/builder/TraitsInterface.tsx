@@ -1,14 +1,14 @@
-import React, {useEffect, useState} from "react";
-import {MAX_TRAIT_POINTS} from "../../constants";
-import {GatsbyImage, getImage} from "gatsby-plugin-image";
-import {findImageById, restrainNumber} from "../../helpers";
-import {styled} from "styled-components";
-import type {Build} from "../../interface/Build";
-import {graphql, useStaticQuery} from "gatsby";
-import {sorter} from "../../dataHelpers";
+import React, { useEffect, useState } from "react";
+import { MAX_TRAIT_POINTS } from "../../constants";
+import { GatsbyImage, getImage } from "gatsby-plugin-image";
+import { findImageById, restrainNumber } from "../../helpers";
+import { styled } from "styled-components";
+import type { Build } from "../../interface/Build";
+import { graphql, useStaticQuery } from "gatsby";
+import { sorter } from "../../dataHelpers";
 import Search from "../Search";
-import {useAppSelector} from "../../hooks";
-import {RootState} from "../../store";
+import { useAppSelector } from "../../hooks";
+import type { RootState } from "../../store";
 
 interface Props {
   build: Build;
@@ -36,7 +36,7 @@ const TraitsInterface = ({ build, showOnlyUnlocked, updateBuildValue }: Props) =
       }
     }
   `);
-  const { unlocks } = useAppSelector((state: RootState) => state.data)
+  const { unlocks } = useAppSelector((state: RootState) => state.data);
   const images = data.images.nodes;
   const [traits, setTraits] = useState([]);
   const [query, setQuery] = useState("");
