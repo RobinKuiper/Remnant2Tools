@@ -81,17 +81,17 @@ const ImportSaveModal = ({ setIsOpen, isOpen }: Props) => {
         }
       });
 
-      const notInCurrentUnlocks = [];
+      // const notInCurrentUnlocks = [];
       const idsNotInCurrentUnlocks = [];
       foundIds.forEach(id => {
         const item = items.nodes.find(item => item.externalId === id);
         if (!unlocks.includes(id) && item) {
-          notInCurrentUnlocks.push({ name: item.name, category: item.category });
+          // notInCurrentUnlocks.push({ name: item.name, category: item.category });
           idsNotInCurrentUnlocks.push(id);
         }
       });
 
-      setNotInUnlocksData(notInCurrentUnlocks);
+      // setNotInUnlocksData(notInCurrentUnlocks);
       setNotInUnlocksIds(idsNotInCurrentUnlocks);
       setLoading(false);
     };
