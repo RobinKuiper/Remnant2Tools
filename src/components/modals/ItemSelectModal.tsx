@@ -1,5 +1,5 @@
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BsLock } from "react-icons/bs";
 import Modal from "react-modal";
 import { styled } from "styled-components";
@@ -9,7 +9,8 @@ import { graphql, useStaticQuery } from "gatsby";
 import { filterItems, sorter } from "../../dataHelpers";
 import type { Filter } from "../../interface/IData";
 import Loader from "../Loader";
-import { DataContext } from "../../context/DataContext";
+import { useAppSelector } from "../../hooks";
+import type { RootState } from "../../store";
 import ItemTooltip from "../database/ItemTooltip";
 
 Modal.setAppElement("#___gatsby");
@@ -120,7 +121,7 @@ const ItemSelectModal = ({ setIsOpen, isOpen, filters, callback, onlyShowUnlocke
       }
     }
   `);
-  const { unlocks } = useContext(DataContext);
+  const { unlocks } = useAppSelector((state: RootState) => state.data);
   const allItems = data.items.nodes;
   const images = data.images.nodes;
   const [query, setQuery] = useState("");

@@ -1,12 +1,13 @@
 import { Link } from "gatsby";
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { styled } from "styled-components";
 import { Flex } from "../../style/global";
 import { RiSettings3Line } from "react-icons/ri";
-import { SettingContext } from "../../context/SettingContext";
 import { StaticImage } from "gatsby-plugin-image";
-import SavingIndicator from "./SavingIndicator";
 import GlobalSearch from "./GlobalSearch";
+import { useAppDispatch, useAppSelector } from "../../hooks";
+import type { RootState } from "../../store";
+import { toggleSidebar } from "../../features/settings/settingsSlice";
 
 const Container = styled.div`
   position: fixed;
@@ -148,9 +149,10 @@ const Hamburger = styled.button`
 `;
 
 const TopBar = () => {
-  const { toggleShowSettings, showSettings } = useContext(SettingContext);
   const [isOpen, setOpen] = useState(false);
   const url = typeof window !== "undefined" ? window.location.href : "";
+  const showSidebar = useAppSelector((state: RootState) => state.settings.showSidebar);
+  const dispatch = useAppDispatch();
 
   const toggleOpen = () => {
     setOpen(!isOpen);
@@ -185,19 +187,11 @@ const TopBar = () => {
 
         <div className="right">
           <Flex alignitems="center" justifycontent="right" gap={0}>
-            {/*<button onClick={toggleDarkMode}>*/}
-            {/*    {darkMode ? (*/}
-            {/*        <MdLightMode size="25px"  />*/}
-            {/*    ) : (*/}
-            {/*        <MdDarkMode size="25px" />*/}
-            {/*    )}*/}
-            {/*</button>*/}
-
-            <SavingIndicator />
+            {/*<SavingIndicator />*/}
 
             <GlobalSearch />
 
-            <button className={`settings ${showSettings && "active"}`} onClick={toggleShowSettings}>
+            <button className={`settings ${showSidebar && "active"}`} onClick={() => dispatch(toggleSidebar())}>
               <RiSettings3Line size="30px" />
             </button>
 

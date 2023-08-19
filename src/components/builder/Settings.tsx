@@ -1,7 +1,8 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { AiFillLock, AiFillUnlock } from "react-icons/ai";
 import { styled } from "styled-components";
-import { BuildsContext } from "../../context/BuildContext";
+import { saveBuild } from "../../features/data/dataSlice";
+import { useAppDispatch } from "../../hooks";
 import type { Build } from "../../interface/Build";
 
 const Container = styled.div`
@@ -37,7 +38,7 @@ interface Props {
 }
 
 const Settings = ({ build, setBuild, toggleOnlyUnlocked, onlyUnlocked }: Props) => {
-  const { saveBuild } = useContext(BuildsContext);
+  const dispatch = useAppDispatch();
   const [name, setName] = useState(build.name);
 
   const handleNameSave = () => {
@@ -47,7 +48,7 @@ const Settings = ({ build, setBuild, toggleOnlyUnlocked, onlyUnlocked }: Props) 
     }
 
     setBuild(newBuild);
-    saveBuild(newBuild);
+    dispatch(saveBuild(newBuild));
   };
 
   const handleNameChange = e => {

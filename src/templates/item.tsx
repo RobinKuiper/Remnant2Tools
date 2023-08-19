@@ -1,5 +1,5 @@
 import { Link, graphql } from "gatsby";
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { styled } from "styled-components";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import { slugify, uppercaseFirstLetter } from "../helpers";
@@ -9,12 +9,14 @@ import Redacted from "../components/database/Redacted";
 import CategorySidebarContent from "../components/database/CategorySidebarContent";
 import Breadcrumb from "../components/layout/Breadcrumb";
 import Head from "../components/layout/Head";
-import { SettingContext } from "../context/SettingContext";
-import { DataContext } from "../context/DataContext";
 import BackgroundImage from "../components/BackgroundImage";
 import Checkbox from "../components/Checkbox";
 import Layout from "../components/layout/Layout";
 import PageLayout from "../components/layout/PageLayout";
+import { useAppDispatch, useAppSelector } from "../hooks";
+import type { RootState } from "../store";
+import { toggleUnlock } from "../features/data/dataSlice";
+import { googleSaveWithDelay } from "../features/data/dataActions";
 
 const Container = styled.div`
   .item {
@@ -156,8 +158,9 @@ const STATE_CLASSES = {
 
 const Category = ({ data, pageContext, location }) => {
   const ref = useRef();
-  const { startSaving, stopSaving } = useContext(SettingContext);
-  const { toggleUnlock, unlocks } = useContext(DataContext);
+  const dispatch = useAppDispatch();
+  const { unlocks, pending } = useAppSelector((state: RootState) => state.data);
+  const { isLoggedIn } = useAppSelector((state: RootState) => state.auth);
   const { category } = pageContext;
   const { item, image, linkedItems, bgImage } = data;
   const gatsbyImage = getImage(image);
@@ -169,11 +172,12 @@ const Category = ({ data, pageContext, location }) => {
   }, [unlocks]);
 
   const handleLockStateChange = e => {
-    startSaving();
     const id = parseInt(e.target.id);
-    toggleUnlock(id);
+    dispatch(toggleUnlock(id));
+    if (isLoggedIn && !pending) {
+      dispatch(googleSaveWithDelay());
+    }
     setUnlocked(!unlocked);
-    stopSaving();
   };
 
   return (

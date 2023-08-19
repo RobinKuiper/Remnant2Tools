@@ -1,11 +1,9 @@
 import { graphql } from "gatsby";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BiHide, BiShow } from "react-icons/bi";
 import { styled } from "styled-components";
 import CategorySidebarContent from "../components/database/CategorySidebarContent";
 import Search from "../components/Search";
-import { DataContext } from "../context/DataContext";
-import { SettingContext } from "../context/SettingContext";
 import { sorter } from "../dataHelpers";
 import { Flex } from "../style/global";
 import Item from "../components/database/Item";
@@ -15,6 +13,9 @@ import { getPageType } from "../helpers";
 import Head from "../components/layout/Head";
 import Layout from "../components/layout/Layout";
 import PageLayout from "../components/layout/PageLayout";
+import { useAppDispatch, useAppSelector } from "../hooks";
+import type { RootState } from "../store";
+import { toggleHideUnlocked, toggleView } from "../features/settings/settingsSlice";
 
 const Container = styled.div`
   padding: 20px;
@@ -69,8 +70,9 @@ const Container = styled.div`
 `;
 
 const Category = ({ path, data }) => {
-  const { hideUnlocked, toggleHideUnlocked, view, toggleView } = useContext(SettingContext);
-  const { statistics, unlocks } = useContext(DataContext);
+  const { hideUnlocked, view } = useAppSelector((state: RootState) => state.settings);
+  const { unlocks, statistics } = useAppSelector((state: RootState) => state.data);
+  const dispatch = useAppDispatch();
   const { images, category } = data;
   const { items } = category;
   const type = getPageType(path);
@@ -167,7 +169,7 @@ const Category = ({ path, data }) => {
               )}
 
               {isTracker && (
-                <button onClick={toggleHideUnlocked}>
+                <button onClick={() => dispatch(toggleHideUnlocked())}>
                   {hideUnlocked ? (
                     <BiShow
                       size={"30px"}
@@ -186,7 +188,7 @@ const Category = ({ path, data }) => {
                 </button>
               )}
 
-              <button className="view-switcher" onClick={toggleView}>
+              <button className="view-switcher" onClick={() => dispatch(toggleView())}>
                 {view === "list" ? (
                   <BsFillGrid3X3GapFill
                     size={"30px"}

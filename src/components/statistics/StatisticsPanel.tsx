@@ -1,9 +1,10 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { styled } from "styled-components";
-import { DataContext } from "../../context/DataContext";
 import { calculatePercentage } from "../../helpers";
 import { Link, graphql, useStaticQuery } from "gatsby";
 import Loader from "../Loader";
+import { useAppSelector } from "../../hooks";
+import type { RootState } from "../../store";
 
 const Container = styled.div`
   width: 400px;
@@ -54,7 +55,7 @@ const StatisticsPanel = () => {
       }
     }
   `);
-  const { statistics } = useContext(DataContext);
+  const { statistics } = useAppSelector((state: RootState) => state.data);
   const [loading, setLoading] = useState(true);
   const [totals, setTotals] = useState({ total: 0, unlocked: 0, percentage: 0 });
 

@@ -83,7 +83,7 @@ export const restrainNumber = (value: number, max: number, subtract: boolean = f
 };
 
 export const refreshTokens = (credentials: object | null) => {
-  if (credentials) {
+  if (credentials && credentials["access_token"] && credentials["refresh_token"] && credentials["expiry_date"]) {
     localStorage.setItem("google_oauth", JSON.stringify(credentials));
   }
 };

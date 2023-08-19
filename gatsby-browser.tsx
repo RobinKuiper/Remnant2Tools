@@ -1,12 +1,3 @@
-import React from "react";
-import Wrapper from "./src/components/Wrapper";
-import { Analytics } from "@vercel/analytics/react";
+import Wrapper from "./src/Wrapper";
 
-export const wrapRootElement = ({ element }) => {
-  return (
-    <>
-      <Wrapper>{element}</Wrapper>
-      <Analytics />
-    </>
-  );
-};
+export const wrapRootElement = Wrapper;

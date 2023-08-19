@@ -1,19 +1,22 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { styled } from "styled-components";
 import Toggle from "react-toggle";
-import { SettingContext } from "../../context/SettingContext";
 import { CiImport } from "react-icons/ci";
 import { AiOutlineCopy } from "react-icons/ai";
-import { DataContext } from "../../context/DataContext";
-import { BuildsContext } from "../../context/BuildContext";
 import { LAST_UPDATED, MAX_GOOGLE_SAVE_TIME } from "../../constants";
 import "react-toggle/style.css";
 import { Tooltip } from "react-tooltip";
-import { AuthContext } from "../../context/AuthContext";
 import { FaGoogleDrive } from "react-icons/fa";
 import Loader from "../Loader";
 import { toast } from "react-toastify";
 import { refreshTokens } from "../../helpers";
+import { useGoogleLogin } from "@react-oauth/google";
+import { useAppDispatch, useAppSelector } from "../../hooks";
+import type { RootState } from "../../store";
+import { userLogin } from "../../features/auth/authActions";
+import { logout } from "../../features/auth/authSlice";
+import { toggleShowRedacted } from "../../features/settings/settingsSlice";
+import { updateBuilds, updateUnlocks } from "../../features/data/dataSlice";
 
 const Container = styled.div`
   position: fixed;
@@ -165,13 +168,27 @@ const GDriveButton = styled.button`
 `;
 
 const SettingsSidebar = () => {
-  const { showSettings, defaultShowRedacted, toggleDefaultShowRedacted } = useContext(SettingContext);
-  const { isLoggedIn, loggingIn, login, logout } = useContext(AuthContext);
-  const { updateUnlocks, unlocks } = useContext(DataContext);
-  const { updateBuilds, builds } = useContext(BuildsContext);
   const unlockDataRef = useRef<HTMLTextAreaElement>();
   const buildsDataRef = useRef<HTMLTextAreaElement>();
   const [retrievingFromGoogle, setRetrievingFromGoogle] = useState(false);
+  const { isLoggedIn, loading: loggingIn } = useAppSelector((state: RootState) => state.auth);
+  const { showSidebar, showRedacted } = useAppSelector((state: RootState) => state.settings);
+  const { unlocks, builds } = useAppSelector((state: RootState) => state.data);
+  const dispatch = useAppDispatch();
+
+  const googleLogin = useGoogleLogin({
+    onSuccess: ({ code }) => {
+      dispatch(userLogin(code));
+    },
+    onError: () => {
+      toast.error("Something went wrong with the authentication.");
+    },
+    onNonOAuthError: () => {
+      toast.error("Something went wrong with the authentication.");
+    },
+    scope: "https://www.googleapis.com/auth/drive.file",
+    flow: "auth-code",
+  });
 
   useEffect(() => {
     if (!unlockDataRef.current) {
@@ -205,20 +222,20 @@ const SettingsSidebar = () => {
   const saveUnlocks = e => {
     e.target.classList.add("success");
     localStorage.setItem("data", unlockDataRef.current.value);
-    updateUnlocks();
+    dispatch(updateUnlocks());
   };
 
   const saveBuilds = e => {
     e.target.classList.add("success");
     localStorage.setItem("builds", buildsDataRef.current.value);
-    updateBuilds();
+    dispatch(updateBuilds());
   };
 
   const handleGoogleLink = () => {
     if (isLoggedIn) {
-      logout();
+      dispatch(logout());
     } else {
-      login();
+      googleLogin();
     }
   };
 
@@ -243,11 +260,11 @@ const SettingsSidebar = () => {
 
     if (result.ok) {
       setRetrievingFromGoogle(false);
-      const { body } = await result.json();
-      localStorage.setItem("data", body.contents);
-      updateUnlocks();
-      toast.success("Successfully retrieved data from Google.");
-      refreshTokens(body.credentials);
+      const { unlocks, credentials } = await result.json();
+      localStorage.setItem("data", unlocks);
+      dispatch(updateUnlocks());
+      toast.success("Successfully retrieved data from ");
+      refreshTokens(credentials);
     } else {
       if (result.status === 404) {
         toast.error("No data found.");
@@ -293,7 +310,7 @@ const SettingsSidebar = () => {
   );
 
   return (
-    <Container className={showSettings && "active"}>
+    <Container className={showSidebar && "active"}>
       <h2>Settings</h2>
 
       <div className="google-login-setting-item" data-tooltip-id="google-login-tooltip" data-tooltip-place="bottom">
@@ -329,7 +346,6 @@ const SettingsSidebar = () => {
           >
             Default Show Redacted
           </label>
-          {/*<input type="checkbox" checked={defaultShowRedacted} onChange={toggleDefaultShowRedacted} />*/}
           <div
             data-tooltip-id="tooltip"
             data-tooltip-content={"Show redacted information by default"}
@@ -338,8 +354,8 @@ const SettingsSidebar = () => {
             <Toggle
               id="defaultShowRedacted"
               className="toggle"
-              defaultChecked={defaultShowRedacted}
-              onChange={toggleDefaultShowRedacted}
+              defaultChecked={showRedacted}
+              onChange={() => dispatch(toggleShowRedacted())}
             />
           </div>
         </div>

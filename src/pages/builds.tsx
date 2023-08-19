@@ -1,8 +1,7 @@
 import { graphql } from "gatsby";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { styled } from "styled-components";
 import BuildsSidebarContent from "../components/builder/BuildsSidebarContent";
-import { BuildsContext } from "../context/BuildContext";
 import type { Build, Item } from "../interface/Build";
 import "react-tooltip/dist/react-tooltip.css";
 import BuildInterface from "../components/builder/BuildInterface";
@@ -14,10 +13,12 @@ import ArchetypesInterface from "../components/builder/ArchetypesInterface";
 import TraitsInterface from "../components/builder/TraitsInterface";
 import Settings from "../components/builder/Settings";
 import BuildStatisticsSidebarContent from "../components/builder/BuildStatisticsSidebarContent";
-import { SettingContext } from "../context/SettingContext";
 import BackgroundImage from "../components/BackgroundImage";
 import Layout from "../components/layout/Layout";
 import PageLayout from "../components/layout/PageLayout";
+import { useAppDispatch, useAppSelector } from "../hooks";
+import type { RootState } from "../store";
+import { saveBuild } from "../features/data/dataSlice";
 
 const NEW_BUILD: Build = {
   name: "New Build",
@@ -67,8 +68,8 @@ const NEW_BUILD: Build = {
 };
 
 const Builds = props => {
-  const { saveBuild, builds } = useContext(BuildsContext);
-  const { startSaving, stopSaving } = useContext(SettingContext);
+  const dispatch = useAppDispatch();
+  const { builds } = useAppSelector((state: RootState) => state.data);
   const { images, bgImage } = props.data;
   const [modalIsOpen, setIsOpen] = useState(false);
   const [modalFilters, setModalFilters] = useState<Filter[]>([]);
@@ -121,11 +122,6 @@ const Builds = props => {
       updateBuildValue(`${part1}.trait`, item.links.trait.externalId);
     }
   };
-  const save = (build: Build) => {
-    startSaving();
-    saveBuild(build);
-    stopSaving();
-  };
   const handleLevelChange = (level: number, buildPath: string) => {
     updateBuildValue(buildPath, level);
   };
@@ -134,7 +130,7 @@ const Builds = props => {
     setFieldValue(nBuild, buildPath, value);
     preProcessBuild(value, nBuild, buildPath, item);
     setBuild(nBuild);
-    save(nBuild);
+    dispatch(saveBuild({ name, build: nBuild }));
   };
   const preProcessBuild = (value: any, nBuild: Build, buildPath: string, item?: Item) => {
     if (buildPath === "archetype1.level" || buildPath === "archetype2.level") {
@@ -142,7 +138,7 @@ const Builds = props => {
       const traitId = getFieldValue(nBuild, `${part1}.trait`);
       checkTrait(traitId, value);
     }
-    
+
     if (buildPath === "archetype1.externalId" || buildPath === "archetype2.externalId") {
       const part1 = buildPath.split(".")[0];
       const traitId = item?.links?.trait?.externalId;
@@ -166,10 +162,8 @@ const Builds = props => {
     if (id && build.traitLevels[id]) {
       points = points ?? 0;
       const traitLevel = build.traitLevels[id];
-      console.log(traitLevel, points)
       if (traitLevel + points > 10) {
         const difference = traitLevel + points - 10;
-        console.log(difference, difference < 0 ? 0 : build.traitLevels[id] - difference)
         updateBuildValue(`traitLevels.${id}`, difference < 0 ? 0 : build.traitLevels[id] - difference);
       }
     }

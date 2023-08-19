@@ -1,10 +1,12 @@
-import React, { useContext } from "react";
+import React from "react";
 import { styled } from "styled-components";
-import { BuildsContext } from "../../context/BuildContext";
 import { AiFillCopy, AiFillDelete } from "react-icons/ai";
+import { useAppDispatch, useAppSelector } from "../../hooks";
+import type { RootState } from "../../store";
 
 const BuildsSidebarContent = ({ setBuild, resetBuild, build }) => {
-  const { builds, deleteBuild, copyBuild } = useContext(BuildsContext);
+  const { builds } = useAppSelector((state: RootState) => state.data);
+  const dispatch = useAppDispatch();
 
   const selectBuild = (id: number) => {
     localStorage.setItem("activeBuildId", id.toString());
@@ -23,10 +25,10 @@ const BuildsSidebarContent = ({ setBuild, resetBuild, build }) => {
               </button>
 
               <div>
-                <button onClick={() => copyBuild(id)}>
+                <button onClick={() => dispatch(copyBuild(id))}>
                   <AiFillCopy />
                 </button>
-                <button onClick={() => deleteBuild(id)}>
+                <button onClick={() => dispatch(deleteBuild(id))}>
                   <AiFillDelete />
                 </button>
               </div>
