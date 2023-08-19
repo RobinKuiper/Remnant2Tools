@@ -33,11 +33,11 @@ const TopBar = () => {
         <div className="center">
           <nav>
             <Flex gap="25px" alignitems="center">
-              <Link to="/tracker/statistics" className={url.includes("tracker") ? "active" : ""}>
-                Tracker
-              </Link>
               <Link to="/database/archetypes" className={url.includes("database") ? "active" : ""}>
                 Database
+              </Link>
+              <Link to="/tracker/archetypes" className={url.includes("tracker") ? "active" : ""}>
+                Tracker
               </Link>
               <Link to="/builds" className={url.includes("builds") ? "active" : ""}>
                 Builds
@@ -68,7 +68,7 @@ const TopBar = () => {
         <nav>
           <Flex direction="column" justifycontent="center" alignitems="center" gap="40px">
             <Link to="/database/archetypes">Database</Link>
-            <Link to="/tracker/statistics">Tracker</Link>
+            <Link to="/tracker/archetypes">Tracker</Link>
             <Link to="/builds">Builds</Link>
           </Flex>
         </nav>

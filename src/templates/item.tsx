@@ -48,9 +48,15 @@ const Category = ({ data, pageContext, location }) => {
     setUnlocked(!unlocked);
   };
 
+  const titles = [
+    `Discover the Secrets of ${item.name} in Remnant 2!`,
+    `Unleash the Power of ${item.name} in Remnant II!`,
+    `Unlock the Mystery: ${item.name} Revealed!`,
+  ];
+
   return (
     <Layout>
-      <Head title={item.name} description="Track your progress in Remnant II." />
+      <Head title={item.name} description={titles[Math.floor(Math.random() * titles.length)]} />
 
       <PageLayout leftSidebarContent={<CategorySidebarContent type={type} />}>
         <Container ref={ref} className={`${STATE_CLASSES[unlocked]}`}>

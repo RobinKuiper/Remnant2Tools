@@ -177,9 +177,7 @@ const SettingsSidebar = () => {
       <div className="google-login-setting-item" data-tooltip-id="google-login-tooltip" data-tooltip-place="bottom">
         <GDriveButton className="google-drive-button" onClick={handleGoogleLink} disabled={loggingIn}>
           <div className={`google-icon ${loggingIn && "active"}`}>{GoogleIcon}</div>
-          <span className="google-text">
-            {buttonText}
-          </span>
+          <span className="google-text">{buttonText}</span>
         </GDriveButton>
         <Tooltip id="google-login-tooltip">
           <p>

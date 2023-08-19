@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { styled } from "styled-components";
 import Search from "../Search";
 import { Link, graphql, useStaticQuery } from "gatsby";
@@ -64,7 +64,7 @@ const GlobalSearch = () => {
   useEffect(() => {
     const handleClick = e => {
       if (e.target.tagName !== "INPUT") {
-        setQuery("")
+        setQuery("");
       }
     };
 

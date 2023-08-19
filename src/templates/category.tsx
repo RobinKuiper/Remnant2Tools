@@ -81,9 +81,24 @@ const Category = ({ path, data }) => {
     setSortBy(key);
   };
 
+  const titles = {
+    weapons: "Unlock the arsenal! Your ultimate guide to all the Remnant 2 weapons you can wield.",
+    armor: "Gear Up with armors! Discover an array of fantastic armors in Remnant 2.",
+    armorset: "Gear Up with armor sets! Discover an array of fantastic armors in Remnant 2.",
+    rings: "Rings Extravaganza: Discover a Trove of Epic Rings in Remnant II!",
+    amulets: "Amulets Galore: Explore a Diverse Collection of Remnant II Amulets!",
+    traits: "Trait Encyclopedia: Uncover the Multitude of Traits in Remnant II!",
+  };
+
   return (
     <Layout>
-      <Head title={category.settings.label} description="Track your progress in Remnant II." />
+      <Head
+        title={category.settings.label}
+        description={
+          titles[category.settings.fragment] ??
+          "Dive into the treasure trove! Explore the complete item database for Remnant 2 in all its glory."
+        }
+      />
 
       <PageLayout leftSidebarContent={<CategorySidebarContent type={type} />}>
         <Container>

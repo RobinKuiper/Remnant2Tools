@@ -1,4 +1,5 @@
-import React, {ReactNode, useEffect, useState} from "react";
+import type { ReactNode} from "react";
+import React, { useEffect, useState } from "react";
 import { styled } from "styled-components";
 import { useAppSelector } from "../../hooks";
 import type { RootState } from "../../store";
@@ -41,7 +42,7 @@ const Container = styled.span`
   cursor: pointer;
   position: relative;
 
-  span {    
+  span {
     &.redacted:after {
       content: "${props => props.text}";
       position: absolute;
@@ -55,7 +56,7 @@ const Container = styled.span`
       justify-content: center;
       align-items: center;
       opacity: 1;
-      font-size: .75em;
+      font-size: 0.75em;
       transition: all 0.3s ease-in-out;
     }
   }
