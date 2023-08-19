@@ -13,24 +13,25 @@ import type { RootState } from "../../store";
 import { FaGoogleDrive } from "react-icons/fa";
 import { setSaveCompleted } from "../../features/data/dataSlice";
 import { GoogleOAuthProvider } from "@react-oauth/google";
+import { TIME_BETWEEN_GOOGLE_SAVES } from "../../constants";
 
-const TIME_BETWEEN_SAVES = process.env.GATSBY_TIME_BETWEEN_SAVES;
+const TIME_BETWEEN_SAVES = TIME_BETWEEN_GOOGLE_SAVES;
 const TOAST_SETTINGS = {
   pending: {
-    text: "Pending changes..."
+    text: "Pending changes...",
   },
   saving: {
-    text: "Saving..."
+    text: "Saving...",
   },
   saved: {
     text: "Saved to Google Drive!",
-    className: "success"
+    className: "success",
   },
   error: {
     text: "Something went wrong. Please try again later.",
-    className: "error"
-  }
-}
+    className: "error",
+  },
+};
 
 interface Props {
   children: React.ReactNode;
@@ -51,7 +52,7 @@ const Layout = ({ children }: Props) => {
     }
   };
 
-  const getToastContent = (toastSettings) => {
+  const getToastContent = toastSettings => {
     let color;
     switch (toastSettings.className) {
       case "success":
@@ -64,13 +65,13 @@ const Layout = ({ children }: Props) => {
         color = "white";
         break;
     }
-    
+
     return (
       <div className={`google-saving-toast ${toastSettings.className ?? ""}`}>
         <FaGoogleDrive size="25px" color={color} />
         {toastSettings.text}
       </div>
-    )
+    );
   };
 
   useEffect(() => {
@@ -83,9 +84,11 @@ const Layout = ({ children }: Props) => {
         const config: UpdateOptions = {
           toastId: "google-toast",
           render: getToastContent({
-            text: <div className="pending">
-              Pending changes...<span>{parseInt(String(TIME_BETWEEN_SAVES - timeSinceLastSave))}s.</span>
-            </div>
+            text: (
+              <div className="pending">
+                Pending changes...<span>{parseInt(String(TIME_BETWEEN_SAVES - timeSinceLastSave))}s.</span>
+              </div>
+            ),
           }),
         };
 
@@ -99,7 +102,7 @@ const Layout = ({ children }: Props) => {
     }
   }, [pending]);
 
-  const getToastContentSettings = (prioritizePending) => {
+  const getToastContentSettings = prioritizePending => {
     if (error) {
       return TOAST_SETTINGS["error"];
     } else if (!prioritizePending && saved) {
@@ -127,7 +130,7 @@ const Layout = ({ children }: Props) => {
       onClose: onToastClose,
     };
 
-    let contentSettings = getToastContentSettings(prioritizePending);
+    const contentSettings = getToastContentSettings(prioritizePending);
 
     const isToast = document.getElementById("google-toast");
     if (isToast) {
@@ -138,13 +141,13 @@ const Layout = ({ children }: Props) => {
       toast(getToastContent(contentSettings), config);
     }
   };
-  
+
   const onToastClose = () => {
     dispatch(setSaveCompleted());
     if (pendingRef.current) {
       updateToast(true);
     }
-  }
+  };
 
   useEffect(() => {
     pendingRef.current = pending;

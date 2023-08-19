@@ -1,7 +1,8 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { refreshTokens } from "../../helpers";
+import { TIME_BETWEEN_GOOGLE_SAVES } from "../../constants";
 
-const TIME_BETWEEN_SAVES = process.env.GATSBY_TIME_BETWEEN_SAVES; // Time between saves in seconds
+const TIME_BETWEEN_SAVES = TIME_BETWEEN_GOOGLE_SAVES; // Time between saves in seconds
 
 export const googleSaveWithDelay = createAsyncThunk("data/google/trigger", async (_, { dispatch, getState }) => {
   const state = getState().data; // Access the data slice state
