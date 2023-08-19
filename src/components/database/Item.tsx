@@ -76,7 +76,7 @@ interface Props {
 const Item = ({ item, category, images, type }: Props) => {
   const dispatch = useAppDispatch();
   const { view } = useAppSelector((state: RootState) => state.settings);
-  const { unlocks } = useAppSelector((state: RootState) => state.data);
+  const { unlocks , pending } = useAppSelector((state: RootState) => state.data);
   const { isLoggedIn } = useAppSelector((state: RootState) => state.auth);
   const [unlocked, setUnlocked] = useState(unlocks.includes(item.externalId));
   const [level, setLevel] = useState<number>();

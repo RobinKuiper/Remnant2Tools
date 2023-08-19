@@ -22,7 +22,7 @@ interface Props {
 
 const Layout = ({ children }: Props) => {
   const showSettingsSidebar = useAppSelector((state: RootState) => state.settings.showSidebar);
-  const { saving, pending, saved, lastSave } = useAppSelector((state: RootState) => state.data);
+  const { saving, pending, saved, lastSave, error } = useAppSelector((state: RootState) => state.data);
   const pendingRef = useRef();
   const savingRef = useRef();
   const savedRef = useRef();
@@ -70,17 +70,17 @@ const Layout = ({ children }: Props) => {
   }, [pending]);
 
   const updateToast = (prioritizePending: boolean = false) => {
-    if (!saving && !saved && !pendingRef.current) return;
+    if (!saving && !saved && !pendingRef.current && !error) return;
 
     const config: ToastOptions = {
-      // type: type === "saved" ? toast.TYPE.SUCCESS : toast.TYPE.INFO,
+      // type: error ? toast.TYPE.ERROR : toast.TYPE.DEFAULT,
       position: toast.POSITION.BOTTOM_RIGHT,
-      autoClose: !prioritizePending && saved ? 5000 : false,
-      hideProgressBar: !(!prioritizePending && saved),
+      autoClose: !prioritizePending && (saved || error) ? 5000 : false,
+      hideProgressBar: !(!prioritizePending && (saved || error)),
       closeOnClick: true,
       pauseOnHover: true,
       draggable: true,
-      progressStyle: { background: "green" },
+      progressStyle: { background: error ? "red" : "green" },
       toastId: "google-toast",
       onClose: () => {
         dispatch(setSaveCompleted());
@@ -92,6 +92,10 @@ const Layout = ({ children }: Props) => {
 
     let text,
       className = "";
+    
+    if (error) {
+      text = "Something went wrong. Please try again later.";
+    }
 
     if (pendingRef.current) {
       text = "Pending changes...";
@@ -122,7 +126,7 @@ const Layout = ({ children }: Props) => {
     savingRef.current = saving;
     savedRef.current = saved;
     updateToast();
-  }, [saving, pending, saved]);
+  }, [saving, pending, saved, error]);
 
   return (
     <Container>
