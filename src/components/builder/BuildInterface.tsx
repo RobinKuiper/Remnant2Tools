@@ -2,64 +2,189 @@ import React from "react";
 import BuildItemBox from "./BuildItemBox";
 import { styled } from "styled-components";
 
-const ITEM_BOXES = {
-  topLeft: [
-    {
-      buildPath: "headpiece",
-      filters: [{ category: "armor" }, { type: "headpiece" }],
-    },
-    {
-      buildPath: "chest",
-      filters: [{ category: "armor" }, { type: "chest" }],
-    },
-    {
-      buildPath: "feet",
-      filters: [{ category: "armor" }, { type: "feet" }],
-    },
-    {
-      buildPath: "hands",
-      filters: [{ category: "armor" }, { type: "hands" }],
-    },
-  ],
-  fragments: [
-    {
-      buildPath: "relic.fragment1",
-      filters: [{ category: "relicfragments" }],
-    },
-    {
-      buildPath: "relic.fragment2",
-      filters: [{ category: "relicfragments" }],
-    },
-    {
-      buildPath: "relic.fragment3",
-      filters: [{ category: "relicfragments" }],
-    },
-  ],
-  topRight: [
-    {
-      buildPath: "amulet",
-      filters: [{ category: "amulets" }],
-    },
-    {
-      buildPath: "ring1",
-      filters: [{ category: "rings" }],
-    },
-    {
-      buildPath: "ring2",
-      filters: [{ category: "rings" }],
-    },
-    {
-      buildPath: "ring3",
-      filters: [{ category: "rings" }],
-    },
-    {
-      buildPath: "ring4",
-      filters: [{ category: "rings" }],
-    },
-  ],
-};
-
 const BuildInterface = ({ build, images, openModal }) => {
+  const ITEM_BOXES = {
+    topLeft: [
+      {
+        buildPath: "headpiece",
+        filters: [{ category: "armor" }, { type: "headpiece" }],
+      },
+      {
+        buildPath: "chest",
+        filters: [{ category: "armor" }, { type: "chest" }],
+      },
+      {
+        buildPath: "feet",
+        filters: [{ category: "armor" }, { type: "feet" }],
+      },
+      {
+        buildPath: "hands",
+        filters: [{ category: "armor" }, { type: "hands" }],
+      },
+    ],
+    fragments: [
+      {
+        buildPath: "relic.fragment1",
+        filters: [
+          {
+            key: "category",
+            value: "relicfragments",
+          },
+          {
+            key: "externalId",
+            value: build.relic?.fragment2,
+            not: true,
+          },
+          {
+            key: "externalId",
+            value: build.relic?.fragment3,
+            not: true,
+          },
+        ],
+      },
+      {
+        buildPath: "relic.fragment2",
+        filters: [
+          {
+            key: "category",
+            value: "relicfragments",
+          },
+          {
+            key: "externalId",
+            value: build.relic?.fragment1,
+            not: true,
+          },
+          {
+            key: "externalId",
+            value: build.relic?.fragment3,
+            not: true,
+          },
+        ],
+      },
+      {
+        buildPath: "relic.fragment3",
+        filters: [
+          {
+            key: "category",
+            value: "relicfragments",
+          },
+          {
+            key: "externalId",
+            value: build.relic?.fragment1,
+            not: true,
+          },
+          {
+            key: "externalId",
+            value: build.relic?.fragment2,
+            not: true,
+          },
+        ],
+      },
+    ],
+    topRight: [
+      {
+        buildPath: "amulet",
+        filters: [{ category: "amulets" }],
+      },
+      {
+        buildPath: "ring1",
+        filters: [
+          {
+            key: "category",
+            value: "rings",
+          },
+          {
+            key: "externalId",
+            value: build.ring2,
+            not: true,
+          },
+          {
+            key: "externalId",
+            value: build.ring3,
+            not: true,
+          },
+          {
+            key: "externalId",
+            value: build.ring4,
+            not: true,
+          },
+        ],
+      },
+      {
+        buildPath: "ring2",
+        filters: [
+          {
+            key: "category",
+            value: "rings",
+          },
+          {
+            key: "externalId",
+            value: build.ring1,
+            not: true,
+          },
+          {
+            key: "externalId",
+            value: build.ring3,
+            not: true,
+          },
+          {
+            key: "externalId",
+            value: build.ring4,
+            not: true,
+          },
+        ],
+      },
+      {
+        buildPath: "ring3",
+        filters: [
+          {
+            key: "category",
+            value: "rings",
+          },
+          {
+            key: "externalId",
+            value: build.ring2,
+            not: true,
+          },
+          {
+            key: "externalId",
+            value: build.ring1,
+            not: true,
+          },
+          {
+            key: "externalId",
+            value: build.ring4,
+            not: true,
+          },
+        ],
+      },
+      {
+        buildPath: "ring4",
+        filters: [
+          {
+            key: "category",
+            value: "rings",
+          },
+          {
+            key: "externalId",
+            value: build.ring2,
+            not: true,
+          },
+          {
+            key: "externalId",
+            value: build.ring3,
+            not: true,
+          },
+          {
+            key: "externalId",
+            value: build.ring1,
+            not: true,
+          },
+        ],
+      },
+    ],
+  };
+
   return (
     <Container>
       <div id="top">
@@ -131,7 +256,22 @@ const BuildInterface = ({ build, images, openModal }) => {
               build={build}
               images={images}
               buildPath={"mainHand.mod"}
-              filters={[{ category: "mods" }]}
+              filters={[
+                {
+                  key: "category",
+                  value: "mods",
+                },
+                {
+                  key: "externalId",
+                  value: build.melee?.mod,
+                  not: true,
+                },
+                {
+                  key: "externalId",
+                  value: build.offhand?.mod,
+                  not: true,
+                },
+              ]}
               disabled={!!(build.mainHand && build.mainHand.mod && build.mainHand.mod !== "")}
             />
             <BuildItemBox
@@ -139,7 +279,22 @@ const BuildInterface = ({ build, images, openModal }) => {
               build={build}
               images={images}
               buildPath={"mainHand.mutator"}
-              filters={[{ category: "mutators" }]}
+              filters={[
+                {
+                  key: "category",
+                  value: "mutators",
+                },
+                {
+                  key: "externalId",
+                  value: build.melee?.mutator,
+                  not: true,
+                },
+                {
+                  key: "externalId",
+                  value: build.offhand?.mutator,
+                  not: true,
+                },
+              ]}
             />
           </div>
         </div>
@@ -168,7 +323,22 @@ const BuildInterface = ({ build, images, openModal }) => {
               build={build}
               images={images}
               buildPath={"melee.mutator"}
-              filters={[{ category: "mutators" }]}
+              filters={[
+                {
+                  key: "category",
+                  value: "mutators",
+                },
+                {
+                  key: "externalId",
+                  value: build.mainHand?.mutator,
+                  not: true,
+                },
+                {
+                  key: "externalId",
+                  value: build.offhand?.mutator,
+                  not: true,
+                },
+              ]}
             />
           </div>
         </div>
@@ -187,7 +357,22 @@ const BuildInterface = ({ build, images, openModal }) => {
               build={build}
               images={images}
               buildPath={"offhand.mod"}
-              filters={[{ category: "mods" }]}
+              filters={[
+                {
+                  key: "category",
+                  value: "mods",
+                },
+                {
+                  key: "externalId",
+                  value: build.mainHand?.mod,
+                  not: true,
+                },
+                {
+                  key: "externalId",
+                  value: build.offhand?.mod,
+                  not: true,
+                },
+              ]}
               disabled={!!(build.offhand && build.offhand.mod && build.offhand.mod !== "")}
             />
             <BuildItemBox
@@ -195,7 +380,22 @@ const BuildInterface = ({ build, images, openModal }) => {
               build={build}
               images={images}
               buildPath={"offhand.mutator"}
-              filters={[{ category: "mutators" }]}
+              filters={[
+                {
+                  key: "category",
+                  value: "mutators",
+                },
+                {
+                  key: "externalId",
+                  value: build.melee?.mutator,
+                  not: true,
+                },
+                {
+                  key: "externalId",
+                  value: build.mainHand?.mutator,
+                  not: true,
+                },
+              ]}
             />
           </div>
         </div>

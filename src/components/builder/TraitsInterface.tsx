@@ -61,6 +61,8 @@ const TraitsInterface = ({ build, showOnlyUnlocked, updateBuildValue }: Props) =
   }, [build, traits]);
 
   const addTraitPoint = (trait: any) => {
+    if (currentTotalPoints === MAX_TRAIT_POINTS) return;
+
     const currentPoints = build.traitLevels[trait.externalId] ?? 0;
     if (currentPoints >= 10) return;
     let archetypeLevel = 0;

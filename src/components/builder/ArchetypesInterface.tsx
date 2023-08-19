@@ -82,7 +82,17 @@ const ArchetypesInterface = ({ build, openModal, images, handleLevelChange }: Pr
           build={build}
           images={images}
           buildPath={"archetype1.externalId"}
-          filters={[{ category: "archetypes" }]}
+          filters={[
+            {
+              key: "category",
+              value: "archetypes",
+            },
+            {
+              key: "externalId",
+              value: build.archetype2?.externalId,
+              not: true,
+            },
+          ]}
         />
         <strong>
           <Link to={`/database/traits/${trait1?.fragment}`} title={trait1?.name}>
@@ -104,7 +114,17 @@ const ArchetypesInterface = ({ build, openModal, images, handleLevelChange }: Pr
           build={build}
           images={images}
           buildPath={"archetype2.externalId"}
-          filters={[{ category: "archetypes" }]}
+          filters={[
+            {
+              key: "category",
+              value: "archetypes",
+            },
+            {
+              key: "externalId",
+              value: build.archetype1?.externalId,
+              not: true,
+            },
+          ]}
         />
         <strong>
           <Link to={`/database/traits/${trait2?.fragment}`} title={trait2?.name}>

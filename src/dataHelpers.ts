@@ -97,11 +97,19 @@ export const filterItems = (items: any[], filters: Filter[], filterUnlocked: boo
         filters.forEach(filter => {
           if (!returnValue) return;
 
-          Object.entries(filter).forEach(([key, value]) => {
-            if (!returnValue) return;
+          if (filter.key) {
+            if (filter.not) {
+              returnValue = item[filter.key] !== filter.value;
+            } else {
+              returnValue = item[filter.key] === filter.value;
+            }
+          } else {
+            Object.entries(filter).forEach(([key, value]) => {
+              if (!returnValue) return;
 
-            returnValue = item[key] === value;
-          });
+              returnValue = item[key] === value;
+            });
+          }
         });
       }
     }

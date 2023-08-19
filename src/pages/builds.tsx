@@ -75,7 +75,8 @@ const Builds = props => {
   const [modalFilters, setModalFilters] = useState<Filter[]>([]);
   const [buildPath, setBuildPath] = useState<string>("");
   const [tab, setTab] = useState<string>("equipment");
-  const [build, setBuild] = useState<Build>(NEW_BUILD);
+  const newBuildCopy = JSON.parse(JSON.stringify(NEW_BUILD));
+  const [build, setBuild] = useState<Build>(newBuildCopy);
   const [onlyUnlocked, setOnlyUnlocked] = useState(false);
 
   useEffect(() => {
@@ -101,10 +102,10 @@ const Builds = props => {
     while (builds[newId]) {
       newId++;
     }
-    const newBuild = { ...NEW_BUILD };
-    newBuild.id = newId;
-    setBuild(newBuild);
-    saveBuild(newBuild);
+    const copy = JSON.parse(JSON.stringify(NEW_BUILD));
+    copy.id = newId;
+    setBuild(copy);
+    saveBuild(copy);
   };
   const selectItem = (item: Item) => {
     updateBuildValue(buildPath, item.externalId, item);
@@ -140,7 +141,7 @@ const Builds = props => {
 
     if (buildPath === "archetype1.externalId" || buildPath === "archetype2.externalId") {
       const part1 = buildPath.split(".")[0];
-      const traitId = getFieldValue(nBuild, `${part1}.trait`);
+      const traitId = item?.links?.trait?.externalId;
       checkTrait(traitId, getFieldValue(nBuild, `${part1}.level`));
     }
 
@@ -163,7 +164,7 @@ const Builds = props => {
       const traitLevel = build.traitLevels[id];
       if (traitLevel + points > 10) {
         const difference = traitLevel + points - 10;
-        updateBuildValue(`traits.${id}`, difference < 0 ? 0 : build.traitLevels[id] - difference);
+        updateBuildValue(`traitLevels.${id}`, difference < 0 ? 0 : build.traitLevels[id] - difference);
       }
     }
   };
