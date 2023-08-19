@@ -15,7 +15,6 @@ import { setSaveCompleted } from "../../features/data/dataSlice";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import { TIME_BETWEEN_GOOGLE_SAVES } from "../../constants";
 
-const TIME_BETWEEN_SAVES = TIME_BETWEEN_GOOGLE_SAVES;
 const TOAST_SETTINGS = {
   pending: {
     text: "Pending changes...",
@@ -86,7 +85,7 @@ const Layout = ({ children }: Props) => {
           render: getToastContent({
             text: (
               <div className="pending">
-                Pending changes...<span>{parseInt(String(TIME_BETWEEN_SAVES - timeSinceLastSave))}s.</span>
+                Pending changes...<span>{parseInt(String(TIME_BETWEEN_GOOGLE_SAVES - timeSinceLastSave))}s.</span>
               </div>
             ),
           }),
@@ -105,9 +104,9 @@ const Layout = ({ children }: Props) => {
   const getToastContentSettings = prioritizePending => {
     if (error) {
       return TOAST_SETTINGS["error"];
-    } else if (!prioritizePending && saved) {
+    } else if (!prioritizePending && savedRef.current) {
       return TOAST_SETTINGS["saved"];
-    } else if (!prioritizePending && saving) {
+    } else if (!prioritizePending && savingRef.current) {
       return TOAST_SETTINGS["saving"];
     } else if (pendingRef.current) {
       return TOAST_SETTINGS["pending"];
@@ -134,7 +133,8 @@ const Layout = ({ children }: Props) => {
 
     const isToast = document.getElementById("google-toast");
     if (isToast) {
-      const updateConfig: UpdateOptions = { ...config, render: getToastContent(contentSettings) };
+      const updateConfig: UpdateOptions = config;
+      updateConfig.render = getToastContent(contentSettings);
       delete updateConfig.toastId;
       toast.update("google-toast", config);
     } else {

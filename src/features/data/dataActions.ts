@@ -2,8 +2,6 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { refreshTokens } from "../../helpers";
 import { TIME_BETWEEN_GOOGLE_SAVES } from "../../constants";
 
-const TIME_BETWEEN_SAVES = TIME_BETWEEN_GOOGLE_SAVES; // Time between saves in seconds
-
 export const googleSaveWithDelay = createAsyncThunk("data/google/trigger", async (_, { dispatch, getState }) => {
   const state = getState().data; // Access the data slice state
   const unlocks = state.unlocks; // Replace with your actual data
@@ -11,12 +9,12 @@ export const googleSaveWithDelay = createAsyncThunk("data/google/trigger", async
   const lastSaveTime = state.lastSave.getTime();
   const timeSinceLastSave = (currentTime - lastSaveTime) / 1000; // Convert to seconds
 
-  if (timeSinceLastSave >= TIME_BETWEEN_SAVES && !state.saving) {
+  if (timeSinceLastSave >= TIME_BETWEEN_GOOGLE_SAVES && !state.saving) {
     // We can already save
     return dispatch(googleSave(unlocks));
   } else {
     // Wait for the remaining time before initiating the save
-    const delay = (TIME_BETWEEN_SAVES - timeSinceLastSave) * 1000; // Convert to milliseconds
+    const delay = (TIME_BETWEEN_GOOGLE_SAVES - timeSinceLastSave) * 1000; // Convert to milliseconds
     // Simulate a delay using setTimeout
     await new Promise(resolve => setTimeout(resolve, delay)); // 2-second delay
     // Perform the Google service save operation here
