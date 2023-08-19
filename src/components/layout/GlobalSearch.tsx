@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, {useEffect, useRef, useState} from "react";
 import { styled } from "styled-components";
 import Search from "../Search";
 import { Link, graphql, useStaticQuery } from "gatsby";
@@ -61,6 +61,19 @@ const GlobalSearch = () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
   }, [handleArrowNavigation]);
+  useEffect(() => {
+    const handleClick = e => {
+      if (e.target.tagName !== "INPUT") {
+        setQuery("")
+      }
+    };
+
+    window.addEventListener("click", handleClick);
+
+    return () => {
+      window.removeEventListener("keydown", handleClick);
+    };
+  }, []);
 
   useEffect(() => {
     resultRefs.current = resultRefs.current.slice(0, searchedItems.length);

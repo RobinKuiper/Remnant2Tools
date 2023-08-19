@@ -1,4 +1,3 @@
-import type { MutableRefObject } from "react";
 import React from "react";
 import { AiOutlineSearch } from "react-icons/ai";
 import { styled } from "styled-components";
@@ -12,14 +11,12 @@ interface Props {
   query: string;
   tooltip?: string;
   disabled?: boolean;
-  ref?: MutableRefObject<HTMLInputElement | undefined>;
 }
 
-const Search = ({ placeholder = "", width, setQuery, query, disabled = false, ref, tooltip = "" }: Props) => {
+const Search = ({ placeholder = "", width, setQuery, query, disabled = false, tooltip = "" }: Props) => {
   return (
     <Container width={width} data-tooltip-id="tooltip" data-tooltip-content={tooltip}>
       <input
-        ref={ref}
         type="text"
         placeholder={placeholder}
         value={query}
