@@ -160,6 +160,16 @@ const SettingsSidebar = () => {
     </svg>
   );
 
+  const buttonText = (() => {
+    if (loggingIn) {
+      return "Linking...";
+    } else if (isLoggedIn) {
+      return "Unlink from Google";
+    } else {
+      return "Link with Google";
+    }
+  })();
+
   return (
     <Container className={showSidebar && "active"}>
       <h2>Settings</h2>
@@ -168,7 +178,7 @@ const SettingsSidebar = () => {
         <GDriveButton className="google-drive-button" onClick={handleGoogleLink} disabled={loggingIn}>
           <div className={`google-icon ${loggingIn && "active"}`}>{GoogleIcon}</div>
           <span className="google-text">
-            {loggingIn ? "Linking..." : isLoggedIn ? "Unlink from Google" : "Link with Google"}
+            {buttonText}
           </span>
         </GDriveButton>
         <Tooltip id="google-login-tooltip">
@@ -195,7 +205,7 @@ const SettingsSidebar = () => {
             data-tooltip-content={"Show redacted information by default"}
             data-tooltip-place="bottom"
           >
-            Default Show Redacted
+            Reveal All Redacted
           </label>
           <div
             data-tooltip-id="tooltip"
