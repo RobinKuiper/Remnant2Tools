@@ -5,15 +5,6 @@ import { graphql, useStaticQuery } from "gatsby";
 import { useAppSelector } from "../../hooks";
 import type { RootState } from "../../store";
 
-const Container = styled.div`
-  .values {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    text-align: center;
-  }
-`;
-
 const SecretWorldsPanel = () => {
   const { items } = useStaticQuery(graphql`
     query MyQuery {
@@ -57,3 +48,12 @@ const SecretWorldsPanel = () => {
 };
 
 export default SecretWorldsPanel;
+
+const Container = styled.div`
+  .values {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+  }
+`;

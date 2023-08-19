@@ -3,12 +3,6 @@ import { styled } from "styled-components";
 import { SettingContext } from "../../context/SettingContext";
 import Loader from "../Loader";
 
-const Container = styled.div`
-  .saved-text {
-    font-size: 0.8em;
-  }
-`;
-
 const SavingIndicator = () => {
   const firstUpdate = useRef(true);
   const { saving } = useContext(SettingContext);
@@ -43,3 +37,9 @@ const SavingIndicator = () => {
 };
 
 export default SavingIndicator;
+
+const Container = styled.div`
+  .saved-text {
+    font-size: 0.8em;
+  }
+`;

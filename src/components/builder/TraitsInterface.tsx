@@ -10,6 +10,11 @@ import Search from "../Search";
 import { useAppSelector } from "../../hooks";
 import type { RootState } from "../../store";
 
+const TRAIT_POINT_COLORS = {
+  archetype: "#932020",
+  trait: "#b6a441",
+};
+
 interface Props {
   build: Build;
   showOnlyUnlocked: boolean;
@@ -224,11 +229,6 @@ const Container = styled.div`
     }
   }
 `;
-
-const TRAIT_POINT_COLORS = {
-  archetype: "#932020",
-  trait: "#b6a441",
-};
 const TraitCircle = styled.div`
   width: 10px;
   height: 10px;

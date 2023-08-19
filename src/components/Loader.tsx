@@ -2,13 +2,6 @@ import React from "react";
 import { styled } from "styled-components";
 import { CircleLoader } from "react-spinners";
 
-const Container = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-`;
-
 interface Props {
   size?: number;
   color?: string;
@@ -24,3 +17,10 @@ const Loader = ({ size, color, loading }: Props) => {
 };
 
 export default Loader;
+
+const Container = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+`;

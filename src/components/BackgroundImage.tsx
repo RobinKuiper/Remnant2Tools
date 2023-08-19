@@ -2,6 +2,37 @@ import React from "react";
 import { styled } from "styled-components";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 
+interface Props {
+  children: React.ReactNode;
+  image: any;
+}
+
+const BackgroundImage = ({ children, image }: Props) => {
+  const bgImage = getImage(image);
+
+  return (
+    <Container>
+      {bgImage && (
+        <>
+          <GatsbyImage
+            className="bgimage"
+            layout="fullWidth"
+            aspectRatio={3}
+            // This is a presentational image, so the alt should be an empty string
+            alt=""
+            image={bgImage}
+            formats={["auto", "webp", "avif"]}
+          />
+          <div className="gradient"></div>
+        </>
+      )}
+      <div className="children">{children}</div>
+    </Container>
+  );
+};
+
+export default BackgroundImage;
+
 const Container = styled.div`
   position: relative;
   display: grid;
@@ -37,34 +68,3 @@ const Container = styled.div`
     z-index: 2;
   }
 `;
-
-interface Props {
-  children: React.ReactNode;
-  image: any;
-}
-
-const BackgroundImage = ({ children, image }: Props) => {
-  const bgImage = getImage(image);
-
-  return (
-    <Container>
-      {bgImage && (
-        <>
-          <GatsbyImage
-            className="bgimage"
-            layout="fullWidth"
-            aspectRatio={3}
-            // This is a presentational image, so the alt should be an empty string
-            alt=""
-            image={bgImage}
-            formats={["auto", "webp", "avif"]}
-          />
-          <div className="gradient"></div>
-        </>
-      )}
-      <div className="children">{children}</div>
-    </Container>
-  );
-};
-
-export default BackgroundImage;

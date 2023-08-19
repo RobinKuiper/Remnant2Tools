@@ -2,27 +2,6 @@ import React from "react";
 import { styled } from "styled-components";
 import { camelCaseToText } from "../../helpers";
 
-const Container = styled.div`
-  display: flex;
-  gap: 30px;
-  justify-content: space-between;
-
-  .key {
-    font-weight: 900;
-
-    .sub {
-      padding-left: 10px;
-    }
-  }
-
-  .sub {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    margin-top: 5px;
-  }
-`;
-
 interface Props {
   valueKey: string;
   value: string | object;
@@ -68,3 +47,24 @@ const ItemStat = ({ valueKey: key, value }: Props) => {
 };
 
 export default ItemStat;
+
+const Container = styled.div`
+  display: flex;
+  gap: 30px;
+  justify-content: space-between;
+
+  .key {
+    font-weight: 900;
+
+    .sub {
+      padding-left: 10px;
+    }
+  }
+
+  .sub {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-top: 5px;
+  }
+`;

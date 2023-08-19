@@ -17,58 +17,6 @@ import { useAppDispatch, useAppSelector } from "../hooks";
 import type { RootState } from "../store";
 import { toggleHideUnlocked, toggleView } from "../features/settings/settingsSlice";
 
-const Container = styled.div`
-  padding: 20px;
-  min-height: 100vh;
-
-  #content-heading {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    text-align: center;
-    margin: 10px 0;
-    padding: 0 10px 20px 10px;
-    border-bottom: 1px solid #888;
-
-    .left {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-
-      select {
-        padding: 6.5px;
-
-        &:focus {
-          outline: none;
-        }
-      }
-
-      .view-switcher {
-        @media (max-width: 550px) {
-          display: none;
-        }
-      }
-
-      div {
-      }
-    }
-
-    .right {
-      font-size: 1.2em;
-    }
-
-    @media (max-width: 670px) {
-      flex-direction: column;
-      gap: 20px;
-    }
-  }
-
-  .no-data {
-    width: 100%;
-    text-align: center;
-  }
-`;
-
 const Category = ({ path, data }) => {
   const { hideUnlocked, view } = useAppSelector((state: RootState) => state.settings);
   const { unlocks, statistics } = useAppSelector((state: RootState) => state.data);
@@ -243,7 +191,7 @@ const Category = ({ path, data }) => {
                 if (groupBy) {
                   return (
                     <>
-                      <ItemCategory key={item.name} item={item} category={category} type={type} />
+                      <ItemCategory key={item.name} item={item} />
                       {item.items &&
                         item.items.map(i => (
                           <Item key={i.id} item={i} type={type} category={category.settings} images={images.nodes} />
@@ -331,5 +279,57 @@ export const query = graphql`
         }
       }
     }
+  }
+`;
+
+const Container = styled.div`
+  padding: 20px;
+  min-height: 100vh;
+
+  #content-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    margin: 10px 0;
+    padding: 0 10px 20px 10px;
+    border-bottom: 1px solid #888;
+
+    .left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      select {
+        padding: 6.5px;
+
+        &:focus {
+          outline: none;
+        }
+      }
+
+      .view-switcher {
+        @media (max-width: 550px) {
+          display: none;
+        }
+      }
+
+      div {
+      }
+    }
+
+    .right {
+      font-size: 1.2em;
+    }
+
+    @media (max-width: 670px) {
+      flex-direction: column;
+      gap: 20px;
+    }
+  }
+
+  .no-data {
+    width: 100%;
+    text-align: center;
   }
 `;

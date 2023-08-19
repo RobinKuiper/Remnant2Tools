@@ -9,35 +9,6 @@ import { graphql } from "gatsby";
 import Layout from "../../components/layout/Layout";
 import PageLayout from "../../components/layout/PageLayout";
 
-const Container = styled.div`
-  .panels {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    padding: 20px;
-
-    @media (max-width: 1200px) {
-      justify-content: center;
-    }
-
-    .panel {
-      border: 1px solid #000;
-      padding: 10px;
-      box-sizing: border-box;
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
-      background: #292929;
-      color: #fff;
-      min-width: 300px;
-      max-width: 450px;
-
-      h3 {
-        text-align: center;
-        margin-bottom: 20px;
-      }
-    }
-  }
-`;
-
 const Statistics: React.FC = props => {
   const { bgImage } = props.data;
 
@@ -65,6 +36,35 @@ export const query = graphql`
   {
     bgImage: file(name: { eq: "bg2" }) {
       ...imageFragment
+    }
+  }
+`;
+
+const Container = styled.div`
+  .panels {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+
+    @media (max-width: 1200px) {
+      justify-content: center;
+    }
+
+    .panel {
+      border: 1px solid #000;
+      padding: 10px;
+      box-sizing: border-box;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+      background: #292929;
+      color: #fff;
+      min-width: 300px;
+      max-width: 450px;
+
+      h3 {
+        text-align: center;
+        margin-bottom: 20px;
+      }
     }
   }
 `;

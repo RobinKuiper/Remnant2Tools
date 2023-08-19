@@ -4,28 +4,6 @@ import ItemStatistics from "./ItemStatistics";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import { Tooltip } from "react-tooltip";
 
-const Container = styled.div`
-  .head {
-    .general-information {
-      .title {
-        display: flex;
-        justify-content: center;
-      }
-
-      .tags {
-        display: flex;
-        justify-content: center;
-        gap: 10px;
-        font-size: 0.9em;
-      }
-    }
-  }
-
-  .content {
-    display: flex;
-  }
-`;
-
 const ItemTooltip = ({ id, item, image }) => {
   if (!item) return;
 
@@ -66,3 +44,25 @@ const ItemTooltip = ({ id, item, image }) => {
 };
 
 export default ItemTooltip;
+
+const Container = styled.div`
+  .head {
+    .general-information {
+      .title {
+        display: flex;
+        justify-content: center;
+      }
+
+      .tags {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        font-size: 0.9em;
+      }
+    }
+  }
+
+  .content {
+    display: flex;
+  }
+`;

@@ -3,17 +3,6 @@ import { styled } from "styled-components";
 import { useAppSelector } from "../../hooks";
 import type { RootState } from "../../store";
 
-const Container = styled.span`
-  cursor: pointer;
-
-  span {
-    &.redacted {
-      color: ${props => props.bgcolor} !important;
-      background: ${props => props.bgcolor} !important;
-    }
-  }
-`;
-
 interface Props {
   value: string;
   tooltip?: string;
@@ -44,3 +33,14 @@ const Redacted = ({ value, defaultShow = false, bgColor = "#f1f1f1", tooltip }: 
 };
 
 export default Redacted;
+
+const Container = styled.span`
+  cursor: pointer;
+
+  span {
+    &.redacted {
+      color: ${props => props.bgcolor} !important;
+      background: ${props => props.bgcolor} !important;
+    }
+  }
+`;

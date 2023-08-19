@@ -6,42 +6,6 @@ import Loader from "../Loader";
 import { useAppSelector } from "../../hooks";
 import type { RootState } from "../../store";
 
-const Container = styled.div`
-  width: 400px;
-  min-height: 600px;
-
-  table {
-    width: 100%;
-
-    tbody {
-      tr {
-        td {
-          text-align: right;
-        }
-
-        td.title {
-          font-weight: 900;
-          text-align: left;
-        }
-      }
-    }
-
-    tfoot {
-      tr {
-        td {
-          border-top: 1px solid #fff;
-          text-align: right;
-          font-weight: 900;
-        }
-
-        td.title {
-          text-align: left;
-        }
-      }
-    }
-  }
-`;
-
 const StatisticsPanel = () => {
   const { categories } = useStaticQuery(graphql`
     {
@@ -115,3 +79,39 @@ const StatisticsPanel = () => {
 };
 
 export default StatisticsPanel;
+
+const Container = styled.div`
+  width: 400px;
+  min-height: 600px;
+
+  table {
+    width: 100%;
+
+    tbody {
+      tr {
+        td {
+          text-align: right;
+        }
+
+        td.title {
+          font-weight: 900;
+          text-align: left;
+        }
+      }
+    }
+
+    tfoot {
+      tr {
+        td {
+          border-top: 1px solid #fff;
+          text-align: right;
+          font-weight: 900;
+        }
+
+        td.title {
+          text-align: left;
+        }
+      }
+    }
+  }
+`;

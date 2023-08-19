@@ -7,30 +7,6 @@ import ItemLevelNew from "../database/ItemLevelNew";
 import { Link, graphql, useStaticQuery } from "gatsby";
 import { getFieldValue } from "../../dataHelpers";
 
-const Container = styled.div`
-  display: flex;
-  justify-content: space-between;
-  gap: 40px;
-  width: 400px;
-  margin: 20px auto;
-
-  @media (max-width: 450px) {
-    width: 300px;
-  }
-
-  .archetype {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    align-items: center;
-
-    .item-box {
-      width: 128px;
-      height: 128px;
-    }
-  }
-`;
-
 interface Props {
   build: Build;
   openModal: (filters: Filter[], buildPath: string) => void;
@@ -143,3 +119,27 @@ const ArchetypesInterface = ({ build, openModal, images, handleLevelChange }: Pr
 };
 
 export default ArchetypesInterface;
+
+const Container = styled.div`
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+  width: 400px;
+  margin: 20px auto;
+
+  @media (max-width: 450px) {
+    width: 300px;
+  }
+
+  .archetype {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+
+    .item-box {
+      width: 128px;
+      height: 128px;
+    }
+  }
+`;

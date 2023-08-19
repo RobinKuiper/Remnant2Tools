@@ -1,6 +1,35 @@
 import React from "react";
 import { styled } from "styled-components";
 
+const restrainNumber = (value: number, max: number, subtract: boolean = false) => {
+  if (subtract) {
+    return value - 1 < max ? max : value - 1;
+  }
+  return value + 1 > max ? max : value + 1;
+};
+const ItemLevel = ({ level, setLevel, maxLevel }) => {
+  const addLevel = () => {
+    setLevel(prevState => (prevState ? restrainNumber(prevState, maxLevel) : 1));
+  };
+  const subLevel = () => {
+    setLevel(prevState => (prevState ? restrainNumber(prevState, 1, true) : 1));
+  };
+  const handleChange = e => {
+    const value = parseInt(e.target.value);
+    setLevel(value);
+  };
+
+  return (
+    <Container>
+      <button onClick={subLevel}>-</button>
+      <input type="number" value={level} onChange={handleChange} />
+      <button onClick={addLevel}>+</button>
+    </Container>
+  );
+};
+
+export default ItemLevel;
+
 const Container = styled.div`
   display: flex;
 
@@ -26,37 +55,3 @@ const Container = styled.div`
     margin: 0;
   }
 `;
-
-const restrainNumber = (value: number, max: number, subtract: boolean = false) => {
-  if (subtract) {
-    return value - 1 < max ? max : value - 1;
-  }
-
-  return value + 1 > max ? max : value + 1;
-};
-
-const ItemLevel = ({ level, setLevel, maxLevel }) => {
-  const addLevel = () => {
-    setLevel(prevState => (prevState ? restrainNumber(prevState, maxLevel) : 1));
-  };
-
-  const subLevel = () => {
-    setLevel(prevState => (prevState ? restrainNumber(prevState, 1, true) : 1));
-  };
-
-  const handleChange = e => {
-    const value = parseInt(e.target.value);
-
-    setLevel(value);
-  };
-
-  return (
-    <Container>
-      <button onClick={subLevel}>-</button>
-      <input type="number" value={level} onChange={handleChange} />
-      <button onClick={addLevel}>+</button>
-    </Container>
-  );
-};
-
-export default ItemLevel;

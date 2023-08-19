@@ -5,31 +5,6 @@ import { saveBuild } from "../../features/data/dataSlice";
 import { useAppDispatch } from "../../hooks";
 import type { Build } from "../../interface/Build";
 
-const Container = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 400px;
-  margin: 20px auto;
-
-  @media (max-width: 450px) {
-    width: 300px;
-  }
-
-  input {
-    box-sizing: border-box;
-    width: 100%;
-    padding: 10px;
-    background: transparent;
-    border: none;
-    border-bottom: 1px solid #000;
-
-    &:focus {
-      outline: none;
-    }
-  }
-`;
-
 interface Props {
   build: Build;
   setBuild: (value: ((prevState: Build) => Build) | Build) => void;
@@ -73,3 +48,28 @@ const Settings = ({ build, setBuild, toggleOnlyUnlocked, onlyUnlocked }: Props) 
 };
 
 export default Settings;
+
+const Container = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 400px;
+  margin: 20px auto;
+
+  @media (max-width: 450px) {
+    width: 300px;
+  }
+
+  input {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 10px;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #000;
+
+    &:focus {
+      outline: none;
+    }
+  }
+`;
