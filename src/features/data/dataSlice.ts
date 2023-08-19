@@ -5,7 +5,9 @@ import type { Build } from "../../interface/Build";
 import data from "../../data/data.json";
 import { googleSave, googleSaveWithDelay } from "./dataActions";
 
-const convertDataToNewArrayStructure = data => {
+const convertDataToNewArrayStructure = (data): number[] => {
+  if (typeof localStorage === "undefined") return [];
+
   if (data.weapons && data.weapons[445]) {
     data.weapons[708] = data.weapons[445];
     delete data.weapons[445];
@@ -27,7 +29,9 @@ const convertDataToNewArrayStructure = data => {
   return newData;
 };
 
-const convertBuildsToVersion2 = builds => {
+const convertBuildsToVersion2 = (builds: any): Builds => {
+  if (typeof localStorage === "undefined") return {};
+
   const newBuilds = {};
   let index = 1;
   Object.entries(builds).forEach(([key, build]) => {
@@ -94,6 +98,8 @@ const convertBuildsToVersion2 = builds => {
 };
 
 const getUnlocksFromLocalStorage = (): number[] => {
+  if (typeof localStorage === "undefined") return [];
+
   let unlocks = [];
   const storedData = localStorage.getItem("data");
   if (storedData) {
@@ -107,6 +113,8 @@ const getUnlocksFromLocalStorage = (): number[] => {
 };
 
 const getBuildsFromLocalStorage = (): Builds => {
+  if (typeof localStorage === "undefined") return {};
+
   let builds = {};
   const storedBuilds = localStorage.getItem("builds");
   if (storedBuilds) {
@@ -169,7 +177,7 @@ export interface DataState {
 }
 
 const unlocks = getUnlocksFromLocalStorage();
-const initialState: DataState = {
+export const initialState: DataState = {
   unlocks,
   statistics: calculateStatistics(data, unlocks),
   builds: getBuildsFromLocalStorage(),

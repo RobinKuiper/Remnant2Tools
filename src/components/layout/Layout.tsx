@@ -12,6 +12,7 @@ import { useAppDispatch, useAppSelector } from "../../hooks";
 import type { RootState } from "../../store";
 import { FaGoogleDrive } from "react-icons/fa";
 import { setSaveCompleted } from "../../features/data/dataSlice";
+import { GoogleOAuthProvider } from "@react-oauth/google";
 
 const TIME_BETWEEN_SAVES = process.env.GATSBY_TIME_BETWEEN_SAVES;
 
@@ -133,7 +134,10 @@ const Layout = ({ children }: Props) => {
 
       <Footer />
 
-      <SettingsSidebar />
+      <GoogleOAuthProvider clientId="sdfsdfsd">
+        <SettingsSidebar />
+      </GoogleOAuthProvider>
+
       <ToastContainer theme="dark" />
       <Tooltip id="tooltip" />
     </Container>

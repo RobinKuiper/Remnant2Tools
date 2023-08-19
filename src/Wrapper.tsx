@@ -1,21 +1,14 @@
 import React from "react";
-import { GoogleOAuthProvider } from "@react-oauth/google";
-import { BuildsProvider } from "./context/BuildContext";
 import { Provider } from "react-redux";
 import store from "./store";
 
 interface Props {
-  children: React.ReactNode;
+  element: React.ReactNode;
 }
 
-const Wrapper = ({ children }: Props) => {
-  return (
-    <GoogleOAuthProvider clientId={process.env.GATSBY_CLIENT_ID}>
-      <Provider store={store}>
-        <BuildsProvider>{children}</BuildsProvider>
-      </Provider>
-    </GoogleOAuthProvider>
-  );
+export default ({ element }: Props) => {
+  // Instantiating store in `wrapRootElement` handler ensures:
+  //  - there is fresh store for each SSR page
+  //  - it will be called only once in browser, when React mounts
+  return <Provider store={store}>{element}</Provider>;
 };
-
-export default Wrapper;

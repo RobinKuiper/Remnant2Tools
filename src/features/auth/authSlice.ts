@@ -16,9 +16,12 @@ interface AuthState {
   credentials: Credentials | null;
 }
 
-const credentials = localStorage.getItem("google_oauth") ? JSON.parse(localStorage.getItem("google_oauth")) : null;
+const credentials =
+  typeof localStorage !== "undefined" && localStorage.getItem("google_oauth")
+    ? JSON.parse(localStorage.getItem("google_oauth"))
+    : null;
 
-const initialState: AuthState = {
+export const initialState: AuthState = {
   isLoggedIn: credentials !== null,
   loading: false,
   error: null,
