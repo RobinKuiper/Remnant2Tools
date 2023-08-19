@@ -154,6 +154,7 @@ const Container = styled.div`
     flex-direction: row;
     align-items: center;
     justify-content: center;
+    flex-wrap: wrap;
 
     .totals {
       display: flex;

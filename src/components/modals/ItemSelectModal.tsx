@@ -22,6 +22,11 @@ const Content = styled.div`
   height: 500px;
   background-color: #f1f1f1;
 
+  @media (max-width: 450px) {
+    width: 100%;
+    //margin: 20px;
+  }
+
   input {
     padding: 10px;
     box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.5);
