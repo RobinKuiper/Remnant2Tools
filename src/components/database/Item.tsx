@@ -7,6 +7,7 @@ import ItemTooltip from "./ItemTooltip";
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import type { RootState } from "../../store";
 import { toggleUnlock } from "../../features/data/dataSlice";
+import {googleSaveWithDelay} from "../../features/data/dataActions";
 
 const Container = styled.div`
   position: relative;
@@ -76,6 +77,7 @@ const Item = ({ item, category, images, type }: Props) => {
   const dispatch = useAppDispatch();
   const { view } = useAppSelector((state: RootState) => state.settings);
   const { unlocks } = useAppSelector((state: RootState) => state.data);
+  const { isLoggedIn } = useAppSelector((state: RootState) => state.auth);
   const [unlocked, setUnlocked] = useState(unlocks.includes(item.externalId));
   const [level, setLevel] = useState<number>();
   const image = findImageById(item.externalId, images);
@@ -87,6 +89,9 @@ const Item = ({ item, category, images, type }: Props) => {
   const handleChange = e => {
     const id = parseInt(e.target.id);
     dispatch(toggleUnlock(id));
+    if (isLoggedIn && !pending) {
+      dispatch(googleSaveWithDelay());
+    }
   };
 
   return (
