@@ -15,6 +15,22 @@ import { setSaveCompleted } from "../../features/data/dataSlice";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 
 const TIME_BETWEEN_SAVES = process.env.GATSBY_TIME_BETWEEN_SAVES;
+const TOAST_SETTINGS = {
+  pending: {
+    text: "Pending changes..."
+  },
+  saving: {
+    text: "Saving..."
+  },
+  saved: {
+    text: "Saved to Google Drive!",
+    className: "success"
+  },
+  error: {
+    text: "Something went wrong. Please try again later.",
+    className: "error"
+  }
+}
 
 interface Props {
   children: React.ReactNode;
@@ -35,12 +51,27 @@ const Layout = ({ children }: Props) => {
     }
   };
 
-  const getToastContent = (text, className) => (
-    <div className={`google-saving-toast ${className}`}>
-      <FaGoogleDrive size="25px" color={className === "success" ? "green" : "white"} />
-      {text}
-    </div>
-  );
+  const getToastContent = (toastSettings) => {
+    let color;
+    switch (toastSettings.className) {
+      case "success":
+        color = "green";
+        break;
+      case "error":
+        color = "red";
+        break;
+      default:
+        color = "white";
+        break;
+    }
+    
+    return (
+      <div className={`google-saving-toast ${toastSettings.className ?? ""}`}>
+        <FaGoogleDrive size="25px" color={color} />
+        {toastSettings.text}
+      </div>
+    )
+  };
 
   useEffect(() => {
     if (pending && !intervalRef.current) {
@@ -51,12 +82,11 @@ const Layout = ({ children }: Props) => {
 
         const config: UpdateOptions = {
           toastId: "google-toast",
-          render: getToastContent(
-            <div className="pending">
+          render: getToastContent({
+            text: <div className="pending">
               Pending changes...<span>{parseInt(String(TIME_BETWEEN_SAVES - timeSinceLastSave))}s.</span>
-            </div>,
-            "",
-          ),
+            </div>
+          }),
         };
 
         if (!savingRef.current && !savedRef.current) {
@@ -68,6 +98,18 @@ const Layout = ({ children }: Props) => {
       intervalRef.current = null;
     }
   }, [pending]);
+
+  const getToastContentSettings = (prioritizePending) => {
+    if (error) {
+      return TOAST_SETTINGS["error"];
+    } else if (!prioritizePending && saved) {
+      return TOAST_SETTINGS["saved"];
+    } else if (!prioritizePending && saving) {
+      return TOAST_SETTINGS["saving"];
+    } else if (pendingRef.current) {
+      return TOAST_SETTINGS["pending"];
+    }
+  };
 
   const updateToast = (prioritizePending: boolean = false) => {
     if (!saving && !saved && !pendingRef.current && !error) return;
@@ -82,44 +124,27 @@ const Layout = ({ children }: Props) => {
       draggable: true,
       progressStyle: { background: error ? "red" : "green" },
       toastId: "google-toast",
-      onClose: () => {
-        dispatch(setSaveCompleted());
-        if (pendingRef.current) {
-          updateToast(true);
-        }
-      },
+      onClose: onToastClose,
     };
 
-    let text,
-      className = "";
-    
-    if (error) {
-      text = "Something went wrong. Please try again later.";
-    }
-
-    if (pendingRef.current) {
-      text = "Pending changes...";
-    }
-
-    if (!prioritizePending && saving) {
-      text = "Saving...";
-    }
-
-    if (!prioritizePending && saved) {
-      text = "Saved to Google Drive!";
-      className = "success";
-    }
+    let contentSettings = getToastContentSettings(prioritizePending);
 
     const isToast = document.getElementById("google-toast");
     if (isToast) {
-      const updateConfig: UpdateOptions = config;
-      updateConfig.render = getToastContent(text, className);
+      const updateConfig: UpdateOptions = { ...config, render: getToastContent(contentSettings) };
       delete updateConfig.toastId;
       toast.update("google-toast", config);
     } else {
-      toast(getToastContent(text, className), config);
+      toast(getToastContent(contentSettings), config);
     }
   };
+  
+  const onToastClose = () => {
+    dispatch(setSaveCompleted());
+    if (pendingRef.current) {
+      updateToast(true);
+    }
+  }
 
   useEffect(() => {
     pendingRef.current = pending;
@@ -138,7 +163,7 @@ const Layout = ({ children }: Props) => {
 
       <Footer />
 
-      <GoogleOAuthProvider clientId="sdfsdfsd">
+      <GoogleOAuthProvider clientId={process.env.GATSBY_CLIENT_ID}>
         <SettingsSidebar />
       </GoogleOAuthProvider>
 
