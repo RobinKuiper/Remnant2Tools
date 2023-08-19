@@ -3,6 +3,7 @@ import React from "react";
 import { AiOutlineSearch } from "react-icons/ai";
 import { styled } from "styled-components";
 import { ImCross } from "react-icons/im";
+import { isMobile } from "../helpers";
 
 interface Props {
   placeholder?: string;
@@ -24,7 +25,7 @@ const Search = ({ placeholder = "", width, setQuery, query, disabled = false, re
         value={query}
         onChange={e => setQuery(e.target.value)}
         disabled={disabled}
-        autoFocus
+        autoFocus={!isMobile()}
       />
       <span className="icon">
         {!query ? (

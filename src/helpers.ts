@@ -1,3 +1,9 @@
+export const isMobile = () => {
+  const mediaQuery = window.matchMedia("(max-width: 768px)"); // Adjust the breakpoint as per your needs
+
+  return mediaQuery.matches;
+};
+
 export const getPageType = (path: string): string => path.split("/")[1];
 
 export const findImage = (name: string, images: any, filterRelativePath: string, placeholder: boolean = true) => {
