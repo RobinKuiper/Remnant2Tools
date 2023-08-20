@@ -1,29 +1,29 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { AiFillLock, AiFillUnlock } from "react-icons/ai";
 import { styled } from "styled-components";
-import { saveBuild } from "../../features/data/dataSlice";
-import { useAppDispatch } from "../../hooks";
 import type { Build } from "../../interface/Build";
+import type { DraftFunction } from "use-immer";
 
 interface Props {
   build: Build;
-  setBuild: (value: ((prevState: Build) => Build) | Build) => void;
+  setBuild: (arg: DraftFunction<Build> | Build) => void;
   onlyUnlocked: boolean;
   toggleOnlyUnlocked: () => void;
 }
 
 const Settings = ({ build, setBuild, toggleOnlyUnlocked, onlyUnlocked }: Props) => {
-  const dispatch = useAppDispatch();
   const [name, setName] = useState(build.name);
 
-  const handleNameSave = () => {
-    const newBuild = { ...build };
-    if (name && name !== "") {
-      newBuild.name = name;
-    }
+  useEffect(() => {
+    setName(build.name);
+  }, [build]);
 
-    setBuild(newBuild);
-    dispatch(saveBuild(newBuild));
+  const handleNameSave = () => {
+    if (name && name !== "") {
+      setBuild(build => {
+        build.name = name;
+      });
+    }
   };
 
   const handleNameChange = e => {

@@ -1,13 +1,20 @@
 import React from "react";
 import { styled } from "styled-components";
 import { AiFillCopy, AiFillDelete } from "react-icons/ai";
-import { useAppDispatch, useAppSelector } from "../../hooks";
-import type { RootState } from "../../store";
+import type { Build } from "../../interface/Build";
 
-const BuildsSidebarContent = ({ setBuild, resetBuild, build }) => {
-  const { builds } = useAppSelector((state: RootState) => state.data);
-  const dispatch = useAppDispatch();
+interface Props {
+  builds: {
+    [key: number]: Build;
+  };
+  setBuild: (value: ((prevState: Build) => Build) | Build) => void;
+  resetBuild: () => void;
+  build: Build;
+  copyBuild: (build: Build) => void;
+  deleteBuild: (build: Build) => void;
+}
 
+const BuildsSidebarContent = ({ builds, setBuild, resetBuild, build, copyBuild, deleteBuild }: Props) => {
   const selectBuild = (id: number) => {
     localStorage.setItem("activeBuildId", id.toString());
     setBuild(builds[id]);
@@ -17,7 +24,7 @@ const BuildsSidebarContent = ({ setBuild, resetBuild, build }) => {
     <Container>
       <nav>
         <strong>Saved builds</strong>
-        {Object.keys(builds).length > 0 ? (
+        {builds && Object.keys(builds).length > 0 ? (
           Object.values(builds).map(({ name, id }) => (
             <div key={id} className={`nav-item ${id === build.id && "active"}`}>
               <button key={id} onClick={() => selectBuild(id)}>
@@ -25,10 +32,10 @@ const BuildsSidebarContent = ({ setBuild, resetBuild, build }) => {
               </button>
 
               <div>
-                <button onClick={() => dispatch(copyBuild(id))}>
+                <button onClick={() => copyBuild(id)}>
                   <AiFillCopy />
                 </button>
-                <button onClick={() => dispatch(deleteBuild(id))}>
+                <button onClick={() => deleteBuild(id)}>
                   <AiFillDelete />
                 </button>
               </div>
@@ -38,7 +45,7 @@ const BuildsSidebarContent = ({ setBuild, resetBuild, build }) => {
           <div className="no-data">No saved builds found.</div>
         )}
 
-        <button className="nav-item" onClick={resetBuild}>
+        <button className="nav-item new-build-button" onClick={resetBuild}>
           New Build
         </button>
       </nav>
@@ -73,6 +80,22 @@ const Container = styled.div`
       &:hover,
       &.active {
         background: #000;
+      }
+    }
+
+    .new-build-button {
+      padding: 10px;
+      background: #7e0d0d;
+
+      display: flex;
+      justify-content: center;
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.8);
+      margin-top: 10px;
+
+      transition: all 0.3s ease-in-out;
+
+      &:hover {
+        background: #8f1313;
       }
     }
   }

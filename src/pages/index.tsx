@@ -18,8 +18,10 @@ const IndexPage: React.FC<PageProps> = props => {
 
   return (
     <Layout>
-      <Head 
-        description="Stay in the loop with your Remnant 2 progress using these handy tools. Get ready to level up!" 
+      <Head
+        description={
+          "Stay in the loop with your Remnant 2 progress " + "using these handy tools. Get ready to level up!"
+        }
       />
 
       <PageLayout>

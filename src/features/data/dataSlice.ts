@@ -199,46 +199,14 @@ export const dataSlice = createSlice({
       state.statistics = calculateStatistics(data, state.unlocks);
       return state;
     },
-    saveBuild: (state, action: PayloadAction<{ name: string; build: Build }>) => {
-      let { name } = action.payload;
-      const { build } = action.payload;
-      if (name === "") {
-        name = "New build";
-        let index = 1;
-        while (state.builds[name]) {
-          name = `New build ${index}`;
-          index++;
-        }
-      }
-
-      state.builds[name] = build;
-      localStorage.setItem("builds", JSON.stringify(state.builds));
-      return state;
-    },
-    deleteBuild: (state, action: PayloadAction<string>) => {
-      const name = action.payload;
-      if (state.builds[name]) {
-        delete state.builds[name];
-        localStorage.setItem("builds", JSON.stringify(state.builds));
-      }
-      return state;
-    },
-    copyBuild: (state, action: PayloadAction<string>) => {
-      const name = action.payload;
-      let newName = `${name} (copy)`;
-      let index = 1;
-      while (state.builds[newName]) {
-        newName = `${newName} (copy ${index})`;
-        index++;
-      }
-
-      state.builds[newName] = state.builds[name];
-      localStorage.setItem("builds", JSON.stringify(state.builds));
-      return state;
-    },
     updateUnlocks: state => {
       state.unlocks = getUnlocksFromLocalStorage();
       state.statistics = calculateStatistics(data, state.unlocks);
+      return state;
+    },
+    saveBuilds: (state, action: PayloadAction<{ [id: number]: Build }>) => {
+      state.builds = action.payload;
+      localStorage.setItem("builds", JSON.stringify({ ...state.builds, version: 2 }));
       return state;
     },
     updateBuilds: state => {
@@ -280,7 +248,6 @@ const toggleUnlockHelper = (unlocks, id) => {
   return unlocks.includes(id) ? unlocks.filter(value => value !== id) : [...unlocks, id];
 };
 
-export const { toggleUnlock, saveBuild, deleteBuild, copyBuild, updateUnlocks, updateBuilds, setSaveCompleted } =
-  dataSlice.actions;
+export const { toggleUnlock, saveBuilds, updateUnlocks, updateBuilds, setSaveCompleted } = dataSlice.actions;
 
 export default dataSlice.reducer;
