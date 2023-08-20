@@ -1,8 +1,8 @@
 import React from "react";
 import { styled } from "styled-components";
-import {StaticImage} from "gatsby-plugin-image";
+import { StaticImage } from "gatsby-plugin-image";
 
-const aspectRation = 16/9;
+const aspectRation = 16 / 9;
 const layout = "constrained";
 const className = "bgimage";
 
@@ -13,7 +13,7 @@ const Backgrounds = [
     layout={layout}
     aspectRatio={aspectRation}
     alt=""
-    src={`../images/background/bg1.webp`}
+    src={"../images/background/bg1.webp"}
   />,
   <StaticImage
     key="bg2"
@@ -21,7 +21,7 @@ const Backgrounds = [
     layout={layout}
     aspectRatio={aspectRation}
     alt=""
-    src={`../images/background/bg2.webp`}
+    src={"../images/background/bg2.webp"}
   />,
   <StaticImage
     key="bg3"
@@ -29,21 +29,20 @@ const Backgrounds = [
     layout={layout}
     aspectRatio={aspectRation}
     alt=""
-    src={`../images/background/bg3.webp`}
-  />
-]
+    src={"../images/background/bg3.webp"}
+  />,
+];
 
 interface Props {
   children: React.ReactNode;
   index: number;
 }
 
-
 const BackgroundImage = ({ children, index }: Props) => {
   return (
     <Container>
       {Backgrounds[index ?? 0]}
-          <div className="gradient"></div>
+      <div className="gradient"></div>
       <div className="children">{children}</div>
     </Container>
   );

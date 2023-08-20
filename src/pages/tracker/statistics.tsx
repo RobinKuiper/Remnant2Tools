@@ -18,7 +18,7 @@ const Statistics: React.FC = props => {
 
       <PageLayout leftSidebarContent={<CategorySidebarContent type="tracker" />}>
         <Container>
-          <BackgroundImage  index={1}>
+          <BackgroundImage index={1}>
             <div className="panels">
               <StatisticsPanel />
               <SecretWorldsPanel />
