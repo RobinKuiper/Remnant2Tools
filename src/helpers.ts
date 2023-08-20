@@ -1,7 +1,7 @@
 export const isMobile = () => {
-  const mediaQuery = window.matchMedia("(max-width: 768px)"); // Adjust the breakpoint as per your needs
+  const mediaQuery = typeof window !== "undefined" && window.matchMedia("(max-width: 768px)");
 
-  return mediaQuery.matches;
+  return mediaQuery ? mediaQuery.matches : false;
 };
 
 export const getPageType = (path: string): string => path.split("/")[1];

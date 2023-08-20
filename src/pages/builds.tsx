@@ -24,7 +24,7 @@ import { useAppDispatch } from "../hooks";
 
 const Builds = props => {
   const dispatch = useAppDispatch();
-  const storedBuilds = JSON.parse(localStorage.getItem("builds"));
+  const storedBuilds = typeof localStorage !== "undefined" && JSON.parse(localStorage.getItem("builds"));
   if (storedBuilds) {
     delete storedBuilds.version;
   }
