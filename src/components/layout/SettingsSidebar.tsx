@@ -3,7 +3,7 @@ import { styled } from "styled-components";
 import Toggle from "react-toggle";
 import { CiImport } from "react-icons/ci";
 import { AiOutlineCopy } from "react-icons/ai";
-import { LAST_UPDATED, MAX_GOOGLE_SAVE_TIME } from "../../constants";
+import { LAST_UPDATED, TIME_BETWEEN_GOOGLE_SAVES } from "../../constants";
 import "react-toggle/style.css";
 import { Tooltip } from "react-tooltip";
 import { FaGoogleDrive } from "react-icons/fa";
@@ -182,7 +182,7 @@ const SettingsSidebar = () => {
         <Tooltip id="google-login-tooltip">
           <p>
             Linking to Google will save your data to your Google Drive. Saving happens once each{" "}
-            <strong>{MAX_GOOGLE_SAVE_TIME} seconds</strong> if their are changes.
+            <strong>{TIME_BETWEEN_GOOGLE_SAVES} seconds</strong> if their are changes.
           </p>
           <p>At the moment this only works for unlockable data.</p>
           <p>
