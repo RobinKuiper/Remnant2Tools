@@ -30,7 +30,7 @@ const Category = ({ data, pageContext, location }) => {
   const { unlocks, pending } = useAppSelector((state: RootState) => state.data);
   const { isLoggedIn } = useAppSelector((state: RootState) => state.auth);
   const { category } = pageContext;
-  const { item, image, linkedItems, bgImage } = data;
+  const { item, image, linkedItems } = data;
   const gatsbyImage = getImage(image);
   const [unlocked, setUnlocked] = useState(unlocks.includes(item.externalId));
   const type = category.onlyDB ? "database" : location.state?.type ?? "database";
@@ -60,7 +60,7 @@ const Category = ({ data, pageContext, location }) => {
 
       <PageLayout leftSidebarContent={<CategorySidebarContent type={type} />}>
         <Container ref={ref} className={`${STATE_CLASSES[unlocked]}`}>
-          <BackgroundImage image={bgImage}>
+          <BackgroundImage index={2}>
             <div className="item">
               <Breadcrumb
                 data={[
@@ -186,9 +186,6 @@ export default Category;
 export const query = graphql`
   query ($itemId: Int!, $linkedItemIds: [Int]!) {
     image: file(fields: { itemId: { eq: $itemId } }) {
-      ...imageFragment
-    }
-    bgImage: file(name: { eq: "bg3" }) {
       ...imageFragment
     }
     item: item(externalId: { eq: $itemId }) {

@@ -29,7 +29,7 @@ const Builds = props => {
     delete storedBuilds.version;
   }
   const [builds, setBuilds] = useImmer<{ [id: number]: Build }>(storedBuilds ?? {});
-  const { images, bgImage } = props.data;
+  const { images } = props.data;
   const [isItemSelectModalOpen, setIsItemSelectModalOpen] = useState(false);
   const [itemSelectModalFilters, setItemSelectModalFilters] = useState<Filter[]>([]);
   const [activeTab, setActiveTab] = useState<string>("equipment");
@@ -204,7 +204,7 @@ const Builds = props => {
         rightSidebarContent={<BuildStatisticsSidebarContent build={activeBuild} />}
       >
         <Container>
-          <BackgroundImage image={bgImage}>
+          <BackgroundImage index={0}>
             <div className="tabs">
               <div className="tabs-menu">
                 <div
@@ -278,9 +278,6 @@ export default Builds;
 
 export const query = graphql`
   {
-    bgImage: file(name: { eq: "bg1" }) {
-      ...imageFragment
-    }
     images: allFile(filter: { relativePath: { regex: "/items/" } }) {
       nodes {
         fields {

@@ -5,13 +5,10 @@ import StatisticsPanel from "../../components/statistics/StatisticsPanel";
 import SecretWorldsPanel from "../../components/statistics/SecretWorldsPanel";
 import Head from "../../components/layout/Head";
 import BackgroundImage from "../../components/BackgroundImage";
-import { graphql } from "gatsby";
 import Layout from "../../components/layout/Layout";
 import PageLayout from "../../components/layout/PageLayout";
 
 const Statistics: React.FC = props => {
-  const { bgImage } = props.data;
-
   return (
     <Layout>
       <Head
@@ -21,7 +18,7 @@ const Statistics: React.FC = props => {
 
       <PageLayout leftSidebarContent={<CategorySidebarContent type="tracker" />}>
         <Container>
-          <BackgroundImage image={bgImage}>
+          <BackgroundImage  index={1}>
             <div className="panels">
               <StatisticsPanel />
               <SecretWorldsPanel />
@@ -34,14 +31,6 @@ const Statistics: React.FC = props => {
 };
 
 export default Statistics;
-
-export const query = graphql`
-  {
-    bgImage: file(name: { eq: "bg2" }) {
-      ...imageFragment
-    }
-  }
-`;
 
 const Container = styled.div`
   .panels {
