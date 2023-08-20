@@ -51,6 +51,10 @@ button:disabled, input:disabled {
   max-width: 200px;
 }
 
+.tooltip {
+  z-index: 9999999;
+}
+
 .overlay {
   display: flex;
   justify-content: center;
