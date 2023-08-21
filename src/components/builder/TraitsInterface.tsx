@@ -1,3 +1,4 @@
+import "./TraitsInterface.scss";
 import React, { useEffect, useState } from "react";
 import { MAX_TRAIT_POINTS } from "../../constants";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
@@ -97,7 +98,7 @@ const TraitsInterface = ({ build, showOnlyUnlocked, updateBuildValue }: Props) =
   };
 
   return (
-    <Container>
+    <div className="traits-interface-container">
       <div className="traits-interface-top">
         <div className="totals">
           <TraitCircle type="trait" />
@@ -146,89 +147,12 @@ const TraitsInterface = ({ build, showOnlyUnlocked, updateBuildValue }: Props) =
           </div>
         ))}
       </div>
-    </Container>
+    </div>
   );
 };
 
 export default TraitsInterface;
 
-const Container = styled.div`
-  margin-top: 20px;
-
-  .traits-interface-top {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-
-    .totals {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 10px;
-      margin: 20px;
-      font-size: 1.2em;
-      font-weight: 900;
-    }
-  }
-
-  .items {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    row-gap: 20px;
-    column-gap: 10px;
-
-    .trait {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      text-align: center;
-      cursor: pointer;
-      padding: 10px;
-      box-sizing: border-box;
-      transition: all 0.3s ease-in-out;
-
-      &.active {
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.49);
-        z-index: 10;
-        background: rgba(241, 241, 241, 0.62);
-      }
-
-      &:hover {
-        background: #b0b0b0;
-      }
-
-      .image {
-        width: 150px;
-        height: auto;
-        overflow: hidden;
-
-        @media (max-width: 1200px) {
-          height: 100px;
-        }
-
-        img {
-          width: 150px;
-
-          @media (max-width: 1200px) {
-            transform: translateY(-80px);
-          }
-        }
-      }
-
-      .nodes {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        gap: 3px;
-      }
-    }
-  }
-`;
 const TraitCircle = styled.div`
   width: 10px;
   height: 10px;

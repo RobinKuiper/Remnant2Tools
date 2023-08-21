@@ -1,0 +1,16 @@
+.page-layout-container {
+  height: 100%;
+  box-sizing: border-box;
+
+  .page-layout-content {
+    position: relative;
+    height: 100%;
+    z-index: 65; // TODO: check? 50 works
+    box-shadow: 0 0 20px rgba(0, 0, 0, 1);
+
+    @media (max-width: 1200px) {
+      margin: 0;
+      z-index: auto;
+    }
+  }
+}

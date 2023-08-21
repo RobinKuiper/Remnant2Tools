@@ -1,5 +1,5 @@
+import "./Layout.scss";
 import React, { useEffect, useRef } from "react";
-import { styled } from "styled-components";
 import TopBar from "./TopBar";
 import SettingsSidebar from "./SettingsSidebar";
 import type { ToastOptions, UpdateOptions } from "react-toastify";
@@ -157,7 +157,7 @@ const Layout = ({ children }: Props) => {
   }, [saving, pending, saved, error]);
 
   return (
-    <Container>
+    <div className="layout-container">
       <TopBar />
 
       <div className="layout-content" onClick={handleClick}>
@@ -172,33 +172,8 @@ const Layout = ({ children }: Props) => {
 
       <ToastContainer theme="dark" />
       <Tooltip id="tooltip" />
-    </Container>
+    </div>
   );
 };
 
 export default Layout;
-
-const Container = styled.div`
-  height: 100%;
-
-  .layout-content {
-    padding-top: 74px;
-    padding-bottom: 45px;
-    box-sizing: border-box;
-    height: 100%;
-  }
-
-  #tooltip {
-    z-index: 999999;
-  }
-
-  #google-toast {
-    .google-saving-toast {
-      .pending {
-        display: flex;
-        justify-content: space-between;
-        width: 100%;
-      }
-    }
-  }
-`;

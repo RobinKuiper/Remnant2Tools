@@ -1,5 +1,5 @@
+import "./GlobalSearch.scss";
 import React, { useEffect, useRef, useState } from "react";
-import { styled } from "styled-components";
 import Search from "../Search";
 import { Link, graphql, useStaticQuery } from "gatsby";
 import { searchItems } from "../../dataHelpers";
@@ -89,7 +89,7 @@ const GlobalSearch = () => {
   }, [query]);
 
   return (
-    <Container>
+    <div className="global-search-container">
       <Search
         placeholder="Search"
         query={query}
@@ -97,7 +97,7 @@ const GlobalSearch = () => {
         tooltip="Searches through name, description, world, etc."
       />
 
-      <SearchResults>
+      <div className="results">
         {searchedItems.map((item, i) => (
           <Link
             key={item.fragment}
@@ -116,48 +116,9 @@ const GlobalSearch = () => {
             </div>
           </Link>
         ))}
-      </SearchResults>
-    </Container>
+      </div>
+    </div>
   );
 };
 
 export default GlobalSearch;
-
-const Container = styled.div`
-  position: relative;
-
-  @media (max-width: 670px) {
-    display: none;
-  }
-`;
-
-const SearchResults = styled.div`
-  position: absolute;
-  left: 0;
-  top: 50px;
-  background: #292929;
-  width: 100%;
-
-  .result {
-    padding: 10px;
-
-    &:hover,
-    &.active {
-      background: #000;
-    }
-
-    .title {
-    }
-
-    .info {
-      display: flex;
-      font-size: 0.7em;
-
-      span:not(:last-child) {
-        border-right: 1px solid #fff;
-        padding-right: 5px;
-        margin-right: 5px;
-      }
-    }
-  }
-`;

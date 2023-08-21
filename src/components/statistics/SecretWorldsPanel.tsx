@@ -1,5 +1,5 @@
+import "./SecretWorldsPanel.scss";
 import React, { useEffect, useState } from "react";
-import { styled } from "styled-components";
 import Redacted from "../database/Redacted";
 import { graphql, useStaticQuery } from "gatsby";
 import { useAppSelector } from "../../hooks";
@@ -43,7 +43,7 @@ const SecretWorldsPanel = () => {
   }
 
   return (
-    <Container className="panel">
+    <div className="secret-worlds-panel-container panel">
       <h3>Worlds</h3>
       <p>Below are worlds where you still have secrets to unlock.</p>
       <div className="values">
@@ -51,39 +51,17 @@ const SecretWorldsPanel = () => {
           const gatsbyImage = getImage(images.nodes.find(image => image.name === slugify(worldName)));
 
           return (
-            <World key={worldName}>
+            <div className="world" key={worldName}>
               <Redacted bgColor="#5d5d5d">
                 <picture>{gatsbyImage && <GatsbyImage alt={worldName} image={gatsbyImage} />}</picture>
               </Redacted>
               <Redacted value={worldName} bgColor="#5d5d5d" text="" />
-            </World>
+            </div>
           );
         })}
       </div>
-    </Container>
+    </div>
   );
 };
 
 export default SecretWorldsPanel;
-
-const Container = styled.div`
-  .values {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 20px;
-    text-align: center;
-  }
-`;
-
-const World = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-
-  picture {
-    display: block;
-    width: 180px;
-  }
-`;

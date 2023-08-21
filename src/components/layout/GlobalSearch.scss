@@ -1,0 +1,38 @@
+.global-search-container {
+  position: relative;
+
+  @media (max-width: 670px) {
+    display: none;
+  }
+
+  .results {
+    position: absolute;
+    left: 0;
+    top: 50px;
+    background: #292929;
+    width: 100%;
+
+    .result {
+      padding: 10px;
+
+      &:hover,
+      &.active {
+        background: #000;
+      }
+
+      .title {
+      }
+
+      .info {
+        display: flex;
+        font-size: 0.7em;
+
+        span:not(:last-child) {
+          border-right: 1px solid #fff;
+          padding-right: 5px;
+          margin-right: 5px;
+        }
+      }
+    }
+  }
+}

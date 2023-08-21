@@ -1,0 +1,24 @@
+.build-settings-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 400px;
+  margin: 20px auto;
+
+  @media (max-width: 450px) {
+    width: 300px;
+  }
+
+  input {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 10px;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #000;
+
+    &:focus {
+      outline: none;
+    }
+  }
+}

@@ -1,0 +1,20 @@
+.container {
+  display: flex;
+  gap: 30px;
+  justify-content: space-between;
+
+  .key {
+    font-weight: 900;
+
+    .sub {
+      padding-left: 10px;
+    }
+  }
+
+  .sub {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-top: 5px;
+  }
+}

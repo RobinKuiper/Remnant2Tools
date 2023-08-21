@@ -1,6 +1,6 @@
+import "./Search.scss";
 import React from "react";
 import { AiOutlineSearch } from "react-icons/ai";
-import { styled } from "styled-components";
 import { ImCross } from "react-icons/im";
 import { isMobile } from "../helpers";
 
@@ -15,7 +15,7 @@ interface Props {
 
 const Search = ({ placeholder = "", width, setQuery, query, disabled = false, tooltip = "" }: Props) => {
   return (
-    <Container width={width} data-tooltip-id="tooltip" data-tooltip-content={tooltip}>
+    <div className="search-container" width={width} data-tooltip-id="tooltip" data-tooltip-content={tooltip}>
       <input
         type="text"
         placeholder={placeholder}
@@ -33,47 +33,8 @@ const Search = ({ placeholder = "", width, setQuery, query, disabled = false, to
           </button>
         )}
       </span>
-    </Container>
+    </div>
   );
 };
 
 export default Search;
-
-const Container = styled.span`
-  display: flex;
-  align-items: center;
-  position: relative;
-  height: 100%;
-  width: ${({ width }) => `${width || "185px"}`};
-
-  input {
-    width: ${({ width }) => `${width || "185px"}`};
-    padding: 6.5px;
-  }
-
-  .icon {
-    position: absolute;
-    right: 3px;
-    color: #000;
-
-    transition: all 0.3s ease-in-out;
-  }
-
-  &:hover {
-    .icon {
-      color: #565656;
-    }
-  }
-
-  &:has(input:focus) {
-    .icon {
-      color: #565656;
-      //display: none;
-    }
-  }
-
-  input:focus {
-    //background: black;
-    outline: none;
-  }
-`;

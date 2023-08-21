@@ -1,7 +1,7 @@
 import * as React from "react";
 import type { PageProps } from "gatsby";
 import { Link, graphql } from "gatsby";
-import "../global.css";
+import "../global.scss";
 import { styled } from "styled-components";
 import { GatsbyImage, StaticImage, getImage } from "gatsby-plugin-image";
 import StatisticsPanel from "../components/statistics/StatisticsPanel";

@@ -1,5 +1,5 @@
+import "./BackgroundImage.scss";
 import React from "react";
-import { styled } from "styled-components";
 import { StaticImage } from "gatsby-plugin-image";
 
 const aspectRation = 16 / 9;
@@ -40,48 +40,12 @@ interface Props {
 
 const BackgroundImage = ({ children, index }: Props) => {
   return (
-    <Container>
+    <div className="background-image-container">
       {Backgrounds[index ?? 0]}
       <div className="gradient"></div>
       <div className="children">{children}</div>
-    </Container>
+    </div>
   );
 };
 
 export default BackgroundImage;
-
-const Container = styled.div`
-  position: relative;
-  display: grid;
-  min-height: 100vh;
-
-  .bgimage {
-    grid-area: 1/1;
-  }
-
-  .gradient {
-    grid-area: 1/1;
-    z-index: 1;
-    background: linear-gradient(45deg, rgba(255, 255, 255, 1) 11%, rgba(231, 231, 231, 1) 23%, rgba(0, 0, 0, 0) 100%);
-
-    // BUILDS
-    //background: linear-gradient(45deg,
-    //rgba(255, 255, 255, 1) 11%,
-    //rgba(231, 231, 231, 1) 53%,
-    //rgba(255, 255, 255, 0) 100%);
-
-    // ITEM
-    //background: linear-gradient(
-    //  45deg,
-    //  rgba(255, 255, 255, 1) 11%,
-    //  rgba(231, 231, 231, 1) 40%,
-    //  rgba(255, 255, 255, 0) 100%
-    //);
-  }
-
-  .children {
-    grid-area: 1/1;
-    position: relative;
-    z-index: 2;
-  }
-`;

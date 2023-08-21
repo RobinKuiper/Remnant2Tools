@@ -8,7 +8,7 @@ import BackgroundImage from "../../components/BackgroundImage";
 import Layout from "../../components/layout/Layout";
 import PageLayout from "../../components/layout/PageLayout";
 
-const Statistics: React.FC = props => {
+const Statistics: React.FC = () => {
   return (
     <Layout>
       <Head

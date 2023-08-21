@@ -1,0 +1,38 @@
+.search-container {
+  display: flex;
+  align-items: center;
+  position: relative;
+  height: 100%;
+  width: 185px;
+
+  input {
+    width: 185px;
+    padding: 6.5px;
+  }
+
+  .icon {
+    position: absolute;
+    right: 3px;
+    color: #000;
+
+    transition: all 0.3s ease-in-out;
+  }
+
+  &:hover {
+    .icon {
+      color: #565656;
+    }
+  }
+
+  &:has(input:focus) {
+    .icon {
+      color: #565656;
+      //display: none;
+    }
+  }
+
+  input:focus {
+    //background: black;
+    outline: none;
+  }
+}
