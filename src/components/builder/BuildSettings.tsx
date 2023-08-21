@@ -11,7 +11,7 @@ interface Props {
   toggleOnlyUnlocked: () => void;
 }
 
-const Settings = ({ build, setBuild, toggleOnlyUnlocked, onlyUnlocked }: Props) => {
+const BuildSettings = ({ build, setBuild, toggleOnlyUnlocked, onlyUnlocked }: Props) => {
   const [name, setName] = useState(build.name);
 
   useEffect(() => {
@@ -47,4 +47,4 @@ const Settings = ({ build, setBuild, toggleOnlyUnlocked, onlyUnlocked }: Props) 
   );
 };
 
-export default Settings;
+export default BuildSettings;

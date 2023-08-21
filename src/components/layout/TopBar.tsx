@@ -33,13 +33,13 @@ const TopBar = () => {
         <div className="center">
           <nav>
             <Flex gap="25px" alignitems="center">
-              <Link to="/database/archetypes" className={url.includes("database") ? styles.active : ""}>
+              <Link to="/database/archetypes" className={url.includes("database") ? "active" : ""}>
                 Database
               </Link>
-              <Link to="/tracker/archetypes" className={url.includes("tracker") ? styles.active : ""}>
+              <Link to="/tracker/archetypes" className={url.includes("tracker") ? "active" : ""}>
                 Tracker
               </Link>
-              <Link to="/builds" className={url.includes("builds") ? styles.active : ""}>
+              <Link to="/builds" className={url.includes("builds") ? "active" : ""}>
                 Builds
               </Link>
             </Flex>

@@ -11,7 +11,7 @@ import ItemSelectModal from "../components/modals/ItemSelectModal";
 import type { Filter } from "../interface/IData";
 import ArchetypesInterface from "../components/builder/ArchetypesInterface";
 import TraitsInterface from "../components/builder/TraitsInterface";
-import Settings from "../components/builder/Settings";
+import BuildSettings from "../components/builder/BuildSettings";
 import BuildStatisticsSidebarContent from "../components/builder/BuildStatisticsSidebarContent";
 import BackgroundImage from "../components/BackgroundImage";
 import Layout from "../components/layout/Layout";
@@ -227,7 +227,7 @@ const Builds = props => {
                 </div>
               </div>
 
-              <Settings
+              <BuildSettings
                 build={activeBuild}
                 setBuild={setActiveBuild}
                 onlyUnlocked={isShowOnlyUnlocked}
