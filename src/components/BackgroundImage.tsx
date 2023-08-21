@@ -1,6 +1,54 @@
 import React from "react";
 import { styled } from "styled-components";
-import { GatsbyImage, getImage } from "gatsby-plugin-image";
+import { StaticImage } from "gatsby-plugin-image";
+
+const aspectRation = 16 / 9;
+const layout = "constrained";
+const className = "bgimage";
+
+const Backgrounds = [
+  <StaticImage
+    key="bg1"
+    className={className}
+    layout={layout}
+    aspectRatio={aspectRation}
+    alt=""
+    src={"../images/background/bg1.webp"}
+  />,
+  <StaticImage
+    key="bg2"
+    className={className}
+    layout={layout}
+    aspectRatio={aspectRation}
+    alt=""
+    src={"../images/background/bg2.webp"}
+  />,
+  <StaticImage
+    key="bg3"
+    className={className}
+    layout={layout}
+    aspectRatio={aspectRation}
+    alt=""
+    src={"../images/background/bg3.webp"}
+  />,
+];
+
+interface Props {
+  children: React.ReactNode;
+  index: number;
+}
+
+const BackgroundImage = ({ children, index }: Props) => {
+  return (
+    <Container>
+      {Backgrounds[index ?? 0]}
+      <div className="gradient"></div>
+      <div className="children">{children}</div>
+    </Container>
+  );
+};
+
+export default BackgroundImage;
 
 const Container = styled.div`
   position: relative;
@@ -37,34 +85,3 @@ const Container = styled.div`
     z-index: 2;
   }
 `;
-
-interface Props {
-  children: React.ReactNode;
-  image: any;
-}
-
-const BackgroundImage = ({ children, image }: Props) => {
-  const bgImage = getImage(image);
-
-  return (
-    <Container>
-      {bgImage && (
-        <>
-          <GatsbyImage
-            className="bgimage"
-            layout="fullWidth"
-            aspectRatio={3}
-            // This is a presentational image, so the alt should be an empty string
-            alt=""
-            image={bgImage}
-            formats={["auto", "webp", "avif"]}
-          />
-          <div className="gradient"></div>
-        </>
-      )}
-      <div className="children">{children}</div>
-    </Container>
-  );
-};
-
-export default BackgroundImage;

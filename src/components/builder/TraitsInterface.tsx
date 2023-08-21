@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { MAX_TRAIT_POINTS } from "../../constants";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import { findImageById, restrainNumber } from "../../helpers";
@@ -6,8 +6,14 @@ import { styled } from "styled-components";
 import type { Build } from "../../interface/Build";
 import { graphql, useStaticQuery } from "gatsby";
 import { sorter } from "../../dataHelpers";
-import { DataContext } from "../../context/DataContext";
 import Search from "../Search";
+import { useAppSelector } from "../../hooks";
+import type { RootState } from "../../store";
+
+const TRAIT_POINT_COLORS = {
+  archetype: "#932020",
+  trait: "#b6a441",
+};
 
 interface Props {
   build: Build;
@@ -35,7 +41,7 @@ const TraitsInterface = ({ build, showOnlyUnlocked, updateBuildValue }: Props) =
       }
     }
   `);
-  const { unlocks } = useContext(DataContext);
+  const { unlocks } = useAppSelector((state: RootState) => state.data);
   const images = data.images.nodes;
   const [traits, setTraits] = useState([]);
   const [query, setQuery] = useState("");
@@ -154,6 +160,7 @@ const Container = styled.div`
     flex-direction: row;
     align-items: center;
     justify-content: center;
+    flex-wrap: wrap;
 
     .totals {
       display: flex;
@@ -222,11 +229,6 @@ const Container = styled.div`
     }
   }
 `;
-
-const TRAIT_POINT_COLORS = {
-  archetype: "#932020",
-  trait: "#b6a441",
-};
 const TraitCircle = styled.div`
   width: 10px;
   height: 10px;

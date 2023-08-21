@@ -8,6 +8,9 @@ dependencies:
   "@react-oauth/google":
     specifier: ^0.11.1
     version: 0.11.1(react-dom@18.2.0)(react@18.2.0)
+  "@reduxjs/toolkit":
+    specifier: ^1.9.5
+    version: 1.9.5(react-redux@8.1.2)(react@18.2.0)
   "@vercel/analytics":
     specifier: ^1.0.2
     version: 1.0.2
@@ -59,6 +62,9 @@ dependencies:
   googleapis:
     specifier: ^124.0.0
     version: 124.0.0
+  immer:
+    specifier: ^10.0.2
+    version: 10.0.2
   react:
     specifier: ^18.2.0
     version: 18.2.0
@@ -80,6 +86,9 @@ dependencies:
   react-modal:
     specifier: ^3.16.1
     version: 3.16.1(react-dom@18.2.0)(react@18.2.0)
+  react-redux:
+    specifier: ^8.1.2
+    version: 8.1.2(@types/react-dom@18.2.7)(@types/react@18.2.20)(react-dom@18.2.0)(react@18.2.0)(redux@4.2.1)
   react-spinners:
     specifier: ^0.13.8
     version: 0.13.8(react-dom@18.2.0)(react@18.2.0)
@@ -92,9 +101,15 @@ dependencies:
   react-tooltip:
     specifier: ^5.20.0
     version: 5.20.0(react-dom@18.2.0)(react@18.2.0)
+  redux:
+    specifier: ^4.2.1
+    version: 4.2.1
   styled-components:
     specifier: ^6.0.7
     version: 6.0.7(babel-plugin-styled-components@2.1.4)(react-dom@18.2.0)(react@18.2.0)
+  use-immer:
+    specifier: ^0.9.0
+    version: 0.9.0(immer@10.0.2)(react@18.2.0)
 
 devDependencies:
   "@babel/preset-typescript":
@@ -3209,6 +3224,26 @@ packages:
       react-dom: 18.2.0(react@18.2.0)
     dev: false
 
+  /@reduxjs/toolkit@1.9.5(react-redux@8.1.2)(react@18.2.0):
+    resolution:
+      { integrity: sha512-Rt97jHmfTeaxL4swLRNPD/zV4OxTes4la07Xc4hetpUW/vc75t5m1ANyxG6ymnEQ2FsLQsoMlYB2vV1sO3m8tQ== }
+    peerDependencies:
+      react: ^16.9.0 || ^17.0.0 || ^18
+      react-redux: ^7.2.1 || ^8.0.2
+    peerDependenciesMeta:
+      react:
+        optional: true
+      react-redux:
+        optional: true
+    dependencies:
+      immer: 9.0.21
+      react: 18.2.0
+      react-redux: 8.1.2(@types/react-dom@18.2.7)(@types/react@18.2.20)(react-dom@18.2.0)(react@18.2.0)(redux@4.2.1)
+      redux: 4.2.1
+      redux-thunk: 2.4.2(redux@4.2.1)
+      reselect: 4.1.8
+    dev: false
+
   /@semantic-release/commit-analyzer@10.0.1(semantic-release@21.0.7):
     resolution:
       { integrity: sha512-9ejHzTAijYs9z246sY/dKBatmOPcd0GQ7lH4MgLCkv1q4GCiDZRkjHJkaQZXZVaK7mJybS+sH3Ng6G8i3pYMGQ== }
@@ -3612,7 +3647,6 @@ packages:
     dependencies:
       "@types/react": 18.2.20
       hoist-non-react-statics: 3.3.2
-    dev: true
 
   /@types/http-cache-semantics@4.0.1:
     resolution:
@@ -3742,7 +3776,6 @@ packages:
       { integrity: sha512-GRaAEriuT4zp9N4p1i8BDBYmEyfo+xQ3yHjJU4eiK5NDa1RmUZG+unZABUTK4/Ox/M+GaHwb6Ow8rUITrtjszA== }
     dependencies:
       "@types/react": 18.2.20
-    dev: true
 
   /@types/react-helmet@6.1.6:
     resolution:
@@ -3842,6 +3875,11 @@ packages:
     resolution:
       { integrity: sha512-Q5vtl1W5ue16D+nIaW8JWebSSraJVlK+EthKn7e7UcD4KWsaSJ8BqGPXNaPghgtcn/fhvrN17Tv8ksUsQpiplw== }
     dev: true
+
+  /@types/use-sync-external-store@0.0.3:
+    resolution:
+      { integrity: sha512-EwmlvuaxPNej9+T4v5AuBPJa2x2UOJVdjCtDHgcDqitUeOtjnJKJ+apYjVcAoBEMjKW1VVFGZLUb5+qqa09XFA== }
+    dev: false
 
   /@types/yargs-parser@21.0.0:
     resolution:
@@ -8968,6 +9006,11 @@ packages:
       { integrity: sha512-MAb38BcSbH0eHNBxn7ql2NH/kX33OkB3lZ1BNdh7ENeRChHTYsTvWrMubiIAMNS2llXEEgZ1MUOBtXChP3kaFQ== }
     engines: { node: ">= 4" }
 
+  /immer@10.0.2:
+    resolution:
+      { integrity: sha512-Rx3CqeqQ19sxUtYV9CU911Vhy8/721wRFnJv3REVGWUmoAcIwzifTsdmJte/MV+0/XpM35LZdQMBGkRIoLPwQA== }
+    dev: false
+
   /immer@9.0.21:
     resolution:
       { integrity: sha512-bc4NBHqOqSfRW7POMkHd51LvClaeMXpm8dx0e8oE2GORbq5aRK7Bxl4FyzVLdGtLmvLKL7BTDBG5ACQm4HWjTA== }
@@ -12485,6 +12528,41 @@ packages:
       warning: 4.0.3
     dev: false
 
+  /react-redux@8.1.2(@types/react-dom@18.2.7)(@types/react@18.2.20)(react-dom@18.2.0)(react@18.2.0)(redux@4.2.1):
+    resolution:
+      { integrity: sha512-xJKYI189VwfsFc4CJvHqHlDrzyFTY/3vZACbE+rr/zQ34Xx1wQfB4OTOSeOSNrF6BDVe8OOdxIrAnMGXA3ggfw== }
+    peerDependencies:
+      "@types/react": ^16.8 || ^17.0 || ^18.0
+      "@types/react-dom": ^16.8 || ^17.0 || ^18.0
+      react: ^16.8 || ^17.0 || ^18.0
+      react-dom: ^16.8 || ^17.0 || ^18.0
+      react-native: ">=0.59"
+      redux: ^4 || ^5.0.0-beta.0
+    peerDependenciesMeta:
+      "@types/react":
+        optional: true
+      "@types/react-dom":
+        optional: true
+      react-dom:
+        optional: true
+      react-native:
+        optional: true
+      redux:
+        optional: true
+    dependencies:
+      "@babel/runtime": 7.22.10
+      "@types/hoist-non-react-statics": 3.3.1
+      "@types/react": 18.2.20
+      "@types/react-dom": 18.2.7
+      "@types/use-sync-external-store": 0.0.3
+      hoist-non-react-statics: 3.3.2
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+      react-is: 18.2.0
+      redux: 4.2.1
+      use-sync-external-store: 1.2.0(react@18.2.0)
+    dev: false
+
   /react-refresh@0.14.0:
     resolution:
       { integrity: sha512-wViHqhAd8OHeLS/IRMJjTSDHF3U9eWi62F/MledQGPdJGDhodXJ9PBLNGr6WWL7qlH12Mt3TyTpbS+hGXMjCzQ== }
@@ -12808,6 +12886,11 @@ packages:
     resolution:
       { integrity: sha512-KigOCHcocU3XODJxsu8i/j8T9tzT4adHiecwORRQ0ZZFcp7ahwXuRU1m+yuO90C5ZUyGeGfocHDI14M3L3yDAQ== }
     dev: true
+
+  /reselect@4.1.8:
+    resolution:
+      { integrity: sha512-ab9EmR80F/zQTMNeneUr4cv+jSwPJgIlvEmVwLerwrWVbpLlBuls9XHzIeTFy4cegU2NHBp3va0LKOzU5qFEYQ== }
+    dev: false
 
   /resolve-alpn@1.2.1:
     resolution:
@@ -14410,6 +14493,26 @@ packages:
   /url-template@2.0.8:
     resolution:
       { integrity: sha512-XdVKMF4SJ0nP/O7XIPB0JwAEuT9lDIYnNsK8yGVe43y0AWoKeJNdv3ZNWh7ksJ6KqQFjOO6ox/VEitLnaVNufw== }
+    dev: false
+
+  /use-immer@0.9.0(immer@10.0.2)(react@18.2.0):
+    resolution:
+      { integrity: sha512-/L+enLi0nvuZ6j4WlyK0US9/ECUtV5v9RUbtxnn5+WbtaXYUaOBoKHDNL9I5AETdurQ4rIFIj/s+Z5X80ATyKw== }
+    peerDependencies:
+      immer: ">=2.0.0"
+      react: ^16.8.0 || ^17.0.1 || ^18.0.0
+    dependencies:
+      immer: 10.0.2
+      react: 18.2.0
+    dev: false
+
+  /use-sync-external-store@1.2.0(react@18.2.0):
+    resolution:
+      { integrity: sha512-eEgnFxGQ1Ife9bzYs6VLi8/4X6CObHMw9Qr9tPY43iKwsPw8xE8+EFsf/2cFZ5S3esXgpWgtSCtLNS41F+sKPA== }
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0
+    dependencies:
+      react: 18.2.0
     dev: false
 
   /util-deprecate@1.0.2:

@@ -1,8 +1,7 @@
 import { graphql } from "gatsby";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { styled } from "styled-components";
 import BuildsSidebarContent from "../components/builder/BuildsSidebarContent";
-import { BuildsContext } from "../context/BuildContext";
 import type { Build, Item } from "../interface/Build";
 import "react-tooltip/dist/react-tooltip.css";
 import BuildInterface from "../components/builder/BuildInterface";
@@ -14,10 +13,281 @@ import ArchetypesInterface from "../components/builder/ArchetypesInterface";
 import TraitsInterface from "../components/builder/TraitsInterface";
 import Settings from "../components/builder/Settings";
 import BuildStatisticsSidebarContent from "../components/builder/BuildStatisticsSidebarContent";
-import { SettingContext } from "../context/SettingContext";
 import BackgroundImage from "../components/BackgroundImage";
 import Layout from "../components/layout/Layout";
 import PageLayout from "../components/layout/PageLayout";
+import { saveBuilds } from "../features/data/dataSlice";
+import { copyObject } from "../helpers";
+import { useImmer } from "use-immer";
+import { current } from "immer";
+import { useAppDispatch } from "../hooks";
+
+const Builds = props => {
+  const dispatch = useAppDispatch();
+  const storedBuilds = typeof localStorage !== "undefined" && JSON.parse(localStorage.getItem("builds"));
+  if (storedBuilds) {
+    delete storedBuilds.version;
+  }
+  const [builds, setBuilds] = useImmer<{ [id: number]: Build }>(storedBuilds ?? {});
+  const { images } = props.data;
+  const [isItemSelectModalOpen, setIsItemSelectModalOpen] = useState(false);
+  const [itemSelectModalFilters, setItemSelectModalFilters] = useState<Filter[]>([]);
+  const [activeTab, setActiveTab] = useState<string>("equipment");
+  const newBuildCopy = copyObject(NEW_BUILD);
+  const [activeBuild, setActiveBuild] = useImmer<Build>(newBuildCopy);
+  const [isShowOnlyUnlocked, setIsShowOnlyUnlocked] = useState(false);
+
+  const [buildPath, setBuildPath] = useState<string>("");
+
+  // Set the saved active build as active
+  // Or set the top build as active
+  useEffect(() => {
+    const storedActiveBuildId = localStorage.getItem("activeBuildId");
+    const build = Object.values(builds).find(build =>
+      storedActiveBuildId ? build.id === parseInt(storedActiveBuildId) : true,
+    );
+    if (build) {
+      setActiveBuild(build);
+    }
+  }, []);
+
+  // Toggle showing only unlocked items
+  const toggleIsHowOnlyUnlocked = () => {
+    setIsShowOnlyUnlocked(!isShowOnlyUnlocked);
+  };
+
+  // Reset the build to a new build
+  const handleResetBuild = () => {
+    let newId = 1;
+    while (builds[newId]) {
+      newId++;
+    }
+    const copy = { ...copyObject(NEW_BUILD), id: newId };
+    setActiveBuild(copy);
+  };
+
+  const openModal = (filters: Filter[], buildPath: string) => {
+    setBuildPath(buildPath);
+    setItemSelectModalFilters(filters);
+    setIsItemSelectModalOpen(true);
+  };
+
+  // Save active build to builds when changed
+  // Save builds to localstorage and update settings
+  useEffect(() => {
+    setBuilds(draft => {
+      draft[activeBuild.id] = activeBuild;
+      dispatch(saveBuilds(current(draft)));
+    });
+  }, [activeBuild]);
+
+  // Update a value from the active build
+  const updateBuildValue = (buildPath: string | string[], value: any | any[]) =>
+    setActiveBuild(build => {
+      if (Array.isArray(buildPath)) {
+        buildPath.forEach((bp, index) => {
+          setFieldValue(build, bp, value[index]);
+        });
+      } else {
+        setFieldValue(build, buildPath, value);
+      }
+    });
+
+  const handleSelectItem = (item: Item) => {
+    const buildPaths = [buildPath];
+    const values = [item.externalId];
+
+    // Item is a weapon and has a mod
+    if (item.category === "weapons" && item.links?.mod) {
+      const part1 = buildPath.split(".")[0];
+      buildPaths.push(`${part1}.mod`);
+      values.push(item.links.mod.externalId);
+    }
+
+    // Item is a trait
+    if (item.category === "traits") {
+      const part1 = buildPath.split(".")[0];
+      buildPaths.push(`${part1}.trait`);
+      values.push(item.links.trait.externalId);
+    }
+
+    // Item is a archetype
+    if (item.category === "archetypes") {
+      const part1 = buildPath.split(".")[0];
+      buildPaths.push(`${part1}.level`);
+      values.push(1);
+
+      const traitId = item?.links?.trait?.externalId;
+      buildPaths.push(`${part1}.trait`);
+      values.push(traitId);
+
+      if (activeBuild.traitLevels[traitId]) {
+        const points = getFieldValue(activeBuild, `${part1}.level`) ?? 0;
+        const traitLevel = activeBuild.traitLevels[traitId];
+        if (traitLevel + points > 10) {
+          const difference = traitLevel + points - 10;
+          buildPaths.push(`traitLevels.${traitId}`);
+          values.push(difference < 0 ? 0 : activeBuild.traitLevels[traitId] - difference);
+        }
+      }
+    }
+
+    updateBuildValue(buildPaths, values);
+  };
+
+  const handleArchetypeLevelChange = (level: number, buildPath: string) => {
+    const buildPaths = [];
+    const values = [];
+
+    buildPaths.push(buildPath);
+    values.push(level);
+
+    // If we are changing an archetype level, we also need to update the traits
+    const part1 = buildPath.split(".")[0];
+    const traitId = getFieldValue(activeBuild, `${part1}.trait`);
+    if (activeBuild.traitLevels[traitId]) {
+      const points = getFieldValue(activeBuild, `${part1}.level`) ?? 0;
+      const traitLevel = activeBuild.traitLevels[traitId];
+      if (traitLevel + points > 10) {
+        const difference = traitLevel + points - 10;
+        buildPaths.push(`traitLevels.${traitId}`);
+        values.push(difference < 0 ? 0 : activeBuild.traitLevels[traitId] - difference);
+      }
+    }
+
+    updateBuildValue(buildPaths, values);
+  };
+
+  const handleCopyBuild = (id: number) => {
+    setBuilds(draft => {
+      if (draft[id]) {
+        let newId = 1;
+        while (draft[newId]) {
+          newId++;
+        }
+        draft[newId] = { ...draft[id], id: newId, name: `${draft[id].name} (copy)` };
+        dispatch(saveBuilds(current(draft)));
+      }
+    });
+  };
+
+  const handleDeleteBuild = (id: number) => {
+    setBuilds(draft => {
+      if (draft[id]) {
+        delete draft[id];
+        dispatch(saveBuilds(current(draft)));
+      }
+    });
+  };
+
+  return (
+    <Layout>
+      <Head
+        title="Builder"
+        description={
+          "Get ready to rock your ideal builds with the Remnant 2 builder – " +
+          "your go-to for saving all those awesome creations in style!"
+        }
+      />
+
+      <PageLayout
+        leftSidebarContent={
+          <BuildsSidebarContent
+            builds={builds}
+            build={activeBuild}
+            setBuild={setActiveBuild}
+            resetBuild={handleResetBuild}
+            deleteBuild={handleDeleteBuild}
+            copyBuild={handleCopyBuild}
+          />
+        }
+        rightSidebarContent={<BuildStatisticsSidebarContent build={activeBuild} />}
+      >
+        <Container>
+          <BackgroundImage index={0}>
+            <div className="tabs">
+              <div className="tabs-menu">
+                <div
+                  className={`${activeTab === "archetypes" ? "active" : ""} tabs-menu-item`}
+                  onClick={() => setActiveTab("archetypes")}
+                >
+                  Archetypes
+                </div>
+                <div
+                  className={`${activeTab === "equipment" ? "active" : ""} tabs-menu-item`}
+                  onClick={() => setActiveTab("equipment")}
+                >
+                  Equipment
+                </div>
+                <div
+                  className={`${activeTab === "traits" ? "active" : ""} tabs-menu-item`}
+                  onClick={() => setActiveTab("traits")}
+                >
+                  Traits
+                </div>
+              </div>
+
+              <Settings
+                build={activeBuild}
+                setBuild={setActiveBuild}
+                onlyUnlocked={isShowOnlyUnlocked}
+                toggleOnlyUnlocked={toggleIsHowOnlyUnlocked}
+              />
+
+              <div className="tabs-content">
+                <div className="tabs-content-item">
+                  {activeTab === "equipment" && (
+                    <BuildInterface build={activeBuild} images={images.nodes} openModal={openModal} />
+                  )}
+
+                  {activeTab === "traits" && (
+                    <TraitsInterface
+                      build={activeBuild}
+                      showOnlyUnlocked={isShowOnlyUnlocked}
+                      updateBuildValue={updateBuildValue}
+                    />
+                  )}
+
+                  {activeTab === "archetypes" && (
+                    <ArchetypesInterface
+                      build={activeBuild}
+                      openModal={openModal}
+                      images={images.nodes}
+                      handleLevelChange={handleArchetypeLevelChange}
+                    />
+                  )}
+                </div>
+              </div>
+            </div>
+          </BackgroundImage>
+        </Container>
+      </PageLayout>
+
+      <ItemSelectModal
+        setIsOpen={setIsItemSelectModalOpen}
+        isOpen={isItemSelectModalOpen}
+        filters={itemSelectModalFilters}
+        callback={handleSelectItem}
+        onlyShowUnlocked={isShowOnlyUnlocked}
+      />
+    </Layout>
+  );
+};
+
+export default Builds;
+
+export const query = graphql`
+  {
+    images: allFile(filter: { relativePath: { regex: "/items/" } }) {
+      nodes {
+        fields {
+          itemId
+        }
+        ...imageFragment
+      }
+    }
+  }
+`;
 
 const NEW_BUILD: Build = {
   name: "New Build",
@@ -65,210 +335,6 @@ const NEW_BUILD: Build = {
   usedTraitPoints: 0,
   traitLevels: {},
 };
-
-const Builds = props => {
-  const { saveBuild, builds } = useContext(BuildsContext);
-  const { startSaving, stopSaving } = useContext(SettingContext);
-  const { images, bgImage } = props.data;
-  const [modalIsOpen, setIsOpen] = useState(false);
-  const [modalFilters, setModalFilters] = useState<Filter[]>([]);
-  const [buildPath, setBuildPath] = useState<string>("");
-  const [tab, setTab] = useState<string>("equipment");
-  const newBuildCopy = JSON.parse(JSON.stringify(NEW_BUILD));
-  const [build, setBuild] = useState<Build>(newBuildCopy);
-  const [onlyUnlocked, setOnlyUnlocked] = useState(false);
-
-  useEffect(() => {
-    const storedActiveBuildId = localStorage.getItem("activeBuildId");
-    const build = Object.values(builds).find(build =>
-      storedActiveBuildId ? build.id === parseInt(storedActiveBuildId) : true,
-    );
-    if (build) {
-      setBuild(build);
-    }
-  }, []);
-
-  const openModal = (filters: Filter[], buildPath: string) => {
-    setBuildPath(buildPath);
-    setModalFilters(filters);
-    setIsOpen(true);
-  };
-  const toggleOnlyUnlocked = () => {
-    setOnlyUnlocked(!onlyUnlocked);
-  };
-  const resetBuild = () => {
-    let newId = 1;
-    while (builds[newId]) {
-      newId++;
-    }
-    const copy = JSON.parse(JSON.stringify(NEW_BUILD));
-    copy.id = newId;
-    setBuild(copy);
-    saveBuild(copy);
-  };
-  const selectItem = (item: Item) => {
-    updateBuildValue(buildPath, item.externalId, item);
-  };
-  const checkMod = (item: Item) => {
-    if (item.links?.mod) {
-      const part1 = buildPath.split(".")[0];
-      updateBuildValue(`${part1}.mod`, item.links.mod.externalId);
-    }
-  };
-  const addMod = (item: Item) => {
-    if (item.links?.trait) {
-      const part1 = buildPath.split(".")[0];
-      updateBuildValue(`${part1}.trait`, item.links.trait.externalId);
-    }
-  };
-  const save = (build: Build) => {
-    startSaving();
-    saveBuild(build);
-    stopSaving();
-  };
-  const handleLevelChange = (level: number, buildPath: string) => {
-    updateBuildValue(buildPath, level);
-  };
-  const updateBuildValue = (buildPath: string, value: any, item?: Item) => {
-    const nBuild = { ...build };
-    setFieldValue(nBuild, buildPath, value);
-    preProcessBuild(value, nBuild, buildPath, item);
-    setBuild(nBuild);
-    save(nBuild);
-  };
-  const preProcessBuild = (value: any, nBuild: Build, buildPath: string, item?: Item) => {
-    if (buildPath === "archetype1.level" || buildPath === "archetype2.level") {
-      const part1 = buildPath.split(".")[0];
-      const traitId = getFieldValue(nBuild, `${part1}.trait`);
-      checkTrait(traitId, value);
-    }
-
-    if (buildPath === "archetype1.externalId" || buildPath === "archetype2.externalId") {
-      const part1 = buildPath.split(".")[0];
-      const traitId = item?.links?.trait?.externalId;
-      checkTrait(traitId, getFieldValue(nBuild, `${part1}.level`));
-    }
-
-    if (buildPath === "archetype1.externalId" || buildPath === "archetype2.externalId") {
-      const part1 = buildPath.split(".")[0];
-      nBuild[part1].level = 1;
-    }
-
-    if (item && item.category === "weapons") {
-      checkMod(item);
-    }
-
-    if (item && item.category === "archetypes") {
-      addMod(item);
-    }
-  };
-  const checkTrait = (id?: number, points?: number) => {
-    if (id && build.traitLevels[id]) {
-      points = points ?? 0;
-      const traitLevel = build.traitLevels[id];
-      if (traitLevel + points > 10) {
-        const difference = traitLevel + points - 10;
-        updateBuildValue(`traitLevels.${id}`, difference < 0 ? 0 : build.traitLevels[id] - difference);
-      }
-    }
-  };
-
-  return (
-    <Layout>
-      <Head title="Builder" description="Save your favorite builds in this Remnant II builder." />
-
-      <PageLayout
-        leftSidebarContent={<BuildsSidebarContent build={build} setBuild={setBuild} resetBuild={resetBuild} />}
-        rightSidebarContent={<BuildStatisticsSidebarContent build={build} />}
-        // config={{
-        //   rightSidebar: {
-        //     alwaysShowOpener: true
-        //   }
-        // }}
-      >
-        <Container>
-          <BackgroundImage image={bgImage}>
-            <div className="tabs">
-              <div className="tabs-menu">
-                <div
-                  className={`${tab === "archetypes" ? "active" : ""} tabs-menu-item`}
-                  onClick={() => setTab("archetypes")}
-                >
-                  Archetypes
-                </div>
-                <div
-                  className={`${tab === "equipment" ? "active" : ""} tabs-menu-item`}
-                  onClick={() => setTab("equipment")}
-                >
-                  Equipment
-                </div>
-                <div className={`${tab === "traits" ? "active" : ""} tabs-menu-item`} onClick={() => setTab("traits")}>
-                  Traits
-                </div>
-              </div>
-
-              <Settings
-                build={build}
-                setBuild={setBuild}
-                onlyUnlocked={onlyUnlocked}
-                toggleOnlyUnlocked={toggleOnlyUnlocked}
-              />
-
-              <div className="tabs-content">
-                <div className="tabs-content-item">
-                  {tab === "equipment" && <BuildInterface build={build} images={images.nodes} openModal={openModal} />}
-
-                  {tab === "traits" && (
-                    <TraitsInterface
-                      build={build}
-                      showOnlyUnlocked={onlyUnlocked}
-                      updateBuildValue={updateBuildValue}
-                    />
-                  )}
-
-                  {tab === "archetypes" && (
-                    <ArchetypesInterface
-                      build={build}
-                      openModal={openModal}
-                      images={images.nodes}
-                      handleLevelChange={handleLevelChange}
-                    />
-                  )}
-                </div>
-              </div>
-            </div>
-          </BackgroundImage>
-        </Container>
-      </PageLayout>
-
-      <ItemSelectModal
-        setIsOpen={setIsOpen}
-        isOpen={modalIsOpen}
-        filters={modalFilters}
-        callback={selectItem}
-        onlyShowUnlocked={onlyUnlocked}
-      />
-    </Layout>
-  );
-};
-
-export default Builds;
-
-export const query = graphql`
-  {
-    bgImage: file(name: { eq: "bg1" }) {
-      ...imageFragment
-    }
-    images: allFile(filter: { relativePath: { regex: "/items/" } }) {
-      nodes {
-        fields {
-          itemId
-        }
-        ...imageFragment
-      }
-    }
-  }
-`;
 
 const Container = styled.div`
   height: auto;

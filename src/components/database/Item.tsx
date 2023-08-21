@@ -1,11 +1,79 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { styled } from "styled-components";
-import { DataContext } from "../../context/DataContext";
 import { findImageById } from "../../helpers";
 import ListItem from "./ListItem";
 import GridItem from "./GridItem";
-import { SettingContext } from "../../context/SettingContext";
 import ItemTooltip from "./ItemTooltip";
+import { useAppDispatch, useAppSelector } from "../../hooks";
+import type { RootState } from "../../store";
+import { toggleUnlock } from "../../features/data/dataSlice";
+import { googleSaveWithDelay } from "../../features/data/dataActions";
+
+const STATE_CLASSES = {
+  true: "unlocked",
+  false: "locked",
+};
+
+interface Props {
+  item: any;
+  category: any;
+  images: any;
+  type?: string;
+}
+
+const Item = ({ item, category, images, type }: Props) => {
+  const dispatch = useAppDispatch();
+  const { view } = useAppSelector((state: RootState) => state.settings);
+  const { unlocks, pending } = useAppSelector((state: RootState) => state.data);
+  const { isLoggedIn } = useAppSelector((state: RootState) => state.auth);
+  const [unlocked, setUnlocked] = useState(unlocks.includes(item.externalId));
+  const [level, setLevel] = useState<number>();
+  const image = findImageById(item.externalId, images);
+
+  useEffect(() => {
+    setUnlocked(unlocks.includes(item.externalId));
+  }, [unlocks]);
+
+  const handleChange = e => {
+    const id = parseInt(e.target.id);
+    dispatch(toggleUnlock(id));
+    if (isLoggedIn && !pending) {
+      dispatch(googleSaveWithDelay());
+    }
+  };
+
+  return (
+    <Container className={`${view} ${type === "tracker" ? STATE_CLASSES[unlocked] : ""}`}>
+      {view === "list" ? (
+        <ListItem
+          item={item}
+          category={category}
+          unlocked={unlocked}
+          handleChange={handleChange}
+          level={level ?? 0}
+          setLevel={setLevel}
+          image={image}
+          type={type ?? "tracker"}
+        />
+      ) : (
+        <GridItem
+          item={item}
+          category={category}
+          unlocked={unlocked}
+          handleChange={handleChange}
+          level={level ?? 0}
+          setLevel={setLevel}
+          image={image}
+          type={type ?? "tracker"}
+        />
+      )}
+
+      <ItemTooltip id={`${item.fragment}_tooltip`} item={item} image={image} />
+    </Container>
+  );
+};
+
+export default Item;
 
 const Container = styled.div`
   position: relative;
@@ -59,65 +127,3 @@ const Container = styled.div`
     width: 100%;
   }
 `;
-const STATE_CLASSES = {
-  true: "unlocked",
-  false: "locked",
-};
-
-interface Props {
-  item: any;
-  category: any;
-  images: any;
-  type?: string;
-}
-
-const Item = ({ item, category, images, type }: Props) => {
-  const { view, startSaving, stopSaving } = useContext(SettingContext);
-  const { toggleUnlock, unlocks } = useContext(DataContext);
-  const [unlocked, setUnlocked] = useState(unlocks.includes(item.externalId));
-  const [level, setLevel] = useState<number>();
-  const image = findImageById(item.externalId, images);
-
-  useEffect(() => {
-    setUnlocked(unlocks.includes(item.externalId));
-  }, [unlocks]);
-
-  const handleChange = e => {
-    startSaving();
-    const id = parseInt(e.target.id);
-    toggleUnlock(id);
-    stopSaving();
-  };
-
-  return (
-    <Container className={`${view} ${type === "tracker" ? STATE_CLASSES[unlocked] : ""}`}>
-      {view === "list" ? (
-        <ListItem
-          item={item}
-          category={category}
-          unlocked={unlocked}
-          handleChange={handleChange}
-          level={level ?? 0}
-          setLevel={setLevel}
-          image={image}
-          type={type ?? "tracker"}
-        />
-      ) : (
-        <GridItem
-          item={item}
-          category={category}
-          unlocked={unlocked}
-          handleChange={handleChange}
-          level={level ?? 0}
-          setLevel={setLevel}
-          image={image}
-          type={type ?? "tracker"}
-        />
-      )}
-
-      <ItemTooltip id={`${item.fragment}_tooltip`} item={item} image={image} />
-    </Container>
-  );
-};
-
-export default Item;

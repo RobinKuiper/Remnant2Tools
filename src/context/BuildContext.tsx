@@ -8,6 +8,7 @@ const DEFAULT_VALUES = {
 
 interface Builds {
   version?: number;
+  buil;
   [name: number]: Build;
 }
 

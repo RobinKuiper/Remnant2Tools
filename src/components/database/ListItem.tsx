@@ -8,22 +8,6 @@ import ItemFields from "./ItemFields";
 import ItemUnlockInformation from "./ItemUnlockInformation";
 import Checkbox from "../Checkbox";
 
-const Container = styled.div`
-  .title {
-    text-align: left;
-  }
-
-  .field {
-    text-align: right;
-  }
-
-  .image {
-    flex-basis: 100px;
-    flex-grow: 0;
-    flex-shrink: 0;
-  }
-`;
-
 interface Props {
   item: any;
   category: any;
@@ -79,3 +63,19 @@ const ListItem = (props: Props) => {
 };
 
 export default ListItem;
+
+const Container = styled.div`
+  .title {
+    text-align: left;
+  }
+
+  .field {
+    text-align: right;
+  }
+
+  .image {
+    flex-basis: 100px;
+    flex-grow: 0;
+    flex-shrink: 0;
+  }
+`;

@@ -7,6 +7,56 @@ import Head from "../components/layout/Head";
 import { calculateStringMatchPercentage } from "../helpers";
 import PageLayout from "../components/layout/PageLayout";
 
+const NotFoundPage: React.FC<PageProps> = ({ data, location }) => {
+  const relevantPages = data.pages.nodes
+    .filter(page => calculateStringMatchPercentage(location.pathname, page.path) > 50)
+    .slice(0, 3);
+
+  return (
+    <Layout>
+      <Head title="Not found" description="We couldn't find the page you where looking for." />
+
+      <PageLayout>
+        <Container>
+          <main>
+            <h1>Sorry!</h1>
+            <p>
+              Either you aren't cool enough to visit this page or it doesn't exist <em>. . .</em>
+            </p>
+            {relevantPages.length > 0 && (
+              <div className="relevant">
+                <strong>Did you mean?</strong>
+                <div>
+                  {relevantPages.map(page => (
+                    <Link key={page.path} to={page.path}>
+                      {page.path
+                        .split("/")
+                        .filter(word => word !== "")
+                        .join(" - ")}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            )}
+          </main>
+        </Container>
+      </PageLayout>
+    </Layout>
+  );
+};
+
+export default NotFoundPage;
+
+export const query = graphql`
+  query {
+    pages: allSitePage {
+      nodes {
+        path
+      }
+    }
+  }
+`;
+
 const Container = styled.div`
   min-height: 100vh;
   display: flex;
@@ -59,56 +109,6 @@ const Container = styled.div`
             transform: scale(1.15);
           }
         }
-      }
-    }
-  }
-`;
-
-const NotFoundPage: React.FC<PageProps> = ({ data, location }) => {
-  const relevantPages = data.pages.nodes
-    .filter(page => calculateStringMatchPercentage(location.pathname, page.path) > 50)
-    .slice(0, 3);
-
-  return (
-    <Layout>
-      <Head title="Not found" description="We couldn't find the page you where looking for." />
-
-      <PageLayout>
-        <Container>
-          <main>
-            <h1>Sorry!</h1>
-            <p>
-              Either you aren't cool enough to visit this page or it doesn't exist <em>. . .</em>
-            </p>
-            {relevantPages.length > 0 && (
-              <div className="relevant">
-                <strong>Did you mean?</strong>
-                <div>
-                  {relevantPages.map(page => (
-                    <Link key={page.path} to={page.path}>
-                      {page.path
-                        .split("/")
-                        .filter(word => word !== "")
-                        .join(" - ")}
-                    </Link>
-                  ))}
-                </div>
-              </div>
-            )}
-          </main>
-        </Container>
-      </PageLayout>
-    </Layout>
-  );
-};
-
-export default NotFoundPage;
-
-export const query = graphql`
-  query {
-    pages: allSitePage {
-      nodes {
-        path
       }
     }
   }

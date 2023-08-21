@@ -1,5 +1,5 @@
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BsLock } from "react-icons/bs";
 import Modal from "react-modal";
 import { styled } from "styled-components";
@@ -9,56 +9,11 @@ import { graphql, useStaticQuery } from "gatsby";
 import { filterItems, sorter } from "../../dataHelpers";
 import type { Filter } from "../../interface/IData";
 import Loader from "../Loader";
-import { DataContext } from "../../context/DataContext";
+import { useAppSelector } from "../../hooks";
+import type { RootState } from "../../store";
 import ItemTooltip from "../database/ItemTooltip";
 
 Modal.setAppElement("#___gatsby");
-
-const Content = styled.div`
-  display: flex;
-  flex-direction: column;
-
-  width: 440px;
-  height: 500px;
-  background-color: #f1f1f1;
-
-  input {
-    padding: 10px;
-    box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.5);
-    background: transparent;
-    border: none;
-    //border-bottom: 1px solid #000;
-  }
-
-  #list {
-    display: flex;
-    flex-direction: row;
-    padding-top: 10px;
-
-    flex-wrap: wrap;
-    gap: 5px;
-    overflow-y: auto;
-    height: 100%;
-
-    button {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 10px;
-      justify-content: center;
-      padding-bottom: 5px;
-      width: 100px;
-      height: 150px;
-      box-sizing: border-box;
-
-      transition: all 0.3s ease-in-out;
-
-      &:hover {
-        background: #d5d5d5;
-      }
-    }
-  }
-`;
 
 interface Props {
   setIsOpen: (value: ((prevState: boolean) => boolean) | boolean) => void;
@@ -115,7 +70,7 @@ const ItemSelectModal = ({ setIsOpen, isOpen, filters, callback, onlyShowUnlocke
       }
     }
   `);
-  const { unlocks } = useContext(DataContext);
+  const { unlocks } = useAppSelector((state: RootState) => state.data);
   const allItems = data.items.nodes;
   const images = data.images.nodes;
   const [query, setQuery] = useState("");
@@ -209,3 +164,54 @@ const ItemSelectModal = ({ setIsOpen, isOpen, filters, callback, onlyShowUnlocke
 };
 
 export default ItemSelectModal;
+
+const Content = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  width: 440px;
+  height: 500px;
+  background-color: #f1f1f1;
+
+  @media (max-width: 450px) {
+    width: 100%;
+    //margin: 20px;
+  }
+
+  input {
+    padding: 10px;
+    box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.5);
+    background: transparent;
+    border: none;
+    //border-bottom: 1px solid #000;
+  }
+
+  #list {
+    display: flex;
+    flex-direction: row;
+    padding-top: 10px;
+
+    flex-wrap: wrap;
+    gap: 5px;
+    overflow-y: auto;
+    height: 100%;
+
+    button {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      justify-content: center;
+      padding-bottom: 5px;
+      width: 100px;
+      height: 150px;
+      box-sizing: border-box;
+
+      transition: all 0.3s ease-in-out;
+
+      &:hover {
+        background: #d5d5d5;
+      }
+    }
+  }
+`;

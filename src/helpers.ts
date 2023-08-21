@@ -1,4 +1,14 @@
+export const isMobile = () => {
+  const mediaQuery = typeof window !== "undefined" && window.matchMedia("(max-width: 768px)");
+
+  return mediaQuery ? mediaQuery.matches : false;
+};
+
 export const getPageType = (path: string): string => path.split("/")[1];
+
+export const copyObject = (object: object) => {
+  return JSON.parse(JSON.stringify(object));
+};
 
 export const findImage = (name: string, images: any, filterRelativePath: string, placeholder: boolean = true) => {
   if (!images) {
@@ -83,7 +93,7 @@ export const restrainNumber = (value: number, max: number, subtract: boolean = f
 };
 
 export const refreshTokens = (credentials: object | null) => {
-  if (credentials) {
+  if (credentials && credentials["access_token"] && credentials["refresh_token"] && credentials["expiry_date"]) {
     localStorage.setItem("google_oauth", JSON.stringify(credentials));
   }
 };

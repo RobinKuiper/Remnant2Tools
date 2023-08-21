@@ -5,9 +5,32 @@ import StatisticsPanel from "../../components/statistics/StatisticsPanel";
 import SecretWorldsPanel from "../../components/statistics/SecretWorldsPanel";
 import Head from "../../components/layout/Head";
 import BackgroundImage from "../../components/BackgroundImage";
-import { graphql } from "gatsby";
 import Layout from "../../components/layout/Layout";
 import PageLayout from "../../components/layout/PageLayout";
+
+const Statistics: React.FC = props => {
+  return (
+    <Layout>
+      <Head
+        title="Statistics"
+        description="Dive into the numbers! Track all the stats for your unlocked items in Remnant 2 right here."
+      />
+
+      <PageLayout leftSidebarContent={<CategorySidebarContent type="tracker" />}>
+        <Container>
+          <BackgroundImage index={1}>
+            <div className="panels">
+              <StatisticsPanel />
+              <SecretWorldsPanel />
+            </div>
+          </BackgroundImage>
+        </Container>
+      </PageLayout>
+    </Layout>
+  );
+};
+
+export default Statistics;
 
 const Container = styled.div`
   .panels {
@@ -34,37 +57,6 @@ const Container = styled.div`
         text-align: center;
         margin-bottom: 20px;
       }
-    }
-  }
-`;
-
-const Statistics: React.FC = props => {
-  const { bgImage } = props.data;
-
-  return (
-    <Layout>
-      <Head title="Statistics" description="All of the statistics of the items you have unlocked in Remnant II." />
-
-      <PageLayout leftSidebarContent={<CategorySidebarContent type="tracker" />}>
-        <Container>
-          <BackgroundImage image={bgImage}>
-            <div className="panels">
-              <StatisticsPanel />
-              <SecretWorldsPanel />
-            </div>
-          </BackgroundImage>
-        </Container>
-      </PageLayout>
-    </Layout>
-  );
-};
-
-export default Statistics;
-
-export const query = graphql`
-  {
-    bgImage: file(name: { eq: "bg2" }) {
-      ...imageFragment
     }
   }
 `;

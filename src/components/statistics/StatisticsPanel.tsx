@@ -1,45 +1,10 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { styled } from "styled-components";
-import { DataContext } from "../../context/DataContext";
 import { calculatePercentage } from "../../helpers";
 import { Link, graphql, useStaticQuery } from "gatsby";
 import Loader from "../Loader";
-
-const Container = styled.div`
-  width: 400px;
-  min-height: 600px;
-
-  table {
-    width: 100%;
-
-    tbody {
-      tr {
-        td {
-          text-align: right;
-        }
-
-        td.title {
-          font-weight: 900;
-          text-align: left;
-        }
-      }
-    }
-
-    tfoot {
-      tr {
-        td {
-          border-top: 1px solid #fff;
-          text-align: right;
-          font-weight: 900;
-        }
-
-        td.title {
-          text-align: left;
-        }
-      }
-    }
-  }
-`;
+import { useAppSelector } from "../../hooks";
+import type { RootState } from "../../store";
 
 const StatisticsPanel = () => {
   const { categories } = useStaticQuery(graphql`
@@ -54,7 +19,7 @@ const StatisticsPanel = () => {
       }
     }
   `);
-  const { statistics } = useContext(DataContext);
+  const { statistics } = useAppSelector((state: RootState) => state.data);
   const [loading, setLoading] = useState(true);
   const [totals, setTotals] = useState({ total: 0, unlocked: 0, percentage: 0 });
 
@@ -114,3 +79,39 @@ const StatisticsPanel = () => {
 };
 
 export default StatisticsPanel;
+
+const Container = styled.div`
+  width: 400px;
+  min-height: 600px;
+
+  table {
+    width: 100%;
+
+    tbody {
+      tr {
+        td {
+          text-align: right;
+        }
+
+        td.title {
+          font-weight: 900;
+          text-align: left;
+        }
+      }
+    }
+
+    tfoot {
+      tr {
+        td {
+          border-top: 1px solid #fff;
+          text-align: right;
+          font-weight: 900;
+        }
+
+        td.title {
+          text-align: left;
+        }
+      }
+    }
+  }
+`;

@@ -1,11 +1,9 @@
 import { graphql } from "gatsby";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BiHide, BiShow } from "react-icons/bi";
 import { styled } from "styled-components";
 import CategorySidebarContent from "../components/database/CategorySidebarContent";
 import Search from "../components/Search";
-import { DataContext } from "../context/DataContext";
-import { SettingContext } from "../context/SettingContext";
 import { sorter } from "../dataHelpers";
 import { Flex } from "../style/global";
 import Item from "../components/database/Item";
@@ -15,62 +13,14 @@ import { getPageType } from "../helpers";
 import Head from "../components/layout/Head";
 import Layout from "../components/layout/Layout";
 import PageLayout from "../components/layout/PageLayout";
-
-const Container = styled.div`
-  padding: 20px;
-  min-height: 100vh;
-
-  #content-heading {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    text-align: center;
-    margin: 10px 0;
-    padding: 0 10px 20px 10px;
-    border-bottom: 1px solid #888;
-
-    .left {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-
-      select {
-        padding: 6.5px;
-
-        &:focus {
-          outline: none;
-        }
-      }
-
-      .view-switcher {
-        @media (max-width: 550px) {
-          display: none;
-        }
-      }
-
-      div {
-      }
-    }
-
-    .right {
-      font-size: 1.2em;
-    }
-
-    @media (max-width: 670px) {
-      flex-direction: column;
-      gap: 20px;
-    }
-  }
-
-  .no-data {
-    width: 100%;
-    text-align: center;
-  }
-`;
+import { useAppDispatch, useAppSelector } from "../hooks";
+import type { RootState } from "../store";
+import { toggleHideUnlocked, toggleView } from "../features/settings/settingsSlice";
 
 const Category = ({ path, data }) => {
-  const { hideUnlocked, toggleHideUnlocked, view, toggleView } = useContext(SettingContext);
-  const { statistics, unlocks } = useContext(DataContext);
+  const { hideUnlocked, view } = useAppSelector((state: RootState) => state.settings);
+  const { unlocks, statistics } = useAppSelector((state: RootState) => state.data);
+  const dispatch = useAppDispatch();
   const { images, category } = data;
   const { items } = category;
   const type = getPageType(path);
@@ -131,9 +81,24 @@ const Category = ({ path, data }) => {
     setSortBy(key);
   };
 
+  const titles = {
+    weapons: "Unlock the arsenal! Your ultimate guide to all the Remnant 2 weapons you can wield.",
+    armor: "Gear Up with armors! Discover an array of fantastic armors in Remnant 2.",
+    armorset: "Gear Up with armor sets! Discover an array of fantastic armors in Remnant 2.",
+    rings: "Rings Extravaganza: Discover a Trove of Epic Rings in Remnant II!",
+    amulets: "Amulets Galore: Explore a Diverse Collection of Remnant II Amulets!",
+    traits: "Trait Encyclopedia: Uncover the Multitude of Traits in Remnant II!",
+  };
+
   return (
     <Layout>
-      <Head title={category.settings.label} description="Track your progress in Remnant II." />
+      <Head
+        title={category.settings.label}
+        description={
+          titles[category.settings.fragment] ??
+          "Dive into the treasure trove! Explore the complete item database for Remnant 2 in all its glory."
+        }
+      />
 
       <PageLayout leftSidebarContent={<CategorySidebarContent type={type} />}>
         <Container>
@@ -167,7 +132,7 @@ const Category = ({ path, data }) => {
               )}
 
               {isTracker && (
-                <button onClick={toggleHideUnlocked}>
+                <button onClick={() => dispatch(toggleHideUnlocked())}>
                   {hideUnlocked ? (
                     <BiShow
                       size={"30px"}
@@ -186,7 +151,7 @@ const Category = ({ path, data }) => {
                 </button>
               )}
 
-              <button className="view-switcher" onClick={toggleView}>
+              <button className="view-switcher" onClick={() => dispatch(toggleView())}>
                 {view === "list" ? (
                   <BsFillGrid3X3GapFill
                     size={"30px"}
@@ -241,7 +206,7 @@ const Category = ({ path, data }) => {
                 if (groupBy) {
                   return (
                     <>
-                      <ItemCategory key={item.name} item={item} category={category} type={type} />
+                      <ItemCategory key={item.name} item={item} />
                       {item.items &&
                         item.items.map(i => (
                           <Item key={i.id} item={i} type={type} category={category.settings} images={images.nodes} />
@@ -329,5 +294,57 @@ export const query = graphql`
         }
       }
     }
+  }
+`;
+
+const Container = styled.div`
+  padding: 20px;
+  min-height: 100vh;
+
+  #content-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    margin: 10px 0;
+    padding: 0 10px 20px 10px;
+    border-bottom: 1px solid #888;
+
+    .left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      select {
+        padding: 6.5px;
+
+        &:focus {
+          outline: none;
+        }
+      }
+
+      .view-switcher {
+        @media (max-width: 550px) {
+          display: none;
+        }
+      }
+
+      div {
+      }
+    }
+
+    .right {
+      font-size: 1.2em;
+    }
+
+    @media (max-width: 670px) {
+      flex-direction: column;
+      gap: 20px;
+    }
+  }
+
+  .no-data {
+    width: 100%;
+    text-align: center;
   }
 `;

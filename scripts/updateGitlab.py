@@ -14,8 +14,9 @@ REF_NAME = sys.argv[3]
 # Define issue titles and descriptions
 READY_RELEASE_ISSUE_TITLE = "Ready release"
 READY_RELEASE_ISSUE_DESCRIPTION = (
-    "- [ ] Add/update update log to UPDATES.md"
+    "- [ ] Add/update update log to UPDATES.md\n- [ ] Unlocks/locks work as a new user\n- [ ] Unlocks/locks work as an existing user\n- [ ] Builds work as a new user\n- [ ] Builds work as an existing user\n- [ ] Google auth works\n- [ ] Google saving works\n- [ ] Sidebars work\n- [ ] Mobile layout is ok\n"
 )
+
 DEPENDENCY_ISSUE_TITLE = "Check & update dependencies"
 
 # Labels

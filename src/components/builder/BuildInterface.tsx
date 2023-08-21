@@ -271,6 +271,10 @@ const BuildInterface = ({ build, images, openModal }) => {
                   value: build.offhand?.mod,
                   not: true,
                 },
+                {
+                  key: "links",
+                  value: null,
+                },
               ]}
               disabled={!!(build.mainHand && build.mainHand.mod && build.mainHand.mod !== "")}
             />

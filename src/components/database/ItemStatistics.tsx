@@ -3,33 +3,6 @@ import ItemStat from "../item/ItemStat";
 import { calculateWeightType } from "../../dataHelpers";
 import { styled } from "styled-components";
 
-const Container = styled.div`
-  padding: 20px;
-  border: ${props => props.border ?? "1px solid #ddd"};
-  background: ${props => props.background ?? "#f9f9f9"};
-  color: ${props => props.color ?? "#333"};
-  //width: 300px;
-  border-radius: 10px;
-
-  .statistics,
-  .levels {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  }
-
-  .levels {
-    .level {
-      display: flex;
-      justify-content: space-between;
-
-      .title {
-        font-weight: 700;
-      }
-    }
-  }
-`;
-
 const MAX_LEVEL = 10;
 
 const ItemStatistics = ({ item, background, color, border }) => {
@@ -84,3 +57,30 @@ const ItemStatistics = ({ item, background, color, border }) => {
 };
 
 export default ItemStatistics;
+
+const Container = styled.div`
+  padding: 20px;
+  border: ${props => props.border ?? "1px solid #ddd"};
+  background: ${props => props.background ?? "#f9f9f9"};
+  color: ${props => props.color ?? "#333"};
+  //width: 300px;
+  border-radius: 10px;
+
+  .statistics,
+  .levels {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .levels {
+    .level {
+      display: flex;
+      justify-content: space-between;
+
+      .title {
+        font-weight: 700;
+      }
+    }
+  }
+`;

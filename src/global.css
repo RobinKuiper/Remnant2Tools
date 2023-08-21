@@ -46,6 +46,11 @@ button:disabled, input:disabled {
   cursor: not-allowed;
 }
 
+#tooltip {
+  z-index: 9999999;
+  max-width: 200px;
+}
+
 .tooltip {
   z-index: 9999999;
 }

@@ -29,8 +29,8 @@ export default async function handler(request, response) {
   } else {
     await updateFileWithData(drive, unlocksBackupFile.id, unlocks)
   }
-
-  response.status(status).json({ body });
+  
+  response.status(status).json(body);
 }
 
 const getFiles = async (drive) => {
