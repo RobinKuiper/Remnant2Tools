@@ -1,0 +1,23 @@
+.item-statistics-container {
+  padding: 20px;
+  //width: 300px;
+  border-radius: 10px;
+
+  .statistics,
+  .levels {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .levels {
+    .level {
+      display: flex;
+      justify-content: space-between;
+
+      .title {
+        font-weight: 700;
+      }
+    }
+  }
+}

@@ -1,8 +1,7 @@
+import "./ListItem.scss";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
-import React from "react";
 import ItemLevel from "./ItemLevel";
 import { Flex } from "../../style/global";
-import { styled } from "styled-components";
 import { Link } from "gatsby";
 import ItemFields from "./ItemFields";
 import ItemUnlockInformation from "./ItemUnlockInformation";
@@ -24,7 +23,7 @@ const ListItem = (props: Props) => {
   const gatsbyImage = getImage(image);
 
   return (
-    <Container>
+    <div className="list-item-container">
       <Flex direction="row" justifycontent="space-between" alignitems="center">
         <Flex alignitems="center">
           <Flex justifycontent="center">
@@ -58,24 +57,8 @@ const ListItem = (props: Props) => {
 
         {type === "tracker" && item.unlock && <ItemUnlockInformation item={item} />}
       </Flex>
-    </Container>
+    </div>
   );
 };
 
 export default ListItem;
-
-const Container = styled.div`
-  .title {
-    text-align: left;
-  }
-
-  .field {
-    text-align: right;
-  }
-
-  .image {
-    flex-basis: 100px;
-    flex-grow: 0;
-    flex-shrink: 0;
-  }
-`;

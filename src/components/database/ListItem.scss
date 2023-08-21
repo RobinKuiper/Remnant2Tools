@@ -1,0 +1,15 @@
+.list-item-container {
+  .title {
+    text-align: left;
+  }
+
+  .field {
+    text-align: right;
+  }
+
+  .image {
+    flex-basis: 100px;
+    flex-grow: 0;
+    flex-shrink: 0;
+  }
+}

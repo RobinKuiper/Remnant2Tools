@@ -1,0 +1,22 @@
+.redacted-container {
+  cursor: pointer;
+  position: relative;
+
+  span {
+    &.redacted:after {
+      content: "Reveal";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 1;
+      font-size: 0.75em;
+      transition: all 0.3s ease-in-out;
+    }
+  }
+}

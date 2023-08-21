@@ -1,11 +1,18 @@
-import React, { useEffect, useState } from "react";
+import "./ItemStatistics.scss";
+import { useEffect, useState } from "react";
 import ItemStat from "../item/ItemStat";
 import { calculateWeightType } from "../../dataHelpers";
-import { styled } from "styled-components";
 
 const MAX_LEVEL = 10;
 
-const ItemStatistics = ({ item, background, color, border }) => {
+interface Props {
+  item: any;
+  background?: string;
+  color?: string;
+  border?: string;
+}
+
+const ItemStatistics = ({ item, background = "#f9f9f9", color = "#333", border = "1px solid #ddd" }: Props) => {
   const { stats, values } = item;
   const [levels, setLevels] = useState<number[]>([]);
 
@@ -27,7 +34,7 @@ const ItemStatistics = ({ item, background, color, border }) => {
   }, [item]);
 
   return (
-    <Container background={background} color={color} border={border}>
+    <div className="item-statistics-container" style={{ background, color, border }}>
       {stats && (
         <div className="statistics">
           {stats.weight && <ItemStat valueKey="Weight type" value={calculateWeightType(stats.weight)} />}
@@ -52,35 +59,8 @@ const ItemStatistics = ({ item, background, color, border }) => {
           ))}
         </div>
       )}
-    </Container>
+    </div>
   );
 };
 
 export default ItemStatistics;
-
-const Container = styled.div`
-  padding: 20px;
-  border: ${props => props.border ?? "1px solid #ddd"};
-  background: ${props => props.background ?? "#f9f9f9"};
-  color: ${props => props.color ?? "#333"};
-  //width: 300px;
-  border-radius: 10px;
-
-  .statistics,
-  .levels {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  }
-
-  .levels {
-    .level {
-      display: flex;
-      justify-content: space-between;
-
-      .title {
-        font-weight: 700;
-      }
-    }
-  }
-`;

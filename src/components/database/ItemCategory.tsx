@@ -1,5 +1,5 @@
+import "./ItemCategory.scss";
 import React from "react";
-import { styled } from "styled-components";
 import { Flex } from "../../style/global";
 
 interface Props {
@@ -8,21 +8,12 @@ interface Props {
 
 const ItemCategory = ({ item }: Props) => {
   return (
-    <Container className={""}>
+    <div className="item-category-container">
       <Flex alignitems="center">
         <div className="title">{item.name}</div>
       </Flex>
-    </Container>
+    </div>
   );
 };
 
 export default ItemCategory;
-
-const Container = styled.div`
-  flex-basis: 100%;
-  margin: 20px 0;
-
-  .title {
-    font-weight: 900;
-  }
-`;

@@ -1,5 +1,5 @@
+import "./ItemLevel.scss";
 import React from "react";
-import { styled } from "styled-components";
 import { restrainNumber } from "../../helpers";
 
 const ItemLevelNew = ({ level, callback, maxLevel, minLevel = 1, disabled = false }) => {
@@ -21,7 +21,7 @@ const ItemLevelNew = ({ level, callback, maxLevel, minLevel = 1, disabled = fals
   };
 
   return (
-    <Container>
+    <div className="item-level-container">
       <button onClick={subLevel} disabled={disabled}>
         -
       </button>
@@ -29,34 +29,8 @@ const ItemLevelNew = ({ level, callback, maxLevel, minLevel = 1, disabled = fals
       <button onClick={addLevel} disabled={disabled}>
         +
       </button>
-    </Container>
+    </div>
   );
 };
 
 export default ItemLevelNew;
-
-const Container = styled.div`
-  display: flex;
-
-  button {
-    font-size: 1.3em;
-  }
-
-  input {
-    width: 30px;
-    background: transparent;
-    border: none;
-    border-bottom: 1px solid #000;
-    padding: 5px;
-    box-sizing: border-box;
-    text-align: center;
-
-    -moz-appearance: textfield;
-  }
-
-  input::-webkit-outer-spin-button,
-  input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-  }
-`;

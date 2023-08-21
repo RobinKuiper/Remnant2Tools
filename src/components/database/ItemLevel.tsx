@@ -1,5 +1,4 @@
 import React from "react";
-import { styled } from "styled-components";
 
 const restrainNumber = (value: number, max: number, subtract: boolean = false) => {
   if (subtract) {
@@ -20,38 +19,12 @@ const ItemLevel = ({ level, setLevel, maxLevel }) => {
   };
 
   return (
-    <Container>
+    <div className="item-level-container">
       <button onClick={subLevel}>-</button>
       <input type="number" value={level} onChange={handleChange} />
       <button onClick={addLevel}>+</button>
-    </Container>
+    </div>
   );
 };
 
 export default ItemLevel;
-
-const Container = styled.div`
-  display: flex;
-
-  button {
-    font-size: 1.3em;
-  }
-
-  input {
-    width: 30px;
-    background: transparent;
-    border: none;
-    border-bottom: 1px solid #000;
-    padding: 5px;
-    box-sizing: border-box;
-    text-align: center;
-
-    -moz-appearance: textfield;
-  }
-
-  input::-webkit-outer-spin-button,
-  input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-  }
-`;

@@ -1,5 +1,5 @@
+import "./Item.scss";
 import React, { useEffect, useState } from "react";
-import { styled } from "styled-components";
 import { findImageById } from "../../helpers";
 import ListItem from "./ListItem";
 import GridItem from "./GridItem";
@@ -43,7 +43,7 @@ const Item = ({ item, category, images, type }: Props) => {
   };
 
   return (
-    <Container className={`${view} ${type === "tracker" ? STATE_CLASSES[unlocked] : ""}`}>
+    <div className={`item-container ${view} ${type === "tracker" ? STATE_CLASSES[unlocked] : ""}`}>
       {view === "list" ? (
         <ListItem
           item={item}
@@ -69,61 +69,8 @@ const Item = ({ item, category, images, type }: Props) => {
       )}
 
       <ItemTooltip id={`${item.fragment}_tooltip`} item={item} image={image} />
-    </Container>
+    </div>
   );
 };
 
 export default Item;
-
-const Container = styled.div`
-  position: relative;
-  width: 200px;
-  text-align: center;
-  background: #fff;
-  box-sizing: border-box;
-  padding: 5px 10px 25px 10px;
-  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
-
-  transition: background 0.3s ease-in-out;
-
-  .field-title {
-    font-weight: bold;
-  }
-
-  .unlock-information {
-    position: absolute;
-    bottom: 2px;
-    left: 2px;
-    right: auto;
-
-    button {
-      color: #292929;
-      transition: all 0.3s ease-in-out;
-
-      &:hover {
-        color: #963838;
-      }
-    }
-  }
-
-  &.list {
-    width: 100%;
-
-    .unlock-information {
-      right: 2px;
-      left: auto;
-    }
-  }
-
-  &.unlocked {
-    background: #fff;
-  }
-
-  &.locked {
-    background: #e0e0e0;
-  }
-
-  @media (max-width: 550px) {
-    width: 100%;
-  }
-`;

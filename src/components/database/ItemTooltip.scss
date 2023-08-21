@@ -1,0 +1,21 @@
+.item-tooltip-container {
+  .head {
+    .general-information {
+      .title {
+        display: flex;
+        justify-content: center;
+      }
+
+      .tags {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        font-size: 0.9em;
+      }
+    }
+  }
+
+  .content {
+    display: flex;
+  }
+}
