@@ -6,16 +6,15 @@ import { isMobile } from "../helpers";
 
 interface Props {
   placeholder?: string;
-  width?: string | number;
   setQuery: (value: ((prevState: string) => string) | string) => void;
   query: string;
   tooltip?: string;
   disabled?: boolean;
 }
 
-const Search = ({ placeholder = "", width, setQuery, query, disabled = false, tooltip = "" }: Props) => {
+const Search = ({ placeholder = "", setQuery, query, disabled = false, tooltip = "" }: Props) => {
   return (
-    <div className="search-container" width={width} data-tooltip-id="tooltip" data-tooltip-content={tooltip}>
+    <div className="search-container" data-tooltip-id="tooltip" data-tooltip-content={tooltip}>
       <input
         type="text"
         placeholder={placeholder}

@@ -101,7 +101,9 @@ const TraitsInterface = ({ build, showOnlyUnlocked, updateBuildValue }: Props) =
           </span>
         </div>
 
-        <Search query={query} setQuery={setQuery} placeholder="Search trait" tooltip="Search by name" />
+        <div className="search">
+          <Search query={query} setQuery={setQuery} placeholder="Search trait" tooltip="Search by name" />
+        </div>
       </div>
       <div className="items">
         {traits.map(trait => (
