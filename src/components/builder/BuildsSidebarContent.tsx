@@ -27,15 +27,23 @@ const BuildsSidebarContent = ({ builds, setBuild, resetBuild, build, copyBuild, 
         {builds && Object.keys(builds).length > 0 ? (
           Object.values(builds).map(({ name, id }) => (
             <div key={id} className={`nav-item ${id === build.id && "active"}`}>
-              <button key={id} onClick={() => selectBuild(id)}>
+              <button className="build-select" onClick={() => selectBuild(id)}>
                 {name}
               </button>
 
-              <div>
-                <button onClick={() => copyBuild(id)}>
+              <div className="actions">
+                <button 
+                    onClick={() => copyBuild(id)}
+                    data-tooltip-id="tooltip"
+                    data-tooltip-content="Copy"
+                >
                   <AiFillCopy />
                 </button>
-                <button onClick={() => deleteBuild(id)}>
+                <button 
+                    onClick={() => deleteBuild(id)}
+                    data-tooltip-id="tooltip"
+                    data-tooltip-content="Delete"
+                >
                   <AiFillDelete />
                 </button>
               </div>

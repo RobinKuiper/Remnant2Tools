@@ -24,6 +24,15 @@
       &.active {
         background: #000;
       }
+      
+      .build-select {
+        width: 100%;
+        text-align: left;
+      }
+      
+      .actions {
+        display: flex;
+      }
     }
 
     .new-build-button {
