@@ -74,4 +74,19 @@
       }
     }
   }
+  
+  .trait-circle {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: 1px solid #000;
+    
+    &.archetype {
+      background: #932020;
+    }
+    
+    &.trait {
+      background: #b6a441
+    }
+  }
 }

@@ -52,10 +52,10 @@ const SecretWorldsPanel = () => {
 
           return (
             <div className="world" key={worldName}>
-              <Redacted bgColor="#5d5d5d">
+              <Redacted bgColor="d5">
                 <picture>{gatsbyImage && <GatsbyImage alt={worldName} image={gatsbyImage} />}</picture>
               </Redacted>
-              <Redacted value={worldName} bgColor="#5d5d5d" text="" />
+              <Redacted value={worldName} bgColor="d5" text="" />
             </div>
           );
         })}

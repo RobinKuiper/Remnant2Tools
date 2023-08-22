@@ -1,6 +1,6 @@
+import "./builds.scss";
 import { graphql } from "gatsby";
 import React, { useEffect, useState } from "react";
-import { styled } from "styled-components";
 import BuildsSidebarContent from "../components/builder/BuildsSidebarContent";
 import type { Build, Item } from "../interface/Build";
 import "react-tooltip/dist/react-tooltip.css";
@@ -203,7 +203,7 @@ const Builds = props => {
         }
         rightSidebarContent={<BuildStatisticsSidebarContent build={activeBuild} />}
       >
-        <Container>
+        <div className="builds-container">
           <BackgroundImage index={0}>
             <div className="tabs">
               <div className="tabs-menu">
@@ -260,7 +260,7 @@ const Builds = props => {
               </div>
             </div>
           </BackgroundImage>
-        </Container>
+        </div>
       </PageLayout>
 
       <ItemSelectModal
@@ -335,31 +335,3 @@ const NEW_BUILD: Build = {
   usedTraitPoints: 0,
   traitLevels: {},
 };
-
-const Container = styled.div`
-  height: auto;
-
-  .tabs {
-    padding-top: 40px;
-
-    .tabs-menu {
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-
-      .tabs-menu-item {
-        padding: 10px;
-        border: 1px solid #000;
-        cursor: pointer;
-
-        transition: all 0.5s ease-in-out;
-
-        &:hover,
-        &.active {
-          background: darkred;
-          color: #fff;
-        }
-      }
-    }
-  }
-`;

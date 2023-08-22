@@ -3,18 +3,12 @@ import React, { useEffect, useState } from "react";
 import { MAX_TRAIT_POINTS } from "../../constants";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import { findImageById, restrainNumber } from "../../helpers";
-import { styled } from "styled-components";
 import type { Build } from "../../interface/Build";
 import { graphql, useStaticQuery } from "gatsby";
 import { sorter } from "../../dataHelpers";
 import Search from "../Search";
 import { useAppSelector } from "../../hooks";
 import type { RootState } from "../../store";
-
-const TRAIT_POINT_COLORS = {
-  archetype: "#932020",
-  trait: "#b6a441",
-};
 
 interface Props {
   build: Build;
@@ -101,7 +95,7 @@ const TraitsInterface = ({ build, showOnlyUnlocked, updateBuildValue }: Props) =
     <div className="traits-interface-container">
       <div className="traits-interface-top">
         <div className="totals">
-          <TraitCircle type="trait" />
+          <div className="trait-circle trait" />
           <span>
             {currentTotalPoints}/{MAX_TRAIT_POINTS} Trait points
           </span>
@@ -141,7 +135,7 @@ const TraitsInterface = ({ build, showOnlyUnlocked, updateBuildValue }: Props) =
                   type = "trait";
                 }
 
-                return <TraitCircle key={`${trait.externalId}_${k}`} type={type} />;
+                return <div className={`trait-circle ${type}`} key={`${trait.externalId}_${k}`} />;
               })}
             </div>
           </div>
@@ -152,11 +146,3 @@ const TraitsInterface = ({ build, showOnlyUnlocked, updateBuildValue }: Props) =
 };
 
 export default TraitsInterface;
-
-const TraitCircle = styled.div`
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  border: 1px solid #000;
-  background: ${props => TRAIT_POINT_COLORS[props.type] ?? "#fff"};
-`;

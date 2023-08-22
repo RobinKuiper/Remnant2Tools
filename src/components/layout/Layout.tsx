@@ -1,3 +1,4 @@
+import "../../global.scss";
 import "./Layout.scss";
 import React, { useEffect, useRef } from "react";
 import TopBar from "./TopBar";

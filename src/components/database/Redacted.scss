@@ -4,7 +4,7 @@
 
   span {
     &.redacted:after {
-      content: "Reveal";
+      content: attr(data-content);
       position: absolute;
       top: 0;
       left: 0;
@@ -17,6 +17,18 @@
       opacity: 1;
       font-size: 0.75em;
       transition: all 0.3s ease-in-out;
+    }
+
+    &.redacted.f1:after {
+      background: #f1f1f1;
+    }
+
+    &.redacted.d5:after {
+      background: #d5d5d5;
+    }
+
+    &.redacted.c7:after {
+      background: #c7c7c7;
     }
   }
 }

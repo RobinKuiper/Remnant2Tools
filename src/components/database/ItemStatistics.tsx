@@ -1,5 +1,5 @@
 import "./ItemStatistics.scss";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import ItemStat from "../item/ItemStat";
 import { calculateWeightType } from "../../dataHelpers";
 

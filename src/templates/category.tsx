@@ -1,11 +1,10 @@
+import "./category.scss";
 import { graphql } from "gatsby";
 import React, { useEffect, useState } from "react";
 import { BiHide, BiShow } from "react-icons/bi";
-import { styled } from "styled-components";
 import CategorySidebarContent from "../components/database/CategorySidebarContent";
 import Search from "../components/Search";
 import { sorter } from "../dataHelpers";
-import { Flex } from "../style/global";
 import Item from "../components/database/Item";
 import ItemCategory from "../components/database/ItemCategory";
 import { BsFillGrid3X3GapFill, BsList } from "react-icons/bs";
@@ -101,7 +100,7 @@ const Category = ({ path, data }) => {
       />
 
       <PageLayout leftSidebarContent={<CategorySidebarContent type={type} />}>
-        <Container>
+        <div className="category-template-container">
           <div id="content-heading">
             <div className="left">
               {category && category.settings.groups && category.settings.groups.length > 0 && (
@@ -200,7 +199,7 @@ const Category = ({ path, data }) => {
             </div>
           </div>
 
-          <Flex wrap="wrap" direction={view === "list" ? "column" : "row"} justifycontent="center">
+          <div className={`items ${view}`}>
             {filteredItems.length > 0 ? (
               filteredItems.map(item => {
                 if (groupBy) {
@@ -226,8 +225,8 @@ const Category = ({ path, data }) => {
                 {hideUnlocked && <p>You have set unlocked to hidden, maybe you have everything? Congrats!</p>}
               </div>
             )}
-          </Flex>
-        </Container>
+          </div>
+        </div>
       </PageLayout>
     </Layout>
   );
@@ -294,57 +293,5 @@ export const query = graphql`
         }
       }
     }
-  }
-`;
-
-const Container = styled.div`
-  padding: 20px;
-  min-height: 100vh;
-
-  #content-heading {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    text-align: center;
-    margin: 10px 0;
-    padding: 0 10px 20px 10px;
-    border-bottom: 1px solid #888;
-
-    .left {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-
-      select {
-        padding: 6.5px;
-
-        &:focus {
-          outline: none;
-        }
-      }
-
-      .view-switcher {
-        @media (max-width: 550px) {
-          display: none;
-        }
-      }
-
-      div {
-      }
-    }
-
-    .right {
-      font-size: 1.2em;
-    }
-
-    @media (max-width: 670px) {
-      flex-direction: column;
-      gap: 20px;
-    }
-  }
-
-  .no-data {
-    width: 100%;
-    text-align: center;
   }
 `;

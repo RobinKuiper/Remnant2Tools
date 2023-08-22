@@ -1,8 +1,8 @@
+import "./404.scss";
 import * as React from "react";
 import type { PageProps } from "gatsby";
 import { Link, graphql } from "gatsby";
 import Layout from "../components/layout/Layout";
-import { styled } from "styled-components";
 import Head from "../components/layout/Head";
 import { calculateStringMatchPercentage } from "../helpers";
 import PageLayout from "../components/layout/PageLayout";
@@ -17,7 +17,7 @@ const NotFoundPage: React.FC<PageProps> = ({ data, location }) => {
       <Head title="Not found" description="We couldn't find the page you where looking for." />
 
       <PageLayout>
-        <Container>
+        <div className="notfound-container">
           <main>
             <h1>Sorry!</h1>
             <p>
@@ -39,7 +39,7 @@ const NotFoundPage: React.FC<PageProps> = ({ data, location }) => {
               </div>
             )}
           </main>
-        </Container>
+        </div>
       </PageLayout>
     </Layout>
   );
@@ -52,63 +52,6 @@ export const query = graphql`
     pages: allSitePage {
       nodes {
         path
-      }
-    }
-  }
-`;
-
-const Container = styled.div`
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: #383838;
-  color: #fff;
-  box-sizing: border-box;
-
-  main {
-    text-align: center;
-    margin-top: -12vh;
-
-    h1 {
-      font-family: "Fontdiner Swanky", cursive;
-      font-size: 4rem;
-      color: #dc5050;
-      margin-bottom: 1rem;
-    }
-
-    p {
-      margin-bottom: 2.5rem;
-
-      em {
-        font-style: italic;
-        color: #dc5050;
-      }
-    }
-
-    .relevant {
-      div {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-        margin: 20px;
-
-        a {
-          font-family: "Fontdiner Swanky", cursive;
-          font-size: 1rem;
-          color: #383838;
-          border: none;
-          background: #f36a6f;
-          padding: 1rem 2.5rem;
-          transform: skew(-5deg);
-          transition: all 0.1s ease;
-
-          &:hover {
-            background: #a6262a;
-            color: #fff;
-            transform: scale(1.15);
-          }
-        }
       }
     }
   }

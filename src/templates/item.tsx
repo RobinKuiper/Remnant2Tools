@@ -1,6 +1,6 @@
+import "./item.scss";
 import { Link, graphql } from "gatsby";
 import React, { useEffect, useRef, useState } from "react";
-import { styled } from "styled-components";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import { slugify, uppercaseFirstLetter } from "../helpers";
 import ItemStatistics from "../components/database/ItemStatistics";
@@ -59,7 +59,7 @@ const Category = ({ data, pageContext, location }) => {
       <Head title={item.name} description={titles[Math.floor(Math.random() * titles.length)]} />
 
       <PageLayout leftSidebarContent={<CategorySidebarContent type={type} />}>
-        <Container ref={ref} className={`${STATE_CLASSES[unlocked]}`}>
+        <div ref={ref} className={`item-page-container ${STATE_CLASSES[unlocked]}`}>
           <BackgroundImage index={2}>
             <div className="item">
               <Breadcrumb
@@ -175,7 +175,7 @@ const Category = ({ data, pageContext, location }) => {
               </div>
             </div>
           </BackgroundImage>
-        </Container>
+        </div>
       </PageLayout>
     </Layout>
   );
@@ -226,138 +226,6 @@ export const query = graphql`
         }
         stats {
           ...itemStatsFragment
-        }
-      }
-    }
-  }
-`;
-
-const Container = styled.div`
-  .item {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-    padding: 50px;
-
-    @media (max-width: 850px) {
-      padding-right: 80px;
-    }
-
-    a {
-      color: darkred;
-      text-decoration: none;
-      transition: color 0.3s ease;
-
-      &:hover {
-        color: red;
-      }
-    }
-
-    .top {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 50px;
-
-      @media (max-width: 850px) {
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-      }
-
-      .image {
-        border: 1px solid #ddd;
-        background: #f9f9f9;
-        box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.1);
-        border-radius: 5px;
-        overflow: hidden;
-        flex-basis: 200px;
-        flex-grow: 0;
-        flex-shrink: 0;
-        display: flex;
-        justify-content: center;
-
-        @media (max-width: 450px) {
-          width: 100%;
-        }
-      }
-
-      .general-information {
-        .title {
-          display: flex;
-          align-items: center;
-          gap: 20px;
-
-          @media (max-width: 850px) {
-            justify-content: center;
-          }
-        }
-
-        .tags {
-          display: flex;
-          flex-wrap: wrap;
-          gap: 10px;
-          margin-top: 10px;
-          font-size: 0.9em;
-
-          //@media (max-width: 850px) {
-          //  margin-left: 0;
-          //  width: 100%;
-          //}
-          @media (max-width: 450px) {
-            justify-content: center;
-          }
-
-          span {
-            &.gi-item:not(:last-child) {
-              border-right: 1px solid #000;
-              padding: 0 10px 0 0;
-            }
-
-            .key {
-              font-weight: 900;
-              margin-right: 5px;
-            }
-          }
-        }
-      }
-    }
-
-    .item-descriptions {
-      display: flex;
-      flex-wrap: nowrap;
-      gap: 30px;
-
-      @media (max-width: 850px) {
-        flex-wrap: wrap;
-        justify-content: center;
-      }
-
-      .item-descriptions-left {
-      }
-
-      .item-descriptions-right {
-        .section {
-          max-width: 400px;
-
-          h3 {
-            font-size: 18px;
-            font-weight: bold;
-            margin-bottom: 10px;
-          }
-
-          p {
-            font-size: 16px;
-            line-height: 1.5;
-          }
-
-          ul {
-            list-style: disc;
-            margin-left: 20px;
-
-            li {
-              margin-bottom: 10px;
-            }
-          }
         }
       }
     }
