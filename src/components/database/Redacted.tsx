@@ -13,7 +13,7 @@ interface Props {
   text?: string;
 }
 
-const Redacted = ({ value, children, defaultShow = false, bgColor = "5d", tooltip, text = "Reveal" }: Props) => {
+const Redacted = ({ value, children, defaultShow = false, bgColor = "d5", tooltip, text = "Reveal" }: Props) => {
   const { showRedacted } = useAppSelector((state: RootState) => state.settings);
   const [show, setShow] = useState(showRedacted);
 

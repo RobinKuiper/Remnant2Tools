@@ -18,7 +18,6 @@ import type { RootState } from "../store";
 import { toggleUnlock } from "../features/data/dataSlice";
 import { googleSaveWithDelay } from "../features/data/dataActions";
 
-const REDACTED_COLOR = "#bbbbbb";
 const STATE_CLASSES = {
   true: "unlocked",
   false: "locked",
@@ -100,14 +99,14 @@ const Category = ({ data, pageContext, location }) => {
 
                     {item.world && (
                       <span className="gi-item">
-                        <Redacted value={item.world} defaultShow={unlocked} bgColor={REDACTED_COLOR} />
+                        <Redacted value={item.world} defaultShow={unlocked} bgColor="bb" />
                         {item.location && (
                           <>
                             &nbsp;-&nbsp;
                             <Redacted
                               value={item.location}
                               defaultShow={unlocked}
-                              bgColor={REDACTED_COLOR}
+                              bgColor="bb"
                               tooltip={item.locationInformation}
                             />
                           </>
@@ -148,7 +147,7 @@ const Category = ({ data, pageContext, location }) => {
                       <h3>Unlock Information</h3>
 
                       <p>
-                        <Redacted value={item.unlock} defaultShow={unlocked} bgColor={REDACTED_COLOR} />
+                        <Redacted value={item.unlock} defaultShow={unlocked} bgColor="bb" />
                       </p>
                     </div>
                   )}

@@ -179,7 +179,7 @@ const SettingsSidebar = () => {
           <div className={`icon ${loggingIn && "active"}`}>{GoogleIcon}</div>
           <span className="text">{buttonText}</span>
         </div>
-        <Tooltip className="google-tooltip">
+        <Tooltip id="google-login-tooltip" className="google-tooltip">
           <p>
             Linking to Google will save your data to your Google Drive. Saving happens once each{" "}
             <strong>{TIME_BETWEEN_GOOGLE_SAVES} seconds</strong> if their are changes.

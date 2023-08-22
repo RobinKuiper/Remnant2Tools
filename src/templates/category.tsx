@@ -170,13 +170,14 @@ const Category = ({ path, data }) => {
             </div>
 
             {isTracker && (
-              <Search
-                placeholder={`Search ${category.settings.fragment}`}
-                query={query}
-                setQuery={setQuery}
-                width={"250px"}
-                tooltip="Searches through name, description, world, etc."
-              />
+              <div className="search">
+                <Search
+                  placeholder={`Search ${category.settings.fragment}`}
+                  setQuery={setQuery}
+                  query={query}
+                  tooltip="Searches through name, description, world, etc."
+                />
+              </div>
             )}
 
             <div className="right">
@@ -188,13 +189,14 @@ const Category = ({ path, data }) => {
               )}
 
               {!isTracker && (
-                <Search
-                  placeholder={`Search ${category.settings.fragment}`}
-                  setQuery={setQuery}
-                  query={query}
-                  width={"250px"}
-                  tooltip="Searches through name, description, world, etc."
-                />
+                <div className="search">
+                  <Search
+                    placeholder={`Search ${category.settings.fragment}`}
+                    setQuery={setQuery}
+                    query={query}
+                    tooltip="Searches through name, description, world, etc."
+                  />
+                </div>
               )}
             </div>
           </div>

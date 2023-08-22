@@ -24,11 +24,15 @@
     }
 
     &.redacted.d5:after {
-      background: #d5d5d5;
+      background: #5d5d5d;
     }
 
     &.redacted.c7:after {
       background: #c7c7c7;
+    }
+    
+    &.redacted.bb:after {
+      background: #bbbbbb;
     }
   }
 }

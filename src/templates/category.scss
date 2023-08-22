@@ -37,6 +37,10 @@
     .right {
       font-size: 1.2em;
     }
+    
+    .search {
+      width: 200px;
+    }
 
     @media (max-width: 670px) {
       flex-direction: column;

@@ -1,4 +1,4 @@
-import "./loader.scss";
+import "./Loader.scss";
 import React from "react";
 import { CircleLoader } from "react-spinners";
 
