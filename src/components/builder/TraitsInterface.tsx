@@ -1,19 +1,14 @@
+import "./TraitsInterface.scss";
 import React, { useEffect, useState } from "react";
 import { MAX_TRAIT_POINTS } from "../../constants";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import { findImageById, restrainNumber } from "../../helpers";
-import { styled } from "styled-components";
 import type { Build } from "../../interface/Build";
 import { graphql, useStaticQuery } from "gatsby";
 import { sorter } from "../../dataHelpers";
 import Search from "../Search";
 import { useAppSelector } from "../../hooks";
 import type { RootState } from "../../store";
-
-const TRAIT_POINT_COLORS = {
-  archetype: "#932020",
-  trait: "#b6a441",
-};
 
 interface Props {
   build: Build;
@@ -97,16 +92,18 @@ const TraitsInterface = ({ build, showOnlyUnlocked, updateBuildValue }: Props) =
   };
 
   return (
-    <Container>
+    <div className="traits-interface-container">
       <div className="traits-interface-top">
         <div className="totals">
-          <TraitCircle type="trait" />
+          <div className="trait-circle trait-point" />
           <span>
             {currentTotalPoints}/{MAX_TRAIT_POINTS} Trait points
           </span>
         </div>
 
-        <Search query={query} setQuery={setQuery} placeholder="Search trait" tooltip="Search by name" />
+        <div className="search">
+          <Search query={query} setQuery={setQuery} placeholder="Search trait" tooltip="Search by name" />
+        </div>
       </div>
       <div className="items">
         {traits.map(trait => (
@@ -135,104 +132,19 @@ const TraitsInterface = ({ build, showOnlyUnlocked, updateBuildValue }: Props) =
                 const archetypeLevel = getArchetypeLevel(trait);
                 const traitPoints = build.traitLevels[trait.externalId] ?? 0;
                 if (archetypeLevel > 0 && k < archetypeLevel) {
-                  type = "archetype";
+                  type = "archetype-point";
                 } else if (k >= archetypeLevel && k < traitPoints + archetypeLevel) {
-                  type = "trait";
+                  type = "trait-point";
                 }
 
-                return <TraitCircle key={`${trait.externalId}_${k}`} type={type} />;
+                return <div className={`trait-circle ${type}`} key={`${trait.externalId}_${k}`} />;
               })}
             </div>
           </div>
         ))}
       </div>
-    </Container>
+    </div>
   );
 };
 
 export default TraitsInterface;
-
-const Container = styled.div`
-  margin-top: 20px;
-
-  .traits-interface-top {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-
-    .totals {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 10px;
-      margin: 20px;
-      font-size: 1.2em;
-      font-weight: 900;
-    }
-  }
-
-  .items {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    row-gap: 20px;
-    column-gap: 10px;
-
-    .trait {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      text-align: center;
-      cursor: pointer;
-      padding: 10px;
-      box-sizing: border-box;
-      transition: all 0.3s ease-in-out;
-
-      &.active {
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.49);
-        z-index: 10;
-        background: rgba(241, 241, 241, 0.62);
-      }
-
-      &:hover {
-        background: #b0b0b0;
-      }
-
-      .image {
-        width: 150px;
-        height: auto;
-        overflow: hidden;
-
-        @media (max-width: 1200px) {
-          height: 100px;
-        }
-
-        img {
-          width: 150px;
-
-          @media (max-width: 1200px) {
-            transform: translateY(-80px);
-          }
-        }
-      }
-
-      .nodes {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        gap: 3px;
-      }
-    }
-  }
-`;
-const TraitCircle = styled.div`
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  border: 1px solid #000;
-  background: ${props => TRAIT_POINT_COLORS[props.type] ?? "#fff"};
-`;

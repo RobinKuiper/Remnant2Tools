@@ -1,0 +1,38 @@
+.redacted-container {
+  cursor: pointer;
+  position: relative;
+
+  span {
+    &.redacted:after {
+      content: attr(data-content);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 1;
+      font-size: 0.75em;
+      transition: all 0.3s ease-in-out;
+    }
+
+    &.redacted.f1:after {
+      background: #f1f1f1;
+    }
+
+    &.redacted.d5:after {
+      background: #5d5d5d;
+    }
+
+    &.redacted.c7:after {
+      background: #c7c7c7;
+    }
+    
+    &.redacted.bb:after {
+      background: #bbbbbb;
+    }
+  }
+}

@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
-import { styled } from "styled-components";
 import { SettingContext } from "../../context/SettingContext";
 import Loader from "../Loader";
 
@@ -28,18 +27,16 @@ const SavingIndicator = () => {
   }, [showSavedText]);
 
   return (
-    <Container>
+    <div className="saving-indicator-container">
       {saving && <Loader color="#fff" size="25px" />}
 
       {showSavedText && <span className="saved-text">Saved</span>}
-    </Container>
+    </div>
   );
 };
 
 export default SavingIndicator;
 
-const Container = styled.div`
-  .saved-text {
-    font-size: 0.8em;
-  }
-`;
+// .saved-text {
+//   font-size: 0.8em;
+// }

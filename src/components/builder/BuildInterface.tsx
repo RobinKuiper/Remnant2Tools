@@ -1,6 +1,6 @@
+import "./BuildInterface.scss";
 import React from "react";
 import BuildItemBox from "./BuildItemBox";
-import { styled } from "styled-components";
 
 const BuildInterface = ({ build, images, openModal }) => {
   const ITEM_BOXES = {
@@ -186,7 +186,7 @@ const BuildInterface = ({ build, images, openModal }) => {
   };
 
   return (
-    <Container>
+    <div className="build-interface-container">
       <div id="top">
         <div id="armor" className="item-category">
           {ITEM_BOXES.topLeft.map(box => (
@@ -404,122 +404,8 @@ const BuildInterface = ({ build, images, openModal }) => {
           </div>
         </div>
       </div>
-    </Container>
+    </div>
   );
 };
 
 export default BuildInterface;
-
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-
-  width: 400px;
-  margin: 10px auto;
-
-  #top {
-    display: flex;
-    justify-content: space-between;
-
-    #stats {
-      display: flex;
-      flex-direction: column;
-      width: 160px;
-      margin-left: -20.66px;
-
-      .subtitle {
-        margin: 10px 0;
-        font-weight: 900;
-        font-size: 1.1em;
-      }
-
-      span {
-        display: flex;
-        justify-content: space-between;
-
-        .key {
-          font-weight: bold;
-        }
-
-        .value {
-        }
-      }
-    }
-
-    .item-category {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-
-      .item-box {
-        width: 64px;
-        height: 64px;
-      }
-
-      .main-box {
-        display: flex;
-        gap: 2px;
-
-        .item-box {
-          width: 64px;
-          height: 64px;
-        }
-
-        .sub-boxes {
-          display: flex;
-          flex-direction: column;
-          gap: 1px;
-
-          .item-box {
-            width: 20.66px;
-            height: 20.66px;
-          }
-        }
-      }
-    }
-  }
-
-  #bottom {
-    display: flex;
-    gap: 10px;
-    justify-content: space-between;
-
-    .main-box {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-
-      .item-box {
-        width: 128px;
-        height: 64px;
-
-        @media (max-width: 425px) {
-          width: 100%;
-        }
-      }
-
-      .sub-boxes {
-        display: flex;
-        gap: 10px;
-        justify-content: center;
-
-        .item-box {
-          width: 57px;
-          height: 57px;
-        }
-      }
-    }
-  }
-
-  @media (max-width: 430px) {
-    width: 100%;
-    padding: 10px;
-    box-sizing: border-box;
-    min-height: 100vh;
-  }
-
-  //@media screen and (min-width: 551px) and (max-width: 1000px) {
-  //  width: 75%;
-  //}
-`;

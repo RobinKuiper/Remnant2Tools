@@ -1,6 +1,6 @@
+import "./Breadcrumb.scss";
 import React from "react";
 import { Link } from "gatsby";
-import { styled } from "styled-components";
 
 interface BreadcrumbItem {
   label: string;
@@ -13,7 +13,7 @@ interface Props {
 
 const Breadcrumb = ({ data }: Props) => {
   return (
-    <Container>
+    <div className="breadcrumb-container">
       {data.map((item, index) => (
         <>
           {index !== 0 && <span>-</span>}
@@ -27,24 +27,8 @@ const Breadcrumb = ({ data }: Props) => {
           )}
         </>
       ))}
-    </Container>
+    </div>
   );
 };
 
 export default Breadcrumb;
-
-const Container = styled.div`
-  display: flex;
-  gap: 10px;
-  margin-bottom: 30px;
-  font-size: 14px;
-  color: #6c6c6c;
-
-  a {
-    color: #6c6c6c !important;
-
-    &:hover {
-      color: #733333 !important;
-    }
-  }
-`;

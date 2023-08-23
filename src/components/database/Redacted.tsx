@@ -1,6 +1,6 @@
+import "./Redacted.scss";
 import type { ReactNode } from "react";
 import React, { useEffect, useState } from "react";
-import { styled } from "styled-components";
 import { useAppSelector } from "../../hooks";
 import type { RootState } from "../../store";
 
@@ -13,7 +13,7 @@ interface Props {
   text?: string;
 }
 
-const Redacted = ({ value, children, defaultShow = false, bgColor = "#f1f1f1", tooltip, text = "Reveal" }: Props) => {
+const Redacted = ({ value, children, defaultShow = false, bgColor = "d5", tooltip, text = "Reveal" }: Props) => {
   const { showRedacted } = useAppSelector((state: RootState) => state.settings);
   const [show, setShow] = useState(showRedacted);
 
@@ -24,40 +24,17 @@ const Redacted = ({ value, children, defaultShow = false, bgColor = "#f1f1f1", t
   }, [defaultShow, showRedacted]);
 
   return (
-    <Container
-      bgcolor={bgColor}
-      text={text}
+    <div
+      className="redacted-container"
       onClick={toggleShow}
       data-tooltip-id="tooltip"
       data-tooltip-content={(show && tooltip) || ""}
     >
-      <span className={show ? "" : "redacted"}>{children || value}</span>
-    </Container>
+      <span className={`${bgColor} ${show ? "" : "redacted"}`} data-content={text}>
+        {children || value}
+      </span>
+    </div>
   );
 };
 
 export default Redacted;
-
-const Container = styled.span`
-  cursor: pointer;
-  position: relative;
-
-  span {
-    &.redacted:after {
-      content: "${props => props.text}";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: ${props => props.bgcolor};
-      cursor: pointer;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      opacity: 1;
-      font-size: 0.75em;
-      transition: all 0.3s ease-in-out;
-    }
-  }
-`;

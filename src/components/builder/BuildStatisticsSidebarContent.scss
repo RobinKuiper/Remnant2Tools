@@ -1,0 +1,46 @@
+.build-statistics-sidebar-content-container {
+  padding: 10px;
+
+  h2 {
+    margin-bottom: 10px;
+  }
+
+  .statisticsContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    .key {
+    }
+
+    .stat-item,
+    .sub-item {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .multiple-item {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+
+      .values {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        .key {
+          padding-left: 10px;
+        }
+      }
+    }
+  }
+
+  .footer {
+    position: absolute;
+    bottom: 50px;
+    box-sizing: border-box;
+    padding: 0 10px 0 0;
+    width: 235px;
+  }
+}

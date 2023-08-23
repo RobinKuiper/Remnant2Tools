@@ -1,0 +1,11 @@
+.item-category-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-basis: 100%;
+  margin: 20px 0;
+
+  .title {
+    font-weight: 900;
+  }
+}

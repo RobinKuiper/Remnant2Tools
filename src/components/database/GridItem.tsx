@@ -1,7 +1,7 @@
+import "./GridItem.scss"
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import React from "react";
 import ItemLevel from "./ItemLevel";
-import { Flex } from "../../style/global";
 import { slugify } from "../../helpers";
 import { Link } from "gatsby";
 import ItemUnlockInformation from "./ItemUnlockInformation";
@@ -23,7 +23,7 @@ const GridItem = (props: Props) => {
   const gatsbyImage = getImage(image);
 
   return (
-    <Flex direction="column" justifycontent="center" alignitems="center">
+    <div className="grid-item-container">
       {gatsbyImage && (
         <Link to={`/database/${category.fragment}/${slugify(item.name)}`} title={item.name} state={{ type }}>
           <GatsbyImage image={gatsbyImage} alt={item.name} title={item.name} placeholder="none" />
@@ -36,16 +36,16 @@ const GridItem = (props: Props) => {
         </h3>
       </Link>
 
-      <Flex justifycontent="center">
+      <div className="tracker">
         {type === "tracker" && <Checkbox id={item.externalId} checked={unlocked} handleChange={handleChange} />}
 
         {type === "tracker" && category.hasLevels && <ItemLevel level={level} setLevel={setLevel} />}
-      </Flex>
+      </div>
 
       {item.description && <p>{item.description}</p>}
 
       {type === "tracker" && item.unlock && <ItemUnlockInformation item={item} />}
-    </Flex>
+    </div>
   );
 };
 

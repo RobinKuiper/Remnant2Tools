@@ -1,0 +1,13 @@
+.grid-item-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  
+  .tracker {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+  }
+}

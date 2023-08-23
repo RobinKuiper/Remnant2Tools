@@ -1,0 +1,15 @@
+.breadcrumb-container {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 30px;
+  font-size: 14px;
+  color: #6c6c6c;
+
+  a {
+    color: #6c6c6c !important;
+
+    &:hover {
+      color: #733333 !important;
+    }
+  }
+}

@@ -55,6 +55,16 @@ button:disabled, input:disabled {
   z-index: 9999999;
 }
 
+#google-toast {
+  .google-saving-toast {
+    .pending {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+    }
+  }
+}
+
 .overlay {
   display: flex;
   justify-content: center;

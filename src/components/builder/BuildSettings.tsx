@@ -1,6 +1,6 @@
+import "./BuildSettings.scss";
 import React, { useEffect, useState } from "react";
 import { AiFillLock, AiFillUnlock } from "react-icons/ai";
-import { styled } from "styled-components";
 import type { Build } from "../../interface/Build";
 import type { DraftFunction } from "use-immer";
 
@@ -11,7 +11,7 @@ interface Props {
   toggleOnlyUnlocked: () => void;
 }
 
-const Settings = ({ build, setBuild, toggleOnlyUnlocked, onlyUnlocked }: Props) => {
+const BuildSettings = ({ build, setBuild, toggleOnlyUnlocked, onlyUnlocked }: Props) => {
   const [name, setName] = useState(build.name);
 
   useEffect(() => {
@@ -31,7 +31,7 @@ const Settings = ({ build, setBuild, toggleOnlyUnlocked, onlyUnlocked }: Props) 
   };
 
   return (
-    <Container>
+    <div className="build-settings-container">
       <input type="text" placeholder="Name" value={name} onChange={handleNameChange} onBlur={handleNameSave} />
       <div>
         <button
@@ -43,33 +43,8 @@ const Settings = ({ build, setBuild, toggleOnlyUnlocked, onlyUnlocked }: Props) 
           {onlyUnlocked ? <AiFillUnlock size={"30px"} /> : <AiFillLock size={"30px"} />}
         </button>
       </div>
-    </Container>
+    </div>
   );
 };
 
-export default Settings;
-
-const Container = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 400px;
-  margin: 20px auto;
-
-  @media (max-width: 450px) {
-    width: 300px;
-  }
-
-  input {
-    box-sizing: border-box;
-    width: 100%;
-    padding: 10px;
-    background: transparent;
-    border: none;
-    border-bottom: 1px solid #000;
-
-    &:focus {
-      outline: none;
-    }
-  }
-`;
+export default BuildSettings;

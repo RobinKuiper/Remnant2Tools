@@ -1,0 +1,149 @@
+.settings-sidebar-container {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background: #292929;
+  color: #fff;
+  //min-height: 100%;
+  padding: 100px 0;
+  box-sizing: border-box;
+  width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  z-index: 75;
+  overflow: auto;
+
+  transition:
+    width 0.5s ease-in-out,
+    padding 0.5s ease-in-out,
+    opacity 0.2s ease-in-out 0.3s;
+
+  &.active {
+    padding: 100px 20px;
+    width: 300px;
+  }
+
+  .google-login-setting-item {
+    min-width: 260px;
+    
+    .gdrive-button {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      background-color: #4285f4;
+      cursor: pointer;
+      border: none;
+      padding: 2px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+
+      .icon {
+        background: #fff;
+        padding: 7px;
+
+        &.active {
+          svg {
+            animation: rotation 2s infinite linear;
+          }
+        }
+      }
+
+      .text {
+        color: #fff;
+        font-size: 1.1em;
+        padding: 5px;
+      }
+    }
+  }
+
+  .data-settings {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    min-width: 260px;
+
+    .data-settings-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      select {
+        padding: 6.5px 5px;
+      }
+
+      .toggle.react-toggle--checked .react-toggle-track {
+        background: darkred;
+      }
+    }
+  }
+
+  .export-settings {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    min-width: 260px;
+
+    .export-settings-item {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+
+      .title {
+        font-weight: 900;
+      }
+
+      .data {
+        textarea {
+          width: 100%;
+          min-width: 150px;
+          height: 100px;
+        }
+      }
+
+      .buttons {
+        display: flex;
+        flex-direction: row;
+        justify-content: right;
+        gap: 10px;
+
+        button {
+          padding: 5px;
+          background: darkred;
+
+          transition: all 0.3s ease-in-out;
+
+          svg {
+            pointer-events: none;
+          }
+
+          &:hover {
+            background: #a80505;
+          }
+
+          &.success {
+            background: darkgreen;
+          }
+        }
+      }
+    }
+  }
+
+  .version {
+    position: absolute;
+    bottom: 60px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    font-size: 0.8em;
+    min-width: 260px;
+  }
+
+  .google-tooltip {
+    max-width: 200px;
+    z-index: 999999;
+    background-color: #000;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+    opacity: 1;
+  }
+}
