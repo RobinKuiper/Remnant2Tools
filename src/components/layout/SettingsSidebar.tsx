@@ -1,10 +1,10 @@
 import "./SettingsSidebar.scss";
+import "react-toggle/style.css";
 import React, { useEffect, useRef, useState } from "react";
 import Toggle from "react-toggle";
 import { CiImport } from "react-icons/ci";
 import { AiOutlineCopy } from "react-icons/ai";
 import { LAST_UPDATED, TIME_BETWEEN_GOOGLE_SAVES } from "../../constants";
-import "react-toggle/style.css";
 import { Tooltip } from "react-tooltip";
 import { FaGoogleDrive } from "react-icons/fa";
 import Loader from "../Loader";
@@ -308,7 +308,7 @@ const SettingsSidebar = () => {
       </div>
 
       <ImportSaveModal setIsOpen={setSaveImportModalIsOpen} isOpen={saveImportModalIsOpen} />
-    </Container>
+    </div>
   );
 };
 
