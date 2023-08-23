@@ -1,14 +1,14 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import Modal from "react-modal";
-import {styled} from "styled-components";
-import {Link, graphql, useStaticQuery} from "gatsby";
+import { styled } from "styled-components";
+import { Link, graphql, useStaticQuery } from "gatsby";
 import Loader from "../Loader";
-import {FileUploader} from "react-drag-drop-files";
-import {toast} from "react-toastify";
-import {AiOutlineFileAdd, AiOutlineMergeCells, AiOutlineWarning} from "react-icons/ai";
-import {useAppDispatch, useAppSelector} from "../../hooks";
-import {RootState} from "../../store";
-import {updateUnlocks} from "../../features/data/dataSlice";
+import { FileUploader } from "react-drag-drop-files";
+import { toast } from "react-toastify";
+import { AiOutlineFileAdd, AiOutlineMergeCells, AiOutlineWarning } from "react-icons/ai";
+import { useAppDispatch, useAppSelector } from "../../hooks";
+import type { RootState } from "../../store";
+import { updateUnlocks } from "../../features/data/dataSlice";
 
 Modal.setAppElement("#___gatsby");
 
@@ -17,7 +17,7 @@ interface Props {
   isOpen: boolean;
 }
 
-const ImportSaveModal = ({setIsOpen, isOpen}: Props) => {
+const ImportSaveModal = ({ setIsOpen, isOpen }: Props) => {
   const data = useStaticQuery(graphql`
     {
       items: allItem(
@@ -48,7 +48,7 @@ const ImportSaveModal = ({setIsOpen, isOpen}: Props) => {
       }
     }
   `);
-  const {items} = data;
+  const { items } = data;
   const dispatch = useAppDispatch();
   const { unlocks } = useAppSelector((state: RootState) => state.data);
   const [loading, setLoading] = useState(false);
@@ -76,7 +76,7 @@ const ImportSaveModal = ({setIsOpen, isOpen}: Props) => {
       body: formdata,
     });
 
-    const {converted: contents} = await result.json();
+    const { converted: contents } = await result.json();
 
     const decompressedData = contents.toString().toLowerCase();
     const foundIds = [];
@@ -103,16 +103,16 @@ const ImportSaveModal = ({setIsOpen, isOpen}: Props) => {
     setNotInUnlocksIds(idsNotInCurrentUnlocks);
     setLoading(false);
   };
-  
+
   const endConvert = () => {
-    dispatch(updateUnlocks())
+    dispatch(updateUnlocks());
     closeModal();
-  }
+  };
 
   const mergeData = () => {
     localStorage.setItem("data", JSON.stringify([...unlocks, ...notInUnlocksIds]));
     toast.success("Successfully merged data");
-    endConvert();    
+    endConvert();
   };
 
   const overwriteData = () => {
@@ -132,7 +132,7 @@ const ImportSaveModal = ({setIsOpen, isOpen}: Props) => {
           classes="dropzone"
           children={
             <div className="dropzone-content">
-              <AiOutlineFileAdd size={25} color="#a65252"/>
+              <AiOutlineFileAdd size={25} color="#a65252" />
               <div className="dropzone-description">
                 <span>
                   <span className="underline">Upload</span> or drop a file right here
@@ -153,11 +153,11 @@ const ImportSaveModal = ({setIsOpen, isOpen}: Props) => {
           </p>
           <div className="buttons">
             <button className="merge" onClick={mergeData}>
-              <AiOutlineMergeCells size={25}/>
+              <AiOutlineMergeCells size={25} />
               Merge
             </button>
             <button className="overwrite" onClick={overwriteData}>
-              <AiOutlineWarning size={25}/>
+              <AiOutlineWarning size={25} />
               Overwrite
             </button>
           </div>
@@ -187,7 +187,7 @@ const ImportSaveModal = ({setIsOpen, isOpen}: Props) => {
             <Link to="https://github.com/Razzmatazzz/RemnantSaveGuardian/releases" _target="_blank">
               Remnant Save Guardian
             </Link>
-            <br/>
+            <br />
             In{" "}
             <Link to="https://github.com/Razzmatazzz/RemnantSaveGuardian/releases" _target="_blank">
               Remnant Save Guardian
@@ -204,7 +204,7 @@ const ImportSaveModal = ({setIsOpen, isOpen}: Props) => {
           </p>
         </div>
 
-        {loading ? <Loader loading={loading} color="#000"/> : renderFileUploaderOrResult()}
+        {loading ? <Loader loading={loading} color="#000" /> : renderFileUploaderOrResult()}
       </Content>
     </Modal>
   );
