@@ -95,7 +95,7 @@ const TraitsInterface = ({ build, showOnlyUnlocked, updateBuildValue }: Props) =
     <div className="traits-interface-container">
       <div className="traits-interface-top">
         <div className="totals">
-          <div className="trait-circle trait" />
+          <div className="trait-circle trait-point" />
           <span>
             {currentTotalPoints}/{MAX_TRAIT_POINTS} Trait points
           </span>
@@ -132,9 +132,9 @@ const TraitsInterface = ({ build, showOnlyUnlocked, updateBuildValue }: Props) =
                 const archetypeLevel = getArchetypeLevel(trait);
                 const traitPoints = build.traitLevels[trait.externalId] ?? 0;
                 if (archetypeLevel > 0 && k < archetypeLevel) {
-                  type = "archetype";
+                  type = "archetype-point";
                 } else if (k >= archetypeLevel && k < traitPoints + archetypeLevel) {
-                  type = "trait";
+                  type = "trait-point";
                 }
 
                 return <div className={`trait-circle ${type}`} key={`${trait.externalId}_${k}`} />;
