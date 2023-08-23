@@ -45,6 +45,14 @@
     @media (max-width: 670px) {
       flex-direction: column;
       gap: 20px;
+      
+      .right {
+        width: 100%;
+        
+        .search {
+          width: 100%;
+        }
+      }
     }
   }
   

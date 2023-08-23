@@ -21,12 +21,7 @@ const Sidebar = ({ children, position, useSidebarOpener = true, alwaysShowOpener
       <div className="content">{children}</div>
 
       {useSidebarOpener && (
-        <div
-          className="opener"
-          style={{
-            display: alwaysShowOpener ? "block" : "none",
-          }}
-        >
+        <div className="opener">
           <button onClick={toggleOpen}>{isOpen ? closeIcon : openIcon}</button>
         </div>
       )}

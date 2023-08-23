@@ -68,18 +68,20 @@
   }
 
   @media (max-width: 1200px) {
+    position: absolute;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.8);
     transition: all 0.3s ease-out;
-    transform: translateX(0px);
+
+    &.left {
+      transform: translateX(-235px);
+    }
+
+    &.right {
+      transform: translateX(235px);
+    }
     
     &.open {
-      &.left {
-        transform: translateX(-235px);
-      }
-
-      &.right {
-        transform: translateX(235px);
-      }
+      transform: translateX(0px);
     }
 
     .opener {
