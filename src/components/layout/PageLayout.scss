@@ -1,6 +1,7 @@
 .page-layout-container {
   height: 100%;
   box-sizing: border-box;
+  overflow-x: hidden;
 
   .page-layout-content {
     position: relative;

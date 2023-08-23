@@ -38,7 +38,7 @@
           cursor: not-allowed;
         }
 
-        @media (max-width: 450px) {
+        @media (max-width: 670px) {
           display: none;
         }
       }
@@ -113,7 +113,7 @@
           transform: rotate(-45deg) translateY(0px);
         }
 
-        @media (max-width: 450px) {
+        @media (max-width: 670px) {
           display: block;
         }
       }

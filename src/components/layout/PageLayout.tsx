@@ -15,11 +15,7 @@ const PageLayout = ({ children, leftSidebarContent, rightSidebarContent }: Props
       {leftSidebarContent && <Sidebar position={"left"}>{leftSidebarContent}</Sidebar>}
 
       <div
-        className={`
-          page-layout-content 
-          ${leftSidebarContent !== undefined ? "left-sidebar" : ""}
-          ${rightSidebarContent !== undefined} ? "right-sidebar" : ""}
-        `}
+        className={`page-layout-content ${leftSidebarContent !== undefined ? "left-sidebar" : ""} ${rightSidebarContent !== undefined ? "right-sidebar" : ""}`}
       >
         {children}
       </div>

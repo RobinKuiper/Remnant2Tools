@@ -3,29 +3,41 @@
   top: 0;
   background: #292929;
   color: #fff;
-  height: 100vh;
+  min-height: 100vh;
   padding: 74px 0 45px 0;
   box-sizing: border-box;
   width: 235px;
   z-index: 50;
   
+  &.right {
+    overflow: hidden;
+  }
+  
   &.left {
     left: 0;
-    right: auto;
     
     .opener {
-      left: 235px;
-      right: auto;
-    }
+      right: -57px;
+    } 
+    
+    //&.open {
+    //  .opener {
+    //    left: 235px;
+    //  }
+    //}
   }
   
   &.right {
     right: 0;
-    left: auto;
-
+    
     .opener {
-      right: 235px;
-      left: auto;
+      right: 0;
+    }
+
+    &.open {
+      .opener {
+        right: 235px;
+      }
     }
   }
 
@@ -34,9 +46,11 @@
     height: 100%;
     box-sizing: border-box;
     padding-bottom: 20px;
+    width: 235px;
   }
 
   .opener {
+    display: none;
     position: fixed;
     top: 80px;
     color: #ffffff;
@@ -44,7 +58,7 @@
     padding: 5px;
 
     animation: scale 1.2s ease-in-out;
-    transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-out;
 
     button {
       position: relative;
@@ -77,11 +91,18 @@
     }
 
     &.right {
-      transform: translateX(235px);
+      width: 0;
     }
     
+    
     &.open {
-      transform: translateX(0px);
+      &.left {
+        transform: translateX(0px);
+      }
+
+      &.right {
+        width: 235px;
+      }
     }
 
     .opener {
