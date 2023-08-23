@@ -1,5 +1,5 @@
+import "./ItemStat.scss";
 import React from "react";
-import { styled } from "styled-components";
 import { camelCaseToText } from "../../helpers";
 
 interface Props {
@@ -10,15 +10,15 @@ interface Props {
 const ItemStat = ({ valueKey: key, value }: Props) => {
   if (typeof value !== "object") {
     return (
-      <Container>
+      <div className="item-stat-container">
         <span className="key">{camelCaseToText(key)}</span>
         <span className="value">{value}</span>
-      </Container>
+      </div>
     );
   }
 
   return (
-    <Container>
+    <div className="item-stat-container">
       <span className="key">
         <div className="main-key">{camelCaseToText(key)}</div>
 
@@ -42,29 +42,8 @@ const ItemStat = ({ valueKey: key, value }: Props) => {
           ))}
         </div>
       </span>
-    </Container>
+    </div>
   );
 };
 
 export default ItemStat;
-
-const Container = styled.div`
-  display: flex;
-  gap: 30px;
-  justify-content: space-between;
-
-  .key {
-    font-weight: 900;
-
-    .sub {
-      padding-left: 10px;
-    }
-  }
-
-  .sub {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    margin-top: 5px;
-  }
-`;

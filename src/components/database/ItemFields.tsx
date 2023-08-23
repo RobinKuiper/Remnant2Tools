@@ -1,6 +1,5 @@
 import React from "react";
 import { getFieldValue } from "../../dataHelpers";
-import { Flex } from "../../style/global";
 import Redacted from "./Redacted";
 
 const ItemFields = ({ category, type, item, unlocked }) => {
@@ -13,19 +12,15 @@ const ItemFields = ({ category, type, item, unlocked }) => {
       }
 
       return (
-        <div key={field.fragment}>
-          <Flex direction="row">
-            <Flex direction="column">
+        <div className="item-fields-container" key={field.fragment}>
+          <div className="row">
+            <div className="column">
               <div className="field-title">{field.label}</div>
               <div>
-                {field.redacted && !unlocked ? (
-                  <Redacted value={value} defaultShow={unlocked} bgColor={"#c7c7c7"} />
-                ) : (
-                  value
-                )}
+                {field.redacted && !unlocked ? <Redacted value={value} defaultShow={unlocked} bgColor={"c7"} /> : value}
               </div>
-            </Flex>
-          </Flex>
+            </div>
+          </div>
         </div>
       );
     });

@@ -1,0 +1,28 @@
+.page-layout-container {
+  height: 100%;
+  box-sizing: border-box;
+  overflow-x: hidden;
+
+  .page-layout-content {
+    position: relative;
+    height: 100%;
+    z-index: 65; // TODO: check? 50 works
+    box-shadow: 0 0 20px rgba(0, 0, 0, 1);
+    
+    &.left-sidebar {
+      margin-left: 235px;
+    }
+    
+    &.right-sidebar {
+      margin-right: 235px;
+    }
+
+    @media (max-width: 1200px) {
+      z-index: auto;
+
+      &.left-sidebar, &.right-sidebar {
+        margin: 0;
+      }
+    }
+  }
+}

@@ -1,0 +1,35 @@
+.statistics-panel-container {
+  width: 400px;
+  min-height: 600px;
+
+  table {
+    width: 100%;
+
+    tbody {
+      tr {
+        td {
+          text-align: right;
+        }
+
+        td.title {
+          font-weight: 900;
+          text-align: left;
+        }
+      }
+    }
+
+    tfoot {
+      tr {
+        td {
+          border-top: 1px solid #fff;
+          text-align: right;
+          font-weight: 900;
+        }
+
+        td.title {
+          text-align: left;
+        }
+      }
+    }
+  }
+}

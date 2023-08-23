@@ -1,6 +1,6 @@
+import "./PageLayout.scss";
 import type { ReactNode } from "react";
 import React from "react";
-import { styled } from "styled-components";
 import Sidebar from "./Sidebar";
 
 interface Props {
@@ -11,33 +11,18 @@ interface Props {
 
 const PageLayout = ({ children, leftSidebarContent, rightSidebarContent }: Props) => {
   return (
-    <Container hasleftsidebar={leftSidebarContent !== undefined} hasrightsidebar={rightSidebarContent !== undefined}>
+    <div className="page-layout-container">
       {leftSidebarContent && <Sidebar position={"left"}>{leftSidebarContent}</Sidebar>}
 
-      <div className="page-content">{children}</div>
+      <div
+        className={`page-layout-content ${leftSidebarContent !== undefined ? "left-sidebar" : ""} ${rightSidebarContent !== undefined ? "right-sidebar" : ""}`}
+      >
+        {children}
+      </div>
 
       {rightSidebarContent && <Sidebar position={"right"}>{rightSidebarContent}</Sidebar>}
-    </Container>
+    </div>
   );
 };
 
 export default PageLayout;
-
-const Container = styled.div`
-  height: 100%;
-  box-sizing: border-box;
-
-  .page-content {
-    position: relative;
-    height: 100%;
-    margin-left: ${({ hasleftsidebar }) => (hasleftsidebar ? "235px" : "0")};
-    margin-right: ${({ hasrightsidebar }) => (hasrightsidebar ? "235px" : "0")};
-    z-index: 65; // TODO: check? 50 works
-    box-shadow: 0 0 20px rgba(0, 0, 0, 1);
-
-    @media (max-width: 1200px) {
-      margin: 0;
-      z-index: auto;
-    }
-  }
-`;

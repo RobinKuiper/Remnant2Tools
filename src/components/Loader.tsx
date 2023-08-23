@@ -1,5 +1,5 @@
+import "./Loader.scss";
 import React from "react";
-import { styled } from "styled-components";
 import { CircleLoader } from "react-spinners";
 
 interface Props {
@@ -10,17 +10,10 @@ interface Props {
 
 const Loader = ({ size, color, loading }: Props) => {
   return (
-    <Container>
+    <div className="loader-container">
       <CircleLoader color={color ?? "#000"} loading={loading ?? true} size={size ?? 150} aria-label="Loading Spinner" />
-    </Container>
+    </div>
   );
 };
 
 export default Loader;
-
-const Container = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-`;

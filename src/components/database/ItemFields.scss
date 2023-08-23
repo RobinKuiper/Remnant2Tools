@@ -1,0 +1,12 @@
+.item-fields-container {
+  .row {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    
+    .column {
+      display: flex;
+      gap: 10px;
+    }
+  }
+}

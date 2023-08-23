@@ -1,6 +1,6 @@
+import "./CategorySidebarContent.scss";
 import { Link, graphql, useStaticQuery } from "gatsby";
 import React from "react";
-import { styled } from "styled-components";
 import { useAppSelector } from "../../hooks";
 import type { RootState } from "../../store";
 
@@ -41,7 +41,7 @@ const CategorySidebarContent = ({ type }: Props) => {
   const url = typeof window !== "undefined" ? window.location.href : "";
 
   return (
-    <Container>
+    <div className="category-sidebar-content-container">
       <nav>
         {type === "tracker" && (
           <Link
@@ -93,89 +93,8 @@ const CategorySidebarContent = ({ type }: Props) => {
           );
         })}
       </nav>
-    </Container>
+    </div>
   );
 };
 
 export default CategorySidebarContent;
-
-const Container = styled.div`
-  margin-top: 10px;
-
-  nav {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    margin-right: 10px;
-    box-sizing: border-box;
-
-    .sub-links {
-      height: auto;
-      overflow: hidden;
-      transition: all 0.5s ease-in-out;
-      width: 100%;
-      box-sizing: border-box;
-    }
-
-    a,
-    div {
-      width: 100%;
-      box-sizing: border-box;
-
-      span {
-        padding: 5px 10px;
-        box-sizing: border-box;
-      }
-
-      &.sub-link {
-        position: relative;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        padding: 7.5px 0 7.5px 10px;
-        width: 100%;
-        box-sizing: border-box;
-
-        transition: all 0.3s ease-in-out;
-
-        &:after {
-          content: "";
-          position: absolute;
-          bottom: 0;
-          left: 0;
-          width: 0;
-          height: 2px;
-          background: rgba(159, 19, 19, 0.66);
-
-          transition: all 0.5s ease-in-out;
-        }
-
-        &:hover:after,
-        &.active:after {
-          width: 100%;
-        }
-
-        &:hover,
-        &.active {
-          background: #181818;
-        }
-      }
-
-      &.main-category {
-        display: flex;
-        flex-direction: column;
-        overflow: hidden;
-        cursor: pointer;
-        box-sizing: border-box;
-
-        a:first-child {
-          margin-top: 5px;
-        }
-
-        &:hover {
-          background: inherit;
-        }
-      }
-    }
-  }
-`;

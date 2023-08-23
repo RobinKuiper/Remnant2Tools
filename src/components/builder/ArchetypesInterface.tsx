@@ -1,6 +1,6 @@
+import "./ArchetypesInterface.scss";
 import React, { useEffect, useState } from "react";
 import BuildItemBox from "./BuildItemBox";
-import { styled } from "styled-components";
 import type { Build } from "../../interface/Build";
 import type { Filter } from "../../interface/IData";
 import ItemLevelNew from "../database/ItemLevelNew";
@@ -50,7 +50,7 @@ const ArchetypesInterface = ({ build, openModal, images, handleLevelChange }: Pr
   }, [build]);
 
   return (
-    <Container>
+    <div className="archetypes-interface-container">
       <div className="archetype one">
         <h3>{archetype1?.name ?? "Pick archetype"}</h3>
         <BuildItemBox
@@ -114,32 +114,8 @@ const ArchetypesInterface = ({ build, openModal, images, handleLevelChange }: Pr
           disabled={!build.archetype2}
         />
       </div>
-    </Container>
+    </div>
   );
 };
 
 export default ArchetypesInterface;
-
-const Container = styled.div`
-  display: flex;
-  justify-content: space-between;
-  gap: 40px;
-  width: 400px;
-  margin: 20px auto;
-
-  @media (max-width: 450px) {
-    width: 300px;
-  }
-
-  .archetype {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    align-items: center;
-
-    .item-box {
-      width: 128px;
-      height: 128px;
-    }
-  }
-`;

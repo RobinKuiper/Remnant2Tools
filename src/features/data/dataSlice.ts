@@ -227,7 +227,7 @@ export const dataSlice = createSlice({
       state.lastSave = new Date();
       return state;
     },
-    [googleSave.fulfilled]: (state, { payload }) => {
+    [googleSave.fulfilled]: state => {
       state.saving = false;
       state.saved = true;
       return state;

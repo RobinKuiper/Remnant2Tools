@@ -1,5 +1,5 @@
+import "./SettingsSidebar.scss";
 import React, { useEffect, useRef, useState } from "react";
-import { styled } from "styled-components";
 import Toggle from "react-toggle";
 import { CiImport } from "react-icons/ci";
 import { AiOutlineCopy } from "react-icons/ai";
@@ -178,15 +178,15 @@ const SettingsSidebar = () => {
   })();
 
   return (
-    <Container className={showSidebar && "active"}>
+    <div className={`settings-sidebar-container ${showSidebar && "active"}`}>
       <h2>Settings</h2>
 
       <div className="google-login-setting-item" data-tooltip-id="google-login-tooltip" data-tooltip-place="bottom">
-        <GDriveButton className="google-drive-button" onClick={handleGoogleLink} disabled={loggingIn}>
-          <div className={`google-icon ${loggingIn && "active"}`}>{GoogleIcon}</div>
-          <span className="google-text">{buttonText}</span>
-        </GDriveButton>
-        <Tooltip id="google-login-tooltip">
+        <div className="gdrive-button" onClick={handleGoogleLink} disabled={loggingIn}>
+          <div className={`icon ${loggingIn && "active"}`}>{GoogleIcon}</div>
+          <span className="text">{buttonText}</span>
+        </div>
+        <Tooltip id="google-login-tooltip" className="google-tooltip">
           <p>
             Linking to Google will save your data to your Google Drive. Saving happens once each{" "}
             <strong>{TIME_BETWEEN_GOOGLE_SAVES} seconds</strong> if their are changes.
@@ -199,10 +199,10 @@ const SettingsSidebar = () => {
         </Tooltip>
       </div>
 
-      <div className="layout">
+      <div className="data-settings">
         <h3>Data</h3>
 
-        <div className="layout-settings-item">
+        <div className="data-settings-item">
           <label
             htmlFor="defaultShowRedacted"
             className="title"
@@ -227,10 +227,10 @@ const SettingsSidebar = () => {
         </div>
       </div>
 
-      <div className="export">
+      <div className="export-settings">
         <h3>Export/Import</h3>
 
-        <div className="export-item">
+        <div className="export-settings-item">
           <div className="title">Unlock data</div>
           <div className="data">
             <textarea ref={unlockDataRef}></textarea>
@@ -275,7 +275,7 @@ const SettingsSidebar = () => {
           </div>
         </div>
 
-        <div className="export-item">
+        <div className="export-settings-item">
           <div className="title">Builds data</div>
           <div className="data">
             <textarea ref={buildsDataRef}></textarea>
@@ -313,152 +313,3 @@ const SettingsSidebar = () => {
 };
 
 export default SettingsSidebar;
-
-const Container = styled.div`
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  background: #292929;
-  color: #fff;
-  //min-height: 100%;
-  padding: 100px 0;
-  box-sizing: border-box;
-  width: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
-  z-index: 75;
-  overflow: auto;
-
-  transition:
-    width 0.5s ease-in-out,
-    padding 0.5s ease-in-out,
-    opacity 0.2s ease-in-out 0.3s;
-
-  &.active {
-    padding: 100px 20px;
-    width: 300px;
-  }
-
-  .google-login-setting-item {
-    min-width: 260px;
-  }
-
-  .layout {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    min-width: 260px;
-
-    .layout-settings-item {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-
-      select {
-        padding: 6.5px 5px;
-      }
-
-      .toggle.react-toggle--checked .react-toggle-track {
-        background: darkred;
-      }
-    }
-  }
-
-  .export {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    min-width: 260px;
-
-    .export-item {
-      display: flex;
-      flex-direction: column;
-      gap: 5px;
-
-      .title {
-        font-weight: 900;
-      }
-
-      .data {
-        textarea {
-          width: 100%;
-          min-width: 150px;
-          height: 100px;
-        }
-      }
-
-      .buttons {
-        display: flex;
-        flex-direction: row;
-        justify-content: right;
-        gap: 10px;
-
-        button {
-          padding: 5px;
-          background: darkred;
-
-          transition: all 0.3s ease-in-out;
-
-          svg {
-            pointer-events: none;
-          }
-
-          &:hover {
-            background: #a80505;
-          }
-
-          &.success {
-            background: darkgreen;
-          }
-        }
-      }
-    }
-  }
-
-  .version {
-    position: absolute;
-    bottom: 60px;
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    font-size: 0.8em;
-    min-width: 260px;
-  }
-
-  #google-login-tooltip {
-    max-width: 200px;
-    z-index: 999999;
-    background-color: #000;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
-    opacity: 1;
-  }
-`;
-const GDriveButton = styled.button`
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  background-color: #4285f4;
-  cursor: pointer;
-  border: none;
-  padding: 2px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
-
-  .google-icon {
-    background: #fff;
-    padding: 7px;
-
-    &.active {
-      svg {
-        animation: rotation 2s infinite linear;
-      }
-    }
-  }
-
-  .google-text {
-    color: #fff;
-    font-size: 1.1em;
-    padding: 5px;
-  }
-`;

@@ -1,5 +1,5 @@
+import "./ItemTooltip.scss";
 import React from "react";
-import { styled } from "styled-components";
 import ItemStatistics from "./ItemStatistics";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import { Tooltip } from "react-tooltip";
@@ -9,7 +9,7 @@ const ItemTooltip = ({ id, item, image }) => {
 
   return (
     <Tooltip className="tooltip" id={id}>
-      <Container>
+      <div className="item-tooltip-container">
         <div className="head">
           {image && (
             <div className="image">
@@ -38,31 +38,9 @@ const ItemTooltip = ({ id, item, image }) => {
         <div className="content">
           {item.stats && <ItemStatistics item={item} background="#292929" color="#fff" border="" />}
         </div>
-      </Container>
+      </div>
     </Tooltip>
   );
 };
 
 export default ItemTooltip;
-
-const Container = styled.div`
-  .head {
-    .general-information {
-      .title {
-        display: flex;
-        justify-content: center;
-      }
-
-      .tags {
-        display: flex;
-        justify-content: center;
-        gap: 10px;
-        font-size: 0.9em;
-      }
-    }
-  }
-
-  .content {
-    display: flex;
-  }
-`;

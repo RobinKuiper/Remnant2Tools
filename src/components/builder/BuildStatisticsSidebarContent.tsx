@@ -1,5 +1,5 @@
+import "./BuildStatisticsSidebarContent.scss";
 import React, { useEffect, useState } from "react";
-import { styled } from "styled-components";
 import "react-toggle/style.css";
 import type { Build } from "../../interface/Build";
 import { calculateWeightType, getFieldValue, setFieldValue } from "../../dataHelpers";
@@ -89,7 +89,7 @@ const BuildStatisticsSidebarContent = ({ build }: Props) => {
   }, [build]);
 
   return (
-    <Container>
+    <div className="build-statistics-sidebar-content-container">
       <h2>Statistics</h2>
 
       <div className="statisticsContainer">
@@ -146,54 +146,8 @@ const BuildStatisticsSidebarContent = ({ build }: Props) => {
           statistics could be somewhat inaccurate.
         </p>
       </div>
-    </Container>
+    </div>
   );
 };
 
 export default BuildStatisticsSidebarContent;
-
-const Container = styled.div`
-  padding: 10px;
-
-  h2 {
-    margin-bottom: 10px;
-  }
-
-  .statisticsContainer {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-
-    .key {
-    }
-
-    .stat-item,
-    .sub-item {
-      display: flex;
-      justify-content: space-between;
-    }
-
-    .multiple-item {
-      display: flex;
-      flex-direction: column;
-      gap: 5px;
-
-      .values {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-
-        .key {
-          padding-left: 10px;
-        }
-      }
-    }
-  }
-
-  .footer {
-    position: absolute;
-    bottom: 50px;
-    box-sizing: border-box;
-    padding: 0 10px 0 0;
-  }
-`;
