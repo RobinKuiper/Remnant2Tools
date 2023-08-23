@@ -1,4 +1,4 @@
-import "./GridItem.scss"
+import "./GridItem.scss";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import React from "react";
 import ItemLevel from "./ItemLevel";

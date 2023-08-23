@@ -1,10 +1,10 @@
 import "./SettingsSidebar.scss";
+import "react-toggle/style.css";
 import React, { useEffect, useRef, useState } from "react";
 import Toggle from "react-toggle";
 import { CiImport } from "react-icons/ci";
 import { AiOutlineCopy } from "react-icons/ai";
 import { LAST_UPDATED, TIME_BETWEEN_GOOGLE_SAVES } from "../../constants";
-import "react-toggle/style.css";
 import { Tooltip } from "react-tooltip";
 import { FaGoogleDrive } from "react-icons/fa";
 import Loader from "../Loader";
@@ -17,11 +17,14 @@ import { userLogin } from "../../features/auth/authActions";
 import { logout } from "../../features/auth/authSlice";
 import { toggleShowRedacted } from "../../features/settings/settingsSlice";
 import { updateBuilds, updateUnlocks } from "../../features/data/dataSlice";
+import { BiSolidFileImport } from "react-icons/bi";
+import ImportSaveModal from "../modals/ImportSaveModal";
 
 const SettingsSidebar = () => {
   const unlockDataRef = useRef<HTMLTextAreaElement>();
   const buildsDataRef = useRef<HTMLTextAreaElement>();
   const [retrievingFromGoogle, setRetrievingFromGoogle] = useState(false);
+  const [saveImportModalIsOpen, setSaveImportModalIsOpen] = useState(false);
   const { isLoggedIn, loading: loggingIn } = useAppSelector((state: RootState) => state.auth);
   const { showSidebar, showRedacted } = useAppSelector((state: RootState) => state.settings);
   const { unlocks, builds } = useAppSelector((state: RootState) => state.data);
@@ -80,6 +83,10 @@ const SettingsSidebar = () => {
     e.target.classList.add("success");
     localStorage.setItem("builds", buildsDataRef.current.value);
     dispatch(updateBuilds());
+  };
+
+  const showImportSaveModal = () => {
+    setSaveImportModalIsOpen(true);
   };
 
   const handleGoogleLink = () => {
@@ -240,6 +247,15 @@ const SettingsSidebar = () => {
             </button>
 
             <button
+              onClick={showImportSaveModal}
+              data-tooltip-id="tooltip"
+              data-tooltip-content={"Import from save file"}
+              data-tooltip-place="bottom"
+            >
+              <BiSolidFileImport size="25px" />
+            </button>
+
+            <button
               onClick={saveUnlocks}
               data-tooltip-id="tooltip"
               data-tooltip-content={"Import unlock data"}
@@ -290,6 +306,8 @@ const SettingsSidebar = () => {
         {/*<span>Version: {VERSION}</span>*/}
         <span>Last updated: {LAST_UPDATED}</span>
       </div>
+
+      <ImportSaveModal setIsOpen={setSaveImportModalIsOpen} isOpen={saveImportModalIsOpen} />
     </div>
   );
 };

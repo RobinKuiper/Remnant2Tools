@@ -20,9 +20,9 @@ const convertDataToNewArrayStructure = (data): number[] => {
     localStorage.setItem("data", JSON.stringify(data));
   }
 
-  const newData = Object.entries(data).flatMap(([category, items]) =>
+  const newData = Object.values(data).flatMap(items =>
     Object.entries(items)
-      .filter(([id, item]) => item.unlocked)
+      .filter(item => item[1].unlocked)
       .map(([id]) => parseInt(id)),
   );
   localStorage.setItem("data", JSON.stringify(newData));
