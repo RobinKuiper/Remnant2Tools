@@ -32,7 +32,6 @@
     "@reduxjs/toolkit": "^1.9.5",
     "@vercel/analytics": "^1.0.2",
     "dotenv": "^16.3.1",
-    "framer-motion": "^10.15.1",
     "gatsby": "^5.11.0",
     "gatsby-plugin-gdpr-cookies": "^2.0.9",
     "gatsby-plugin-google-fonts": "^1.0.1",
