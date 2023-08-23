@@ -32,18 +32,10 @@ const BuildsSidebarContent = ({ builds, setBuild, resetBuild, build, copyBuild, 
               </button>
 
               <div className="actions">
-                <button 
-                    onClick={() => copyBuild(id)}
-                    data-tooltip-id="tooltip"
-                    data-tooltip-content="Copy"
-                >
+                <button onClick={() => copyBuild(id)} data-tooltip-id="tooltip" data-tooltip-content="Copy">
                   <AiFillCopy />
                 </button>
-                <button 
-                    onClick={() => deleteBuild(id)}
-                    data-tooltip-id="tooltip"
-                    data-tooltip-content="Delete"
-                >
+                <button onClick={() => deleteBuild(id)} data-tooltip-id="tooltip" data-tooltip-content="Delete">
                   <AiFillDelete />
                 </button>
               </div>

@@ -1,11 +1,11 @@
-import "./ImportSaveModal.scss"
+import "./ImportSaveModal.scss";
 import React, { useState } from "react";
 import Modal from "react-modal";
 import { Link, graphql, useStaticQuery } from "gatsby";
 import Loader from "../Loader";
 import { FileUploader } from "react-drag-drop-files";
 import { toast } from "react-toastify";
-import {AiOutlineClose, AiOutlineFileAdd, AiOutlineMergeCells, AiOutlineSave, AiOutlineWarning} from "react-icons/ai";
+import { AiOutlineClose, AiOutlineFileAdd, AiOutlineMergeCells, AiOutlineSave, AiOutlineWarning } from "react-icons/ai";
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import type { RootState } from "../../store";
 import { updateUnlocks } from "../../features/data/dataSlice";
@@ -173,12 +173,12 @@ const ImportSaveModal = ({ setIsOpen, isOpen }: Props) => {
       contentLabel="Select Item"
       className="modal"
       overlayClassName="overlay"
-    >      
+    >
       <div className="import-save-modal-container">
         <button className="close" onClick={closeModal}>
           <AiOutlineClose size={20} />
         </button>
-        
+
         <h2>
           <AiOutlineSave size={30} />
           Import Save File
@@ -186,25 +186,26 @@ const ImportSaveModal = ({ setIsOpen, isOpen }: Props) => {
 
         <div className="description">
           <p>
-            To effortlessly import unlocked states you can use the file selector below.<br />
-            Your save file will be decompressed and read out as good as possible.<br />
+            To effortlessly import unlocked states you can use the file selector below.
+            <br />
+            Your save file will be decompressed and read out as good as possible.
+            <br />
           </p>
 
           <p>
             You can find your save file in the following location:
-            <pre>
-              C:\Users\_your_username_\Saved Games\Remnant2\Steam\_steam_id_\
-            </pre>
+            <pre>C:\Users\_your_username_\Saved Games\Remnant2\Steam\_steam_id_\</pre>
           </p>
         </div>
 
         {loading ? <Loader loading={loading} color="#000" /> : renderFileUploaderOrResult()}
-        
+
         <p>
-          The idea for the code to decompress the save file comes from {" "}
+          The idea for the code to decompress the save file comes from{" "}
           <Link to="https://github.com/Razzmatazzz" target="_blank">
             Razzmatazzz
-          </Link><br />
+          </Link>
+          <br />
           Please give him a well deserved thank you!
         </p>
       </div>

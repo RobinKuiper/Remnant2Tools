@@ -6,10 +6,9 @@ interface Props {
   children: React.ReactNode;
   position: "right" | "left";
   useSidebarOpener?: boolean;
-  alwaysShowOpener?: boolean;
 }
 
-const Sidebar = ({ children, position, useSidebarOpener = true, alwaysShowOpener = false }: Props) => {
+const Sidebar = ({ children, position, useSidebarOpener = true }: Props) => {
   const [isOpen, setIsOpen] = useState(false);
   const openIcon = position === "left" ? <BiSolidRightArrow size="35px" /> : <BiSolidLeftArrow size="35px" />;
   const closeIcon = position === "left" ? <BiSolidLeftArrow size="35px" /> : <BiSolidRightArrow size="35px" />;
