@@ -72,9 +72,8 @@
 
         cursor: pointer;
         width: 48px;
-        height: 48px;
         transition: all 0.25s;
-        margin-right: 25px;
+        margin-right: 0;
         position: relative;
         background: transparent;
         border: none;
@@ -85,7 +84,6 @@
 
         .hamburger__top-bun,
         .hamburger__bottom-bun {
-          content: "";
           position: absolute;
           left: 25%;
           width: 24px;
@@ -132,26 +130,19 @@
 
   transition: all 0.3s ease-in-out;
 
+  &.active {
+    display: block;
+  }
+
   nav {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 40px;
-    
-    &.active {
-      display: block;
-
-      a {
-        transform: translateX(0);
-      }
-    }
 
     a {
       font-size: 1.3em;
-      transform: translateX(300px);
-
-      transition: all 0.3s ease-in-out;
     }
   }
 }

@@ -48,18 +48,18 @@ const TopBar = () => {
 
           <GlobalSearch />
 
-          <button className={`settings ${showSidebar && "active"}`} onClick={() => dispatch(toggleSidebar())}>
+          <button className={`settings ${showSidebar ? "active" : ""}`} onClick={() => dispatch(toggleSidebar())}>
             <RiSettings3Line size="30px" />
           </button>
 
-          <div className={`hamburger ${isOpen && "open"}`} onClick={toggleOpen}>
+          <div className={`hamburger ${isOpen ? "open" : ""}`} onClick={toggleOpen}>
             <span className="hamburger__top-bun" />
             <span className="hamburger__bottom-bun" />
           </div>
         </div>
       </div>
 
-      <div className={`mobile ${isOpen && "active"}`}>
+      <div className={`mobile ${isOpen ? "active" : ""}`}>
         <nav>
           <Link to="/database/archetypes">Database</Link>
           <Link to="/tracker/archetypes">Tracker</Link>
